@@ -1,0 +1,901 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1E5FCA26-8531-435C-93D9-A31F665E20B5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Al_Mohasib.My.MyApplication</StartupObject>
+    <RootNamespace>Al_Mohasib</RootNamespace>
+    <AssemblyName>Al Mohasib</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Al Mohasib.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Al Mohasib.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Al Mohasib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <ExecutableExtension>.exe</ExecutableExtension>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="MyBarcode, Version=1.0.6854.32559, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ALMohassinDBDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ALMohassinDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ALMohassinDBDataSet.vb">
+      <DependentUpon>ALMohassinDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Class\AutoModule.vb" />
+    <Compile Include="Class\BackUpRestaure.vb" />
+    <Compile Include="Class\BoundClass.vb" />
+    <Compile Include="Class\ChargesClass.vb" />
+    <Compile Include="Class\mdlprint.vb" />
+    <Compile Include="Class\ModuleCodeBar.vb" />
+    <Compile Include="Class\DataAccess.vb" />
+    <Compile Include="Class\DrawClass.vb" />
+    <Compile Include="Class\NumericStrings.vb" />
+    <Compile Include="Class\SubClass.vb" />
+    <Compile Include="Class\SubFacture.vb" />
+    <Compile Include="Controles\AddList.Designer.vb">
+      <DependentUpon>AddList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\AddList.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\AddPanel.Designer.vb">
+      <DependentUpon>AddPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\AddPanel.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\ArtBloc.Designer.vb">
+      <DependentUpon>ArtBloc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\ArtBloc.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\CBlock.Designer.vb">
+      <DependentUpon>CBlock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\CBlock.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\ClientBloc.Designer.vb">
+      <DependentUpon>ClientBloc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\ClientBloc.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\CPanel.Designer.vb">
+      <DependentUpon>CPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\CPanel.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\Items.Designer.vb">
+      <DependentUpon>Items.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\Items.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\RPanel.Designer.vb">
+      <DependentUpon>RPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\RPanel.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\TxtBox.Designer.vb">
+      <DependentUpon>TxtBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\TxtBox.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FunctionModule.vb" />
+    <Compile Include="GUI\Addadmin.Designer.vb">
+      <DependentUpon>Addadmin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Addadmin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AddArticleToFacture.Designer.vb">
+      <DependentUpon>AddArticleToFacture.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AddArticleToFacture.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AddCharges.Designer.vb">
+      <DependentUpon>AddCharges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AddCharges.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AddDepot.Designer.vb">
+      <DependentUpon>AddDepot.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AddDepot.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AddEditArticle.Designer.vb">
+      <DependentUpon>AddEditArticle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AddEditArticle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AddEditCat.Designer.vb">
+      <DependentUpon>AddEditCat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AddEditCat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AddEditCharges.Designer.vb">
+      <DependentUpon>AddEditCharges.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AddEditCharges.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AddMashine.Designer.vb">
+      <DependentUpon>AddMashine.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AddMashine.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AddMelange.Designer.vb">
+      <DependentUpon>AddMelange.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AddMelange.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\addtoliste.Designer.vb">
+      <DependentUpon>addtoliste.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\addtoliste.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ArticleDetails.Designer.vb">
+      <DependentUpon>ArticleDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ArticleDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Articles.Designer.vb">
+      <DependentUpon>Articles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Articles.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AvanceCheck.Designer.vb">
+      <DependentUpon>AvanceCheck.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AvanceCheck.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\BackUP.Designer.vb">
+      <DependentUpon>BackUP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\BackUP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\BarCode.Designer.vb">
+      <DependentUpon>BarCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\BarCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\byPrice.Designer.vb">
+      <DependentUpon>byPrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\byPrice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\byname.Designer.vb">
+      <DependentUpon>byname.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\byname.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Calc.Designer.vb">
+      <DependentUpon>Calc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Calc.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ChoseClient.Designer.vb">
+      <DependentUpon>ChoseClient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ChoseClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ChoseCompany.Designer.vb">
+      <DependentUpon>ChoseCompany.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ChoseCompany.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ChoseDepot.Designer.vb">
+      <DependentUpon>ChoseDepot.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ChoseDepot.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Client.Designer.vb">
+      <DependentUpon>Client.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Client.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ClientDetails.Designer.vb">
+      <DependentUpon>ClientDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ClientDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\company.Designer.vb">
+      <DependentUpon>company.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\company.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\CompanyPAYEMENT.Designer.vb">
+      <DependentUpon>CompanyPAYEMENT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\CompanyPAYEMENT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Depot.Designer.vb">
+      <DependentUpon>Depot.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Depot.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\EtatClient.Designer.vb">
+      <DependentUpon>EtatClient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\EtatClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PayRecept.Designer.vb">
+      <DependentUpon>PayRecept.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PayRecept.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Screen2.Designer.vb">
+      <DependentUpon>Screen2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Screen2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Devis.Designer.vb">
+      <DependentUpon>Devis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Devis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Commande.Designer.vb">
+      <DependentUpon>Commande.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Commande.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Editprdfact.Designer.vb">
+      <DependentUpon>Editprdfact.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Editprdfact.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\EditStock.Designer.vb">
+      <DependentUpon>EditStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\EditStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Facture.Designer.vb">
+      <DependentUpon>Facture.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Facture.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\GestionStock.Designer.vb">
+      <DependentUpon>GestionStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\GestionStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\LookForDevis.Designer.vb">
+      <DependentUpon>LookForDevis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\LookForDevis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Massar.Designer.vb">
+      <DependentUpon>Massar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Massar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\num.Designer.vb">
+      <DependentUpon>num.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\num.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\OpenAvoir.Designer.vb">
+      <DependentUpon>OpenAvoir.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\OpenAvoir.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ChoseLivreur.Designer.vb">
+      <DependentUpon>ChoseLivreur.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ChoseLivreur.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PAYEMENT.Designer.vb">
+      <DependentUpon>PAYEMENT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PAYEMENT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PayFacture.Designer.vb">
+      <DependentUpon>PayFacture.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PayFacture.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\paypmt.Designer.vb">
+      <DependentUpon>paypmt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\paypmt.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PWDPicker.Designer.vb">
+      <DependentUpon>PWDPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PWDPicker.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\SavePrint.Designer.vb">
+      <DependentUpon>SavePrint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\SavePrint.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\stk.Designer.vb">
+      <DependentUpon>stk.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\stk.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Stock.Designer.vb">
+      <DependentUpon>Stock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TrialVersion.Designer.vb">
+      <DependentUpon>TrialVersion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TrialVersion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controles\AddList.resx">
+      <DependentUpon>AddList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\AddPanel.resx">
+      <DependentUpon>AddPanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\ArtBloc.resx">
+      <DependentUpon>ArtBloc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\CBlock.resx">
+      <DependentUpon>CBlock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\ClientBloc.resx">
+      <DependentUpon>ClientBloc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\CPanel.resx">
+      <DependentUpon>CPanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\Items.resx">
+      <DependentUpon>Items.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\RPanel.resx">
+      <DependentUpon>RPanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\TxtBox.resx">
+      <DependentUpon>TxtBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Addadmin.resx">
+      <DependentUpon>Addadmin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AddArticleToFacture.resx">
+      <DependentUpon>AddArticleToFacture.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AddCharges.resx">
+      <DependentUpon>AddCharges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AddDepot.resx">
+      <DependentUpon>AddDepot.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AddEditArticle.resx">
+      <DependentUpon>AddEditArticle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AddEditCat.resx">
+      <DependentUpon>AddEditCat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AddEditCharges.resx">
+      <DependentUpon>AddEditCharges.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AddMashine.resx">
+      <DependentUpon>AddMashine.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AddMelange.resx">
+      <DependentUpon>AddMelange.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\addtoliste.resx">
+      <DependentUpon>addtoliste.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ArticleDetails.resx">
+      <DependentUpon>ArticleDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Articles.resx">
+      <DependentUpon>Articles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\AvanceCheck.resx">
+      <DependentUpon>AvanceCheck.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\BackUP.resx">
+      <DependentUpon>BackUP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\BarCode.resx">
+      <DependentUpon>BarCode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\byPrice.resx">
+      <DependentUpon>byPrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\byname.resx">
+      <DependentUpon>byname.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Calc.resx">
+      <DependentUpon>Calc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChoseClient.resx">
+      <DependentUpon>ChoseClient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChoseCompany.resx">
+      <DependentUpon>ChoseCompany.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChoseDepot.resx">
+      <DependentUpon>ChoseDepot.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Client.resx">
+      <DependentUpon>Client.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ClientDetails.resx">
+      <DependentUpon>ClientDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\company.resx">
+      <DependentUpon>company.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\CompanyPAYEMENT.resx">
+      <DependentUpon>CompanyPAYEMENT.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Depot.resx">
+      <DependentUpon>Depot.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\EtatClient.resx">
+      <DependentUpon>EtatClient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PayRecept.resx">
+      <DependentUpon>PayRecept.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Screen2.resx">
+      <DependentUpon>Screen2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Devis.resx">
+      <DependentUpon>Devis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Commande.resx">
+      <DependentUpon>Commande.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Editprdfact.resx">
+      <DependentUpon>Editprdfact.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\EditStock.resx">
+      <DependentUpon>EditStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Facture.resx">
+      <DependentUpon>Facture.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\GestionStock.resx">
+      <DependentUpon>GestionStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\LookForDevis.resx">
+      <DependentUpon>LookForDevis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Massar.resx">
+      <DependentUpon>Massar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\num.resx">
+      <DependentUpon>num.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\OpenAvoir.resx">
+      <DependentUpon>OpenAvoir.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChoseLivreur.resx">
+      <DependentUpon>ChoseLivreur.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PAYEMENT.resx">
+      <DependentUpon>PAYEMENT.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PayFacture.resx">
+      <DependentUpon>PayFacture.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\paypmt.resx">
+      <DependentUpon>paypmt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PWDPicker.resx">
+      <DependentUpon>PWDPicker.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\SavePrint.resx">
+      <DependentUpon>SavePrint.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\stk.resx">
+      <DependentUpon>stk.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Stock.resx">
+      <DependentUpon>Stock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TrialVersion.resx">
+      <DependentUpon>TrialVersion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ALMohassinDBDataSet.xsc">
+      <DependentUpon>ALMohassinDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ALMohassinDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ALMohassinDBDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ALMohassinDBDataSet.xss">
+      <DependentUpon>ALMohassinDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="App.config" />
+    <None Include="My Project\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\r01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\r02.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\r03.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rtop.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btmenu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\line.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SEARCHART.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coins_money_cash_dollar_gold-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ledit.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ldeletfact.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lprint.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ledtuser.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SEARCHART2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ldelfacture.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lmoney.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btsearch.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btmenu1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bgmenu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usersearch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\searchmini.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btadd.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-prd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bthome.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btadd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btstatistic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btedit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bthome2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newprd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btsearch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MyBarcode.dll" />
+    <None Include="Resources\gui-16.jpg" />
+    <None Include="Resources\gui-13.jpg" />
+    <None Include="Resources\GB5.png" />
+    <None Include="Resources\GB4.png" />
+    <None Include="Resources\GB3.png" />
+    <None Include="Resources\GB2.png" />
+    <None Include="Resources\GB11.png" />
+    <None Include="Resources\GB1.png" />
+    <None Include="Resources\200.png" />
+    <None Include="Resources\100.png" />
+    <None Include="Resources\50.png" />
+    <None Include="Resources\50.jpg" />
+    <None Include="Resources\20.png" />
+    <None Include="Resources\10.png" />
+    <None Include="Resources\5.png" />
+    <None Include="Resources\2.png" />
+    <None Include="Resources\1.png" />
+    <None Include="Resources\0.png" />
+    <None Include="Resources\money1.png" />
+    <None Include="Resources\MonthView_32x32.png" />
+    <None Include="Resources\Refresh2_32x32.png" />
+    <None Include="Resources\SEARCH 24X241.png" />
+    <None Include="Resources\téléchargement.png" />
+    <None Include="Resources\BTGROUP.png" />
+    <None Include="Resources\500px-Crystal_Clear_action_exit.svg.png" />
+    <None Include="Resources\round-solid-business-set8-15-512.png" />
+    <None Include="Resources\icon-manage-user.png" />
+    <None Include="Resources\disAllow.png" />
+    <None Include="Resources\Remisepng.png" />
+    <None Include="Resources\remise.jpg" />
+    <None Include="Resources\BRBON.png" />
+    <None Include="Resources\ic_history_48px-1281.png" />
+    <None Include="Resources\ic_history_48px-128.png" />
+    <None Include="Resources\sub---.jpg" />
+    <None Include="Resources\add--.jpg" />
+    <None Include="Resources\004855-printer-save.png" />
+    <None Include="Resources\img_569296.png" />
+    <None Include="Resources\BD_CB.png" />
+    <None Include="Resources\Untitled-1.jpg" />
+    <None Include="Resources\default-user_5.png" />
+    <None Include="Resources\Sans titre - 1-02.jpg" />
+    <None Include="Resources\LOGO-02.jpg" />
+    <None Include="Resources\LOGO-01.jpg" />
+    <None Include="Resources\OK 22.png" />
+    <None Include="Resources\AddFile_32x32.png" />
+    <None Include="Resources\Print_32x32.png" />
+    <None Include="Resources\COR 32.png" />
+    <None Include="Resources\ED 32.png" />
+    <None Include="Resources\AddFile_221.png" />
+    <None Include="Resources\AddFile_22.png" />
+    <None Include="Resources\MENU 20.png" />
+    <None Include="Resources\Save_32x321.png" />
+    <None Include="Resources\Print_22X221.png" />
+    <None Include="Resources\COR_221.png" />
+    <None Include="Resources\COR_22.png" />
+    <None Include="Resources\Image1.png" />
+    <None Include="Resources\SEARCH 24X24.png" />
+    <None Include="Resources\close401.png" />
+    <None Include="Resources\close40.png" />
+    <None Include="Resources\COR 22.png" />
+    <None Include="Resources\Save_32x32.png" />
+    <None Include="Resources\Print_22X22.png" />
+    <None Include="Resources\top fact1.jpg" />
+    <None Include="27274.png" />
+    <Content Include="ALMohassinDB.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\04.jpg" />
+    <None Include="Resources\011.jpg" />
+    <None Include="Resources\03.jpg" />
+    <None Include="Resources\02.jpg" />
+    <None Include="Resources\stockr.jpg" />
+    <None Include="Resources\01.jpg" />
+    <None Include="Resources\btsearch2.png" />
+    <None Include="Resources\ttal4.jpg" />
+    <None Include="Resources\ttal2.jpg" />
+    <None Include="Resources\tta3l.jpg" />
+    <None Include="Resources\sell.png" />
+    <None Include="Resources\buy1.png" />
+    <None Include="Resources\arch.png" />
+    <None Include="Resources\btprt.png" />
+    <None Include="Resources\ttal.jpg" />
+    <None Include="Resources\out.jpg" />
+    <None Include="Resources\in.jpg" />
+    <None Include="Resources\btsavv.jpg" />
+    <None Include="Resources\bbuy.jpg" />
+    <None Include="Resources\bgbuy.jpg" />
+    <None Include="Resources\btsave.png" />
+    <None Include="Resources\btprint1.png" />
+    <None Include="Resources\btprint.png" />
+    <None Include="Resources\sidepanel.png" />
+    <None Include="Resources\homepanel.png" />
+    <None Include="Resources\payall.png" />
+    <None Include="Resources\btclientcomptoir.png" />
+    <None Include="Resources\editmon.jpg" />
+    <None Include="Resources\addmon.jpg" />
+    <None Include="Resources\chose.png" />
+    <None Include="Resources\staff.png" />
+    <None Include="Resources\key.png" />
+    <None Include="Resources\money.png" />
+    <None Include="Resources\company.png" />
+    <None Include="Resources\edit-use.jpg" />
+    <None Include="Resources\add-use.jpg" />
+    <None Include="Resources\no.png" />
+    <None Include="Resources\ok.png" />
+    <None Include="Resources\btedit2.png" />
+    <None Include="Resources\btdel.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
