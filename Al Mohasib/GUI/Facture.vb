@@ -302,10 +302,16 @@
                     If DataGridView1.Rows(i).Cells(0).Value = True Then
                         bid = DataGridView1.Rows(i).Cells(1).Value
 
-                        If DataGridView1.Rows(i).Cells(5).Value <> 0 Then
-                            bid = DataGridView1.Rows(i).Cells(1).Value
-                            Exit Sub
-                        End If
+
+                        Try
+                            If DataGridView1.Rows(i).Cells(5).Value <> 0 Then
+                                bid = DataGridView1.Rows(i).Cells(1).Value
+                                Exit Sub
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+
                     End If
                 Next
 

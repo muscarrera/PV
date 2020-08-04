@@ -114,6 +114,8 @@ Public Class SubClass
                     P.Controls.Add(bt)
                     bt.Dock = DockStyle.Top
                     AddHandler bt.Click, AddressOf art_click
+
+                    If i = 33 Then Exit For
                 Next
             End If
         Next
@@ -466,12 +468,6 @@ Public Class SubClass
             bt = Form1.FlowLayoutPanel1.Controls(0)
             '''''
 
-            If Form1.cbQte.Checked Then
-                Dim bn As New byname
-                If bn.ShowDialog = DialogResult.OK Then
-                    Form1.RPl.CP.Value = bn.qte
-                End If
-            End If
 
             ' sell function
             art_click(bt, Nothing)
@@ -514,8 +510,59 @@ Public Class SubClass
                     End If
                 End If
 
+
+
                 ' sell function
                 art_click(bt, Nothing)
+            ElseIf artdt.Rows.Count > 1 Then
+                Form1.FlowLayoutPanel1.Controls.Clear()
+
+                For i As Integer = 0 To artdt.Rows.Count - 1
+
+                    Dim bt As New Button
+
+                    bt.Visible = True
+                    bt.BackColor = Color.LightSeaGreen
+                    bt.Text = artdt.Rows(i).Item("name").ToString
+                    bt.Name = "art" & i
+                    bt.Tag = artdt.Rows(i)
+                    bt.TextAlign = ContentAlignment.BottomCenter
+                    Try
+                        If artdt.Rows(i).Item("img").ToString = "No Image" Or artdt.Rows(i).Item("img").ToString = "" Then
+
+                        Else
+                            Dim str As String = Form1.BtImgPah.Tag & "\art" & artdt.Rows(i).Item("img").ToString
+                            If Form1.cbImgPrice.Checked Then
+                                str = Form1.BtImgPah.Tag & "\P-art" & artdt.Rows(i).Item("img").ToString
+                                bt.TextAlign = ContentAlignment.BottomCenter
+                                bt.Font = New Font("Arial", 11, FontStyle.Bold)
+                            End If
+
+                            bt.BackgroundImage = Image.FromFile(str)
+                        End If
+                        bt.BackgroundImageLayout = ImageLayout.Stretch
+                        bt.ImageAlign = ContentAlignment.BottomCenter
+                    Catch ex As Exception
+
+                    End Try
+                    bt.Width = Form1.txtlongerbt.Text
+                    bt.Height = Form1.txtlargebt.Text
+                    Form1.FlowLayoutPanel1.Controls.Add(bt)
+                    'AddHandler bt.Click, AddressOf art_click
+                    AddHandler bt.Click, AddressOf art_click
+
+                    If i = 9 Then Exit For
+                Next
+            Else
+                Form1.FlowLayoutPanel1.Controls.Clear()
+                Dim lb As New Label
+
+                lb.ForeColor = Color.DarkGray
+                lb.Text = "لا يوجد اي سجل"
+                lb.Font = New Font("Arial", 14, FontStyle.Bold)
+                lb.ForeColor = Color.Red
+                lb.AutoSize = True
+                Form1.FlowLayoutPanel1.Controls.Add(lb)
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -530,6 +577,102 @@ Public Class SubClass
             Form1.txtSearch.Focus()
         End If
     End Sub
+    Public Sub getBalancebyRef(ByRef ref As String, ByVal qte As Double)
+
+        Try
+            Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
+            Dim artdt As DataTable
+
+            '''''''''''''''''''
+
+            artdt = artta.GetDataByRef(ref, True)
+
+            If artdt.Rows.Count = 1 Then
+
+                Dim bt As New Button
+                bt.Tag = artdt.Rows(0)
+
+                If artdt.Rows(0).Item("unite").ToString.ToUpper = "G" Or
+                       artdt.Rows(0).Item("unite").ToString.ToUpper = "GR" Or
+                       artdt.Rows(0).Item("unite").ToString = "ج" Then
+
+
+                    Form1.RPl.CP.Value = qte
+                Else
+
+
+                    Form1.RPl.CP.Value = CDbl(qte / 1000)
+                End If
+
+
+
+                ' sell function
+                art_click(bt, Nothing)
+            ElseIf artdt.Rows.Count > 1 Then
+                Form1.FlowLayoutPanel1.Controls.Clear()
+                Form1.RPl.CP.Value = qte
+
+                For i As Integer = 0 To artdt.Rows.Count - 1
+
+                    Dim bt As New Button
+
+                    bt.Visible = True
+                    bt.BackColor = Color.LightSeaGreen
+                    bt.Text = artdt.Rows(i).Item("name").ToString
+                    bt.Name = "art" & i
+                    bt.Tag = artdt.Rows(i)
+                    bt.TextAlign = ContentAlignment.BottomCenter
+                    Try
+                        If artdt.Rows(i).Item("img").ToString = "No Image" Or artdt.Rows(i).Item("img").ToString = "" Then
+
+                        Else
+                            Dim str As String = Form1.BtImgPah.Tag & "\art" & artdt.Rows(i).Item("img").ToString
+                            If Form1.cbImgPrice.Checked Then
+                                str = Form1.BtImgPah.Tag & "\P-art" & artdt.Rows(i).Item("img").ToString
+                                bt.TextAlign = ContentAlignment.BottomCenter
+                                bt.Font = New Font("Arial", 11, FontStyle.Bold)
+                            End If
+
+                            bt.BackgroundImage = Image.FromFile(str)
+                        End If
+                        bt.BackgroundImageLayout = ImageLayout.Stretch
+                        bt.ImageAlign = ContentAlignment.BottomCenter
+                    Catch ex As Exception
+
+                    End Try
+                    bt.Width = Form1.txtlongerbt.Text
+                    bt.Height = Form1.txtlargebt.Text
+                    Form1.FlowLayoutPanel1.Controls.Add(bt)
+                    'AddHandler bt.Click, AddressOf art_click
+                    AddHandler bt.Click, AddressOf art_click
+
+                    If i = 9 Then Exit For
+                Next
+            Else
+                Form1.FlowLayoutPanel1.Controls.Clear()
+                Dim lb As New Label
+
+                lb.ForeColor = Color.DarkGray
+                lb.Text = "لا يوجد اي سجل"
+                lb.Font = New Font("Arial", 14, FontStyle.Bold)
+                lb.ForeColor = Color.Red
+                lb.AutoSize = True
+                Form1.FlowLayoutPanel1.Controls.Add(lb)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        Form1.txtSearch.Text = ""
+        Form1.txtSearchCode.Text = ""
+
+        If Form1.chbcb.Checked Then
+            Form1.txtSearchCode.Focus()
+        Else
+            Form1.txtSearch.Focus()
+        End If
+    End Sub
+
 
     Private Sub ctg_click(ByVal sender As System.Object, ByVal e As EventArgs)
 
@@ -571,6 +714,8 @@ Public Class SubClass
                                 'bt.Text= ""
                                 bt.TextAlign = ContentAlignment.BottomCenter
                                 bt.Font = New Font("Arial", 11, FontStyle.Bold)
+                                'Else
+                                '    bt.ForeColor = Color.Yellow
                             End If
 
                             bt.BackgroundImage = Image.FromFile(str)
@@ -891,6 +1036,23 @@ Public Class SubClass
                 End Using
             Else
                 Dim arid As Integer = 0
+
+                If Form1.cbQteCat.Checked Then
+
+                    Try
+                        Dim cats = Form1.txtQteCat.Text.Split("-")
+                        If cats.Contains(R.cid.ToString) Then
+                            Dim bn As New byname
+                            If bn.ShowDialog = DialogResult.OK Then
+                                Form1.RPl.CP.Value = bn.qte
+                            End If
+                        End If
+                    Catch ex As Exception
+                    End Try
+
+                End If
+
+
                 'qte
                 Dim qte As Double = CDbl(Form1.RPl.CP.Value)
                 Using c As SubClass = New SubClass
@@ -981,8 +1143,6 @@ Public Class SubClass
             price3 = String.Format("{0:F}", R.sp4)
         End If
 
-
-
         Dim art As New AddEditArticle
         art.editMode = True
 
@@ -1018,10 +1178,7 @@ Public Class SubClass
 
         Try
             If R.img <> "" And R.img <> "No Image" Then
-
-                '    Dim pmg3 As New Bitmap(dgvctg.SelectedRows(0).Cells(7).Value.ToString)
                 art.PBprd.Tag = R.img
-                'art.PBprd.BackgroundImage = Image.FromFile(Form1.BtImgPah.Tag & "\art" & DGVPRD.SelectedRows(0).Cells(13).Value.ToString)
                 art.ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\art" & R.img)
             End If
         Catch ex As Exception
@@ -1459,6 +1616,54 @@ Public Class SubClass
             where = Nothing
         End Using
     End Sub
+
+    Public Sub ChangeAllPrices(ByVal fd As Integer)
+
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+
+            Dim params As New Dictionary(Of String, Object)
+            Dim where As New Dictionary(Of String, Object)
+            Dim table As DataTable = Form1.RPl.DataSource
+
+            For i As Integer = 0 To table.Rows.Count - 1
+
+                Dim id As Integer = table.Rows(i).Item("dsid")
+                Dim arid As Integer = table.Rows(i).Item("arid")
+
+                Dim field = "sprice"
+                If fd = 2 Then field = "sp3"
+                If fd = 3 Then field = "sp4"
+                If fd = 4 Then field = "sp5"
+
+                params.Clear()
+                where.Clear()
+                where.Add("arid", arid)
+                Dim pr As Double = c.SelectByScalar("Article", field, where)
+
+                params.Clear()
+                where.Clear()
+                params.Add("price", pr)
+                where.Add("id", id)
+
+                c.UpdateRecord("DetailsFacture", params, where)
+            Next
+            'End If
+            params.Clear()
+            where.Clear()
+            params.Add("num", fd)
+            where.Add("fctid", Form1.RPl.FctId)
+            Form1.RPl.Num = fd
+            c.UpdateRecord("Facture", params, where)
+
+            params = Nothing
+            where = Nothing
+        End Using
+    End Sub
+
+
+
+
+
     Public Sub SaveEditingFacture(ByVal oldValue As System.Decimal, ByVal newValue As System.Decimal,
                                   ByVal Field As System.String, ByVal itm As Items,
                                   ByVal rpl As RPanel)
@@ -1491,10 +1696,10 @@ Public Class SubClass
             where.Clear()
 
             If Field = "qte" Then
-                If itm.depot <> 0 Then
+                If itm.Depot <> 0 Then
                     'Stock
                     where.Add("arid", itm.arid)
-                    where.Add("dpid", itm.depot)
+                    where.Add("dpid", itm.Depot)
 
                     Dim dt = c.SelectDataTable("Detailstock", {"*"}, where)
                     where.Clear()
@@ -1512,7 +1717,7 @@ Public Class SubClass
                         c.UpdateRecord("Detailstock", params, where)
                     Else
                         params.Add("arid", itm.id)
-                        params.Add("dpid", itm.depot)
+                        params.Add("dpid", itm.Depot)
                         params.Add("qte", qte)
                         params.Add("unit", itm.Unite)
                         params.Add("cid", itm.cid)

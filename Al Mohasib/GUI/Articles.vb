@@ -143,7 +143,7 @@ Public Class Articles
         art.txttva.text = tva
         art.txtprdname.Tag = DGVPRD.SelectedRows(0).Cells(0).Value.ToString
         art.PlPrice.Visible = Form1.chbsell.Checked
-
+        art.cbIsMixte.Checked = CBool(DGVPRD.SelectedRows(0).Cells(0).Value)
         Try
             art.txtMinStock.text = CInt(DGVPRD.SelectedRows(0).Cells(14).Value)
         Catch ex As Exception
@@ -166,7 +166,14 @@ Public Class Articles
                 'art.PBprd.BackgroundImage = Image.FromFile(Form1.BtImgPah.Tag & "\art" & DGVPRD.SelectedRows(0).Cells(13).Value.ToString)
                 art.ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\art" & DGVPRD.SelectedRows(0).Cells(13).Value.ToString)
             Catch ex As Exception
+                Try
+                    art.PBprd.Tag = "noimg.jpg"
+                    'art.PBprd.BackgroundImage = Image.FromFile(Form1.BtImgPah.Tag & "\art" & DGVPRD.SelectedRows(0).Cells(13).Value.ToString)
+                    art.ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\artnoimg.jpg")
 
+                Catch exx As Exception
+
+                End Try
             End Try
 
         End If

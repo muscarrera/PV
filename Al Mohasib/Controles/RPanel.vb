@@ -205,12 +205,14 @@
             table.Columns.Add("poid", GetType(Integer))
             table.Columns.Add("totalHt", GetType(Double))
             table.Columns.Add("totaltva", GetType(Double))
+            table.Columns.Add("dsid", GetType(Double))
+            table.Columns.Add("remise", GetType(Double))
             Dim a As Items
             For Each a In Pl.Controls
                 ' Add  rows with those columns filled in the DataTable.
                 table.Rows.Add(a.arid, a.Name, a.Price, a.Bprice, a.Tva,
                                a.Qte, a.Unite, a.Total_ttc, a.cid, a.code,
-                               a.Depot, a.Poid, a.Total_ht, a.Total_tva)
+                               a.Depot, a.Poid, a.Total_ht, a.Total_tva, a.id, a.Remise)
             Next
             Return table
         End Get
@@ -493,7 +495,7 @@
                                 ap.cid = D.Rows(i).Item("cid")
                                 ap.Depot = D.Rows(i).Item("depot")
                                 ap.code = D.Rows(i).Item("code")
-                                ap.Poid = CDbl(D.Rows(i).Item("poid") / 100)
+                                ap.Poid = D.Rows(i).Item("poid")
                                 ap.Remise = RM
 
                                 ap.BgColor = Color.White
@@ -750,7 +752,7 @@
     End Sub
     Private Sub UpdateValue()
         LbSum.Text = String.Format("{0:n}", Total_TTC)
-        LbVidal.Text = Pl.Controls.Count & " - Vidals"
+        LbVidal.Text = Pl.Controls.Count & " - Articles"
 
         'lbHT.Text = "T. Ht : " & String.Format("{0:n}", CDec(Total_Ht - (Total_Ht * Remise / 100)))
         lbHT.Text = "T. Ht : " & String.Format("{0:n}", Total_Ht)
@@ -842,12 +844,24 @@
         End If
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtPrint.Click, BtBlPrint.Click
+        Dim BT As Button = sender
+
         If FctId = 0 Then
             RaiseEvent CPValueChange()
-            Exit Sub
+            Try
+                If DataSource.Rows.Count > 0 And EditMode Then
+                    FctId = CInt(Form1.DGVARFA.SelectedRows(0).Cells(0).Value)
+                    RaiseEvent SaveAndPrint(FctId, Total_TTC, Avance, Tva, DataSource, isSell, CBool(BT.Tag))
+                    FctId = 0
+                    Exit Sub
+                Else
+                    Exit Sub
+                End If
+            Catch ex As Exception
+                Exit Sub
+            End Try
         End If
 
-        Dim BT As Button = sender
         RaiseEvent SaveAndPrint(FctId, Total_TTC, Avance, Tva, DataSource, isSell, CBool(BT.Tag))
 
     End Sub
@@ -873,7 +887,7 @@
     Private Sub Item_Value_changed(ByVal oldValue As Double, ByVal newValue As Double, ByVal Field As String, ByVal itm As Items)
         If EditMode = False Then Exit Sub
         If EditMode Then _isEditing = True
-        _oldValue = _oldValue
+        _oldValue = oldValue
         _newValue = newValue
         _Field = Field
         _editingItem = itm

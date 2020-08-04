@@ -8,20 +8,23 @@ Public Class AddEditArticle
     Public cid As Integer
     Public editMode As Boolean
     Private imgWithPrice, _imgPrd As Image
+    Dim rnd As New Random
+    Dim cr As Color
+
 
     Public Property ImgPrd As Image
         Get
             Return _imgPrd
         End Get
         Set(ByVal value As Image)
-            Dim rnd As New Random
+
             If IsNothing(value) Then
                 Dim BMG As New Bitmap(Form1.txtlongerbt.Text, Form1.txtlargebt.Text,
                                       Imaging.PixelFormat.Format24bppRgb)
 
                 Dim GR As Graphics = Graphics.FromImage(BMG)
                 GR.Clear(Color.White)
-                GR.Clear(Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255)))
+                GR.Clear(cr)
                 _imgPrd = BMG
             Else
                 _imgPrd = value
@@ -61,6 +64,20 @@ Public Class AddEditArticle
             MessageBox.Show(ex.Message)
         End Try
     End Sub
+
+    Private Sub AddEditArticle_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+        Try
+            '_ImgPrd = Nothing
+            'imgWithPrice = Nothing
+
+            _imgPrd.Dispose()
+            imgWithPrice.Dispose()
+        Catch ex As Exception
+
+        End Try
+
+
+    End Sub
     Private Sub AddEditArticle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'ALMohassinDBDataSet.Depot' table. You can move, or remove it, as needed.
         Me.DepotTableAdapter.Fill(Me.ALMohassinDBDataSet.Depot)
@@ -90,10 +107,12 @@ Public Class AddEditArticle
 
         End If
 
+        cr = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255))
 
         If PBprd.Tag = "" Or PBprd.Tag = "No Image" Then
             ImgPrd = Nothing
         Else
+            'ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\art" & PBprd.Tag)
             ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\art" & PBprd.Tag)
         End If
 
@@ -102,17 +121,11 @@ Public Class AddEditArticle
     End Sub
 
     Private Sub btprd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btprd.Click
+
         Try
-            If Not IsNumeric(txtbprice.text) Then
-                txtbprice.text = txtbprice.text.Replace(".", ",")
-            End If
-
-            If Not IsNumeric(txtsprice.text) Then
-                txtsprice.text = txtsprice.text.Replace(".", ",")
-            End If
-
+            saveImage()
         Catch ex As Exception
-
+            MsgBox(ex.Message)
         End Try
 
         Try
@@ -208,11 +221,6 @@ Public Class AddEditArticle
                     Exit Sub
                 End If
             Next
-            Try
-                saveImage()
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
 
             Try
                 Dim ta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
@@ -237,13 +245,13 @@ Public Class AddEditArticle
 
             'updateeee
         Else
-            saveImage()
+            'saveImage()
 
             Try
                 Dim ta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
                 ta.UpdateQuery(cid, txtprdname.Text, PBprd.Tag, bprice, sprice, txtunit.Text, tva,
                                price2, price3, price4, TxtPoids.text, txtcb.text, CInt(CBdp.SelectedValue),
-                               cbIsMixte.Checked, txtMinStock.text, txtprdname.Tag)
+                                cbIsMixte.Checked, txtMinStock.text, txtprdname.Tag)
                 ta.Fill(ALMohassinDBDataSet.Article)
                 Me.DialogResult = Windows.Forms.DialogResult.OK
             Catch ex As Exception
@@ -261,6 +269,16 @@ Public Class AddEditArticle
         If savepic.ShowDialog = Windows.Forms.DialogResult.OK Then
 
             Dim pmg2 As New Bitmap(savepic.FileName)
+
+            Dim W = CInt(Form1.txtlongerbt.Text) * 2
+            Dim h = CInt(Form1.txtlargebt.Text) * 2
+            Dim B = CInt(h / 10)
+
+
+            pmg2 = AppendBorder(pmg2, B)
+            translate(pmg2, 15, 20, 30, 1)
+            pmg2 = New Bitmap(pmg2, New Size(W, h))
+
 
             lbchangeimg.Text = "1"
             ImgPrd = pmg2
@@ -286,7 +304,7 @@ Public Class AddEditArticle
             Dim CD As New BarCode
             CD.Code = cde
             CD.article = txtprdname.Text
-            CD.qte = txtunit.Text
+            CD.qte = txtsprice.text & " Dhs"
 
             If CD.ShowDialog = DialogResult.OK Then
 
@@ -373,11 +391,14 @@ Public Class AddEditArticle
             'Dim random_Color As New Color
             'random_Color = Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255))
             'Dim nBrush As New SolidBrush(random_Color)
+            Try
+                Bprice = String.Format("{0:F}", CDbl(Bprice))
+                Dim Sl As Size = TextRenderer.MeasureText(Bprice, fntSmall)
+                GR.FillRectangle(Brushes.White, wd - Integer.Parse(Sl.Width + 5), 3, Integer.Parse(Sl.Width + 5), Integer.Parse(Sl.Height + 5))
+                GR.DrawString(Bprice, fntSmall, Brushes.Black, wd - Integer.Parse(Sl.Width + 5) + 2, 5)
+            Catch ex As Exception
 
-            Bprice = String.Format("{0:F}", CDbl(Bprice))
-            Dim Sl As Size = TextRenderer.MeasureText(Bprice, fntSmall)
-            GR.FillRectangle(Brushes.White, wd - Integer.Parse(Sl.Width + 5), 3, Integer.Parse(Sl.Width + 5), Integer.Parse(Sl.Height + 5))
-            GR.DrawString(Bprice, fntSmall, Brushes.Black, wd - Integer.Parse(Sl.Width + 5) + 2, 5)
+            End Try
 
             Dim sfC As New StringFormat()
             sfC.Alignment = StringAlignment.Center
@@ -400,23 +421,31 @@ Public Class AddEditArticle
             str = str.Replace("/", "-")
             str = str.Replace("*", "-")
 
-            Using img As Image = ImgPrd
+            For i As Integer = 0 To 111
                 Try
+                    Dim img = ImgPrd
                     img.Save(Form1.BtImgPah.Tag & "\art" & str & ".jpg", Imaging.ImageFormat.Jpeg)
+                    Exit For
                 Catch ex As Exception
-                    Dim ff As New FileInfo(Form1.BtImgPah.Tag & "\art" & str & ".jpg")
-                    ff.Delete()
-                    img.Save(Form1.BtImgPah.Tag & "\art" & str & ".jpg", Imaging.ImageFormat.Jpeg)
+                    str = txtprdname.Text
+                    str = str.Replace("/", "-")
+                    str = str.Replace("*", "-")
+                    str &= i
+                    Continue For
                 End Try
+            Next
 
-            End Using
             Using img As Image = imgWithPrice
                 Try
                     img.Save(Form1.BtImgPah.Tag & "\P-art" & str & ".jpg", Imaging.ImageFormat.Jpeg)
                 Catch ex As Exception
-                    Dim ff As New FileInfo(Form1.BtImgPah.Tag & "\P-art" & str & ".jpg")
-                    ff.Delete()
-                    img.Save(Form1.BtImgPah.Tag & "\P-art" & str & ".jpg", Imaging.ImageFormat.Jpeg)
+                    Try
+                        Dim ff As New FileInfo(Form1.BtImgPah.Tag & "\P-art" & str & ".jpg")
+                        ff.Delete()
+                        img.Save(Form1.BtImgPah.Tag & "\P-art" & str & ".jpg", Imaging.ImageFormat.Jpeg)
+                    Catch exx As Exception
+
+                    End Try
                 End Try
             End Using
 
@@ -439,5 +468,14 @@ Public Class AddEditArticle
             txtPrice4.text = String.Format("{0:F}", CDbl(txtPrice4.text) * tva)
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+        Dim cl As New ColorDialog
+        If cl.ShowDialog = Windows.Forms.DialogResult.OK Then
+            cr = cl.Color
+            ImgPrd = Nothing
+            PBprd.BackgroundImage = Drawimg(txtprdname.Text, txtsprice.text)
+        End If
     End Sub
 End Class

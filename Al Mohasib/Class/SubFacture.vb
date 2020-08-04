@@ -94,12 +94,13 @@
                     Form1.lbftva.Text = String.Format("{0:n}", Form1.RPl.Tva) 'total - (total / 1.2))
 
                     Dim tm As Double = 0
+                    tmbr = CBool(Form1.DGVFCT.SelectedRows(0).Cells(8).Value = "Cache")
                     If tmbr Then tm = (Form1.RPl.Total_Ht - remise) * 0.0025
 
                     Form1.lbft.Text = String.Format("{0:n}", Form1.RPl.Total_TTC + tm) ' total)
                     Form1.lbtimbre.Text = String.Format("{0:n}", tm)
 
-                    If CBool(Form1.DGVFCT.SelectedRows(0).Cells(5).Value) = False Then Form1.lbtimbre.Text = 0
+                    ' If CBool(Form1.DGVFCT.SelectedRows(0).Cells(5).Value) = False Then Form1.lbtimbre.Text = 0
 
                 Catch ex As Exception
                 End Try
@@ -273,7 +274,9 @@
 
             params.Add("name", "@-FCT" & fid)
             Dim fctid = c.SelectByScalar("Payment", "fctid", params)
-            c.DeleteRecords("Payment", params)
+                If IsNothing(fctid) Then Return False
+
+                c.DeleteRecords("Payment", params)
 
             params.Clear()
             where.Add("fctid", fctid)

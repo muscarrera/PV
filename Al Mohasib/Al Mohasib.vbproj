@@ -94,6 +94,7 @@
     <Compile Include="Class\BackUpRestaure.vb" />
     <Compile Include="Class\BoundClass.vb" />
     <Compile Include="Class\ChargesClass.vb" />
+    <Compile Include="Class\ImageModule.vb" />
     <Compile Include="Class\mdlprint.vb" />
     <Compile Include="Class\ModuleCodeBar.vb" />
     <Compile Include="Class\DataAccess.vb" />
@@ -137,6 +138,43 @@
     <Compile Include="Controles\CPanel.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controles\graphicDesign\AddEditTopField.Designer.vb">
+      <DependentUpon>AddEditTopField.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\graphicDesign\AddEditTopField.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controles\graphicDesign\chLettre.vb" />
+    <Compile Include="Controles\graphicDesign\gChooseDesign.Designer.vb">
+      <DependentUpon>gChooseDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\graphicDesign\gChooseDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controles\graphicDesign\gColClass.vb" />
+    <Compile Include="Controles\graphicDesign\gColumn.Designer.vb">
+      <DependentUpon>gColumn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\graphicDesign\gColumn.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\graphicDesign\gDrawClass.vb" />
+    <Compile Include="Controles\graphicDesign\gForm.Designer.vb">
+      <DependentUpon>gForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\graphicDesign\gForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controles\graphicDesign\gGlobClass.vb" />
+    <Compile Include="Controles\graphicDesign\gTabClass.vb" />
+    <Compile Include="Controles\graphicDesign\gTable.Designer.vb">
+      <DependentUpon>gTable.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\graphicDesign\gTable.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\graphicDesign\gTopField.vb" />
+    <Compile Include="Controles\graphicDesign\ToXml.vb" />
     <Compile Include="Controles\Items.Designer.vb">
       <DependentUpon>Items.vb</DependentUpon>
     </Compile>
@@ -324,6 +362,12 @@
     <Compile Include="GUI\PayRecept.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\PriceType.Designer.vb">
+      <DependentUpon>PriceType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PriceType.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\Screen2.Designer.vb">
       <DependentUpon>Screen2.vb</DependentUpon>
     </Compile>
@@ -445,6 +489,12 @@
     <Compile Include="GUI\Stock.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\testimage.Designer.vb">
+      <DependentUpon>testimage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\testimage.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\TrialVersion.Designer.vb">
       <DependentUpon>TrialVersion.vb</DependentUpon>
     </Compile>
@@ -485,6 +535,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controles\CPanel.resx">
       <DependentUpon>CPanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\graphicDesign\AddEditTopField.resx">
+      <DependentUpon>AddEditTopField.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\graphicDesign\gChooseDesign.resx">
+      <DependentUpon>gChooseDesign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\graphicDesign\gColumn.resx">
+      <DependentUpon>gColumn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\graphicDesign\gForm.resx">
+      <DependentUpon>gForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\graphicDesign\gTable.resx">
+      <DependentUpon>gTable.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controles\Items.resx">
       <DependentUpon>Items.vb</DependentUpon>
@@ -579,6 +644,9 @@
     <EmbeddedResource Include="GUI\PayRecept.resx">
       <DependentUpon>PayRecept.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PriceType.resx">
+      <DependentUpon>PriceType.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Screen2.resx">
       <DependentUpon>Screen2.vb</DependentUpon>
     </EmbeddedResource>
@@ -638,6 +706,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Stock.resx">
       <DependentUpon>Stock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\testimage.resx">
+      <DependentUpon>testimage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\TrialVersion.resx">
       <DependentUpon>TrialVersion.vb</DependentUpon>
@@ -782,6 +853,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MyBarcode.dll" />
+    <None Include="Resources\CANCEL 22.png" />
+    <None Include="Resources\iconfinder_folder_delete_61770.png" />
+    <None Include="Resources\iconfinder_Folder-Settings-Tools-icon_88583 X 24.png" />
+    <None Include="Resources\FACTURE 20.png" />
+    <None Include="Resources\SAVE 20.png" />
+    <None Include="Resources\AVOIR 22.png" />
     <None Include="Resources\gui-16.jpg" />
     <None Include="Resources\gui-13.jpg" />
     <None Include="Resources\GB5.png" />
@@ -847,7 +924,7 @@
     <None Include="Resources\top fact1.jpg" />
     <None Include="27274.png" />
     <Content Include="ALMohassinDB.mdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\04.jpg" />
     <None Include="Resources\011.jpg" />

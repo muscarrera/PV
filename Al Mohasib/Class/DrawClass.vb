@@ -63,8 +63,6 @@
 
     End Sub
 
-
-
     Public Sub DrawFacture(ByRef e As System.Drawing.Printing.PrintPageEventArgs, ByVal dt As DataTable, ByVal fid As Integer,
                            ByVal CName As String, ByVal CAdresse As String, ByVal totalht As Decimal, ByVal totalttc As Decimal,
                            ByVal totaltva As Decimal, ByVal isSell As Boolean, ByVal dte As Date,
@@ -809,6 +807,16 @@
         Dim clientName As String = CName
         Dim data As DataTable = dt
 
+
+        Dim m_Entete = Form1.txtEnteteMarge.Text
+        If Not IsNumeric(m_Entete) Then m_Entete = 160
+
+        Dim m_Pied = Form1.txtPiedMarge.Text
+        If Not IsNumeric(m_Pied) Then m_Pied = 750
+
+        l = m_Entete
+
+
         Dim rest As Decimal = totalttc - avance
 
         Try
@@ -816,54 +824,60 @@
         Catch ex As Exception
         End Try
 
-        Dim myPoints() As Point = New Point() {New Point(60 * a, 160), New Point(600 * a, 160),
-                                               New Point(612 * a, 175), New Point(600 * a, 190),
-                                               New Point(60 * a, 190)}
+        Dim myPoints() As Point = New Point() {New Point(60 * a, l), New Point(600 * a, l),
+                                               New Point(612 * a, l + 15), New Point(600 * a, l + 30),
+                                               New Point(60 * a, l + 30)}
         e.Graphics.FillPolygon(Brushes.WhiteSmoke, myPoints)
         e.Graphics.DrawPolygon(New Pen(Brushes.Gainsboro, 0.5F), myPoints)
 
-        myPoints = {New Point(606 * a, 160), New Point(770 * a, 160),
-                   New Point(770 * a, 190), New Point(606 * a, 190),
-                   New Point(618 * a, 175)}
+        myPoints = {New Point(606 * a, l), New Point(770 * a, l),
+                   New Point(770 * a, l + 30), New Point(606 * a, l + 30),
+                   New Point(618 * a, l + 15)}
         e.Graphics.FillPolygon(Brushes.Gainsboro, myPoints)
         e.Graphics.DrawPolygon(New Pen(Brushes.Gainsboro, 0.5F), myPoints)
 
         'print date 
-        e.Graphics.DrawString(dte, fnt, Brushes.Black, New RectangleF(600 * a, 167, 164 * a, 30), sf1)
+        e.Graphics.DrawString(dte, fnt, Brushes.Black, New RectangleF(600 * a, l + 7, 164 * a, 30), sf1)
         'print  num Facture 
         If isSell Then
             If isDevis Then
-                e.Graphics.DrawString("Devis  N° : " & fctid, fntTitle, Brushes.Black, 65 * a, 165)
+                e.Graphics.DrawString("Devis  N° : " & fctid, fntTitle, Brushes.Black, 65 * a, l + 5)
 
             Else
-                e.Graphics.DrawString("Bon de Livraison  N° : " & fctid, fntTitle, Brushes.Black, 65 * a, 165)
+                e.Graphics.DrawString("Bon de Livraison  N° : " & fctid, fntTitle, Brushes.Black, 65 * a, l + 5)
 
             End If
         Else
-            e.Graphics.DrawString("Bon de Commande  N° : " & fctid, fntTitle, Brushes.Black, 65 * a, 165)
+            e.Graphics.DrawString("Bon de Commande  N° : " & fctid, fntTitle, Brushes.Black, 65 * a, l + 5)
         End If
 
         Try
             'print Client 
-            e.Graphics.DrawString("M : " & clientName, fnt, Brushes.Black, 65 * a, 200)
-            e.Graphics.DrawString(CAdresse, fnt, Brushes.Black, 65 * a, 215)
+            e.Graphics.DrawString("M : " & clientName, fnt, Brushes.Black, 65 * a, l + 40)
+            e.Graphics.DrawString(CAdresse, fnt, Brushes.Black, 65 * a, l + 55)
 
         Catch ex As Exception
 
         End Try
 
-        If m > 0 Then e.Graphics.DrawString("[ ..... ]", fnt, Brushes.Black, 60 * a, 230)
+        l += 60
+
+        If m > 0 Then
+            e.Graphics.DrawString("[ ..... ]", fnt, Brushes.Black, 60 * a, l)
+            l += 15
+        End If
+
 
         'Draw the table  e.MarginBounds.Height
         e.Graphics.FillRectangle(Brushes.WhiteSmoke, CInt(60 * a), l, CInt(710 * a), 25)
         'e.Graphics.DrawRectangle(pen, CInt(60 * a), CInt(l * a), CInt(710 * a), CInt(600 * a))
-        e.Graphics.DrawRectangle(pen, CInt(60 * a), l, CInt(710 * a), e.MarginBounds.Height - l)
+        e.Graphics.DrawRectangle(pen, CInt(60 * a), l, CInt(710 * a), CInt(m_Pied - l))
         e.Graphics.DrawLine(pn, CInt(60 * a), l + 25, CInt(770 * a), l + 25)
 
         'e.Graphics.DrawLine(pn, 420, l, 420, 850)
-        e.Graphics.DrawLine(pn, CInt(201 * a), l, CInt(201 * a), e.MarginBounds.Height) ' CInt(850 * a))
-        e.Graphics.DrawLine(pn, CInt(282 * a), l, CInt(282 * a), e.MarginBounds.Height)
-        e.Graphics.DrawLine(pn, CInt(697 * a), l, CInt(697 * a), e.MarginBounds.Height)
+        e.Graphics.DrawLine(pn, CInt(201 * a), l, CInt(201 * a), CInt(m_Pied)) ' CInt(850 * a))
+        e.Graphics.DrawLine(pn, CInt(282 * a), l, CInt(282 * a), CInt(m_Pied))
+        e.Graphics.DrawLine(pn, CInt(697 * a), l, CInt(697 * a), CInt(m_Pied))
 
         e.Graphics.DrawString("المواد", fnt, Brushes.Black, New RectangleF(284 * a, (l + 5), 410 * a, 25), sf2)
         'e.Graphics.DrawString("Unite", fnt, Brushes.Black, New RectangleF(420, l + 5, 55, 25), sf2)
@@ -871,15 +885,15 @@
         e.Graphics.DrawString("الثمن", fnt, Brushes.Black, New RectangleF(203 * a, (l + 5), 76 * a, 25), sf2)
         e.Graphics.DrawString("المجموع ", fnt, Brushes.Black, New RectangleF(62 * a, (l + 5), 136 * a, 25), sf2)
 
-        l = 290
+        l += 30
 
         While m < data.Rows.Count
 
-            If (l + 30) > e.MarginBounds.Height Then
-                e.Graphics.DrawString("[ ..... ]", fnt, Brushes.Black, 605 * a, e.MarginBounds.Height + 5)
-                e.Graphics.DrawString("N° : " & fctid & " // P: " & numpages, fnt, Brushes.Black, 15, e.MarginBounds.Height + 170)
-                numpages += 1
-                l = 250
+            If (l + 20) > CInt(m_Pied) Then
+                e.Graphics.DrawString("[ ..... ]", fnt, Brushes.Black, 605 * a, CInt(m_Pied) + 5)
+                e.Graphics.DrawString("N° : " & fctid & " // P: " & numPages, fnt, Brushes.Black, 15, CInt(m_Pied) + 130)
+                numPages += 1
+                l = m_Entete
                 e.HasMorePages = True
                 Return
             End If
@@ -924,41 +938,41 @@
             If isDevis = False Then h = 115
 
 
-            e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + 5, CInt(770 * a), e.MarginBounds.Height + 5)
-            e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + 25, CInt(770 * a), e.MarginBounds.Height + 25)
+            e.Graphics.DrawLine(pn, CInt(550 * a), CInt(m_Pied) + 5, CInt(770 * a), CInt(m_Pied) + 5)
+            'e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + 25, CInt(770 * a), e.MarginBounds.Height + 25)
 
-            If withou_price = False Then
-                e.Graphics.DrawString("Total  ", fnt, Brushes.Black, New RectangleF(552 * a, e.MarginBounds.Height + 10, 60 * a, 22), sf)
-                e.Graphics.DrawString(ttc & " (Dhs)", fnt, Brushes.Black, New RectangleF(615 * a, e.MarginBounds.Height + 10, 120, 22), sf)
-            End If
+            e.Graphics.DrawString("Total  ", fnt, Brushes.Black, New RectangleF(552 * a, CInt(m_Pied) + 10, 60 * a, 22), sf)
+            e.Graphics.DrawString(ttc & " (Dhs)", fnt, Brushes.Black, New RectangleF(615 * a, CInt(m_Pied) + 10, 120, 22), sf)
 
+            e.Graphics.DrawString(dt.Rows.Count & "Vidals", fnt, Brushes.Black, New RectangleF(60 * a, CInt(m_Pied) + 10, 260 * a, 22), sf)
+          
             h = 28
 
             If remise > 0 Then
-                e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + 60, CInt(770 * a), e.MarginBounds.Height + 60)
-                e.Graphics.DrawString("Remise : ", fnt, Brushes.Black, New RectangleF(552 * a, e.MarginBounds.Height + h, 60 * a, 22), sf)
-                e.Graphics.DrawString(String.Format("{0:n}", CDec(remise)) & " %", fnt, Brushes.Black, New RectangleF(615 * a, e.MarginBounds.Height + h, 120, 22), sf)
+                e.Graphics.DrawLine(pn, CInt(550 * a), CInt(m_Pied) + 60, CInt(770 * a), CInt(m_Pied) + 60)
+                e.Graphics.DrawString("Remise : ", fnt, Brushes.Black, New RectangleF(552 * a, CInt(m_Pied) + h, 60 * a, 22), sf)
+                e.Graphics.DrawString(String.Format("{0:n}", CDec(remise)) & " %", fnt, Brushes.Black, New RectangleF(615 * a, CInt(m_Pied) + h, 120, 22), sf)
 
                 h = 30
             End If
 
             If isDevis = False Then
-                e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + h, CInt(770 * a), e.MarginBounds.Height + h)
+                e.Graphics.DrawLine(pn, CInt(550 * a), CInt(m_Pied) + h, CInt(770 * a), CInt(m_Pied) + h)
                 h += 3
-                e.Graphics.DrawString("Avance : ", fnt, Brushes.Black, New RectangleF(552 * a, e.MarginBounds.Height + h, 100 * a, 22), sf)
-                e.Graphics.DrawString(String.Format("{0:n}", CDec(avance)) & " Dhs", fnt, Brushes.Black, New RectangleF(615 * a, e.MarginBounds.Height + h, 120, 22), sf)
+                e.Graphics.DrawString("Avance : ", fnt, Brushes.Black, New RectangleF(552 * a, CInt(m_Pied) + h, 100 * a, 22), sf)
+                e.Graphics.DrawString(String.Format("{0:n}", CDec(avance)) & " Dhs", fnt, Brushes.Black, New RectangleF(620 * a, CInt(m_Pied) + h, 120, 22), sf)
                 h += 20
-                e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + h, CInt(770 * a), e.MarginBounds.Height + h)
-                e.Graphics.DrawString("Rest : ", fnt, Brushes.Black, New RectangleF(552 * a, e.MarginBounds.Height + h + 5, 60 * a, 22), sf)
-                e.Graphics.DrawString(String.Format("{0:n}", CDec(rest)) & " Dhs", fnt, Brushes.Black, New RectangleF(615 * a, e.MarginBounds.Height + h + 5, 120, 22), sf)
+                e.Graphics.DrawLine(pn, CInt(550 * a), CInt(m_Pied) + h, CInt(770 * a), CInt(m_Pied) + h)
+                e.Graphics.DrawString("Rest : ", fnt, Brushes.Black, New RectangleF(552 * a, CInt(m_Pied) + h + 5, 60 * a, 22), sf)
+                e.Graphics.DrawString(String.Format("{0:n}", CDec(rest)) & " Dhs", fnt, Brushes.Black, New RectangleF(615 * a, CInt(m_Pied) + h + 5, 120, 22), sf)
             End If
 
 
-            e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + 5, CInt(550 * a), e.MarginBounds.Height + h + 25)
+            e.Graphics.DrawLine(pn, CInt(550 * a), CInt(m_Pied) + 5, CInt(550 * a), CInt(m_Pied) + h + 25)
             'e.Graphics.DrawLine(pn, CInt(610 * a), e.MarginBounds.Height + 5, CInt(610 * a), e.MarginBounds.Height + h + 25)
-            e.Graphics.DrawLine(pn, CInt(770 * a), e.MarginBounds.Height + 5, CInt(770 * a), e.MarginBounds.Height + h + 25)
+            e.Graphics.DrawLine(pn, CInt(770 * a), CInt(m_Pied) + 5, CInt(770 * a), CInt(m_Pied) + h + 25)
 
-            e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + h + 25, CInt(770 * a), e.MarginBounds.Height + h + 25)
+            e.Graphics.DrawLine(pn, CInt(550 * a), CInt(m_Pied) + h + 25, CInt(770 * a), CInt(m_Pied) + h + 25)
         End If
 
 
@@ -971,7 +985,7 @@
 
                     Dim delai As String = c.SelectByScalar("Client", "type", param)
                     If delai <> "" Or delai <> "0" Then
-                        e.Graphics.DrawString("* Délai  de paiement pour ce bon : " & delai & " j", fnt, Brushes.Black, New RectangleF(60 * a, e.MarginBounds.Height + 40, 266, 22), sf)
+                        e.Graphics.DrawString("* Délai  de paiement pour ce bon : " & delai & " j", fnt, Brushes.Black, New RectangleF(60 * a, CInt(m_Pied) + 40, 266, 22), sf)
                     End If
                     param = Nothing
                 End Using
@@ -979,29 +993,30 @@
             End Try
         End If
 
-        If Form1.TxtSignature.Text <> "" And a = 1 And isDevis = False Then
-            'Signatures
-            Dim sig As String() = Form1.TxtSignature.Text.Split("*")
-            Dim w As Integer = 710
-            w = CInt(w - (20 * (sig.Length - 1)))
-            w = CInt(w / sig.Length)
+        'If Form1.TxtSignature.Text <> "" And a = 1 And isDevis = False Then
+        '    'Signatures
+        '    Dim sig As String() = Form1.TxtSignature.Text.Split("*")
+        '    Dim w As Integer = 710
+        '    w = CInt(w - (20 * (sig.Length - 1)))
+        '    w = CInt(w / sig.Length)
 
-            For i As Integer = 0 To sig.Length - 1
-                Dim st As Integer = 60 + i * w + i * 20
-                e.Graphics.DrawRectangle(pen, CInt(st * a), e.MarginBounds.Height + 70, CInt(w * a), 100)
+        '    For i As Integer = 0 To sig.Length - 1
+        '        Dim st As Integer = 60 + i * w + i * 20
+        '        e.Graphics.DrawRectangle(pen, CInt(st * a), e.MarginBounds.Height + 70, CInt(w * a), 90)
 
-                Dim size2 As SizeF = e.Graphics.MeasureString(sig(i), fnt)
-                e.Graphics.FillRectangle(Brushes.White, CInt((st * a) + 10), e.MarginBounds.Height + 63, size2.Width + 5, 15)
+        '        Dim size2 As SizeF = e.Graphics.MeasureString(sig(i), fnt)
+        '        e.Graphics.FillRectangle(Brushes.White, CInt((st * a) + 10), e.MarginBounds.Height + 63, size2.Width + 5, 15)
 
-                e.Graphics.DrawString(sig(i), fnt, Brushes.Black, CInt((st * a) + 12), e.MarginBounds.Height + 65)
-            Next
-        End If
+        '        e.Graphics.DrawString(sig(i), fnt, Brushes.Black, CInt((st * a) + 12), e.MarginBounds.Height + 65)
+        '    Next
+        'End If
 
-        e.Graphics.DrawString("N° : " & fctid & " // P: " & numpages & " / " & numpages, fnt, Brushes.Black, 15, e.MarginBounds.Height + 170)
+        e.Graphics.DrawString("N° : " & fctid & " // P: " & numPages & " / " & numPages, fnt, Brushes.Black, 15, CInt(m_Pied) + 130)
 
-        l = 250
-        numpages = 1
+        l = m_Entete
+        numPages = 1
         m = 0
+
     End Sub
     Public Sub DrawBL_A5_Fr(ByRef e As System.Drawing.Printing.PrintPageEventArgs, ByVal dt As DataTable, ByVal fid As Integer, ByVal clid As Integer,
                            ByVal CName As String, ByVal CAdresse As String, ByVal totalht As Double, ByVal totalttc As Double, ByVal avance As Double,
@@ -1033,54 +1048,69 @@
         Catch ex As Exception
         End Try
 
-        Dim myPoints() As Point = New Point() {New Point(60 * a, 160), New Point(600 * a, 160),
-                                               New Point(612 * a, 175), New Point(600 * a, 190),
-                                               New Point(60 * a, 190)}
+        Dim m_Entete = Form1.txtEnteteMarge.Text
+        If Not IsNumeric(m_Entete) Then m_Entete = 160
+
+        Dim m_Pied = Form1.txtPiedMarge.Text
+        If Not IsNumeric(m_Pied) Then m_Pied = 750
+
+        l = m_Entete
+
+
+
+        Dim myPoints() As Point = New Point() {New Point(60 * a, l), New Point(600 * a, l),
+                                        New Point(612 * a, l + 15), New Point(600 * a, l + 30),
+                                        New Point(60 * a, l + 30)}
         e.Graphics.FillPolygon(Brushes.WhiteSmoke, myPoints)
         e.Graphics.DrawPolygon(New Pen(Brushes.Gainsboro, 0.5F), myPoints)
 
-        myPoints = {New Point(606 * a, 160), New Point(770 * a, 160),
-                   New Point(770 * a, 190), New Point(606 * a, 190),
-                   New Point(618 * a, 175)}
+        myPoints = {New Point(606 * a, l), New Point(770 * a, l),
+                   New Point(770 * a, l + 30), New Point(606 * a, l + 30),
+                   New Point(618 * a, l + 15)}
         e.Graphics.FillPolygon(Brushes.Gainsboro, myPoints)
         e.Graphics.DrawPolygon(New Pen(Brushes.Gainsboro, 0.5F), myPoints)
 
         'print date 
-        e.Graphics.DrawString(dte, fnt, Brushes.Black, New RectangleF(600 * a, 167, 164 * a, 30), sf1)
+        e.Graphics.DrawString(dte, fnt, Brushes.Black, New RectangleF(600 * a, l + 7, 164 * a, 30), sf1)
         'print  num Facture 
         If isSell Then
             If isDevis Then
-                e.Graphics.DrawString("Devis  N° : " & fctid, fntTitle, Brushes.Black, 65 * a, 165)
+                e.Graphics.DrawString("Devis  N° : " & fctid, fntTitle, Brushes.Black, 65 * a, l + 5)
 
             Else
-                e.Graphics.DrawString("Bon de Livraison  N° : " & fctid, fntTitle, Brushes.Black, 65 * a, 165)
+                e.Graphics.DrawString("Bon de Livraison  N° : " & fctid, fntTitle, Brushes.Black, 65 * a, l + 5)
 
             End If
         Else
-            e.Graphics.DrawString("Bon de Commande  N° : " & fctid, fntTitle, Brushes.Black, 65 * a, 165)
+            e.Graphics.DrawString("Bon de Commande  N° : " & fctid, fntTitle, Brushes.Black, 65 * a, l + 5)
         End If
 
         Try
             'print Client 
-            e.Graphics.DrawString("M : " & clientName, fnt, Brushes.Black, 65 * a, 200)
-            e.Graphics.DrawString(CAdresse, fnt, Brushes.Black, 65 * a, 215)
+            e.Graphics.DrawString("M : " & clientName, fnt, Brushes.Black, 65 * a, l + 40)
+            e.Graphics.DrawString(CAdresse, fnt, Brushes.Black, 65 * a, l + 55)
 
         Catch ex As Exception
 
         End Try
 
-        If m > 0 Then e.Graphics.DrawString("[ ..... ]", fnt, Brushes.Black, 60 * a, 230)
+        l += 60
+
+        If m > 0 Then
+            e.Graphics.DrawString("[ ..... ]", fnt, Brushes.Black, 60 * a, l)
+            l += 15
+        End If
 
         'Draw the table  e.MarginBounds.Height
         e.Graphics.FillRectangle(Brushes.WhiteSmoke, CInt(60 * a), CInt(l), CInt(710 * a), 25)
         'e.Graphics.DrawRectangle(pen, CInt(60 * a), CInt(l * a), CInt(710 * a), CInt(600 * a))
-        e.Graphics.DrawRectangle(pen, CInt(60 * a), CInt(l), CInt(710 * a), e.MarginBounds.Height - CInt(l))
+        e.Graphics.DrawRectangle(pen, CInt(60 * a), CInt(l), CInt(710 * a), CInt(m_Pied - l))
         e.Graphics.DrawLine(pn, CInt(60 * a), CInt(l + 25), CInt(770 * a), CInt(l + 25))
 
         'e.Graphics.DrawLine(pn, 420, l, 420, 850)
-        e.Graphics.DrawLine(pn, CInt(470 * a), l, CInt(470 * a), e.MarginBounds.Height) ' CInt(850 * a))
-        e.Graphics.DrawLine(pn, CInt(542 * a), l, CInt(542 * a), e.MarginBounds.Height)
-        e.Graphics.DrawLine(pn, CInt(618 * a), l, CInt(618 * a), e.MarginBounds.Height)
+        e.Graphics.DrawLine(pn, CInt(470 * a), l, CInt(470 * a), CInt(m_Pied)) ' CInt(850 * a))
+        e.Graphics.DrawLine(pn, CInt(542 * a), l, CInt(542 * a), CInt(m_Pied)) 'e.MarginBounds.Height)
+        e.Graphics.DrawLine(pn, CInt(618 * a), l, CInt(618 * a), CInt(m_Pied)) 'e.MarginBounds.Height)
 
         e.Graphics.DrawString("Designation", fnt, Brushes.Black, New RectangleF(62 * a, (l + 5), 410 * a, 25), sf2)
         'e.Graphics.DrawString("Unite", fnt, Brushes.Black, New RectangleF(420, l + 5, 55, 25), sf2)
@@ -1088,16 +1118,16 @@
         e.Graphics.DrawString("Prix", fnt, Brushes.Black, New RectangleF(544 * a, (l + 5), 76 * a, 25), sf2)
         e.Graphics.DrawString("Total ", fnt, Brushes.Black, New RectangleF(620 * a, (l + 5), 136 * a, 25), sf2)
 
-        l = 290
+        l += 29
 
         While m < data.Rows.Count
 
-            If (l + 30) > e.MarginBounds.Height Then
-                e.Graphics.DrawString("[ ..... ]", fnt, Brushes.Black, 605 * a, e.MarginBounds.Height + 5)
-                e.Graphics.DrawString("N° : " & fctid & " // P: " & numpages, fnt, Brushes.Black, 15, e.MarginBounds.Height + 175)
-                numpages += 1
+            If l + 20 > m_Pied Then
+                e.Graphics.DrawString("[ ..... ]", fnt, Brushes.Black, 605 * a, CInt(m_Pied) + 5)
+                e.Graphics.DrawString("N° : " & fctid & " // P: " & numPages, fnt, Brushes.Black, 15, CInt(m_Pied) + 130)
+                numPages += 1
 
-                l = 250
+                l = m_Entete
                 e.HasMorePages = True
                 Return
             End If
@@ -1145,39 +1175,45 @@
             If isDevis = False Then h = 115
 
 
-            e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + 5, CInt(770 * a), e.MarginBounds.Height + 5)
+            e.Graphics.DrawLine(pn, CInt(550 * a), CInt(m_Pied) + 5, CInt(770 * a), CInt(m_Pied) + 5)
             'e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + 25, CInt(770 * a), e.MarginBounds.Height + 25)
 
-            e.Graphics.DrawString("Total  ", fnt, Brushes.Black, New RectangleF(552 * a, e.MarginBounds.Height + 10, 60 * a, 22), sf)
-            e.Graphics.DrawString(ttc & " (Dhs)", fnt, Brushes.Black, New RectangleF(615 * a, e.MarginBounds.Height + 10, 120, 22), sf)
+            e.Graphics.DrawString("Total  ", fnt, Brushes.Black, New RectangleF(552 * a, CInt(m_Pied) + 10, 60 * a, 22), sf)
+            e.Graphics.DrawString(ttc & " (Dhs)", fnt, Brushes.Black, New RectangleF(615 * a, CInt(m_Pied) + 10, 120, 22), sf)
+
+
+
+            e.Graphics.DrawString(dt.Rows.Count & "Vidals", fnt, Brushes.Black, New RectangleF(60 * a, CInt(m_Pied) + 10, 260 * a, 22), sf)
+
+
 
             h = 28
 
             If remise > 0 Then
-                e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + 60, CInt(770 * a), e.MarginBounds.Height + 60)
-                e.Graphics.DrawString("Remise : ", fnt, Brushes.Black, New RectangleF(552 * a, e.MarginBounds.Height + h, 60 * a, 22), sf)
-                e.Graphics.DrawString(String.Format("{0:n}", CDec(remise)) & " %", fnt, Brushes.Black, New RectangleF(615 * a, e.MarginBounds.Height + h, 120, 22), sf)
+                e.Graphics.DrawLine(pn, CInt(550 * a), CInt(m_Pied) + 60, CInt(770 * a), CInt(m_Pied) + 60)
+                e.Graphics.DrawString("Remise : ", fnt, Brushes.Black, New RectangleF(552 * a, CInt(m_Pied) + h, 60 * a, 22), sf)
+                e.Graphics.DrawString(String.Format("{0:n}", CDec(remise)) & " %", fnt, Brushes.Black, New RectangleF(615 * a, CInt(m_Pied) + h, 120, 22), sf)
 
                 h = 30
             End If
 
             If isDevis = False Then
-                e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + h, CInt(770 * a), e.MarginBounds.Height + h)
+                e.Graphics.DrawLine(pn, CInt(550 * a), CInt(m_Pied) + h, CInt(770 * a), CInt(m_Pied) + h)
                 h += 3
-                e.Graphics.DrawString("Avance : ", fnt, Brushes.Black, New RectangleF(552 * a, e.MarginBounds.Height + h, 100 * a, 22), sf)
-                e.Graphics.DrawString(String.Format("{0:n}", CDec(avance)) & " Dhs", fnt, Brushes.Black, New RectangleF(615 * a, e.MarginBounds.Height + h, 120, 22), sf)
+                e.Graphics.DrawString("Avance : ", fnt, Brushes.Black, New RectangleF(552 * a, CInt(m_Pied) + h, 100 * a, 22), sf)
+                e.Graphics.DrawString(String.Format("{0:n}", CDec(avance)) & " Dhs", fnt, Brushes.Black, New RectangleF(620 * a, CInt(m_Pied) + h, 120, 22), sf)
                 h += 20
-                e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + h, CInt(770 * a), e.MarginBounds.Height + h)
-                e.Graphics.DrawString("Rest : ", fnt, Brushes.Black, New RectangleF(552 * a, e.MarginBounds.Height + h + 5, 60 * a, 22), sf)
-                e.Graphics.DrawString(String.Format("{0:n}", CDec(rest)) & " Dhs", fnt, Brushes.Black, New RectangleF(615 * a, e.MarginBounds.Height + h + 5, 120, 22), sf)
+                e.Graphics.DrawLine(pn, CInt(550 * a), CInt(m_Pied) + h, CInt(770 * a), CInt(m_Pied) + h)
+                e.Graphics.DrawString("Rest : ", fnt, Brushes.Black, New RectangleF(552 * a, CInt(m_Pied) + h + 5, 60 * a, 22), sf)
+                e.Graphics.DrawString(String.Format("{0:n}", CDec(rest)) & " Dhs", fnt, Brushes.Black, New RectangleF(615 * a, CInt(m_Pied) + h + 5, 120, 22), sf)
             End If
 
 
-            e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + 5, CInt(550 * a), e.MarginBounds.Height + h + 25)
+            e.Graphics.DrawLine(pn, CInt(550 * a), CInt(m_Pied) + 5, CInt(550 * a), CInt(m_Pied) + h + 25)
             'e.Graphics.DrawLine(pn, CInt(610 * a), e.MarginBounds.Height + 5, CInt(610 * a), e.MarginBounds.Height + h + 25)
-            e.Graphics.DrawLine(pn, CInt(770 * a), e.MarginBounds.Height + 5, CInt(770 * a), e.MarginBounds.Height + h + 25)
+            e.Graphics.DrawLine(pn, CInt(770 * a), CInt(m_Pied) + 5, CInt(770 * a), CInt(m_Pied) + h + 25)
 
-            e.Graphics.DrawLine(pn, CInt(550 * a), e.MarginBounds.Height + h + 25, CInt(770 * a), e.MarginBounds.Height + h + 25)
+            e.Graphics.DrawLine(pn, CInt(550 * a), CInt(m_Pied) + h + 25, CInt(770 * a), CInt(m_Pied) + h + 25)
         End If
 
 
@@ -1190,7 +1226,7 @@
 
                     Dim delai As String = c.SelectByScalar("Client", "type", param)
                     If delai <> "" Or delai <> "0" Then
-                        e.Graphics.DrawString("* Délai  de paiement pour ce bon : " & delai & " j", fnt, Brushes.Black, New RectangleF(60 * a, e.MarginBounds.Height + 40, 266, 22), sf)
+                        e.Graphics.DrawString("* Délai  de paiement pour ce bon : " & delai & " j", fnt, Brushes.Black, New RectangleF(60 * a, CInt(m_Pied) + 40, 266, 22), sf)
                     End If
                     param = Nothing
                 End Using
@@ -1198,27 +1234,27 @@
             End Try
         End If
 
-        If Form1.TxtSignature.Text <> "" And a = 1 And isDevis = False Then
-            'Signatures
-            Dim sig As String() = Form1.TxtSignature.Text.Split("*")
-            Dim w As Integer = 710
-            w = CInt(w - (20 * (sig.Length - 1)))
-            w = CInt(w / sig.Length)
+        'If Form1.TxtSignature.Text <> "" And a = 1 And isDevis = False Then
+        '    'Signatures
+        '    Dim sig As String() = Form1.TxtSignature.Text.Split("*")
+        '    Dim w As Integer = 710
+        '    w = CInt(w - (20 * (sig.Length - 1)))
+        '    w = CInt(w / sig.Length)
 
-            For i As Integer = 0 To sig.Length - 1
-                Dim st As Integer = 60 + i * w + i * 20
-                e.Graphics.DrawRectangle(pen, CInt(st * a), e.MarginBounds.Height + 70, CInt(w * a), 100)
+        '    For i As Integer = 0 To sig.Length - 1
+        '        Dim st As Integer = 60 + i * w + i * 20
+        '        e.Graphics.DrawRectangle(pen, CInt(st * a), e.MarginBounds.Height + 70, CInt(w * a), 90)
 
-                Dim size2 As SizeF = e.Graphics.MeasureString(sig(i), fnt)
-                e.Graphics.FillRectangle(Brushes.White, CInt((st * a) + 10), e.MarginBounds.Height + 63, size2.Width + 5, 15)
+        '        Dim size2 As SizeF = e.Graphics.MeasureString(sig(i), fnt)
+        '        e.Graphics.FillRectangle(Brushes.White, CInt((st * a) + 10), e.MarginBounds.Height + 63, size2.Width + 5, 15)
 
-                e.Graphics.DrawString(sig(i), fnt, Brushes.Black, CInt((st * a) + 12), e.MarginBounds.Height + 65)
-            Next
-        End If
+        '        e.Graphics.DrawString(sig(i), fnt, Brushes.Black, CInt((st * a) + 12), e.MarginBounds.Height + 65)
+        '    Next
+        'End If
 
-        e.Graphics.DrawString("N° : " & fctid & " // P: " & numpages & " / " & numpages, fnt, Brushes.Black, 15, e.MarginBounds.Height + 175)
+        e.Graphics.DrawString("N° : " & fctid & " // P: " & numPages & " / " & numPages, fnt, Brushes.Black, 15, CInt(m_Pied) + 130)
 
-        l = 250
+        l = m_Entete
         numpages = 1
         m = 0
     End Sub
@@ -1267,14 +1303,14 @@
         e.Graphics.DrawString(dte, fnt, Brushes.Black, 15, 130)
         'print  num Facture 
         If isSell Then
-            e.Graphics.DrawString("Receipt  N° : " & fctid, fntTitle, Brushes.Black, 15, 155)
+            e.Graphics.DrawString("Tickit  N° : " & fctid, fntTitle, Brushes.Black, 15, 155)
         Else
             e.Graphics.DrawString("Bon d'ACHAT  N° : " & fctid, fntTitle, Brushes.Black, 15, 155)
         End If
 
         'print Client 
         e.Graphics.DrawString("M : " & clientName & " | " & Form1.RPl.ClId, fntTitle, Brushes.Black, New RectangleF(15, 195, 275, 35), sf)
-        e.Graphics.DrawString("*****  " & dt.Rows.Count & " - Vidals    |", fnt, Brushes.Black, 15, 230)
+        e.Graphics.DrawString("*****  " & dt.Rows.Count & " - مادة    |", fnt, Brushes.Black, 15, 230)
 
         If m > 0 Then
             e.Graphics.DrawString("[ ..... ]", fnt, Brushes.Black, 10, l)
@@ -1304,12 +1340,12 @@
             Dim total As String = String.Format("{0:n}", CDec(data.Rows(m).Item("price") * data.Rows(m).Item("qte")))
 
             ''''''
-            Try
-                Dim p As Double = CDbl(data.Rows(m).Item("qte") * data.Rows(m).Item("poid"))
-                poids += p
-            Catch ex As Exception
+            'Try
+            '    Dim p As Double = CDbl(data.Rows(m).Item("qte") * data.Rows(m).Item("poid"))
+            '    poids += p
+            'Catch ex As Exception
 
-            End Try
+            'End Try
 
             Dim size As SizeF = e.Graphics.MeasureString(prdName, fnt, 120)
 
@@ -1360,7 +1396,7 @@
 
         End Try
 
-        If Form1.RPl.ClId > 0 Then e.Graphics.DrawString("Credit Total : " & rest & " Dhs", fntTitle, Brushes.Black, New RectangleF(10, l + 50, 232, 22), sf)
+        If Form1.RPl.ClId > 0 And Form1.cbShowGloblCredit.Checked Then e.Graphics.DrawString("Credit Total : " & rest & " Dhs", fntTitle, Brushes.Black, New RectangleF(10, l + 50, 232, 22), sf)
 
 
 
@@ -1377,8 +1413,7 @@
 
 
         ''''' DRAW THE WEIGHT ANG NBR VIDALS UP
-
-        e.Graphics.DrawString(" Poids : " & String.Format("{0:n}", poids) & " Kg  *****", fnt, Brushes.Black, 125, 230)
+        'e.Graphics.DrawString(" Poids : " & String.Format("{0:n}", poids) & " Kg  *****", fnt, Brushes.Black, 125, 230)
 
         If Form1.cbMsgOc.Checked Then
 
@@ -1585,7 +1620,11 @@
         e.Graphics.DrawString(dte, fnt, Brushes.Black, 15, 200)
         'print  num Facture 
 
-        e.Graphics.DrawString("Bon de Sortie : " & fctid, fntTitle, Brushes.Black, 15, 165)
+        If Form1.RPl.isSell Then
+            e.Graphics.DrawString("Bon de Sortie : " & fctid, fntTitle, Brushes.Black, 15, 165)
+        Else
+            e.Graphics.DrawString("Bon de Entree : " & fctid, fntTitle, Brushes.Black, 15, 165)
+        End If
 
         'print Client 
         e.Graphics.DrawString(tableName, fnt, Brushes.Black, 15, 215)
@@ -2603,6 +2642,74 @@
         l = 250
         m = 0
     End Sub
+    Public Sub DrawpayemtFct(ByRef e As System.Drawing.Printing.PrintPageEventArgs, ByVal Pid As String,
+                         ByVal clientName As String, ByVal Clid As String, ByVal fctid As String,
+                          ByVal isSell As Boolean, ByVal dte As Date, ByVal mnt As Double,
+                          ByVal way As String, ByVal nm As String, ByRef m As Integer)
+
+        Dim pen As New Pen(Brushes.Black, 1.0F)
+        Dim pn As New Pen(Brushes.Black, 0.5F)
+
+        Dim fnt As New Font(Form1.txtfname.Text, CInt(Form1.txtfntsize.Text))
+        Dim fntTitle As New Font("Arial", 12, FontStyle.Bold)
+
+        Dim sf As New StringFormat()
+        sf.Alignment = StringAlignment.Center
+
+        Dim Nsf As New StringFormat()
+        Nsf.Alignment = StringAlignment.Near
+
+        e.Graphics.DrawString(Form1.txttitle.Text, fntTitle, Brushes.Black, New RectangleF(10, 20, 300, 55), sf)
+        e.Graphics.DrawString(Form1.txttel.Text, fnt, Brushes.Black, New RectangleF(10, 80, 300, 30), sf)
+
+        Try
+            e.Graphics.DrawImage(Image.FromFile(Form1.TextBox4.Text), 10, 10, 300, 120)
+        Catch ex As Exception
+
+        End Try
+
+
+        'Dim myPoints() As Point = New Point() {New Point(10, 160), New Point(270, 160),
+        '                                       New Point(282, 175), New Point(270, 190),
+        '                                       New Point(10, 190)}
+        '  e.Graphics.FillPolygon(Brushes.WhiteSmoke, myPoints)
+        'e.Graphics.DrawPolygon(New Pen(Brushes.Black, 0.5F), myPoints)
+
+        'print date 
+        e.Graphics.DrawString(dte.ToString("dd MMMM, yyyy"), fnt, Brushes.Black, 15, 166)
+        'print  num Facture 
+
+        e.Graphics.DrawString("Bon d'Entree de Caisse  N° : " & Pid, fntTitle, Brushes.Black, 15, 135)
+
+        'print Client 
+        e.Graphics.DrawString("M : " & clientName & " - [" & Clid & "]", fnt, Brushes.Black, 15, 200)
+
+        e.Graphics.DrawString("Mode de Paiement : " & way, fnt, Brushes.Black, 15, 230)
+
+        Dim strNUM As String = "N° : " & nm
+        Dim szNM As SizeF = e.Graphics.MeasureString(strNUM, fnt, 350)
+        e.Graphics.DrawString(strNUM, fnt, Brushes.Black, New RectangleF(15, 245, 350, szNM.Height), Nsf)
+
+        l = 255 + szNM.Height
+
+        e.Graphics.DrawString("Sur Facture N° : " & fctid, fnt, Brushes.Black, 15, l)
+
+
+        e.Graphics.DrawString("Montant: " & String.Format("{0:F}", mnt) & " Dhs", fntTitle, Brushes.Black, 15, l + 20)
+
+        Dim strTotal As String = NumericStrings.GetNumberWords(CDec(mnt)) & " (Dhs)"
+        Dim sze As SizeF = e.Graphics.MeasureString(strTotal, fnt, 350)
+        e.Graphics.DrawString(strTotal, fnt, Brushes.Black, New RectangleF(15, l + 40, 350, sze.Height), Nsf)
+
+
+        l += 80 + sze.Height
+        e.Graphics.DrawString("Details : ", fnt, Brushes.Black, 15, l)
+        e.Graphics.DrawLine(pn, 10, l + 20, 300, l + 20)
+
+        l = 250
+        m = 0
+    End Sub
+
 
 
     Public Sub DrawRelve(ByRef e As System.Drawing.Printing.PrintPageEventArgs,
@@ -2624,10 +2731,18 @@
             sf_R.Alignment = StringAlignment.Far
             Dim sfC As New StringFormat()
             sfC.Alignment = StringAlignment.Center
-            Dim h = e.MarginBounds.Height
+
+
+            Dim m_Entete = Form1.txtEnteteMarge.Text
+            If Not IsNumeric(m_Entete) Then m_Entete = 160
+
+            Dim m_Pied = Form1.txtPiedMarge.Text
+            If Not IsNumeric(m_Pied) Then m_Pied = 750
+
+            l = m_Entete
+
+            Dim h = m_Pied - 20
             Dim w = e.MarginBounds.Width
-
-
             Dim a As Double = Form1.txtScale.Text
             Try
                 e.Graphics.DrawImage(Image.FromFile(Form1.TextBox4.Text), 10, 10, 300, 120)
@@ -2666,8 +2781,8 @@
             While m < daTa.Rows.Count
 
                 If l > h Then
-                    e.Graphics.DrawString("[ ..... ]", fnt, Brushes.Black, 605 * a, 870)
-                    l = 250
+                    e.Graphics.DrawString("[ ..... ]", fnt, Brushes.Black, 605 * a, m_Pied + 5)
+                    l = m_Entete
                     e.HasMorePages = True
                     Return
                 End If
@@ -2689,7 +2804,7 @@
                 m += 1
             End While
 
-            If l < 720 Then l = 720
+            If l < m_Pied Then l = m_Pied
 
             e.Graphics.DrawLine(pen, CInt(55 * a), l, CInt(680 * a), l)
             e.Graphics.DrawString("Factures", fnt, Brushes.Black, New RectangleF(430 * a, l + 29, 320 * a, 22), sf_L)
@@ -2706,7 +2821,7 @@
             l += 20
 
             Try
-                If entete Then e.Graphics.DrawImage(Image.FromFile(Form1.TextBox4.Text), CInt(10 * a), h - 20, CInt(750 * a), 120)
+                If entete Then e.Graphics.DrawImage(Image.FromFile(Form1.TextBox4.Text), CInt(10 * a), CInt(h - 20), CInt(750 * a), 120)
             Catch ex As Exception
             End Try
 
