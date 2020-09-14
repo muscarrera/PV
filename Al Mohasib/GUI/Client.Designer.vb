@@ -24,10 +24,10 @@ Partial Class Client
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Client))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.plup = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
         Me.btAllow = New System.Windows.Forms.Button()
@@ -71,6 +71,7 @@ Partial Class Client
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.ClientBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
@@ -84,7 +85,10 @@ Partial Class Client
         Me.CreditDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.type = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label6 = New System.Windows.Forms.Label()
+        Me.txtVille = New Al_Mohasib.TxtBox()
+        Me.txtIce = New Al_Mohasib.TxtBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.plup.SuspendLayout()
         Me.Panel21.SuspendLayout()
         Me.Panel24.SuspendLayout()
@@ -470,6 +474,8 @@ Partial Class Client
         '
         Me.GB1.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.GB1.Controls.Add(Me.txttel)
+        Me.GB1.Controls.Add(Me.txtIce)
+        Me.GB1.Controls.Add(Me.txtVille)
         Me.GB1.Controls.Add(Me.txtad)
         Me.GB1.Controls.Add(Me.txtcin)
         Me.GB1.Controls.Add(Me.txttp)
@@ -479,6 +485,8 @@ Partial Class Client
         Me.GB1.Controls.Add(Me.btcancel)
         Me.GB1.Controls.Add(Me.Label4)
         Me.GB1.Controls.Add(Me.lbTp)
+        Me.GB1.Controls.Add(Me.Label10)
+        Me.GB1.Controls.Add(Me.Label8)
         Me.GB1.Controls.Add(Me.Label3)
         Me.GB1.Controls.Add(Me.Label5)
         Me.GB1.Controls.Add(Me.Label2)
@@ -497,12 +505,12 @@ Partial Class Client
         Me.txttel.BackColor = System.Drawing.Color.White
         Me.txttel.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txttel.IsNumiric = False
-        Me.txttel.Location = New System.Drawing.Point(120, 297)
-        Me.txttel.MinimumSize = New System.Drawing.Size(0, 40)
+        Me.txttel.Location = New System.Drawing.Point(120, 329)
+        Me.txttel.MinimumSize = New System.Drawing.Size(0, 33)
         Me.txttel.Name = "txttel"
         Me.txttel.ShowClearIcon = False
         Me.txttel.ShowSaveIcon = False
-        Me.txttel.Size = New System.Drawing.Size(218, 40)
+        Me.txttel.Size = New System.Drawing.Size(218, 33)
         Me.txttel.StartUp = 2
         Me.txttel.TabIndex = 5
         Me.txttel.TextSize = 8
@@ -516,12 +524,12 @@ Partial Class Client
         Me.txtad.BackColor = System.Drawing.Color.White
         Me.txtad.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtad.IsNumiric = False
-        Me.txtad.Location = New System.Drawing.Point(120, 251)
-        Me.txtad.MinimumSize = New System.Drawing.Size(0, 40)
+        Me.txtad.Location = New System.Drawing.Point(120, 213)
+        Me.txtad.MinimumSize = New System.Drawing.Size(0, 33)
         Me.txtad.Name = "txtad"
         Me.txtad.ShowClearIcon = False
         Me.txtad.ShowSaveIcon = False
-        Me.txtad.Size = New System.Drawing.Size(218, 40)
+        Me.txtad.Size = New System.Drawing.Size(218, 33)
         Me.txtad.StartUp = 2
         Me.txtad.TabIndex = 4
         Me.txtad.TextSize = 8
@@ -535,12 +543,12 @@ Partial Class Client
         Me.txtcin.BackColor = System.Drawing.Color.White
         Me.txtcin.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtcin.IsNumiric = False
-        Me.txtcin.Location = New System.Drawing.Point(120, 205)
-        Me.txtcin.MinimumSize = New System.Drawing.Size(0, 40)
+        Me.txtcin.Location = New System.Drawing.Point(121, 174)
+        Me.txtcin.MinimumSize = New System.Drawing.Size(0, 33)
         Me.txtcin.Name = "txtcin"
         Me.txtcin.ShowClearIcon = False
         Me.txtcin.ShowSaveIcon = False
-        Me.txtcin.Size = New System.Drawing.Size(218, 40)
+        Me.txtcin.Size = New System.Drawing.Size(218, 33)
         Me.txtcin.StartUp = 2
         Me.txtcin.TabIndex = 3
         Me.txtcin.TextSize = 8
@@ -554,12 +562,12 @@ Partial Class Client
         Me.txttp.BackColor = System.Drawing.Color.White
         Me.txttp.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txttp.IsNumiric = True
-        Me.txttp.Location = New System.Drawing.Point(121, 129)
-        Me.txttp.MinimumSize = New System.Drawing.Size(0, 40)
+        Me.txttp.Location = New System.Drawing.Point(121, 114)
+        Me.txttp.MinimumSize = New System.Drawing.Size(0, 33)
         Me.txttp.Name = "txttp"
         Me.txttp.ShowClearIcon = False
         Me.txttp.ShowSaveIcon = False
-        Me.txttp.Size = New System.Drawing.Size(218, 40)
+        Me.txttp.Size = New System.Drawing.Size(218, 33)
         Me.txttp.StartUp = 2
         Me.txttp.TabIndex = 2
         Me.txttp.TextSize = 8
@@ -573,12 +581,12 @@ Partial Class Client
         Me.txtcrd.BackColor = System.Drawing.Color.White
         Me.txtcrd.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtcrd.IsNumiric = False
-        Me.txtcrd.Location = New System.Drawing.Point(121, 83)
-        Me.txtcrd.MinimumSize = New System.Drawing.Size(0, 40)
+        Me.txtcrd.Location = New System.Drawing.Point(121, 75)
+        Me.txtcrd.MinimumSize = New System.Drawing.Size(0, 33)
         Me.txtcrd.Name = "txtcrd"
         Me.txtcrd.ShowClearIcon = False
         Me.txtcrd.ShowSaveIcon = False
-        Me.txtcrd.Size = New System.Drawing.Size(218, 40)
+        Me.txtcrd.Size = New System.Drawing.Size(218, 33)
         Me.txtcrd.StartUp = 2
         Me.txtcrd.TabIndex = 2
         Me.txtcrd.TextSize = 8
@@ -592,7 +600,7 @@ Partial Class Client
         Me.txtname.BackColor = System.Drawing.Color.White
         Me.txtname.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtname.IsNumiric = False
-        Me.txtname.Location = New System.Drawing.Point(30, 40)
+        Me.txtname.Location = New System.Drawing.Point(30, 32)
         Me.txtname.MinimumSize = New System.Drawing.Size(0, 40)
         Me.txtname.Name = "txtname"
         Me.txtname.ShowClearIcon = False
@@ -642,7 +650,7 @@ Partial Class Client
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(31, 307)
+        Me.Label4.Location = New System.Drawing.Point(39, 349)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(27, 13)
         Me.Label4.TabIndex = 3
@@ -652,7 +660,7 @@ Partial Class Client
         '
         Me.lbTp.AutoSize = True
         Me.lbTp.Enabled = False
-        Me.lbTp.Location = New System.Drawing.Point(31, 141)
+        Me.lbTp.Location = New System.Drawing.Point(39, 118)
         Me.lbTp.Name = "lbTp"
         Me.lbTp.Size = New System.Drawing.Size(31, 13)
         Me.lbTp.TabIndex = 3
@@ -661,17 +669,17 @@ Partial Class Client
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(31, 258)
+        Me.Label3.Location = New System.Drawing.Point(39, 233)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(59, 13)
+        Me.Label3.Size = New System.Drawing.Size(58, 13)
         Me.Label3.TabIndex = 3
-        Me.Label3.Text = "ADRE/ICE"
+        Me.Label3.Text = "ADRESSE"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Enabled = False
-        Me.Label5.Location = New System.Drawing.Point(31, 93)
+        Me.Label5.Location = New System.Drawing.Point(39, 74)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(72, 13)
         Me.Label5.TabIndex = 3
@@ -680,16 +688,25 @@ Partial Class Client
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(31, 210)
+        Me.Label2.Location = New System.Drawing.Point(39, 194)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(25, 13)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "CIN"
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(300, 16)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(39, 13)
+        Me.Label6.TabIndex = 3
+        Me.Label6.Text = "الاســـم"
+        '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(31, 24)
+        Me.Label1.Location = New System.Drawing.Point(31, 16)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(32, 13)
         Me.Label1.TabIndex = 3
@@ -713,33 +730,33 @@ Partial Class Client
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.Padding = New System.Windows.Forms.Padding(2)
-        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.Padding = New System.Windows.Forms.Padding(2)
+        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.Padding = New System.Windows.Forms.Padding(2)
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle6.Padding = New System.Windows.Forms.Padding(2)
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ClidDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.CINDataGridViewTextBoxColumn, Me.AdressDataGridViewTextBoxColumn, Me.TelDataGridViewTextBoxColumn, Me.CreditDataGridViewTextBoxColumn, Me.type})
         Me.DataGridView1.DataSource = Me.ClientBindingSource
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.Padding = New System.Windows.Forms.Padding(2, 6, 2, 6)
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.Padding = New System.Windows.Forms.Padding(2, 6, 2, 6)
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle7
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.GridColor = System.Drawing.SystemColors.Highlight
         Me.DataGridView1.Location = New System.Drawing.Point(3, 16)
@@ -747,8 +764,8 @@ Partial Class Client
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersVisible = False
-        DataGridViewCellStyle4.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
-        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
+        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridView1.RowTemplate.Height = 33
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.Size = New System.Drawing.Size(605, 430)
@@ -822,14 +839,61 @@ Partial Class Client
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "LISTE DES CLIENTS"
         '
-        'Label6
+        'txtVille
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(300, 24)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(39, 13)
-        Me.Label6.TabIndex = 3
-        Me.Label6.Text = "الاســـم"
+        Me.txtVille.BackColor = System.Drawing.Color.White
+        Me.txtVille.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtVille.IsNumiric = False
+        Me.txtVille.Location = New System.Drawing.Point(120, 252)
+        Me.txtVille.MinimumSize = New System.Drawing.Size(0, 33)
+        Me.txtVille.Name = "txtVille"
+        Me.txtVille.ShowClearIcon = False
+        Me.txtVille.ShowSaveIcon = False
+        Me.txtVille.Size = New System.Drawing.Size(218, 33)
+        Me.txtVille.StartUp = 2
+        Me.txtVille.TabIndex = 4
+        Me.txtVille.TextSize = 8
+        Me.txtVille.TxtBackColor = True
+        Me.txtVille.TxtColor = System.Drawing.Color.White
+        Me.txtVille.txtReadOnly = False
+        Me.txtVille.TxtSelect = New Integer() {1, 0}
+        '
+        'txtIce
+        '
+        Me.txtIce.BackColor = System.Drawing.Color.White
+        Me.txtIce.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtIce.IsNumiric = False
+        Me.txtIce.Location = New System.Drawing.Point(121, 290)
+        Me.txtIce.MinimumSize = New System.Drawing.Size(0, 33)
+        Me.txtIce.Name = "txtIce"
+        Me.txtIce.ShowClearIcon = False
+        Me.txtIce.ShowSaveIcon = False
+        Me.txtIce.Size = New System.Drawing.Size(218, 33)
+        Me.txtIce.StartUp = 2
+        Me.txtIce.TabIndex = 4
+        Me.txtIce.TextSize = 8
+        Me.txtIce.TxtBackColor = True
+        Me.txtIce.TxtColor = System.Drawing.Color.White
+        Me.txtIce.txtReadOnly = False
+        Me.txtIce.TxtSelect = New Integer() {1, 0}
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(39, 272)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(36, 13)
+        Me.Label8.TabIndex = 3
+        Me.Label8.Text = "VILLE"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(39, 310)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(24, 13)
+        Me.Label10.TabIndex = 3
+        Me.Label10.Text = "ICE"
         '
         'Client
         '
@@ -925,4 +989,8 @@ Partial Class Client
     Friend WithEvents btAllow2 As System.Windows.Forms.Button
     Friend WithEvents btAllow3 As System.Windows.Forms.Button
     Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents txtIce As Al_Mohasib.TxtBox
+    Friend WithEvents txtVille As Al_Mohasib.TxtBox
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Label8 As System.Windows.Forms.Label
 End Class

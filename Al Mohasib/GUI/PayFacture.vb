@@ -64,6 +64,12 @@
         plSide.Visible = True
         btPrint.Enabled = False
 
+        If clid = 0 Then
+            plSide.Visible = True
+            DGV.Rows.Clear()
+        End If
+
+
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
             Dim tableName As String = "Facture"
             If isSell = False Then tableName = "Bon"
@@ -414,6 +420,9 @@
         Dim _num As String = txtnum.text
         If _num.Contains("[") Then _num = _num.Split("[")(0)
         _num &= " [" & dtpech.Text & " ]"
+
+
+        If Form1.RPl.EditMode = True Then _num = "@/" & _num
 
         Dim _nm As String = fctid
         For i As Integer = 0 To DGV.Rows.Count - 1

@@ -107,6 +107,11 @@ Public Class AddEditArticle
 
         End If
 
+        If Form1.CbArticleRemise.Checked Then
+            lbpoids.Text = "Remise"
+            lbpoids.Left = TxtPoids.Left
+        End If
+
         cr = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255))
 
         If PBprd.Tag = "" Or PBprd.Tag = "No Image" Then
@@ -115,6 +120,7 @@ Public Class AddEditArticle
             'ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\art" & PBprd.Tag)
             ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\art" & PBprd.Tag)
         End If
+
 
         PBprd.BackgroundImage = Drawimg(txtprdname.Text, txtsprice.text)
         txtcb.Focus()
@@ -181,7 +187,50 @@ Public Class AddEditArticle
             End If
 
 
-          
+            If Form1.cbCodeDouble.Checked Then
+                'Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                '    Dim params As New Dictionary(Of String, Object)
+
+                '    params.Add("name", txtprdname.Text.Trim)
+                '    Dim fid = c.SelectByScalar("Article", "arid", params)
+                '    If IsNumeric(fid) Then
+
+                '        If fid > 0 And fid <> txtprdname.Tag Then
+                '            MsgBox("عذرا لا يمكن اتمام طلبكم.. المرجوا تعبئة الاسم جديد", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
+                '            txtprdname.Focus()
+                '            Exit Sub
+                '        End If
+                '    End If
+                'End Using
+                ''''''''''''''''''''''''''''''''''''
+                Dim ls = txtcb.text.Trim.Split("-")
+
+                Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
+                Dim artdt As DataTable
+                For i As Integer = 0 To ls.Length - 1
+
+                    If ls(i).Length <= 5 Then Continue For
+                    '''''''''''''''''''
+
+                    artdt = artta.GetDatalikecodebar("%" & ls(i) & "%")
+
+                    If artdt.Rows.Count > 0 Then
+                        For t As Integer = 0 To artdt.Rows.Count - 1
+                            If artdt.Rows(t).Item(0) = txtprdname.Tag Then Continue For
+                            Dim str As String = "عذرا لا يمكن اتمام طلبكم.. المرجوا تعبئة رمز جديد"
+                            str &= vbNewLine
+                            str &= ls(i) & "  |  " & artdt.Rows(t).Item("name") & " [" & artdt.Rows(t).Item(0) & "]"
+                            str &= vbNewLine
+                            str &= ls(i) & "  |  " & txtprdname.Text
+
+                            MsgBox(str, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
+                            txtcb.Focus()
+                            Exit Sub
+                        Next
+                    End If
+                Next
+                ''''''''''''''''''''''''''''''''''''
+            End If
 
 
         Catch ex As Exception
@@ -208,20 +257,6 @@ Public Class AddEditArticle
         If btprd.Tag = "0" Then
             ''check the name
 
-            For i As Integer = 0 To Articles.DGVPRD.Rows.Count - 1
-                If txtprdname.Text = Articles.DGVPRD.Rows(i).Cells(2).Value Then
-                    MsgBox("عذرا لا يمكن اتمام طلبكم.. يجب عدم تكرار نفس الاسم", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
-                    txtprdname.Focus()
-
-                    Exit Sub
-                End If
-                If txtcb.text <> "" And txtcb.text = Articles.DGVPRD.Rows(i).Cells(1).Value.ToString Then
-                    MsgBox("عذرا لا يمكن اتمام طلبكم.. يجب عدم تكرار نفس الرمز لأكتر من ماذة. أو تركه فارغ", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
-                    txtcb.Focus()
-                    Exit Sub
-                End If
-            Next
-
             Try
                 Dim ta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
                 ta.InsertQuery(cid, txtprdname.Text, PBprd.Tag, bprice, sprice, txtunit.Text, txtcb.text, "0", tva,
@@ -232,6 +267,12 @@ Public Class AddEditArticle
                     txtbprice.text = ""
                     TxtPoids.text = ""
                     txtsprice.text = ""
+                    txtprice2.text = ""
+                    txtprice3.text = ""
+                    txtPrice4.text = ""
+                    TxtPoids.text = ""
+                    txtMinStock.text = ""
+
                     txtprdname.Text = ""
                     txtunit.Text = ""
                     PBprd.Tag = ""
@@ -477,5 +518,16 @@ Public Class AddEditArticle
             ImgPrd = Nothing
             PBprd.BackgroundImage = Drawimg(txtprdname.Text, txtsprice.text)
         End If
+    End Sub
+
+    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
+        'If txtcb.text.Trim = "" Then Exit Sub
+
+        Dim ls As New ListMultiCodes
+        ls.Code = txtcb.text
+        If ls.ShowDialog = Windows.Forms.DialogResult.OK Then
+            txtcb.text = ls.Code
+        End If
+
     End Sub
 End Class

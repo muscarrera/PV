@@ -82,12 +82,12 @@ Public Class gForm
 
             ' Add  rows with those columns filled in the DataTable.
             table.Rows.Add(1, "Article1", 1, 3, String.Format("{0:0.00}", 11.5), 11,
-                              20, "REF 123", 1, 0, 2, 3)
-            table.Rows.Add(1, "Article2", 1, 12, String.Format("{0:0.00}", 34.4), 11,
-                             10, "REF 123", 1, 0, 2, 4)
-            table.Rows.Add(1, "Article3", 1, 1, String.Format("{0:0.00}", 66), 11,
-                             20, "REF 123", 1, 0, 2, 5)
-            table.Rows.Add(1, "Article4", 1, 54, String.Format("{0:0.00}", 5), 11,
+                              20, "REF 123", 4, 0, 2, 3)
+            table.Rows.Add(1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit", 3, 12, String.Format("{0:0.00}", 34.4), 11,
+                             10, "REF 123", 3, 0, 2, 4)
+            table.Rows.Add(1, "Article3", 3, 3, String.Format("{0:0.00}", 66), 11,
+                             20, "REF 123", 3, 0, 2, 5)
+            table.Rows.Add(1, "Article4", 3, 54, String.Format("{0:0.00}", 5), 11,
                              14, "REF 123", 4, 0, 2, 6)
             Return table
         End Get
@@ -109,11 +109,12 @@ Public Class gForm
             table.Columns.Add("MPayement", GetType(String))
             table.Columns.Add("Editeur", GetType(String))
             table.Columns.Add("vidal", GetType(String))
+            table.Columns.Add("livreur", GetType(String))
 
             ' Add  rows with those columns filled in the DataTable.
             table.Rows.Add(1, Now.Date, 1, "Mohamed", String.Format("{0:0.00}", 222),
                            String.Format("{0:0.00}", 66), String.Format("{0:0.00}", 288), "0",
-                              "0", "0", "CHEQUE", "ADMIN", "4 - Artciles")
+                              "0", "0", "CHEQUE", "ADMIN", "4 - Artciles", "Med")
             Return table
         End Get
     End Property
@@ -124,11 +125,17 @@ Public Class gForm
             table.Columns.Add("Clid", GetType(Integer))
             table.Columns.Add("name", GetType(String))
             table.Columns.Add("ref", GetType(String))
+            table.Columns.Add("ville", GetType(String))
             table.Columns.Add("adresse", GetType(String))
             table.Columns.Add("ice", GetType(String))
+            table.Columns.Add("tel", GetType(String))
+            table.Columns.Add("NvCredit", GetType(String))
+            table.Columns.Add("EncCredit", GetType(String))
+
+        
 
             ' Add  rows with those columns filled in the DataTable.
-            table.Rows.Add(1, "Mohamed", "md123", "Av 01, Lot 2, Imm 3, hay Dakhla", "1234567890")
+            table.Rows.Add(1, "Mohamed", "md123", "AGADIR", "Av 01, Lot 2, Imm 3, hay Dakhla", "1234567890", "05282828283", "123", "23")
 
             Return table
         End Get
@@ -243,6 +250,16 @@ Public Class gForm
                             End Try
                         ElseIf a.field.StartsWith("-") Then
                             str &= "Bon de Laivraison"
+
+                        ElseIf a.field.StartsWith("DPT") Then
+                            Dim s = a.field.Split("_")(1)
+
+                            If s = "ID" Then
+                                str &= Form1._kvp.Key
+                            Else
+                                str &= Form1._kvp.Value
+                            End If
+
                         Else
 
                             str &= data.Rows(0).Item(a.field)
@@ -367,8 +384,10 @@ Public Class gForm
                     Dim _x As Integer = tc.x
 
                     Dim plus_h As Integer = F_D.Height
+
+
                     For Each c As gColClass In tc.details
-                        plus_h = F_D.Height
+                        'plus_h = F_D.Height
                         Dim _str As String = ""
 
                         If c.Field = "xTotal" Then '////////////////////////////////////////////////
@@ -437,7 +456,7 @@ Public Class gForm
                         params_tva(details.Rows(m).Item("tva")) += details.Rows(m).Item("totaltva")
                     End Try
 
-
+                    If tc.hasLines And m > 0 Then G.DrawLine(Pens.Black, tc.x, y, tc.x + tc.TabWidth, y)
                     y += plus_h + 3
                     m += 1
                 End While
@@ -510,6 +529,26 @@ Public Class gForm
                             End Try
                             sf.Alignment = StringAlignment.Near
 
+                        ElseIf a.field.StartsWith("x_total") Then
+                            If a.hasBloc Then
+                                Dim _br As New SolidBrush(a.backColor)
+                                G.FillRectangle(_br, a.x + a.width, a.y, a.width, a.height)
+                                G.DrawRectangle(pen, a.x + a.width, a.y, a.width, a.height)
+                                xx += 5
+                                yy += 3
+                            End If
+
+                            sf.Alignment = StringAlignment.Near
+                            G.DrawString(CStr(a.designation), fn, B, New RectangleF(xx, yy, a.width, a.height), sf)
+                            sf.Alignment = StringAlignment.Far
+                            Try
+                            
+                                Dim ttr As String = CDbl(data.Rows(0).Item("total_ttc")) + CDbl(data.Rows(0).Item("total_remise"))
+                                G.DrawString(ttr, fn, B, New RectangleF(xx + a.width - 10, yy, a.width, a.height), sf)
+                            Catch ex As Exception
+                            End Try
+                            sf.Alignment = StringAlignment.Near
+
                         ElseIf a.field.StartsWith("rest") Then
                             If a.hasBloc Then
                                 Dim _br As New SolidBrush(a.backColor)
@@ -567,6 +606,21 @@ Public Class gForm
                             Try
                                 Dim fullPath As String = Path.Combine("C:\cmcimage", a.designation)
                                 G.DrawImage(Image.FromFile(fullPath), xx, yy, a.width, a.height)
+                            Catch ex As Exception
+                            End Try
+
+                        ElseIf a.field.StartsWith("DPT") Then
+                            Dim s = a.field.Split("_")(1)
+                            Dim str As String = CStr(a.designation)
+
+                            If s = "ID" Then
+                                str &= Form1._kvp.Key
+                            Else
+                                str &= Form1._kvp.Value
+                            End If
+
+                            Try
+                                G.DrawString(str, fn, B, New RectangleF(xx, yy, a.width, a.height), sf)
                             Catch ex As Exception
                             End Try
                         Else

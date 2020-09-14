@@ -239,6 +239,7 @@ Partial Class Editprdfact
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.txtqte)
         Me.GroupBox2.Controls.Add(Me.Label5)
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.LBQTE)
@@ -247,7 +248,6 @@ Partial Class Editprdfact
         Me.GroupBox2.Controls.Add(Me.Label2)
         Me.GroupBox2.Controls.Add(Me.LBBPRICE)
         Me.GroupBox2.Controls.Add(Me.Label1)
-        Me.GroupBox2.Controls.Add(Me.txtqte)
         Me.GroupBox2.Controls.Add(Me.txtsprice)
         Me.GroupBox2.Controls.Add(Me.txtbprice)
         Me.GroupBox2.Controls.Add(Me.txtArSearch)
@@ -261,72 +261,88 @@ Partial Class Editprdfact
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(38, 289)
+        Me.Label5.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.MediumBlue
+        Me.Label5.Location = New System.Drawing.Point(38, 286)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(47, 13)
+        Me.Label5.Size = New System.Drawing.Size(64, 16)
         Me.Label5.TabIndex = 11
         Me.Label5.Text = "Quantité"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(35, 205)
+        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.MediumBlue
+        Me.Label4.Location = New System.Drawing.Point(38, 205)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(70, 13)
+        Me.Label4.Size = New System.Drawing.Size(93, 16)
         Me.Label4.TabIndex = 11
         Me.Label4.Text = "Prix de Vente"
         '
         'LBQTE
         '
         Me.LBQTE.AutoSize = True
-        Me.LBQTE.Location = New System.Drawing.Point(340, 291)
+        Me.LBQTE.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBQTE.ForeColor = System.Drawing.Color.MediumBlue
+        Me.LBQTE.Location = New System.Drawing.Point(330, 287)
         Me.LBQTE.Name = "LBQTE"
-        Me.LBQTE.Size = New System.Drawing.Size(34, 13)
+        Me.LBQTE.Size = New System.Drawing.Size(41, 19)
         Me.LBQTE.TabIndex = 11
         Me.LBQTE.Text = "الكمية"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(33, 122)
+        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.MediumBlue
+        Me.Label3.Location = New System.Drawing.Point(38, 122)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(63, 13)
+        Me.Label3.Size = New System.Drawing.Size(86, 16)
         Me.Label3.TabIndex = 11
         Me.Label3.Text = "Prix d'Achat"
         '
         'LBSPR
         '
         Me.LBSPR.AutoSize = True
-        Me.LBSPR.Location = New System.Drawing.Point(306, 207)
+        Me.LBSPR.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBSPR.ForeColor = System.Drawing.Color.MediumBlue
+        Me.LBSPR.Location = New System.Drawing.Point(293, 205)
         Me.LBSPR.Name = "LBSPR"
-        Me.LBSPR.Size = New System.Drawing.Size(68, 13)
+        Me.LBSPR.Size = New System.Drawing.Size(78, 19)
         Me.LBSPR.TabIndex = 11
         Me.LBSPR.Text = "ثــمن الــبــيـع"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.MediumBlue
         Me.Label2.Location = New System.Drawing.Point(38, 37)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(40, 13)
+        Me.Label2.Size = New System.Drawing.Size(53, 16)
         Me.Label2.TabIndex = 11
         Me.Label2.Text = "Produit"
         '
         'LBBPRICE
         '
         Me.LBBPRICE.AutoSize = True
-        Me.LBBPRICE.Location = New System.Drawing.Point(304, 124)
+        Me.LBBPRICE.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBBPRICE.ForeColor = System.Drawing.Color.MediumBlue
+        Me.LBBPRICE.Location = New System.Drawing.Point(286, 122)
         Me.LBBPRICE.Name = "LBBPRICE"
-        Me.LBBPRICE.Size = New System.Drawing.Size(70, 13)
+        Me.LBBPRICE.Size = New System.Drawing.Size(85, 19)
         Me.LBBPRICE.TabIndex = 11
         Me.LBBPRICE.Text = "ثــمن الشـــراء"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(309, 39)
+        Me.Label1.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.MediumBlue
+        Me.Label1.Location = New System.Drawing.Point(297, 37)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(65, 13)
+        Me.Label1.Size = New System.Drawing.Size(74, 19)
         Me.Label1.TabIndex = 11
         Me.Label1.Text = "اســم المــادة"
         '
@@ -336,11 +352,11 @@ Partial Class Editprdfact
         Me.txtqte.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtqte.IsNumiric = True
         Me.txtqte.Location = New System.Drawing.Point(31, 305)
-        Me.txtqte.MinimumSize = New System.Drawing.Size(0, 33)
+        Me.txtqte.MinimumSize = New System.Drawing.Size(0, 44)
         Me.txtqte.Name = "txtqte"
         Me.txtqte.ShowClearIcon = False
         Me.txtqte.ShowSaveIcon = False
-        Me.txtqte.Size = New System.Drawing.Size(343, 33)
+        Me.txtqte.Size = New System.Drawing.Size(343, 44)
         Me.txtqte.StartUp = 2
         Me.txtqte.TabIndex = 2
         Me.txtqte.TextSize = 8
@@ -355,11 +371,11 @@ Partial Class Editprdfact
         Me.txtsprice.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtsprice.IsNumiric = True
         Me.txtsprice.Location = New System.Drawing.Point(31, 224)
-        Me.txtsprice.MinimumSize = New System.Drawing.Size(0, 33)
+        Me.txtsprice.MinimumSize = New System.Drawing.Size(0, 44)
         Me.txtsprice.Name = "txtsprice"
         Me.txtsprice.ShowClearIcon = False
         Me.txtsprice.ShowSaveIcon = False
-        Me.txtsprice.Size = New System.Drawing.Size(343, 33)
+        Me.txtsprice.Size = New System.Drawing.Size(343, 44)
         Me.txtsprice.StartUp = 2
         Me.txtsprice.TabIndex = 1
         Me.txtsprice.TextSize = 8
@@ -374,11 +390,11 @@ Partial Class Editprdfact
         Me.txtbprice.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtbprice.IsNumiric = True
         Me.txtbprice.Location = New System.Drawing.Point(31, 143)
-        Me.txtbprice.MinimumSize = New System.Drawing.Size(0, 33)
+        Me.txtbprice.MinimumSize = New System.Drawing.Size(0, 44)
         Me.txtbprice.Name = "txtbprice"
         Me.txtbprice.ShowClearIcon = False
         Me.txtbprice.ShowSaveIcon = False
-        Me.txtbprice.Size = New System.Drawing.Size(343, 33)
+        Me.txtbprice.Size = New System.Drawing.Size(343, 44)
         Me.txtbprice.StartUp = 2
         Me.txtbprice.TabIndex = 4
         Me.txtbprice.TextSize = 8
@@ -393,11 +409,11 @@ Partial Class Editprdfact
         Me.txtArSearch.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtArSearch.IsNumiric = False
         Me.txtArSearch.Location = New System.Drawing.Point(31, 58)
-        Me.txtArSearch.MinimumSize = New System.Drawing.Size(0, 33)
+        Me.txtArSearch.MinimumSize = New System.Drawing.Size(0, 44)
         Me.txtArSearch.Name = "txtArSearch"
         Me.txtArSearch.ShowClearIcon = False
         Me.txtArSearch.ShowSaveIcon = False
-        Me.txtArSearch.Size = New System.Drawing.Size(343, 33)
+        Me.txtArSearch.Size = New System.Drawing.Size(343, 44)
         Me.txtArSearch.StartUp = 2
         Me.txtArSearch.TabIndex = 0
         Me.txtArSearch.TextSize = 8
@@ -452,7 +468,7 @@ Partial Class Editprdfact
         Me.Button22.Name = "Button22"
         Me.Button22.Size = New System.Drawing.Size(80, 87)
         Me.Button22.TabIndex = 0
-        Me.Button22.Text = "1"
+        Me.Button22.Text = "7"
         Me.Button22.UseVisualStyleBackColor = False
         '
         'Button30
@@ -465,7 +481,7 @@ Partial Class Editprdfact
         Me.Button30.Name = "Button30"
         Me.Button30.Size = New System.Drawing.Size(80, 87)
         Me.Button30.TabIndex = 0
-        Me.Button30.Text = "9"
+        Me.Button30.Text = "3"
         Me.Button30.UseVisualStyleBackColor = False
         '
         'Button23
@@ -478,7 +494,7 @@ Partial Class Editprdfact
         Me.Button23.Name = "Button23"
         Me.Button23.Size = New System.Drawing.Size(80, 87)
         Me.Button23.TabIndex = 0
-        Me.Button23.Text = "2"
+        Me.Button23.Text = "8"
         Me.Button23.UseVisualStyleBackColor = False
         '
         'Button3
@@ -504,7 +520,7 @@ Partial Class Editprdfact
         Me.Button29.Name = "Button29"
         Me.Button29.Size = New System.Drawing.Size(80, 87)
         Me.Button29.TabIndex = 0
-        Me.Button29.Text = "8"
+        Me.Button29.Text = "2"
         Me.Button29.UseVisualStyleBackColor = False
         '
         'Button25
@@ -543,7 +559,7 @@ Partial Class Editprdfact
         Me.Button24.Name = "Button24"
         Me.Button24.Size = New System.Drawing.Size(80, 87)
         Me.Button24.TabIndex = 0
-        Me.Button24.Text = "3"
+        Me.Button24.Text = "9"
         Me.Button24.UseVisualStyleBackColor = False
         '
         'Button31
@@ -569,7 +585,7 @@ Partial Class Editprdfact
         Me.Button28.Name = "Button28"
         Me.Button28.Size = New System.Drawing.Size(80, 87)
         Me.Button28.TabIndex = 0
-        Me.Button28.Text = "7"
+        Me.Button28.Text = "1"
         Me.Button28.UseVisualStyleBackColor = False
         '
         'Button26
@@ -599,7 +615,7 @@ Partial Class Editprdfact
         Me.Name = "Editprdfact"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "تعديل سلع الفاتورة"
+        Me.Text = "DETAILS"
         Me.plup.ResumeLayout(False)
         Me.Panel21.ResumeLayout(False)
         Me.Panel18.ResumeLayout(False)

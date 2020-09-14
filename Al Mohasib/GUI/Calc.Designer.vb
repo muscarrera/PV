@@ -25,9 +25,9 @@ Partial Class Calc
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.CPanel1 = New Al_Mohasib.CPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.txt = New System.Windows.Forms.TextBox()
         Me.lbtitle = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -46,7 +46,7 @@ Partial Class Calc
         '
         'CPanel1
         '
-        Me.CPanel1.bl = Nothing
+        Me.CPanel1.bl = "---"
         Me.CPanel1.Depot = 1
         Me.CPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.CPanel1.EditMode = False
@@ -71,19 +71,6 @@ Partial Class Calc
         Me.Panel1.Size = New System.Drawing.Size(436, 108)
         Me.Panel1.TabIndex = 4
         '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.Teal
-        Me.Button1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(0, 48)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(436, 60)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "تأكيد"
-        Me.Button1.UseVisualStyleBackColor = False
-        '
         'txt
         '
         Me.txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -102,6 +89,19 @@ Partial Class Calc
         Me.lbtitle.Size = New System.Drawing.Size(70, 13)
         Me.lbtitle.TabIndex = 0
         Me.lbtitle.Text = "الكمية السابقة"
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Teal
+        Me.Button1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.ForeColor = System.Drawing.Color.White
+        Me.Button1.Location = New System.Drawing.Point(0, 48)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(436, 60)
+        Me.Button1.TabIndex = 2
+        Me.Button1.Text = "تأكيد"
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'Calc
         '

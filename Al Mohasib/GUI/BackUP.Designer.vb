@@ -47,12 +47,13 @@ Partial Class BackUP
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button17 = New System.Windows.Forms.Button()
+        Me.Button18 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Button14 = New System.Windows.Forms.Button()
         Me.Button16 = New System.Windows.Forms.Button()
         Me.Button15 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button18 = New System.Windows.Forms.Button()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -256,6 +257,7 @@ Partial Class BackUP
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.CheckBox1)
         Me.Panel2.Controls.Add(Me.GB1)
         Me.Panel2.Controls.Add(Me.TextBox1)
         Me.Panel2.Controls.Add(Me.Button14)
@@ -331,6 +333,17 @@ Partial Class BackUP
         Me.Button17.Text = "FCT_LST_TL_UPD"
         Me.Button17.UseVisualStyleBackColor = True
         '
+        'Button18
+        '
+        Me.Button18.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button18.Location = New System.Drawing.Point(782, 16)
+        Me.Button18.Name = "Button18"
+        Me.Button18.Size = New System.Drawing.Size(97, 45)
+        Me.Button18.TabIndex = 3
+        Me.Button18.Text = "STK-MLG"
+        Me.Button18.UseVisualStyleBackColor = True
+        '
         'TextBox1
         '
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -379,16 +392,15 @@ Partial Class BackUP
         Me.Button5.Text = "Old_Val_Pos"
         Me.Button5.UseVisualStyleBackColor = True
         '
-        'Button18
+        'CheckBox1
         '
-        Me.Button18.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button18.Location = New System.Drawing.Point(782, 16)
-        Me.Button18.Name = "Button18"
-        Me.Button18.Size = New System.Drawing.Size(97, 45)
-        Me.Button18.TabIndex = 3
-        Me.Button18.Text = "STK-MLG"
-        Me.Button18.UseVisualStyleBackColor = True
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(50, 86)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(177, 17)
+        Me.CheckBox1.TabIndex = 12
+        Me.CheckBox1.Text = "Enable la Suppression des bons"
+        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'BackUP
         '
@@ -444,4 +456,5 @@ Partial Class BackUP
     Friend WithEvents Button16 As System.Windows.Forms.Button
     Friend WithEvents Button17 As System.Windows.Forms.Button
     Friend WithEvents Button18 As System.Windows.Forms.Button
+    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
 End Class

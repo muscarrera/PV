@@ -26,16 +26,8 @@ Partial Class PayRecept
         Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
         Me.PrintDocRes = New System.Drawing.Printing.PrintDocument()
         Me.plClavier = New System.Windows.Forms.Panel()
-        Me.Button33 = New System.Windows.Forms.Button()
-        Me.btOk = New System.Windows.Forms.Button()
-        Me.Annuler = New System.Windows.Forms.Button()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.txtRest = New System.Windows.Forms.TextBox()
-        Me.txtTotal = New System.Windows.Forms.TextBox()
-        Me.txt = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button22 = New System.Windows.Forms.Button()
         Me.Button30 = New System.Windows.Forms.Button()
@@ -46,6 +38,17 @@ Partial Class PayRecept
         Me.Button24 = New System.Windows.Forms.Button()
         Me.Button28 = New System.Windows.Forms.Button()
         Me.Button26 = New System.Windows.Forms.Button()
+        Me.btOk = New System.Windows.Forms.Button()
+        Me.Annuler = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Button33 = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtRest = New System.Windows.Forms.TextBox()
+        Me.txtTotal = New System.Windows.Forms.TextBox()
+        Me.txt = New System.Windows.Forms.TextBox()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.plClavier.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -55,7 +58,9 @@ Partial Class PayRecept
         Me.plClavier.BackColor = System.Drawing.Color.Black
         Me.plClavier.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.plClavier.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.plClavier.Controls.Add(Me.Button33)
+        Me.plClavier.Controls.Add(Me.Button3)
+        Me.plClavier.Controls.Add(Me.Button2)
+        Me.plClavier.Controls.Add(Me.Button1)
         Me.plClavier.Controls.Add(Me.Button4)
         Me.plClavier.Controls.Add(Me.Button22)
         Me.plClavier.Controls.Add(Me.Button30)
@@ -69,133 +74,40 @@ Partial Class PayRecept
         Me.plClavier.Dock = System.Windows.Forms.DockStyle.Left
         Me.plClavier.Location = New System.Drawing.Point(0, 0)
         Me.plClavier.Name = "plClavier"
-        Me.plClavier.Size = New System.Drawing.Size(329, 530)
+        Me.plClavier.Size = New System.Drawing.Size(430, 530)
         Me.plClavier.TabIndex = 17
         '
-        'Button33
+        'Button2
         '
-        Me.Button33.BackColor = System.Drawing.Color.Maroon
-        Me.Button33.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button33.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button33.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button33.Location = New System.Drawing.Point(12, 444)
-        Me.Button33.Name = "Button33"
-        Me.Button33.Size = New System.Drawing.Size(100, 73)
-        Me.Button33.TabIndex = 0
-        Me.Button33.Text = "Rest"
-        Me.Button33.UseVisualStyleBackColor = False
+        Me.Button2.BackColor = System.Drawing.Color.MediumBlue
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.ForeColor = System.Drawing.Color.Honeydew
+        Me.Button2.Image = Global.Al_Mohasib.My.Resources.Resources.iconfinder_finance_23_808654
+        Me.Button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Button2.Location = New System.Drawing.Point(12, 368)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(130, 79)
+        Me.Button2.TabIndex = 0
+        Me.Button2.Text = "CHEQUE"
+        Me.Button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button2.UseVisualStyleBackColor = False
         '
-        'btOk
+        'Button1
         '
-        Me.btOk.BackColor = System.Drawing.Color.MediumSpringGreen
-        Me.btOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btOk.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btOk.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.btOk.Location = New System.Drawing.Point(117, 445)
-        Me.btOk.Name = "btOk"
-        Me.btOk.Size = New System.Drawing.Size(207, 73)
-        Me.btOk.TabIndex = 0
-        Me.btOk.Text = "OK"
-        Me.btOk.UseVisualStyleBackColor = False
-        '
-        'Annuler
-        '
-        Me.Annuler.BackColor = System.Drawing.Color.Red
-        Me.Annuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Annuler.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Annuler.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Annuler.Location = New System.Drawing.Point(6, 445)
-        Me.Annuler.Name = "Annuler"
-        Me.Annuler.Size = New System.Drawing.Size(105, 73)
-        Me.Annuler.TabIndex = 0
-        Me.Annuler.Text = "Annuler"
-        Me.Annuler.UseVisualStyleBackColor = False
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Controls.Add(Me.Label2)
-        Me.Panel1.Controls.Add(Me.Label1)
-        Me.Panel1.Controls.Add(Me.txtRest)
-        Me.Panel1.Controls.Add(Me.txtTotal)
-        Me.Panel1.Controls.Add(Me.txt)
-        Me.Panel1.Controls.Add(Me.Annuler)
-        Me.Panel1.Controls.Add(Me.btOk)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(329, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(337, 530)
-        Me.Panel1.TabIndex = 18
-        '
-        'txtRest
-        '
-        Me.txtRest.BackColor = System.Drawing.SystemColors.MenuText
-        Me.txtRest.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtRest.Font = New System.Drawing.Font("Arial Rounded MT Bold", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtRest.ForeColor = System.Drawing.Color.GreenYellow
-        Me.txtRest.Location = New System.Drawing.Point(31, 256)
-        Me.txtRest.Name = "txtRest"
-        Me.txtRest.ReadOnly = True
-        Me.txtRest.Size = New System.Drawing.Size(275, 28)
-        Me.txtRest.TabIndex = 20
-        Me.txtRest.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'txtTotal
-        '
-        Me.txtTotal.BackColor = System.Drawing.SystemColors.MenuText
-        Me.txtTotal.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtTotal.Font = New System.Drawing.Font("Arial Rounded MT Bold", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTotal.ForeColor = System.Drawing.Color.White
-        Me.txtTotal.Location = New System.Drawing.Point(31, 78)
-        Me.txtTotal.Name = "txtTotal"
-        Me.txtTotal.ReadOnly = True
-        Me.txtTotal.Size = New System.Drawing.Size(275, 41)
-        Me.txtTotal.TabIndex = 19
-        Me.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'txt
-        '
-        Me.txt.BackColor = System.Drawing.SystemColors.MenuText
-        Me.txt.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txt.Font = New System.Drawing.Font("Arial Rounded MT Bold", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt.ForeColor = System.Drawing.Color.GreenYellow
-        Me.txt.Location = New System.Drawing.Point(31, 167)
-        Me.txt.Name = "txt"
-        Me.txt.ReadOnly = True
-        Me.txt.Size = New System.Drawing.Size(275, 41)
-        Me.txt.TabIndex = 18
-        Me.txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(28, 58)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(42, 13)
-        Me.Label1.TabIndex = 21
-        Me.Label1.Text = "TOTAL"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(28, 148)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(43, 13)
-        Me.Label2.TabIndex = 21
-        Me.Label2.Text = "CACHE"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(28, 234)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(36, 13)
-        Me.Label3.TabIndex = 21
-        Me.Label3.Text = "REST"
+        Me.Button1.BackColor = System.Drawing.Color.Crimson
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.Honeydew
+        Me.Button1.Image = Global.Al_Mohasib.My.Resources.Resources.iconfinder_CasH_44
+        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Button1.Location = New System.Drawing.Point(148, 368)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(130, 149)
+        Me.Button1.TabIndex = 0
+        Me.Button1.Text = "TPE"
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'Button4
         '
@@ -204,12 +116,13 @@ Partial Class PayRecept
         Me.Button4.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button4.ForeColor = System.Drawing.Color.Honeydew
         Me.Button4.Image = Global.Al_Mohasib.My.Resources.Resources.money1
-        Me.Button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button4.Location = New System.Drawing.Point(117, 444)
+        Me.Button4.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Button4.Location = New System.Drawing.Point(284, 368)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(202, 73)
+        Me.Button4.Size = New System.Drawing.Size(130, 149)
         Me.Button4.TabIndex = 0
-        Me.Button4.Text = "   Total cache"
+        Me.Button4.Text = "Total cache"
+        Me.Button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button4.UseVisualStyleBackColor = False
         '
         'Button22
@@ -222,7 +135,7 @@ Partial Class PayRecept
         Me.Button22.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button22.Location = New System.Drawing.Point(12, 11)
         Me.Button22.Name = "Button22"
-        Me.Button22.Size = New System.Drawing.Size(99, 124)
+        Me.Button22.Size = New System.Drawing.Size(130, 90)
         Me.Button22.TabIndex = 0
         Me.Button22.Text = "0.5"
         Me.Button22.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -233,12 +146,12 @@ Partial Class PayRecept
         Me.Button30.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.Button30.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button30.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button30.ForeColor = System.Drawing.Color.DarkGreen
+        Me.Button30.ForeColor = System.Drawing.Color.Black
         Me.Button30.Image = Global.Al_Mohasib.My.Resources.Resources._200
         Me.Button30.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button30.Location = New System.Drawing.Point(220, 267)
+        Me.Button30.Location = New System.Drawing.Point(283, 231)
         Me.Button30.Name = "Button30"
-        Me.Button30.Size = New System.Drawing.Size(99, 108)
+        Me.Button30.Size = New System.Drawing.Size(130, 114)
         Me.Button30.TabIndex = 0
         Me.Button30.Text = "200"
         Me.Button30.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -252,9 +165,9 @@ Partial Class PayRecept
         Me.Button23.ForeColor = System.Drawing.Color.DarkGreen
         Me.Button23.Image = Global.Al_Mohasib.My.Resources.Resources._1
         Me.Button23.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button23.Location = New System.Drawing.Point(116, 11)
+        Me.Button23.Location = New System.Drawing.Point(148, 11)
         Me.Button23.Name = "Button23"
-        Me.Button23.Size = New System.Drawing.Size(99, 124)
+        Me.Button23.Size = New System.Drawing.Size(130, 90)
         Me.Button23.TabIndex = 0
         Me.Button23.Text = "1"
         Me.Button23.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -265,12 +178,12 @@ Partial Class PayRecept
         Me.Button29.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Button29.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button29.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button29.ForeColor = System.Drawing.Color.DarkGreen
+        Me.Button29.ForeColor = System.Drawing.Color.Black
         Me.Button29.Image = Global.Al_Mohasib.My.Resources.Resources._100
         Me.Button29.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button29.Location = New System.Drawing.Point(115, 267)
+        Me.Button29.Location = New System.Drawing.Point(146, 231)
         Me.Button29.Name = "Button29"
-        Me.Button29.Size = New System.Drawing.Size(99, 108)
+        Me.Button29.Size = New System.Drawing.Size(130, 114)
         Me.Button29.TabIndex = 0
         Me.Button29.Text = "100"
         Me.Button29.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -284,9 +197,9 @@ Partial Class PayRecept
         Me.Button25.ForeColor = System.Drawing.Color.DarkGreen
         Me.Button25.Image = Global.Al_Mohasib.My.Resources.Resources._5
         Me.Button25.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button25.Location = New System.Drawing.Point(12, 147)
+        Me.Button25.Location = New System.Drawing.Point(11, 107)
         Me.Button25.Name = "Button25"
-        Me.Button25.Size = New System.Drawing.Size(99, 108)
+        Me.Button25.Size = New System.Drawing.Size(130, 118)
         Me.Button25.TabIndex = 0
         Me.Button25.Text = "5"
         Me.Button25.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -300,9 +213,9 @@ Partial Class PayRecept
         Me.Button27.ForeColor = System.Drawing.Color.DarkGreen
         Me.Button27.Image = Global.Al_Mohasib.My.Resources.Resources._20
         Me.Button27.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button27.Location = New System.Drawing.Point(221, 147)
+        Me.Button27.Location = New System.Drawing.Point(284, 107)
         Me.Button27.Name = "Button27"
-        Me.Button27.Size = New System.Drawing.Size(99, 108)
+        Me.Button27.Size = New System.Drawing.Size(130, 118)
         Me.Button27.TabIndex = 0
         Me.Button27.Text = "20"
         Me.Button27.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -316,9 +229,9 @@ Partial Class PayRecept
         Me.Button24.ForeColor = System.Drawing.Color.DarkGreen
         Me.Button24.Image = Global.Al_Mohasib.My.Resources.Resources._2
         Me.Button24.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button24.Location = New System.Drawing.Point(220, 11)
+        Me.Button24.Location = New System.Drawing.Point(284, 11)
         Me.Button24.Name = "Button24"
-        Me.Button24.Size = New System.Drawing.Size(99, 124)
+        Me.Button24.Size = New System.Drawing.Size(130, 90)
         Me.Button24.TabIndex = 0
         Me.Button24.Text = "2"
         Me.Button24.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -329,12 +242,12 @@ Partial Class PayRecept
         Me.Button28.BackColor = System.Drawing.Color.Green
         Me.Button28.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button28.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button28.ForeColor = System.Drawing.Color.DarkGreen
+        Me.Button28.ForeColor = System.Drawing.Color.Black
         Me.Button28.Image = Global.Al_Mohasib.My.Resources.Resources._501
         Me.Button28.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button28.Location = New System.Drawing.Point(11, 267)
+        Me.Button28.Location = New System.Drawing.Point(10, 231)
         Me.Button28.Name = "Button28"
-        Me.Button28.Size = New System.Drawing.Size(99, 108)
+        Me.Button28.Size = New System.Drawing.Size(130, 114)
         Me.Button28.TabIndex = 0
         Me.Button28.Text = "50"
         Me.Button28.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -348,19 +261,160 @@ Partial Class PayRecept
         Me.Button26.ForeColor = System.Drawing.Color.DarkGreen
         Me.Button26.Image = Global.Al_Mohasib.My.Resources.Resources._10
         Me.Button26.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button26.Location = New System.Drawing.Point(116, 147)
+        Me.Button26.Location = New System.Drawing.Point(147, 107)
         Me.Button26.Name = "Button26"
-        Me.Button26.Size = New System.Drawing.Size(99, 108)
+        Me.Button26.Size = New System.Drawing.Size(130, 118)
         Me.Button26.TabIndex = 0
         Me.Button26.Text = "10"
         Me.Button26.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button26.UseVisualStyleBackColor = False
         '
+        'btOk
+        '
+        Me.btOk.BackColor = System.Drawing.Color.MediumSpringGreen
+        Me.btOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btOk.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btOk.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        Me.btOk.Location = New System.Drawing.Point(112, 445)
+        Me.btOk.Name = "btOk"
+        Me.btOk.Size = New System.Drawing.Size(197, 73)
+        Me.btOk.TabIndex = 0
+        Me.btOk.Text = "OK"
+        Me.btOk.UseVisualStyleBackColor = False
+        '
+        'Annuler
+        '
+        Me.Annuler.BackColor = System.Drawing.Color.Red
+        Me.Annuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Annuler.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Annuler.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        Me.Annuler.Location = New System.Drawing.Point(11, 445)
+        Me.Annuler.Name = "Annuler"
+        Me.Annuler.Size = New System.Drawing.Size(95, 73)
+        Me.Annuler.TabIndex = 0
+        Me.Annuler.Text = "Annuler"
+        Me.Annuler.UseVisualStyleBackColor = False
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Panel1.Controls.Add(Me.Button33)
+        Me.Panel1.Controls.Add(Me.Label3)
+        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.txtRest)
+        Me.Panel1.Controls.Add(Me.txtTotal)
+        Me.Panel1.Controls.Add(Me.txt)
+        Me.Panel1.Controls.Add(Me.Annuler)
+        Me.Panel1.Controls.Add(Me.btOk)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel1.Location = New System.Drawing.Point(430, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(319, 530)
+        Me.Panel1.TabIndex = 18
+        '
+        'Button33
+        '
+        Me.Button33.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Button33.FlatAppearance.BorderSize = 0
+        Me.Button33.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button33.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button33.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        Me.Button33.Image = Global.Al_Mohasib.My.Resources.Resources.vector_cancel_icon_png_302651
+        Me.Button33.Location = New System.Drawing.Point(254, 174)
+        Me.Button33.Name = "Button33"
+        Me.Button33.Size = New System.Drawing.Size(47, 41)
+        Me.Button33.TabIndex = 0
+        Me.Button33.UseVisualStyleBackColor = False
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(16, 239)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(36, 13)
+        Me.Label3.TabIndex = 21
+        Me.Label3.Text = "REST"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.ForeColor = System.Drawing.Color.White
+        Me.Label2.Location = New System.Drawing.Point(16, 153)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(43, 13)
+        Me.Label2.TabIndex = 21
+        Me.Label2.Text = "CACHE"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.Location = New System.Drawing.Point(16, 63)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(42, 13)
+        Me.Label1.TabIndex = 21
+        Me.Label1.Text = "TOTAL"
+        '
+        'txtRest
+        '
+        Me.txtRest.BackColor = System.Drawing.SystemColors.MenuText
+        Me.txtRest.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtRest.Font = New System.Drawing.Font("Arial Rounded MT Bold", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtRest.ForeColor = System.Drawing.Color.GreenYellow
+        Me.txtRest.Location = New System.Drawing.Point(19, 261)
+        Me.txtRest.Name = "txtRest"
+        Me.txtRest.ReadOnly = True
+        Me.txtRest.Size = New System.Drawing.Size(275, 28)
+        Me.txtRest.TabIndex = 20
+        Me.txtRest.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'txtTotal
+        '
+        Me.txtTotal.BackColor = System.Drawing.SystemColors.MenuText
+        Me.txtTotal.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtTotal.Font = New System.Drawing.Font("Arial Rounded MT Bold", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTotal.ForeColor = System.Drawing.Color.White
+        Me.txtTotal.Location = New System.Drawing.Point(19, 83)
+        Me.txtTotal.Name = "txtTotal"
+        Me.txtTotal.ReadOnly = True
+        Me.txtTotal.Size = New System.Drawing.Size(275, 41)
+        Me.txtTotal.TabIndex = 19
+        Me.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'txt
+        '
+        Me.txt.BackColor = System.Drawing.SystemColors.MenuText
+        Me.txt.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txt.Font = New System.Drawing.Font("Arial Rounded MT Bold", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt.ForeColor = System.Drawing.Color.GreenYellow
+        Me.txt.Location = New System.Drawing.Point(19, 172)
+        Me.txt.Name = "txt"
+        Me.txt.ReadOnly = True
+        Me.txt.Size = New System.Drawing.Size(221, 41)
+        Me.txt.TabIndex = 18
+        Me.txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.DarkOrchid
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Font = New System.Drawing.Font("Arial", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.ForeColor = System.Drawing.Color.Honeydew
+        Me.Button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Button3.Location = New System.Drawing.Point(12, 453)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(130, 64)
+        Me.Button3.TabIndex = 0
+        Me.Button3.Text = "VIREMENT"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
         'PayRecept
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(666, 530)
+        Me.ClientSize = New System.Drawing.Size(749, 530)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.plClavier)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
@@ -395,4 +449,7 @@ Partial Class PayRecept
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents Button3 As System.Windows.Forms.Button
 End Class

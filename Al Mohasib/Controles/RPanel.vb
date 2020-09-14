@@ -10,7 +10,7 @@
     Public Event SetDetailFacture()
     Public Event UpdateClient()
     Public Event SaveFacture(ByVal id As Integer, ByVal total As Double, ByVal avance As Double, ByVal tva As Double, ByVal table As DataTable)
-    Public Event SaveAndPrint(ByVal id As Integer, ByVal total As Double, ByVal avance As Double, ByVal tva As Double, ByVal table As DataTable, ByVal b As Boolean, ByVal isBl As Boolean)
+    Public Event SaveAndPrint(ByVal id As Integer, ByVal total As Double, ByVal avance As Double, ByVal tva As Double, ByVal table As DataTable, ByVal b As Boolean, ByVal isBl As Boolean, ByVal SecondModel As Boolean)
     Public Event EditFacture(ByVal id As Integer, ByVal Clid As Integer, ByVal ClientName As String, ByVal total As Double, ByVal avance As Double, ByVal table As DataTable)
     Public Event DeleteFacture(ByVal id As Integer, ByVal isSell As Boolean, ByVal EM As Boolean, ByVal table As DataTable)
     Public Event CPValueChange()
@@ -72,6 +72,8 @@
             Return t
         End Get
     End Property
+
+    
     Public ReadOnly Property Tva As Decimal
         Get
 
@@ -135,12 +137,16 @@
             Else
                 Dim a As Items
                 Dim r As Decimal = 0
+                Dim t As Decimal = 0
 
                 For Each a In Pl.Controls
                     r += a.Total_remise
+                    t += a.Price * a.Qte
                 Next
                 Try
-                    Return (r * 100) / Total_Ht
+                    'Return (r * 100) / Total_Ht
+                    _Remise = (r * 100) / t
+                    Return _Remise
                 Catch ex As Exception
                     Return 0
                 End Try
@@ -154,7 +160,7 @@
                     If IsNumeric(value) = False Then value = 0
                     _Remise = value
                     'CP.BtRemise.Text = "Remise (" & value & " %)"
-                    lbremise.Text = "Remise = " & String.Format("{0:F}", Total_Ht * _Remise / 100)
+                    lbremise.Text = "Remise = " & String.Format("{0:F}", Total_Ht_Befor_Remise * _Remise / 100)
                     UpdateValue()
                 Catch ex As Exception
                     _Remise = 0
@@ -165,6 +171,24 @@
             End If
         End Set
     End Property
+
+    Public ReadOnly Property Total_Ht_Befor_Remise As Decimal
+        Get
+            Dim a As Items
+            Dim t As Decimal = 0
+            For Each a In Pl.Controls
+                t += a.Price * a.Qte
+            Next
+            Return t
+        End Get
+    End Property
+
+    Public ReadOnly Property Total_Remise As Decimal
+        Get
+            Return Total_Ht_Befor_Remise * Remise / 100
+        End Get
+    End Property
+
     Public Property bl As String
         Get
             Return _bl
@@ -425,6 +449,8 @@
             If Form1.CbDepotOrigine.Checked Then ap.Depot = R.depot
             ap.Remise = 0
 
+            If Form1.cbBaseOnStartedRemise.checked Then ap.Remise = R.poid
+
             ''''''''
             Dim qte As Double = CP.Value
 
@@ -472,7 +498,7 @@
     Public Sub AddItems(ByVal D As DataTable, ByVal isSell As Boolean)
         Try
             For i As Integer = 0 To D.Rows.Count - 1
-                Dim RM As Double = CDbl(D.Rows(i).Item("poid") / 100)
+                Dim RM As Double = CDbl(D.Rows(i).Item("poid"))
 
                 If IsExiste(D.Rows(i).Item("arid"), D.Rows(i).Item("depot")) And Form1.cbMergeArt.Checked = True Then
                     Dim a As Items
@@ -496,7 +522,10 @@
                                 ap.Depot = D.Rows(i).Item("depot")
                                 ap.code = D.Rows(i).Item("code")
                                 ap.Poid = D.Rows(i).Item("poid")
+
                                 ap.Remise = RM
+                                ap.Qte = D.Rows(i).Item("qte")
+
 
                                 ap.BgColor = Color.White
                                 ap.SideColor = Color.Moccasin
@@ -539,7 +568,9 @@
                     ap.cid = D.Rows(i).Item("cid")
                     ap.Depot = D.Rows(i).Item("depot")
                     ap.code = D.Rows(i).Item("code")
+
                     ap.Remise = RM
+                    ap.Qte = D.Rows(i).Item("qte")
 
                     ap.BgColor = Color.White
                     ap.SideColor = Color.Moccasin
@@ -758,7 +789,7 @@
         lbHT.Text = "T. Ht : " & String.Format("{0:n}", Total_Ht)
         LbTva.Text = "Tva : " & String.Format("{0:n}", Tva)
 
-        lbremise.Text = "Remise = " & String.Format("{0:n}", CDec(Total_Ht * Remise / 100))
+        lbremise.Text = "Remise = " & String.Format("{0:n}", CDec(Total_Remise))
 
         Try
             If ShowProfit Then
@@ -845,13 +876,15 @@
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtPrint.Click, BtBlPrint.Click
         Dim BT As Button = sender
+        Dim SecondModel As Boolean = False
+        If My.Computer.Keyboard.CtrlKeyDown Then SecondModel = True
 
         If FctId = 0 Then
             RaiseEvent CPValueChange()
             Try
                 If DataSource.Rows.Count > 0 And EditMode Then
                     FctId = CInt(Form1.DGVARFA.SelectedRows(0).Cells(0).Value)
-                    RaiseEvent SaveAndPrint(FctId, Total_TTC, Avance, Tva, DataSource, isSell, CBool(BT.Tag))
+                    RaiseEvent SaveAndPrint(FctId, Total_TTC, Avance, Tva, DataSource, isSell, CBool(BT.Tag), SecondModel)
                     FctId = 0
                     Exit Sub
                 Else
@@ -862,7 +895,7 @@
             End Try
         End If
 
-        RaiseEvent SaveAndPrint(FctId, Total_TTC, Avance, Tva, DataSource, isSell, CBool(BT.Tag))
+        RaiseEvent SaveAndPrint(FctId, Total_TTC, Avance, Tva, DataSource, isSell, CBool(BT.Tag), SecondModel)
 
     End Sub
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtDel.Click
@@ -956,10 +989,23 @@
             RaiseEvent CPValueChange()
             Exit Sub
         End If
-        RaiseEvent CommandeDate()
-    End Sub
+        'RaiseEvent CommandeDate()
 
-    Private Sub CP_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CP.Load
 
+
+
+
+        'Dim clc As New ChoseLivreur
+        'If clc.ShowDialog = DialogResult.OK Then
+        Try
+            'bl = clc.DataGridView1.SelectedRows(0).Cells(0).Value
+            bl = InputBox("Infos =  ")
+        Catch ex As Exception
+            bl = "---"
+        End Try
+
+        'If clc.Button1.Tag = 2 Then bl = "-"
+        'End If
+        RaiseEvent SetDetailFacture()
     End Sub
 End Class

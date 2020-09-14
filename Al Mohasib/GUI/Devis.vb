@@ -1,4 +1,6 @@
-﻿Public Class Devis
+﻿Imports System.Drawing.Printing
+
+Public Class Devis
 
     Dim conString As String
     Private _isSell As Boolean
@@ -32,12 +34,12 @@
                 plright.Controls.Clear()
                 RPl.ClearItems()
             End If
-             
+
             'fillFactures(CInt(btswitsh.Tag))
 
             CBPRICE.Visible = Not value
             FillGroupes(True)
-             
+
         End Set
     End Property
 
@@ -548,7 +550,7 @@
             If avance >= total Then isPayed = True
 
             Dim tableName = "Facture"
-            If isSell = 0 Then tableName = "Bon"
+            If ISSELL = 0 Then tableName = "Bon"
             Dim dte As Date = Now.Date
             Dim params As New Dictionary(Of String, Object)
 
@@ -564,7 +566,7 @@
             params.Add("bl", BL)
 
             Dim where As New Dictionary(Of String, Object)
-            If isSell Then
+            If ISSELL Then
                 where.Add("fctid", id)
             Else
                 where.Add("bonid", id)
@@ -726,34 +728,63 @@
     Private Sub RPl_SaveFacture(ByVal id As System.Int32, ByVal total As System.Double, ByVal avance As System.Double, ByVal tva As System.Double, ByVal table As System.Data.DataTable) Handles RPl.SaveFacture
         If RPl.FctId = 0 Then Exit Sub
         SaveFacture(id, total, avance, tva, table, RPl.Remise, RPl.bl)
-        fillFactures(isSell)
+        fillFactures(ISSELL)
         FillGroupes(True)
     End Sub
 
-    Private Sub RPl_SaveAndPrint(ByVal id As System.Int32, ByVal total As System.Double, ByVal avance As System.Double, ByVal tva As System.Double, ByVal table As System.Data.DataTable, ByVal isSell As System.Boolean, ByVal isBl As System.Boolean) Handles RPl.SaveAndPrint
+    Private Sub RPl_SaveAndPrint(ByVal id As System.Int32, ByVal total As System.Double, ByVal avance As System.Double, ByVal tva As System.Double, ByVal table As System.Data.DataTable, ByVal isSell As System.Boolean, ByVal isBl As System.Boolean, ByVal isSecond As System.Boolean) Handles RPl.SaveAndPrint
         If RPl.FctId = 0 Then Exit Sub
 
-        Try
-            PrintDoc.PrinterSettings.PrinterName = Form1.txttimp.Text
-            Form1.chbreceipt.Checked = False
-            If isBl = False Then
-                PrintDoc.PrinterSettings.PrinterName = Form1.txtreceipt.Text
-                Form1.chbreceipt.Checked = True
-            End If
+        If Form1.cbNormalImp.Checked Then
 
-            PrintDoc.Print()
 
-        Catch ex As Exception
-            If Form1.PrintDlg.ShowDialog = Windows.Forms.DialogResult.OK Then
-                PrintDoc.PrinterSettings.PrinterName = Form1.PrintDlg.PrinterSettings.PrinterName
+            Try
+                PrintDoc.PrinterSettings.PrinterName = Form1.txttimp.Text
+                Form1.chbreceipt.Checked = False
+                If isBl = False Then
+                    PrintDoc.PrinterSettings.PrinterName = Form1.txtreceipt.Text
+                    Form1.chbreceipt.Checked = True
+                End If
+
                 PrintDoc.Print()
-            End If
-        End Try
 
-        If RPl.EditMode = False Then
-            SaveFacture(id, total, avance, tva, table, RPl.Remise, RPl.bl)
-            fillFactures(btswitsh.Tag)
-            FillGroupes(True)
+            Catch ex As Exception
+                If Form1.PrintDlg.ShowDialog = Windows.Forms.DialogResult.OK Then
+                    PrintDoc.PrinterSettings.PrinterName = Form1.PrintDlg.PrinterSettings.PrinterName
+                    PrintDoc.Print()
+                End If
+            End Try
+
+            If RPl.EditMode = False Then
+                SaveFacture(id, total, avance, tva, table, RPl.Remise, RPl.bl)
+                fillFactures(btswitsh.Tag)
+                FillGroupes(True)
+            End If
+
+        Else
+
+            Try
+
+
+                Dim g As New gGlobClass
+
+                Form1.MP_Localname = "Devis-Default.dat"
+                If btswitsh.Tag <> 1 Then Form1.MP_Localname = "Command-Default.dat"
+
+                g = ReadFromXmlFile(Of gGlobClass)(Form1.ImgPah & "\Prt_Dsn\" & Form1.MP_Localname)
+                Dim ps As New PaperSize(g.P_name, g.W_Page, g.h_Page)
+                ps.PaperName = g.p_Kind
+                PrintDocDesign.DefaultPageSettings.PaperSize = ps
+                PrintDocDesign.DefaultPageSettings.Landscape = g.is_Landscape
+
+                PrintDocDesign.PrinterSettings.PrinterName = Form1.txttimp.Text
+
+            Catch ex As Exception
+
+            End Try
+
+
+            PrintDocDesign.Print()
         End If
     End Sub
     Private Sub RPl_DeleteFacture(ByVal id As System.Int32, ByVal isSell As System.Boolean, ByVal EM As System.Boolean, ByVal table As DataTable) Handles RPl.DeleteFacture
@@ -960,4 +991,94 @@
         End Using
     End Sub
 
+    Private Sub PrintDocDesign_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocDesign.PrintPage
+        Try
+            Dim ds As RPanel = RPl
+            Dim dte As String = Format(Date.Now, "dd-MM-yyyy [hh:mm]")
+
+
+            Dim data As New DataTable
+            ' Create four typed columns in the DataTable.
+            data.Columns.Add("id", GetType(String))
+            data.Columns.Add("date", GetType(String))
+            data.Columns.Add("cid", GetType(String))
+            data.Columns.Add("name", GetType(String))
+            data.Columns.Add("total_ht", GetType(String))
+            data.Columns.Add("total_tva", GetType(String))
+            data.Columns.Add("total_ttc", GetType(String))
+            data.Columns.Add("total_remise", GetType(String))
+            data.Columns.Add("total_avance", GetType(String))
+            data.Columns.Add("total_droitTimbre", GetType(String))
+            data.Columns.Add("MPayement", GetType(String))
+            data.Columns.Add("Editeur", GetType(String))
+            data.Columns.Add("vidal", GetType(String))
+
+            data.Rows.Add(RPl.FctId, dte, RPl.ClId, RPl.ClientName,
+                          String.Format("{0:0.00}", RPl.Total_Ht), String.Format("{0:0.00}", RPl.Tva),
+                          String.Format("{0:0.00}", RPl.Total_TTC), String.Format("{0:0.00}", RPl.Remise),
+                          String.Format("{0:0.00}", RPl.Avance), String.Format("{0:0.00}", 0),
+                          "Cache", Form1.adminName, RPl.LbVidal.Text)
+
+            Dim dt_Client As New DataTable
+            ' Create four typed columns in the DataTable.
+            dt_Client.Columns.Add("Clid", GetType(Integer))
+            dt_Client.Columns.Add("name", GetType(String))
+            dt_Client.Columns.Add("ref", GetType(String))
+            dt_Client.Columns.Add("ville", GetType(String))
+            dt_Client.Columns.Add("adresse", GetType(String))
+            dt_Client.Columns.Add("ice", GetType(String))
+            dt_Client.Columns.Add("tel", GetType(String))
+            dt_Client.Columns.Add("NvCredit", GetType(String))
+            dt_Client.Columns.Add("EncCredit", GetType(String))
+
+
+            Dim credit As Double = 0
+            Dim EncCreadit = 0
+            Dim tel As String = ""
+            Dim adresse = RPl.ClientAdresse.Split("*")(0)
+            Dim client_ville As String = ""
+            Dim client_ice As String = ""
+
+            Try
+                client_ville = RPl.ClientAdresse.Split("*")(1)
+            Catch ex As Exception
+                client_ville = "-"
+            End Try
+
+            Try
+                client_ville = RPl.ClientAdresse.Split("*")(2)
+            Catch ex As Exception
+                client_ice = "-"
+            End Try
+
+            If RPl.ClId > 0 Then
+                If ds.isSell Then
+                    Dim ta As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
+                    Dim tac As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
+
+                    EncCreadit = ta.ScalarQueryClientCredit(False, RPl.ClId, True)
+                    credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
+
+                    tel = tac.ScalarQueryTel(RPl.ClId)
+                Else
+                    Dim ta As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
+                    EncCreadit = ta.ScalarQueryCompanyCredit(False, RPl.ClId, True)
+                    credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
+                End If
+            End If
+
+            ' Add  rows with those columns filled in the DataTable.
+            dt_Client.Rows.Add(RPl.ClId, RPl.ClientName, RPl.ClId, client_ville,
+                                adresse, client_ice, tel, credit, EncCreadit)
+
+            Using g As gDrawClass = New gDrawClass(Form1.MP_Localname)
+                g.rtl = Form1.cbRTL.Checked
+
+                g.DrawBl(e, data, ds.DataSource, dt_Client, Form1.Facture_Title, False, M)
+            End Using
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

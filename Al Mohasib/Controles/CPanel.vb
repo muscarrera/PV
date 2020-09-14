@@ -60,7 +60,7 @@
         Set(ByVal value As String)
             If value = "" Then value = "---"
             _bl = value
-            'If EditMode = False Then btClient.Text = value
+            BtCmd.Text = value
         End Set
     End Property
     Public Property hasRemise() As Boolean
@@ -88,7 +88,6 @@
             _depot = value
         End Set
     End Property
-
 
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button9.Click, Button8.Click, Button7.Click, Button4.Click, Button3.Click, Button2.Click, Button16.Click, Button13.Click, Button12.Click, Button11.Click, Button17.Click
         Dim bt As Button = sender
@@ -131,7 +130,6 @@
         '''''''''''''
 
     End Sub
-
     Private Sub BtQte_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtQte.Click
         If isActive Then
             RaiseEvent UpdateQte()
@@ -181,7 +179,6 @@
     Private Sub txt_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txt.TextChanged
         RaiseEvent ValueChange()
     End Sub
-
     Private Sub BtCmd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtCmd.Click
         RaiseEvent CommandeDate()
     End Sub

@@ -19,4 +19,5 @@
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         CPanel1.Value = CPanel1.Value / 1.2
     End Sub
+
 End Class

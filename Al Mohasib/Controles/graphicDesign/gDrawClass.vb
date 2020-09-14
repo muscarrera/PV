@@ -85,6 +85,9 @@ Public Class gDrawClass
                     fn = New Font("Arial", a.fSize)
                 End If
 
+                Try
+
+               
                 If a.hasBloc Then
                     g.DrawRectangle(pen, a.x, a.y, a.width, a.height)
                     Dim _br As New SolidBrush(a.backColor)
@@ -110,12 +113,24 @@ Public Class gDrawClass
                     End Try
                 ElseIf a.field.StartsWith("-") Then
                     str &= title
+
+                ElseIf a.field.StartsWith("DPT") Then
+                    Dim s = a.field.Split("_")(1)
+
+                    If s = "ID" Then
+                        str &= Form1._kvp.Key
+                    Else
+                        str &= Form1._kvp.Value
+                    End If
+
                 Else
 
                     str &= data.Rows(0).Item(a.field)
                 End If
 
-                g.DrawString(str, fn, B, New RectangleF(top_x, top_y, a.width, a.height), sf)
+                    g.DrawString(str, fn, B, New RectangleF(top_x, top_y, a.width, a.height), sf)
+                Catch ex As Exception
+                End Try
             Next
         End Using
         '////////////////////////////////////////////////////////////////////////
@@ -227,7 +242,9 @@ Public Class gDrawClass
         If m > 0 Then g.DrawString("[ ..... ]", F_D, Brushes.Black, tc.x, tc.y - 22)
         While m < details.Rows.Count
 
-            If y > tc.y + tc.TabHeight And _Ttype.ToUpper.StartsWith("TAB") Then
+            Dim plus_h As Integer = F_D.Height
+
+            If y + plus_h > tc.y + tc.TabHeight And _Ttype.ToUpper.StartsWith("TAB") Then
                 g.DrawString("[ ..... ]", F_D, Brushes.Black, tc.TabWidth + tc.x - 60, tc.y + tc.TabHeight + 22)
                 y = tc.y + 33
                 e.HasMorePages = True
@@ -236,9 +253,8 @@ Public Class gDrawClass
 
             Dim _x As Integer = tc.x
 
-            Dim plus_h As Integer = F_D.Height
             For Each c As gColClass In tc.details
-                plus_h = F_D.Height
+                'plus_h = F_D.Height
                 Dim _str As String = ""
 
                 If c.Field = "xTotal" Then '////////////////////////////////////////////////
@@ -327,6 +343,7 @@ Public Class gDrawClass
                 params_tva(details.Rows(m).Item("tva")) += details.Rows(m).Item("totaltva")
             End Try
 
+            If tc.hasLines And m > 0 Then g.DrawLine(Pens.Black, tc.x, y, tc.x + tc.TabWidth, y)
 
             y += plus_h + 3
             m += 1
@@ -336,11 +353,11 @@ Public Class gDrawClass
         Using B As New SolidBrush(Color.Black)
             For Each a As gTopField In FooterFieldDic
                 'Create a brush
+                Try
 
-                If _Ttype.ToUpper.StartsWith("TAB") = False Then a.y += y
+                    If _Ttype.ToUpper.StartsWith("TAB") = False Then a.y += y
 
-
-                Dim fn As Font
+                    Dim fn As Font
                 If a.isBold Then
                     fn = New Font("Arial", a.fSize, FontStyle.Bold)
                 Else
@@ -401,6 +418,25 @@ Public Class gDrawClass
 
                     sf.Alignment = StringAlignment.Near
 
+                    ElseIf a.field.StartsWith("x_total") Then
+                        If a.hasBloc Then
+                            Dim _br As New SolidBrush(a.backColor)
+                            g.FillRectangle(_br, a.x + a.width, a.y, a.width, a.height)
+                            g.DrawRectangle(pen, a.x + a.width, a.y, a.width, a.height)
+                            xx += 5
+                            yy += 3
+                        End If
+
+                        sf.Alignment = StringAlignment.Near
+                        g.DrawString(CStr(a.designation), fn, B, New RectangleF(xx, yy, a.width, a.height), sf)
+                        sf.Alignment = StringAlignment.Far
+                        Try
+
+                            Dim ttr As String = CDbl(data.Rows(0).Item("total_ttc")) + CDbl(data.Rows(0).Item("total_remise"))
+                            g.DrawString(ttr, fn, B, New RectangleF(xx + a.width - 10, yy, a.width, a.height), sf)
+                        Catch ex As Exception
+                        End Try
+                        sf.Alignment = StringAlignment.Near
                 ElseIf a.field.StartsWith("tableau") Then
 
                     Dim _x As Integer = a.x
@@ -438,6 +474,21 @@ Public Class gDrawClass
                         g.DrawImage(Image.FromFile(fullPath), xx, yy, a.width, a.height)
                     Catch ex As Exception
                     End Try
+
+                ElseIf a.field.StartsWith("DPT") Then
+                    Dim s = a.field.Split("_")(1)
+                    Dim str As String = CStr(a.designation)
+
+                    If s = "ID" Then
+                        Str &= Form1._kvp.Key
+                    Else
+                        Str &= Form1._kvp.Value
+                    End If
+
+                    Try
+                        g.DrawString(str, fn, B, New RectangleF(xx, yy, a.width, a.height), sf)
+                    Catch ex As Exception
+                    End Try
                 Else
                     Try
                         Dim str As String = CStr(a.designation)
@@ -448,7 +499,9 @@ Public Class gDrawClass
                     End Try
                 End If
 
-                If _Ttype.ToUpper.StartsWith("TAB") = False Then a.y -= y
+                    If _Ttype.ToUpper.StartsWith("TAB") = False Then a.y -= y
+                Catch ex As Exception
+                End Try
             Next
         End Using
         m = 0

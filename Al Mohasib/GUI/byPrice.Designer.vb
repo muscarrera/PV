@@ -127,7 +127,7 @@ Partial Class byPrice
         Me.Button22.Name = "Button22"
         Me.Button22.Size = New System.Drawing.Size(106, 73)
         Me.Button22.TabIndex = 0
-        Me.Button22.Text = "1"
+        Me.Button22.Text = "7"
         Me.Button22.UseVisualStyleBackColor = False
         '
         'Button30
@@ -140,7 +140,7 @@ Partial Class byPrice
         Me.Button30.Name = "Button30"
         Me.Button30.Size = New System.Drawing.Size(106, 73)
         Me.Button30.TabIndex = 0
-        Me.Button30.Text = "9"
+        Me.Button30.Text = "3"
         Me.Button30.UseVisualStyleBackColor = False
         '
         'Button23
@@ -153,7 +153,7 @@ Partial Class byPrice
         Me.Button23.Name = "Button23"
         Me.Button23.Size = New System.Drawing.Size(106, 73)
         Me.Button23.TabIndex = 0
-        Me.Button23.Text = "2"
+        Me.Button23.Text = "8"
         Me.Button23.UseVisualStyleBackColor = False
         '
         'Button3
@@ -179,7 +179,7 @@ Partial Class byPrice
         Me.Button29.Name = "Button29"
         Me.Button29.Size = New System.Drawing.Size(106, 73)
         Me.Button29.TabIndex = 0
-        Me.Button29.Text = "8"
+        Me.Button29.Text = "2"
         Me.Button29.UseVisualStyleBackColor = False
         '
         'Button25
@@ -218,7 +218,7 @@ Partial Class byPrice
         Me.Button24.Name = "Button24"
         Me.Button24.Size = New System.Drawing.Size(106, 73)
         Me.Button24.TabIndex = 0
-        Me.Button24.Text = "3"
+        Me.Button24.Text = "9"
         Me.Button24.UseVisualStyleBackColor = False
         '
         'Annuler
@@ -257,7 +257,7 @@ Partial Class byPrice
         Me.Button28.Name = "Button28"
         Me.Button28.Size = New System.Drawing.Size(106, 73)
         Me.Button28.TabIndex = 0
-        Me.Button28.Text = "7"
+        Me.Button28.Text = "1"
         Me.Button28.UseVisualStyleBackColor = False
         '
         'Button26

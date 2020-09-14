@@ -58,6 +58,9 @@ Public Class Articles
             'Me.FlowLayoutPanel5.Controls.Add(btMlg)
             'End If
 
+            Me.Show()
+            txtsearch.Focus()
+
         Catch ex As Exception
 
         End Try
@@ -72,6 +75,7 @@ Public Class Articles
         ''''''''''''''''''''''''''''''
         Dim bt2 As Button = sender
         DGVPRD.Rows.Clear()
+        txtsearch.Text = ""
 
         Try
             Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
@@ -97,9 +101,13 @@ Public Class Articles
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+
+        txtsearch.Focus()
     End Sub
 
     Private Sub Button48_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button48.Click
+        txtsearch.Text = ""
+
         If DGVPRD.SelectedRows.Count = 0 Then
             Exit Sub
         End If
@@ -192,9 +200,12 @@ Public Class Articles
         Catch ex As Exception
         End Try
 
+        txtsearch.Focus()
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        txtsearch.Text = ""
+
         If DGVPRD.SelectedRows.Count = 0 Then Exit Sub
 
         If MsgBox("عند قيامكم على الضغط على 'موافق' سيتم حذف المادة المؤشر عليها من القائمة .. إضغط  'لا'  لالغاء الحذف ", MsgBoxStyle.YesNo Or MessageBoxIcon.Exclamation, "حذف المادة") = MsgBoxResult.No Then
@@ -217,9 +228,12 @@ Public Class Articles
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+
+        txtsearch.Focus()
     End Sub
 
     Private Sub Button35_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button35.Click
+        txtsearch.Text = ""
 
         Dim art As New AddEditArticle
         art.btprd.Tag = "0"
@@ -231,6 +245,8 @@ Public Class Articles
         If art.ShowDialog = Windows.Forms.DialogResult.OK Then
 
         End If
+
+        txtsearch.Focus()
     End Sub
 
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
@@ -249,7 +265,7 @@ Public Class Articles
             Dim artdt As DataTable
 
             If Form1.cbsearch.Text = "الرمز" Then
-                artdt = artta.GetDatalikecodebar(txtsearch.Text & "%")
+                artdt = artta.GetDatalikecodebar("%" & txtsearch.Text & "%")
             Else
                 artdt = artta.GetDatalikename("%" & txtsearch.Text & "%")
             End If
@@ -257,6 +273,7 @@ Public Class Articles
 
             If artdt.Rows.Count = 0 Then
                 MsgBox("لا يوجد اي سجل", MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, "المواد")
+                txtsearch.Text = ""
             Else
                 For i As Integer = 0 To artdt.Rows.Count - 1
                     Dim bt As New Button
@@ -268,6 +285,7 @@ Public Class Articles
             MsgBox(ex.Message)
         End Try
 
+        txtsearch.Focus()
 
     End Sub
 
@@ -277,15 +295,19 @@ Public Class Articles
         If cat.ShowDialog = Windows.Forms.DialogResult.OK Then
 
         End If
-
+        txtsearch.Focus()
     End Sub
 
     Private Sub txtsearch_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtsearch.KeyUp
         Button5_Click(Nothing, Nothing)
+
+        txtsearch.Focus()
     End Sub
 
     Private Sub DGVPRD_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DGVPRD.DoubleClick
         Button48_Click(Nothing, Nothing)
+
+        txtsearch.Focus()
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
@@ -322,5 +344,13 @@ Public Class Articles
 
         MsgBox(Str)
 
+    End Sub
+
+    Private Sub txtsearch_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtsearch.KeyPress
+        If e.KeyChar = Chr(13) Then
+            Button5_Click(Nothing, Nothing)
+            txtsearch.Text = ""
+            txtsearch.Focus()
+        End If
     End Sub
 End Class

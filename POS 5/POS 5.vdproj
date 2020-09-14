@@ -58,7 +58,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_65607D0EABF34D749AA2275896174FEC"
+        "OwnerKey" = "8:_68812BC2250E8EE575AC10A960BAD08C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,7 +70,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_68812BC2250E8EE575AC10A960BAD08C"
+        "OwnerKey" = "8:_65607D0EABF34D749AA2275896174FEC"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -91,6 +91,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -107,6 +115,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -143,11 +159,6 @@
             "AssemblyAsmDisplayName" = "8:Al Mohasib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_5B8B3D8E6933C4CC239E85DF4F28B093"
-                    {
-                    "Name" = "8:Al Mohasib.exe"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Al Mohasib.exe"
             "TargetName" = "8:"
@@ -174,11 +185,6 @@
             "AssemblyAsmDisplayName" = "8:MyBarcode, Version=1.0.6854.32559, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_68812BC2250E8EE575AC10A960BAD08C"
-                    {
-                    "Name" = "8:MyBarcode.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:MyBarcode.dll"
             "TargetName" = "8:"
@@ -205,11 +211,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6DCF557ED8935B2242245D53EED9FE95"
-                    {
-                    "Name" = "8:Microsoft.VisualBasic.PowerPacks.Vs.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.VisualBasic.PowerPacks.Vs.dll"
             "TargetName" = "8:"

@@ -72,8 +72,8 @@ Public Class SubClass
 
                 'artdt.DefaultView.Sort = "sprice DESC"
                 'artdt = artdt.DefaultView.ToTable
-
-                For i As Integer = 0 To artdt.Rows.Count - 1
+                Dim i As Integer = 0
+                For i = 0 To artdt.Rows.Count - 1
 
                     If (t Mod 2) = 0 Then
                         cr = random_Color1
@@ -88,8 +88,10 @@ Public Class SubClass
                     bt.Visible = True
                     bt.FlatStyle = FlatStyle.Flat
                     bt.BackColor = Color.LightSeaGreen
-                    Dim NM As String = String.Format("{0:n}", CDec(artdt.Rows(i).Item("sprice").ToString))
-                    bt.Text = "[" & NM & "] - " & artdt.Rows(i).Item("name").ToString
+                    'Dim NM As String = String.Format("{0:n}", CDec(artdt.Rows(i).Item("sprice").ToString))
+                    'bt.Text = "[" & NM & "] - " & artdt.Rows(i).Item("name").ToString
+                    bt.Text = artdt.Rows(i).Item("name").ToString
+
                     bt.Name = "art" & i
                     bt.Tag = artdt.Rows(i)
                     bt.BackColor = cr
@@ -117,6 +119,8 @@ Public Class SubClass
 
                     If i = 33 Then Exit For
                 Next
+                P.Height = Form1.txtlargebt.Text * (i + 1)
+
             End If
         Next
 
@@ -496,7 +500,7 @@ Public Class SubClass
 
             '''''''''''''''''''
 
-            artdt = artta.GetDatalikecodebar(txt.Text & "%")
+            artdt = artta.GetDatalikecodebar("%" & txt.Text & "%")
 
             If artdt.Rows.Count = 1 Then
 
@@ -509,7 +513,6 @@ Public Class SubClass
                         Form1.RPl.CP.Value = bn.qte
                     End If
                 End If
-
 
 
                 ' sell function
@@ -1088,6 +1091,14 @@ Public Class SubClass
                 If Form1.CBTVA.Checked Then tva = CDbl(R.tva)
 
                 Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                    Dim CBR As String = ""
+                    Try
+                        CBR = R.codebar.Split("-")(0)
+                        R.codebar = CBR
+                    Catch ex As Exception
+                        CBR = ""
+                    End Try
+
                     Dim params As New Dictionary(Of String, Object)
                     params.Add("fctid", CInt(Form1.RPl.FctId))
                     params.Add("name", R.name)
@@ -1096,10 +1107,10 @@ Public Class SubClass
                     params.Add("unit", R.unite)
                     params.Add("qte", qte)
                     params.Add("tva", tva)
-                    params.Add("poid", CInt(R.poid * 100))
+                    params.Add("poid", CInt(R.poid))
                     params.Add("arid", CInt(R.arid))
                     params.Add("depot", dpt)
-                    params.Add("code", R.codebar)
+                    params.Add("code", CBR)
                     params.Add("cid", CStr(R.cid))
 
                     arid = c.InsertRecord(tableName, params, True)
@@ -1203,7 +1214,7 @@ Public Class SubClass
     End Sub
     Private Sub ctg_stock_click(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim bt2 As Button = sender
-        Form1.DGVS.Rows.Clear()
+        Form1.DGVS.DataSource = Nothing
 
         Dim dpt As Integer = Form1.RPl.CP.Depot
         If Form1.CbDepotOrigine.Checked Then dpt = Form1.cbdepot.SelectedValue
@@ -1212,22 +1223,51 @@ Public Class SubClass
             Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
             Dim sta As New ALMohassinDBDataSetTableAdapters.DetailstockTableAdapter
             Dim sdt = sta.GetDataByid(dpt, bt2.Tag)
+
+
             If sdt.Rows.Count = 0 Then
                 MsgBox("لا يوجد اي سجل", MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, "المخزن")
             Else
-                For i As Integer = 0 To sdt.Rows.Count - 1
-                    Dim bt As New Button
-                    Dim ardt = artta.GetDataByarid(sdt.Rows(i).Item("arid"))
-                    Try
-                        Form1.DGVS.Rows.Add(ardt.Rows(0).Item("codebar").ToString,
-                                            ardt.Rows(0).Item("name").ToString, ardt.Rows(0).Item("unite").ToString,
-                                            sdt.Rows(i).Item("qte").ToString, "", "", ardt.Rows(0).Item(0).ToString,
-                                             sdt.Rows(i).Item(0))
-                    Catch ex As Exception
+                'For i As Integer = 0 To sdt.Rows.Count - 1
+                '    Dim bt As New Button
+                '    Dim ardt = artta.GetDataByarid(sdt.Rows(i).Item("arid"))
+                '    Try
+                '        Form1.DGVS.Rows.Add(ardt.Rows(0).Item("codebar").ToString,
+                '                            ardt.Rows(0).Item("name").ToString, ardt.Rows(0).Item("unite").ToString,
+                '                            sdt.Rows(i).Item("qte").ToString, "", "", ardt.Rows(0).Item(0).ToString,
+                '                            sdt.Rows(i).Item(0))
+                '    Catch ex As Exception
 
-                    End Try
-                Next
+                '    End Try
+                'Next
+                sdt.Columns.Add("9", GetType(String))
+                sdt.Columns.Add("10", GetType(String))
+
+
+                Form1.DGVS.DataSource = sdt
+
+                Form1.DGVS.Columns(0).Visible = False
+                Form1.DGVS.Columns(1).Visible = False
+                Form1.DGVS.Columns(2).Visible = False
+                Form1.DGVS.Columns(4).Visible = False
+                Form1.DGVS.Columns(5).Visible = False
+                Form1.DGVS.Columns(9).Visible = False
+                Form1.DGVS.Columns(10).Visible = False
+
+
+                Form1.DGVS.Columns(7).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
+            
+                Form1.DGVS.Columns(7).HeaderText = "Designation"
+                Form1.DGVS.Columns(3).HeaderText = "Qte Stk"
+
+                Form1.DGVS.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+                Form1.DGVS.Columns(6).DisplayIndex = 2
+                Form1.DGVS.Columns(7).DisplayIndex = 3
+                Form1.DGVS.Columns(8).DisplayIndex = 4
+
             End If
+
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -1464,6 +1504,7 @@ Public Class SubClass
             MsgBox(ex.Message)
         End Try
     End Sub
+
     Public Function getClient(ByVal cid As Integer) As DataTable
         Dim dt As DataTable
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
@@ -1911,6 +1952,7 @@ Public Class SubClass
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             Dim params As New Dictionary(Of String, Object)
             params.Add("admin", False)
+            If Form1.cbAffichageLimite.Checked Then params.Add("writer", Form1.adminName)
             dt = c.SelectDataTable(tableName, {"*"}, params)
         End Using
 
@@ -2054,7 +2096,7 @@ Public Class SubClass
             If clc.ShowDialog = DialogResult.OK Then
                 Dim tableName As String = "DetailsBon"
                 If isS Then tableName = "DetailsFacture"
-                Dim remise As Integer = CInt(clc.CPanel1.Value * 100)
+                Dim remise As Integer = CInt(clc.CPanel1.Value)
                 Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
 
                     Dim params As New Dictionary(Of String, Object)
@@ -2071,7 +2113,7 @@ Public Class SubClass
                     Try
                         Dim h As Integer = c.UpdateRecord(tableName, params, where)
                         If h > 0 Then
-                            i.Remise = CDbl(remise / 100)
+                            i.Remise = CDbl(remise)
                         End If
                     Catch ex As Exception
                         MsgBox(ex.Message)
@@ -2513,7 +2555,7 @@ Public Class SubClass
             Form1.RPl.AddItems(table, isSell)
 
         Catch ex As Exception
-            MsgBox(ex.Message)
+            'MsgBox(ex.Message)
         End Try
 
     End Sub
@@ -3119,7 +3161,7 @@ Public Class SubClass
                     params.Clear()
                 Next
 
-                Form1.DGVS.Rows.Add("", dtctg.Rows(i).Item("name").ToString,
+                Form1.DGVS.Rows.Add(0, 0, dtctg.Rows(i).Item("name").ToString,
                                     dt.Rows.Count & " Aricles",
                                      String.Format("{0:n}", ctgvalue) & "Dhs", " ")
                 ttvalue += ctgvalue

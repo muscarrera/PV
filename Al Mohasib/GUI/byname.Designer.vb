@@ -24,8 +24,6 @@ Partial Class byname
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(byname))
         Me.Panel44 = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.txt = New Al_Mohasib.TxtBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel7 = New System.Windows.Forms.Panel()
@@ -44,6 +42,8 @@ Partial Class byname
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txt = New Al_Mohasib.TxtBox()
         Me.Panel44.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -65,37 +65,6 @@ Partial Class byname
         Me.Panel44.Name = "Panel44"
         Me.Panel44.Size = New System.Drawing.Size(495, 503)
         Me.Panel44.TabIndex = 4
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Arial Narrow", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(29, 11)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(61, 20)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Quantité"
-        '
-        'txt
-        '
-        Me.txt.BackColor = System.Drawing.Color.Transparent
-        Me.txt.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.txt.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt.IsNumiric = True
-        Me.txt.Location = New System.Drawing.Point(14, 37)
-        Me.txt.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
-        Me.txt.MinimumSize = New System.Drawing.Size(0, 55)
-        Me.txt.Name = "txt"
-        Me.txt.ShowClearIcon = False
-        Me.txt.ShowSaveIcon = False
-        Me.txt.Size = New System.Drawing.Size(457, 55)
-        Me.txt.StartUp = 2
-        Me.txt.TabIndex = 1
-        Me.txt.TextSize = 14
-        Me.txt.TxtBackColor = True
-        Me.txt.TxtColor = System.Drawing.Color.White
-        Me.txt.txtReadOnly = False
-        Me.txt.TxtSelect = New Integer() {1, 0}
         '
         'Panel1
         '
@@ -204,7 +173,7 @@ Partial Class byname
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(157, 97)
         Me.Button12.TabIndex = 2
-        Me.Button12.Text = "8"
+        Me.Button12.Text = "2"
         Me.Button12.UseVisualStyleBackColor = True
         '
         'Button11
@@ -221,7 +190,7 @@ Partial Class byname
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(150, 97)
         Me.Button11.TabIndex = 3
-        Me.Button11.Text = "7"
+        Me.Button11.Text = "1"
         Me.Button11.UseVisualStyleBackColor = True
         '
         'Button13
@@ -238,7 +207,7 @@ Partial Class byname
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(150, 97)
         Me.Button13.TabIndex = 1
-        Me.Button13.Text = "9"
+        Me.Button13.Text = "3"
         Me.Button13.UseVisualStyleBackColor = True
         '
         'Panel5
@@ -328,7 +297,7 @@ Partial Class byname
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(157, 87)
         Me.Button3.TabIndex = 2
-        Me.Button3.Text = "2"
+        Me.Button3.Text = "8"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'Button2
@@ -345,7 +314,7 @@ Partial Class byname
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(150, 87)
         Me.Button2.TabIndex = 1
-        Me.Button2.Text = "3"
+        Me.Button2.Text = "9"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button4
@@ -362,8 +331,39 @@ Partial Class byname
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(150, 87)
         Me.Button4.TabIndex = 3
-        Me.Button4.Text = "1"
+        Me.Button4.Text = "7"
         Me.Button4.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Arial Narrow", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(29, 11)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(61, 20)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "Quantité"
+        '
+        'txt
+        '
+        Me.txt.BackColor = System.Drawing.Color.Transparent
+        Me.txt.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txt.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt.IsNumiric = True
+        Me.txt.Location = New System.Drawing.Point(14, 37)
+        Me.txt.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.txt.MinimumSize = New System.Drawing.Size(0, 55)
+        Me.txt.Name = "txt"
+        Me.txt.ShowClearIcon = False
+        Me.txt.ShowSaveIcon = False
+        Me.txt.Size = New System.Drawing.Size(457, 55)
+        Me.txt.StartUp = 2
+        Me.txt.TabIndex = 1
+        Me.txt.TextSize = 14
+        Me.txt.TxtBackColor = True
+        Me.txt.TxtColor = System.Drawing.Color.White
+        Me.txt.txtReadOnly = False
+        Me.txt.TxtSelect = New Integer() {1, 0}
         '
         'byname
         '

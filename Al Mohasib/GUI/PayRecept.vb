@@ -4,6 +4,7 @@
     Private _pay As Double = 0
     Public total As Double = 0
     Public str As String = ""
+    Public WAY As String = "CACHE"
 
     Public ReadOnly Property avance As Double
         Get
@@ -43,6 +44,7 @@
         Dim bt2 As Button = sender
         pay = pay + CDbl(bt2.Text)
         str &= "/" & bt2.Text & " Dhs"
+        WAY = "CACHE"
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -55,6 +57,7 @@
         pay = total - avc
         str = "-- cache --"
 
+        WAY = "CACHE"
 
         AddPayement()
         Me.DialogResult = Windows.Forms.DialogResult.OK
@@ -94,7 +97,7 @@
             params.Add("name", Form1.RPl.Name)
             params.Add(cl, Form1.RPl.ClId)
             params.Add("montant", avance)
-            params.Add("way", "Comptoire")
+            params.Add("way", WAY)
             params.Add("date", Format(Now.Date, "dd-MM-yyyy"))
             params.Add("Num", str)
             params.Add(fld, fctid)
@@ -128,5 +131,35 @@
 
     Private Sub Annuler_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Annuler.Click
         Me.DialogResult = Windows.Forms.DialogResult.Cancel
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        pay = total - avc
+        str = "-- TPE --"
+
+        WAY = "TPE"
+
+        AddPayement()
+        Me.DialogResult = Windows.Forms.DialogResult.OK
+    End Sub
+
+    Private Sub Button2_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        pay = total - avc
+        str = "-- CHEQUE --"
+
+        WAY = "CHEQUE"
+
+        AddPayement()
+        Me.DialogResult = Windows.Forms.DialogResult.OK
+    End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        pay = total - avc
+        str = "-- VIREMENT --"
+
+        WAY = "VIREMENT"
+
+        AddPayement()
+        Me.DialogResult = Windows.Forms.DialogResult.OK
     End Sub
 End Class

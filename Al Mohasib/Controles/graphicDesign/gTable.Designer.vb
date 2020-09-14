@@ -25,6 +25,7 @@ Partial Class gTable
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.pl = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.cbLine = New System.Windows.Forms.CheckBox()
         Me.txtType = New Al_Mohasib.TxtBox()
         Me.txtH = New Al_Mohasib.TxtBox()
         Me.txtW = New Al_Mohasib.TxtBox()
@@ -57,6 +58,7 @@ Partial Class gTable
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Black
+        Me.Panel1.Controls.Add(Me.cbLine)
         Me.Panel1.Controls.Add(Me.txtType)
         Me.Panel1.Controls.Add(Me.txtH)
         Me.Panel1.Controls.Add(Me.txtW)
@@ -69,6 +71,17 @@ Partial Class gTable
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(580, 40)
         Me.Panel1.TabIndex = 2
+        '
+        'cbLine
+        '
+        Me.cbLine.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbLine.BackColor = System.Drawing.Color.White
+        Me.cbLine.Location = New System.Drawing.Point(268, 4)
+        Me.cbLine.Name = "cbLine"
+        Me.cbLine.Size = New System.Drawing.Size(50, 31)
+        Me.cbLine.TabIndex = 30
+        Me.cbLine.Text = "Inter Lines"
+        Me.cbLine.UseVisualStyleBackColor = False
         '
         'txtType
         '
@@ -96,7 +109,7 @@ Partial Class gTable
         Me.txtH.BackColor = System.Drawing.Color.Transparent
         Me.txtH.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtH.IsNumiric = False
-        Me.txtH.Location = New System.Drawing.Point(449, 4)
+        Me.txtH.Location = New System.Drawing.Point(456, 4)
         Me.txtH.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtH.Name = "txtH"
         Me.txtH.ShowClearIcon = False
@@ -116,7 +129,7 @@ Partial Class gTable
         Me.txtW.BackColor = System.Drawing.Color.Transparent
         Me.txtW.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtW.IsNumiric = False
-        Me.txtW.Location = New System.Drawing.Point(399, 4)
+        Me.txtW.Location = New System.Drawing.Point(412, 4)
         Me.txtW.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtW.Name = "txtW"
         Me.txtW.ShowClearIcon = False
@@ -136,7 +149,7 @@ Partial Class gTable
         Me.txtY.BackColor = System.Drawing.Color.Transparent
         Me.txtY.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtY.IsNumiric = False
-        Me.txtY.Location = New System.Drawing.Point(349, 4)
+        Me.txtY.Location = New System.Drawing.Point(368, 4)
         Me.txtY.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtY.Name = "txtY"
         Me.txtY.ShowClearIcon = False
@@ -156,7 +169,7 @@ Partial Class gTable
         Me.txtX.BackColor = System.Drawing.Color.Transparent
         Me.txtX.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtX.IsNumiric = False
-        Me.txtX.Location = New System.Drawing.Point(299, 4)
+        Me.txtX.Location = New System.Drawing.Point(324, 4)
         Me.txtX.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtX.Name = "txtX"
         Me.txtX.ShowClearIcon = False
@@ -172,9 +185,9 @@ Partial Class gTable
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(190, 7)
+        Me.Button1.Location = New System.Drawing.Point(179, 7)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.Size = New System.Drawing.Size(46, 23)
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "add"
         Me.Button1.UseVisualStyleBackColor = True
@@ -200,5 +213,6 @@ Partial Class gTable
     Friend WithEvents txtW As Al_Mohasib.TxtBox
     Friend WithEvents txtY As Al_Mohasib.TxtBox
     Friend WithEvents txtX As Al_Mohasib.TxtBox
+    Friend WithEvents cbLine As System.Windows.Forms.CheckBox
 
 End Class

@@ -7,6 +7,15 @@ Public Class BackUP
         txtfn.Text = 0
         txtbd.Text = CDate(Date.Now).ToString("yy")
         txtbn.Text = 0
+
+        Dim msg = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "EnableDeleting", Nothing)
+        If msg = Nothing Then
+            msg = True
+            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "EnableDeleting", msg)
+            CheckBox1.Checked = msg
+        Else
+            CheckBox1.Checked = msg
+        End If
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
 
@@ -740,5 +749,10 @@ Public Class BackUP
             'Detailstock
             MsgBox("greet job")
         End Using
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBox1.CheckedChanged
+        My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "EnableDeleting", CheckBox1.Checked)
+        Form1.EnableDeleting = CheckBox1.Checked
     End Sub
 End Class

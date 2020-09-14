@@ -260,7 +260,7 @@ Partial Class CPanel
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(86, 53)
         Me.Button12.TabIndex = 2
-        Me.Button12.Text = "8"
+        Me.Button12.Text = "2"
         Me.Button12.UseVisualStyleBackColor = True
         '
         'Button11
@@ -277,7 +277,7 @@ Partial Class CPanel
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(90, 53)
         Me.Button11.TabIndex = 3
-        Me.Button11.Text = "7"
+        Me.Button11.Text = "1"
         Me.Button11.UseVisualStyleBackColor = True
         '
         'Button13
@@ -294,7 +294,7 @@ Partial Class CPanel
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(90, 53)
         Me.Button13.TabIndex = 1
-        Me.Button13.Text = "9"
+        Me.Button13.Text = "3"
         Me.Button13.UseVisualStyleBackColor = True
         '
         'Panel5
@@ -384,7 +384,7 @@ Partial Class CPanel
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(86, 53)
         Me.Button3.TabIndex = 2
-        Me.Button3.Text = "2"
+        Me.Button3.Text = "8"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'Button2
@@ -401,7 +401,7 @@ Partial Class CPanel
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(90, 53)
         Me.Button2.TabIndex = 1
-        Me.Button2.Text = "3"
+        Me.Button2.Text = "9"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button4
@@ -418,7 +418,7 @@ Partial Class CPanel
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(90, 53)
         Me.Button4.TabIndex = 3
-        Me.Button4.Text = "1"
+        Me.Button4.Text = "7"
         Me.Button4.UseVisualStyleBackColor = True
         '
         'Panel4
@@ -477,7 +477,7 @@ Partial Class CPanel
         Me.BtCmd.Name = "BtCmd"
         Me.BtCmd.Size = New System.Drawing.Size(62, 53)
         Me.BtCmd.TabIndex = 7
-        Me.BtCmd.Text = "CMD"
+        Me.BtCmd.Text = "Liv"
         Me.BtCmd.UseVisualStyleBackColor = False
         '
         'PlTxt

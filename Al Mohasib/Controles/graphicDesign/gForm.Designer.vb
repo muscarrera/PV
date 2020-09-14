@@ -22,23 +22,23 @@ Partial Class gForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GTabClass2 As Al_Mohasib.gTabClass = New Al_Mohasib.gTabClass()
+        Dim GTabClass1 As Al_Mohasib.gTabClass = New Al_Mohasib.gTabClass()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.gt = New Al_Mohasib.gTable()
         Me.Pfp = New System.Windows.Forms.Panel()
         Me.Pf = New System.Windows.Forms.FlowLayoutPanel()
         Me.PT = New System.Windows.Forms.FlowLayoutPanel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Txt_H = New Al_Mohasib.TxtBox()
+        Me.Txt_W = New Al_Mohasib.TxtBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.btLand = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.pb = New System.Windows.Forms.PictureBox()
-        Me.gt = New Al_Mohasib.gTable()
-        Me.Txt_W = New Al_Mohasib.TxtBox()
-        Me.Txt_H = New Al_Mohasib.TxtBox()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -64,7 +64,7 @@ Partial Class gForm
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.Panel2)
         Me.SplitContainer1.Size = New System.Drawing.Size(991, 534)
-        Me.SplitContainer1.SplitterDistance = 506
+        Me.SplitContainer1.SplitterDistance = 642
         Me.SplitContainer1.TabIndex = 2
         '
         'Panel1
@@ -75,7 +75,7 @@ Partial Class gForm
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(506, 534)
+        Me.Panel1.Size = New System.Drawing.Size(642, 534)
         Me.Panel1.TabIndex = 0
         '
         'Panel5
@@ -87,8 +87,17 @@ Partial Class gForm
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel5.Location = New System.Drawing.Point(0, 126)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(506, 275)
+        Me.Panel5.Size = New System.Drawing.Size(642, 275)
         Me.Panel5.TabIndex = 3
+        '
+        'gt
+        '
+        Me.gt.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.gt.Location = New System.Drawing.Point(0, 0)
+        Me.gt.Name = "gt"
+        Me.gt.Size = New System.Drawing.Size(640, 273)
+        Me.gt.TabIndex = 0
+        Me.gt.TabProp = GTabClass1
         '
         'Pfp
         '
@@ -98,7 +107,7 @@ Partial Class gForm
         Me.Pfp.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Pfp.Location = New System.Drawing.Point(0, 401)
         Me.Pfp.Name = "Pfp"
-        Me.Pfp.Size = New System.Drawing.Size(506, 133)
+        Me.Pfp.Size = New System.Drawing.Size(642, 133)
         Me.Pfp.TabIndex = 2
         '
         'Pf
@@ -106,7 +115,7 @@ Partial Class gForm
         Me.Pf.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Pf.Location = New System.Drawing.Point(0, 0)
         Me.Pf.Name = "Pf"
-        Me.Pf.Size = New System.Drawing.Size(504, 131)
+        Me.Pf.Size = New System.Drawing.Size(640, 131)
         Me.Pf.TabIndex = 0
         '
         'PT
@@ -116,7 +125,7 @@ Partial Class gForm
         Me.PT.Dock = System.Windows.Forms.DockStyle.Top
         Me.PT.Location = New System.Drawing.Point(0, 0)
         Me.PT.Name = "PT"
-        Me.PT.Size = New System.Drawing.Size(506, 126)
+        Me.PT.Size = New System.Drawing.Size(642, 126)
         Me.PT.TabIndex = 4
         '
         'Panel2
@@ -134,8 +143,46 @@ Partial Class gForm
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(481, 534)
+        Me.Panel2.Size = New System.Drawing.Size(345, 534)
         Me.Panel2.TabIndex = 0
+        '
+        'Txt_H
+        '
+        Me.Txt_H.BackColor = System.Drawing.Color.Transparent
+        Me.Txt_H.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.Txt_H.IsNumiric = False
+        Me.Txt_H.Location = New System.Drawing.Point(189, 6)
+        Me.Txt_H.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.Txt_H.Name = "Txt_H"
+        Me.Txt_H.ShowClearIcon = False
+        Me.Txt_H.ShowSaveIcon = False
+        Me.Txt_H.Size = New System.Drawing.Size(48, 30)
+        Me.Txt_H.StartUp = 2
+        Me.Txt_H.TabIndex = 2
+        Me.Txt_H.TextSize = 8
+        Me.Txt_H.TxtBackColor = True
+        Me.Txt_H.TxtColor = System.Drawing.Color.White
+        Me.Txt_H.txtReadOnly = False
+        Me.Txt_H.TxtSelect = New Integer() {1, 0}
+        '
+        'Txt_W
+        '
+        Me.Txt_W.BackColor = System.Drawing.Color.Transparent
+        Me.Txt_W.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.Txt_W.IsNumiric = False
+        Me.Txt_W.Location = New System.Drawing.Point(135, 6)
+        Me.Txt_W.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.Txt_W.Name = "Txt_W"
+        Me.Txt_W.ShowClearIcon = False
+        Me.Txt_W.ShowSaveIcon = False
+        Me.Txt_W.Size = New System.Drawing.Size(48, 30)
+        Me.Txt_W.StartUp = 2
+        Me.Txt_W.TabIndex = 2
+        Me.Txt_W.TextSize = 8
+        Me.Txt_W.TxtBackColor = True
+        Me.Txt_W.TxtColor = System.Drawing.Color.White
+        Me.Txt_W.txtReadOnly = False
+        Me.Txt_W.TxtSelect = New Integer() {1, 0}
         '
         'Button3
         '
@@ -199,53 +246,6 @@ Partial Class gForm
         Me.pb.Size = New System.Drawing.Size(416, 478)
         Me.pb.TabIndex = 0
         Me.pb.TabStop = False
-        '
-        'gt
-        '
-        Me.gt.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.gt.Location = New System.Drawing.Point(0, 0)
-        Me.gt.Name = "gt"
-        Me.gt.Size = New System.Drawing.Size(504, 273)
-        Me.gt.TabIndex = 0
-        Me.gt.TabProp = GTabClass2
-        '
-        'Txt_W
-        '
-        Me.Txt_W.BackColor = System.Drawing.Color.Transparent
-        Me.Txt_W.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.Txt_W.IsNumiric = False
-        Me.Txt_W.Location = New System.Drawing.Point(135, 6)
-        Me.Txt_W.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.Txt_W.Name = "Txt_W"
-        Me.Txt_W.ShowClearIcon = False
-        Me.Txt_W.ShowSaveIcon = False
-        Me.Txt_W.Size = New System.Drawing.Size(48, 30)
-        Me.Txt_W.StartUp = 2
-        Me.Txt_W.TabIndex = 2
-        Me.Txt_W.TextSize = 8
-        Me.Txt_W.TxtBackColor = True
-        Me.Txt_W.TxtColor = System.Drawing.Color.White
-        Me.Txt_W.txtReadOnly = False
-        Me.Txt_W.TxtSelect = New Integer() {1, 0}
-        '
-        'Txt_H
-        '
-        Me.Txt_H.BackColor = System.Drawing.Color.Transparent
-        Me.Txt_H.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.Txt_H.IsNumiric = False
-        Me.Txt_H.Location = New System.Drawing.Point(189, 6)
-        Me.Txt_H.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.Txt_H.Name = "Txt_H"
-        Me.Txt_H.ShowClearIcon = False
-        Me.Txt_H.ShowSaveIcon = False
-        Me.Txt_H.Size = New System.Drawing.Size(48, 30)
-        Me.Txt_H.StartUp = 2
-        Me.Txt_H.TabIndex = 2
-        Me.Txt_H.TextSize = 8
-        Me.Txt_H.TxtBackColor = True
-        Me.Txt_H.TxtColor = System.Drawing.Color.White
-        Me.Txt_H.txtReadOnly = False
-        Me.Txt_H.TxtSelect = New Integer() {1, 0}
         '
         'gForm
         '

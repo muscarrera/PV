@@ -18,6 +18,7 @@
             txtX.text = value.x
             txtY.text = value.y
             txtType.text = value.Type
+            cbLine.Checked = value.hasLines
 
             If IsNothing(value.details) Then Exit Property
             pl.Controls.Clear()
@@ -140,12 +141,16 @@
         If IsNumeric(txtY.text) Then
             TabProp.y = CInt(txtY.text)
 
-
             RaiseEvent PropChanged()
         End If
     End Sub
     Private Sub txtType_TxtChanged() Handles txtType.TxtChanged
         TabProp.Type = txtType.text
+
+        RaiseEvent PropChanged()
+    End Sub
+    Private Sub cbLine_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbLine.CheckedChanged
+        TabProp.hasLines = cbLine.Checked
 
         RaiseEvent PropChanged()
     End Sub
@@ -170,6 +175,5 @@
 
         ComboBox1.DataSource = New BindingSource(PARAMS, Nothing)
     End Sub
-
 
 End Class

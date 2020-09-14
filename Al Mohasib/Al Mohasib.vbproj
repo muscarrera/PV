@@ -187,6 +187,12 @@
     <Compile Include="Controles\RPanel.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controles\Tag.Designer.vb">
+      <DependentUpon>Tag.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\Tag.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controles\TxtBox.Designer.vb">
       <DependentUpon>TxtBox.vb</DependentUpon>
     </Compile>
@@ -354,6 +360,12 @@
       <DependentUpon>EtatClient.vb</DependentUpon>
     </Compile>
     <Compile Include="GUI\EtatClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ListMultiCodes.Designer.vb">
+      <DependentUpon>ListMultiCodes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ListMultiCodes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\PayRecept.Designer.vb">
@@ -557,6 +569,9 @@
     <EmbeddedResource Include="Controles\RPanel.resx">
       <DependentUpon>RPanel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controles\Tag.resx">
+      <DependentUpon>Tag.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controles\TxtBox.resx">
       <DependentUpon>TxtBox.vb</DependentUpon>
     </EmbeddedResource>
@@ -640,6 +655,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\EtatClient.resx">
       <DependentUpon>EtatClient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ListMultiCodes.resx">
+      <DependentUpon>ListMultiCodes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PayRecept.resx">
       <DependentUpon>PayRecept.vb</DependentUpon>
@@ -853,6 +871,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MyBarcode.dll" />
+    <None Include="Resources\iconfinder_CasH 44.png" />
+    <None Include="Resources\iconfinder_Cash_register_73439.png" />
+    <None Include="Resources\Cash_register_22.png" />
+    <None Include="Resources\iconfinder_finance-23_808654.png" />
+    <None Include="Resources\vector-cancel-icon-png_302651.png" />
+    <None Include="Resources\TAGIN-04.png" />
+    <None Include="Resources\TAGIN-03.png" />
+    <None Include="Resources\TAGIN-02.png" />
+    <None Include="Resources\TAGIN-01.png" />
+    <None Include="Resources\TAG-02.png" />
     <None Include="Resources\CANCEL 22.png" />
     <None Include="Resources\iconfinder_folder_delete_61770.png" />
     <None Include="Resources\iconfinder_Folder-Settings-Tools-icon_88583 X 24.png" />

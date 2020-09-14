@@ -35,6 +35,8 @@ Public Class Client
         txtname.Tag = ""
         txtcin.text = ""
         txtad.text = ""
+        txtVille.text = ""
+        txtIce.text = ""
         txttel.text = ""
         btcon.Tag = "0"
         GB1.Visible = False
@@ -47,11 +49,22 @@ Public Class Client
 
         If Form1.admin = False Then txtcrd.Visible = False
 
+
+
+        Dim adresse = DataGridView1.SelectedRows(0).Cells(3).Value.ToString.Split("*")
+
         txtname.text = DataGridView1.SelectedRows(0).Cells(1).Value
         txtname.Tag = DataGridView1.SelectedRows(0).Cells(0).Value
         txtcin.text = DataGridView1.SelectedRows(0).Cells(2).Value.ToString
-        txtad.text = DataGridView1.SelectedRows(0).Cells(3).Value.ToString
         txttel.text = DataGridView1.SelectedRows(0).Cells(4).Value.ToString
+
+        Try
+            txtad.text = adresse(0)
+            txtVille.text = adresse(1)
+            txtIce.text = adresse(2)
+        Catch ex As Exception
+        End Try
+
 
         Dim tp As String = DataGridView1.SelectedRows(0).Cells(6).Value.ToString
         If tp.Contains("|") Then
@@ -103,9 +116,20 @@ Public Class Client
 
         Dim tp As String = txtcrd.text & "|" & txttp.text
 
+
+        If txtad.text = "" Then txtad.text = "-"
+        If txtIce.text = "" Then txtIce.text = "-"
+        If txtVille.text = "" Then txtVille.text = "-"
+
+
+        Dim adresse As String = txtad.text & " * " & txtVille.text & " * " & txtIce.text
+
+
+
         ' addddd
         If btcon.Tag = "0" Then
             ''check the name
+
             For i As Integer = 0 To DataGridView1.Rows.Count - 1
                 If txtname.text = DataGridView1.Rows(i).Cells(1).Value Then
                     MsgBox("عذرا لا يمكن اتمام طلبكم.. يجب عدم تكرار نفس الاسم", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
@@ -116,9 +140,10 @@ Public Class Client
                 End If
             Next
 
+
             Try
                 Dim ta As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
-                ta.InsertQuery(txtname.text, txtcin.text, txtad.text, txttel.text, "0", CInt(txtcrd.text))
+                ta.InsertQuery(txtname.text, txtcin.text, adresse, txttel.text, "0", CInt(txtcrd.text))
                 ta.Fill(ALMohassinDBDataSet.Client)
             Catch ex As Exception
                 MsgBox(ex.Message)
@@ -128,7 +153,7 @@ Public Class Client
         Else
             Try
                 Dim ta As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
-                ta.UpdateQuery(txtname.text, txtcin.text, txtad.text, txttel.text, tp, txtname.Tag)
+                ta.UpdateQuery(txtname.text, txtcin.text, adresse, txttel.text, tp, txtname.Tag)
                 ta.Fill(ALMohassinDBDataSet.Client)
             Catch ex As Exception
                 MsgBox(ex.Message)

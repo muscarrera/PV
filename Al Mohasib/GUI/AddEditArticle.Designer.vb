@@ -26,6 +26,7 @@ Partial Class AddEditArticle
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AddEditArticle))
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.txtcb = New Al_Mohasib.TxtBox()
+        Me.Button7 = New System.Windows.Forms.Button()
         Me.btgenir = New System.Windows.Forms.Button()
         Me.btprint = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -109,12 +110,13 @@ Partial Class AddEditArticle
         Me.Panel4.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel4.Controls.Add(Me.txtcb)
+        Me.Panel4.Controls.Add(Me.Button7)
         Me.Panel4.Controls.Add(Me.btgenir)
         Me.Panel4.Controls.Add(Me.btprint)
         Me.Panel4.Location = New System.Drawing.Point(83, 19)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(675, 43)
-        Me.Panel4.TabIndex = 24
+        Me.Panel4.TabIndex = 1
         '
         'txtcb
         '
@@ -127,14 +129,27 @@ Partial Class AddEditArticle
         Me.txtcb.Name = "txtcb"
         Me.txtcb.ShowClearIcon = False
         Me.txtcb.ShowSaveIcon = False
-        Me.txtcb.Size = New System.Drawing.Size(547, 41)
+        Me.txtcb.Size = New System.Drawing.Size(481, 41)
         Me.txtcb.StartUp = 2
-        Me.txtcb.TabIndex = 26
+        Me.txtcb.TabIndex = 1
         Me.txtcb.TextSize = 8
         Me.txtcb.TxtBackColor = True
         Me.txtcb.TxtColor = System.Drawing.Color.White
         Me.txtcb.txtReadOnly = False
         Me.txtcb.TxtSelect = New Integer() {1, 0}
+        '
+        'Button7
+        '
+        Me.Button7.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Button7.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.AddFile_221
+        Me.Button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button7.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button7.Location = New System.Drawing.Point(481, 0)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(66, 41)
+        Me.Button7.TabIndex = 1
+        Me.Button7.UseVisualStyleBackColor = False
         '
         'btgenir
         '
@@ -146,7 +161,7 @@ Partial Class AddEditArticle
         Me.btgenir.Location = New System.Drawing.Point(547, 0)
         Me.btgenir.Name = "btgenir"
         Me.btgenir.Size = New System.Drawing.Size(66, 41)
-        Me.btgenir.TabIndex = 6
+        Me.btgenir.TabIndex = 1
         Me.btgenir.UseVisualStyleBackColor = False
         '
         'btprint
@@ -159,17 +174,17 @@ Partial Class AddEditArticle
         Me.btprint.Location = New System.Drawing.Point(613, 0)
         Me.btprint.Name = "btprint"
         Me.btprint.Size = New System.Drawing.Size(60, 41)
-        Me.btprint.TabIndex = 5
+        Me.btprint.TabIndex = 1
         Me.btprint.UseVisualStyleBackColor = False
         '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Arial Narrow", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(36, 29)
+        Me.Label8.Location = New System.Drawing.Point(25, 29)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(32, 20)
-        Me.Label8.TabIndex = 1
+        Me.Label8.TabIndex = 22
         Me.Label8.Text = "Réf."
         '
         'cbctg
@@ -182,7 +197,7 @@ Partial Class AddEditArticle
         Me.cbctg.Location = New System.Drawing.Point(83, 157)
         Me.cbctg.Name = "cbctg"
         Me.cbctg.Size = New System.Drawing.Size(219, 28)
-        Me.cbctg.TabIndex = 17
+        Me.cbctg.TabIndex = 12
         Me.cbctg.ValueMember = "cid"
         '
         'CategoryBindingSource
@@ -200,7 +215,7 @@ Partial Class AddEditArticle
         Me.btprdimg.Location = New System.Drawing.Point(513, 248)
         Me.btprdimg.Name = "btprdimg"
         Me.btprdimg.Size = New System.Drawing.Size(189, 36)
-        Me.btprdimg.TabIndex = 21
+        Me.btprdimg.TabIndex = 14
         Me.btprdimg.Text = "Choisir une image *** اختر الصورة"
         Me.btprdimg.UseVisualStyleBackColor = True
         '
@@ -231,7 +246,7 @@ Partial Class AddEditArticle
         Me.Label3.Location = New System.Drawing.Point(22, 165)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(55, 20)
-        Me.Label3.TabIndex = 12
+        Me.Label3.TabIndex = 22
         Me.Label3.Text = "Groupe"
         '
         'txtprdname
@@ -240,7 +255,7 @@ Partial Class AddEditArticle
         Me.txtprdname.Location = New System.Drawing.Point(82, 82)
         Me.txtprdname.Name = "txtprdname"
         Me.txtprdname.Size = New System.Drawing.Size(220, 20)
-        Me.txtprdname.TabIndex = 16
+        Me.txtprdname.TabIndex = 2
         '
         'Label2
         '
@@ -249,7 +264,7 @@ Partial Class AddEditArticle
         Me.Label2.Location = New System.Drawing.Point(22, 86)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(37, 20)
-        Me.Label2.TabIndex = 15
+        Me.Label2.TabIndex = 22
         Me.Label2.Text = "Nom"
         '
         'PBprd
@@ -271,10 +286,10 @@ Partial Class AddEditArticle
         Me.btprd.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btprd.Image = CType(resources.GetObject("btprd.Image"), System.Drawing.Image)
         Me.btprd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btprd.Location = New System.Drawing.Point(390, 439)
+        Me.btprd.Location = New System.Drawing.Point(390, 442)
         Me.btprd.Name = "btprd"
         Me.btprd.Size = New System.Drawing.Size(363, 50)
-        Me.btprd.TabIndex = 22
+        Me.btprd.TabIndex = 17
         Me.btprd.Text = "Valider"
         Me.btprd.UseVisualStyleBackColor = True
         '
@@ -287,10 +302,10 @@ Partial Class AddEditArticle
         Me.Button8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Button8.Image = CType(resources.GetObject("Button8.Image"), System.Drawing.Image)
         Me.Button8.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button8.Location = New System.Drawing.Point(257, 446)
+        Me.Button8.Location = New System.Drawing.Point(257, 453)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(107, 35)
-        Me.Button8.TabIndex = 23
+        Me.Button8.TabIndex = 18
         Me.Button8.Text = "Annuler"
         Me.Button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button8.UseVisualStyleBackColor = True
@@ -344,7 +359,7 @@ Partial Class AddEditArticle
         Me.TxtPoids.ShowSaveIcon = False
         Me.TxtPoids.Size = New System.Drawing.Size(77, 30)
         Me.TxtPoids.StartUp = 2
-        Me.TxtPoids.TabIndex = 26
+        Me.TxtPoids.TabIndex = 6
         Me.TxtPoids.TextSize = 8
         Me.TxtPoids.TxtBackColor = True
         Me.TxtPoids.TxtColor = System.Drawing.Color.White
@@ -363,7 +378,7 @@ Partial Class AddEditArticle
         Me.txtMinStock.ShowSaveIcon = False
         Me.txtMinStock.Size = New System.Drawing.Size(77, 30)
         Me.txtMinStock.StartUp = 2
-        Me.txtMinStock.TabIndex = 26
+        Me.txtMinStock.TabIndex = 5
         Me.txtMinStock.TextSize = 8
         Me.txtMinStock.TxtBackColor = True
         Me.txtMinStock.TxtColor = System.Drawing.Color.White
@@ -382,7 +397,7 @@ Partial Class AddEditArticle
         Me.txttva.ShowSaveIcon = False
         Me.txttva.Size = New System.Drawing.Size(77, 30)
         Me.txttva.StartUp = 2
-        Me.txttva.TabIndex = 26
+        Me.txttva.TabIndex = 4
         Me.txttva.TextSize = 8
         Me.txttva.TxtBackColor = True
         Me.txttva.TxtColor = System.Drawing.Color.White
@@ -400,7 +415,7 @@ Partial Class AddEditArticle
         Me.PlPrice.Location = New System.Drawing.Point(390, 302)
         Me.PlPrice.Name = "PlPrice"
         Me.PlPrice.Size = New System.Drawing.Size(366, 116)
-        Me.PlPrice.TabIndex = 27
+        Me.PlPrice.TabIndex = 9
         '
         'Panel8
         '
@@ -413,7 +428,7 @@ Partial Class AddEditArticle
         Me.Panel8.Location = New System.Drawing.Point(179, 14)
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(170, 42)
-        Me.Panel8.TabIndex = 24
+        Me.Panel8.TabIndex = 11
         '
         'txtPrice4
         '
@@ -428,7 +443,7 @@ Partial Class AddEditArticle
         Me.txtPrice4.ShowSaveIcon = False
         Me.txtPrice4.Size = New System.Drawing.Size(76, 40)
         Me.txtPrice4.StartUp = 2
-        Me.txtPrice4.TabIndex = 25
+        Me.txtPrice4.TabIndex = 11
         Me.txtPrice4.TextSize = 8
         Me.txtPrice4.TxtBackColor = True
         Me.txtPrice4.TxtColor = System.Drawing.Color.White
@@ -445,7 +460,7 @@ Partial Class AddEditArticle
         Me.Button6.Location = New System.Drawing.Point(131, 0)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(37, 40)
-        Me.Button6.TabIndex = 19
+        Me.Button6.TabIndex = 11
         Me.Button6.Text = "TTC"
         Me.Button6.UseVisualStyleBackColor = False
         '
@@ -480,7 +495,7 @@ Partial Class AddEditArticle
         Me.Panel6.Location = New System.Drawing.Point(3, 14)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(170, 42)
-        Me.Panel6.TabIndex = 24
+        Me.Panel6.TabIndex = 9
         '
         'txtprice2
         '
@@ -495,7 +510,7 @@ Partial Class AddEditArticle
         Me.txtprice2.ShowSaveIcon = False
         Me.txtprice2.Size = New System.Drawing.Size(76, 40)
         Me.txtprice2.StartUp = 2
-        Me.txtprice2.TabIndex = 25
+        Me.txtprice2.TabIndex = 9
         Me.txtprice2.TextSize = 8
         Me.txtprice2.TxtBackColor = True
         Me.txtprice2.TxtColor = System.Drawing.Color.White
@@ -512,7 +527,7 @@ Partial Class AddEditArticle
         Me.Button3.Location = New System.Drawing.Point(131, 0)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(37, 40)
-        Me.Button3.TabIndex = 19
+        Me.Button3.TabIndex = 9
         Me.Button3.Text = "TTC"
         Me.Button3.UseVisualStyleBackColor = False
         '
@@ -556,7 +571,7 @@ Partial Class AddEditArticle
         Me.Panel7.Location = New System.Drawing.Point(3, 61)
         Me.Panel7.Name = "Panel7"
         Me.Panel7.Size = New System.Drawing.Size(170, 42)
-        Me.Panel7.TabIndex = 24
+        Me.Panel7.TabIndex = 10
         '
         'txtprice3
         '
@@ -571,7 +586,7 @@ Partial Class AddEditArticle
         Me.txtprice3.ShowSaveIcon = False
         Me.txtprice3.Size = New System.Drawing.Size(76, 40)
         Me.txtprice3.StartUp = 2
-        Me.txtprice3.TabIndex = 26
+        Me.txtprice3.TabIndex = 10
         Me.txtprice3.TextSize = 8
         Me.txtprice3.TxtBackColor = True
         Me.txtprice3.TxtColor = System.Drawing.Color.White
@@ -588,7 +603,7 @@ Partial Class AddEditArticle
         Me.Button4.Location = New System.Drawing.Point(131, 0)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(37, 40)
-        Me.Button4.TabIndex = 20
+        Me.Button4.TabIndex = 10
         Me.Button4.Text = "TTC"
         Me.Button4.UseVisualStyleBackColor = False
         '
@@ -621,7 +636,7 @@ Partial Class AddEditArticle
         Me.Panel3.Location = New System.Drawing.Point(31, 302)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(333, 116)
-        Me.Panel3.TabIndex = 27
+        Me.Panel3.TabIndex = 7
         '
         'Panel2
         '
@@ -634,7 +649,7 @@ Partial Class AddEditArticle
         Me.Panel2.Location = New System.Drawing.Point(12, 13)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(308, 42)
-        Me.Panel2.TabIndex = 24
+        Me.Panel2.TabIndex = 7
         '
         'txtbprice
         '
@@ -649,7 +664,7 @@ Partial Class AddEditArticle
         Me.txtbprice.ShowSaveIcon = False
         Me.txtbprice.Size = New System.Drawing.Size(169, 40)
         Me.txtbprice.StartUp = 2
-        Me.txtbprice.TabIndex = 25
+        Me.txtbprice.TabIndex = 7
         Me.txtbprice.TextSize = 8
         Me.txtbprice.TxtBackColor = True
         Me.txtbprice.TxtColor = System.Drawing.Color.White
@@ -666,7 +681,7 @@ Partial Class AddEditArticle
         Me.Button1.Location = New System.Drawing.Point(257, 0)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(49, 40)
-        Me.Button1.TabIndex = 19
+        Me.Button1.TabIndex = 7
         Me.Button1.Text = "TTC"
         Me.Button1.UseVisualStyleBackColor = False
         '
@@ -691,7 +706,7 @@ Partial Class AddEditArticle
         Me.Panel1.Location = New System.Drawing.Point(12, 60)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(308, 42)
-        Me.Panel1.TabIndex = 24
+        Me.Panel1.TabIndex = 8
         '
         'txtsprice
         '
@@ -706,7 +721,7 @@ Partial Class AddEditArticle
         Me.txtsprice.ShowSaveIcon = False
         Me.txtsprice.Size = New System.Drawing.Size(169, 40)
         Me.txtsprice.StartUp = 2
-        Me.txtsprice.TabIndex = 26
+        Me.txtsprice.TabIndex = 8
         Me.txtsprice.TextSize = 8
         Me.txtsprice.TxtBackColor = True
         Me.txtsprice.TxtColor = System.Drawing.Color.White
@@ -723,7 +738,7 @@ Partial Class AddEditArticle
         Me.Button2.Location = New System.Drawing.Point(257, 0)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(49, 40)
-        Me.Button2.TabIndex = 20
+        Me.Button2.TabIndex = 8
         Me.Button2.Text = "TTC"
         Me.Button2.UseVisualStyleBackColor = False
         '
@@ -776,7 +791,7 @@ Partial Class AddEditArticle
         Me.lbchangeimg.Location = New System.Drawing.Point(36, 421)
         Me.lbchangeimg.Name = "lbchangeimg"
         Me.lbchangeimg.Size = New System.Drawing.Size(13, 13)
-        Me.lbchangeimg.TabIndex = 7
+        Me.lbchangeimg.TabIndex = 55
         Me.lbchangeimg.Text = "0"
         Me.lbchangeimg.Visible = False
         '
@@ -786,7 +801,7 @@ Partial Class AddEditArticle
         Me.cbIsMixte.Location = New System.Drawing.Point(390, 284)
         Me.cbIsMixte.Name = "cbIsMixte"
         Me.cbIsMixte.Size = New System.Drawing.Size(102, 17)
-        Me.cbIsMixte.TabIndex = 26
+        Me.cbIsMixte.TabIndex = 16
         Me.cbIsMixte.Text = "Pour le mélange"
         Me.cbIsMixte.UseVisualStyleBackColor = True
         '
@@ -796,14 +811,14 @@ Partial Class AddEditArticle
         Me.txtunit.Location = New System.Drawing.Point(83, 121)
         Me.txtunit.Name = "txtunit"
         Me.txtunit.Size = New System.Drawing.Size(219, 20)
-        Me.txtunit.TabIndex = 8
+        Me.txtunit.TabIndex = 3
         '
         'Button5
         '
         Me.Button5.Location = New System.Drawing.Point(708, 248)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(51, 36)
-        Me.Button5.TabIndex = 21
+        Me.Button5.TabIndex = 15
         Me.Button5.Text = "C"
         Me.Button5.UseVisualStyleBackColor = True
         '
@@ -814,7 +829,7 @@ Partial Class AddEditArticle
         Me.Label15.Location = New System.Drawing.Point(332, 121)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(54, 20)
-        Me.Label15.TabIndex = 7
+        Me.Label15.TabIndex = 22
         Me.Label15.Text = "الوحــدة"
         '
         'Label10
@@ -824,7 +839,7 @@ Partial Class AddEditArticle
         Me.Label10.Location = New System.Drawing.Point(22, 121)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(41, 20)
-        Me.Label10.TabIndex = 7
+        Me.Label10.TabIndex = 22
         Me.Label10.Text = "Unité"
         '
         'Label14
@@ -834,7 +849,7 @@ Partial Class AddEditArticle
         Me.Label14.Location = New System.Drawing.Point(339, 86)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(47, 20)
-        Me.Label14.TabIndex = 15
+        Me.Label14.TabIndex = 22
         Me.Label14.Text = "الاســم"
         '
         'CBdp
@@ -847,7 +862,7 @@ Partial Class AddEditArticle
         Me.CBdp.Location = New System.Drawing.Point(83, 201)
         Me.CBdp.Name = "CBdp"
         Me.CBdp.Size = New System.Drawing.Size(196, 28)
-        Me.CBdp.TabIndex = 17
+        Me.CBdp.TabIndex = 13
         Me.CBdp.ValueMember = "dpid"
         '
         'DepotBindingSource
@@ -862,7 +877,7 @@ Partial Class AddEditArticle
         Me.Label13.Location = New System.Drawing.Point(285, 207)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(103, 20)
-        Me.Label13.TabIndex = 12
+        Me.Label13.TabIndex = 22
         Me.Label13.Text = "المخزن الرئيسي"
         '
         'Label1
@@ -872,7 +887,7 @@ Partial Class AddEditArticle
         Me.Label1.Location = New System.Drawing.Point(22, 207)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(45, 20)
-        Me.Label1.TabIndex = 12
+        Me.Label1.TabIndex = 22
         Me.Label1.Text = "Depôt"
         '
         'Label12
@@ -882,7 +897,7 @@ Partial Class AddEditArticle
         Me.Label12.Location = New System.Drawing.Point(326, 165)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(60, 20)
-        Me.Label12.TabIndex = 12
+        Me.Label12.TabIndex = 22
         Me.Label12.Text = "التصنيف"
         '
         'CategoryTableAdapter
@@ -896,10 +911,10 @@ Partial Class AddEditArticle
         'CheckBox1
         '
         Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(31, 469)
+        Me.CheckBox1.Location = New System.Drawing.Point(31, 463)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(147, 17)
-        Me.CheckBox1.TabIndex = 26
+        Me.CheckBox1.TabIndex = 19
         Me.CheckBox1.Text = "الحفاظ على النافدة مفتوحة"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
@@ -1007,4 +1022,5 @@ Partial Class AddEditArticle
     Friend WithEvents Label23 As System.Windows.Forms.Label
     Friend WithEvents Panel5 As System.Windows.Forms.Panel
     Friend WithEvents Button5 As System.Windows.Forms.Button
+    Friend WithEvents Button7 As System.Windows.Forms.Button
 End Class
