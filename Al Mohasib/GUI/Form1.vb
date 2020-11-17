@@ -6,7 +6,7 @@ Imports System.Text.RegularExpressions
 
 Public Class Form1
     'members
-    Private TrialName As String = "ALMsbtrFirstaRunMOSA4"
+    Private TrialName As String = "ALMsbtrFirstaRunMOSA5"
     Dim nbrDay_Trial As Integer = 60
 
     Public admin As Boolean
@@ -16,7 +16,7 @@ Public Class Form1
 
     Public dualScrean As New Screen2
 
-    Private isArabic As Boolean = False
+    Private isArabic As Boolean = True
     Public indexStartArticle As Integer = 0
     Public indexLastArticle As Integer
 
@@ -69,14 +69,49 @@ Public Class Form1
         End Set
     End Property
 
+
+
+    Private _RplWidth As Integer
+    Public Property RplWidth() As Integer
+        Get
+            Return _RplWidth
+        End Get
+        Set(ByVal value As Integer)
+            _RplWidth = value
+            PlRcpt.Width = value
+
+            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "RplWidth", value)
+
+        End Set
+    End Property
+
+    Private _RplHeight As Integer
+    Public Property RplHeight() As Integer
+        Get
+            Return _RplHeight
+        End Get
+        Set(ByVal value As Integer)
+            _RplHeight = value
+            RPl.CP.Height = value
+
+            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "RplHeight", value)
+
+        End Set
+    End Property
+
+
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
         HandleRegistryinfo()
-        'trial(Version)
-        Dim trial As Boolean = checktrialMaster()
-        If trial = False Then
-            MsgBox("Vous devez Contacter l'adminisration pour plus d'infos")
-            End
-        End If
+
+        Try
+            'trial(Version)
+            Dim trial As Boolean = checktrialMaster()
+            If trial = False Then
+                MsgBox("Vous devez Contacter l'adminisration pour plus d'infos")
+                End
+            End If
+        Catch ex As Exception
+        End Try
 
         '
         Me.DepotTableAdapter.Fill(Me.ALMohassinDBDataSet.Depot)
@@ -157,9 +192,13 @@ Public Class Form1
 
         RPl.hasManyRemise = CbArticleRemise.Checked
 
-        'Fill List of depots
-        Dim dtta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
-        dt_Depot = dtta.GetData()
+        Try
+            'Fill List of depots
+            Dim dtta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
+            dt_Depot = dtta.GetData()
+        Catch ex As Exception
+        End Try
+
         '''''''''''''''''''''''''
 
         If isArabic Then
@@ -175,21 +214,21 @@ Public Class Form1
             Button4.Text = "المـواد"
             Button5.Text = "المخـازن"
 
-            DGVS.Columns(1).HeaderText = "المواد"
-            DGVS.Columns(2).HeaderText = "الوحدة"
-            DGVS.Columns(3).HeaderText = "الكمية"
-            DGVS.Columns(4).HeaderText = "ثمن الشراء"
-            DGVS.Columns(5).HeaderText = "ثمن البيع"
-            DGVS.RightToLeft = Windows.Forms.RightToLeft.Yes
+            'DGVS.Columns(1).HeaderText = "المواد"
+            'DGVS.Columns(2).HeaderText = "الوحدة"
+            'DGVS.Columns(3).HeaderText = "الكمية"
+            'DGVS.Columns(4).HeaderText = "ثمن الشراء"
+            'DGVS.Columns(5).HeaderText = "ثمن البيع"
+            'DGVS.RightToLeft = Windows.Forms.RightToLeft.Yes
 
-            DGVARFA.Columns(2).HeaderText = "الاسم"
-            DGVARFA.Columns(3).HeaderText = "المجموع"
-            DGVARFA.Columns(4).HeaderText = "الدفع"
-            DGVARFA.Columns(5).HeaderText = "الباقي"
-            DGVARFA.Columns(6).HeaderText = "التاريخ"
-            DGVARFA.Columns(8).HeaderText = "المحرر"
-            DGVARFA.Columns(11).HeaderText = "ملاحظة"
-            DGVARFA.RightToLeft = Windows.Forms.RightToLeft.Yes
+            'DGVARFA.Columns(2).HeaderText = "الاسم"
+            'DGVARFA.Columns(3).HeaderText = "المجموع"
+            'DGVARFA.Columns(4).HeaderText = "الدفع"
+            'DGVARFA.Columns(5).HeaderText = "الباقي"
+            'DGVARFA.Columns(6).HeaderText = "التاريخ"
+            'DGVARFA.Columns(8).HeaderText = "المحرر"
+            'DGVARFA.Columns(11).HeaderText = "ملاحظة"
+            'DGVARFA.RightToLeft = Windows.Forms.RightToLeft.Yes
         End If
 
         If admin And cbProfit.Checked Then
@@ -203,7 +242,7 @@ Public Class Form1
         RPl.isSell = True
         If CbDepotOrigine.Checked Then plDepot.Visible = False
 
-        btTarif.Visible = chbsell.Checked
+        plTarif.Visible = chbsell.Checked
 
         GB1.Width = 35
         GB2.Width = 35
@@ -228,6 +267,18 @@ Public Class Form1
         Catch ex As Exception
 
         End Try
+
+        Me.Show()
+
+        Try
+            getRegistryinfo(RplWidth, "RplWidth", 404)
+            getRegistryinfo(RplHeight, "RplHeight", 248)
+        Catch ex As Exception
+        End Try
+
+
+        If cbListToRight.Checked Then PlRcpt.Dock = DockStyle.Right
+
 
         'Select Search txtbox
         If chbcb.Checked Then
@@ -282,6 +333,8 @@ Public Class Form1
                 End Using
 
             Case Keys.Escape 'qte of 0 the an article
+
+
                 If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
                 Using a As SubClass = New SubClass
                     a.UpdateItem(RPl.SelectedItem, 0, RPl.isSell, "qte")
@@ -410,11 +463,14 @@ Public Class Form1
                 End If
 
             Case Keys.Space  ' save and print
+               
                 Dim a As Integer = 0
 
                 If txtSearch.Focused Then a = 1
                 If txtSearchCode.Focused Then a = 1
 
+                'cancel espace
+                a = 0
 
                 If a = 1 Then
                     If RPl.Total_TTC = 0 Then
@@ -543,6 +599,21 @@ Public Class Form1
 
         End Try
     End Sub
+    Private Sub getRegistryinfo(ByRef txt As Integer, ByVal str As String, ByVal v As Integer)
+        Try
+            Dim msg As Integer
+            msg = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", str, Nothing)
+            If msg = Nothing Then
+                msg = v
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", str, msg)
+                txt = msg
+            Else
+                txt = msg
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
     Private Sub HandleRegistryinfo()
 
         Dim msg As String
@@ -611,8 +682,6 @@ Public Class Form1
         getRegistryinfo(txtEnteteMarge, "txtEnteteMarge", "160")
         getRegistryinfo(txtPiedMarge, "txtPiedMarge", "750")
 
-
-
         getRegistryinfo(chbsell, "chbsell", False)
         getRegistryinfo(CbArticleRemise, "CbArticleRemise", False)
         getRegistryinfo(chbprint, "chbprint", False)
@@ -646,6 +715,9 @@ Public Class Form1
         getRegistryinfo(cbSuppression, "cbSuppression", False)
         getRegistryinfo(cbNormalImp, "cbNormalImp", True)
         getRegistryinfo(cbShowGloblCredit, "cbShowGloblCredit", False)
+        getRegistryinfo(cbOptionJenani, "cbOptionJenani", False)
+        getRegistryinfo(cbListToRight, "cbListToRight", False)
+        getRegistryinfo(cbJnImgDb, "cbJnImgDb", False)
 
         getRegistryinfo(txtFnPtFr, "txtFnPtFr", "Arial")
         getRegistryinfo(txtFsPtFr, "txtFsPtFr", 10)
@@ -681,7 +753,7 @@ Public Class Form1
         '    'End If
         'End Using
 
-        checktrialMaster_Contrat()
+        'checktrialMaster_Contrat()
 
         Dim resultkey As Integer = HandleRegistry2()
         If resultkey = 0 Then 'something went wrong
@@ -742,6 +814,8 @@ Public Class Form1
         End If
     End Function
     Private Function HandleRegistry2() As Integer
+
+
         Dim ALMohasibfirstRunDate As Date
         Dim LastRunDate As Date
 
@@ -795,7 +869,7 @@ Public Class Form1
                 MsgBox("AL Mohasib System de gestion - Premier utilisation ..")
 
             Catch ex As Exception
-                MsgBox(ex.Message)
+                MsgBox("Error 1 : frst run " & vbNewLine & ex.Message)
 
             End Try
             Return 1
@@ -837,7 +911,7 @@ Public Class Form1
                 '''''''
 
             Catch ex As Exception
-                MsgBox(ex.Message)
+                MsgBox("Error 2 : scnd run " & vbNewLine & ex.Message)
             End Try
             Return 0
         Else
@@ -879,9 +953,8 @@ Public Class Form1
                 '''''''
 
             Catch ex As Exception
-                MsgBox(ex.Message)
-
-            End Try
+                MsgBox("Error 3 : trd run " & vbNewLine & ex.Message)
+                End Try
             Return 1
         End If
 
@@ -1003,7 +1076,6 @@ Public Class Form1
 
     End Function
 
-
     Private Sub DGVS_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles DGVS.Click
         If DGVS.SelectedRows.Count > 0 Then
             Dim id As Integer = DGVS.SelectedRows(0).Cells(0).Value
@@ -1097,6 +1169,9 @@ Public Class Form1
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbAffichageLimite", cbAffichageLimite.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbBaseOnStartedRemise", cbBaseOnStartedRemise.Checked)
 
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbOptionJenani", cbOptionJenani.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbListToRight", cbListToRight.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbJnImgDb", cbJnImgDb.Checked)
 
 
 
@@ -1426,6 +1501,7 @@ Public Class Form1
             If RPl.EditMode = False Then
                 a.fillFactures(isS)
             Else
+                lbLastBon.Text = ""
                 DGVARFA.SelectedRows(0).Cells(3).Value = RPl.Total_TTC
                 DGVARFA.SelectedRows(0).Cells(4).Value = RPl.Avance
                 DGVARFA.SelectedRows(0).Cells(5).Value = RPl.Tva
@@ -1571,6 +1647,7 @@ Public Class Form1
 
                 a.SaveFacture(id, RPl.Total_TTC, RPl.Avance, tva, table, RPl.Remise, RPl.bl, RPl.isSell)
                 a.fillFactures(btswitsh.Tag)
+
                 'a.FillGroupes(True)
                 'a.FillGroupes()
             End Using
@@ -1718,7 +1795,7 @@ Public Class Form1
     End Sub
     Private Sub TabControl1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TabControl1.SelectedIndexChanged
         If TabControl1.SelectedIndex = 0 Then
-            PlRcpt.Width = 420
+            PlRcpt.Width = _RplWidth
             RPl.EditMode = False
             RPl.ShowClc = True
             RPl.isSell = CBool(btswitsh.Tag)
@@ -1726,7 +1803,7 @@ Public Class Form1
                 a.fillFactures(CInt(btswitsh.Tag))
             End Using
         ElseIf TabControl1.SelectedIndex = 1 Then
-            PlRcpt.Width = 420
+            PlRcpt.Width = _RplWidth
             RPl.EditMode = True
             RPl.isSell = CBool(btSwitch2.Tag)
             RPl.ClearItems()
@@ -3004,6 +3081,9 @@ Public Class Form1
         Dim R_CH As Double = 0
         Dim R_VR As Double = 0
 
+        Dim credit As Double = 0
+
+
         DGVARFA.Rows.Clear()
         ProgressBar1.Value = 0
 
@@ -3015,7 +3095,32 @@ Public Class Form1
 
                 dt = a.SelectDataTableSymbols(tName, {"*"}, params)
 
+                params.Add("payed = ", False)
 
+
+                tName = "Facture"
+                If isSell = False Then tName = "Bon"
+                Dim dt_cr = a.SelectDataTableSymbols(tName, {"SUM(total)", "SUM(avance)"}, params)
+
+                If dt_cr.Rows.Count > 0 Then
+                    Dim t_cr As Double = 0
+                    Dim a_cr As Double = 0
+
+                    Try
+                        t_cr = dt_cr.Rows(0).Item(0)
+                    Catch ex As Exception
+                        t_cr = 0
+                    End Try
+
+                    Try
+                        a_cr = dt_cr.Rows(0).Item(1)
+                    Catch ex As Exception
+                        a_cr = 0
+                    End Try
+
+
+                    credit = t_cr - a_cr
+                End If
             End Using
 
             If dt.Rows.Count > 0 Then
@@ -3023,15 +3128,15 @@ Public Class Form1
                 For i As Integer = 0 To dt.Rows.Count - 1
 
                     DGVARFA.Rows.Add(0,
-                     dt.Rows(i).Item("clid").ToString, dt.Rows(i).Item("name").ToString,
+                     dt.Rows(i).Item(2).ToString, dt.Rows(i).Item("name").ToString,
                    String.Format("{0:n}", CDec(dt.Rows(i).Item("montant").ToString)),
                      dt.Rows(i).Item("way").ToString,
                   "", CDate(dt.Rows(i).Item("date")).ToString("dd, MMM yy [hh:mm]"),
-                     "", dt.Rows(i).Item("writer").ToString, "", "", "", dt.Rows(i).Item("fctid").ToString)
+                     "", dt.Rows(i).Item("writer").ToString, "", "", "", dt.Rows(i).Item(7).ToString)
 
                     TT += CDec(dt.Rows(i).Item("montant").ToString)
 
-                    If dt.Rows(i).Item("way").ToString.StartsWith("@/") Then
+                    If dt.Rows(i).Item("Num").ToString.StartsWith("@/") Then
 
                         R_TT += CDec(dt.Rows(i).Item("montant").ToString)
                         If dt.Rows(i).Item("way").ToString.ToUpper.StartsWith("CHEQ") Then
@@ -3088,30 +3193,35 @@ Public Class Form1
             table.Columns.Add("depot", GetType(Integer))
             table.Columns.Add("code", GetType(String))
 
-            table.Rows.Add(0, -111, 1, "TOTAL", "U", TT, TT, 0, 0, -110, 0, 0)
+            'table.Rows.Add(0, -111, 1, "TOTAL", "U", TT, TT, 0, 0, -110, 0, 0)
 
-            table.Rows.Add(0, -112, 1, "VIREMENT", "U", T_VR, T_VR, 0, 100, -110, 0, 0)
-            table.Rows.Add(0, -112, 1, "CHEQUE", "U", T_CH, T_CH, 0, 100, -110, 0, 0)
-            table.Rows.Add(0, -112, 1, "TPE", "U", T_TP, T_TP, 0, 100, -110, 0, 0)
-            table.Rows.Add(0, -112, 1, "CACHE", "U", T_CA, T_CA, 0, 100, -110, 0, 0)
+            table.Rows.Add(0, -112, 1, "VIREMENT", "U", T_VR, T_VR, 0, 0, -110, 0, 0)
+            table.Rows.Add(0, -113, 1, "CHEQUE", "U", T_CH, T_CH, 0, 0, -110, 0, 0)
+            table.Rows.Add(0, -114, 1, "TPE", "U", T_TP, T_TP, 0, 0, -110, 0, 0)
+            table.Rows.Add(0, -115, 1, "CACHE", "U", T_CA, T_CA, 0, 0, -110, 0, 0)
 
-            table.Rows.Add(0, -112, 1, "RECOUVREMENT TOTAL", "U", R_TT, R_TT, 0, 100, -110, 0, 0)
+            table.Rows.Add(0, -116, 1, "RECOUVREMENT TOTAL", "U", R_TT, R_TT, 0, 100, -110, 0, 0)
 
-            table.Rows.Add(0, -112, 1, "REC. VIREMENT", "U", R_VR, R_VR, 0, 100, -110, 0, 0)
-            table.Rows.Add(0, -112, 1, "REC. CHEQUE", "U", R_CH, R_CH, 0, 100, -110, 0, 0)
-            table.Rows.Add(0, -112, 1, "REC. TPE", "U", R_TP, R_TP, 0, 100, -110, 0, 0)
-            table.Rows.Add(0, -112, 1, "REC. CACHE", "U", R_CA, R_CA, 0, 100, -110, 0, 0)
+            table.Rows.Add(0, -117, 1, "REC. VIREMENT", "U", R_VR, R_VR, 0, 100, -110, 0, 0)
+            table.Rows.Add(0, -118, 1, "REC. CHEQUE", "U", R_CH, R_CH, 0, 100, -110, 0, 0)
+            table.Rows.Add(0, -119, 1, "REC. TPE", "U", R_TP, R_TP, 0, 100, -110, 0, 0)
+            table.Rows.Add(0, -120, 1, "REC. CACHE", "U", R_CA, R_CA, 0, 100, -110, 0, 0)
 
+            table.Rows.Add(0, -121, 1, "Credit", "U", credit, credit, 0, 100, -110, 0, 0)
 
-
-
-            table.Rows.Add(0, -112, 1, "Nombre", "U", DGVARFA.Rows.Count, DGVARFA.Rows.Count, 0, 100, -110, 0, 0)
+            table.Rows.Add(0, -122, 1, "Nombre", "U", DGVARFA.Rows.Count, DGVARFA.Rows.Count, 0, 100, -110, 0, 0)
 
             RPl.ClearItems()
 
 
             RPl.FctId = 0
-            RPl.ClientName = "CAISSE"
+            RPl.ClientName = "RECETTES du" & dt2.ToString("dd/MM") & " au " & dt1.ToString("dd/MM")
+            RPl.ClientAdresse = "RECETTES "
+            If isSell = False Then
+                RPl.ClientName = "DEPENSES du" & dt2.ToString("dd/MM") & " au " & dt1.ToString("dd/MM")
+                RPl.ClientAdresse = "DEPENSES "
+            End If
+
             RPl.ClId = 0
             RPl.Avance = 0
 
@@ -3901,5 +4011,36 @@ Public Class Form1
         Else
             GB6.Width = 370
         End If
+    End Sub
+
+    Private Sub Button44_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        PlRcpt.Width += 44
+    End Sub
+
+    Private Sub PlRcpt_MouseUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles PlRcpt.MouseUp
+        RplWidth = e.X
+    End Sub
+
+    Private Sub btGoBack_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btGoBack.Click
+
+        Dim pr As Integer = 0
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim params As New Dictionary(Of String, Object)
+            params.Add("cid", btGoBack.Tag)
+
+            pr = c.SelectByScalar("Category", "pr", params)
+        End Using
+
+
+        btGoBack.Tag = pr
+
+        Using a As SubClass = New SubClass()
+            If pr = 0 Then
+                a.FillGroupes(False)
+            Else
+                a.ctg_click(sender, e)
+            End If
+
+        End Using
     End Sub
 End Class

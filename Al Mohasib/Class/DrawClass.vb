@@ -1362,10 +1362,10 @@
             m += 1
         End While
 
-        Dim ht As String = String.Format("{0:n}", CDec(totalht))
+        Dim avc As String = String.Format("{0:n}", CDec(Form1.payedCache))
         Dim Ttva As String = String.Format("{0:n}", CDec(totaltva))
         Dim ttc As String = String.Format("{0:n}", CDec(totalttc))
-        Dim rest As String = String.Format("{0:n}", CDec(totalttc - avance))
+        Dim rest As String = String.Format("{0:n}", CDec(totalttc - Form1.payedCache))
 
         l += 10
 

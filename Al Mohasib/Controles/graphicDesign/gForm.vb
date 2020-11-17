@@ -227,7 +227,7 @@ Public Class gForm
 
                         If a.hasBloc Then
                             G.DrawRectangle(pen, a.x, a.y, a.width, a.height)
-                            Dim _br As New SolidBrush(a.backColor)
+                            Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
                             G.FillRectangle(_br, a.x, a.y, a.width, a.height)
 
                             top_x += 5
@@ -479,7 +479,7 @@ Public Class gForm
                         Dim xx = a.x
                         Dim yy = a.y
                         If a.hasBloc Then
-                            Dim _br As New SolidBrush(a.backColor)
+                            Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
                             G.FillRectangle(_br, a.x, a.y, a.width, a.height)
                             G.DrawRectangle(pen, a.x, a.y, a.width, a.height)
                         End If
@@ -513,7 +513,7 @@ Public Class gForm
                             End Try
                         ElseIf a.field.StartsWith("total") Then
                             If a.hasBloc Then
-                                Dim _br As New SolidBrush(a.backColor)
+                                Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
                                 G.FillRectangle(_br, a.x + a.width, a.y, a.width, a.height)
                                 G.DrawRectangle(pen, a.x + a.width, a.y, a.width, a.height)
                                 xx += 5
@@ -531,7 +531,7 @@ Public Class gForm
 
                         ElseIf a.field.StartsWith("x_total") Then
                             If a.hasBloc Then
-                                Dim _br As New SolidBrush(a.backColor)
+                                Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
                                 G.FillRectangle(_br, a.x + a.width, a.y, a.width, a.height)
                                 G.DrawRectangle(pen, a.x + a.width, a.y, a.width, a.height)
                                 xx += 5
@@ -551,7 +551,7 @@ Public Class gForm
 
                         ElseIf a.field.StartsWith("rest") Then
                             If a.hasBloc Then
-                                Dim _br As New SolidBrush(a.backColor)
+                                Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
                                 G.FillRectangle(_br, a.x + a.width, a.y, a.width, a.height)
                                 G.DrawRectangle(pen, a.x + a.width, a.y, a.width, a.height)
                                 xx += 5
@@ -853,7 +853,7 @@ Public Class gForm
         _tabProp.y = IIf(p1.Y > p2.Y, p2.Y, p1.Y)
         _tabProp.fSize = 9
         _tabProp.isBold = False
-        _tabProp.backColor = Color.Gray
+        _tabProp.backColor = Color.Gray.ToArgb
         _tabProp.hasBloc = True
 
         Dim bt As New Button

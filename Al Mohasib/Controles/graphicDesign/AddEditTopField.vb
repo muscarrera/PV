@@ -14,7 +14,7 @@
             _tabProp.fSize = T.text
             _tabProp.isBold = CheckBox1.Checked
 
-            _tabProp.backColor = btColor.BackColor
+            _tabProp.backColor = btColor.BackColor.ToArgb
             _tabProp.hasBloc = cbBloc.Checked
 
             Return _tabProp
@@ -32,7 +32,7 @@
             Y.text = value.y
             T.text = value.fSize
             CheckBox1.Checked = value.isBold
-            btColor.BackColor = value.backColor
+            btColor.BackColor = Color.FromArgb(value.backColor)
             cbBloc.Checked = value.hasBloc
         End Set
     End Property
@@ -79,7 +79,7 @@
         Dim cr As New ColorDialog
         If cr.ShowDialog = DialogResult.OK Then
             btColor.BackColor = cr.Color
-            _tabProp.backColor = cr.Color
+            _tabProp.backColor = cr.Color.ToArgb
         End If
     End Sub
 End Class

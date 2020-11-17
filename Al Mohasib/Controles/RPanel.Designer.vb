@@ -25,6 +25,7 @@ Partial Class RPanel
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RPanel))
         Me.PlTop = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.BtDel = New System.Windows.Forms.Button()
         Me.BtSave = New System.Windows.Forms.Button()
         Me.BtBlPrint = New System.Windows.Forms.Button()
@@ -62,15 +63,28 @@ Partial Class RPanel
         Me.Panel1.BackColor = System.Drawing.SystemColors.Control
         Me.Panel1.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.bgbuy
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Controls.Add(Me.BtDel)
         Me.Panel1.Controls.Add(Me.BtSave)
         Me.Panel1.Controls.Add(Me.BtBlPrint)
         Me.Panel1.Controls.Add(Me.BtPrint)
+        Me.Panel1.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel1.Location = New System.Drawing.Point(0, 275)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(385, 40)
         Me.Panel1.TabIndex = 2
+        '
+        'Panel2
+        '
+        Me.Panel2.AutoScroll = True
+        Me.Panel2.BackColor = System.Drawing.Color.MediumBlue
+        Me.Panel2.Cursor = System.Windows.Forms.Cursors.HSplit
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel2.Location = New System.Drawing.Point(0, 37)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(385, 3)
+        Me.Panel2.TabIndex = 3
         '
         'BtDel
         '
@@ -167,6 +181,7 @@ Partial Class RPanel
         'Pl
         '
         Me.Pl.AutoScroll = True
+        Me.Pl.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.Pl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Pl.Location = New System.Drawing.Point(0, 0)
         Me.Pl.Name = "Pl"
@@ -185,6 +200,7 @@ Partial Class RPanel
         Me.PlHeader.Controls.Add(Me.Lbavc)
         Me.PlHeader.Controls.Add(Me.LbSum)
         Me.PlHeader.Controls.Add(Me.ShapeContainer1)
+        Me.PlHeader.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.PlHeader.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PlHeader.Location = New System.Drawing.Point(0, 220)
         Me.PlHeader.Name = "PlHeader"
@@ -302,6 +318,8 @@ Partial Class RPanel
         '
         'LineShape1
         '
+        Me.LineShape1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LineShape1.Name = "LineShape1"
         Me.LineShape1.X1 = 211
         Me.LineShape1.X2 = 386
@@ -311,6 +329,7 @@ Partial Class RPanel
         'CP
         '
         Me.CP.bl = "---"
+        Me.CP.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.CP.Depot = 0
         Me.CP.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.CP.EditMode = False
@@ -359,5 +378,6 @@ Partial Class RPanel
     Friend WithEvents BtBlPrint As System.Windows.Forms.Button
     Friend WithEvents lbProfit As System.Windows.Forms.Label
     Friend WithEvents CP As Al_Mohasib.CPanel
+    Friend WithEvents Panel2 As System.Windows.Forms.Panel
 
 End Class

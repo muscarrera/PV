@@ -94,7 +94,7 @@ Public Class Articles
                                     artdt.Rows(i).Item("tva").ToString, artdt.Rows(i).Item("sp3").ToString,
                                     artdt.Rows(i).Item("sp4").ToString, artdt.Rows(i).Item("sp5").ToString,
                                     artdt.Rows(i).Item("poid").ToString, bt2.Tag, artdt.Rows(i).Item("Depot").ToString,
-                                    artdt.Rows(i).Item("img").ToString, artdt.Rows(i).Item("elements"))
+                                    artdt.Rows(i).Item("img").ToString, artdt.Rows(i).Item("mixte"), artdt.Rows(i).Item("elements"))
                 Next
             End If
 
@@ -151,9 +151,9 @@ Public Class Articles
         art.txttva.text = tva
         art.txtprdname.Tag = DGVPRD.SelectedRows(0).Cells(0).Value.ToString
         art.PlPrice.Visible = Form1.chbsell.Checked
-        art.cbIsMixte.Checked = CBool(DGVPRD.SelectedRows(0).Cells(0).Value)
+        art.cbIsMixte.Checked = CBool(DGVPRD.SelectedRows(0).Cells(14).Value)
         Try
-            art.txtMinStock.text = CInt(DGVPRD.SelectedRows(0).Cells(14).Value)
+            art.txtMinStock.text = CInt(DGVPRD.SelectedRows(0).Cells(15).Value)
         Catch ex As Exception
             art.txtMinStock.text = "0"
         End Try
@@ -277,7 +277,13 @@ Public Class Articles
             Else
                 For i As Integer = 0 To artdt.Rows.Count - 1
                     Dim bt As New Button
-                    DGVPRD.Rows.Add(artdt.Rows(i).Item("arid").ToString, artdt.Rows(i).Item("codebar").ToString, artdt.Rows(i).Item("name").ToString, artdt.Rows(i).Item("unite").ToString, artdt.Rows(i).Item("bprice").ToString, artdt.Rows(i).Item("sprice").ToString, artdt.Rows(i).Item("tva").ToString, artdt.Rows(i).Item("sp3").ToString, artdt.Rows(i).Item("sp4").ToString, artdt.Rows(i).Item("sp5").ToString, artdt.Rows(i).Item("poid").ToString, artdt.Rows(i).Item("cid").ToString, artdt.Rows(i).Item("Depot").ToString, artdt.Rows(i).Item("img").ToString)
+                    DGVPRD.Rows.Add(artdt.Rows(i).Item("arid").ToString, artdt.Rows(i).Item("codebar").ToString,
+                                    artdt.Rows(i).Item("name").ToString, artdt.Rows(i).Item("unite").ToString,
+                                    artdt.Rows(i).Item("bprice").ToString, artdt.Rows(i).Item("sprice").ToString,
+                                    artdt.Rows(i).Item("tva").ToString, artdt.Rows(i).Item("sp3").ToString,
+                                    artdt.Rows(i).Item("sp4").ToString, artdt.Rows(i).Item("sp5").ToString,
+                                    artdt.Rows(i).Item("poid").ToString, artdt.Rows(i).Item("cid").ToString, artdt.Rows(i).Item("Depot").ToString,
+                                    artdt.Rows(i).Item("img").ToString, artdt.Rows(i).Item("mixte"), artdt.Rows(i).Item("elements"))
                 Next
             End If
 

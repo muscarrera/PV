@@ -89,10 +89,10 @@
         End Set
     End Property
 
-    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button9.Click, Button8.Click, Button7.Click, Button4.Click, Button3.Click, Button2.Click, Button16.Click, Button13.Click, Button12.Click, Button11.Click, Button17.Click
+    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bt6.Click, bt5.Click, bt4.Click, bt7.Click, bt8.Click, bt9.Click, bt0.Click, bt3.Click, bt2.Click, bt1.Click, btPn.Click
         Dim bt As Button = sender
         Dim decimalSeparator As String = Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator
-        If bt.Text = Button17.Text Then
+        If bt.Text = btPn.Text Then
             If Not txt.Text.Contains(decimalSeparator) Then txt.Text = txt.Text + decimalSeparator
             Exit Sub
         End If
@@ -158,7 +158,7 @@
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtRemise.Click
         RaiseEvent UpdateRemise()
     End Sub
-    Private Sub Button15_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button15.Click
+    Private Sub Button15_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btPlus.Click
         Value += 1
     End Sub
     Private Sub Button18_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtDpt.Click
@@ -181,5 +181,37 @@
     End Sub
     Private Sub BtCmd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtCmd.Click
         RaiseEvent CommandeDate()
+    End Sub
+
+    Private Sub Panel3_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Panel3.Resize
+        Dim wd As Integer = Panel3.Width
+
+        wd = CInt(wd / 3)
+
+        'PLLF.Width = 50 + (wd / 2)
+        'PLRT.Width = 50 + (wd / 2)
+
+
+        bt1.Width = wd
+        bt3.Width = wd
+        bt4.Width = wd
+        bt6.Width = wd
+        bt7.Width = wd
+        bt9.Width = wd
+        btPlus.Width = wd
+        btPn.Width = wd
+
+        wd = Panel3.Height
+        wd = CInt(wd / 4)
+
+        PLNB1.Height = wd
+        PLNB2.Height = wd
+        PLNB3.Height = wd
+        BtCmd.Height = wd
+        BtRemise.Height = wd
+        btClient.Height = wd
+        BtQte.Height = wd
+        BtPrix.Height = wd
+        BtDel.Height = wd
     End Sub
 End Class

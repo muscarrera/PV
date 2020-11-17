@@ -89,9 +89,9 @@ Public Class gDrawClass
 
                
                 If a.hasBloc Then
-                    g.DrawRectangle(pen, a.x, a.y, a.width, a.height)
-                    Dim _br As New SolidBrush(a.backColor)
-                    g.FillRectangle(_br, a.x, a.y, a.width, a.height)
+                        'g.DrawRectangle(pen, a.x, a.y, a.width, a.height)
+                        Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
+                        g.FillRectangle(_br, a.x, a.y, a.width, a.height)
 
                     top_x += 5
                     top_y += 3
@@ -367,7 +367,7 @@ Public Class gDrawClass
                 Dim xx = a.x
                 Dim yy = a.y
                 If a.hasBloc Then
-                    Dim _br As New SolidBrush(a.backColor)
+                        Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
                     g.FillRectangle(_br, a.x, a.y, a.width, a.height)
                     g.DrawRectangle(pen, a.x, a.y, a.width, a.height)
                 End If
@@ -401,7 +401,7 @@ Public Class gDrawClass
                     End Try
                 ElseIf a.field.StartsWith("total") Then
                     If a.hasBloc Then
-                        Dim _br As New SolidBrush(a.backColor)
+                            Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
                         g.FillRectangle(_br, a.x + a.width, a.y, a.width, a.height)
                         g.DrawRectangle(pen, a.x + a.width, a.y, a.width, a.height)
                         xx += 5
@@ -420,7 +420,7 @@ Public Class gDrawClass
 
                     ElseIf a.field.StartsWith("x_total") Then
                         If a.hasBloc Then
-                            Dim _br As New SolidBrush(a.backColor)
+                            Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
                             g.FillRectangle(_br, a.x + a.width, a.y, a.width, a.height)
                             g.DrawRectangle(pen, a.x + a.width, a.y, a.width, a.height)
                             xx += 5

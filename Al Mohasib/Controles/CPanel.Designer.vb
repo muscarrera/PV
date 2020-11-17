@@ -23,7 +23,7 @@ Partial Class CPanel
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CPanel))
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.PLRT = New System.Windows.Forms.Panel()
         Me.BtDpt = New System.Windows.Forms.Button()
         Me.BtDel = New System.Windows.Forms.Button()
         Me.BtPrix = New System.Windows.Forms.Button()
@@ -32,22 +32,22 @@ Partial Class CPanel
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel7 = New System.Windows.Forms.Panel()
-        Me.Button16 = New System.Windows.Forms.Button()
-        Me.Button15 = New System.Windows.Forms.Button()
-        Me.Button17 = New System.Windows.Forms.Button()
-        Me.Panel6 = New System.Windows.Forms.Panel()
-        Me.Button12 = New System.Windows.Forms.Button()
-        Me.Button11 = New System.Windows.Forms.Button()
-        Me.Button13 = New System.Windows.Forms.Button()
-        Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.Button9 = New System.Windows.Forms.Button()
-        Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.bt0 = New System.Windows.Forms.Button()
+        Me.btPlus = New System.Windows.Forms.Button()
+        Me.btPn = New System.Windows.Forms.Button()
+        Me.PLNB3 = New System.Windows.Forms.Panel()
+        Me.bt2 = New System.Windows.Forms.Button()
+        Me.bt1 = New System.Windows.Forms.Button()
+        Me.bt3 = New System.Windows.Forms.Button()
+        Me.PLNB2 = New System.Windows.Forms.Panel()
+        Me.bt5 = New System.Windows.Forms.Button()
+        Me.bt4 = New System.Windows.Forms.Button()
+        Me.bt6 = New System.Windows.Forms.Button()
+        Me.PLNB1 = New System.Windows.Forms.Panel()
+        Me.bt8 = New System.Windows.Forms.Button()
+        Me.bt9 = New System.Windows.Forms.Button()
+        Me.bt7 = New System.Windows.Forms.Button()
+        Me.PLLF = New System.Windows.Forms.Panel()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.btClient = New System.Windows.Forms.Button()
         Me.BtCmd = New System.Windows.Forms.Button()
@@ -55,29 +55,29 @@ Partial Class CPanel
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.txt = New System.Windows.Forms.TextBox()
         Me.Button19 = New System.Windows.Forms.Button()
-        Me.Panel1.SuspendLayout()
+        Me.PLRT.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel7.SuspendLayout()
-        Me.Panel6.SuspendLayout()
-        Me.Panel5.SuspendLayout()
-        Me.Panel9.SuspendLayout()
-        Me.Panel4.SuspendLayout()
+        Me.PLNB3.SuspendLayout()
+        Me.PLNB2.SuspendLayout()
+        Me.PLNB1.SuspendLayout()
+        Me.PLLF.SuspendLayout()
         Me.PlTxt.SuspendLayout()
         Me.Panel8.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Panel1
+        'PLRT
         '
-        Me.Panel1.Controls.Add(Me.BtDpt)
-        Me.Panel1.Controls.Add(Me.BtDel)
-        Me.Panel1.Controls.Add(Me.BtPrix)
-        Me.Panel1.Controls.Add(Me.BtQte)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel1.Location = New System.Drawing.Point(333, 38)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(46, 209)
-        Me.Panel1.TabIndex = 0
+        Me.PLRT.Controls.Add(Me.BtDpt)
+        Me.PLRT.Controls.Add(Me.BtDel)
+        Me.PLRT.Controls.Add(Me.BtPrix)
+        Me.PLRT.Controls.Add(Me.BtQte)
+        Me.PLRT.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PLRT.Location = New System.Drawing.Point(329, 38)
+        Me.PLRT.Name = "PLRT"
+        Me.PLRT.Size = New System.Drawing.Size(62, 209)
+        Me.PLRT.TabIndex = 0
         '
         'BtDpt
         '
@@ -88,7 +88,7 @@ Partial Class CPanel
         Me.BtDpt.Location = New System.Drawing.Point(0, 159)
         Me.BtDpt.Margin = New System.Windows.Forms.Padding(0)
         Me.BtDpt.Name = "BtDpt"
-        Me.BtDpt.Size = New System.Drawing.Size(46, 50)
+        Me.BtDpt.Size = New System.Drawing.Size(62, 50)
         Me.BtDpt.TabIndex = 0
         Me.BtDpt.Text = "Dpt"
         Me.BtDpt.UseVisualStyleBackColor = False
@@ -104,7 +104,7 @@ Partial Class CPanel
         Me.BtDel.Location = New System.Drawing.Point(0, 106)
         Me.BtDel.Margin = New System.Windows.Forms.Padding(0)
         Me.BtDel.Name = "BtDel"
-        Me.BtDel.Size = New System.Drawing.Size(46, 53)
+        Me.BtDel.Size = New System.Drawing.Size(62, 53)
         Me.BtDel.TabIndex = 0
         Me.BtDel.UseVisualStyleBackColor = False
         '
@@ -117,7 +117,7 @@ Partial Class CPanel
         Me.BtPrix.Location = New System.Drawing.Point(0, 53)
         Me.BtPrix.Margin = New System.Windows.Forms.Padding(0)
         Me.BtPrix.Name = "BtPrix"
-        Me.BtPrix.Size = New System.Drawing.Size(46, 53)
+        Me.BtPrix.Size = New System.Drawing.Size(62, 53)
         Me.BtPrix.TabIndex = 0
         Me.BtPrix.Text = "Prix"
         Me.BtPrix.UseVisualStyleBackColor = False
@@ -131,7 +131,7 @@ Partial Class CPanel
         Me.BtQte.Location = New System.Drawing.Point(0, 0)
         Me.BtQte.Margin = New System.Windows.Forms.Padding(0)
         Me.BtQte.Name = "BtQte"
-        Me.BtQte.Size = New System.Drawing.Size(46, 53)
+        Me.BtQte.Size = New System.Drawing.Size(62, 53)
         Me.BtQte.TabIndex = 0
         Me.BtQte.Text = "Qte"
         Me.BtQte.UseVisualStyleBackColor = False
@@ -154,284 +154,284 @@ Partial Class CPanel
         'Panel2
         '
         Me.Panel2.Controls.Add(Me.Panel3)
-        Me.Panel2.Controls.Add(Me.Panel4)
+        Me.Panel2.Controls.Add(Me.PLLF)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(5, 38)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(328, 209)
+        Me.Panel2.Size = New System.Drawing.Size(324, 209)
         Me.Panel2.TabIndex = 1
         '
         'Panel3
         '
         Me.Panel3.Controls.Add(Me.Panel7)
-        Me.Panel3.Controls.Add(Me.Panel6)
-        Me.Panel3.Controls.Add(Me.Panel5)
-        Me.Panel3.Controls.Add(Me.Panel9)
+        Me.Panel3.Controls.Add(Me.PLNB3)
+        Me.Panel3.Controls.Add(Me.PLNB2)
+        Me.Panel3.Controls.Add(Me.PLNB1)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel3.Location = New System.Drawing.Point(62, 0)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(266, 209)
+        Me.Panel3.Size = New System.Drawing.Size(262, 209)
         Me.Panel3.TabIndex = 0
         '
         'Panel7
         '
-        Me.Panel7.Controls.Add(Me.Button16)
-        Me.Panel7.Controls.Add(Me.Button15)
-        Me.Panel7.Controls.Add(Me.Button17)
+        Me.Panel7.Controls.Add(Me.bt0)
+        Me.Panel7.Controls.Add(Me.btPlus)
+        Me.Panel7.Controls.Add(Me.btPn)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel7.Location = New System.Drawing.Point(0, 159)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(266, 50)
+        Me.Panel7.Size = New System.Drawing.Size(262, 50)
         Me.Panel7.TabIndex = 3
         '
-        'Button16
+        'bt0
         '
-        Me.Button16.BackgroundImage = CType(resources.GetObject("Button16.BackgroundImage"), System.Drawing.Image)
-        Me.Button16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button16.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Button16.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button16.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button16.Location = New System.Drawing.Point(90, 0)
-        Me.Button16.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button16.Name = "Button16"
-        Me.Button16.Size = New System.Drawing.Size(86, 50)
-        Me.Button16.TabIndex = 2
-        Me.Button16.Text = "0"
-        Me.Button16.UseVisualStyleBackColor = True
+        Me.bt0.BackgroundImage = CType(resources.GetObject("bt0.BackgroundImage"), System.Drawing.Image)
+        Me.bt0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.bt0.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.bt0.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.bt0.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bt0.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bt0.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.bt0.Location = New System.Drawing.Point(90, 0)
+        Me.bt0.Margin = New System.Windows.Forms.Padding(0)
+        Me.bt0.Name = "bt0"
+        Me.bt0.Size = New System.Drawing.Size(82, 50)
+        Me.bt0.TabIndex = 2
+        Me.bt0.Text = "0"
+        Me.bt0.UseVisualStyleBackColor = True
         '
-        'Button15
+        'btPlus
         '
-        Me.Button15.BackgroundImage = CType(resources.GetObject("Button15.BackgroundImage"), System.Drawing.Image)
-        Me.Button15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button15.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button15.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button15.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button15.Location = New System.Drawing.Point(0, 0)
-        Me.Button15.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button15.Name = "Button15"
-        Me.Button15.Size = New System.Drawing.Size(90, 50)
-        Me.Button15.TabIndex = 3
-        Me.Button15.Text = "+"
-        Me.Button15.UseVisualStyleBackColor = True
+        Me.btPlus.BackgroundImage = CType(resources.GetObject("btPlus.BackgroundImage"), System.Drawing.Image)
+        Me.btPlus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btPlus.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btPlus.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.btPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btPlus.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btPlus.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btPlus.Location = New System.Drawing.Point(0, 0)
+        Me.btPlus.Margin = New System.Windows.Forms.Padding(0)
+        Me.btPlus.Name = "btPlus"
+        Me.btPlus.Size = New System.Drawing.Size(90, 50)
+        Me.btPlus.TabIndex = 3
+        Me.btPlus.Text = "+"
+        Me.btPlus.UseVisualStyleBackColor = True
         '
-        'Button17
+        'btPn
         '
-        Me.Button17.BackgroundImage = CType(resources.GetObject("Button17.BackgroundImage"), System.Drawing.Image)
-        Me.Button17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button17.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button17.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button17.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button17.Location = New System.Drawing.Point(176, 0)
-        Me.Button17.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button17.Name = "Button17"
-        Me.Button17.Size = New System.Drawing.Size(90, 50)
-        Me.Button17.TabIndex = 1
-        Me.Button17.Text = "."
-        Me.Button17.UseVisualStyleBackColor = True
+        Me.btPn.BackgroundImage = CType(resources.GetObject("btPn.BackgroundImage"), System.Drawing.Image)
+        Me.btPn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btPn.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btPn.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.btPn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btPn.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btPn.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.btPn.Location = New System.Drawing.Point(172, 0)
+        Me.btPn.Margin = New System.Windows.Forms.Padding(0)
+        Me.btPn.Name = "btPn"
+        Me.btPn.Size = New System.Drawing.Size(90, 50)
+        Me.btPn.TabIndex = 1
+        Me.btPn.Text = "."
+        Me.btPn.UseVisualStyleBackColor = True
         '
-        'Panel6
+        'PLNB3
         '
-        Me.Panel6.Controls.Add(Me.Button12)
-        Me.Panel6.Controls.Add(Me.Button11)
-        Me.Panel6.Controls.Add(Me.Button13)
-        Me.Panel6.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel6.Location = New System.Drawing.Point(0, 106)
-        Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(266, 53)
-        Me.Panel6.TabIndex = 2
+        Me.PLNB3.Controls.Add(Me.bt2)
+        Me.PLNB3.Controls.Add(Me.bt1)
+        Me.PLNB3.Controls.Add(Me.bt3)
+        Me.PLNB3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PLNB3.Location = New System.Drawing.Point(0, 106)
+        Me.PLNB3.Name = "PLNB3"
+        Me.PLNB3.Size = New System.Drawing.Size(262, 53)
+        Me.PLNB3.TabIndex = 2
         '
-        'Button12
+        'bt2
         '
-        Me.Button12.BackgroundImage = CType(resources.GetObject("Button12.BackgroundImage"), System.Drawing.Image)
-        Me.Button12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button12.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Button12.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button12.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button12.Location = New System.Drawing.Point(90, 0)
-        Me.Button12.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button12.Name = "Button12"
-        Me.Button12.Size = New System.Drawing.Size(86, 53)
-        Me.Button12.TabIndex = 2
-        Me.Button12.Text = "2"
-        Me.Button12.UseVisualStyleBackColor = True
+        Me.bt2.BackgroundImage = CType(resources.GetObject("bt2.BackgroundImage"), System.Drawing.Image)
+        Me.bt2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.bt2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.bt2.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.bt2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bt2.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bt2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.bt2.Location = New System.Drawing.Point(90, 0)
+        Me.bt2.Margin = New System.Windows.Forms.Padding(0)
+        Me.bt2.Name = "bt2"
+        Me.bt2.Size = New System.Drawing.Size(82, 53)
+        Me.bt2.TabIndex = 2
+        Me.bt2.Text = "2"
+        Me.bt2.UseVisualStyleBackColor = True
         '
-        'Button11
+        'bt1
         '
-        Me.Button11.BackgroundImage = CType(resources.GetObject("Button11.BackgroundImage"), System.Drawing.Image)
-        Me.Button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button11.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button11.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button11.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button11.Location = New System.Drawing.Point(0, 0)
-        Me.Button11.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(90, 53)
-        Me.Button11.TabIndex = 3
-        Me.Button11.Text = "1"
-        Me.Button11.UseVisualStyleBackColor = True
+        Me.bt1.BackgroundImage = CType(resources.GetObject("bt1.BackgroundImage"), System.Drawing.Image)
+        Me.bt1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.bt1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.bt1.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.bt1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bt1.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bt1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.bt1.Location = New System.Drawing.Point(0, 0)
+        Me.bt1.Margin = New System.Windows.Forms.Padding(0)
+        Me.bt1.Name = "bt1"
+        Me.bt1.Size = New System.Drawing.Size(90, 53)
+        Me.bt1.TabIndex = 3
+        Me.bt1.Text = "1"
+        Me.bt1.UseVisualStyleBackColor = True
         '
-        'Button13
+        'bt3
         '
-        Me.Button13.BackgroundImage = CType(resources.GetObject("Button13.BackgroundImage"), System.Drawing.Image)
-        Me.Button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button13.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button13.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button13.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button13.Location = New System.Drawing.Point(176, 0)
-        Me.Button13.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(90, 53)
-        Me.Button13.TabIndex = 1
-        Me.Button13.Text = "3"
-        Me.Button13.UseVisualStyleBackColor = True
+        Me.bt3.BackgroundImage = CType(resources.GetObject("bt3.BackgroundImage"), System.Drawing.Image)
+        Me.bt3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.bt3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.bt3.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.bt3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bt3.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bt3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.bt3.Location = New System.Drawing.Point(172, 0)
+        Me.bt3.Margin = New System.Windows.Forms.Padding(0)
+        Me.bt3.Name = "bt3"
+        Me.bt3.Size = New System.Drawing.Size(90, 53)
+        Me.bt3.TabIndex = 1
+        Me.bt3.Text = "3"
+        Me.bt3.UseVisualStyleBackColor = True
         '
-        'Panel5
+        'PLNB2
         '
-        Me.Panel5.Controls.Add(Me.Button8)
-        Me.Panel5.Controls.Add(Me.Button7)
-        Me.Panel5.Controls.Add(Me.Button9)
-        Me.Panel5.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel5.Location = New System.Drawing.Point(0, 53)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(266, 53)
-        Me.Panel5.TabIndex = 1
+        Me.PLNB2.Controls.Add(Me.bt5)
+        Me.PLNB2.Controls.Add(Me.bt4)
+        Me.PLNB2.Controls.Add(Me.bt6)
+        Me.PLNB2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PLNB2.Location = New System.Drawing.Point(0, 53)
+        Me.PLNB2.Name = "PLNB2"
+        Me.PLNB2.Size = New System.Drawing.Size(262, 53)
+        Me.PLNB2.TabIndex = 1
         '
-        'Button8
+        'bt5
         '
-        Me.Button8.BackgroundImage = CType(resources.GetObject("Button8.BackgroundImage"), System.Drawing.Image)
-        Me.Button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Button8.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button8.Location = New System.Drawing.Point(90, 0)
-        Me.Button8.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(86, 53)
-        Me.Button8.TabIndex = 2
-        Me.Button8.Text = "5"
-        Me.Button8.UseVisualStyleBackColor = True
+        Me.bt5.BackgroundImage = CType(resources.GetObject("bt5.BackgroundImage"), System.Drawing.Image)
+        Me.bt5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.bt5.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.bt5.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.bt5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bt5.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bt5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.bt5.Location = New System.Drawing.Point(90, 0)
+        Me.bt5.Margin = New System.Windows.Forms.Padding(0)
+        Me.bt5.Name = "bt5"
+        Me.bt5.Size = New System.Drawing.Size(82, 53)
+        Me.bt5.TabIndex = 2
+        Me.bt5.Text = "5"
+        Me.bt5.UseVisualStyleBackColor = True
         '
-        'Button7
+        'bt4
         '
-        Me.Button7.BackgroundImage = CType(resources.GetObject("Button7.BackgroundImage"), System.Drawing.Image)
-        Me.Button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button7.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button7.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button7.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button7.Location = New System.Drawing.Point(0, 0)
-        Me.Button7.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(90, 53)
-        Me.Button7.TabIndex = 3
-        Me.Button7.Text = "4"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.bt4.BackgroundImage = CType(resources.GetObject("bt4.BackgroundImage"), System.Drawing.Image)
+        Me.bt4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.bt4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.bt4.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.bt4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bt4.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bt4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.bt4.Location = New System.Drawing.Point(0, 0)
+        Me.bt4.Margin = New System.Windows.Forms.Padding(0)
+        Me.bt4.Name = "bt4"
+        Me.bt4.Size = New System.Drawing.Size(90, 53)
+        Me.bt4.TabIndex = 3
+        Me.bt4.Text = "4"
+        Me.bt4.UseVisualStyleBackColor = True
         '
-        'Button9
+        'bt6
         '
-        Me.Button9.BackgroundImage = CType(resources.GetObject("Button9.BackgroundImage"), System.Drawing.Image)
-        Me.Button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button9.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button9.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button9.Location = New System.Drawing.Point(176, 0)
-        Me.Button9.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(90, 53)
-        Me.Button9.TabIndex = 1
-        Me.Button9.Text = "6"
-        Me.Button9.UseVisualStyleBackColor = True
+        Me.bt6.BackgroundImage = CType(resources.GetObject("bt6.BackgroundImage"), System.Drawing.Image)
+        Me.bt6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.bt6.Dock = System.Windows.Forms.DockStyle.Right
+        Me.bt6.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.bt6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bt6.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bt6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.bt6.Location = New System.Drawing.Point(172, 0)
+        Me.bt6.Margin = New System.Windows.Forms.Padding(0)
+        Me.bt6.Name = "bt6"
+        Me.bt6.Size = New System.Drawing.Size(90, 53)
+        Me.bt6.TabIndex = 1
+        Me.bt6.Text = "6"
+        Me.bt6.UseVisualStyleBackColor = True
         '
-        'Panel9
+        'PLNB1
         '
-        Me.Panel9.Controls.Add(Me.Button3)
-        Me.Panel9.Controls.Add(Me.Button2)
-        Me.Panel9.Controls.Add(Me.Button4)
-        Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel9.Location = New System.Drawing.Point(0, 0)
-        Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(266, 53)
-        Me.Panel9.TabIndex = 4
+        Me.PLNB1.Controls.Add(Me.bt8)
+        Me.PLNB1.Controls.Add(Me.bt9)
+        Me.PLNB1.Controls.Add(Me.bt7)
+        Me.PLNB1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PLNB1.Location = New System.Drawing.Point(0, 0)
+        Me.PLNB1.Name = "PLNB1"
+        Me.PLNB1.Size = New System.Drawing.Size(262, 53)
+        Me.PLNB1.TabIndex = 4
         '
-        'Button3
+        'bt8
         '
-        Me.Button3.BackgroundImage = CType(resources.GetObject("Button3.BackgroundImage"), System.Drawing.Image)
-        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button3.Location = New System.Drawing.Point(90, 0)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(86, 53)
-        Me.Button3.TabIndex = 2
-        Me.Button3.Text = "8"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.bt8.BackgroundImage = CType(resources.GetObject("bt8.BackgroundImage"), System.Drawing.Image)
+        Me.bt8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.bt8.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.bt8.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.bt8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bt8.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bt8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.bt8.Location = New System.Drawing.Point(90, 0)
+        Me.bt8.Margin = New System.Windows.Forms.Padding(0)
+        Me.bt8.Name = "bt8"
+        Me.bt8.Size = New System.Drawing.Size(82, 53)
+        Me.bt8.TabIndex = 2
+        Me.bt8.Text = "8"
+        Me.bt8.UseVisualStyleBackColor = True
         '
-        'Button2
+        'bt9
         '
-        Me.Button2.BackgroundImage = CType(resources.GetObject("Button2.BackgroundImage"), System.Drawing.Image)
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button2.Location = New System.Drawing.Point(176, 0)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(90, 53)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "9"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.bt9.BackgroundImage = CType(resources.GetObject("bt9.BackgroundImage"), System.Drawing.Image)
+        Me.bt9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.bt9.Dock = System.Windows.Forms.DockStyle.Right
+        Me.bt9.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.bt9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bt9.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bt9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.bt9.Location = New System.Drawing.Point(172, 0)
+        Me.bt9.Margin = New System.Windows.Forms.Padding(0)
+        Me.bt9.Name = "bt9"
+        Me.bt9.Size = New System.Drawing.Size(90, 53)
+        Me.bt9.TabIndex = 1
+        Me.bt9.Text = "9"
+        Me.bt9.UseVisualStyleBackColor = True
         '
-        'Button4
+        'bt7
         '
-        Me.Button4.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.gui_13
-        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button4.Location = New System.Drawing.Point(0, 0)
-        Me.Button4.Margin = New System.Windows.Forms.Padding(0)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(90, 53)
-        Me.Button4.TabIndex = 3
-        Me.Button4.Text = "7"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.bt7.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.gui_13
+        Me.bt7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.bt7.Dock = System.Windows.Forms.DockStyle.Left
+        Me.bt7.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.bt7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bt7.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bt7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.bt7.Location = New System.Drawing.Point(0, 0)
+        Me.bt7.Margin = New System.Windows.Forms.Padding(0)
+        Me.bt7.Name = "bt7"
+        Me.bt7.Size = New System.Drawing.Size(90, 53)
+        Me.bt7.TabIndex = 3
+        Me.bt7.Text = "7"
+        Me.bt7.UseVisualStyleBackColor = True
         '
-        'Panel4
+        'PLLF
         '
-        Me.Panel4.Controls.Add(Me.Button6)
-        Me.Panel4.Controls.Add(Me.btClient)
-        Me.Panel4.Controls.Add(Me.BtRemise)
-        Me.Panel4.Controls.Add(Me.BtCmd)
-        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel4.Location = New System.Drawing.Point(0, 0)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(62, 209)
-        Me.Panel4.TabIndex = 0
+        Me.PLLF.Controls.Add(Me.Button6)
+        Me.PLLF.Controls.Add(Me.btClient)
+        Me.PLLF.Controls.Add(Me.BtRemise)
+        Me.PLLF.Controls.Add(Me.BtCmd)
+        Me.PLLF.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PLLF.Location = New System.Drawing.Point(0, 0)
+        Me.PLLF.Name = "PLLF"
+        Me.PLLF.Size = New System.Drawing.Size(62, 209)
+        Me.PLLF.TabIndex = 0
         '
         'Button6
         '
@@ -439,7 +439,7 @@ Partial Class CPanel
         Me.Button6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Button6.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.ForeColor = System.Drawing.Color.MidnightBlue
         Me.Button6.Location = New System.Drawing.Point(0, 159)
         Me.Button6.Margin = New System.Windows.Forms.Padding(0)
@@ -487,7 +487,7 @@ Partial Class CPanel
         Me.PlTxt.Dock = System.Windows.Forms.DockStyle.Top
         Me.PlTxt.Location = New System.Drawing.Point(5, 5)
         Me.PlTxt.Name = "PlTxt"
-        Me.PlTxt.Size = New System.Drawing.Size(374, 33)
+        Me.PlTxt.Size = New System.Drawing.Size(386, 33)
         Me.PlTxt.TabIndex = 2
         '
         'Panel8
@@ -499,7 +499,7 @@ Partial Class CPanel
         Me.Panel8.Location = New System.Drawing.Point(0, 0)
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Padding = New System.Windows.Forms.Padding(11)
-        Me.Panel8.Size = New System.Drawing.Size(328, 33)
+        Me.Panel8.Size = New System.Drawing.Size(340, 33)
         Me.Panel8.TabIndex = 4
         '
         'txt
@@ -508,7 +508,7 @@ Partial Class CPanel
         Me.txt.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txt.Location = New System.Drawing.Point(11, 11)
         Me.txt.Name = "txt"
-        Me.txt.Size = New System.Drawing.Size(306, 19)
+        Me.txt.Size = New System.Drawing.Size(318, 19)
         Me.txt.TabIndex = 3
         Me.txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -520,7 +520,7 @@ Partial Class CPanel
         Me.Button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button19.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Button19.Location = New System.Drawing.Point(328, 0)
+        Me.Button19.Location = New System.Drawing.Point(340, 0)
         Me.Button19.Margin = New System.Windows.Forms.Padding(0)
         Me.Button19.Name = "Button19"
         Me.Button19.Size = New System.Drawing.Size(46, 33)
@@ -533,49 +533,49 @@ Partial Class CPanel
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.Panel2)
-        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.PLRT)
         Me.Controls.Add(Me.PlTxt)
         Me.MinimumSize = New System.Drawing.Size(300, 163)
         Me.Name = "CPanel"
         Me.Padding = New System.Windows.Forms.Padding(5)
-        Me.Size = New System.Drawing.Size(384, 252)
-        Me.Panel1.ResumeLayout(False)
+        Me.Size = New System.Drawing.Size(396, 252)
+        Me.PLRT.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.Panel7.ResumeLayout(False)
-        Me.Panel6.ResumeLayout(False)
-        Me.Panel5.ResumeLayout(False)
-        Me.Panel9.ResumeLayout(False)
-        Me.Panel4.ResumeLayout(False)
+        Me.PLNB3.ResumeLayout(False)
+        Me.PLNB2.ResumeLayout(False)
+        Me.PLNB1.ResumeLayout(False)
+        Me.PLLF.ResumeLayout(False)
         Me.PlTxt.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
         Me.Panel8.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents PLRT As System.Windows.Forms.Panel
     Friend WithEvents BtRemise As System.Windows.Forms.Button
-    Friend WithEvents Button4 As System.Windows.Forms.Button
-    Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents bt7 As System.Windows.Forms.Button
+    Friend WithEvents bt8 As System.Windows.Forms.Button
+    Friend WithEvents bt9 As System.Windows.Forms.Button
     Friend WithEvents BtQte As System.Windows.Forms.Button
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
-    Friend WithEvents Panel4 As System.Windows.Forms.Panel
+    Friend WithEvents PLLF As System.Windows.Forms.Panel
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
     Friend WithEvents Panel7 As System.Windows.Forms.Panel
-    Friend WithEvents Button15 As System.Windows.Forms.Button
-    Friend WithEvents Button16 As System.Windows.Forms.Button
-    Friend WithEvents Button17 As System.Windows.Forms.Button
+    Friend WithEvents btPlus As System.Windows.Forms.Button
+    Friend WithEvents bt0 As System.Windows.Forms.Button
+    Friend WithEvents btPn As System.Windows.Forms.Button
     Friend WithEvents BtDel As System.Windows.Forms.Button
-    Friend WithEvents Panel6 As System.Windows.Forms.Panel
-    Friend WithEvents Button11 As System.Windows.Forms.Button
-    Friend WithEvents Button12 As System.Windows.Forms.Button
-    Friend WithEvents Button13 As System.Windows.Forms.Button
+    Friend WithEvents PLNB3 As System.Windows.Forms.Panel
+    Friend WithEvents bt1 As System.Windows.Forms.Button
+    Friend WithEvents bt2 As System.Windows.Forms.Button
+    Friend WithEvents bt3 As System.Windows.Forms.Button
     Friend WithEvents BtDpt As System.Windows.Forms.Button
-    Friend WithEvents Panel5 As System.Windows.Forms.Panel
-    Friend WithEvents Button7 As System.Windows.Forms.Button
-    Friend WithEvents Button8 As System.Windows.Forms.Button
-    Friend WithEvents Button9 As System.Windows.Forms.Button
+    Friend WithEvents PLNB2 As System.Windows.Forms.Panel
+    Friend WithEvents bt4 As System.Windows.Forms.Button
+    Friend WithEvents bt5 As System.Windows.Forms.Button
+    Friend WithEvents bt6 As System.Windows.Forms.Button
     Friend WithEvents BtPrix As System.Windows.Forms.Button
     Friend WithEvents PlTxt As System.Windows.Forms.Panel
     Friend WithEvents Panel8 As System.Windows.Forms.Panel
@@ -584,6 +584,6 @@ Partial Class CPanel
     Friend WithEvents Button6 As System.Windows.Forms.Button
     Friend WithEvents btClient As System.Windows.Forms.Button
     Friend WithEvents BtCmd As System.Windows.Forms.Button
-    Friend WithEvents Panel9 As System.Windows.Forms.Panel
+    Friend WithEvents PLNB1 As System.Windows.Forms.Panel
 
 End Class

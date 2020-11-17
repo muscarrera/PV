@@ -6,12 +6,7 @@ AlMohasib
 </name>
 </assembly>
 <members>
-<member name="T:Al_Mohasib.NumericStrings">
-	<summary>
- Converts Integer or Decimal numbers into their textual String representations (converts numbers to words).
- </summary>
-	<remarks></remarks>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.CategoryDataTable">
+<member name="T:Al_Mohasib.ALMohassinDBDataSet.CategoryDataTable">
 	<summary>
 Represents the strongly named DataTable class.
 </summary>
@@ -399,6 +394,11 @@ Used to sort self-referenced table's rows
 	<summary>
 TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
 </summary>
+</member><member name="T:Al_Mohasib.NumericStrings">
+	<summary>
+ Converts Integer or Decimal numbers into their textual String representations (converts numbers to words).
+ </summary>
+	<remarks></remarks>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.

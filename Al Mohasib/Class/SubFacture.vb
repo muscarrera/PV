@@ -29,11 +29,13 @@
                     For i As Integer = 0 To dt.Rows.Count - 1
                         params.Clear()
                         params.Add("Clid", dt.Rows(i).Item("clid"))
-                        Dim cltname As String = c.SelectByScalar("Client", "name", params)
-                        Form1.DGVFCT.Rows.Add(dt.Rows(i).Item(0), cltname, dt.Rows(i).Item("date"),
+                        Dim CLT = c.SelectDataTable("Client", {"*"}, params)
+
+                        Form1.DGVFCT.Rows.Add(dt.Rows(i).Item(0), StrValue(dt, "name", 0), dt.Rows(i).Item("date"),
                                               dt.Rows(i).Item("remise"), dt.Rows(i).Item("ListBl"),
                                               dt.Rows(i).Item("timbre"), dt.Rows(i).Item("clid"),
-                                               dt.Rows(i).Item("total"), dt.Rows(i).Item("mode"))
+                                               dt.Rows(i).Item("total"), dt.Rows(i).Item("mode"),
+                                               StrValue(dt, "adress", 0))
                     Next
                 Catch ex As Exception
                     Form1.RPl.ClientAdresse = ""

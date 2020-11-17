@@ -419,16 +419,16 @@
                 'End If
                  
                 If Num > 0 Then
-                    Select Case Form1.RPl.Num
-                        Case 2
-                            ap.Price = R.sp3
-                        Case 3
-                            ap.Price = R.sp4
-                        Case 4
-                            ap.Price = R.sp5
-                        Case Else
-                            ap.Price = R.sprice
-                    End Select
+                    'Select Case Form1.RPl.Num
+                    '    Case 2
+                    '        ap.Price = R.sp3
+                    '    Case 3
+                    '        ap.Price = R.sp4
+                    '    Case 4
+                    '        ap.Price = R.sp5
+                    '    Case Else
+                    '        ap.Price = R.sprice
+                    'End Select
                 End If
                  
             Else
@@ -1007,5 +1007,17 @@
         'If clc.Button1.Tag = 2 Then bl = "-"
         'End If
         RaiseEvent SetDetailFacture()
+    End Sub
+
+    Dim hh As Integer = 0
+    Private Sub Panel2_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel2.MouseDown
+        hh = e.Y
+    End Sub
+
+    Private Sub Panel2_MouseUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel2.MouseUp
+        If hh = 0 Then Exit Sub
+
+        Form1.RplHeight = CP.Height + (hh - e.Y)
+        hh = 0
     End Sub
 End Class

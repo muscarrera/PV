@@ -99,19 +99,33 @@ Public Class SubClass
                     bt.Font = New Font("Arial", CInt(Form1.txtfntsize.Text), FontStyle.Bold)
                     bt.Height = Form1.txtlargebt.Text
 
-                    If Form1.cbTsImg.Checked Then
+                    If Form1.cbJnImgDb.Checked Then
                         Try
-                            If artdt.Rows(i).Item("img").ToString = "No Image" Or artdt.Rows(i).Item("img").ToString = "" Then
-
-                            Else
-                                Dim str As String = Form1.BtImgPah.Tag & "\art" & artdt.Rows(i).Item("img").ToString
-                                bt.BackgroundImage = Image.FromFile(str)
-                                bt.BackgroundImageLayout = ImageLayout.Stretch
-                            End If
+                            Dim arrImage() As Byte
+                            arrImage = artdt.Rows(i).Item("img")
+                            Dim mstream As New System.IO.MemoryStream(arrImage)
+                            bt.BackgroundImage = Image.FromStream(mstream)
+                            bt.BackgroundImageLayout = ImageLayout.Stretch
                         Catch ex As Exception
-
+                            bt.BackgroundImage = My.Resources.AddFile_22
                         End Try
+                    Else
+                        If Form1.cbTsImg.Checked Then
+                            Try
+                                If artdt.Rows(i).Item("img").ToString = "No Image" Or artdt.Rows(i).Item("img").ToString = "" Then
+
+                                Else
+                                    Dim str As String = Form1.BtImgPah.Tag & "\art" & artdt.Rows(i).Item("img").ToString
+                                    bt.BackgroundImage = Image.FromFile(str)
+                                    bt.BackgroundImageLayout = ImageLayout.Stretch
+                                End If
+                            Catch ex As Exception
+
+                            End Try
+                        End If
                     End If
+
+
 
                     P.Controls.Add(bt)
                     bt.Dock = DockStyle.Top
@@ -142,29 +156,44 @@ Public Class SubClass
 
         For i As Integer = 0 To ctgdt.Rows.Count - 1
             Dim bt As New Button
-
+            bt.BackgroundImageLayout = ImageLayout.Stretch
             bt.BackColor = Color.LightGoldenrodYellow
             bt.Text = ctgdt.Rows(i).Item("name").ToString
             bt.Name = "ctg" & i
             bt.Tag = ctgdt.Rows(i).Item("cid")
 
             bt.TextAlign = ContentAlignment.BottomCenter
-            Try
-                If ctgdt.Rows(i).Item("img").ToString = "No Image" Or ctgdt.Rows(i).Item("img").ToString = "" Then
-                    bt.BackColor = Color.Moccasin
-                Else
-                    Dim str As String = Form1.BtImgPah.Tag & "\cat" & ctgdt.Rows(i).Item("img").ToString
-                    If Form1.cbImgPrice.Checked Then
-                        str = Form1.BtImgPah.Tag & "\P-cat" & ctgdt.Rows(i).Item("img").ToString
-                        bt.Text = ""
-                    End If
 
-                    bt.BackgroundImage = Image.FromFile(str)
-                End If
-                bt.BackgroundImageLayout = ImageLayout.Stretch
-            Catch ex As Exception
-                bt.Text = ctgdt.Rows(i).Item("name").ToString
-            End Try
+
+            If Form1.cbJnImgDb.Checked Then
+                Try
+                    Dim arrImage() As Byte
+                    arrImage = ctgdt.Rows(i).Item("img")
+                    Dim mstream As New System.IO.MemoryStream(arrImage)
+                    bt.BackgroundImage = Image.FromStream(mstream)
+                    bt.BackgroundImageLayout = ImageLayout.Stretch
+                Catch ex As Exception
+                    bt.BackgroundImage = My.Resources.AddFile_22
+                End Try
+            Else
+
+                Try
+                    If ctgdt.Rows(i).Item("img").ToString = "No Image" Or ctgdt.Rows(i).Item("img").ToString = "" Then
+                        bt.BackColor = Color.Moccasin
+                    Else
+                        Dim str As String = Form1.BtImgPah.Tag & "\cat" & ctgdt.Rows(i).Item("img").ToString
+                        If Form1.cbImgPrice.Checked Then
+                            str = Form1.BtImgPah.Tag & "\P-cat" & ctgdt.Rows(i).Item("img").ToString
+                            bt.Text = ""
+                        End If
+
+                        bt.BackgroundImage = Image.FromFile(str)
+                    End If
+                    bt.BackgroundImageLayout = ImageLayout.Stretch
+                Catch ex As Exception
+                    bt.Text = ctgdt.Rows(i).Item("name").ToString
+                End Try
+            End If
             'bt.Width = 125
             'bt.Height = 90
             bt.Width = Form1.txtlongerbt.Text
@@ -677,16 +706,28 @@ Public Class SubClass
     End Sub
 
 
-    Private Sub ctg_click(ByVal sender As System.Object, ByVal e As EventArgs)
+    Public Sub ctg_click(ByVal sender As System.Object, ByVal e As EventArgs)
 
         Dim bt2 As Button = sender
         Form1.FlowLayoutPanel1.Controls.Clear()
         FillGroupesByCat(bt2.Tag)
 
+        Form1.btGoBack.Tag = bt2.Tag
         Try
-            Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            Dim artdt = artta.GetDataBycid(bt2.Tag)
+            'Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
+            'Dim artdt = artta.GetDataBycid(bt2.Tag)
             Form1.FlowLayoutPanel1.Tag = bt2.Tag
+
+            Dim artdt As DataTable
+
+            Dim params As New Dictionary(Of String, Object)
+            params.Add("cid", CInt(bt2.Tag))
+
+            ' added some items
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                artdt = a.SelectDataTable("Article", {"*"}, params)
+            End Using
+
 
             If artdt.Rows.Count = 0 Then
                 Dim lb As New Label
@@ -699,7 +740,7 @@ Public Class SubClass
                 For i As Integer = 0 To artdt.Rows.Count - 1
 
                     Dim bt As New Button
-
+                    bt.BackgroundImageLayout = ImageLayout.Stretch
                     bt.Visible = True
                     bt.FlatStyle = FlatStyle.Flat
                     bt.BackColor = Color.LightSeaGreen
@@ -708,31 +749,46 @@ Public Class SubClass
                     bt.Tag = artdt.Rows(i)
                     bt.TextAlign = ContentAlignment.BottomCenter
                     Try
-                        If artdt.Rows(i).Item("img").ToString = "No Image" Or artdt.Rows(i).Item("img").ToString = "" Then
+                        If Form1.cbJnImgDb.Checked Then
+                            Try
+                                Dim arrImage() As Byte
+                                arrImage = artdt.Rows(i).Item("img")
+                                Dim mstream As New System.IO.MemoryStream(arrImage)
 
+                                bt.BackgroundImage = Image.FromStream(mstream)
+                                bt.BackgroundImageLayout = ImageLayout.Stretch
+                            Catch ex As Exception
+                                bt.BackgroundImage = My.Resources.AddFile_22
+                            End Try
                         Else
-                            Dim str As String = Form1.BtImgPah.Tag & "\art" & artdt.Rows(i).Item("img").ToString
-                            If Form1.cbImgPrice.Checked Then
-                                str = Form1.BtImgPah.Tag & "\P-art" & artdt.Rows(i).Item("img").ToString
-                                'bt.Text= ""
-                                bt.TextAlign = ContentAlignment.BottomCenter
-                                bt.Font = New Font("Arial", 11, FontStyle.Bold)
-                                'Else
-                                '    bt.ForeColor = Color.Yellow
-                            End If
+                            If artdt.Rows(i).Item("img").ToString = "No Image" Or artdt.Rows(i).Item("img").ToString = "" Then
 
-                            bt.BackgroundImage = Image.FromFile(str)
+                            Else
+                                Dim str As String = Form1.BtImgPah.Tag & "\art" & artdt.Rows(i).Item("img").ToString
+                                If Form1.cbImgPrice.Checked Then
+                                    str = Form1.BtImgPah.Tag & "\P-art" & artdt.Rows(i).Item("img").ToString
+                                    'bt.Text= ""
+                                    bt.TextAlign = ContentAlignment.BottomCenter
+                                    bt.Font = New Font("Arial", 11, FontStyle.Bold)
+                                    'Else
+                                    '    bt.ForeColor = Color.Yellow
+                                End If
+
+                                bt.BackgroundImage = Image.FromFile(str)
+                            End If
+                            bt.BackgroundImageLayout = ImageLayout.Stretch
+                            bt.ImageAlign = ContentAlignment.BottomCenter
                         End If
-                        bt.BackgroundImageLayout = ImageLayout.Stretch
-                        bt.ImageAlign = ContentAlignment.BottomCenter
+
                     Catch ex As Exception
                         bt.Text = artdt.Rows(i).Item("name").ToString
                     End Try
+
                     bt.Width = Form1.txtlongerbt.Text
                     bt.Height = Form1.txtlargebt.Text
                     Form1.FlowLayoutPanel1.Controls.Add(bt)
                     'AddHandler bt.Click, AddressOf art_click
-                    ''''''''''''''''''''''''''''''''''''''''''''''' list suivant
+                    ''''''''''''''''''''''''''''''''''''''''''''''''''' list suivant
 
                     If i = Form1.indexLastArticle Then
 
@@ -758,7 +814,6 @@ Public Class SubClass
                 Form1.txtSearch.Text = ""
                 Form1.txtSearch.Focus()
             End If
-
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -1039,18 +1094,50 @@ Public Class SubClass
                 End Using
             Else
                 Dim arid As Integer = 0
+                Dim price As Double = CDbl(R.sprice)
+                If Form1.RPl.isSell Then
+                    'If Form1.RPl.Num > 0 Then
+                    '    price = R.bprice + (R.bprice * Form1.RPl.Num / 100)
+                    'End If
+                    If Form1.RPl.Num > 0 Then
+                        If Form1.cbOptionJenani.Checked = False Then
+                            Select Case Form1.RPl.Num
+                                Case 2
+                                    price = R.sp3
+                                Case 3
+                                    price = R.sp4
+                                Case 4
+                                    price = R.sp5
+                                Case Else
+                                    price = R.sprice
+                            End Select
+                        End If
+                    End If
+                Else
+                    price = R.bprice
+                End If
 
                 If Form1.cbQteCat.Checked Then
 
                     Try
                         Dim cats = Form1.txtQteCat.Text.Split("-")
-                        If cats.Contains(R.cid.ToString) Then
+                        If cats.Contains(R.cid.ToString) Or cats.Contains("*") Then
                             Dim bn As New byname
+                            bn.lbName.Text = R.name
+                            bn.BTp1.Text = Math.Round(CDbl(R.sprice), 2)
+                            bn.txtPrice.text = Math.Round(CDbl(price), 2)
+                            bn.BTp2.Text = Math.Round(CDbl(R.sp3), 2)
+                            bn.BTp3.Text = Math.Round(CDbl(R.sp4), 2)
+                            bn.BTp4.Text = Math.Round(CDbl(R.sp5), 2)
+
+                            bn.BTACH.Text = Math.Round(CDbl(R.bprice), 2)
                             If bn.ShowDialog = DialogResult.OK Then
                                 Form1.RPl.CP.Value = bn.qte
+                                price = CDbl(bn.txtPrice.text)
                             End If
                         End If
                     Catch ex As Exception
+                        MsgBox("Error 4 : frth - model Multi-Prix")
                     End Try
 
                 End If
@@ -1066,26 +1153,7 @@ Public Class SubClass
                     End If
                 End Using
                 'Price
-                Dim price As Double = CDbl(R.sprice)
-                If Form1.RPl.isSell Then
-                    'If Form1.RPl.Num > 0 Then
-                    '    price = R.bprice + (R.bprice * Form1.RPl.Num / 100)
-                    'End If
-                    If Form1.RPl.Num > 0 Then
-                        Select Case Form1.RPl.Num
-                            Case 2
-                                price = R.sp3
-                            Case 3
-                                price = R.sp4
-                            Case 4
-                                price = R.sp5
-                            Case Else
-                                price = R.sprice
-                        End Select
-                    End If
-                Else
-                    price = R.bprice
-                End If
+
                 'tva
                 Dim tva As Double = 20
                 If Form1.CBTVA.Checked Then tva = CDbl(R.tva)
@@ -1117,6 +1185,7 @@ Public Class SubClass
                 End Using
 
                 If arid > 0 Then
+                    R.sprice = price
                     Form1.RPl.AddItems(R, arid, CBool(Form1.btswitsh.Tag))
                 Else
                     Exit Sub
@@ -1393,7 +1462,6 @@ Public Class SubClass
     End Sub
 
     ' create new fact
-
     Public Sub NewFacture(ByVal t As Integer)
         Try
             Dim chs As New ChoseClient
@@ -1646,6 +1714,8 @@ Public Class SubClass
                 End If
             Next
             'End If
+
+            Form1.lbLastBon.Text = "<< " & Form1.RPl.FctId & "   ->   " & Form1.RPl.ClientName & " [ " & Form1.RPl.LbSum.Text & "dhs  ]"
 
             If isS Then
                 AppendData(id, table)
@@ -2426,6 +2496,9 @@ Public Class SubClass
 
     Public Sub UpdateItemDepot(ByVal i As Items)
         Dim clc As New ChoseDepot
+        Dim isS As Boolean = Form1.RPl.isSell
+
+
         If clc.ShowDialog = DialogResult.OK Then
             Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
                 Dim params As New Dictionary(Of String, Object)
@@ -2434,11 +2507,19 @@ Public Class SubClass
                 Dim dpt As Integer = CInt(clc.DataGridView1.SelectedRows(0).Cells(0).Value)
                 If clc.Button1.Tag = 2 Then dpt = 0
 
-                where.Add("id", CInt(i.id))
+                If isS = True Then
+                    where.Add("id", CInt(i.id))
+                Else
+                    where.Add("bid", CInt(i.id))
+                End If
+
                 params.Add("depot", dpt)
 
+                Dim tb_D As String = "DetailsFacture"
+                If isS = False Then tb_D = "DetailsBon"
+
                 Try
-                    Dim h As Integer = c.UpdateRecord("DetailsFacture", params, where)
+                    Dim h As Integer = c.UpdateRecord(tb_D, params, where)
                     If h > 0 Then
                         If Form1.RPl.EditMode Then
                             params.Clear()
@@ -2452,7 +2533,12 @@ Public Class SubClass
                                 Dim dsid As Integer = CInt(dt.Rows(0).Item(0))
                                 Dim q As Double = CDbl(dt.Rows(0).Item("qte"))
 
-                                q += i.Qte
+
+                                If isS = True Then
+                                    q += i.Qte
+                                Else
+                                    q -= i.Qte
+                                End If
 
                                 params.Clear()
                                 params.Add("qte", q)
@@ -2475,6 +2561,12 @@ Public Class SubClass
 
                                     q -= i.Qte
 
+                                    If isS = True Then
+                                        q -= i.Qte
+                                    Else
+                                        q += i.Qte
+                                    End If
+
                                     params.Clear()
                                     params.Add("qte", q)
                                     where.Add("DSID", dsid)
@@ -2482,15 +2574,18 @@ Public Class SubClass
                                     c.UpdateRecord("Detailstock", params, where)
                                 Else
 
-                                    params.Clear()
-                                    params.Add("qte", i.Qte * -1)
-                                    params.Add("arid", i.arid)
-                                    params.Add("dpid", i.Depot)
-                                    params.Add("cid", i.cid)
-                                    params.Add("unit", i.Unite)
-                                    c.InsertRecord("Detailstock", params)
-                                End If
+                                    Dim q = i.Qte * -1
+                                    If isS = False Then q = i.Qte
+
+                                params.Clear()
+                                params.Add("qte", q)
+                                params.Add("arid", i.arid)
+                                params.Add("dpid", i.Depot)
+                                params.Add("cid", i.cid)
+                                params.Add("unit", i.Unite)
+                                c.InsertRecord("Detailstock", params)
                             End If
+                        End If
                         End If
                         Form1.RPl.ChangedItemsDepot(i.id, dpt)
                     End If
@@ -2537,12 +2632,12 @@ Public Class SubClass
 
             If C Then
                 Dim cs As Double = getCaisse()
-                table.Rows.Add(0, -110, 1, "Caisse", "U", cs, cs, 0, 0, -110, 0, 0)
+                table.Rows.Add(0, -110, 1, "Caisse", "U", cs, cs, 0, 100, -110, 0, 0)
             End If
 
             Dim PRFT As Double = getProfit()
-            table.Rows.Add(0, -111, 1, "Profit", "U", PRFT, PRFT, 0, 0, -110, 0, 0)
-            table.Rows.Add(0, -112, 1, "Rest", "U", tva, tva, 0, 0, -110, 0, 0)
+            table.Rows.Add(0, -111, 1, "Profit", "U", PRFT, PRFT, 0, 100, -110, 0, 0)
+            table.Rows.Add(0, -112, 1, "Rest", "U", tva, tva, 0, 100, -110, 0, 0)
             table.Rows.Add(0, -113, 1, NM & "  FACTURES", "U", price, price, 0, 0, -110, 0, 0)
 
             Form1.RPl.ClearItems()

@@ -9,7 +9,7 @@ Public Class AddEditArticle
     Public editMode As Boolean
     Private imgWithPrice, _imgPrd As Image
     Dim rnd As New Random
-    Dim cr As Color
+    Dim cr As Color = Color.WhiteSmoke
 
 
     Public Property ImgPrd As Image
@@ -114,13 +114,17 @@ Public Class AddEditArticle
 
         cr = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255))
 
-        If PBprd.Tag = "" Or PBprd.Tag = "No Image" Then
-            ImgPrd = Nothing
-        Else
-            'ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\art" & PBprd.Tag)
-            ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\art" & PBprd.Tag)
-        End If
+        Try
+            If PBprd.Tag = "" Or PBprd.Tag = "No Image" Then
+                ImgPrd = Nothing
+            Else
+                'ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\art" & PBprd.Tag)
+                ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\art" & PBprd.Tag)
+            End If
 
+        Catch ex As Exception
+
+        End Try
 
         PBprd.BackgroundImage = Drawimg(txtprdname.Text, txtsprice.text)
         txtcb.Focus()

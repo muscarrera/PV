@@ -6,7 +6,7 @@
     Public width As Integer = 100
     Public height As Integer = 15
     Public fSize As Integer = 9
-    Public backColor As Color = Color.White
+    Public backColor As Integer
     Public isBold As Boolean = False
     Public hasBloc As Boolean = False
 

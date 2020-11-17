@@ -505,11 +505,11 @@
 
             If isSell Then
                 Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
-                ta.Insert("facture", clid, rest, "كاش", Now.Date, "0", fctid, Form1.admin)
+                ta.Insert("facture", clid, rest, "CACHE", Now.Date, "0", fctid, Form1.admin)
                 dt = ta.GetDataByfctid(fctid)
             Else
                 Dim ta As New ALMohassinDBDataSetTableAdapters.CompanyPaymentTableAdapter
-                ta.Insert("facture", clid, rest, "كاش", Now.Date, "0", fctid, Form1.admin, Now.Date)
+                ta.Insert("facture", clid, rest, "CACHE", Now.Date, "0", fctid, Form1.admin, Now.Date)
                 dt = ta.GetDataBybonid(fctid)
             End If
 
