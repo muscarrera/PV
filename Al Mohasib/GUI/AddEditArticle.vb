@@ -293,6 +293,7 @@ Public Class AddEditArticle
             'saveImage()
 
             Try
+
                 Dim ta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
                 ta.UpdateQuery(cid, txtprdname.Text, PBprd.Tag, bprice, sprice, txtunit.Text, tva,
                                price2, price3, price4, TxtPoids.text, txtcb.text, CInt(CBdp.SelectedValue),
@@ -304,6 +305,7 @@ Public Class AddEditArticle
             End Try
         End If
     End Sub
+
     Private Sub Button8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button8.Click
         Me.DialogResult = Windows.Forms.DialogResult.Cancel
     End Sub
@@ -417,7 +419,7 @@ Public Class AddEditArticle
         Dim BMG As New Bitmap(Form1.txtlongerbt.Text, Form1.txtlargebt.Text, Imaging.PixelFormat.Format24bppRgb)
         'ceate the graphic
         Dim GR As Graphics = Graphics.FromImage(BMG)
- 
+
 
         GR.Clear(Color.White)
 
@@ -535,3 +537,4 @@ Public Class AddEditArticle
 
     End Sub
 End Class
+

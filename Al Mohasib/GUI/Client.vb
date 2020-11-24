@@ -122,7 +122,7 @@ Public Class Client
         If txtVille.text = "" Then txtVille.text = "-"
 
 
-        Dim adresse As String = txtad.text & " * " & txtVille.text & " * " & txtIce.text
+        Dim adresse As String = txtad.text & "*" & txtVille.text & "*" & txtIce.text
 
 
 

@@ -385,3 +385,81 @@ C:\Users\admin\Desktop\prjt test\code a barre - Adnan\Al Mohasib -Patiserier\Al 
 C:\Users\admin\Desktop\prjt test\code a barre - Adnan\Al Mohasib -Patiserier\Al Mohasib\obj\x86\Debug\Al_Mohasib.TrialVersion.resources
 C:\Users\admin\Desktop\prjt test\code a barre - Adnan\Al Mohasib -Patiserier\Al Mohasib\obj\x86\Debug\Al_Mohasib.Resources.resources
 C:\Users\admin\Desktop\prjt test\code a barre - Adnan\Al Mohasib -Patiserier\Al Mohasib\obj\x86\Debug\Al Mohasib.vbproj.GenerateResource.Cache
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Debug\Al Mohasib.exe.config
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al Mohasib.exe
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al Mohasib.xml
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al Mohasib.pdb
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Debug\ALMohassinDB.mdb
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Debug\Al Mohasib.pdb
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Debug\Al Mohasib.xml
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Debug\MyBarcode.dll
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al Mohasib.vbprojResolveAssemblyReference.cache
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddList.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddPanel.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ArtBloc.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.CBlock.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ClientBloc.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.CPanel.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditTopField.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.gChooseDesign.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.gColumn.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.gForm.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.gTable.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Items.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.RPanel.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Tag.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.TxtBox.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Addadmin.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddArticleToFacture.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddCharges.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddDepot.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditArticle.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditCat.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditCharges.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddMashine.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddMelange.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.addtoliste.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ArticleDetails.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Articles.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AvanceCheck.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.BackUP.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.BarCode.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.byPrice.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.byname.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Calc.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChoseClient.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChoseCompany.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChoseDepot.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Client.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ClientDetails.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.company.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.CompanyPAYEMENT.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Depot.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.EtatClient.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ListMultiCodes.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.PayRecept.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.PriceType.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Screen2.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Devis.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Commande.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Editprdfact.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.EditStock.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Facture.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Form1.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.GestionStock.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.LookForDevis.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Massar.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.num.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.OpenAvoir.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChoseLivreur.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.PAYEMENT.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.PayFacture.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.paypmt.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.PWDPicker.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.SavePrint.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.stk.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Stock.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.testimage.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.TrialVersion.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Resources.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al Mohasib.vbproj.GenerateResource.Cache

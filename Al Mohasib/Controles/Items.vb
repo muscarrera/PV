@@ -198,29 +198,39 @@
             Return True
         End Get
         Set(ByVal value As Boolean)
-            'If value Then
-            '    LbTotal.Left = 0
-            '    LbTva.Left = 0
-            '    LbTotal.TextAlign = ContentAlignment.MiddleLeft
-            '    LbTva.TextAlign = ContentAlignment.MiddleLeft
+            If value Then
+                'LbTotal.Left = 0
+                'LbTva.Left = 0
+                'LbTotal.TextAlign = ContentAlignment.MiddleLeft
+                'LbTva.TextAlign = ContentAlignment.MiddleLeft
 
-            '    LbTotal.Anchor = AnchorStyles.Left
-            '    LbTva.Anchor = AnchorStyles.Left
-            '    LbName.Anchor = AnchorStyles.Right
-            '    LbDesc.Anchor = AnchorStyles.Right
+                'LbTotal.Anchor = AnchorStyles.Left
+                'LbTva.Anchor = AnchorStyles.Left
+                'LbName.Anchor = AnchorStyles.Right
 
-            '    LbName.TextAlign = ContentAlignment.MiddleRight
-            '    LbDesc.TextAlign = ContentAlignment.MiddleRight
+                'LbName.TextAlign = ContentAlignment.MiddleRight
 
-            '    LbName.AutoSize = False
-            '    LbDesc.AutoSize = False
+                'LbName.AutoSize = False
 
-            '    LbName.Width = Me.Width - LbTotal.Width - 5
-            '    LbDesc.Width = Me.Width - LbTotal.Width - 5
+                'LbName.Width = Me.Width - LbTotal.Width - 5
 
-            '    LbName.Left = Me.Width - LbName.Width
-            '    LbDesc.Left = Me.Width - LbDesc.Width
-            'End If
+                'LbName.Left = Me.Width - LbName.Width
+
+                LbTotal.Dock = DockStyle.Left
+                LbName.TextAlign = ContentAlignment.MiddleRight
+                LbTotal.TextAlign = ContentAlignment.MiddleLeft
+
+
+
+                LbQte.Dock = DockStyle.Right
+                Label2.Dock = DockStyle.Right
+                LbPrice.Dock = DockStyle.Right
+                Label3.Dock = DockStyle.Right
+                LbStk.Dock = DockStyle.Right
+
+                LbTva.Dock = DockStyle.Left
+                LbTva.TextAlign = ContentAlignment.MiddleLeft
+            End If
         End Set
     End Property
 
@@ -286,7 +296,14 @@
         End Set
     End Property
 
+    Public Sub New()
 
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        IsArabic = Form1.cbArticleItemDirection.Checked
+    End Sub
     Private Sub PlBody_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Pl.Click, LbQte.Click, LbName.Click, LbTotal.Click, LbTva.Click, Panel1.Click, LbStk.Click, LbPrice.Click, Label3.Click, Label2.Click
         If IsSelected = True Then
             IsSelected = False

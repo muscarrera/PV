@@ -5,9 +5,20 @@
     Private Sub byname_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         txt.Focus()
 
-        If Form1.cbOptionJenani.Checked And Form1.RPl.isSell Then Me.Width = 756
-        Me.Show()
+        If Form1.cbOptionJenani.Checked And Form1.RPl.isSell Then
+            Me.Width = 756
+        Else
+            Me.Width = 500
+        End If
 
+        If Form1.cbJnReduireQte.Checked Then
+            plFooter.Height = 11
+            Me.Width = 500
+            Me.Height = 170
+            Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+        End If
+
+        Me.Show()
         txt.Focus()
     End Sub
 

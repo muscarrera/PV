@@ -39,10 +39,12 @@ Partial Class byname
         Me.Label5 = New System.Windows.Forms.Label()
         Me.BTp1 = New System.Windows.Forms.Button()
         Me.Panel18 = New System.Windows.Forms.Panel()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BTACH = New System.Windows.Forms.Button()
         Me.txtPrice = New Al_Mohasib.TxtBox()
         Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -64,8 +66,10 @@ Partial Class byname
         Me.Button4 = New System.Windows.Forms.Button()
         Me.txt = New Al_Mohasib.TxtBox()
         Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.plFooter = New System.Windows.Forms.Panel()
         Me.Button15 = New System.Windows.Forms.Button()
         Me.Panel19 = New System.Windows.Forms.Panel()
         Me.lbName = New System.Windows.Forms.Label()
@@ -87,7 +91,7 @@ Partial Class byname
         Me.Panel5.SuspendLayout()
         Me.Panel9.SuspendLayout()
         Me.Panel10.SuspendLayout()
-        Me.Panel4.SuspendLayout()
+        Me.plFooter.SuspendLayout()
         Me.Panel19.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -97,12 +101,12 @@ Partial Class byname
         Me.Panel44.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel44.Controls.Add(Me.Panel8)
         Me.Panel44.Controls.Add(Me.Panel2)
-        Me.Panel44.Controls.Add(Me.Panel4)
+        Me.Panel44.Controls.Add(Me.plFooter)
         Me.Panel44.Controls.Add(Me.Panel19)
         Me.Panel44.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel44.Location = New System.Drawing.Point(0, 0)
         Me.Panel44.Name = "Panel44"
-        Me.Panel44.Size = New System.Drawing.Size(747, 547)
+        Me.Panel44.Size = New System.Drawing.Size(764, 547)
         Me.Panel44.TabIndex = 4
         '
         'Panel8
@@ -114,7 +118,7 @@ Partial Class byname
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel8.Location = New System.Drawing.Point(499, 63)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(246, 407)
+        Me.Panel8.Size = New System.Drawing.Size(263, 407)
         Me.Panel8.TabIndex = 4
         '
         'Panel12
@@ -165,7 +169,6 @@ Partial Class byname
         Me.BTp4.Size = New System.Drawing.Size(220, 50)
         Me.BTp4.TabIndex = 2
         Me.BTp4.Text = "0"
-        Me.BTp4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BTp4.UseVisualStyleBackColor = False
         '
         'Panel15
@@ -184,12 +187,12 @@ Partial Class byname
         Me.Label7.BackColor = System.Drawing.Color.DodgerBlue
         Me.Label7.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Label7.Location = New System.Drawing.Point(7, 6)
+        Me.Label7.Location = New System.Drawing.Point(124, 6)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(62, 49)
+        Me.Label7.Size = New System.Drawing.Size(97, 49)
         Me.Label7.TabIndex = 3
-        Me.Label7.Text = "Prix Gros"
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label7.Text = "ثمن  الجمـلة Prix Gros"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'BTp3
         '
@@ -207,7 +210,7 @@ Partial Class byname
         Me.BTp3.Size = New System.Drawing.Size(220, 52)
         Me.BTp3.TabIndex = 3
         Me.BTp3.Text = "0"
-        Me.BTp3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BTp3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BTp3.UseVisualStyleBackColor = False
         '
         'Panel16
@@ -226,12 +229,12 @@ Partial Class byname
         Me.Label6.BackColor = System.Drawing.Color.DarkCyan
         Me.Label6.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Label6.Location = New System.Drawing.Point(7, 6)
+        Me.Label6.Location = New System.Drawing.Point(104, 6)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(95, 49)
+        Me.Label6.Size = New System.Drawing.Size(117, 49)
         Me.Label6.TabIndex = 3
-        Me.Label6.Text = "Prix Revendeur"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label6.Text = "  ثمن نصف الجملة   Revendeur"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'BTp2
         '
@@ -249,7 +252,7 @@ Partial Class byname
         Me.BTp2.Size = New System.Drawing.Size(218, 50)
         Me.BTp2.TabIndex = 3
         Me.BTp2.Text = "0"
-        Me.BTp2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BTp2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BTp2.UseVisualStyleBackColor = False
         '
         'Panel17
@@ -268,12 +271,12 @@ Partial Class byname
         Me.Label5.BackColor = System.Drawing.Color.Green
         Me.Label5.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Label5.Location = New System.Drawing.Point(7, 6)
+        Me.Label5.Location = New System.Drawing.Point(112, 6)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(81, 49)
+        Me.Label5.Size = New System.Drawing.Size(109, 49)
         Me.Label5.TabIndex = 3
-        Me.Label5.Text = "Prix Details"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label5.Text = "  ثمن التسقيط Prix Details"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'BTp1
         '
@@ -291,11 +294,13 @@ Partial Class byname
         Me.BTp1.Size = New System.Drawing.Size(220, 52)
         Me.BTp1.TabIndex = 3
         Me.BTp1.Text = "0"
-        Me.BTp1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BTp1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BTp1.UseVisualStyleBackColor = False
         '
         'Panel18
         '
+        Me.Panel18.BackColor = System.Drawing.Color.Crimson
+        Me.Panel18.Controls.Add(Me.Label3)
         Me.Panel18.Controls.Add(Me.Label4)
         Me.Panel18.Controls.Add(Me.BTACH)
         Me.Panel18.Dock = System.Windows.Forms.DockStyle.Top
@@ -305,17 +310,29 @@ Partial Class byname
         Me.Panel18.Size = New System.Drawing.Size(228, 66)
         Me.Panel18.TabIndex = 5
         '
+        'Label3
+        '
+        Me.Label3.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.SystemColors.ControlDark
+        Me.Label3.Location = New System.Drawing.Point(116, 9)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(105, 49)
+        Me.Label3.TabIndex = 3
+        Me.Label3.Text = "  ثمن الشراء  Prix d'Achat"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'Label4
         '
         Me.Label4.BackColor = System.Drawing.Color.WhiteSmoke
         Me.Label4.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label4.Location = New System.Drawing.Point(7, 9)
+        Me.Label4.Location = New System.Drawing.Point(108, 9)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(81, 49)
+        Me.Label4.Size = New System.Drawing.Size(113, 49)
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "Prix d'Achat"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'BTACH
         '
@@ -327,15 +344,15 @@ Partial Class byname
         Me.BTACH.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.BTACH.FlatAppearance.BorderSize = 0
         Me.BTACH.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BTACH.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BTACH.ForeColor = System.Drawing.Color.LightGray
+        Me.BTACH.Font = New System.Drawing.Font("Arial Black", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BTACH.ForeColor = System.Drawing.Color.Maroon
         Me.BTACH.Location = New System.Drawing.Point(4, 4)
         Me.BTACH.Margin = New System.Windows.Forms.Padding(0)
         Me.BTACH.Name = "BTACH"
         Me.BTACH.Size = New System.Drawing.Size(220, 58)
         Me.BTACH.TabIndex = 2
         Me.BTACH.Text = "0"
-        Me.BTACH.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BTACH.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BTACH.UseVisualStyleBackColor = False
         '
         'txtPrice
@@ -362,12 +379,24 @@ Partial Class byname
         'Panel11
         '
         Me.Panel11.BackColor = System.Drawing.Color.DarkGreen
+        Me.Panel11.Controls.Add(Me.Label8)
         Me.Panel11.Controls.Add(Me.Label2)
         Me.Panel11.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel11.Location = New System.Drawing.Point(0, 0)
         Me.Panel11.Name = "Panel11"
-        Me.Panel11.Size = New System.Drawing.Size(246, 57)
+        Me.Panel11.Size = New System.Drawing.Size(263, 57)
         Me.Panel11.TabIndex = 5
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.White
+        Me.Label8.Location = New System.Drawing.Point(171, 11)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(66, 18)
+        Me.Label8.TabIndex = 2
+        Me.Label8.Text = "الثــــمـــن"
         '
         'Label2
         '
@@ -665,12 +694,36 @@ Partial Class byname
         'Panel10
         '
         Me.Panel10.BackColor = System.Drawing.SystemColors.MenuHighlight
+        Me.Panel10.Controls.Add(Me.Label9)
+        Me.Panel10.Controls.Add(Me.Label10)
         Me.Panel10.Controls.Add(Me.Label1)
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel10.Location = New System.Drawing.Point(0, 0)
         Me.Panel10.Name = "Panel10"
         Me.Panel10.Size = New System.Drawing.Size(499, 57)
         Me.Panel10.TabIndex = 4
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.White
+        Me.Label9.Location = New System.Drawing.Point(1085, 11)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(66, 18)
+        Me.Label9.TabIndex = 2
+        Me.Label9.Text = "الثــــمـــن"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ForeColor = System.Drawing.Color.White
+        Me.Label10.Location = New System.Drawing.Point(386, 11)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(87, 18)
+        Me.Label10.TabIndex = 2
+        Me.Label10.Text = "الكــــمــــيـــة"
         '
         'Label1
         '
@@ -683,15 +736,15 @@ Partial Class byname
         Me.Label1.TabIndex = 2
         Me.Label1.Text = "Quantité"
         '
-        'Panel4
+        'plFooter
         '
-        Me.Panel4.BackColor = System.Drawing.Color.LimeGreen
-        Me.Panel4.Controls.Add(Me.Button15)
-        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel4.Location = New System.Drawing.Point(0, 470)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(745, 75)
-        Me.Panel4.TabIndex = 4
+        Me.plFooter.BackColor = System.Drawing.Color.LimeGreen
+        Me.plFooter.Controls.Add(Me.Button15)
+        Me.plFooter.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.plFooter.Location = New System.Drawing.Point(0, 470)
+        Me.plFooter.Name = "plFooter"
+        Me.plFooter.Size = New System.Drawing.Size(762, 75)
+        Me.plFooter.TabIndex = 4
         '
         'Button15
         '
@@ -705,7 +758,7 @@ Partial Class byname
         Me.Button15.Location = New System.Drawing.Point(0, 0)
         Me.Button15.Margin = New System.Windows.Forms.Padding(0)
         Me.Button15.Name = "Button15"
-        Me.Button15.Size = New System.Drawing.Size(745, 75)
+        Me.Button15.Size = New System.Drawing.Size(762, 75)
         Me.Button15.TabIndex = 3
         Me.Button15.Text = "V A L I D E R"
         Me.Button15.UseVisualStyleBackColor = True
@@ -717,7 +770,7 @@ Partial Class byname
         Me.Panel19.Location = New System.Drawing.Point(0, 0)
         Me.Panel19.Name = "Panel19"
         Me.Panel19.Padding = New System.Windows.Forms.Padding(11)
-        Me.Panel19.Size = New System.Drawing.Size(745, 63)
+        Me.Panel19.Size = New System.Drawing.Size(762, 63)
         Me.Panel19.TabIndex = 5
         '
         'lbName
@@ -726,7 +779,7 @@ Partial Class byname
         Me.lbName.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbName.Location = New System.Drawing.Point(11, 11)
         Me.lbName.Name = "lbName"
-        Me.lbName.Size = New System.Drawing.Size(723, 41)
+        Me.lbName.Size = New System.Drawing.Size(740, 41)
         Me.lbName.TabIndex = 0
         Me.lbName.Text = "desig"
         Me.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -735,7 +788,7 @@ Partial Class byname
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(747, 547)
+        Me.ClientSize = New System.Drawing.Size(764, 547)
         Me.Controls.Add(Me.Panel44)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.MaximizeBox = False
@@ -763,7 +816,7 @@ Partial Class byname
         Me.Panel9.ResumeLayout(False)
         Me.Panel10.ResumeLayout(False)
         Me.Panel10.PerformLayout()
-        Me.Panel4.ResumeLayout(False)
+        Me.plFooter.ResumeLayout(False)
         Me.Panel19.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -805,7 +858,7 @@ Partial Class byname
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents Panel10 As System.Windows.Forms.Panel
-    Friend WithEvents Panel4 As System.Windows.Forms.Panel
+    Friend WithEvents plFooter As System.Windows.Forms.Panel
     Friend WithEvents Panel18 As System.Windows.Forms.Panel
     Friend WithEvents BTACH As System.Windows.Forms.Button
     Friend WithEvents Label7 As System.Windows.Forms.Label
@@ -814,4 +867,8 @@ Partial Class byname
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Panel19 As System.Windows.Forms.Panel
     Friend WithEvents lbName As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents Label10 As System.Windows.Forms.Label
 End Class

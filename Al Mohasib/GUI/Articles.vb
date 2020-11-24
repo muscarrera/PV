@@ -95,6 +95,7 @@ Public Class Articles
                                     artdt.Rows(i).Item("sp4").ToString, artdt.Rows(i).Item("sp5").ToString,
                                     artdt.Rows(i).Item("poid").ToString, bt2.Tag, artdt.Rows(i).Item("Depot").ToString,
                                     artdt.Rows(i).Item("img").ToString, artdt.Rows(i).Item("mixte"), artdt.Rows(i).Item("elements"))
+
                 Next
             End If
 

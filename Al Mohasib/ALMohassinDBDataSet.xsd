@@ -288,7 +288,7 @@ ORDER BY cid</CommandText>
               <DbSource ConnectionRef="ALMohassinDBConnectionString (MySettings)" DbObjectName="Article" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBycid" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBycid" GeneratorSourceName="FillBycid" GetMethodModifier="Public" GetMethodName="GetDataBycid" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBycid" UserSourceName="FillBycid">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        arid, bprice, cid, codebar, depot, elements, img, mixte, name, poid, qte, sp3, sp4, sp5, sprice, tva, unite
+                    <CommandText>SELECT        arid, bprice, cid, codebar, depot, elements, mixte, name, poid, qte, sp3, sp4, sp5, sprice, tva, unite, img
 FROM            Article
 WHERE        (cid = ?)
 ORDER BY name DESC</CommandText>

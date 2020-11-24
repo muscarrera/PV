@@ -6,7 +6,7 @@ Imports System.Text.RegularExpressions
 
 Public Class Form1
     'members
-    Private TrialName As String = "ALMsbtrFirstaRunMOSA5"
+    Private TrialName As String = "ALMsbtrFirstaRunMOSA6"
     Dim nbrDay_Trial As Integer = 60
 
     Public admin As Boolean
@@ -105,7 +105,7 @@ Public Class Form1
 
         Try
             'trial(Version)
-            Dim trial As Boolean = checktrialMaster()
+            Dim trial As Boolean = checktrialSlave()
             If trial = False Then
                 MsgBox("Vous devez Contacter l'adminisration pour plus d'infos")
                 End
@@ -202,17 +202,17 @@ Public Class Form1
         '''''''''''''''''''''''''
 
         If isArabic Then
-            TabPageAcu.Text = "   الرئــيسـية  "
-            TabPageArch.Text = " الارشـــيـف  "
-            TabPageChar.Text = "  المــصـاريف  "
-            TabPageFac.Text = "  الـفـــواتر  "
-            TabPageParm.Text = "  الاعــدادات  "
-            TabPageStk.Text = "  المـخـــزون  "
+            'TabPageAcu.Text = "   الرئــيسـية  "
+            'TabPageArch.Text = " الارشـــيـف  "
+            'TabPageChar.Text = "  المــصـاريف  "
+            'TabPageFac.Text = "  الـفـــواتر  "
+            'TabPageParm.Text = "  الاعــدادات  "
+            'TabPageStk.Text = "  المـخـــزون  "
 
-            Button3.Text = "المـوردون"
-            Button2.Text = "الزبائن"
-            Button4.Text = "المـواد"
-            Button5.Text = "المخـازن"
+            'Button3.Text = "المـوردون"
+            'Button2.Text = "الزبائن"
+            'Button4.Text = "المـواد"
+            'Button5.Text = "المخـازن"
 
             'DGVS.Columns(1).HeaderText = "المواد"
             'DGVS.Columns(2).HeaderText = "الوحدة"
@@ -718,6 +718,8 @@ Public Class Form1
         getRegistryinfo(cbOptionJenani, "cbOptionJenani", False)
         getRegistryinfo(cbListToRight, "cbListToRight", False)
         getRegistryinfo(cbJnImgDb, "cbJnImgDb", False)
+        getRegistryinfo(cbArticleItemDirection, "cbArticleItemDirection", False)
+        getRegistryinfo(cbJnReduireQte, "cbJnReduireQte", False)
 
         getRegistryinfo(txtFnPtFr, "txtFnPtFr", "Arial")
         getRegistryinfo(txtFsPtFr, "txtFsPtFr", 10)
@@ -835,7 +837,7 @@ Public Class Form1
         If LastRunDate = Nothing Then
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", "lastDate" & TrialName, Now.Date)
         ElseIf (Now - LastRunDate).Days <= -1 Then
-            MsgBox("Merci de regler la date de votre PC ..", MsgBoxStyle.Information, "Error_Date")
+            MsgBox("Merci de regler la date de votre PC .." & LastRunDate, MsgBoxStyle.Information, "Error_Date")
             End
         End If
 
@@ -1172,6 +1174,8 @@ Public Class Form1
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbOptionJenani", cbOptionJenani.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbListToRight", cbListToRight.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbJnImgDb", cbJnImgDb.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbArticleItemDirection", cbArticleItemDirection.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbJnReduireQte", cbJnReduireQte.Checked)
 
 
 
@@ -2289,12 +2293,12 @@ Public Class Form1
 
 
         If e.KeyChar = Chr(13) And FlowLayoutPanel1.Controls.Count = 1 Then
-            If cbQte.Checked Then
-                Dim bn As New byname
-                If bn.ShowDialog = DialogResult.OK Then
-                    RPl.CP.Value = bn.qte
-                End If
-            End If
+            'If cbQte.Checked Then
+            '    Dim bn As New byname
+            '    If bn.ShowDialog = DialogResult.OK Then
+            '        RPl.CP.Value = bn.qte
+            '    End If
+            'End If
             Using a As SubClass = New SubClass()
                 a.SearchForcodebar()
             End Using
@@ -3929,6 +3933,7 @@ Public Class Form1
                           String.Format("{0:0.00}", RPl.Avance), String.Format("{0:0.00}", total_droitTimbre),
                           mode, adminName, RPl.LbVidal.Text)
 
+
             Dim dt_Client As New DataTable
             ' Create four typed columns in the DataTable.
             dt_Client.Columns.Add("Clid", GetType(Integer))
@@ -3939,9 +3944,31 @@ Public Class Form1
             dt_Client.Columns.Add("ice", GetType(String))
             dt_Client.Columns.Add("tel", GetType(String))
 
+
+
+           
+            Dim tel As String = ""
+            Dim adresse = RPl.ClientAdresse.Split("*")(0)
+            Dim client_ville As String = ""
+            Dim client_ice As String = ""
+
+            Try
+                client_ville = RPl.ClientAdresse.Split("*")(1)
+            Catch ex As Exception
+                client_ville = "-"
+            End Try
+
+            Try
+                client_ice = RPl.ClientAdresse.Split("*")(2)
+            Catch ex As Exception
+                client_ice = "-"
+            End Try
+
+
             ' Add  rows with those columns filled in the DataTable.
-            dt_Client.Rows.Add(RPl.ClId, RPl.ClientName, "", "Agadir",
-                                RPl.ClientAdresse, "", "")
+            dt_Client.Rows.Add(RPl.ClId, RPl.ClientName, RPl.ClId, client_ville,
+                                adresse, client_ice, tel)
+
 
 
             Using g As gDrawClass = New gDrawClass(MP_Localname)
@@ -3970,7 +3997,7 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub Button44_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btTarif.Click
+    Private Sub Button44_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btTarif.Click, Button44.Click
         If RPl.isSell Then
 
             Dim pt As New PriceType

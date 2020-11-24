@@ -336,7 +336,10 @@ Partial Class Form1
         Me.txtchtotal = New System.Windows.Forms.TextBox()
         Me.TabPageParm = New System.Windows.Forms.TabPage()
         Me.GB6 = New System.Windows.Forms.GroupBox()
+        Me.cbArticleItemDirection = New System.Windows.Forms.CheckBox()
         Me.cbListToRight = New System.Windows.Forms.CheckBox()
+        Me.cbJnReduireQte = New System.Windows.Forms.CheckBox()
+        Me.cbJnImgDb = New System.Windows.Forms.CheckBox()
         Me.cbOptionJenani = New System.Windows.Forms.CheckBox()
         Me.Panel10 = New System.Windows.Forms.Panel()
         Me.cbEnsGrp = New System.Windows.Forms.CheckBox()
@@ -399,7 +402,7 @@ Partial Class Form1
         Me.PrintDocDepot = New System.Drawing.Printing.PrintDocument()
         Me.PrintDocDesign = New System.Drawing.Printing.PrintDocument()
         Me.PrintDocDesignFct = New System.Drawing.Printing.PrintDocument()
-        Me.cbJnImgDb = New System.Windows.Forms.CheckBox()
+        Me.Button44 = New System.Windows.Forms.Button()
         Me.PlRcpt.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.plup.SuspendLayout()
@@ -516,6 +519,7 @@ Partial Class Form1
         'plup
         '
         Me.plup.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.plup.Controls.Add(Me.Button44)
         Me.plup.Controls.Add(Me.Button32)
         Me.plup.Controls.Add(Me.Button31)
         Me.plup.Dock = System.Windows.Forms.DockStyle.Top
@@ -555,12 +559,13 @@ Partial Class Form1
         '
         'btTarif
         '
+        Me.btTarif.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btTarif.BackColor = System.Drawing.Color.Crimson
         Me.btTarif.FlatAppearance.BorderSize = 0
         Me.btTarif.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btTarif.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btTarif.ForeColor = System.Drawing.Color.White
-        Me.btTarif.Location = New System.Drawing.Point(21, 4)
+        Me.btTarif.Location = New System.Drawing.Point(-155, 4)
         Me.btTarif.Name = "btTarif"
         Me.btTarif.Size = New System.Drawing.Size(132, 29)
         Me.btTarif.TabIndex = 8
@@ -1907,9 +1912,9 @@ Partial Class Form1
         Me.plTarif.Controls.Add(Me.btTarif)
         Me.plTarif.Controls.Add(Me.ShapeContainer6)
         Me.plTarif.Dock = System.Windows.Forms.DockStyle.Left
-        Me.plTarif.Location = New System.Drawing.Point(441, 0)
+        Me.plTarif.Location = New System.Drawing.Point(598, 0)
         Me.plTarif.Name = "plTarif"
-        Me.plTarif.Size = New System.Drawing.Size(175, 40)
+        Me.plTarif.Size = New System.Drawing.Size(10, 40)
         Me.plTarif.TabIndex = 13
         '
         'ShapeContainer6
@@ -1918,7 +1923,7 @@ Partial Class Form1
         Me.ShapeContainer6.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer6.Name = "ShapeContainer6"
         Me.ShapeContainer6.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.RectangleShape11})
-        Me.ShapeContainer6.Size = New System.Drawing.Size(175, 40)
+        Me.ShapeContainer6.Size = New System.Drawing.Size(10, 40)
         Me.ShapeContainer6.TabIndex = 0
         Me.ShapeContainer6.TabStop = False
         '
@@ -1929,7 +1934,7 @@ Partial Class Form1
         Me.RectangleShape11.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
         Me.RectangleShape11.BorderColor = System.Drawing.Color.Maroon
         Me.RectangleShape11.CornerRadius = 14
-        Me.RectangleShape11.Location = New System.Drawing.Point(5, 2)
+        Me.RectangleShape11.Location = New System.Drawing.Point(-168, 2)
         Me.RectangleShape11.Name = "RectangleShape1"
         Me.RectangleShape11.SelectionColor = System.Drawing.Color.Crimson
         Me.RectangleShape11.Size = New System.Drawing.Size(162, 31)
@@ -1940,7 +1945,7 @@ Partial Class Form1
         Me.plDepot.Controls.Add(Me.Button36)
         Me.plDepot.Controls.Add(Me.ShapeContainer5)
         Me.plDepot.Dock = System.Windows.Forms.DockStyle.Left
-        Me.plDepot.Location = New System.Drawing.Point(263, 0)
+        Me.plDepot.Location = New System.Drawing.Point(420, 0)
         Me.plDepot.Name = "plDepot"
         Me.plDepot.Size = New System.Drawing.Size(178, 40)
         Me.plDepot.TabIndex = 12
@@ -1992,7 +1997,7 @@ Partial Class Form1
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel3.Location = New System.Drawing.Point(252, 0)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(11, 40)
+        Me.Panel3.Size = New System.Drawing.Size(168, 40)
         Me.Panel3.TabIndex = 11
         '
         'Button34
@@ -2005,7 +2010,7 @@ Partial Class Form1
         Me.Button34.ForeColor = System.Drawing.Color.Yellow
         Me.Button34.Image = Global.Al_Mohasib.My.Resources.Resources.BTGROUP
         Me.Button34.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button34.Location = New System.Drawing.Point(-140, 5)
+        Me.Button34.Location = New System.Drawing.Point(17, 5)
         Me.Button34.Name = "Button34"
         Me.Button34.Size = New System.Drawing.Size(124, 28)
         Me.Button34.TabIndex = 2
@@ -2019,7 +2024,7 @@ Partial Class Form1
         Me.ShapeContainer4.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer4.Name = "ShapeContainer4"
         Me.ShapeContainer4.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.RectangleShape9})
-        Me.ShapeContainer4.Size = New System.Drawing.Size(11, 40)
+        Me.ShapeContainer4.Size = New System.Drawing.Size(168, 40)
         Me.ShapeContainer4.TabIndex = 0
         Me.ShapeContainer4.TabStop = False
         '
@@ -2030,7 +2035,7 @@ Partial Class Form1
         Me.RectangleShape9.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
         Me.RectangleShape9.BorderColor = System.Drawing.Color.DarkSlateGray
         Me.RectangleShape9.CornerRadius = 14
-        Me.RectangleShape9.Location = New System.Drawing.Point(-147, 3)
+        Me.RectangleShape9.Location = New System.Drawing.Point(10, 3)
         Me.RectangleShape9.Name = "RectangleShape1"
         Me.RectangleShape9.Size = New System.Drawing.Size(145, 31)
         '
@@ -3838,7 +3843,9 @@ Partial Class Form1
         'GB6
         '
         Me.GB6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.GB6.Controls.Add(Me.cbArticleItemDirection)
         Me.GB6.Controls.Add(Me.cbListToRight)
+        Me.GB6.Controls.Add(Me.cbJnReduireQte)
         Me.GB6.Controls.Add(Me.cbJnImgDb)
         Me.GB6.Controls.Add(Me.cbOptionJenani)
         Me.GB6.Controls.Add(Me.Panel10)
@@ -3856,15 +3863,45 @@ Partial Class Form1
         Me.GB6.TabIndex = 9
         Me.GB6.TabStop = False
         '
+        'cbArticleItemDirection
+        '
+        Me.cbArticleItemDirection.AutoSize = True
+        Me.cbArticleItemDirection.Location = New System.Drawing.Point(41, 283)
+        Me.cbArticleItemDirection.Name = "cbArticleItemDirection"
+        Me.cbArticleItemDirection.Size = New System.Drawing.Size(257, 17)
+        Me.cbArticleItemDirection.TabIndex = 11
+        Me.cbArticleItemDirection.Text = "Déplacer la direction de  list-receipt  vers la droite"
+        Me.cbArticleItemDirection.UseVisualStyleBackColor = True
+        '
         'cbListToRight
         '
         Me.cbListToRight.AutoSize = True
-        Me.cbListToRight.Location = New System.Drawing.Point(42, 226)
+        Me.cbListToRight.Location = New System.Drawing.Point(42, 260)
         Me.cbListToRight.Name = "cbListToRight"
         Me.cbListToRight.Size = New System.Drawing.Size(185, 17)
         Me.cbListToRight.TabIndex = 11
         Me.cbListToRight.Text = "Déplacer list-receipt  vers la droite"
         Me.cbListToRight.UseVisualStyleBackColor = True
+        '
+        'cbJnReduireQte
+        '
+        Me.cbJnReduireQte.AutoSize = True
+        Me.cbJnReduireQte.Location = New System.Drawing.Point(42, 226)
+        Me.cbJnReduireQte.Name = "cbJnReduireQte"
+        Me.cbJnReduireQte.Size = New System.Drawing.Size(143, 17)
+        Me.cbJnReduireQte.TabIndex = 11
+        Me.cbJnReduireQte.Text = "Option Jn-Reduire Pl Qte"
+        Me.cbJnReduireQte.UseVisualStyleBackColor = True
+        '
+        'cbJnImgDb
+        '
+        Me.cbJnImgDb.AutoSize = True
+        Me.cbJnImgDb.Location = New System.Drawing.Point(42, 203)
+        Me.cbJnImgDb.Name = "cbJnImgDb"
+        Me.cbJnImgDb.Size = New System.Drawing.Size(108, 17)
+        Me.cbJnImgDb.TabIndex = 11
+        Me.cbJnImgDb.Text = "Option Jn-Img-Db"
+        Me.cbJnImgDb.UseVisualStyleBackColor = True
         '
         'cbOptionJenani
         '
@@ -4421,15 +4458,20 @@ Partial Class Form1
         'PrintDocDesignFct
         '
         '
-        'cbJnImgDb
+        'Button44
         '
-        Me.cbJnImgDb.AutoSize = True
-        Me.cbJnImgDb.Location = New System.Drawing.Point(42, 203)
-        Me.cbJnImgDb.Name = "cbJnImgDb"
-        Me.cbJnImgDb.Size = New System.Drawing.Size(108, 17)
-        Me.cbJnImgDb.TabIndex = 11
-        Me.cbJnImgDb.Text = "Option Jn-Img-Db"
-        Me.cbJnImgDb.UseVisualStyleBackColor = True
+        Me.Button44.BackColor = System.Drawing.Color.Teal
+        Me.Button44.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Button44.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button44.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button44.ForeColor = System.Drawing.Color.White
+        Me.Button44.Location = New System.Drawing.Point(0, 0)
+        Me.Button44.Name = "Button44"
+        Me.Button44.Size = New System.Drawing.Size(152, 30)
+        Me.Button44.TabIndex = 8
+        Me.Button44.Tag = "1"
+        Me.Button44.Text = "TRF"
+        Me.Button44.UseVisualStyleBackColor = False
         '
         'Form1
         '
@@ -4887,5 +4929,8 @@ Partial Class Form1
     Friend WithEvents btGoBack As System.Windows.Forms.Button
     Friend WithEvents cbListToRight As System.Windows.Forms.CheckBox
     Friend WithEvents cbJnImgDb As System.Windows.Forms.CheckBox
+    Friend WithEvents cbArticleItemDirection As System.Windows.Forms.CheckBox
+    Friend WithEvents cbJnReduireQte As System.Windows.Forms.CheckBox
+    Friend WithEvents Button44 As System.Windows.Forms.Button
 
 End Class

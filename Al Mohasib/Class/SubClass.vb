@@ -536,12 +536,12 @@ Public Class SubClass
                 Dim bt As New Button
                 bt.Tag = artdt.Rows(0)
 
-                If Form1.cbQte.Checked Then
-                    Dim bn As New byname
-                    If bn.ShowDialog = DialogResult.OK Then
-                        Form1.RPl.CP.Value = bn.qte
-                    End If
-                End If
+                'If Form1.cbQte.Checked Then
+                '    Dim bn As New byname
+                '    If bn.ShowDialog = DialogResult.OK Then
+                '        Form1.RPl.CP.Value = bn.qte
+                '    End If
+                'End If
 
 
                 ' sell function
@@ -714,19 +714,9 @@ Public Class SubClass
 
         Form1.btGoBack.Tag = bt2.Tag
         Try
-            'Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            'Dim artdt = artta.GetDataBycid(bt2.Tag)
+            Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
+            Dim artdt = artta.GetDataBycid(bt2.Tag)
             Form1.FlowLayoutPanel1.Tag = bt2.Tag
-
-            Dim artdt As DataTable
-
-            Dim params As New Dictionary(Of String, Object)
-            params.Add("cid", CInt(bt2.Tag))
-
-            ' added some items
-            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-                artdt = a.SelectDataTable("Article", {"*"}, params)
-            End Using
 
 
             If artdt.Rows.Count = 0 Then

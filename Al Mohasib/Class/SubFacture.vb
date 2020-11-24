@@ -31,11 +31,11 @@
                         params.Add("Clid", dt.Rows(i).Item("clid"))
                         Dim CLT = c.SelectDataTable("Client", {"*"}, params)
 
-                        Form1.DGVFCT.Rows.Add(dt.Rows(i).Item(0), StrValue(dt, "name", 0), dt.Rows(i).Item("date"),
+                        Form1.DGVFCT.Rows.Add(dt.Rows(i).Item(0), StrValue(CLT, "name", 0), dt.Rows(i).Item("date"),
                                               dt.Rows(i).Item("remise"), dt.Rows(i).Item("ListBl"),
                                               dt.Rows(i).Item("timbre"), dt.Rows(i).Item("clid"),
                                                dt.Rows(i).Item("total"), dt.Rows(i).Item("mode"),
-                                               StrValue(dt, "adress", 0))
+                                               StrValue(CLT, "adress", 0))
                     Next
                 Catch ex As Exception
                     Form1.RPl.ClientAdresse = ""

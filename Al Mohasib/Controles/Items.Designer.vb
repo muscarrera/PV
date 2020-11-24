@@ -23,6 +23,8 @@ Partial Class Items
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Pl = New System.Windows.Forms.Panel()
+        Me.LbName = New System.Windows.Forms.Label()
+        Me.LbTotal = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.LbStk = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -30,8 +32,6 @@ Partial Class Items
         Me.Label2 = New System.Windows.Forms.Label()
         Me.LbQte = New System.Windows.Forms.Label()
         Me.LbTva = New System.Windows.Forms.Label()
-        Me.LbTotal = New System.Windows.Forms.Label()
-        Me.LbName = New System.Windows.Forms.Label()
         Me.Pl.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -39,14 +39,38 @@ Partial Class Items
         'Pl
         '
         Me.Pl.BackColor = System.Drawing.Color.Transparent
-        Me.Pl.Controls.Add(Me.Panel1)
-        Me.Pl.Controls.Add(Me.LbTotal)
         Me.Pl.Controls.Add(Me.LbName)
+        Me.Pl.Controls.Add(Me.LbTotal)
+        Me.Pl.Controls.Add(Me.Panel1)
         Me.Pl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Pl.Location = New System.Drawing.Point(2, 2)
         Me.Pl.Name = "Pl"
         Me.Pl.Size = New System.Drawing.Size(298, 41)
         Me.Pl.TabIndex = 2
+        '
+        'LbName
+        '
+        Me.LbName.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LbName.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbName.ForeColor = System.Drawing.Color.DarkCyan
+        Me.LbName.Location = New System.Drawing.Point(0, 0)
+        Me.LbName.Name = "LbName"
+        Me.LbName.Size = New System.Drawing.Size(223, 21)
+        Me.LbName.TabIndex = 0
+        Me.LbName.Text = "Label1"
+        Me.LbName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'LbTotal
+        '
+        Me.LbTotal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LbTotal.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbTotal.ForeColor = System.Drawing.Color.DarkCyan
+        Me.LbTotal.Location = New System.Drawing.Point(223, 0)
+        Me.LbTotal.Name = "LbTotal"
+        Me.LbTotal.Size = New System.Drawing.Size(75, 21)
+        Me.LbTotal.TabIndex = 0
+        Me.LbTotal.Text = "Label1"
+        Me.LbTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Panel1
         '
@@ -122,38 +146,14 @@ Partial Class Items
         '
         'LbTva
         '
-        Me.LbTva.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LbTva.Font = New System.Drawing.Font("Arial Narrow", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbTva.Location = New System.Drawing.Point(208, 3)
+        Me.LbTva.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LbTva.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbTva.Location = New System.Drawing.Point(213, 0)
         Me.LbTva.Name = "LbTva"
-        Me.LbTva.Size = New System.Drawing.Size(85, 13)
+        Me.LbTva.Size = New System.Drawing.Size(85, 20)
         Me.LbTva.TabIndex = 0
         Me.LbTva.Text = "Label1"
         Me.LbTva.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'LbTotal
-        '
-        Me.LbTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LbTotal.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbTotal.ForeColor = System.Drawing.Color.DarkCyan
-        Me.LbTotal.Location = New System.Drawing.Point(218, 4)
-        Me.LbTotal.Name = "LbTotal"
-        Me.LbTotal.Size = New System.Drawing.Size(75, 16)
-        Me.LbTotal.TabIndex = 0
-        Me.LbTotal.Text = "Label1"
-        Me.LbTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'LbName
-        '
-        Me.LbName.AutoSize = True
-        Me.LbName.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbName.ForeColor = System.Drawing.Color.DarkCyan
-        Me.LbName.Location = New System.Drawing.Point(3, 1)
-        Me.LbName.Name = "LbName"
-        Me.LbName.Size = New System.Drawing.Size(47, 16)
-        Me.LbName.TabIndex = 0
-        Me.LbName.Text = "Label1"
-        Me.LbName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Items
         '
@@ -165,7 +165,6 @@ Partial Class Items
         Me.Padding = New System.Windows.Forms.Padding(2)
         Me.Size = New System.Drawing.Size(302, 45)
         Me.Pl.ResumeLayout(False)
-        Me.Pl.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)

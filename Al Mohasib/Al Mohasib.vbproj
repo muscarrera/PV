@@ -181,6 +181,12 @@
     <Compile Include="Controles\Items.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controles\PvArticle.Designer.vb">
+      <DependentUpon>PvArticle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\PvArticle.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controles\RPanel.Designer.vb">
       <DependentUpon>RPanel.vb</DependentUpon>
     </Compile>
@@ -566,6 +572,9 @@
     <EmbeddedResource Include="Controles\Items.resx">
       <DependentUpon>Items.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controles\PvArticle.resx">
+      <DependentUpon>PvArticle.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controles\RPanel.resx">
       <DependentUpon>RPanel.vb</DependentUpon>
     </EmbeddedResource>
@@ -871,6 +880,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MyBarcode.dll" />
+    <None Include="Resources\BGPVAR 2.png" />
     <None Include="Resources\iconfinder_CasH 44.png" />
     <None Include="Resources\iconfinder_Cash_register_73439.png" />
     <None Include="Resources\Cash_register_22.png" />
@@ -952,7 +962,7 @@
     <None Include="Resources\top fact1.jpg" />
     <None Include="27274.png" />
     <Content Include="ALMohassinDB.mdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\04.jpg" />
     <None Include="Resources\011.jpg" />
