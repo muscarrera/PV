@@ -77,9 +77,10 @@ Public Class Form1
             Return _RplWidth
         End Get
         Set(ByVal value As Integer)
+            If value <= 20 Then value = 22
+
             _RplWidth = value
             PlRcpt.Width = value
-
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "RplWidth", value)
 
         End Set
@@ -91,6 +92,7 @@ Public Class Form1
             Return _RplHeight
         End Get
         Set(ByVal value As Integer)
+            If value <= 20 Then value = 22
             _RplHeight = value
             RPl.CP.Height = value
 
@@ -103,9 +105,25 @@ Public Class Form1
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
         HandleRegistryinfo()
 
+
+
+        'Dim cde As String = "123456123456"
+        'If cde.Length > 12 Then cde = cde.Substring(0, 12)
+        'If cde.Length < 12 Then Exit Sub
+
+        'Dim CD As New BarCode1
+        'CD.Code = cde
+        'CD.article = "Article eee"
+        'CD.qte = "23.50"
+
+        'If CD.ShowDialog = Windows.Forms.DialogResult.Cancel Then
+        '    End
+        'End If
+
+
         Try
             'trial(Version)
-            Dim trial As Boolean = checktrialSlave()
+            Dim trial As Boolean = checktrialMaster()
             If trial = False Then
                 MsgBox("Vous devez Contacter l'adminisration pour plus d'infos")
                 End
@@ -147,9 +165,8 @@ Public Class Form1
 
         Try
             'TabControl1.Controls.Remove(TabPageStk)
-            'TabControl1.Controls.Remove(TabPageFac)
-
-            'TabControl1.Controls.Remove(TabPageChar)
+            TabControl1.Controls.Remove(TabPageFac)
+            TabControl1.Controls.Remove(TabPageChar)
         Catch ex As Exception
         End Try
 
@@ -752,10 +769,10 @@ Public Class Form1
         'Using a As BoundClass = New BoundClass
         '    'If a.LoadNewChangement() Then
         '    '    a.DeletOldFiles()
-        '    'End If
+        '   End If
         'End Using
 
-        'checktrialMaster_Contrat()
+        '  checktrialMaster_Contrat()
 
         Dim resultkey As Integer = HandleRegistry2()
         If resultkey = 0 Then 'something went wrong
@@ -1561,16 +1578,28 @@ Public Class Form1
 
             Else
 
+                MP_Localname = "Ticket.dat"
+                If RPl.isSell = False Then MP_Localname = "Achat-Ticket.dat"
+                Dim g As New gGlobClass
                 Try
-                    MP_Localname = "Ticket.dat"
-                    If isSecond Then MP_Localname = "Ticket2.dat"
+                    If isSecond Then
+                        MP_Localname = "Ticket2.dat"
+                        If RPl.isSell = False Then MP_Localname = "Achat-Ticket2.dat"
+                    End If
 
-                    Dim g As New gGlobClass
                     g = ReadFromXmlFile(Of gGlobClass)(ImgPah & "\Prt_Dsn\" & MP_Localname)
+                Catch ex As Exception
+                End Try
 
+                Try
                     If isBl Then
                         MP_Localname = "Default.dat"
-                        If isSecond Then MP_Localname = "Default2.dat"
+                        If RPl.isSell = False Then MP_Localname = "Achat-Default.dat"
+                        If isSecond Then
+                            MP_Localname = "Default2.dat"
+                            If RPl.isSell = False Then MP_Localname = "Achat-Default2.dat"
+                        End If
+
 
                         g = ReadFromXmlFile(Of gGlobClass)(ImgPah & "\Prt_Dsn\" & MP_Localname)
                         Dim ps As New PaperSize(g.P_name, g.W_Page, g.h_Page)
@@ -1583,11 +1612,9 @@ Public Class Form1
                         PrintDocDesign.PrinterSettings.PrinterName = txtreceipt.Text
                     End If
                 Catch ex As Exception
-
                 End Try
 
                 PrintDocDesign.Print()
-
             End If
 
 
@@ -1785,7 +1812,7 @@ Public Class Form1
             Using a As DrawClass = New DrawClass
                 Dim dte As Date = CDate(DGVFCT.SelectedRows(0).Cells(2).Value)
                 Dim mode As String = DGVFCT.SelectedRows(0).Cells(8).Value
-                Dim iscache As Boolean = CBool(DGVFCT.SelectedRows(0).Cells(8).Value = "Cache")
+                Dim iscache As Boolean = CBool(mode.ToUpper = "CACHE")
                 'ttc = String.Format("{0:n}", CDec(totalttc + (totalttc * 0.0025)))
 
 
@@ -2330,7 +2357,7 @@ Public Class Form1
     End Sub
     Private Sub Button19_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button19.Click
         Using C As SubClass = New SubClass
-            'C.StockValue()
+            C.StockValue()
         End Using
     End Sub
     Private Sub Button12_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button12.Click
@@ -2594,8 +2621,9 @@ Public Class Form1
     End Sub
     Private Sub Button29_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button29.Click
         Dim isSell As Boolean = CBool(btSwitch2.Tag)
-        Dim dt1 As Date = Date.Parse(dte2.Text).AddDays(1)
-        Dim dt2 As Date = Date.Parse(dte1.Text).AddDays(-1)
+        Dim dt1 As Date = Date.Parse(dte2.Text).AddDays(1) 'dte2.Value.AddDays(1)
+        Dim dt2 As Date = Date.Parse(dte1.Text) '.AddHours(-12) dte1.Value.AddDays(-1)
+
         Dim tName As String = "Facture"
         If isSell = False Then tName = "Bon"
         Dim params As New Dictionary(Of String, Object)
@@ -2662,7 +2690,7 @@ Public Class Form1
                    String.Format("{0:n}", CDec(dt.Rows(i).Item("total").ToString)),
                      String.Format("{0:n}", CDec(dt.Rows(i).Item("avance").ToString)),
                      String.Format("{0:n}", rest),
-                     CDate(dt.Rows(i).Item("date")).ToString("dd, MMM yy [hh:mm]"),
+                     CDate(dt.Rows(i).Item("date")).ToString("dd, MMM yy [HH:mm]"),
                      dt.Rows(i).Item("adresse").ToString, dt.Rows(i).Item("writer").ToString,
                      dt.Rows(i).Item("payed").ToString, dt.Rows(i).Item("remise").ToString,
                    dt.Rows(i).Item("bl").ToString, dt.Rows(i).Item("beInFacture").ToString,
@@ -2676,6 +2704,9 @@ Public Class Form1
 
                 Next
                 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' color payed
+
+                If CbSearchFacture.Text = "" Or CbSearchFacture.Text = "Rapide" Or CbSearchFacture.Text = "----------" Then Exit Sub
+
                 For i As Integer = 0 To DGVARFA.Rows.Count - 1
                     If DGVARFA.Rows(i).Cells(9).Value = True Then
                         DGVARFA.Rows(i).DefaultCellStyle.BackColor = Color.BurlyWood
@@ -2690,6 +2721,8 @@ Public Class Form1
             Else
                 MsgBox("لا توجد اي فاتورة لهذا الزبون")
             End If
+
+            If CbSearchFacture.Text = "Sans Info" Then Exit Sub
 
             Using z As SubClass = New SubClass(isSell)
                 If admin Then
@@ -3597,7 +3630,6 @@ Public Class Form1
 
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbNormalImp", cbNormalImp.Checked)
 
-
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
         End Try
@@ -3804,7 +3836,7 @@ Public Class Form1
     Private Sub PrintDocDesign_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocDesign.PrintPage
         Try
             Dim ds As RPanel = RPl
-            Dim dte As String = Format(Date.Now, "dd-MM-yyyy [hh:mm]")
+            Dim dte As String = Format(Date.Now, "dd-MM-yyyy [HH:mm]")
             If RPl.EditMode = True Then dte = DGVARFA.SelectedRows(0).Cells(6).Value
 
 
@@ -3824,12 +3856,17 @@ Public Class Form1
             data.Columns.Add("Editeur", GetType(String))
             data.Columns.Add("vidal", GetType(String))
             data.Columns.Add("livreur", GetType(String))
+            data.Columns.Add("rest_ttc", GetType(String))
+            data.Columns.Add("x_total_ttc_sn_remise", GetType(String))
 
+            'x_total_ttc_sn_remise
             data.Rows.Add(RPl.FctId, dte, RPl.ClId, RPl.ClientName,
                           String.Format("{0:0.00}", RPl.Total_Ht), String.Format("{0:0.00}", RPl.Tva),
                           String.Format("{0:0.00}", RPl.Total_TTC), String.Format("{0:0.00}", RPl.Total_Remise),
                           String.Format("{0:0.00}", RPl.Avance), String.Format("{0:0.00}", 0),
-                          "Cache", adminName, RPl.LbVidal.Text, RPl.bl)
+                          "Cache", adminName, RPl.LbVidal.Text, RPl.bl,
+                          String.Format("{0:0.00}", RPl.Total_TTC - RPl.Avance),
+                           String.Format("{0:0.00}", RPl.Total_TTC_Befor_Remise))
 
             Dim dt_Client As New DataTable
             ' Create four typed columns in the DataTable.
@@ -3899,8 +3936,8 @@ Public Class Form1
     Private Sub PrintDocDesignFct_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocDesignFct.PrintPage
         Try
             Dim ds As RPanel = RPl
-            Dim dte As String = Format(Date.Now, "dd-MM-yyyy [hh:mm]")
-            If RPl.EditMode = True Then dte = DGVARFA.SelectedRows(0).Cells(6).Value
+            Dim dte As String = Format(CDate(DGVFCT.SelectedRows(0).Cells(2).Value), "dd-MM-yyyy [hh:mm]")
+            ' dte = DGVARFA.SelectedRows(0).Cells(2).Value
             Dim ttc As Double = RPl.Total_TTC
             Dim total_droitTimbre As Double = 0
             Dim mode As String = DGVFCT.SelectedRows(0).Cells(8).Value
@@ -3972,6 +4009,7 @@ Public Class Form1
 
 
             Using g As gDrawClass = New gDrawClass(MP_Localname)
+                '   g.rtl = cbRTL.Checked
                 g.DrawBl(e, data, ds.DataSource, dt_Client, Facture_Title, False, M)
             End Using
         Catch ex As Exception
@@ -4069,5 +4107,198 @@ Public Class Form1
             End If
 
         End Using
+    End Sub
+
+    Private Sub Button46_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btPrint_Top.Click
+
+        Try
+            If CInt(lbLastBon.Tag) = 0 Then Exit Sub
+
+            If PrintDlg.ShowDialog = Windows.Forms.DialogResult.OK Then
+                Try
+                    MP_Localname = "Top-Default.dat"
+
+                    Dim g As New gGlobClass
+                    g = ReadFromXmlFile(Of gGlobClass)(ImgPah & "\Prt_Dsn\" & MP_Localname)
+
+
+                    Dim ps As New PaperSize(g.P_name, g.W_Page, g.h_Page)
+                    ps.PaperName = g.p_Kind
+                    PrintDocDesign2.DefaultPageSettings.PaperSize = ps
+                    PrintDocDesign2.DefaultPageSettings.Landscape = g.is_Landscape
+
+                    PrintDocDesign2.PrinterSettings.PrinterName = PrintDlg.PrinterSettings.PrinterName
+                Catch ex As Exception
+
+                End Try
+
+                Dim nb = PrintDlg.PrinterSettings.Copies
+                If nb < 1 Then nb = 1
+
+                For i As Integer = 0 To nb - 1
+                    PrintDocDesign2.Print()
+                Next
+
+            End If
+
+        Catch ex As Exception
+        End Try
+
+    End Sub
+
+    Private Sub PrintDocDesign2_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocDesign2.PrintPage
+
+        Try
+            Dim dt_fct, dt_dtl As DataTable
+            Dim clid As Integer = 0
+
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+
+                params.Add("fctid", CInt(lbLastBon.Tag))
+
+                dt_fct = c.SelectDataTable("Facture", {"*"}, params)
+
+                dt_dtl = c.SelectDataTable("DetailsFacture", {"*"}, params)
+
+                params.Clear()
+                clid = IntValue(dt_fct, "clid", 0)
+            End Using
+
+
+
+            Dim data As New DataTable
+            ' Create four typed columns in the DataTable.
+            data.Columns.Add("id", GetType(String))
+            data.Columns.Add("date", GetType(String))
+            data.Columns.Add("cid", GetType(String))
+            data.Columns.Add("name", GetType(String))
+            data.Columns.Add("total_ht", GetType(String))
+            data.Columns.Add("total_tva", GetType(String))
+            data.Columns.Add("total_ttc", GetType(String))
+            data.Columns.Add("total_remise", GetType(String))
+            data.Columns.Add("total_avance", GetType(String))
+            data.Columns.Add("total_droitTimbre", GetType(String))
+            data.Columns.Add("MPayement", GetType(String))
+            data.Columns.Add("Editeur", GetType(String))
+            data.Columns.Add("vidal", GetType(String))
+            data.Columns.Add("livreur", GetType(String))
+
+            data.Rows.Add(IntValue(dt_fct, "fctid", 0), DteValue(dt_fct, "date", 0).ToString("dd-MM-yyyy [HH:mm]"), clid, StrValue(dt_fct, "name", 0),
+                          String.Format("{0:0.00}", DblValue(dt_fct, "total", 0)), String.Format("{0:0.00}", DblValue(dt_fct, "tva", 0)),
+                          String.Format("{0:0.00}", DblValue(dt_fct, "total", 0)), String.Format("{0:0.00}", DblValue(dt_fct, "remise", 0)),
+                          String.Format("{0:0.00}", DblValue(dt_fct, "avance", 0)), String.Format("{0:0.00}", 0),
+                          "Cache", adminName, dt_dtl.Rows.Count, StrValue(dt_fct, "bl", 0))
+
+            Dim dt_Client As New DataTable
+            ' Create four typed columns in the DataTable.
+            dt_Client.Columns.Add("Clid", GetType(Integer))
+            dt_Client.Columns.Add("name", GetType(String))
+            dt_Client.Columns.Add("ref", GetType(String))
+            dt_Client.Columns.Add("ville", GetType(String))
+            dt_Client.Columns.Add("adresse", GetType(String))
+            dt_Client.Columns.Add("ice", GetType(String))
+            dt_Client.Columns.Add("tel", GetType(String))
+            dt_Client.Columns.Add("NvCredit", GetType(String))
+            dt_Client.Columns.Add("EncCredit", GetType(String))
+
+            Dim credit As Double = 0
+            Dim EncCreadit = 0
+            Dim tel As String = ""
+            Dim adresse = StrValue(dt_fct, "adresse", 0).Split("*")(0)
+            Dim client_ville As String = ""
+            Dim client_ice As String = ""
+
+            Try
+                client_ville = StrValue(dt_fct, "adresse", 0).Split("*")(1)
+            Catch ex As Exception
+                client_ville = "-"
+            End Try
+
+            Try
+                client_ice = StrValue(dt_fct, "adresse", 0).Split("*")(2)
+            Catch ex As Exception
+                client_ice = "-"
+            End Try
+
+
+            If RPl.ClId > 0 Then
+                If RPl.isSell Then
+                    Dim ta As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
+                    Dim tac As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
+
+                    EncCreadit = ta.ScalarQueryClientCredit(False, RPl.ClId, True)
+                    credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
+
+                    tel = tac.ScalarQueryTel(RPl.ClId)
+                Else
+                    Dim ta As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
+                    EncCreadit = ta.ScalarQueryCompanyCredit(False, RPl.ClId, True)
+                    credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
+                End If
+            End If
+
+            If clid > 0 Then
+                ' Add  rows with those columns filled in the DataTable.
+                dt_Client.Rows.Add(clid, StrValue(dt_fct, "name", 0), clid, client_ville,
+                                    adresse, client_ice, tel, credit, EncCreadit)
+            Else
+                ' Add  rows with those columns filled in the DataTable.
+                dt_Client.Rows.Add(0, txtcltcomptoir.Text, 0, "Agadir", "Agadir",
+                                      "123456", "0000", credit, EncCreadit)
+            End If
+
+
+
+
+            Dim table As New DataTable
+
+            ' Create four typed columns in the DataTable.
+            table.Columns.Add("arid", GetType(Integer))
+            table.Columns.Add("name", GetType(String))
+            table.Columns.Add("price", GetType(Double))
+            table.Columns.Add("bprice", GetType(Double))
+            table.Columns.Add("tva", GetType(Double))
+            table.Columns.Add("qte", GetType(Double))
+            table.Columns.Add("unite", GetType(String))
+            table.Columns.Add("total", GetType(Double))
+            table.Columns.Add("cid", GetType(Integer))
+            table.Columns.Add("code", GetType(String))
+            table.Columns.Add("depot", GetType(Integer))
+            table.Columns.Add("poid", GetType(Integer))
+            table.Columns.Add("totalHt", GetType(Double))
+            table.Columns.Add("totaltva", GetType(Double))
+            table.Columns.Add("dsid", GetType(Double))
+            table.Columns.Add("remise", GetType(Double))
+
+            For i As Integer = 0 To dt_dtl.Rows.Count - 1
+                Dim _total = DblValue(dt_dtl, "qte", i) * DblValue(dt_dtl, "price", i)
+                Dim tv = DblValue(dt_dtl, "tva", i)
+                Dim ht As Decimal = _total / ((100 + tv) / 100)
+                Dim t_tv = (ht * tv) / 100
+
+                table.Rows.Add(IntValue(dt_dtl, "arid", i), StrValue(dt_dtl, "name", i), DblValue(dt_dtl, "price", i),
+                               DblValue(dt_dtl, "bprice", i), tv,
+                              DblValue(dt_dtl, "qte", i), StrValue(dt_dtl, "unit", i),
+                              _total, IntValue(dt_dtl, "cid", i), StrValue(dt_dtl, "code", i),
+                              IntValue(dt_dtl, "depot", i), IntValue(dt_dtl, "poid", i), ht,
+                              t_tv, IntValue(dt_dtl, "id", i), 0)
+            Next
+
+
+
+            Using g As gDrawClass = New gDrawClass(MP_Localname)
+                g.rtl = cbRTL.Checked
+
+                g.DrawBl(e, data, table, dt_Client, Facture_Title, False, M)
+            End Using
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub CbArticleRemise_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CbArticleRemise.CheckedChanged
+        RPl.hasManyRemise = CbArticleRemise.Checked
     End Sub
 End Class

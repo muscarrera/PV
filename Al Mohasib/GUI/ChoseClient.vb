@@ -38,6 +38,25 @@
             Dim i As Integer
 
             For i = startIndex To dt.Rows.Count - 1
+                If isSell Then
+                    Try
+                        Dim cin = StrValue(dt, "CIN", i)
+
+                        If Form1.adminName.Contains("*") Then
+                            If cin.Contains("*") = False Then
+                                endIndex += 1
+                                Continue For
+                            End If
+                        ElseIf Form1.adminName.Contains("/") Then
+                            If cin.Contains("/") = False Then
+                                endIndex += 1
+                                Continue For
+                            End If
+                        End If
+                    Catch ex As Exception
+                    End Try
+                End If
+
                 Dim id As Integer = CInt(dt.Rows(i).Item(0))
                 Dim nm As String = dt.Rows(i).Item("name")
                 Dim adr As String = dt.Rows(i).Item("adress")

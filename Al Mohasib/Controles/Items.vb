@@ -9,7 +9,7 @@
 
     Private _qte As Decimal
     Private _price As Decimal
-    Private _total As Decimal
+    Public _total As Decimal
     Private _tva As Double
     Private _stock As Double
     Private _index As Integer
@@ -246,6 +246,8 @@
             _remise = value
             LbTva.Text = "Tva:" & Tva & "%"
             If value > 0 Then LbTva.Text &= "-R:" & value & "%"
+
+            LbTotal.Text = String.Format("{0:n}", Total_ttc)
 
             RaiseEvent RemiseChanged()
         End Set

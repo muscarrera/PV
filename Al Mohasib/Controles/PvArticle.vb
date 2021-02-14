@@ -9,7 +9,7 @@
 
         ' Add any initialization after the InitializeComponent() call.
 
-        lb.Font = New Font(Form1.fontName_PV, Form1.fontSize_PV, FontStyle.Bold)
+        ' lb.Font = New Font(Form1.fontName_PV, Form1.fontSize_PV, FontStyle.Bold)
 
 
     End Sub

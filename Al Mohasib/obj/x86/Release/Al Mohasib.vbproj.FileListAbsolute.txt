@@ -373,6 +373,7 @@ D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.gForm.resources
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.gTable.resources
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Items.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.PvArticle.resources
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.RPanel.resources
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Tag.resources
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.TxtBox.resources
@@ -390,7 +391,8 @@ D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Articles.resources
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AvanceCheck.resources
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.BackUP.resources
-D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.BarCode.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.BarCode1.resources
+D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.BarCode2.resources
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.byPrice.resources
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.byname.resources
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Calc.resources

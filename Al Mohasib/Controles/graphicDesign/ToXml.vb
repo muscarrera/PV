@@ -21,6 +21,8 @@ Module ToXml
             Dim serializer = New XmlSerializer(GetType(T))
             reader = New StreamReader(filePath)
             Return CType(serializer.Deserialize(reader), T)
+        Catch
+
         Finally
             If reader IsNot Nothing Then reader.Close()
         End Try

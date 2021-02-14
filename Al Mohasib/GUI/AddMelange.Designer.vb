@@ -30,6 +30,7 @@ Partial Class AddMelange
         '
         Me.AddList1.AutoCompleteSource = Nothing
         Me.AddList1.barCode = "101894083627"
+        Me.AddList1.bprice = 0.0R
         Me.AddList1.DataListe = CType(resources.GetObject("AddList1.DataListe"), System.Collections.Generic.Dictionary(Of String, Object))
         Me.AddList1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.AddList1.EditMode = False
@@ -37,6 +38,7 @@ Partial Class AddMelange
         Me.AddList1.Location = New System.Drawing.Point(0, 0)
         Me.AddList1.Name = "AddList1"
         Me.AddList1.Padding = New System.Windows.Forms.Padding(3)
+        Me.AddList1.price = 0.0R
         Me.AddList1.Size = New System.Drawing.Size(589, 339)
         Me.AddList1.TabIndex = 0
         '

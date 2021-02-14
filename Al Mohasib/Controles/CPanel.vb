@@ -156,7 +156,12 @@
         RaiseEvent UpdatePayment()
     End Sub
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtRemise.Click
-        RaiseEvent UpdateRemise()
+        If hasRemise Then
+            RaiseEvent UpdateArticleRemise()
+        Else
+            RaiseEvent UpdateRemise()
+        End If
+        RaiseEvent ValueChange()
     End Sub
     Private Sub Button15_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btPlus.Click
         Value += 1

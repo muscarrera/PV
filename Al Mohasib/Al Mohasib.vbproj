@@ -55,6 +55,12 @@
     <Reference Include="Al Mohasib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <ExecutableExtension>.exe</ExecutableExtension>
     </Reference>
+    <Reference Include="GenCode128">
+      <HintPath>C:\Users\musca\OneDrive\Bureau\ddddd\Barcode Generator DLL\GenCode128.dll</HintPath>
+    </Reference>
+    <Reference Include="IDAutomation.LinearBarCode">
+      <HintPath>C:\Users\musca\OneDrive\Bureau\ddddd\Barcode Generator DLL\IDAutomation.LinearBarCode.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MyBarcode, Version=1.0.6854.32559, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -294,6 +300,12 @@
       <DependentUpon>BarCode.vb</DependentUpon>
     </Compile>
     <Compile Include="GUI\BarCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\BarCode2.Designer.vb">
+      <DependentUpon>BarCode2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\BarCode2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\byPrice.Designer.vb">
@@ -629,6 +641,9 @@
     <EmbeddedResource Include="GUI\BarCode.resx">
       <DependentUpon>BarCode.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\BarCode2.resx">
+      <DependentUpon>BarCode2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\byPrice.resx">
       <DependentUpon>byPrice.vb</DependentUpon>
     </EmbeddedResource>
@@ -962,7 +977,7 @@
     <None Include="Resources\top fact1.jpg" />
     <None Include="27274.png" />
     <Content Include="ALMohassinDB.mdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\04.jpg" />
     <None Include="Resources\011.jpg" />

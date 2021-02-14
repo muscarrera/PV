@@ -233,4 +233,49 @@
         If IsNothing(selectedControle) Then Exit Sub
         selectedControle.text = ""
     End Sub
+
+    Private Sub txtTotal_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTotal.Enter
+        selectedControle = txtTotal
+    End Sub
+    Private Sub txtsprice_TxtChanged() Handles txtsprice.TxtChanged
+        Try
+            If selectedControle.Name <> txtsprice.Name Then Exit Sub
+
+            Dim pr As Double = CDbl(txtsprice.text)
+            Dim qt As Double = CDbl(txtqte.text)
+
+            txtTotal.text = pr * qt
+        Catch ex As Exception
+            txtTotal.text = ""
+        End Try
+
+    End Sub
+    Private Sub txtqte_TxtChanged() Handles txtqte.TxtChanged
+        Try
+            If selectedControle.Name <> txtqte.Name Then Exit Sub
+
+            Dim pr As Double = CDbl(txtsprice.text)
+            Dim qt As Double = CDbl(txtqte.text)
+
+            txtTotal.text = pr * qt
+        Catch ex As Exception
+            txtTotal.text = ""
+        End Try
+
+    End Sub
+    Private Sub txttotal_TxtChanged() Handles txtTotal.TxtChanged
+        Try
+            If selectedControle.Name <> txtTotal.Name Then Exit Sub
+
+            Dim pr As Double = CDbl(txtsprice.text)
+            Dim tt As Double = CDbl(txtTotal.text)
+
+            If pr = 0 Then Exit Sub
+
+            txtqte.text = (tt / pr).ToString("n")
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
 End Class

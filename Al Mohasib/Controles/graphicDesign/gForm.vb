@@ -784,6 +784,9 @@ Public Class gForm
     End Sub
     Public Sub LoadXml()
         Dim g As New gGlobClass
+        Try
+
+       
         g = ReadFromXmlFile(Of gGlobClass)(Form1.ImgPah & "\Prt_Dsn\" & localname)
         FooterFieldDic = g.FooterFieldDic
         TopFieldDic = g.TopFieldDic
@@ -831,7 +834,9 @@ Public Class gForm
             AddHandler bt.Click, AddressOf btButom_Clicked
             Pf.Controls.Add(bt)
         Next
+        Catch ex As Exception
 
+        End Try
     End Sub
 
     Private Sub pb_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pb.MouseDown

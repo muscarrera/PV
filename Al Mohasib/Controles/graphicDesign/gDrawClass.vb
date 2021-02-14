@@ -384,7 +384,7 @@ Public Class gDrawClass
                         stt &= "et " & ChLettre.NBLT(CInt(zPart * 100)) & " (Cts)"
                     End If
                     'Dim strTotal As String = "Arrêté la présente facture à la somme : " & stt
-                    Dim strTotal As String = stt
+                        Dim strTotal As String = stt.Substring(0, 2).ToUpper() + stt.Substring(2)
                     g.DrawString(strTotal, fn, B, New RectangleF(xx, yy, a.width, a.height), sf)
                 ElseIf a.field.StartsWith("-") Then
                     Dim Str = CStr(a.designation)
@@ -432,7 +432,8 @@ Public Class gDrawClass
                         sf.Alignment = StringAlignment.Far
                         Try
 
-                            Dim ttr As String = CDbl(data.Rows(0).Item("total_ttc")) + CDbl(data.Rows(0).Item("total_remise"))
+                            '  Dim ttr As String = CDbl(data.Rows(0).Item("total_ttc")) + CDbl(data.Rows(0).Item("total_remise"))
+                            Dim ttr As String = data.Rows(0).Item(a.field)
                             g.DrawString(ttr, fn, B, New RectangleF(xx + a.width - 10, yy, a.width, a.height), sf)
                         Catch ex As Exception
                         End Try

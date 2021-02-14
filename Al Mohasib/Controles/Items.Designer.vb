@@ -51,7 +51,7 @@ Partial Class Items
         'LbName
         '
         Me.LbName.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LbName.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbName.ForeColor = System.Drawing.Color.DarkCyan
         Me.LbName.Location = New System.Drawing.Point(0, 0)
         Me.LbName.Name = "LbName"
@@ -63,7 +63,7 @@ Partial Class Items
         'LbTotal
         '
         Me.LbTotal.Dock = System.Windows.Forms.DockStyle.Right
-        Me.LbTotal.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbTotal.ForeColor = System.Drawing.Color.DarkCyan
         Me.LbTotal.Location = New System.Drawing.Point(223, 0)
         Me.LbTotal.Name = "LbTotal"
@@ -148,9 +148,9 @@ Partial Class Items
         '
         Me.LbTva.Dock = System.Windows.Forms.DockStyle.Right
         Me.LbTva.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbTva.Location = New System.Drawing.Point(213, 0)
+        Me.LbTva.Location = New System.Drawing.Point(195, 0)
         Me.LbTva.Name = "LbTva"
-        Me.LbTva.Size = New System.Drawing.Size(85, 20)
+        Me.LbTva.Size = New System.Drawing.Size(103, 20)
         Me.LbTva.TabIndex = 0
         Me.LbTva.Text = "Label1"
         Me.LbTva.TextAlign = System.Drawing.ContentAlignment.MiddleRight

@@ -322,7 +322,7 @@ Public Class AddEditArticle
             Dim B = CInt(h / 10)
 
 
-            pmg2 = AppendBorder(pmg2, B)
+            'pmg2 = AppendBorder(pmg2, B)
             translate(pmg2, 15, 20, 30, 1)
             pmg2 = New Bitmap(pmg2, New Size(W, h))
 
@@ -348,10 +348,10 @@ Public Class AddEditArticle
             If cde.Length > 12 Then cde = cde.Substring(0, 12)
             If cde.Length < 12 Then Exit Sub
 
-            Dim CD As New BarCode
+            Dim CD As New BarCode1
             CD.Code = cde
             CD.article = txtprdname.Text
-            CD.qte = txtsprice.text & " Dhs"
+            CD.qte = txtsprice.text
 
             If CD.ShowDialog = DialogResult.OK Then
 

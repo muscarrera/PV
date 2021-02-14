@@ -403,7 +403,7 @@ Public Class Devis
                 If cde.Length > 12 Then cde = cde.Substring(0, 12)
                 If cde.Length < 12 Then cde = cde.Substring(0, 12)
 
-                Dim CD As New BarCode
+                Dim CD As New BarCode1
                 CD.Code = cde
                 CD.article = R.name
                 CD.qte = R.unite

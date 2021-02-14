@@ -267,7 +267,11 @@ Public Class SubClass
         Form1.RPl.CP.Value = 0
     End Sub
 
-    Public Sub FillGrStock(ByVal ctgdt As DataTable)
+    Public Sub FillGrStock(ByVal _ctgdt As DataTable)
+
+        Dim ctgta As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
+        Dim ctgdt = ctgta.GetData()
+
         For i As Integer = 0 To ctgdt.Rows.Count - 1
             Dim bt As New Button
 
@@ -1488,7 +1492,7 @@ Public Class SubClass
             Dim tp As String = 0
             Dim num As String = nm
             Dim fid As Integer = 0
-            Dim dte As Date = Now.Date
+            Dim dte As Date = Date.Now
 
             If cid <> 0 And tp <> 0 Then
                 If tp = "" Then tp = "1"
@@ -1505,7 +1509,7 @@ Public Class SubClass
                 params.Add("name", clientname)
                 params.Add("total", 0)
                 params.Add("avance", 0)
-                params.Add("date", Format(dte, "dd-MM-yyyy"))
+                params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
                 params.Add("admin", False)
                 params.Add("writer", CStr(Form1.adminName))
                 params.Add("tp", tp)
@@ -1706,6 +1710,9 @@ Public Class SubClass
             'End If
 
             Form1.lbLastBon.Text = "<< " & Form1.RPl.FctId & "   ->   " & Form1.RPl.ClientName & " [ " & Form1.RPl.LbSum.Text & "dhs  ]"
+            Form1.lbLastBon.Tag = Form1.RPl.FctId
+            Form1.btPrint_Top.Visible = True
+
 
             If isS Then
                 AppendData(id, table)
@@ -2012,6 +2019,7 @@ Public Class SubClass
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             Dim params As New Dictionary(Of String, Object)
             params.Add("admin", False)
+
             If Form1.cbAffichageLimite.Checked Then params.Add("writer", Form1.adminName)
             dt = c.SelectDataTable(tableName, {"*"}, params)
         End Using
@@ -3227,7 +3235,19 @@ Public Class SubClass
     Public Sub StockValue()
 
         Dim ttvalue As Double = 0
-        Form1.DGVS.Rows.Clear()
+        Form1.DGVS.DataSource = Nothing
+
+        'Form1.DGVS.Rows.Clear()
+
+        Dim data As New DataTable
+        ' Create four typed columns in the DataTable.
+        data.Columns.Add("Designation", GetType(String))
+        data.Columns.Add("Nbr", GetType(String))
+        data.Columns.Add("-", GetType(String))
+        data.Columns.Add("Valeur", GetType(String))
+
+
+
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
             Dim dtctg = c.SelectDataTable("Category", {"*"})
 
@@ -3246,15 +3266,15 @@ Public Class SubClass
                     params.Clear()
                 Next
 
-                Form1.DGVS.Rows.Add(0, 0, dtctg.Rows(i).Item("name").ToString,
-                                    dt.Rows.Count & " Aricles",
-                                     String.Format("{0:n}", ctgvalue) & "Dhs", " ")
+                data.Rows.Add(dtctg.Rows(i).Item("name").ToString, dt.Rows.Count & " Aricles", "",
+                                     String.Format("{0:n}", ctgvalue) & "Dhs")
                 ttvalue += ctgvalue
 
             Next
-            Form1.DGVS.Rows.Add("-------", "-------", "-------", "-------", " ")
-            Form1.DGVS.Rows.Add("", "المجموع (Total)", dtctg.Rows.Count & " ctgs",
-                                 String.Format("{0:n}", ttvalue) & "Dhs", " ")
+            data.Rows.Add("-------", "-------", "-------", "-------")
+            data.Rows.Add("المجموع (Total)", dtctg.Rows.Count & " ctgs", "", String.Format("{0:n}", ttvalue) & "Dhs")
+
+            Form1.DGVS.DataSource = data
         End Using
     End Sub
     'save the modification has made

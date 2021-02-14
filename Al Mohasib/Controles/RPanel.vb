@@ -160,24 +160,27 @@
                     If IsNumeric(value) = False Then value = 0
                     _Remise = value
                     'CP.BtRemise.Text = "Remise (" & value & " %)"
-                    lbremise.Text = "Remise = " & String.Format("{0:F}", Total_Ht_Befor_Remise * _Remise / 100)
-                    UpdateValue()
+                    lbremise.Text = "Remise = " & String.Format("{0:F}", Total_Remise)
+
                 Catch ex As Exception
                     _Remise = 0
                     'CP.BtRemise.Text = "Remise (0 %)"
                     lbremise.Text = "Remise = 0"
-                    UpdateValue()
+
                 End Try
+
+                UpdateValue()
             End If
         End Set
     End Property
 
-    Public ReadOnly Property Total_Ht_Befor_Remise As Decimal
+    Public ReadOnly Property Total_TTC_Befor_Remise As Decimal
         Get
             Dim a As Items
             Dim t As Decimal = 0
             For Each a In Pl.Controls
-                t += a.Price * a.Qte
+                ' t += a.Price * a.Qte
+                t += a._total
             Next
             Return t
         End Get
@@ -185,7 +188,22 @@
 
     Public ReadOnly Property Total_Remise As Decimal
         Get
-            Return Total_Ht_Befor_Remise * Remise / 100
+            Dim t As Decimal = 0
+            If hasManyRemise Then
+
+                Dim a As Items
+                For Each a In Pl.Controls
+                    t += a.Total_remise
+                Next
+            Else
+
+                t = (Total_Ht * Remise) / 100
+
+            End If
+
+
+            ' Return Total_Ht_Befor_Remise * Remise / 100
+            Return t
         End Get
     End Property
 

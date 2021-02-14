@@ -40,7 +40,9 @@ Partial Class Form1
         Me.RPl = New Al_Mohasib.RPanel()
         Me.Panel12 = New System.Windows.Forms.Panel()
         Me.lbLastBon = New System.Windows.Forms.Label()
+        Me.btPrint_Top = New System.Windows.Forms.Button()
         Me.plup = New System.Windows.Forms.Panel()
+        Me.Button44 = New System.Windows.Forms.Button()
         Me.Button32 = New System.Windows.Forms.Button()
         Me.Button31 = New System.Windows.Forms.Button()
         Me.btTarif = New System.Windows.Forms.Button()
@@ -402,7 +404,7 @@ Partial Class Form1
         Me.PrintDocDepot = New System.Drawing.Printing.PrintDocument()
         Me.PrintDocDesign = New System.Drawing.Printing.PrintDocument()
         Me.PrintDocDesignFct = New System.Drawing.Printing.PrintDocument()
-        Me.Button44 = New System.Windows.Forms.Button()
+        Me.PrintDocDesign2 = New System.Drawing.Printing.PrintDocument()
         Me.PlRcpt.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.plup.SuspendLayout()
@@ -498,6 +500,7 @@ Partial Class Form1
         '
         Me.Panel12.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Panel12.Controls.Add(Me.lbLastBon)
+        Me.Panel12.Controls.Add(Me.btPrint_Top)
         Me.Panel12.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel12.Location = New System.Drawing.Point(10, 0)
         Me.Panel12.Name = "Panel12"
@@ -506,15 +509,30 @@ Partial Class Form1
         '
         'lbLastBon
         '
+        Me.lbLastBon.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.lbLastBon.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lbLastBon.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbLastBon.ForeColor = System.Drawing.SystemColors.Info
         Me.lbLastBon.Location = New System.Drawing.Point(0, 0)
         Me.lbLastBon.Name = "lbLastBon"
-        Me.lbLastBon.Size = New System.Drawing.Size(384, 30)
+        Me.lbLastBon.Size = New System.Drawing.Size(340, 30)
         Me.lbLastBon.TabIndex = 0
+        Me.lbLastBon.Tag = "0"
         Me.lbLastBon.Text = "_"
         Me.lbLastBon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'btPrint_Top
+        '
+        Me.btPrint_Top.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.Print_22X221
+        Me.btPrint_Top.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btPrint_Top.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.btPrint_Top.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btPrint_Top.Location = New System.Drawing.Point(340, 0)
+        Me.btPrint_Top.Name = "btPrint_Top"
+        Me.btPrint_Top.Size = New System.Drawing.Size(44, 30)
+        Me.btPrint_Top.TabIndex = 1
+        Me.btPrint_Top.UseVisualStyleBackColor = True
+        Me.btPrint_Top.Visible = False
         '
         'plup
         '
@@ -527,6 +545,21 @@ Partial Class Form1
         Me.plup.Name = "plup"
         Me.plup.Size = New System.Drawing.Size(872, 30)
         Me.plup.TabIndex = 5
+        '
+        'Button44
+        '
+        Me.Button44.BackColor = System.Drawing.Color.Teal
+        Me.Button44.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Button44.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button44.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button44.ForeColor = System.Drawing.Color.White
+        Me.Button44.Location = New System.Drawing.Point(0, 0)
+        Me.Button44.Name = "Button44"
+        Me.Button44.Size = New System.Drawing.Size(152, 30)
+        Me.Button44.TabIndex = 8
+        Me.Button44.Tag = "1"
+        Me.Button44.Text = "TRF"
+        Me.Button44.UseVisualStyleBackColor = False
         '
         'Button32
         '
@@ -548,7 +581,7 @@ Partial Class Form1
         Me.Button31.BackColor = System.Drawing.Color.Brown
         Me.Button31.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button31.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button31.Font = New System.Drawing.Font("Century Gothic", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button31.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button31.ForeColor = System.Drawing.Color.White
         Me.Button31.Location = New System.Drawing.Point(769, 0)
         Me.Button31.Name = "Button31"
@@ -1140,9 +1173,9 @@ Partial Class Form1
         Me.GB4.Controls.Add(Me.txtNbrArt)
         Me.GB4.Controls.Add(Me.txtlargebt)
         Me.GB4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB4.Location = New System.Drawing.Point(456, 3)
+        Me.GB4.Location = New System.Drawing.Point(594, 3)
         Me.GB4.Name = "GB4"
-        Me.GB4.Size = New System.Drawing.Size(55, 598)
+        Me.GB4.Size = New System.Drawing.Size(88, 598)
         Me.GB4.TabIndex = 0
         Me.GB4.TabStop = False
         '
@@ -2076,7 +2109,7 @@ Partial Class Form1
         Me.btGoBack.BackColor = System.Drawing.Color.PaleGreen
         Me.btGoBack.FlatAppearance.BorderSize = 0
         Me.btGoBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btGoBack.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btGoBack.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btGoBack.ForeColor = System.Drawing.Color.White
         Me.btGoBack.Image = Global.Al_Mohasib.My.Resources.Resources.AVOIR_22
         Me.btGoBack.Location = New System.Drawing.Point(6, 4)
@@ -2253,7 +2286,7 @@ Partial Class Form1
         Me.Button1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
         Me.Button1.Location = New System.Drawing.Point(5, 5)
         Me.Button1.Name = "Button1"
@@ -2468,13 +2501,13 @@ Partial Class Form1
         'Label42
         '
         Me.Label42.AutoSize = True
-        Me.Label42.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label42.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label42.ForeColor = System.Drawing.Color.White
         Me.Label42.Location = New System.Drawing.Point(12, 1)
         Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(56, 16)
+        Me.Label42.Size = New System.Drawing.Size(40, 15)
         Me.Label42.TabIndex = 6
-        Me.Label42.Text = "Facturer"
+        Me.Label42.Text = "Autre"
         '
         'CbSearchFacture
         '
@@ -2484,7 +2517,7 @@ Partial Class Form1
         Me.CbSearchFacture.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CbSearchFacture.ForeColor = System.Drawing.Color.White
         Me.CbSearchFacture.FormattingEnabled = True
-        Me.CbSearchFacture.Items.AddRange(New Object() {"Tous", "Facturé", "Non Facturé"})
+        Me.CbSearchFacture.Items.AddRange(New Object() {"Rapide", "Sans Info", "Avec Info", "----------", "Tous", "Facturé", "Non Facturé"})
         Me.CbSearchFacture.Location = New System.Drawing.Point(0, 20)
         Me.CbSearchFacture.Name = "CbSearchFacture"
         Me.CbSearchFacture.Size = New System.Drawing.Size(93, 21)
@@ -2517,11 +2550,11 @@ Partial Class Form1
         'Label38
         '
         Me.Label38.AutoSize = True
-        Me.Label38.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label38.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label38.ForeColor = System.Drawing.Color.White
         Me.Label38.Location = New System.Drawing.Point(12, 1)
         Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(46, 16)
+        Me.Label38.Size = New System.Drawing.Size(50, 15)
         Me.Label38.TabIndex = 6
         Me.Label38.Text = "Regler"
         '
@@ -3257,7 +3290,7 @@ Partial Class Form1
         Me.Label13.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label13.AutoSize = True
         Me.Label13.BackColor = System.Drawing.Color.Transparent
-        Me.Label13.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.SystemColors.HotTrack
         Me.Label13.Location = New System.Drawing.Point(726, 39)
         Me.Label13.Name = "Label13"
@@ -3270,11 +3303,11 @@ Partial Class Form1
         Me.Label12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label12.AutoSize = True
         Me.Label12.BackColor = System.Drawing.Color.Transparent
-        Me.Label12.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.SystemColors.HotTrack
         Me.Label12.Location = New System.Drawing.Point(596, 39)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(25, 16)
+        Me.Label12.Size = New System.Drawing.Size(28, 16)
         Me.Label12.TabIndex = 9
         Me.Label12.Text = "De"
         '
@@ -3857,9 +3890,9 @@ Partial Class Form1
         Me.GB6.Controls.Add(Me.Button45)
         Me.GB6.Controls.Add(Me.Label63)
         Me.GB6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB6.Location = New System.Drawing.Point(65, 3)
+        Me.GB6.Location = New System.Drawing.Point(363, 3)
         Me.GB6.Name = "GB6"
-        Me.GB6.Size = New System.Drawing.Size(333, 598)
+        Me.GB6.Size = New System.Drawing.Size(56, 598)
         Me.GB6.TabIndex = 9
         Me.GB6.TabStop = False
         '
@@ -4004,9 +4037,9 @@ Partial Class Form1
         Me.GB5.Controls.Add(Me.cbProfit)
         Me.GB5.Controls.Add(Me.cbUnite)
         Me.GB5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB5.Location = New System.Drawing.Point(398, 3)
+        Me.GB5.Location = New System.Drawing.Point(419, 3)
         Me.GB5.Name = "GB5"
-        Me.GB5.Size = New System.Drawing.Size(58, 598)
+        Me.GB5.Size = New System.Drawing.Size(175, 598)
         Me.GB5.TabIndex = 8
         Me.GB5.TabStop = False
         '
@@ -4101,9 +4134,9 @@ Partial Class Form1
         Me.GB3.Controls.Add(Me.txtfntsize)
         Me.GB3.Controls.Add(Me.Label54)
         Me.GB3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB3.Location = New System.Drawing.Point(511, 3)
+        Me.GB3.Location = New System.Drawing.Point(682, 3)
         Me.GB3.Name = "GB3"
-        Me.GB3.Size = New System.Drawing.Size(274, 598)
+        Me.GB3.Size = New System.Drawing.Size(103, 598)
         Me.GB3.TabIndex = 7
         Me.GB3.TabStop = False
         '
@@ -4458,20 +4491,8 @@ Partial Class Form1
         'PrintDocDesignFct
         '
         '
-        'Button44
+        'PrintDocDesign2
         '
-        Me.Button44.BackColor = System.Drawing.Color.Teal
-        Me.Button44.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button44.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button44.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button44.ForeColor = System.Drawing.Color.White
-        Me.Button44.Location = New System.Drawing.Point(0, 0)
-        Me.Button44.Name = "Button44"
-        Me.Button44.Size = New System.Drawing.Size(152, 30)
-        Me.Button44.TabIndex = 8
-        Me.Button44.Tag = "1"
-        Me.Button44.Text = "TRF"
-        Me.Button44.UseVisualStyleBackColor = False
         '
         'Form1
         '
@@ -4932,5 +4953,7 @@ Partial Class Form1
     Friend WithEvents cbArticleItemDirection As System.Windows.Forms.CheckBox
     Friend WithEvents cbJnReduireQte As System.Windows.Forms.CheckBox
     Friend WithEvents Button44 As System.Windows.Forms.Button
+    Friend WithEvents btPrint_Top As System.Windows.Forms.Button
+    Friend WithEvents PrintDocDesign2 As System.Drawing.Printing.PrintDocument
 
 End Class
