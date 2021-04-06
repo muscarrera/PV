@@ -48,7 +48,6 @@
         End Set
     End Property
 
-
     Public Sub New()
 
         ' This call is required by the designer.

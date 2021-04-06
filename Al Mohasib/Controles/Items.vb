@@ -107,7 +107,13 @@
             '''''''
             _qte = value
             _total = _price * value
-            LbTotal.Text = String.Format("{0:n}", Total_ttc)
+
+            If Form1.isBaseOnRIYAL Then
+                LbTotal.Text = CInt(Total_ttc)
+            Else
+                LbTotal.Text = String.Format("{0:n}", Total_ttc)
+            End If
+
             LbQte.Text = _qte & " " & CStr(Unite) '& " x "
             'LbQte.Text &= String.Format("{0:n}", _price) & " Dhs  -  " '& "  (" & _addDesc & ")"
             'If Depot > 0 Then LbQte.Text &= " [Rest : (" & Stock & ")]"
@@ -124,9 +130,16 @@
             '''''''
             _price = value
             _total = _qte * value
-            LbTotal.Text = String.Format("{0:n}", Total_ttc)
 
-            LbPrice.Text = String.Format("{0:n}", _price) & " Dhs"
+            If Form1.isBaseOnRIYAL Then
+                LbTotal.Text = CInt(Total_ttc)
+                LbPrice.Text = CInt(_price) & " Rys"
+            Else
+                LbTotal.Text = String.Format("{0:n}", Total_ttc)
+                LbPrice.Text = String.Format("{0:n}", _price) & " Dhs"
+            End If
+
+
 
         End Set
     End Property
@@ -199,28 +212,9 @@
         End Get
         Set(ByVal value As Boolean)
             If value Then
-                'LbTotal.Left = 0
-                'LbTva.Left = 0
-                'LbTotal.TextAlign = ContentAlignment.MiddleLeft
-                'LbTva.TextAlign = ContentAlignment.MiddleLeft
-
-                'LbTotal.Anchor = AnchorStyles.Left
-                'LbTva.Anchor = AnchorStyles.Left
-                'LbName.Anchor = AnchorStyles.Right
-
-                'LbName.TextAlign = ContentAlignment.MiddleRight
-
-                'LbName.AutoSize = False
-
-                'LbName.Width = Me.Width - LbTotal.Width - 5
-
-                'LbName.Left = Me.Width - LbName.Width
-
                 LbTotal.Dock = DockStyle.Left
                 LbName.TextAlign = ContentAlignment.MiddleRight
                 LbTotal.TextAlign = ContentAlignment.MiddleLeft
-
-
 
                 LbQte.Dock = DockStyle.Right
                 Label2.Dock = DockStyle.Right
@@ -247,7 +241,11 @@
             LbTva.Text = "Tva:" & Tva & "%"
             If value > 0 Then LbTva.Text &= "-R:" & value & "%"
 
-            LbTotal.Text = String.Format("{0:n}", Total_ttc)
+            If Form1.isBaseOnRIYAL Then
+                LbTotal.Text = CInt(Total_ttc)
+            Else
+                LbTotal.Text = String.Format("{0:n}", Total_ttc)
+            End If
 
             RaiseEvent RemiseChanged()
         End Set

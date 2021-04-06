@@ -84,4 +84,5 @@
         TextBox1.Text = ""
         nn = True
     End Sub
+
 End Class

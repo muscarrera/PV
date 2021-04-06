@@ -484,6 +484,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.BARCODE_22">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.bbuy">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -500,11 +504,27 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.bgLightForm">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.bgmenu">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.BGPVAR">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.BGPVAR_2">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.BGPVAR_21">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.BGPVAR_22">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -612,6 +632,14 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.carre">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.carre1">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.Cash_register_22">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -629,6 +657,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.company">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.consumer_products">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -661,6 +693,14 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.FACTURE_20">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.filled_circle">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.filled_circle1">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -729,6 +769,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.iconfinder_Folder_Settings_Tools_icon_88583_X_24">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.iconfinder_Gnome_Emblem_System_48_55301">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -861,6 +905,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.rtop">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.s_l300">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>

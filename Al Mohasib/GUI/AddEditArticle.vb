@@ -2,6 +2,7 @@
 Imports System.IO.Ports
 Imports MyBarcode
 Imports System.Drawing.Drawing2D
+Imports System.Text
 
 
 Public Class AddEditArticle
@@ -293,9 +294,9 @@ Public Class AddEditArticle
             'saveImage()
 
             Try
-
+                'PBprd.Tag, 
                 Dim ta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-                ta.UpdateQuery(cid, txtprdname.Text, PBprd.Tag, bprice, sprice, txtunit.Text, tva,
+                ta.UpdateQuery(cid, txtprdname.Text, bprice, sprice, txtunit.Text, tva,
                                price2, price3, price4, TxtPoids.text, txtcb.text, CInt(CBdp.SelectedValue),
                                 cbIsMixte.Checked, txtMinStock.text, txtprdname.Tag)
                 ta.Fill(ALMohassinDBDataSet.Article)
@@ -331,27 +332,65 @@ Public Class AddEditArticle
             ImgPrd = pmg2
             PBprd.BackgroundImage = Drawimg(txtprdname.Text, txtbprice.text)
 
+            Dim ta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
+            ta.UpdateImg(PBprd.Tag, txtprdname.Tag)
         End If
 
     End Sub
     Private Sub btgenir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btgenir.Click
-        Dim EA As New EAN13Barcode
-        EA.Value = GetRandom(10000000, 99999999)
-        txtcb.text = EA.Value & EA.CheckSum.ToString()
-        EA = Nothing
+        'Dim EA As New EAN13Barcode
+        'EA.Value = GetRandom(10000000, 99999999)
+        'txtcb.text = EA.Value & EA.CheckSum.ToString()
+        'EA = Nothing
+
+        txtcb.text = RandomString()
     End Sub
+    Function RandomString()
+        Dim r As New Random
+        '   Dim s As String = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz0123456789"
+        Dim s As String = "0123456789abcdefghijkl0123456789mnopqrstuvwxyz0123456789"
+
+        Dim sb As New StringBuilder
+
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+
+            For t As Integer = 0 To 5
+                params.Clear()
+                Dim cnt As Integer = r.Next(5, 9)
+                For i As Integer = 1 To cnt
+                    Dim idx As Integer = r.Next(0, s.Length)
+                    sb.Append(s.Substring(idx, 1))
+                Next
+
+
+                Try
+                    params.Add("codebar", sb.ToString())
+                    Dim fid = c.SelectByScalar("Article", "arid", params)
+                    If IsNumeric(fid) Then Exit For
+                    If fid = 0 Then Exit For
+                Catch ex As Exception
+                    Exit For
+                End Try
+                ''''''''''''''''''''''''''''''''''
+            Next
+        End Using
+
+
+        Return sb.ToString()
+    End Function
     Private Sub btprint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btprint.Click
         Try
 
             If txtcb.text = "" Then Exit Sub
             Dim cde As String = txtcb.text
             If cde.Length > 12 Then cde = cde.Substring(0, 12)
-            If cde.Length < 12 Then Exit Sub
+            'If cde.Length < 12 Then Exit Sub
 
-            Dim CD As New BarCode1
+            Dim CD As New BarCode2
             CD.Code = cde
             CD.article = txtprdname.Text
-            CD.qte = txtsprice.text
+            ' CD.qte = txtsprice.text
 
             If CD.ShowDialog = DialogResult.OK Then
 
@@ -523,6 +562,9 @@ Public Class AddEditArticle
             cr = cl.Color
             ImgPrd = Nothing
             PBprd.BackgroundImage = Drawimg(txtprdname.Text, txtsprice.text)
+
+            Dim ta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
+            ta.UpdateImg(PBprd.Tag, txtprdname.Tag)
         End If
     End Sub
 

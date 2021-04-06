@@ -15,14 +15,8 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_23A819DA8F1D47E28E86C79EB2BF4BD5"
+        "MsmKey" = "8:_31F192AFF0EF44BFAAF2F0F3C6CB499F"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5B8B3D8E6933C4CC239E85DF4F28B093"
-        "OwnerKey" = "8:_65607D0EABF34D749AA2275896174FEC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -33,13 +27,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_68812BC2250E8EE575AC10A960BAD08C"
-        "OwnerKey" = "8:_5B8B3D8E6933C4CC239E85DF4F28B093"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_68812BC2250E8EE575AC10A960BAD08C"
+        "MsmKey" = "8:_68C583E60C605AB54317D53B0028968F"
         "OwnerKey" = "8:_65607D0EABF34D749AA2275896174FEC"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -52,31 +40,43 @@
         "Entry"
         {
         "MsmKey" = "8:_6DCF557ED8935B2242245D53EED9FE95"
-        "OwnerKey" = "8:_5B8B3D8E6933C4CC239E85DF4F28B093"
+        "OwnerKey" = "8:_68C583E60C605AB54317D53B0028968F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_74773CCE0BFC69BC21688E0CE6BF9360"
+        "OwnerKey" = "8:_68C583E60C605AB54317D53B0028968F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_74773CCE0BFC69BC21688E0CE6BF9360"
+        "OwnerKey" = "8:_65607D0EABF34D749AA2275896174FEC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_65607D0EABF34D749AA2275896174FEC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_68C583E60C605AB54317D53B0028968F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_74773CCE0BFC69BC21688E0CE6BF9360"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_6DCF557ED8935B2242245D53EED9FE95"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_65607D0EABF34D749AA2275896174FEC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5B8B3D8E6933C4CC239E85DF4F28B093"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_68812BC2250E8EE575AC10A960BAD08C"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -184,10 +184,10 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_23A819DA8F1D47E28E86C79EB2BF4BD5"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_31F192AFF0EF44BFAAF2F0F3C6CB499F"
             {
-            "SourcePath" = "8:..\\..\\..\\logo_02_rCC_icon.ico"
-            "TargetName" = "8:logo_02_rCC_icon.ico"
+            "SourcePath" = "8:..\\..\\CG_My\\LOGO.ico"
+            "TargetName" = "8:LOGO.ico"
             "Tag" = "8:"
             "Folder" = "8:_D12602D8DB594271800948BD00405520"
             "Condition" = "8:"
@@ -204,41 +204,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5B8B3D8E6933C4CC239E85DF4F28B093"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_68C583E60C605AB54317D53B0028968F"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Al Mohasib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
+                    "_68C583E60C605AB54317D53B0028968F"
+                    {
+                    "Name" = "8:Al Mohasib.exe"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Al Mohasib.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_D12602D8DB594271800948BD00405520"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_68812BC2250E8EE575AC10A960BAD08C"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MyBarcode, Version=1.0.6854.32559, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                }
-            "SourcePath" = "8:MyBarcode.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D12602D8DB594271800948BD00405520"
@@ -263,8 +242,44 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_6DCF557ED8935B2242245D53EED9FE95"
+                    {
+                    "Name" = "8:Microsoft.VisualBasic.PowerPacks.Vs.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Microsoft.VisualBasic.PowerPacks.Vs.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D12602D8DB594271800948BD00405520"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_74773CCE0BFC69BC21688E0CE6BF9360"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MyBarcode, Version=1.0.6854.32559, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_74773CCE0BFC69BC21688E0CE6BF9360"
+                    {
+                    "Name" = "8:MyBarcode.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MyBarcode.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D12602D8DB594271800948BD00405520"
@@ -470,7 +485,7 @@
             "Target" = "8:_65607D0EABF34D749AA2275896174FEC"
             "Folder" = "8:_F24379ADE7FD4357A6FDCC3EC9C432E9"
             "WorkingFolder" = "8:_D12602D8DB594271800948BD00405520"
-            "Icon" = "8:_23A819DA8F1D47E28E86C79EB2BF4BD5"
+            "Icon" = "8:_31F192AFF0EF44BFAAF2F0F3C6CB499F"
             "Feature" = "8:"
             }
         }
@@ -874,7 +889,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_65607D0EABF34D749AA2275896174FEC"
             {
-            "SourcePath" = "8:..\\Al Mohasib\\obj\\x86\\Release\\Al Mohasib.exe"
+            "SourcePath" = "8:..\\Al Mohasib\\obj\\x86\\Debug\\Al Mohasib.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D12602D8DB594271800948BD00405520"

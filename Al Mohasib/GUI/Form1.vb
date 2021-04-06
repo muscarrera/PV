@@ -6,13 +6,15 @@ Imports System.Text.RegularExpressions
 
 Public Class Form1
     'members
-    Private TrialName As String = "ALMsbtrFirstaRunMOSA6"
+    Private TrialName As String = "ALMsbtrFirstaRunSOFI33"
     Dim nbrDay_Trial As Integer = 60
 
     Public admin As Boolean
     Public adminId As Integer
     Public adminName As String
     Public isMaster As Boolean
+    Public isBaseOnRIYAL As Boolean
+
 
     Public dualScrean As New Screen2
 
@@ -102,34 +104,43 @@ Public Class Form1
     End Property
 
 
+    Private is_true_to_end As Boolean = False
+
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
         HandleRegistryinfo()
 
+        isBaseOnRIYAL = False
 
 
-        'Dim cde As String = "123456123456"
-        'If cde.Length > 12 Then cde = cde.Substring(0, 12)
-        'If cde.Length < 12 Then Exit Sub
 
-        'Dim CD As New BarCode1
-        'CD.Code = cde
-        'CD.article = "Article eee"
-        'CD.qte = "23.50"
+        'Dim CDA As New PricingGetter
+        'Dim CDA As New BarCode2
+        Dim CDA As New LabelPrinter
 
-        'If CD.ShowDialog = Windows.Forms.DialogResult.Cancel Then
-        '    End
-        'End If
+        is_true_to_end = True
+        If CDA.ShowDialog = Windows.Forms.DialogResult.Cancel Then
+            End
+        End If
+
+
+        If is_true_to_end Then End
 
 
         Try
             'trial(Version)
-            Dim trial As Boolean = checktrialMaster()
+            Dim trial As Boolean = checktrialSlave()
             If trial = False Then
                 MsgBox("Vous devez Contacter l'adminisration pour plus d'infos")
                 End
             End If
         Catch ex As Exception
         End Try
+
+
+
+
+
+
 
         '
         Me.DepotTableAdapter.Fill(Me.ALMohassinDBDataSet.Depot)
@@ -157,6 +168,12 @@ Public Class Form1
                 Button11.Visible = True
                 Button13.Visible = False
                 Button17.Visible = False
+
+
+                Button30.Visible = False
+                Button37.Visible = False
+                Button38.Visible = False
+
                 RectangleShape6.Visible = False
             End If
         Else
@@ -164,16 +181,13 @@ Public Class Form1
         End If
 
         Try
-            'TabControl1.Controls.Remove(TabPageStk)
-            TabControl1.Controls.Remove(TabPageFac)
-            TabControl1.Controls.Remove(TabPageChar)
+            ' TabControl1.Controls.Remove(TabPageStk)
+            'TabControl1.Controls.Remove(TabPageFac)
+            'TabControl1.Controls.Remove(TabPageChar)
         Catch ex As Exception
         End Try
 
-
-
         'fill the main page settings
-
 
         dtFacture.Text = Now.Date
         Using a As SubClass = New SubClass(1)
@@ -2042,6 +2056,12 @@ Public Class Form1
     Private Sub Button17_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button17.Click
         RPl.ClearItems()
 
+        Dim isSell As Boolean = CBool(btSwitch2.Tag)
+
+        Dim tName As String = "DetailsFacture"
+        If isSell = False Then tName = "DetailsBon"
+
+
         Dim params As New Dictionary(Of String, Object)
 
         Dim avance As Double = 0
@@ -2052,7 +2072,7 @@ Public Class Form1
                 Try
                     RPl.ClId = DGVARFA.Rows(0).Cells(1).Value
                     RPl.ClientAdresse = ""
-                    RPl.ClientName = DGVARFA.Rows(0).Cells(2).Value
+                    RPl.ClientName = "Cumul " & DGVARFA.Rows(0).Cells(2).Value
                     RPl.FctId = 1
                     RPl.isSell = CBool(btSwitch2.Tag)
                     RPl.EditMode = True
@@ -2063,7 +2083,7 @@ Public Class Form1
 
                         params.Clear()
                         params.Add("fctid", CInt(DGVARFA.Rows(i).Cells(0).Value))
-                        Dim dt2 = c.SelectDataTable("DetailsFacture", {"*"}, params)
+                        Dim dt2 = c.SelectDataTable(tName, {"*"}, params)
                         If dt2.Rows.Count > 0 Then
                             RPl.AddItems(dt2, True)
                         End If
@@ -2706,6 +2726,9 @@ Public Class Form1
                 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' color payed
 
                 If CbSearchFacture.Text = "" Or CbSearchFacture.Text = "Rapide" Or CbSearchFacture.Text = "----------" Then Exit Sub
+
+                If admin = False Then Exit Sub
+
 
                 For i As Integer = 0 To DGVARFA.Rows.Count - 1
                     If DGVARFA.Rows(i).Cells(9).Value = True Then
@@ -3861,12 +3884,12 @@ Public Class Form1
 
             'x_total_ttc_sn_remise
             data.Rows.Add(RPl.FctId, dte, RPl.ClId, RPl.ClientName,
-                          String.Format("{0:0.00}", RPl.Total_Ht), String.Format("{0:0.00}", RPl.Tva),
-                          String.Format("{0:0.00}", RPl.Total_TTC), String.Format("{0:0.00}", RPl.Total_Remise),
-                          String.Format("{0:0.00}", RPl.Avance), String.Format("{0:0.00}", 0),
+                          String.Format("{0:n2}", RPl.Total_Ht), String.Format("{0:n2}", RPl.Tva),
+                          String.Format("{0:n2}", RPl.Total_TTC), String.Format("{0:n2}", RPl.Total_Remise),
+                          String.Format("{0:n2}", RPl.Avance), String.Format("{0:n2}", 0),
                           "Cache", adminName, RPl.LbVidal.Text, RPl.bl,
-                          String.Format("{0:0.00}", RPl.Total_TTC - RPl.Avance),
-                           String.Format("{0:0.00}", RPl.Total_TTC_Befor_Remise))
+                          String.Format("{0:n2}", RPl.Total_TTC - RPl.Avance),
+                           String.Format("{0:n2}", RPl.Total_TTC_Befor_Remise))
 
             Dim dt_Client As New DataTable
             ' Create four typed columns in the DataTable.
@@ -3881,7 +3904,7 @@ Public Class Form1
             dt_Client.Columns.Add("EncCredit", GetType(String))
 
             Dim credit As Double = 0
-            Dim EncCreadit = 0
+            Dim EncCreadit As Double = 0
             Dim tel As String = ""
             Dim adresse = RPl.ClientAdresse.Split("*")(0)
             Dim client_ville As String = ""
@@ -3906,7 +3929,7 @@ Public Class Form1
                     Dim tac As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
 
                     EncCreadit = ta.ScalarQueryClientCredit(False, RPl.ClId, True)
-                    credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
+                    credit = EncCreadit - (RPl.Total_TTC - RPl.Avance)
 
                     tel = tac.ScalarQueryTel(RPl.ClId)
                 Else
@@ -3918,7 +3941,7 @@ Public Class Form1
 
             ' Add  rows with those columns filled in the DataTable.
             dt_Client.Rows.Add(RPl.ClId, RPl.ClientName, RPl.ClId, client_ville,
-                                adresse, client_ice, tel, credit, EncCreadit)
+                                adresse, client_ice, tel, EncCreadit, credit)
 
             Using g As gDrawClass = New gDrawClass(MP_Localname)
                 g.rtl = cbRTL.Checked
@@ -3965,9 +3988,9 @@ Public Class Form1
             data.Columns.Add("vidal", GetType(String))
 
             data.Rows.Add(RPl.FctId, dte, RPl.ClId, RPl.ClientName,
-                          String.Format("{0:0.00}", RPl.Total_Ht), String.Format("{0:0.00}", RPl.Tva),
-                          String.Format("{0:0.00}", ttc), String.Format("{0:0.00}", RPl.Remise),
-                          String.Format("{0:0.00}", RPl.Avance), String.Format("{0:0.00}", total_droitTimbre),
+                          String.Format("{0:n2}", RPl.Total_Ht), String.Format("{0:n2}", RPl.Tva),
+                          String.Format("{0:n2}", ttc), String.Format("{0:n2}", RPl.Remise),
+                          String.Format("{0:n2}", RPl.Avance), String.Format("{0:n2}", total_droitTimbre),
                           mode, adminName, RPl.LbVidal.Text)
 
 
@@ -4301,4 +4324,70 @@ Public Class Form1
     Private Sub CbArticleRemise_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CbArticleRemise.CheckedChanged
         RPl.hasManyRemise = CbArticleRemise.Checked
     End Sub
+
+
+    Private Sub Button70_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button70.Click
+        Try
+            Dim con As OleDb.OleDbConnection = New OleDb.OleDbConnection(My.Settings.ALMohassinDBConnectionString)
+            Try
+                con.Close()
+            Catch ex As Exception
+
+            End Try
+
+
+            Dim SFD As New SaveFileDialog
+            'SFD.Filter = "*.backup|*.backup"
+            If SFD.ShowDialog = Windows.Forms.DialogResult.Cancel Then
+                Exit Sub
+            End If
+
+            Dim pt = GetDatabaseName()
+            pt = pt.Split("|")(pt.Split("|").Count() - 1)
+
+            Dim f As New FileInfo(pt)
+            f.CopyTo(SFD.FileName)
+
+
+            MsgBox("Backup complete successfully", MsgBoxStyle.OkOnly Or MsgBoxStyle.Information, "AL Mohassib POS Back Up")
+
+
+        Catch ex As Exception
+            MsgBox("Unable to make Backup", MsgBoxStyle.OkOnly Or MsgBoxStyle.Critical, "Error")
+
+        End Try
+    End Sub
+    Function GetDatabaseName() As String
+        Dim lcConnString = My.Settings.ALMohassinDBConnectionString
+        lcConnString = lcConnString.ToLower
+
+        ' if this is a Jet database, find the index of the "data source" setting
+        Dim startIndex As Integer
+        If lcConnString.IndexOf("jet.oledb") > -1 Then
+            startIndex = lcConnString.IndexOf("data source=")
+            If startIndex > -1 Then startIndex += 12
+        Else
+            ' if this is a SQL Server database, find the index of the "initial 
+            ' catalog" or "database" setting
+            startIndex = lcConnString.IndexOf("initial catalog=")
+            If startIndex > -1 Then
+                startIndex += 16
+            Else ' if the "Initial Catalog" setting is not found,
+                '  try with "Database"
+                startIndex = lcConnString.IndexOf("database=")
+                If startIndex > -1 Then startIndex += 9
+            End If
+        End If
+
+        ' if the "database", "data source" or "initial catalog" values are not 
+        ' found, return an empty string
+        If startIndex = -1 Then Return ""
+
+        ' find where the database name/path ends
+        Dim endIndex As Integer = lcConnString.IndexOf(";", startIndex)
+        If endIndex = -1 Then endIndex = lcConnString.Length
+
+        ' return the substring with the database name/path
+        Return lcConnString.Substring(startIndex, endIndex - startIndex)
+    End Function
 End Class

@@ -265,7 +265,7 @@ Partial Class RPanel
         'LbVidal
         '
         Me.LbVidal.AutoSize = True
-        Me.LbVidal.Location = New System.Drawing.Point(181, 34)
+        Me.LbVidal.Location = New System.Drawing.Point(167, 34)
         Me.LbVidal.Name = "LbVidal"
         Me.LbVidal.Size = New System.Drawing.Size(45, 13)
         Me.LbVidal.TabIndex = 2

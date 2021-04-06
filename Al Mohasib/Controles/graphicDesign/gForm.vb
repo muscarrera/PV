@@ -112,8 +112,8 @@ Public Class gForm
             table.Columns.Add("livreur", GetType(String))
 
             ' Add  rows with those columns filled in the DataTable.
-            table.Rows.Add(1, Now.Date, 1, "Mohamed", String.Format("{0:0.00}", 222),
-                           String.Format("{0:0.00}", 66), String.Format("{0:0.00}", 288), "0",
+            table.Rows.Add(1, Now.Date, 1, "Mohamed", String.Format("{0:n2}", 222),
+                           String.Format("{0:n2}", 66), String.Format("{0:n2}", 288), "0",
                               "0", "0", "CHEQUE", "ADMIN", "4 - Artciles", "Med")
             Return table
         End Get

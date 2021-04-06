@@ -39,6 +39,8 @@ Public Class gDrawClass
 
         Dim g = e.Graphics
 
+        Dim isRYAL As Boolean = Form1.isBaseOnRIYAL
+
         Dim _w = W_Page
         Dim _h = h_Page
         Dim tc = gTabProp
@@ -263,19 +265,32 @@ Public Class gDrawClass
                     Dim tva As Double = details.Rows(m).Item("tva")
                     _str = _str / ((100 + tva) / 100)
 
-                    _str = String.Format("{0:0.00}", CDbl(_str))
+                    If isRYAL Then
+                        _str = CInt(_str)
+                    Else
+                        _str = String.Format("{0:0.00}", CDbl(_str))
+                    End If
+
                     sf.Alignment = StringAlignment.Far
                 ElseIf c.Field = "xPriceTTC" Then '/////////////////////////////////////////
                     _str = details.Rows(m).Item("price")
-                    'Dim tva As Double = details.Rows(m).Item("tva")
-                    '_str = _str + ((_str * tva) / 100)
-                    _str = String.Format("{0:0.00}", CDbl(_str))
+                   
+                    If isRYAL Then
+                        _str = CInt(_str)
+                    Else
+                        _str = String.Format("{0:0.00}", CDbl(_str))
+                    End If
+
                     sf.Alignment = StringAlignment.Far
                 ElseIf c.Field = "xTotalTTC" Then '/////////////////////////////////////////
                     _str = details.Rows(m).Item("qte") * details.Rows(m).Item("price")
-                    'Dim tva As Double = details.Rows(m).Item("tva")
-                    '_str = _str + ((_str * tva) / 100)
-                    _str = String.Format("{0:0.00}", CDbl(_str))
+                 
+                    If isRYAL Then
+                        _str = CInt(_str)
+                    Else
+                        _str = String.Format("{0:0.00}", CDbl(_str))
+                    End If
+
                     sf.Alignment = StringAlignment.Far
 
                 ElseIf c.Field = "xdepot" Then '////////////////////////////////////////////
@@ -319,7 +334,12 @@ Public Class gDrawClass
                     Dim tva As Double = details.Rows(m).Item("tva")
                     _str = _str / ((100 + tva) / 100)
 
-                    _str = String.Format("{0:0.00}", CDbl(_str))
+                    If isRYAL Then
+                        _str = CInt(_str)
+                    Else
+                        _str = String.Format("{0:0.00}", CDbl(_str))
+                    End If
+
                     sf.Alignment = StringAlignment.Far
 
                 ElseIf c.Field = "qte" Then '////////////////////////////////////////////////
@@ -411,10 +431,13 @@ Public Class gDrawClass
                     sf.Alignment = StringAlignment.Near
                     g.DrawString(CStr(a.designation), fn, B, New RectangleF(xx, yy, a.width, a.height), sf)
                     sf.Alignment = StringAlignment.Far
-                    Try
-                        g.DrawString(data.Rows(0).Item(a.field), fn, B, New RectangleF(xx + a.width - 10, yy, a.width, a.height), sf)
-                    Catch ex As Exception
-                    End Try
+                        Try
+                            Dim ttr As String = data.Rows(0).Item(a.field)
+                            If isRYAL Then ttr = CInt(ttr)
+
+                            g.DrawString(ttr, fn, B, New RectangleF(xx + a.width - 10, yy, a.width, a.height), sf)
+                        Catch ex As Exception
+                        End Try
 
                     sf.Alignment = StringAlignment.Near
 
@@ -434,6 +457,9 @@ Public Class gDrawClass
 
                             '  Dim ttr As String = CDbl(data.Rows(0).Item("total_ttc")) + CDbl(data.Rows(0).Item("total_remise"))
                             Dim ttr As String = data.Rows(0).Item(a.field)
+                            If isRYAL Then ttr = CInt(ttr)
+
+
                             g.DrawString(ttr, fn, B, New RectangleF(xx + a.width - 10, yy, a.width, a.height), sf)
                         Catch ex As Exception
                         End Try

@@ -127,7 +127,17 @@
         End Get
         Set(ByVal value As Decimal)
             _Avance = value
-            Lbavc.Text = String.Format("{0:n}", value)
+
+            Try
+                If Form1.isBaseOnRIYAL Then
+                    Lbavc.Text = CInt(value)
+                Else
+                    Lbavc.Text = String.Format("{0:n}", value)
+                End If
+            Catch ex As Exception
+                Lbavc.Text = String.Format("{0:n}", value)
+            End Try
+
         End Set
     End Property
     Public Property Remise As String
@@ -731,7 +741,14 @@
     Public Sub ClearItems()
         Pl.Controls.Clear()
         _Total = 0
-        LbSum.Text = Total_TTC
+
+
+        If Form1.isBaseOnRIYAL Then
+            LbSum.Text = CInt(Total_TTC)
+        Else
+            LbSum.Text = Total_TTC
+        End If
+
         LbTva.Text = "Tva : 0"
         LbVidal.Text = Pl.Controls.Count & " - Vidals"
         lbHT.Text = "T. Ht : " & String.Format("{0:n}", Total_Ht)
@@ -800,28 +817,42 @@
 
     End Sub
     Private Sub UpdateValue()
-        LbSum.Text = String.Format("{0:n}", Total_TTC)
-        LbVidal.Text = Pl.Controls.Count & " - Articles"
-
-        'lbHT.Text = "T. Ht : " & String.Format("{0:n}", CDec(Total_Ht - (Total_Ht * Remise / 100)))
-        lbHT.Text = "T. Ht : " & String.Format("{0:n}", Total_Ht)
-        LbTva.Text = "Tva : " & String.Format("{0:n}", Tva)
-
-        lbremise.Text = "Remise = " & String.Format("{0:n}", CDec(Total_Remise))
-
         Try
-            If ShowProfit Then
-                lbProfit.Text = "[" & String.Format("{0:n}", TotalProfit_ht) & " Dhs - " & String.Format("{0:n}", TotalProfit_ht * 100 / Total_Ht) & "%]"
+
+            If Form1.isBaseOnRIYAL Then
+                LbSum.Text = CInt(Total_TTC)
+
+                lbHT.Text = "T. Ht : " & CInt(Total_Ht)
+                LbTva.Text = "Tva : " & CInt(Tva)
+                lbremise.Text = "Remise = " & CInt(Total_Remise)
+            Else
+                LbSum.Text = String.Format("{0:n}", Total_TTC)
+
+                lbHT.Text = "T. Ht : " & String.Format("{0:n}", Total_Ht)
+                LbTva.Text = "Tva : " & String.Format("{0:n}", Tva)
+                lbremise.Text = "Remise = " & String.Format("{0:n}", CDec(Total_Remise))
+
             End If
+
+            LbVidal.Text = Pl.Controls.Count & " - Articles"
+
+            'lbHT.Text = "T. Ht : " & String.Format("{0:n}", CDec(Total_Ht - (Total_Ht * Remise / 100)))
+
+
+            Try
+                If ShowProfit Then
+                    lbProfit.Text = "[" & String.Format("{0:n}", TotalProfit_ht) & " Dhs - " & String.Format("{0:n}", TotalProfit_ht * 100 / Total_Ht) & "%]"
+                End If
+            Catch ex As Exception
+            End Try
+
+            RaiseEvent UpdateValueChanged()
+
+            If _isEditing = False Then Exit Sub
+            RaiseEvent EditingItemValueChanged(_oldValue, _newValue, _Field, _editingItem)
+            _isEditing = False
         Catch ex As Exception
-
         End Try
-
-        RaiseEvent UpdateValueChanged()
-
-        If _isEditing = False Then Exit Sub
-        RaiseEvent EditingItemValueChanged(_oldValue, _newValue, _Field, _editingItem)
-        _isEditing = False
     End Sub
     Private Sub Item_Doubleclick(ByVal sender As Object, ByVal e As EventArgs)
         Dim it As Items = sender
@@ -1013,18 +1044,18 @@
 
 
 
-        'Dim clc As New ChoseLivreur
-        'If clc.ShowDialog = DialogResult.OK Then
-        Try
-            'bl = clc.DataGridView1.SelectedRows(0).Cells(0).Value
-            bl = InputBox("Infos =  ")
-        Catch ex As Exception
-            bl = "---"
-        End Try
+        Dim clc As New ChoseLivreur
+        If clc.ShowDialog = DialogResult.OK Then
+            Try
+                bl = clc.DataGridView1.SelectedRows(0).Cells(0).Value
+                ' bl = InputBox("Infos =  ")
+            Catch ex As Exception
+                bl = "---"
+            End Try
 
-        'If clc.Button1.Tag = 2 Then bl = "-"
-        'End If
-        RaiseEvent SetDetailFacture()
+            If clc.Button1.Tag = 2 Then bl = "-"
+        End If
+            RaiseEvent SetDetailFacture()
     End Sub
 
     Dim hh As Integer = 0

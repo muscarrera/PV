@@ -23,7 +23,6 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -36,6 +35,7 @@ Partial Class Form1
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.PlRcpt = New System.Windows.Forms.Panel()
         Me.RPl = New Al_Mohasib.RPanel()
         Me.Panel12 = New System.Windows.Forms.Panel()
@@ -405,6 +405,8 @@ Partial Class Form1
         Me.PrintDocDesign = New System.Drawing.Printing.PrintDocument()
         Me.PrintDocDesignFct = New System.Drawing.Printing.PrintDocument()
         Me.PrintDocDesign2 = New System.Drawing.Printing.PrintDocument()
+        Me.Button46 = New System.Windows.Forms.Button()
+        Me.Button47 = New System.Windows.Forms.Button()
         Me.PlRcpt.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.plup.SuspendLayout()
@@ -618,15 +620,17 @@ Partial Class Form1
         Me.GB1.Controls.Add(Me.Panel34)
         Me.GB1.Controls.Add(Me.Panel31)
         Me.GB1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB1.Location = New System.Drawing.Point(808, 3)
+        Me.GB1.Location = New System.Drawing.Point(560, 3)
         Me.GB1.Name = "GB1"
-        Me.GB1.Size = New System.Drawing.Size(53, 598)
+        Me.GB1.Size = New System.Drawing.Size(301, 598)
         Me.GB1.TabIndex = 5
         Me.GB1.TabStop = False
         '
         'Panel34
         '
         Me.Panel34.BackColor = System.Drawing.Color.White
+        Me.Panel34.Controls.Add(Me.Button46)
+        Me.Panel34.Controls.Add(Me.Button47)
         Me.Panel34.Controls.Add(Me.Button55)
         Me.Panel34.Controls.Add(Me.Button70)
         Me.Panel34.Controls.Add(Me.bttrial)
@@ -639,7 +643,7 @@ Partial Class Form1
         Me.Panel34.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel34.Location = New System.Drawing.Point(23, 16)
         Me.Panel34.Name = "Panel34"
-        Me.Panel34.Size = New System.Drawing.Size(27, 579)
+        Me.Panel34.Size = New System.Drawing.Size(275, 579)
         Me.Panel34.TabIndex = 5
         '
         'Button55
@@ -662,7 +666,7 @@ Partial Class Form1
         Me.Button70.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button70.Location = New System.Drawing.Point(17, 474)
         Me.Button70.Name = "Button70"
-        Me.Button70.Size = New System.Drawing.Size(205, 43)
+        Me.Button70.Size = New System.Drawing.Size(102, 43)
         Me.Button70.TabIndex = 2
         Me.Button70.Text = "Apercu"
         Me.Button70.UseVisualStyleBackColor = True
@@ -1173,9 +1177,9 @@ Partial Class Form1
         Me.GB4.Controls.Add(Me.txtNbrArt)
         Me.GB4.Controls.Add(Me.txtlargebt)
         Me.GB4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB4.Location = New System.Drawing.Point(594, 3)
+        Me.GB4.Location = New System.Drawing.Point(148, 3)
         Me.GB4.Name = "GB4"
-        Me.GB4.Size = New System.Drawing.Size(88, 598)
+        Me.GB4.Size = New System.Drawing.Size(333, 598)
         Me.GB4.TabIndex = 0
         Me.GB4.TabStop = False
         '
@@ -2077,9 +2081,9 @@ Partial Class Form1
         Me.Panel2.BackColor = System.Drawing.Color.Transparent
         Me.Panel2.Controls.Add(Me.txtSearchCode)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel2.Location = New System.Drawing.Point(546, 0)
+        Me.Panel2.Location = New System.Drawing.Point(518, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(18, 40)
+        Me.Panel2.Size = New System.Drawing.Size(10, 40)
         Me.Panel2.TabIndex = 10
         '
         'txtSearchCode
@@ -2164,9 +2168,9 @@ Partial Class Form1
         Me.Panel8.Controls.Add(Me.txtSearch)
         Me.Panel8.Controls.Add(Me.ShapeContainer3)
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel8.Location = New System.Drawing.Point(564, 0)
+        Me.Panel8.Location = New System.Drawing.Point(528, 0)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(294, 40)
+        Me.Panel8.Size = New System.Drawing.Size(330, 40)
         Me.Panel8.TabIndex = 1
         '
         'txtSearch
@@ -2174,7 +2178,7 @@ Partial Class Form1
         Me.txtSearch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtSearch.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSearch.Location = New System.Drawing.Point(22, 13)
+        Me.txtSearch.Location = New System.Drawing.Point(58, 13)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(246, 15)
         Me.txtSearch.TabIndex = 1
@@ -2186,7 +2190,7 @@ Partial Class Form1
         Me.ShapeContainer3.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer3.Name = "ShapeContainer3"
         Me.ShapeContainer3.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.RectangleShape1})
-        Me.ShapeContainer3.Size = New System.Drawing.Size(294, 40)
+        Me.ShapeContainer3.Size = New System.Drawing.Size(330, 40)
         Me.ShapeContainer3.TabIndex = 0
         Me.ShapeContainer3.TabStop = False
         '
@@ -2197,7 +2201,7 @@ Partial Class Form1
         Me.RectangleShape1.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
         Me.RectangleShape1.BorderColor = System.Drawing.Color.DarkSlateGray
         Me.RectangleShape1.CornerRadius = 14
-        Me.RectangleShape1.Location = New System.Drawing.Point(5, 4)
+        Me.RectangleShape1.Location = New System.Drawing.Point(47, 4)
         Me.RectangleShape1.Name = "RectangleShape1"
         Me.RectangleShape1.Size = New System.Drawing.Size(277, 31)
         '
@@ -3890,7 +3894,7 @@ Partial Class Form1
         Me.GB6.Controls.Add(Me.Button45)
         Me.GB6.Controls.Add(Me.Label63)
         Me.GB6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB6.Location = New System.Drawing.Point(363, 3)
+        Me.GB6.Location = New System.Drawing.Point(-83, 3)
         Me.GB6.Name = "GB6"
         Me.GB6.Size = New System.Drawing.Size(56, 598)
         Me.GB6.TabIndex = 9
@@ -4037,7 +4041,7 @@ Partial Class Form1
         Me.GB5.Controls.Add(Me.cbProfit)
         Me.GB5.Controls.Add(Me.cbUnite)
         Me.GB5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB5.Location = New System.Drawing.Point(419, 3)
+        Me.GB5.Location = New System.Drawing.Point(-27, 3)
         Me.GB5.Name = "GB5"
         Me.GB5.Size = New System.Drawing.Size(175, 598)
         Me.GB5.TabIndex = 8
@@ -4134,9 +4138,9 @@ Partial Class Form1
         Me.GB3.Controls.Add(Me.txtfntsize)
         Me.GB3.Controls.Add(Me.Label54)
         Me.GB3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB3.Location = New System.Drawing.Point(682, 3)
+        Me.GB3.Location = New System.Drawing.Point(481, 3)
         Me.GB3.Name = "GB3"
-        Me.GB3.Size = New System.Drawing.Size(103, 598)
+        Me.GB3.Size = New System.Drawing.Size(56, 598)
         Me.GB3.TabIndex = 7
         Me.GB3.TabStop = False
         '
@@ -4249,7 +4253,7 @@ Partial Class Form1
         Me.GB2.Controls.Add(Me.Button5)
         Me.GB2.Controls.Add(Me.Button6)
         Me.GB2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB2.Location = New System.Drawing.Point(785, 3)
+        Me.GB2.Location = New System.Drawing.Point(537, 3)
         Me.GB2.Name = "GB2"
         Me.GB2.Size = New System.Drawing.Size(23, 598)
         Me.GB2.TabIndex = 7
@@ -4493,6 +4497,30 @@ Partial Class Form1
         '
         'PrintDocDesign2
         '
+        '
+        'Button46
+        '
+        Me.Button46.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button46.Image = CType(resources.GetObject("Button46.Image"), System.Drawing.Image)
+        Me.Button46.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button46.Location = New System.Drawing.Point(121, 474)
+        Me.Button46.Name = "Button46"
+        Me.Button46.Size = New System.Drawing.Size(50, 44)
+        Me.Button46.TabIndex = 5
+        Me.Button46.Text = "DbDv Path"
+        Me.Button46.UseVisualStyleBackColor = True
+        '
+        'Button47
+        '
+        Me.Button47.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button47.Image = CType(resources.GetObject("Button47.Image"), System.Drawing.Image)
+        Me.Button47.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button47.Location = New System.Drawing.Point(172, 474)
+        Me.Button47.Name = "Button47"
+        Me.Button47.Size = New System.Drawing.Size(50, 44)
+        Me.Button47.TabIndex = 4
+        Me.Button47.Text = "DbSv Path"
+        Me.Button47.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -4955,5 +4983,7 @@ Partial Class Form1
     Friend WithEvents Button44 As System.Windows.Forms.Button
     Friend WithEvents btPrint_Top As System.Windows.Forms.Button
     Friend WithEvents PrintDocDesign2 As System.Drawing.Printing.PrintDocument
+    Friend WithEvents Button46 As System.Windows.Forms.Button
+    Friend WithEvents Button47 As System.Windows.Forms.Button
 
 End Class

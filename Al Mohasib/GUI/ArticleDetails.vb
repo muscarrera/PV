@@ -158,7 +158,7 @@
                             'bprice += (bprice * dt2.Rows(t).Item("tva") / 100)
                             Dim sprice As Decimal = dt2.Rows(t).Item("qte") * dt2.Rows(t).Item("price")
                             'sprice += (sprice * dt2.Rows(t).Item("tva") / 100)
-                            Dim dte As Date = CDate(dt.Rows(0).Item("date"))
+                            Dim dte As Date = CDate(dt2.Rows(t).Item("date"))
                             Dim tv As Decimal = (sprice * dt2.Rows(t).Item("tva") / 100)
 
                             If itemLOC = -1 Then

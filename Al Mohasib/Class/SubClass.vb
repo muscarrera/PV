@@ -331,14 +331,20 @@ Public Class SubClass
                 artdt = artta.GetDatalikename("%" & txt.Text & "%")
 
             ElseIf Form1.cbsearch.Text = "الرمز" Then
-                artdt = artta.GetDatalikecodebar(txt.Text & "%")
+                Dim str As String = "%" & txt.Text & "%"
+                ' If Form1.adminName.Contains("*") Then str = "*" & "%" & txt.Text & "%"
+                '  If IsNumeric(txt.Text) Then str = "%" & txt.Text & "%"
+                artdt = artta.GetDatalikecodebar(str)
 
             ElseIf Form1.cbsearch.Text = "التصنيف" Then
                 artdt = artta.GetDataBycidlikeCodeBar(txt.Text & "%", cid)
                 artdt2 = artta.GetDataBycidlikename("%" & txt.Text & "%", cid)
                 artdt.Merge(artdt2, False)
             Else
-                artdt = artta.GetDatalikecodebar("%" & txt.Text & "%")
+                Dim str As String = "%" & txt.Text & "%"
+                '  If Form1.adminName.Contains("*") Then str = "*" & txt.Text & "%"
+
+                artdt = artta.GetDatalikecodebar(str)
                 artdt2 = artta.GetDatalikename("%" & txt.Text & "%")
                 artdt.Merge(artdt2, False)
             End If
@@ -351,7 +357,13 @@ Public Class SubClass
                 Form1.FlowLayoutPanel1.Controls.Add(lb)
 
             Else
+                Dim myLast = Form1.indexLastArticle
                 For i As Integer = 0 To artdt.Rows.Count - 1
+
+                    'If Form1.adminName.Contains("*") = False And StrValue(artdt, "codebar", i).Contains("*") Then
+                    '    myLast += 1
+                    '    Continue For
+                    'End If
 
                     Dim bt As New Button
 
@@ -384,14 +396,14 @@ Public Class SubClass
                     Form1.FlowLayoutPanel1.Controls.Add(bt)
                     'AddHandler bt.Click, AddressOf art_click
 
-                    If i = Form1.indexLastArticle Then
+                    If i = myLast Then
                         AddHandler bt.Click, AddressOf ctg_NEXT
                         bt.BackColor = Color.Green
                         bt.Text = "[...]"
                         bt.BackgroundImage = Nothing
                         bt.Tag = artdt
 
-                        Form1.indexStartArticle = Form1.indexLastArticle
+                        Form1.indexStartArticle = myLast
                         Exit For
                     Else
                         AddHandler bt.Click, AddressOf art_click
@@ -730,8 +742,20 @@ Public Class SubClass
                 lb.Text = "لا يوجد اي سجل"
                 Form1.FlowLayoutPanel1.Controls.Add(lb)
             Else
-
+                Dim myLast = Form1.indexLastArticle
                 For i As Integer = 0 To artdt.Rows.Count - 1
+
+                    'If Form1.adminName.Contains("*") Then
+                    '    If StrValue(artdt, "codebar", i).Contains("*") = False Then
+                    '        myLast += 1
+                    '        Continue For
+                    '    End If
+                    'Else
+                    '    If StrValue(artdt, "codebar", i).Contains("*") Then
+                    '        myLast += 1
+                    '        Continue For
+                    '    End If
+                    'End If
 
                     Dim bt As New Button
                     bt.BackgroundImageLayout = ImageLayout.Stretch
@@ -784,7 +808,7 @@ Public Class SubClass
                     'AddHandler bt.Click, AddressOf art_click
                     ''''''''''''''''''''''''''''''''''''''''''''''''''' list suivant
 
-                    If i = Form1.indexLastArticle Then
+                    If i = myLast Then
 
                         AddHandler bt.Click, AddressOf ctg_NEXT
                         bt.BackColor = Color.Green
@@ -793,7 +817,7 @@ Public Class SubClass
                         bt.BackgroundImage = Nothing
                         bt.Tag = artdt
 
-                        Form1.indexStartArticle = Form1.indexLastArticle
+                        Form1.indexStartArticle = myLast
                         Exit For
                     Else
                         AddHandler bt.Click, AddressOf art_click
@@ -842,6 +866,18 @@ Public Class SubClass
                     Form1.indexStartArticle = i '- Form1.indexLastArticle
                     Exit For
                 End If
+
+                'If Form1.adminName.Contains("*") Then
+                '    If StrValue(artdt, "codebar", i).Contains("*") = False Then
+                '        _END += 1
+                '        Continue For
+                '    End If
+                'Else
+                '    If StrValue(artdt, "codebar", i).Contains("*") Then
+                '        _END += 1
+                '        Continue For
+                '    End If
+                'End If
 
                 Dim bt As New Button
 
@@ -942,6 +978,17 @@ Public Class SubClass
                     Form1.indexStartArticle = i '- Form1.indexLastArticle
                     Exit For
                 End If
+
+
+                'If Form1.adminName.Contains("*") Then
+                '    If StrValue(artdt, "codebar", i).Contains("*") = False Then
+                '        Continue For
+                '    End If
+                'Else
+                '    If StrValue(artdt, "codebar", i).Contains("*") Then
+                '        Continue For
+                '    End If
+                'End If
 
                 Dim bt As New Button
 
@@ -2886,7 +2933,7 @@ Public Class SubClass
                     Dim bprice As Decimal = dt.Rows(i).Item("qte") * dt.Rows(i).Item("bprice")
                     Dim sprice As Decimal = dt.Rows(i).Item("qte") * dt.Rows(i).Item("price")
 
-                    Dim dte As Date = CDate(dt.Rows(0).Item("date"))
+                    Dim dte As Date = CDate(dt.Rows(i).Item("date"))
                     dgv.Rows.Add(dte.ToString("dd MMMM yy"), dt.Rows(i).Item("fctid"), dt.Rows(i).Item("ClientName"),
                                                  String.Format("{0:n}", CDec(dt.Rows(i).Item("qte").ToString)),
                                                     String.Format("{0:n}", bprice),
@@ -2910,12 +2957,11 @@ Public Class SubClass
                 For i As Integer = 0 To dt.Rows.Count - 1
 
                     Dim bprice As Decimal = dt.Rows(i).Item("qte") * dt.Rows(i).Item("bprice")
-
                     Dim sprice As Decimal = 0 'dt.Rows(i).Item("qte") * dt.Rows(i).Item("price")
+                    Dim dte As Date = CDate(dt.Rows(i).Item("date"))
 
-                    Dim dte As Date = CDate(dt.Rows(0).Item("date"))
-                    dgv.Rows.Add(dte.ToString("dd MMMM yy"), dt.Rows(i).Item("fctid"), dt.Rows(i).Item("ClientName"),
-                                                 dt.Rows(i).Item("qte"), bprice, sprice, dt.Rows(i).Item("tva"))
+                    'dgv.Rows.Add(dte.ToString("dd MMMM yy"), dt.Rows(i).Item("fctid"), dt.Rows(i).Item("ClientName"),
+                    'dt.Rows(i).Item("qte"), bprice, sprice, dt.Rows(i).Item("tva"))
 
                     dgv.Rows.Add(dte.ToString("dd MMMM yy"), dt.Rows(i).Item("fctid"), dt.Rows(i).Item("ClientName"),
                              String.Format("{0:n}", CDec(dt.Rows(i).Item("qte").ToString)),

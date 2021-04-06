@@ -28,6 +28,7 @@ Partial Class BarCode1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.PlCommande = New System.Windows.Forms.Panel()
+        Me.txtQte = New Al_Mohasib.TxtBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.btImprimer = New System.Windows.Forms.Button()
@@ -36,13 +37,18 @@ Partial Class BarCode1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.TXTW = New Al_Mohasib.TxtBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.TXTH = New Al_Mohasib.TxtBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.PrintDocument2 = New System.Drawing.Printing.PrintDocument()
-        Me.TXTW = New Al_Mohasib.TxtBox()
-        Me.TXTH = New Al_Mohasib.TxtBox()
         Me.txtX = New Al_Mohasib.TxtBox()
         Me.txtZ2 = New Al_Mohasib.TxtBox()
         Me.txtF2 = New Al_Mohasib.TxtBox()
@@ -55,7 +61,7 @@ Partial Class BarCode1
         Me.TxtBox5 = New Al_Mohasib.TxtBox()
         Me.TxtBox1 = New Al_Mohasib.TxtBox()
         Me.txtY = New Al_Mohasib.TxtBox()
-        Me.txtQte = New Al_Mohasib.TxtBox()
+        Me.PrintDocument2 = New System.Drawing.Printing.PrintDocument()
         Me.Pl.SuspendLayout()
         CType(Me.Pb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PlCommande.SuspendLayout()
@@ -132,6 +138,25 @@ Partial Class BarCode1
         Me.PlCommande.Size = New System.Drawing.Size(679, 42)
         Me.PlCommande.TabIndex = 4
         '
+        'txtQte
+        '
+        Me.txtQte.BackColor = System.Drawing.Color.White
+        Me.txtQte.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtQte.IsNumiric = True
+        Me.txtQte.Location = New System.Drawing.Point(87, 6)
+        Me.txtQte.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtQte.Name = "txtQte"
+        Me.txtQte.ShowClearIcon = False
+        Me.txtQte.ShowSaveIcon = False
+        Me.txtQte.Size = New System.Drawing.Size(164, 30)
+        Me.txtQte.StartUp = 2
+        Me.txtQte.TabIndex = 6
+        Me.txtQte.TextSize = 8
+        Me.txtQte.TxtBackColor = True
+        Me.txtQte.TxtColor = System.Drawing.Color.White
+        Me.txtQte.txtReadOnly = False
+        Me.txtQte.TxtSelect = New Integer() {1, 0}
+        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -151,7 +176,6 @@ Partial Class BarCode1
         Me.Button3.TabIndex = 4
         Me.Button3.Text = "Imprimer"
         Me.Button3.UseVisualStyleBackColor = True
-        Me.Button3.Visible = False
         '
         'btImprimer
         '
@@ -163,6 +187,7 @@ Partial Class BarCode1
         Me.btImprimer.TabIndex = 4
         Me.btImprimer.Text = "Imprimer"
         Me.btImprimer.UseVisualStyleBackColor = True
+        Me.btImprimer.Visible = False
         '
         'PrintDocument1
         '
@@ -189,6 +214,12 @@ Partial Class BarCode1
         '
         Me.Panel1.Controls.Add(Me.CheckBox1)
         Me.Panel1.Controls.Add(Me.TXTW)
+        Me.Panel1.Controls.Add(Me.Label13)
+        Me.Panel1.Controls.Add(Me.Label11)
+        Me.Panel1.Controls.Add(Me.Label9)
+        Me.Panel1.Controls.Add(Me.Label12)
+        Me.Panel1.Controls.Add(Me.Label10)
+        Me.Panel1.Controls.Add(Me.Label8)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Controls.Add(Me.Button1)
@@ -219,12 +250,85 @@ Partial Class BarCode1
         'CheckBox1
         '
         Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(168, 224)
+        Me.CheckBox1.Location = New System.Drawing.Point(214, 96)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(81, 17)
         Me.CheckBox1.TabIndex = 7
         Me.CheckBox1.Text = "Rayonnage"
         Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'TXTW
+        '
+        Me.TXTW.BackColor = System.Drawing.Color.White
+        Me.TXTW.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.TXTW.IsNumiric = True
+        Me.TXTW.Location = New System.Drawing.Point(216, 12)
+        Me.TXTW.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.TXTW.Name = "TXTW"
+        Me.TXTW.ShowClearIcon = False
+        Me.TXTW.ShowSaveIcon = False
+        Me.TXTW.Size = New System.Drawing.Size(79, 30)
+        Me.TXTW.StartUp = 2
+        Me.TXTW.TabIndex = 6
+        Me.TXTW.TextSize = 8
+        Me.TXTW.TxtBackColor = True
+        Me.TXTW.TxtColor = System.Drawing.Color.White
+        Me.TXTW.txtReadOnly = False
+        Me.TXTW.TxtSelect = New Integer() {1, 0}
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(233, 262)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(24, 13)
+        Me.Label13.TabIndex = 5
+        Me.Label13.Text = "Y.C"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(96, 262)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(23, 13)
+        Me.Label11.TabIndex = 5
+        Me.Label11.Text = "T.L"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(11, 262)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(24, 13)
+        Me.Label9.TabIndex = 5
+        Me.Label9.Text = "T.S"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(230, 228)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(26, 13)
+        Me.Label12.TabIndex = 5
+        Me.Label12.Text = "H.N"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(93, 228)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(27, 13)
+        Me.Label10.TabIndex = 5
+        Me.Label10.Text = "W.L"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(12, 228)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(28, 13)
+        Me.Label8.TabIndex = 5
+        Me.Label8.Text = "W.S"
         '
         'Button2
         '
@@ -248,46 +352,6 @@ Partial Class BarCode1
         Me.Button1.Text = "..."
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(16, 158)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(56, 13)
-        Me.Label7.TabIndex = 5
-        Me.Label7.Text = "Police Prix"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(16, 109)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(60, 13)
-        Me.Label6.TabIndex = 5
-        Me.Label6.Text = "Police Titre"
-        '
-        'PrintDocument2
-        '
-        '
-        'TXTW
-        '
-        Me.TXTW.BackColor = System.Drawing.Color.White
-        Me.TXTW.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.TXTW.IsNumiric = True
-        Me.TXTW.Location = New System.Drawing.Point(216, 12)
-        Me.TXTW.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.TXTW.Name = "TXTW"
-        Me.TXTW.ShowClearIcon = False
-        Me.TXTW.ShowSaveIcon = False
-        Me.TXTW.Size = New System.Drawing.Size(79, 30)
-        Me.TXTW.StartUp = 2
-        Me.TXTW.TabIndex = 6
-        Me.TXTW.TextSize = 8
-        Me.TXTW.TxtBackColor = True
-        Me.TXTW.TxtColor = System.Drawing.Color.White
-        Me.TXTW.txtReadOnly = False
-        Me.TXTW.TxtSelect = New Integer() {1, 0}
-        '
         'TXTH
         '
         Me.TXTH.BackColor = System.Drawing.Color.White
@@ -306,6 +370,24 @@ Partial Class BarCode1
         Me.TXTH.TxtColor = System.Drawing.Color.White
         Me.TXTH.txtReadOnly = False
         Me.TXTH.TxtSelect = New Integer() {1, 0}
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(16, 158)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(56, 13)
+        Me.Label7.TabIndex = 5
+        Me.Label7.Text = "Police Prix"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(16, 109)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(60, 13)
+        Me.Label6.TabIndex = 5
+        Me.Label6.Text = "Police Titre"
         '
         'txtX
         '
@@ -407,7 +489,7 @@ Partial Class BarCode1
         Me.TxtBox4.BackColor = System.Drawing.Color.White
         Me.TxtBox4.BorderColor = System.Drawing.SystemColors.ControlText
         Me.TxtBox4.IsNumiric = True
-        Me.TxtBox4.Location = New System.Drawing.Point(81, 259)
+        Me.TxtBox4.Location = New System.Drawing.Point(120, 257)
         Me.TxtBox4.MinimumSize = New System.Drawing.Size(0, 30)
         Me.TxtBox4.Name = "TxtBox4"
         Me.TxtBox4.ShowClearIcon = False
@@ -426,7 +508,7 @@ Partial Class BarCode1
         Me.TxtBox3.BackColor = System.Drawing.Color.White
         Me.TxtBox3.BorderColor = System.Drawing.SystemColors.ControlText
         Me.TxtBox3.IsNumiric = True
-        Me.TxtBox3.Location = New System.Drawing.Point(20, 256)
+        Me.TxtBox3.Location = New System.Drawing.Point(40, 254)
         Me.TxtBox3.MinimumSize = New System.Drawing.Size(0, 30)
         Me.TxtBox3.Name = "TxtBox3"
         Me.TxtBox3.ShowClearIcon = False
@@ -445,7 +527,7 @@ Partial Class BarCode1
         Me.TxtBox2.BackColor = System.Drawing.Color.White
         Me.TxtBox2.BorderColor = System.Drawing.SystemColors.ControlText
         Me.TxtBox2.IsNumiric = True
-        Me.TxtBox2.Location = New System.Drawing.Point(81, 224)
+        Me.TxtBox2.Location = New System.Drawing.Point(120, 222)
         Me.TxtBox2.MinimumSize = New System.Drawing.Size(0, 30)
         Me.TxtBox2.Name = "TxtBox2"
         Me.TxtBox2.ShowClearIcon = False
@@ -464,7 +546,7 @@ Partial Class BarCode1
         Me.TxtBox6.BackColor = System.Drawing.Color.White
         Me.TxtBox6.BorderColor = System.Drawing.SystemColors.ControlText
         Me.TxtBox6.IsNumiric = True
-        Me.TxtBox6.Location = New System.Drawing.Point(267, 256)
+        Me.TxtBox6.Location = New System.Drawing.Point(266, 256)
         Me.TxtBox6.MinimumSize = New System.Drawing.Size(0, 30)
         Me.TxtBox6.Name = "TxtBox6"
         Me.TxtBox6.ShowClearIcon = False
@@ -483,7 +565,7 @@ Partial Class BarCode1
         Me.TxtBox5.BackColor = System.Drawing.Color.White
         Me.TxtBox5.BorderColor = System.Drawing.SystemColors.ControlText
         Me.TxtBox5.IsNumiric = True
-        Me.TxtBox5.Location = New System.Drawing.Point(267, 224)
+        Me.TxtBox5.Location = New System.Drawing.Point(266, 224)
         Me.TxtBox5.MinimumSize = New System.Drawing.Size(0, 30)
         Me.TxtBox5.Name = "TxtBox5"
         Me.TxtBox5.ShowClearIcon = False
@@ -502,7 +584,7 @@ Partial Class BarCode1
         Me.TxtBox1.BackColor = System.Drawing.Color.White
         Me.TxtBox1.BorderColor = System.Drawing.SystemColors.ControlText
         Me.TxtBox1.IsNumiric = True
-        Me.TxtBox1.Location = New System.Drawing.Point(20, 224)
+        Me.TxtBox1.Location = New System.Drawing.Point(40, 222)
         Me.TxtBox1.MinimumSize = New System.Drawing.Size(0, 30)
         Me.TxtBox1.Name = "TxtBox1"
         Me.TxtBox1.ShowClearIcon = False
@@ -535,24 +617,8 @@ Partial Class BarCode1
         Me.txtY.txtReadOnly = False
         Me.txtY.TxtSelect = New Integer() {1, 0}
         '
-        'txtQte
+        'PrintDocument2
         '
-        Me.txtQte.BackColor = System.Drawing.Color.White
-        Me.txtQte.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.txtQte.IsNumiric = True
-        Me.txtQte.Location = New System.Drawing.Point(87, 6)
-        Me.txtQte.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtQte.Name = "txtQte"
-        Me.txtQte.ShowClearIcon = False
-        Me.txtQte.ShowSaveIcon = False
-        Me.txtQte.Size = New System.Drawing.Size(164, 30)
-        Me.txtQte.StartUp = 2
-        Me.txtQte.TabIndex = 6
-        Me.txtQte.TextSize = 8
-        Me.txtQte.TxtBackColor = True
-        Me.txtQte.TxtColor = System.Drawing.Color.White
-        Me.txtQte.txtReadOnly = False
-        Me.txtQte.TxtSelect = New Integer() {1, 0}
         '
         'BarCode1
         '
@@ -610,4 +676,10 @@ Partial Class BarCode1
     Friend WithEvents TxtBox1 As Al_Mohasib.TxtBox
     Friend WithEvents TxtBox5 As Al_Mohasib.TxtBox
     Friend WithEvents TxtBox6 As Al_Mohasib.TxtBox
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents Label12 As System.Windows.Forms.Label
 End Class

@@ -380,6 +380,58 @@
     <Compile Include="GUI\EtatClient.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\Labeling\AddEditElement.Designer.vb">
+      <DependentUpon>AddEditElement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Labeling\AddEditElement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Labeling\CatElement.vb" />
+    <Compile Include="GUI\Labeling\CatSetting.Designer.vb">
+      <DependentUpon>CatSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Labeling\CatSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Labeling\Code39Ctrl.Designer.vb">
+      <DependentUpon>Code39Ctrl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Labeling\Code39Ctrl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Labeling\LbArticle.vb" />
+    <Compile Include="GUI\Labeling\LbElement.vb" />
+    <Compile Include="GUI\Labeling\LbGlobalElement.vb" />
+    <Compile Include="GUI\Labeling\LbSetting.Designer.vb">
+      <DependentUpon>LbSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Labeling\LbSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Labeling\ShapeElement.Designer.vb">
+      <DependentUpon>ShapeElement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Labeling\ShapeElement.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Labeling\ShapeTrace.Designer.vb">
+      <DependentUpon>ShapeTrace.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Labeling\ShapeTrace.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\LabelPrinter.Designer.vb">
+      <DependentUpon>LabelPrinter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\LabelPrinter.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\LabelSetting.Designer.vb">
+      <DependentUpon>LabelSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\LabelSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\ListMultiCodes.Designer.vb">
       <DependentUpon>ListMultiCodes.vb</DependentUpon>
     </Compile>
@@ -396,6 +448,18 @@
       <DependentUpon>PriceType.vb</DependentUpon>
     </Compile>
     <Compile Include="GUI\PriceType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PricingGetter\PricingGetter.Designer.vb">
+      <DependentUpon>PricingGetter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PricingGetter\PricingGetter.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PricingGetter\PricingParams.Designer.vb">
+      <DependentUpon>PricingParams.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PricingGetter\PricingParams.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\Screen2.Designer.vb">
@@ -680,6 +744,30 @@
     <EmbeddedResource Include="GUI\EtatClient.resx">
       <DependentUpon>EtatClient.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Labeling\AddEditElement.resx">
+      <DependentUpon>AddEditElement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Labeling\CatSetting.resx">
+      <DependentUpon>CatSetting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Labeling\Code39Ctrl.resx">
+      <DependentUpon>Code39Ctrl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Labeling\LbSetting.resx">
+      <DependentUpon>LbSetting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Labeling\ShapeElement.resx">
+      <DependentUpon>ShapeElement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Labeling\ShapeTrace.resx">
+      <DependentUpon>ShapeTrace.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\LabelPrinter.resx">
+      <DependentUpon>LabelPrinter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\LabelSetting.resx">
+      <DependentUpon>LabelSetting.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\ListMultiCodes.resx">
       <DependentUpon>ListMultiCodes.vb</DependentUpon>
     </EmbeddedResource>
@@ -688,6 +776,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PriceType.resx">
       <DependentUpon>PriceType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PricingGetter\PricingGetter.resx">
+      <DependentUpon>PricingGetter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PricingGetter\PricingParams.resx">
+      <DependentUpon>PricingParams.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Screen2.resx">
       <DependentUpon>Screen2.vb</DependentUpon>
@@ -895,6 +989,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MyBarcode.dll" />
+    <None Include="Resources\s-l300.jpg" />
+    <None Include="Resources\iconfinder_Gnome-Emblem-System-48_55301.png" />
+    <None Include="Resources\consumer-products.jpg" />
+    <None Include="Resources\bgLightForm.jpg" />
+    <None Include="Resources\BGPVAR 22.png" />
+    <None Include="Resources\BGPVAR.png" />
+    <None Include="Resources\BGPVAR 21.png" />
+    <None Include="Resources\carre1.png" />
+    <None Include="Resources\filled-circle1.png" />
+    <None Include="Resources\filled-circle.png" />
+    <None Include="Resources\carre.png" />
+    <None Include="Resources\BARCODE 22.png" />
     <None Include="Resources\BGPVAR 2.png" />
     <None Include="Resources\iconfinder_CasH 44.png" />
     <None Include="Resources\iconfinder_Cash_register_73439.png" />

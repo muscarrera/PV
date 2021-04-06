@@ -47,6 +47,54 @@ Module AutoModule
         Return str
     End Function
 
+    '''''''''''''''''''''''''''
+
+    Public Sub DrawRoundedRectangle(ByVal objGraphics As Graphics, _
+                                ByVal m_intxAxis As Integer, _
+                                ByVal m_intyAxis As Integer, _
+                                ByVal m_intWidth As Integer, _
+                                ByVal m_intHeight As Integer, _
+                                ByVal m_diameter As Integer)
+
+
+
+        'Dim g As Graphics
+        Dim BaseRect As New RectangleF(m_intxAxis, m_intyAxis, m_intWidth,
+                                      m_intHeight)
+        Dim ArcRect As New RectangleF(BaseRect.Location,
+                                  New SizeF(m_diameter, m_diameter))
+        'top left Arc
+        objGraphics.DrawArc(Pens.Black, ArcRect, 180, 90)
+        objGraphics.DrawLine(Pens.Black, m_intxAxis + CInt(m_diameter / 2),
+                             m_intyAxis,
+                             m_intxAxis + m_intWidth - CInt(m_diameter / 2),
+                             m_intyAxis)
+
+        ' top right arc
+        ArcRect.X = BaseRect.Right - m_diameter
+        objGraphics.DrawArc(Pens.Black, ArcRect, 270, 90)
+        objGraphics.DrawLine(Pens.Black, m_intxAxis + m_intWidth,
+                             m_intyAxis + CInt(m_diameter / 2),
+                             m_intxAxis + m_intWidth,
+                             m_intyAxis + m_intHeight - CInt(m_diameter / 2))
+
+        ' bottom right arc
+        ArcRect.Y = BaseRect.Bottom - m_diameter
+        objGraphics.DrawArc(Pens.Black, ArcRect, 0, 90)
+        objGraphics.DrawLine(Pens.Black, m_intxAxis + CInt(m_diameter / 2),
+                             m_intyAxis + m_intHeight,
+                             m_intxAxis + m_intWidth - CInt(m_diameter / 2),
+                             m_intyAxis + m_intHeight)
+
+        ' bottom left arc
+        ArcRect.X = BaseRect.Left
+        objGraphics.DrawArc(Pens.Black, ArcRect, 90, 90)
+        objGraphics.DrawLine(Pens.Black,
+                             m_intxAxis, m_intyAxis + CInt(m_diameter / 2),
+                             m_intxAxis,
+                             m_intyAxis + m_intHeight - CInt(m_diameter / 2))
+
+    End Sub
 
     '''''''''
     'save datagrid as HTML and prit it

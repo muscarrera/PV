@@ -40,28 +40,27 @@ Partial Class BarCode2
         Me.txtCode = New Al_Mohasib.TxtBox()
         Me.txtF1 = New Al_Mohasib.TxtBox()
         Me.txtY = New Al_Mohasib.TxtBox()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.PrintDocument2 = New System.Drawing.Printing.PrintDocument()
         Me.Pl = New System.Windows.Forms.Panel()
-        Me.txtQte = New Al_Mohasib.TxtBox()
+        Me.BarCodeCtrl1 = New Al_Mohasib.DSBarCode.BarCodeCtrl()
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btImprimer = New System.Windows.Forms.Button()
         Me.PlCommande = New System.Windows.Forms.Panel()
-        Me.pb1 = New System.Windows.Forms.PictureBox()
-        Me.pb2 = New System.Windows.Forms.PictureBox()
+        Me.txtQte = New Al_Mohasib.TxtBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.CbAlign = New System.Windows.Forms.ComboBox()
         Me.Panel1.SuspendLayout()
         Me.Pl.SuspendLayout()
         Me.PlCommande.SuspendLayout()
-        CType(Me.pb1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pb2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Label10)
+        Me.Panel1.Controls.Add(Me.CbAlign)
         Me.Panel1.Controls.Add(Me.TXTW)
         Me.Panel1.Controls.Add(Me.Label2)
-        Me.Panel1.Controls.Add(Me.Button3)
         Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.TXTH)
@@ -115,7 +114,7 @@ Partial Class BarCode2
         '
         Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(252, 239)
+        Me.Button2.Location = New System.Drawing.Point(243, 233)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(55, 30)
         Me.Button2.TabIndex = 4
@@ -126,7 +125,7 @@ Partial Class BarCode2
         '
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(252, 184)
+        Me.Button1.Location = New System.Drawing.Point(243, 178)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(55, 30)
         Me.Button1.TabIndex = 4
@@ -155,7 +154,7 @@ Partial Class BarCode2
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(16, 223)
+        Me.Label7.Location = New System.Drawing.Point(16, 217)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(56, 13)
         Me.Label7.TabIndex = 5
@@ -164,7 +163,7 @@ Partial Class BarCode2
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(16, 168)
+        Me.Label6.Location = New System.Drawing.Point(16, 162)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(60, 13)
         Me.Label6.TabIndex = 5
@@ -212,7 +211,7 @@ Partial Class BarCode2
         Me.txtZ2.BackColor = System.Drawing.Color.White
         Me.txtZ2.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtZ2.IsNumiric = True
-        Me.txtZ2.Location = New System.Drawing.Point(184, 239)
+        Me.txtZ2.Location = New System.Drawing.Point(184, 233)
         Me.txtZ2.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtZ2.Name = "txtZ2"
         Me.txtZ2.ShowClearIcon = False
@@ -240,7 +239,7 @@ Partial Class BarCode2
         Me.txtF2.BackColor = System.Drawing.Color.White
         Me.txtF2.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtF2.IsNumiric = True
-        Me.txtF2.Location = New System.Drawing.Point(19, 239)
+        Me.txtF2.Location = New System.Drawing.Point(19, 233)
         Me.txtF2.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtF2.Name = "txtF2"
         Me.txtF2.ShowClearIcon = False
@@ -259,7 +258,7 @@ Partial Class BarCode2
         Me.txtZ1.BackColor = System.Drawing.Color.White
         Me.txtZ1.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtZ1.IsNumiric = True
-        Me.txtZ1.Location = New System.Drawing.Point(184, 184)
+        Me.txtZ1.Location = New System.Drawing.Point(184, 178)
         Me.txtZ1.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtZ1.Name = "txtZ1"
         Me.txtZ1.ShowClearIcon = False
@@ -297,7 +296,7 @@ Partial Class BarCode2
         Me.txtF1.BackColor = System.Drawing.Color.White
         Me.txtF1.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtF1.IsNumiric = True
-        Me.txtF1.Location = New System.Drawing.Point(19, 184)
+        Me.txtF1.Location = New System.Drawing.Point(19, 178)
         Me.txtF1.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtF1.Name = "txtF1"
         Me.txtF1.ShowClearIcon = False
@@ -330,48 +329,35 @@ Partial Class BarCode2
         Me.txtY.txtReadOnly = False
         Me.txtY.TxtSelect = New Integer() {1, 0}
         '
-        'Button3
-        '
-        Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(22, 304)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(156, 30)
-        Me.Button3.TabIndex = 4
-        Me.Button3.Text = "Imprimer"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
         'Pl
         '
         Me.Pl.AutoScroll = True
         Me.Pl.BackColor = System.Drawing.Color.White
         Me.Pl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Pl.Controls.Add(Me.pb2)
-        Me.Pl.Controls.Add(Me.pb1)
+        Me.Pl.Controls.Add(Me.BarCodeCtrl1)
         Me.Pl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Pl.Location = New System.Drawing.Point(0, 0)
         Me.Pl.Name = "Pl"
         Me.Pl.Size = New System.Drawing.Size(331, 387)
         Me.Pl.TabIndex = 8
         '
-        'txtQte
+        'BarCodeCtrl1
         '
-        Me.txtQte.BackColor = System.Drawing.Color.White
-        Me.txtQte.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.txtQte.IsNumiric = True
-        Me.txtQte.Location = New System.Drawing.Point(87, 6)
-        Me.txtQte.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtQte.Name = "txtQte"
-        Me.txtQte.ShowClearIcon = False
-        Me.txtQte.ShowSaveIcon = False
-        Me.txtQte.Size = New System.Drawing.Size(164, 30)
-        Me.txtQte.StartUp = 2
-        Me.txtQte.TabIndex = 6
-        Me.txtQte.TextSize = 8
-        Me.txtQte.TxtBackColor = True
-        Me.txtQte.TxtColor = System.Drawing.Color.White
-        Me.txtQte.txtReadOnly = False
-        Me.txtQte.TxtSelect = New Integer() {1, 0}
+        Me.BarCodeCtrl1.BarCode = "1234567890"
+        Me.BarCodeCtrl1.BarCodeHeight = 149
+        Me.BarCodeCtrl1.FooterFont = New System.Drawing.Font("Microsoft Sans Serif", 8.0!)
+        Me.BarCodeCtrl1.HeaderFont = New System.Drawing.Font("Microsoft Sans Serif", 18.0!)
+        Me.BarCodeCtrl1.HeaderText = "BarCode Demo"
+        Me.BarCodeCtrl1.LeftMargin = 10
+        Me.BarCodeCtrl1.Location = New System.Drawing.Point(26, 137)
+        Me.BarCodeCtrl1.Name = "BarCodeCtrl1"
+        Me.BarCodeCtrl1.ShowFooter = True
+        Me.BarCodeCtrl1.ShowHeader = True
+        Me.BarCodeCtrl1.Size = New System.Drawing.Size(270, 149)
+        Me.BarCodeCtrl1.TabIndex = 0
+        Me.BarCodeCtrl1.TopMargin = 10
+        Me.BarCodeCtrl1.VertAlign = Al_Mohasib.DSBarCode.BarCodeCtrl.AlignType.Center
+        Me.BarCodeCtrl1.Weight = Al_Mohasib.DSBarCode.BarCodeCtrl.BarCodeWeight.Small
         '
         'Label1
         '
@@ -405,23 +391,44 @@ Partial Class BarCode2
         Me.PlCommande.Size = New System.Drawing.Size(650, 42)
         Me.PlCommande.TabIndex = 9
         '
-        'pb1
+        'txtQte
         '
-        Me.pb1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pb1.Location = New System.Drawing.Point(0, 0)
-        Me.pb1.Name = "pb1"
-        Me.pb1.Size = New System.Drawing.Size(331, 199)
-        Me.pb1.TabIndex = 0
-        Me.pb1.TabStop = False
+        Me.txtQte.BackColor = System.Drawing.Color.White
+        Me.txtQte.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtQte.IsNumiric = True
+        Me.txtQte.Location = New System.Drawing.Point(87, 6)
+        Me.txtQte.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtQte.Name = "txtQte"
+        Me.txtQte.ShowClearIcon = False
+        Me.txtQte.ShowSaveIcon = False
+        Me.txtQte.Size = New System.Drawing.Size(164, 30)
+        Me.txtQte.StartUp = 2
+        Me.txtQte.TabIndex = 6
+        Me.txtQte.TextSize = 8
+        Me.txtQte.TxtBackColor = True
+        Me.txtQte.TxtColor = System.Drawing.Color.White
+        Me.txtQte.txtReadOnly = False
+        Me.txtQte.TxtSelect = New Integer() {1, 0}
         '
-        'pb2
+        'Label10
         '
-        Me.pb2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pb2.Location = New System.Drawing.Point(0, 199)
-        Me.pb2.Name = "pb2"
-        Me.pb2.Size = New System.Drawing.Size(331, 188)
-        Me.pb2.TabIndex = 0
-        Me.pb2.TabStop = False
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(23, 283)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(53, 13)
+        Me.Label10.TabIndex = 47
+        Me.Label10.Text = "Alignment"
+        '
+        'CbAlign
+        '
+        Me.CbAlign.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CbAlign.FormattingEnabled = True
+        Me.CbAlign.ItemHeight = 13
+        Me.CbAlign.Items.AddRange(New Object() {"Gauche", "Droite", "Centre"})
+        Me.CbAlign.Location = New System.Drawing.Point(26, 303)
+        Me.CbAlign.Name = "CbAlign"
+        Me.CbAlign.Size = New System.Drawing.Size(93, 21)
+        Me.CbAlign.TabIndex = 46
         '
         'BarCode2
         '
@@ -438,8 +445,6 @@ Partial Class BarCode2
         Me.Pl.ResumeLayout(False)
         Me.PlCommande.ResumeLayout(False)
         Me.PlCommande.PerformLayout()
-        CType(Me.pb1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pb2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -461,7 +466,6 @@ Partial Class BarCode2
     Friend WithEvents txtCode As Al_Mohasib.TxtBox
     Friend WithEvents txtF1 As Al_Mohasib.TxtBox
     Friend WithEvents txtY As Al_Mohasib.TxtBox
-    Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents PrintDocument2 As System.Drawing.Printing.PrintDocument
     Friend WithEvents Pl As System.Windows.Forms.Panel
     Friend WithEvents txtQte As Al_Mohasib.TxtBox
@@ -469,6 +473,7 @@ Partial Class BarCode2
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents btImprimer As System.Windows.Forms.Button
     Friend WithEvents PlCommande As System.Windows.Forms.Panel
-    Friend WithEvents pb2 As System.Windows.Forms.PictureBox
-    Friend WithEvents pb1 As System.Windows.Forms.PictureBox
+    Friend WithEvents BarCodeCtrl1 As Al_Mohasib.DSBarCode.BarCodeCtrl
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents CbAlign As System.Windows.Forms.ComboBox
 End Class

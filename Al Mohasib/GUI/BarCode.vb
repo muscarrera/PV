@@ -250,10 +250,7 @@ Public Class BarCode1
         getRegistryinfo(TxtBox4, "TxtBox4", "16")
         getRegistryinfo(TxtBox5, "TxtBox5", "0")
         getRegistryinfo(TxtBox6, "TxtBox6", "0")
-
-
-
-      
+        getRegistryinfo(CheckBox1, "isRayounage", False)
 
     End Sub
 
@@ -321,7 +318,6 @@ Public Class BarCode1
             MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
         End Try
     End Sub
-
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Try
             Dim fntdlg As New FontDialog
@@ -351,6 +347,10 @@ Public Class BarCode1
 
     Private Sub CheckBox1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBox1.CheckedChanged
         Try
+
+
+            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "isRayounage", CheckBox1.Checked)
+
             GetApercu()
         Catch ex As Exception
 
