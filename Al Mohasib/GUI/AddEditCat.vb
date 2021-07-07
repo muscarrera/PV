@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Drawing.Imaging
 
 Public Class AddEditCat
     Private imgWithName, _imgPrd As Image
@@ -171,9 +172,17 @@ Public Class AddEditCat
         savepic.Filter = "*.jpg|*.jpg"
         If savepic.ShowDialog = Windows.Forms.DialogResult.OK Then
 
-            Dim pmg2 As New Bitmap(savepic.FileName)
-            PBctg.Tag = savepic.FileName
-            ImgPrd = pmg2
+            'Dim pmg2 As New Bitmap(savepic.FileName)
+            'PBctg.Tag = savepic.FileName
+            'ImgPrd = pmg2
+
+            Using bm As Bitmap = New Bitmap(savepic.FileName)
+                Dim ms As New MemoryStream()
+                '  translate(bm, 15, 20, 30, 1)
+                bm.Save(ms, ImageFormat.Bmp)
+                ImgPrd = Image.FromStream(ms)
+            End Using
+
             PBctg.BackgroundImage = Drawimg(TextBox1.Text)
         End If
     End Sub

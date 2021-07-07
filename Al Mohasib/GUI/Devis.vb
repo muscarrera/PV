@@ -735,24 +735,37 @@ Public Class Devis
     Private Sub RPl_SaveAndPrint(ByVal id As System.Int32, ByVal total As System.Double, ByVal avance As System.Double, ByVal tva As System.Double, ByVal table As System.Data.DataTable, ByVal isSell As System.Boolean, ByVal isBl As System.Boolean, ByVal isSecond As System.Boolean) Handles RPl.SaveAndPrint
         If RPl.FctId = 0 Then Exit Sub
 
+        Dim nbr As Integer = Form1.txtNbrCopie.Text
+        Dim nm As String = Form1.txttimp.Text
+
+        Dim dl As New PrintDialog
+        If dl.ShowDialog = Windows.Forms.DialogResult.OK Then
+            nm = dl.PrinterSettings.PrinterName
+            nbr = dl.PrinterSettings.Copies
+        Else
+            Exit Sub
+        End If
+
+
+
         If Form1.cbNormalImp.Checked Then
 
 
             Try
-                PrintDoc.PrinterSettings.PrinterName = Form1.txttimp.Text
+                PrintDoc.PrinterSettings.PrinterName = nm
                 Form1.chbreceipt.Checked = False
                 If isBl = False Then
-                    PrintDoc.PrinterSettings.PrinterName = Form1.txtreceipt.Text
+                    PrintDoc.PrinterSettings.PrinterName = nm
                     Form1.chbreceipt.Checked = True
                 End If
 
-                PrintDoc.Print()
+
+                For i = 0 To nbr - 1
+                    PrintDoc.Print()
+                Next
 
             Catch ex As Exception
-                If Form1.PrintDlg.ShowDialog = Windows.Forms.DialogResult.OK Then
-                    PrintDoc.PrinterSettings.PrinterName = Form1.PrintDlg.PrinterSettings.PrinterName
-                    PrintDoc.Print()
-                End If
+               
             End Try
 
             If RPl.EditMode = False Then
@@ -777,14 +790,16 @@ Public Class Devis
                 PrintDocDesign.DefaultPageSettings.PaperSize = ps
                 PrintDocDesign.DefaultPageSettings.Landscape = g.is_Landscape
 
-                PrintDocDesign.PrinterSettings.PrinterName = Form1.txttimp.Text
+                PrintDocDesign.PrinterSettings.PrinterName = nm
 
             Catch ex As Exception
 
             End Try
 
 
-            PrintDocDesign.Print()
+            For i = 0 To nbr - 1
+                PrintDocDesign.Print()
+            Next
         End If
     End Sub
     Private Sub RPl_DeleteFacture(ByVal id As System.Int32, ByVal isSell As System.Boolean, ByVal EM As System.Boolean, ByVal table As DataTable) Handles RPl.DeleteFacture

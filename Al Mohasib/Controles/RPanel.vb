@@ -5,6 +5,8 @@
     Public Event UpdatePrice(ByVal sender As Object, ByVal e As EventArgs)
     Public Event UpdateDepot(ByVal sender As Object, ByVal e As EventArgs)
     Public Event DeleteItem(ByRef i As Items, ByVal id As Integer)
+    Public Event ReturnItem(ByVal sender As Object, ByVal e As EventArgs)
+
     Public Event UpdatePayment()
     Public Event UpdateBl()
     Public Event SetDetailFacture()
@@ -130,7 +132,7 @@
 
             Try
                 If Form1.isBaseOnRIYAL Then
-                    Lbavc.Text = CInt(value)
+                    Lbavc.Text = value.ToString("N0")
                 Else
                     Lbavc.Text = String.Format("{0:n}", value)
                 End If
@@ -259,13 +261,19 @@
             table.Columns.Add("totaltva", GetType(Double))
             table.Columns.Add("dsid", GetType(Double))
             table.Columns.Add("remise", GetType(Double))
+            table.Columns.Add("id", GetType(Double))
             Dim a As Items
             For Each a In Pl.Controls
                 ' Add  rows with those columns filled in the DataTable.
                 table.Rows.Add(a.arid, a.Name, a.Price, a.Bprice, a.Tva,
                                a.Qte, a.Unite, a.Total_ttc, a.cid, a.code,
-                               a.Depot, a.Poid, a.Total_ht, a.Total_tva, a.id, a.Remise)
+                               a.Depot, a.Poid, a.Total_ht, a.Total_tva, a.id, a.Remise, a.id)
             Next
+
+            If table.Rows.Count > 0 Then
+                table.DefaultView.Sort = "id DESC"
+                table = table.DefaultView.ToTable
+            End If
             Return table
         End Get
     End Property
@@ -477,6 +485,8 @@
             If Form1.CbDepotOrigine.Checked Then ap.Depot = R.depot
             ap.Remise = 0
 
+            ap.LbTva.Visible = Form1.CbArticleRemise.Visible
+
             If Form1.cbBaseOnStartedRemise.checked Then ap.Remise = R.poid
 
             ''''''''
@@ -530,94 +540,22 @@
 
                 If IsExiste(D.Rows(i).Item("arid"), D.Rows(i).Item("depot")) And Form1.cbMergeArt.Checked = True Then
                     Dim a As Items
+                    Dim aaa_isExit = False
+
                     For Each a In Pl.Controls
-                        If a.arid = D.Rows(i).Item("arid") Then
-                            If a.Price = D.Rows(i).Item("price") And a.Remise = RM Then
-                                a.Qte += D.Rows(i).Item("qte")
-                            Else
-                                Dim ap As New Items
-                                ap.Dock = DockStyle.Top
-                                ap.Index = Pl.Controls.Count
-                                ap.Name = D.Rows(i).Item("name")
-                                ap.Unite = D.Rows(i).Item("unit")
-                                ap.Price = D.Rows(i).Item("price")
-                                ap.Qte = D.Rows(i).Item("qte")
-                                ap.Bprice = D.Rows(i).Item("bprice")
-                                ap.id = D.Rows(i).Item(0)
-                                ap.arid = D.Rows(i).Item("arid")
-                                ap.Tva = D.Rows(i).Item("tva")
-                                ap.cid = D.Rows(i).Item("cid")
-                                ap.Depot = D.Rows(i).Item("depot")
-                                ap.code = D.Rows(i).Item("code")
-                                ap.Poid = D.Rows(i).Item("poid")
+                        If a.arid <> D.Rows(i).Item("arid") Then Continue For
+                        If Math.Sign(a.Qte) <> Math.Sign(D.Rows(i).Item("qte")) Then Continue For
 
-                                ap.Remise = RM
-                                ap.Qte = D.Rows(i).Item("qte")
-
-
-                                ap.BgColor = Color.White
-                                ap.SideColor = Color.Moccasin
-
-                                ''''''''
-                                Using c As SubClass = New SubClass
-                                    ap.ColorStock = c.CheckForMinStock(ap.arid, ap.Depot, ap.Qte)
-                                    ap.Stock = c.getStock(ap.arid, ap.Depot, ap.Qte)
-                                End Using
-
-                                AddHandler ap.Click, AddressOf ClearPanel
-                                AddHandler ap.ItemDoubleClick, AddressOf Item_Doubleclick
-                                AddHandler ap.Item_DoubleClick, AddressOf Item_ShowBlocModif
-                                AddHandler ap.ItemValueChanged, AddressOf Item_Value_changed
-                                AddHandler ap.RemiseChanged, AddressOf UpdateValue
-
-                                ap.SendToBack()
-                                Pl.Controls.Add(ap)
-                                ap = Nothing
-                            End If
-
-                            a = Nothing
-                            UpdateValue()
-                            CP.Value = 0
+                        If a.Price = D.Rows(i).Item("price") And a.Remise = RM Then
+                            a.Qte += D.Rows(i).Item("qte")
+                            aaa_isExit = True
                             Exit For
                         End If
                     Next
+
+                    AddItemDetails(D, i, RM)
                 Else
-                    Dim ap As New Items
-                    ap.Dock = DockStyle.Top
-                    ap.Index = Pl.Controls.Count
-                    ap.Name = D.Rows(i).Item("name")
-                    ap.Unite = D.Rows(i).Item("unit")
-                    ap.Price = D.Rows(i).Item("price")
-                    ap.Qte = D.Rows(i).Item("qte")
-                    ap.Bprice = D.Rows(i).Item("bprice")
-                    ap.id = D.Rows(i).Item(0)
-                    ap.arid = D.Rows(i).Item("arid")
-                    ap.Tva = D.Rows(i).Item("tva")
-                    ap.cid = D.Rows(i).Item("cid")
-                    ap.Depot = D.Rows(i).Item("depot")
-                    ap.code = D.Rows(i).Item("code")
-
-                    ap.Remise = RM
-                    ap.Qte = D.Rows(i).Item("qte")
-
-                    ap.BgColor = Color.White
-                    ap.SideColor = Color.Moccasin
-
-                    ''''''''
-                    Using c As SubClass = New SubClass
-                        ap.ColorStock = c.CheckForMinStock(ap.arid, ap.Depot, ap.Qte)
-                        ap.Stock = c.getStock(ap.arid, ap.Depot, ap.Qte)
-                    End Using
-
-                    AddHandler ap.Click, AddressOf ClearPanel
-                    AddHandler ap.ItemDoubleClick, AddressOf Item_Doubleclick
-                    AddHandler ap.Item_DoubleClick, AddressOf Item_ShowBlocModif
-                    AddHandler ap.ItemValueChanged, AddressOf Item_Value_changed
-                    AddHandler ap.RemiseChanged, AddressOf UpdateValue
-
-                    ap.SendToBack()
-                    Pl.Controls.Add(ap)
-                    ap = Nothing
+                    AddItemDetails(D, i, RM)
                 End If
 
             Next
@@ -627,6 +565,55 @@
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+    Private Sub AddItemDetails(ByVal d As DataTable, ByVal i As Integer, ByVal rm As Double)
+        Dim ap As New Items
+        Dim qte = d.Rows(i).Item("qte")
+
+
+        ap.Dock = DockStyle.Top
+        ap.Index = Pl.Controls.Count
+        ap.Name = d.Rows(i).Item("name")
+        ap.Unite = d.Rows(i).Item("unit")
+        ap.Price = d.Rows(i).Item("price")
+        ap.Qte = d.Rows(i).Item("qte")
+        ap.Bprice = d.Rows(i).Item("bprice")
+        ap.id = d.Rows(i).Item(0)
+        ap.arid = d.Rows(i).Item("arid")
+        ap.Tva = d.Rows(i).Item("tva")
+        ap.cid = d.Rows(i).Item("cid")
+        ap.Depot = d.Rows(i).Item("depot")
+        ap.code = d.Rows(i).Item("code")
+
+        ap.Remise = rm
+
+
+        If qte < 0 Then
+            ap.isRetour = True
+            ap.Qte = qte * -1
+        Else
+            ap.Qte = qte
+        End If
+
+        ap.BgColor = Color.White
+        ap.SideColor = Color.Moccasin
+
+        ap.LbTva.Visible = Form1.CbArticleRemise.Visible
+        ''''''''
+        Using c As SubClass = New SubClass
+            ap.ColorStock = c.CheckForMinStock(ap.arid, ap.Depot, ap.Qte)
+            ap.Stock = c.getStock(ap.arid, ap.Depot, ap.Qte)
+        End Using
+
+        AddHandler ap.Click, AddressOf ClearPanel
+        AddHandler ap.ItemDoubleClick, AddressOf Item_Doubleclick
+        AddHandler ap.Item_DoubleClick, AddressOf Item_ShowBlocModif
+        AddHandler ap.ItemValueChanged, AddressOf Item_Value_changed
+        AddHandler ap.RemiseChanged, AddressOf UpdateValue
+
+        ap.SendToBack()
+        Pl.Controls.Add(ap)
+        ap = Nothing
     End Sub
     Public Sub ChangedItemsDepot(ByRef id As Integer, ByVal dpid As Integer)
 
@@ -671,7 +658,7 @@
 
         Dim a As Items
         For Each a In Pl.Controls
-            If a.arid = arid And a.Depot = dpid Then
+            If a.arid = arid And a.Depot = dpid And a.isRetour = False Then
                 a.Qte = qte  '+= CP.Value
 
                 UpdateValue()
@@ -690,7 +677,7 @@
             End If
         Next
     End Sub
-    Public Sub ChangedItems(ByRef id As Integer, ByVal prdname As String, ByVal bprice As Double, ByVal price As Double, ByVal qte As Double)
+    Public Sub ChangedItems(ByRef id As Integer, ByVal prdname As String, ByVal bprice As Double, ByVal price As Double, ByVal qte As Double, ByVal dpt As Integer)
 
         Dim a As Items
         For Each a In Pl.Controls
@@ -699,6 +686,7 @@
                 a.Bprice = bprice
                 a.Price = price
                 a.Qte = qte
+                a.Depot = dpt
 
                 UpdateValue()
                 CP.Value = 0
@@ -778,7 +766,7 @@
             Return False
         End If
         For Each a In Pl.Controls
-            If a.arid = arid And a.Depot = dpid Then
+            If a.arid = arid And a.Depot = dpid And a.isRetour = False Then
                 Return True
                 Exit Function
             End If
@@ -791,7 +779,7 @@
             Return Nothing
         End If
         For Each a In Pl.Controls
-            If a.arid = arid And a.Depot = dpid Then
+            If a.arid = arid And a.Depot = dpid And a.isRetour = False Then
                 Return a
                 Exit Function
             End If
@@ -820,11 +808,12 @@
         Try
 
             If Form1.isBaseOnRIYAL Then
-                LbSum.Text = CInt(Total_TTC)
+                LbSum.Text = Total_TTC.ToString("N0")
 
-                lbHT.Text = "T. Ht : " & CInt(Total_Ht)
+                lbHT.Text = "T. Ht : " & Total_Ht.ToString("N0")
                 LbTva.Text = "Tva : " & CInt(Tva)
-                lbremise.Text = "Remise = " & CInt(Total_Remise)
+                lbremise.Text = "Remise = " & CInt(Total_Remise).ToString("N0")
+                lbDh.Text = "( " & CDbl(Total_TTC / 20).ToString("N2") & " Dh )"
             Else
                 LbSum.Text = String.Format("{0:n}", Total_TTC)
 
@@ -841,7 +830,7 @@
 
             Try
                 If ShowProfit Then
-                    lbProfit.Text = "[" & String.Format("{0:n}", TotalProfit_ht) & " Dhs - " & String.Format("{0:n}", TotalProfit_ht * 100 / Total_Ht) & "%]"
+                    lbProfit.Text = "[" & TotalProfit_ht.ToString(Form1.frmDbl) & " - " & (TotalProfit_ht * 100 / Total_Ht).ToString("N0") & "%]"
                 End If
             Catch ex As Exception
             End Try
@@ -872,6 +861,22 @@
         Item_Doubleclick(itm, e)
 
         RaiseEvent UpdateItem(itm, Nothing)
+    End Sub
+
+    Private Sub CP_ReturnItem() Handles CP.ReturnItem
+        Dim str As String = " عند قيامكم على الضغط على 'موافق' سيتم "
+        str = str + vbNewLine
+        str = str + " نقل هذه المادة ما بين لائحة المود و المرجوعات..    "
+        str = str + vbNewLine
+        str = str + "  .. إضغط  'لا'  لالغاء النقل   "
+
+        If MsgBox(str, MsgBoxStyle.YesNo Or MessageBoxIcon.Exclamation, "الغاء الفاتورة") = MsgBoxResult.No Then
+            RaiseEvent CPValueChange()
+            Exit Sub
+        End If
+
+        RaiseEvent ReturnItem(SelectedItem, Nothing)
+        UpdateValue()
     End Sub
     Private Sub CP_UpdateQte() Handles CP.UpdateQte
         _oldValue = SelectedItem.Qte
@@ -1024,7 +1029,11 @@
 
     Private Sub CP_UpdateArticledepot() Handles CP.UpdateArticledepot
         If FctId = 0 Then Exit Sub
-        If SelectedItem.cid = 0 Then Exit Sub
+        If SelectedItem.cid = 0 Then
+            RaiseEvent CPValueChange()
+            Exit Sub
+        End If
+
         RaiseEvent UpdateDepot(Me, Nothing)
     End Sub
 

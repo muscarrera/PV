@@ -62,6 +62,10 @@
             avc += CDec(dgv.Rows(i).Cells(5).Value)
         Next
 
+        dgv.Rows.Add("", "", "", "",
+                       String.Format("{0:n}", CDec(total)),
+                             String.Format("{0:n}", CDec(avc)),
+                           String.Format("{0:n}", CDec(total - avc)), "")
 
         ''''''''
         'show details in rpl
@@ -161,6 +165,13 @@
             avc += CDec(dgv.Rows(i).Cells(5).Value)
         Next
         ''''''''
+
+        dgv.Rows.Add("", "", "", "",
+                     String.Format("{0:n}", CDec(total)),
+                           String.Format("{0:n}", CDec(avc)),
+                         String.Format("{0:n}", CDec(total - avc)), "")
+
+
         'show details in rpl
         Dim table As New DataTable
 
@@ -243,7 +254,7 @@
     Private Sub RectangleShape3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RectangleShape3.Click
 
         ''//
-        _str = "OC - " & txtname.text & "(du " & DtpArt1.Text & " au " & DtpArt2.Text & " )"
+        _str = "OC - " & txtname.text & " du " & DtpArt1.Text & " au " & DtpArt2.Text
         Dim id As Integer
         RPl.ClearItems()
         dgv.Rows.Clear()
@@ -251,7 +262,7 @@
         Dim ftableName As String = "Facture"
         If btswitsh.Tag = 0 Then
             ftableName = "Bon"
-            _str = "OF : " & txtname.text & "(du " & DtpArt1.Text & " au " & DtpArt2.Text & " )"
+            _str = "OF - " & txtname.text & " du " & DtpArt1.Text & " au " & DtpArt2.Text
         End If
 
 
@@ -306,6 +317,11 @@
 
                 Next
                 ''''''''''''''
+                dgv.Rows.Add("-----", "Total", " -----", "",
+               String.Format("{0:n}", total), String.Format("{0:n}", avc),
+                      "-----", "-----")
+
+
             End If
 
         End Using
@@ -409,6 +425,12 @@
             avc += CDbl(dgv.Rows(i).Cells(5).Value)
         Next
 
+        dgv.Rows.Add("", "", "", "",
+                     String.Format("{0:n}", CDec(total)),
+                           String.Format("{0:n}", CDec(avc)),
+                         String.Format("{0:n}", CDec(total - avc)), "")
+
+
         'show details in rpl
         Dim table As New DataTable
 
@@ -450,17 +472,29 @@
     End Sub
     'print
     Private Sub Button16_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button16.Click
-        Try
-            PrintDoc3.PrinterSettings.PrinterName = Form1.txttimp.Text
-            PrintDoc3.Print()
+        'Try
+        '    PrintDoc3.PrinterSettings.PrinterName = Form1.txttimp.Text
+        '    PrintDoc3.Print()
 
-        Catch ex As Exception
+        'Catch ex As Exception
 
-            If Form1.PrintDlg.ShowDialog = Windows.Forms.DialogResult.OK Then
-                PrintDoc3.PrinterSettings.PrinterName = Form1.PrintDlg.PrinterSettings.PrinterName
-                PrintDoc3.Print()
-            End If
-        End Try
+        '    If Form1.PrintDlg.ShowDialog = Windows.Forms.DialogResult.OK Then
+        '        PrintDoc3.PrinterSettings.PrinterName = Form1.PrintDlg.PrinterSettings.PrinterName
+        '        PrintDoc3.Print()
+        '    End If
+        'End Try
+
+        Dim str As String = _str
+
+        str &= " " & Now.Date.ToString("dd-MM-yyyy")
+
+        str = str.Replace("/", " ")
+        str = str.Replace("|", " ")
+
+
+        SaveDataToHtml(dgv, str)
+
+
     End Sub
     Dim m = 0
     Private Sub PrintDoc3_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDoc3.PrintPage
@@ -539,6 +573,9 @@
 
                 Next
                 ''''''''''''''
+
+                dgv.Rows.Add("-----", "Total", " -----", "",
+                             String.Format("{0:n}", total), String.Format("{0:n}", avc), "-----", "-----")
             End If
 
         End Using
@@ -591,7 +628,7 @@
 
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
         ''//
-        _str = "PAYEMENT - " & txtname.text & "(du " & DtpArt1.Text & " au " & DtpArt2.Text & " )"
+        _str = "PAIEMENT - " & txtname.text & " du " & DtpArt1.Text & " au " & DtpArt2.Text
 
         Dim id As Integer
         RPl.ClearItems()
@@ -623,7 +660,12 @@
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
 
             Dim params As New Dictionary(Of String, Object)
-            params.Add("clid = ", id)
+            If btswitsh.Tag = 0 Then
+                params.Add("comid = ", id)
+            Else
+                params.Add("clid = ", id)
+            End If
+
             params.Add("[date] < ", dtt2)
             params.Add("[date] > ", dtt1)
 
@@ -645,6 +687,10 @@
 
                 Next
                 ''''''''''''''
+                dgv.Rows.Add("-----", "Total", " -----", dgv.Rows.Count,
+                         String.Format("{0:n}", total), "", "-----", "-----")
+
+
             End If
 
         End Using

@@ -206,7 +206,7 @@ Partial Class CPanel
         Me.btPlus.BackgroundImage = CType(resources.GetObject("btPlus.BackgroundImage"), System.Drawing.Image)
         Me.btPlus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btPlus.Dock = System.Windows.Forms.DockStyle.Left
-        Me.btPlus.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.btPlus.FlatAppearance.BorderColor = System.Drawing.Color.Red
         Me.btPlus.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btPlus.Font = New System.Drawing.Font("Arial", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btPlus.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
@@ -215,7 +215,7 @@ Partial Class CPanel
         Me.btPlus.Name = "btPlus"
         Me.btPlus.Size = New System.Drawing.Size(90, 50)
         Me.btPlus.TabIndex = 3
-        Me.btPlus.Text = "+"
+        Me.btPlus.Text = "+/-"
         Me.btPlus.UseVisualStyleBackColor = True
         '
         'btPn

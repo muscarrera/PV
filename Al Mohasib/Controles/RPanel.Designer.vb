@@ -33,6 +33,7 @@ Partial Class RPanel
         Me.PlBody = New System.Windows.Forms.Panel()
         Me.Pl = New System.Windows.Forms.Panel()
         Me.PlHeader = New System.Windows.Forms.Panel()
+        Me.lbDh = New System.Windows.Forms.Label()
         Me.lbProfit = New System.Windows.Forms.Label()
         Me.lbremise = New System.Windows.Forms.Label()
         Me.lbHT = New System.Windows.Forms.Label()
@@ -185,11 +186,12 @@ Partial Class RPanel
         Me.Pl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Pl.Location = New System.Drawing.Point(0, 0)
         Me.Pl.Name = "Pl"
-        Me.Pl.Size = New System.Drawing.Size(385, 220)
+        Me.Pl.Size = New System.Drawing.Size(385, 217)
         Me.Pl.TabIndex = 2
         '
         'PlHeader
         '
+        Me.PlHeader.Controls.Add(Me.lbDh)
         Me.PlHeader.Controls.Add(Me.lbProfit)
         Me.PlHeader.Controls.Add(Me.lbremise)
         Me.PlHeader.Controls.Add(Me.lbHT)
@@ -202,15 +204,28 @@ Partial Class RPanel
         Me.PlHeader.Controls.Add(Me.ShapeContainer1)
         Me.PlHeader.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.PlHeader.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PlHeader.Location = New System.Drawing.Point(0, 220)
+        Me.PlHeader.Location = New System.Drawing.Point(0, 217)
         Me.PlHeader.Name = "PlHeader"
-        Me.PlHeader.Size = New System.Drawing.Size(385, 55)
+        Me.PlHeader.Size = New System.Drawing.Size(385, 58)
         Me.PlHeader.TabIndex = 1
+        '
+        'lbDh
+        '
+        Me.lbDh.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbDh.Font = New System.Drawing.Font("Arial Rounded MT Bold", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbDh.ForeColor = System.Drawing.Color.Red
+        Me.lbDh.Location = New System.Drawing.Point(214, -17)
+        Me.lbDh.Name = "lbDh"
+        Me.lbDh.Size = New System.Drawing.Size(124, 20)
+        Me.lbDh.TabIndex = 1
+        Me.lbDh.Text = "000"
+        Me.lbDh.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'lbProfit
         '
+        Me.lbProfit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lbProfit.AutoSize = True
-        Me.lbProfit.Location = New System.Drawing.Point(15, 12)
+        Me.lbProfit.Location = New System.Drawing.Point(18, 40)
         Me.lbProfit.Name = "lbProfit"
         Me.lbProfit.Size = New System.Drawing.Size(13, 13)
         Me.lbProfit.TabIndex = 2
@@ -220,9 +235,9 @@ Partial Class RPanel
         '
         'lbremise
         '
-        Me.lbremise.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbremise.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lbremise.AutoSize = True
-        Me.lbremise.Location = New System.Drawing.Point(251, 34)
+        Me.lbremise.Location = New System.Drawing.Point(18, 25)
         Me.lbremise.Name = "lbremise"
         Me.lbremise.Size = New System.Drawing.Size(63, 13)
         Me.lbremise.TabIndex = 1
@@ -242,11 +257,11 @@ Partial Class RPanel
         '
         'Label2
         '
-        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Red
-        Me.Label2.Location = New System.Drawing.Point(211, 12)
+        Me.Label2.Location = New System.Drawing.Point(211, 8)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(70, 18)
         Me.Label2.TabIndex = 1
@@ -254,9 +269,10 @@ Partial Class RPanel
         '
         'Label1
         '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(15, 31)
+        Me.Label1.Location = New System.Drawing.Point(209, 29)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(72, 18)
         Me.Label1.TabIndex = 1
@@ -264,8 +280,9 @@ Partial Class RPanel
         '
         'LbVidal
         '
+        Me.LbVidal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.LbVidal.AutoSize = True
-        Me.LbVidal.Location = New System.Drawing.Point(167, 34)
+        Me.LbVidal.Location = New System.Drawing.Point(18, 8)
         Me.LbVidal.Name = "LbVidal"
         Me.LbVidal.Size = New System.Drawing.Size(45, 13)
         Me.LbVidal.TabIndex = 2
@@ -285,9 +302,10 @@ Partial Class RPanel
         '
         'Lbavc
         '
+        Me.Lbavc.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Lbavc.AutoSize = True
         Me.Lbavc.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbavc.Location = New System.Drawing.Point(93, 31)
+        Me.Lbavc.Location = New System.Drawing.Point(287, 30)
         Me.Lbavc.Name = "Lbavc"
         Me.Lbavc.Size = New System.Drawing.Size(17, 18)
         Me.Lbavc.TabIndex = 1
@@ -295,11 +313,11 @@ Partial Class RPanel
         '
         'LbSum
         '
-        Me.LbSum.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LbSum.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LbSum.AutoSize = True
         Me.LbSum.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbSum.ForeColor = System.Drawing.Color.Red
-        Me.LbSum.Location = New System.Drawing.Point(284, 10)
+        Me.LbSum.Location = New System.Drawing.Point(284, 6)
         Me.LbSum.Name = "LbSum"
         Me.LbSum.Size = New System.Drawing.Size(54, 20)
         Me.LbSum.TabIndex = 1
@@ -312,19 +330,19 @@ Partial Class RPanel
         Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer1.Name = "ShapeContainer1"
         Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.LineShape1})
-        Me.ShapeContainer1.Size = New System.Drawing.Size(385, 55)
+        Me.ShapeContainer1.Size = New System.Drawing.Size(385, 58)
         Me.ShapeContainer1.TabIndex = 3
         Me.ShapeContainer1.TabStop = False
         '
         'LineShape1
         '
-        Me.LineShape1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.LineShape1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LineShape1.Name = "LineShape1"
         Me.LineShape1.X1 = 211
         Me.LineShape1.X2 = 386
-        Me.LineShape1.Y1 = 9
-        Me.LineShape1.Y2 = 9
+        Me.LineShape1.Y1 = 5
+        Me.LineShape1.Y2 = 5
         '
         'CP
         '
@@ -379,5 +397,6 @@ Partial Class RPanel
     Friend WithEvents lbProfit As System.Windows.Forms.Label
     Friend WithEvents CP As Al_Mohasib.CPanel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents lbDh As System.Windows.Forms.Label
 
 End Class

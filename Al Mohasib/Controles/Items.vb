@@ -31,19 +31,57 @@
     Private _depot As Integer
 
     'properties
+    Public Property isRetour As Boolean
+        Get
+            Return plRet.Visible
+        End Get
+        Set(ByVal value As Boolean)
+            plRet.Visible = value
+
+            If value Then
+                LbName.Tag = LbName.ForeColor
+                LbName.BackColor = Color.Red
+                LbTotal.BackColor = Color.Red
+                LbName.ForeColor = Color.White
+                LbTotal.ForeColor = Color.White
+
+            Else
+                LbName.BackColor = Color.Transparent
+                LbTotal.BackColor = Color.Transparent
+                LbName.ForeColor = LbName.Tag
+                LbTotal.ForeColor = Color.DarkCyan
+            End If
+
+            RaiseEvent ItemValueChanged(Qte * -1, Qte, "qte", Me)
+            '''''''
+
+            _total = _price * Qte
+
+            If Form1.isBaseOnRIYAL Then
+                LbTotal.Text = Total_ttc.ToString("N0")
+            Else
+                LbTotal.Text = String.Format("{0:n}", Total_ttc)
+            End If
+        End Set
+    End Property
     Public ReadOnly Property Total_ttc() As Decimal
         Get
+            Dim t As Decimal = 0
             If Remise > 0 Then
-                Return Total_ht + Total_tva
+                t = Total_ht + Total_tva
             Else
-                Return _total
+                t = _total
             End If
+
+            Return t
         End Get
     End Property
     Public ReadOnly Property Total_ht() As Decimal
         Get
             Dim t As Decimal = _total / ((100 + Tva) / 100)
             t -= (t * Remise) / 100
+
+
             Return t
         End Get
     End Property
@@ -99,17 +137,21 @@
 
     Public Property Qte() As Decimal
         Get
-            Return _qte
+            Dim t = _qte
+            If isRetour Then t = t * -1
+            Return t
         End Get
         Set(ByVal value As Decimal)
             '''''''
-            RaiseEvent ItemValueChanged(_qte, value, "qte", Me)
+            RaiseEvent ItemValueChanged(Qte, value, "qte", Me)
             '''''''
             _qte = value
             _total = _price * value
+            If isRetour Then _total = _price * value * (-1)
+
 
             If Form1.isBaseOnRIYAL Then
-                LbTotal.Text = CInt(Total_ttc)
+                LbTotal.Text = Total_ttc.ToString("N0")
             Else
                 LbTotal.Text = String.Format("{0:n}", Total_ttc)
             End If
@@ -129,17 +171,15 @@
             RaiseEvent ItemValueChanged(_price, value, "price", Me)
             '''''''
             _price = value
-            _total = _qte * value
+            _total = Qte * value
 
             If Form1.isBaseOnRIYAL Then
-                LbTotal.Text = CInt(Total_ttc)
-                LbPrice.Text = CInt(_price) & " Rys"
+                LbTotal.Text = Total_ttc.ToString("N0")
+                LbPrice.Text = CInt(_price).ToString("N0") & " Rys"
             Else
                 LbTotal.Text = String.Format("{0:n}", Total_ttc)
                 LbPrice.Text = String.Format("{0:n}", _price) & " Dhs"
             End If
-
-
 
         End Set
     End Property
@@ -242,7 +282,7 @@
             If value > 0 Then LbTva.Text &= "-R:" & value & "%"
 
             If Form1.isBaseOnRIYAL Then
-                LbTotal.Text = CInt(Total_ttc)
+                LbTotal.Text = Total_ttc.ToString("N0")
             Else
                 LbTotal.Text = String.Format("{0:n}", Total_ttc)
             End If

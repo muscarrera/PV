@@ -98,7 +98,7 @@ Public Class LabelPrinter
         table.Columns.Add("Prix", GetType(String))
         table.Columns.Add("Ref", GetType(String))
         table.Columns.Add("Code", GetType(String))
-        table.Columns.Add("img", GetType(String))
+        table.Columns.Add("Image_Article", GetType(String))
 
     End Sub
 
@@ -524,7 +524,6 @@ Public Class LabelPrinter
 
                     Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
                     e.Graphics.FillRectangle(_br, top_x, top_y, a.width, a.height)
-
                 ElseIf str = "G" Then
                     DrawRoundedRectangle(e.Graphics, top_x, top_y, a.width, a.height, a.fSize)
                 ElseIf str = "C" Then
@@ -539,9 +538,7 @@ Public Class LabelPrinter
                         Try
                             myPoints(n) = New Point(ls(n).Split("*")(0) + xx, ls(n).Split("*")(1) + yy)
                         Catch ex As Exception
-
                         End Try
-
                     Next
                     Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
                     e.Graphics.FillPolygon(_br, myPoints)
@@ -549,10 +546,17 @@ Public Class LabelPrinter
 
                 str = ""
 
-            ElseIf a.field.StartsWith("image") Then
+            ElseIf a.field.StartsWith("IMAGE_PATH") Then
                 Try
                     str = ""
-                    Dim fullPath As String = Path.Combine(Form1.ImgPah, a.designation)
+                    Dim fullPath As String = a.designation
+                    e.Graphics.DrawImage(Image.FromFile(fullPath), top_x, top_y, a.width, a.height)
+                Catch ex As Exception
+                End Try
+            ElseIf a.field.StartsWith("Image_Article") Then
+                Try
+                    str = ""
+                    Dim fullPath As String = Path.Combine(Form1.ImgPah, table.Rows(_i).Item(a.field))
                     e.Graphics.DrawImage(Image.FromFile(fullPath), top_x, top_y, a.width, a.height)
                 Catch ex As Exception
                 End Try
@@ -647,8 +651,7 @@ Public Class LabelPrinter
                 article = DG2.Rows(i).Cells(1).Value
                 qte = DG2.Rows(i).Cells(3).Value
                 Dim cde As String = DG2.Rows(i).Cells(2).Value
-                'If cde.Length > 12 Then cde = cde.Substring(0, 12)
-
+              
                 If DG2.Rows(i).Cells(2).Value.ToString.Contains("|") Then
 
                     Dim str = DG2.Rows(i).Cells(2).Value.ToString.Split("|")
@@ -662,18 +665,7 @@ Public Class LabelPrinter
                 End If
 
                 If cde.Length > 12 Then cde = cde.Substring(0, 12)
-                'If cde.Length < 12 Then
-                '    While cde.Length < 12
-                '        cde = "0" & cde
-                '    End While
-                'End If
-
-                'If Not IsNumeric(cde) Then
-                '    cde = "100000000001"
-                'End If
-                'Code = cde
-
-
+           
                 Dim bigPrice As Integer = 0
                 Dim smallPrice As Double = 0
                 SplitDecimal(qte, bigPrice, smallPrice)
@@ -699,13 +691,6 @@ Public Class LabelPrinter
 
         PrintDocument1.PrinterSettings.PrinterName = gl.Printer_name
         PrintDocument1.Print()
-
-        'PrintDocDesign.DefaultPageSettings.PaperSize = ps
-        'PrintDocDesign.DefaultPageSettings.Landscape = gl.is_Landscape
-
-        'PrintDocDesign.PrinterSettings.PrinterName = gl.Printer_name
-        'PrintDocDesign.Print()
-
     End Sub
 
     Private Sub Button9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button9.Click
@@ -1224,5 +1209,52 @@ Public Class LabelPrinter
 
         dg1.DataSource = dtPage
         StyleDatagrid(dg1)
+    End Sub
+
+    Private Sub dg1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles dg1.KeyDown
+         
+    End Sub
+
+    Private Sub dg1_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles dg1.KeyPress
+      
+    End Sub
+
+    Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message,
+                                               ByVal keyData As System.Windows.Forms.Keys) As Boolean
+        Dim k As System.Windows.Forms.Keys = keyData
+        Select Case keyData
+
+            Case Keys.F1
+                Button3_Click(Nothing, Nothing)
+            Case Keys.F2
+                Button4_Click(Nothing, Nothing)
+            Case Keys.F3
+                Button2_Click(Nothing, Nothing)
+            Case Keys.F4
+               
+            Case Keys.F5
+                Button9_Click(Nothing, Nothing)
+            Case Keys.F6
+                Button5_Click(Nothing, Nothing)
+            Case Keys.F7
+                Button7_Click(Nothing, Nothing)
+
+            Case Keys.Escape
+                Button2_Click(Nothing, Nothing)
+            Case Keys.Enter  ' add one
+                Button2_Click(Nothing, Nothing)
+
+            Case Keys.Space  ' save and print
+                    Button4_Click(Nothing, Nothing)
+            Case Else
+                Return MyBase.ProcessCmdKey(msg, keyData)
+        End Select
+
+         
+        Return True
+    End Function
+
+    Private Sub plTrial_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles plTrial.Paint
+
     End Sub
 End Class

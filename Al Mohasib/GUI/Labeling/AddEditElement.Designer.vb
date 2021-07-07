@@ -267,14 +267,14 @@ Partial Class AddEditElement
         Me.txtF1.TextSize = 8
         Me.txtF1.TxtBackColor = True
         Me.txtF1.TxtColor = System.Drawing.Color.White
-        Me.txtF1.txtReadOnly = False
+        Me.txtF1.txtReadOnly = True
         Me.txtF1.TxtSelect = New Integer() {1, 0}
         '
         'T
         '
         Me.T.BackColor = System.Drawing.Color.Transparent
         Me.T.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.T.IsNumiric = False
+        Me.T.IsNumiric = True
         Me.T.Location = New System.Drawing.Point(224, 314)
         Me.T.MinimumSize = New System.Drawing.Size(0, 30)
         Me.T.Name = "T"

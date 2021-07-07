@@ -168,24 +168,19 @@ Public Class Articles
 
         Dim a As Integer = DGVPRD.SelectedRows(0).Index
 
-        If DGVPRD.SelectedRows(0).Cells(7).Value.ToString <> "" And DGVPRD.SelectedRows(0).Cells(7).Value.ToString <> "No Image" Then
+        If DGVPRD.SelectedRows(0).Cells(7).Value.ToString <> "" And
+            DGVPRD.SelectedRows(0).Cells(7).Value.ToString <> "No Image" Then
             Try
-                '    Dim pmg3 As New Bitmap(dgvctg.SelectedRows(0).Cells(7).Value.ToString)
                 art.PBprd.Tag = DGVPRD.SelectedRows(0).Cells(13).Value
-                'art.PBprd.BackgroundImage = Image.FromFile(Form1.BtImgPah.Tag & "\art" & DGVPRD.SelectedRows(0).Cells(13).Value.ToString)
-                art.ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\art" & DGVPRD.SelectedRows(0).Cells(13).Value.ToString)
             Catch ex As Exception
                 Try
                     art.PBprd.Tag = "noimg.jpg"
-                    'art.PBprd.BackgroundImage = Image.FromFile(Form1.BtImgPah.Tag & "\art" & DGVPRD.SelectedRows(0).Cells(13).Value.ToString)
                     art.ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\artnoimg.jpg")
-
                 Catch exx As Exception
-
                 End Try
             End Try
-
         End If
+
 
         art.btprd.Tag = "1"
 
@@ -264,12 +259,32 @@ Public Class Articles
         Try
             Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
             Dim artdt As DataTable
+            Dim artdt2 As DataTable
+
 
             If Form1.cbsearch.Text = "الرمز" Then
                 artdt = artta.GetDatalikecodebar("%" & txtsearch.Text & "%")
             Else
                 artdt = artta.GetDatalikename("%" & txtsearch.Text & "%")
             End If
+
+            If Form1.cbsearch.Text = "الاسم" Then
+                artdt = artta.GetDatalikename("%" & txtsearch.Text & "%")
+
+            ElseIf Form1.cbsearch.Text = "الرمز" Then
+                Dim str As String = "%" & txtsearch.Text & "%"
+                artdt = artta.GetDatalikecodebar(str)
+
+            Else
+                Dim str As String = "%" & txtsearch.Text & "%"
+                '  If Form1.adminName.Contains("*") Then str = "*" & txt.Text & "%"
+
+                artdt = artta.GetDatalikecodebar(str)
+                artdt2 = artta.GetDatalikename("%" & txtsearch.Text & "%")
+                artdt.Merge(artdt2, False)
+            End If
+
+
 
 
             If artdt.Rows.Count = 0 Then

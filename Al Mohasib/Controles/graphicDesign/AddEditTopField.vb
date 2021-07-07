@@ -81,4 +81,5 @@
             _tabProp.backColor = cr.Color.ToArgb
         End If
     End Sub
+
 End Class

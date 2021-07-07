@@ -17,9 +17,11 @@
             txtH.text = value.TabHeight
             txtX.text = value.x
             txtY.text = value.y
-            txtType.text = value.Type
+            cbType.Text = value.Type
             cbLine.Checked = value.hasLines
+            cbRows.Checked = value.hasRows
 
+            btColor.BackColor = Color.FromArgb(value.clr)
             If IsNothing(value.details) Then Exit Property
             pl.Controls.Clear()
 
@@ -144,11 +146,11 @@
             RaiseEvent PropChanged()
         End If
     End Sub
-    Private Sub txtType_TxtChanged() Handles txtType.TxtChanged
-        TabProp.Type = txtType.text
+    'Private Sub txtType_TxtChanged()
+    '    TabProp.Type = txtType.text
 
-        RaiseEvent PropChanged()
-    End Sub
+    '    RaiseEvent PropChanged()
+    'End Sub
     Private Sub cbLine_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbLine.CheckedChanged
         TabProp.hasLines = cbLine.Checked
 
@@ -169,6 +171,11 @@
         PARAMS.Add("Dpt N°", "depot")
         PARAMS.Add("Entrepôte", "xdepot")
         PARAMS.Add("Réf & Designation", "xname")
+        PARAMS.Add("Prix (Ryl)", "price-RYL")
+        PARAMS.Add("Prix TTC (Ryl)", "xPriceTTC-RYL")
+        PARAMS.Add("Total (Ryl)", "xTotal-RYL")
+        PARAMS.Add("Total TTC (Ryl)", "xTotalTTC-RYL")
+
 
         ComboBox1.ValueMember = "Value"
         ComboBox1.DisplayMember = "Key"
@@ -176,4 +183,61 @@
         ComboBox1.DataSource = New BindingSource(PARAMS, Nothing)
     End Sub
 
+    Private Sub cbRows_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbRows.CheckedChanged
+        TabProp.hasRows = cbRows.Checked
+
+        RaiseEvent PropChanged()
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        Try
+            Dim fntdlg As New FontDialog
+            fntdlg.Font = New Font(TabProp.pTl, TabProp.zTl)
+
+            If fntdlg.ShowDialog = Windows.Forms.DialogResult.Cancel Then
+                Exit Sub
+            End If
+
+            TabProp.pTl = fntdlg.Font.Name
+            TabProp.zTl = CInt(fntdlg.Font.Size)
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
+        End Try
+        RaiseEvent PropChanged()
+
+    End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        Try
+            Dim fntdlg As New FontDialog
+            fntdlg.Font = New Font(TabProp.pIn, TabProp.zIn)
+            If TabProp.isBIn Then fntdlg.Font = New Font(TabProp.pIn, TabProp.zIn, FontStyle.Bold)
+            If fntdlg.ShowDialog = Windows.Forms.DialogResult.Cancel Then
+                Exit Sub
+            End If
+
+            TabProp.pIn = fntdlg.Font.Name
+            TabProp.zIn = CInt(fntdlg.Font.Size)
+            TabProp.isBIn = CBool(fntdlg.Font.Style = FontStyle.Bold)
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
+        End Try
+        RaiseEvent PropChanged()
+    End Sub
+
+    Private Sub cbType_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbType.SelectedIndexChanged
+        TabProp.Type = cbType.Text
+
+        RaiseEvent PropChanged()
+    End Sub
+
+    Private Sub btColor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btColor.Click
+        Dim cr As New ColorDialog
+        cr.Color = btColor.BackColor
+
+        If cr.ShowDialog = DialogResult.OK Then
+            btColor.BackColor = cr.Color
+            _tabProp.clr = cr.Color.ToArgb
+        End If
+    End Sub
 End Class

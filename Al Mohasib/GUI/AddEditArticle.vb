@@ -3,6 +3,7 @@ Imports System.IO.Ports
 Imports MyBarcode
 Imports System.Drawing.Drawing2D
 Imports System.Text
+Imports System.Drawing.Imaging
 
 
 Public Class AddEditArticle
@@ -104,7 +105,7 @@ Public Class AddEditArticle
                     cid = cbctg.SelectedValue
                 End If
             End If
-            If CBdp.Tag <> "" Then CBdp.SelectedValue = CBdp.Tag
+            If CBdp.Tag.ToString <> "" Then CBdp.SelectedValue = CBdp.Tag
 
         End If
 
@@ -120,11 +121,17 @@ Public Class AddEditArticle
                 ImgPrd = Nothing
             Else
                 'ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\art" & PBprd.Tag)
-                ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\art" & PBprd.Tag)
+
+                Dim str As String = Form1.BtImgPah.Tag & "\art" & PBprd.Tag
+
+                Using bm As Bitmap = New Bitmap(str)
+                    Dim ms As New MemoryStream()
+                    bm.Save(ms, ImageFormat.Bmp)
+                    ImgPrd = Image.FromStream(ms)
+                End Using
             End If
 
         Catch ex As Exception
-
         End Try
 
         PBprd.BackgroundImage = Drawimg(txtprdname.Text, txtsprice.text)
@@ -298,7 +305,7 @@ Public Class AddEditArticle
                 Dim ta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
                 ta.UpdateQuery(cid, txtprdname.Text, bprice, sprice, txtunit.Text, tva,
                                price2, price3, price4, TxtPoids.text, txtcb.text, CInt(CBdp.SelectedValue),
-                                cbIsMixte.Checked, txtMinStock.text, txtprdname.Tag)
+                                cbIsMixte.Checked, txtMinStock.text, PBprd.Tag, txtprdname.Tag)
                 ta.Fill(ALMohassinDBDataSet.Article)
                 Me.DialogResult = Windows.Forms.DialogResult.OK
             Catch ex As Exception
@@ -316,24 +323,24 @@ Public Class AddEditArticle
         savepic.Filter = "*.jpg|*.jpg"
         If savepic.ShowDialog = Windows.Forms.DialogResult.OK Then
 
-            Dim pmg2 As New Bitmap(savepic.FileName)
+            'Dim pmg2 As New Bitmap(savepic.FileName)
 
             Dim W = CInt(Form1.txtlongerbt.Text) * 2
             Dim h = CInt(Form1.txtlargebt.Text) * 2
             Dim B = CInt(h / 10)
 
 
-            'pmg2 = AppendBorder(pmg2, B)
-            translate(pmg2, 15, 20, 30, 1)
-            pmg2 = New Bitmap(pmg2, New Size(W, h))
+            Using bm As Bitmap = New Bitmap(savepic.FileName)
+                Dim ms As New MemoryStream()
+                translate(bm, 15, 20, 30, 1)
+                bm.Save(ms, ImageFormat.Bmp)
+                ImgPrd = Image.FromStream(ms)
+            End Using
 
 
             lbchangeimg.Text = "1"
-            ImgPrd = pmg2
+            'ImgPrd = pmg2
             PBprd.BackgroundImage = Drawimg(txtprdname.Text, txtbprice.text)
-
-            Dim ta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            ta.UpdateImg(PBprd.Tag, txtprdname.Tag)
         End If
 
     End Sub
@@ -388,8 +395,8 @@ Public Class AddEditArticle
             'If cde.Length < 12 Then Exit Sub
 
             Dim CD As New BarCode2
-            CD.Code = cde
-            CD.article = txtprdname.Text
+            CD.CODE = cde
+            CD.Article = txtprdname.Text
             ' CD.qte = txtsprice.text
 
             If CD.ShowDialog = DialogResult.OK Then
@@ -502,41 +509,33 @@ Public Class AddEditArticle
         Dim dir1 As New DirectoryInfo(Form1.BtImgPah.Tag)
         If dir1.Exists = False Then dir1.Create()
 
+        Dim str As String = txtprdname.Text
         Try
-            Dim str As String = txtprdname.Text
+
             str = str.Replace("/", "-")
             str = str.Replace("*", "-")
 
-            For i As Integer = 0 To 111
-                Try
-                    Dim img = ImgPrd
-                    img.Save(Form1.BtImgPah.Tag & "\art" & str & ".jpg", Imaging.ImageFormat.Jpeg)
-                    Exit For
-                Catch ex As Exception
-                    str = txtprdname.Text
-                    str = str.Replace("/", "-")
-                    str = str.Replace("*", "-")
-                    str &= i
-                    Continue For
-                End Try
-            Next
+            Using bm As Bitmap = ImgPrd.Clone()
+                bm.Save(Form1.BtImgPah.Tag & "\art" & str & ".jpg", bm.RawFormat)
+            End Using
 
-            Using img As Image = imgWithPrice
-                Try
-                    img.Save(Form1.BtImgPah.Tag & "\P-art" & str & ".jpg", Imaging.ImageFormat.Jpeg)
-                Catch ex As Exception
-                    Try
-                        Dim ff As New FileInfo(Form1.BtImgPah.Tag & "\P-art" & str & ".jpg")
-                        ff.Delete()
-                        img.Save(Form1.BtImgPah.Tag & "\P-art" & str & ".jpg", Imaging.ImageFormat.Jpeg)
-                    Catch exx As Exception
-
-                    End Try
-                End Try
+            Using bm As Bitmap = imgWithPrice.Clone()
+                bm.Save(Form1.BtImgPah.Tag & "\P-art" & str & ".jpg", bm.RawFormat)
             End Using
 
             PBprd.Tag = str & ".jpg"
         Catch ex As Exception
+
+            str = Now.Ticks
+            Using bm As Bitmap = ImgPrd.Clone()
+                bm.Save(Form1.BtImgPah.Tag & "\art" & str & ".jpg", bm.RawFormat)
+            End Using
+
+            Using bm As Bitmap = imgWithPrice.Clone()
+                bm.Save(Form1.BtImgPah.Tag & "\P-art" & str & ".jpg", bm.RawFormat)
+            End Using
+
+            PBprd.Tag = str & ".jpg"
         End Try
     End Sub
     Private Sub txtsprice_TxtChanged() Handles txtsprice.TxtChanged
@@ -578,5 +577,6 @@ Public Class AddEditArticle
         End If
 
     End Sub
+
 End Class
 

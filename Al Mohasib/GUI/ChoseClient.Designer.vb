@@ -26,24 +26,6 @@ Partial Class ChoseClient
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ChoseClient))
         Me.plup = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
-        Me.ClientBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
-        Me.ClientTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.ClientTableAdapter()
-        Me.PlLeft = New System.Windows.Forms.Panel()
-        Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Panel8 = New System.Windows.Forms.Panel()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Pl = New System.Windows.Forms.Panel()
-        Me.Fpl = New System.Windows.Forms.FlowLayoutPanel()
-        Me.Panel7 = New System.Windows.Forms.Panel()
-        Me.Lbnm = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel22 = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -77,16 +59,29 @@ Partial Class ChoseClient
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Panel13 = New System.Windows.Forms.Panel()
+        Me.ClientBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
+        Me.ClientTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.ClientTableAdapter()
+        Me.PlLeft = New System.Windows.Forms.Panel()
+        Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Panel7 = New System.Windows.Forms.Panel()
+        Me.Lbnm = New System.Windows.Forms.Label()
+        Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.lbCredit = New System.Windows.Forms.Label()
+        Me.Pl = New System.Windows.Forms.Panel()
+        Me.Fpl = New System.Windows.Forms.FlowLayoutPanel()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.plup.SuspendLayout()
         Me.Panel21.SuspendLayout()
-        CType(Me.ClientBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PlLeft.SuspendLayout()
-        Me.Panel9.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel8.SuspendLayout()
-        Me.Pl.SuspendLayout()
-        Me.Panel7.SuspendLayout()
         Me.Panel22.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel25.SuspendLayout()
@@ -98,6 +93,15 @@ Partial Class ChoseClient
         Me.Panel19.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.Panel14.SuspendLayout()
+        CType(Me.ClientBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PlLeft.SuspendLayout()
+        Me.Panel9.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel8.SuspendLayout()
+        Me.Panel7.SuspendLayout()
+        Me.Panel10.SuspendLayout()
+        Me.Pl.SuspendLayout()
         Me.SuspendLayout()
         '
         'plup
@@ -127,180 +131,6 @@ Partial Class ChoseClient
         Me.Panel21.Name = "Panel21"
         Me.Panel21.Size = New System.Drawing.Size(443, 94)
         Me.Panel21.TabIndex = 6
-        '
-        'ClientBindingSource
-        '
-        Me.ClientBindingSource.DataMember = "Client"
-        Me.ClientBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'ClientTableAdapter
-        '
-        Me.ClientTableAdapter.ClearBeforeFill = True
-        '
-        'PlLeft
-        '
-        Me.PlLeft.Controls.Add(Me.Panel9)
-        Me.PlLeft.Controls.Add(Me.Panel8)
-        Me.PlLeft.Controls.Add(Me.Panel7)
-        Me.PlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PlLeft.Location = New System.Drawing.Point(0, 94)
-        Me.PlLeft.Name = "PlLeft"
-        Me.PlLeft.Size = New System.Drawing.Size(292, 520)
-        Me.PlLeft.TabIndex = 5
-        Me.PlLeft.Visible = False
-        '
-        'Panel9
-        '
-        Me.Panel9.Controls.Add(Me.DataGridView1)
-        Me.Panel9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel9.Location = New System.Drawing.Point(0, 113)
-        Me.Panel9.Name = "Panel9"
-        Me.Panel9.Padding = New System.Windows.Forms.Padding(5)
-        Me.Panel9.Size = New System.Drawing.Size(292, 407)
-        Me.Panel9.TabIndex = 0
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4})
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(5, 5)
-        Me.DataGridView1.MultiSelect = False
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.DataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(282, 397)
-        Me.DataGridView1.TabIndex = 0
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "ID"
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "DATE"
-        Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "TOTAL"
-        Me.Column3.Name = "Column3"
-        Me.Column3.ReadOnly = True
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "DESC"
-        Me.Column4.Name = "Column4"
-        Me.Column4.ReadOnly = True
-        '
-        'Panel8
-        '
-        Me.Panel8.BackColor = System.Drawing.SystemColors.InactiveCaption
-        Me.Panel8.Controls.Add(Me.Button3)
-        Me.Panel8.Controls.Add(Me.Button1)
-        Me.Panel8.Controls.Add(Me.Button4)
-        Me.Panel8.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel8.Location = New System.Drawing.Point(0, 63)
-        Me.Panel8.Name = "Panel8"
-        Me.Panel8.Padding = New System.Windows.Forms.Padding(15, 5, 15, 5)
-        Me.Panel8.Size = New System.Drawing.Size(292, 50)
-        Me.Panel8.TabIndex = 0
-        '
-        'Button3
-        '
-        Me.Button3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Button3.Location = New System.Drawing.Point(115, 5)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(62, 40)
-        Me.Button3.TabIndex = 0
-        Me.Button3.Text = "Button1"
-        Me.Button3.UseVisualStyleBackColor = True
-        Me.Button3.Visible = False
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.Button1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.Button1.Location = New System.Drawing.Point(15, 5)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(100, 40)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "EDIT"
-        Me.Button1.UseVisualStyleBackColor = False
-        '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.Color.LimeGreen
-        Me.Button4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Button4.Location = New System.Drawing.Point(177, 5)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(100, 40)
-        Me.Button4.TabIndex = 0
-        Me.Button4.Text = "NEVEAU"
-        Me.Button4.UseVisualStyleBackColor = False
-        '
-        'Pl
-        '
-        Me.Pl.Controls.Add(Me.Fpl)
-        Me.Pl.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Pl.Location = New System.Drawing.Point(292, 94)
-        Me.Pl.Name = "Pl"
-        Me.Pl.Size = New System.Drawing.Size(552, 520)
-        Me.Pl.TabIndex = 5
-        '
-        'Fpl
-        '
-        Me.Fpl.AutoScroll = True
-        Me.Fpl.BackColor = System.Drawing.SystemColors.HighlightText
-        Me.Fpl.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Fpl.Location = New System.Drawing.Point(0, 0)
-        Me.Fpl.Name = "Fpl"
-        Me.Fpl.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Fpl.Size = New System.Drawing.Size(552, 520)
-        Me.Fpl.TabIndex = 0
-        '
-        'Panel7
-        '
-        Me.Panel7.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Panel7.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.BD_CB
-        Me.Panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Panel7.Controls.Add(Me.Lbnm)
-        Me.Panel7.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel7.Location = New System.Drawing.Point(0, 0)
-        Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(292, 63)
-        Me.Panel7.TabIndex = 0
-        '
-        'Lbnm
-        '
-        Me.Lbnm.AutoSize = True
-        Me.Lbnm.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbnm.ForeColor = System.Drawing.Color.DarkBlue
-        Me.Lbnm.Location = New System.Drawing.Point(15, 26)
-        Me.Lbnm.Name = "Lbnm"
-        Me.Lbnm.Size = New System.Drawing.Size(63, 20)
-        Me.Lbnm.TabIndex = 0
-        Me.Lbnm.Text = "Label3"
-        Me.Lbnm.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'Button2
         '
@@ -703,6 +533,219 @@ Partial Class ChoseClient
         Me.Panel13.Size = New System.Drawing.Size(1, 94)
         Me.Panel13.TabIndex = 2
         '
+        'ClientBindingSource
+        '
+        Me.ClientBindingSource.DataMember = "Client"
+        Me.ClientBindingSource.DataSource = Me.ALMohassinDBDataSet
+        '
+        'ALMohassinDBDataSet
+        '
+        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
+        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'ClientTableAdapter
+        '
+        Me.ClientTableAdapter.ClearBeforeFill = True
+        '
+        'PlLeft
+        '
+        Me.PlLeft.Controls.Add(Me.Panel9)
+        Me.PlLeft.Controls.Add(Me.Panel8)
+        Me.PlLeft.Controls.Add(Me.Panel7)
+        Me.PlLeft.Controls.Add(Me.Panel10)
+        Me.PlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PlLeft.Location = New System.Drawing.Point(0, 94)
+        Me.PlLeft.Name = "PlLeft"
+        Me.PlLeft.Size = New System.Drawing.Size(292, 520)
+        Me.PlLeft.TabIndex = 5
+        Me.PlLeft.Visible = False
+        '
+        'Panel9
+        '
+        Me.Panel9.Controls.Add(Me.DataGridView1)
+        Me.Panel9.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel9.Location = New System.Drawing.Point(0, 113)
+        Me.Panel9.Name = "Panel9"
+        Me.Panel9.Padding = New System.Windows.Forms.Padding(5)
+        Me.Panel9.Size = New System.Drawing.Size(292, 344)
+        Me.Panel9.TabIndex = 0
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4})
+        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridView1.Location = New System.Drawing.Point(5, 5)
+        Me.DataGridView1.MultiSelect = False
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.DataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        Me.DataGridView1.RowHeadersVisible = False
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridView1.Size = New System.Drawing.Size(282, 334)
+        Me.DataGridView1.TabIndex = 0
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "ID"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "DATE"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "TOTAL"
+        Me.Column3.Name = "Column3"
+        Me.Column3.ReadOnly = True
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "DESC"
+        Me.Column4.Name = "Column4"
+        Me.Column4.ReadOnly = True
+        '
+        'Panel8
+        '
+        Me.Panel8.BackColor = System.Drawing.SystemColors.InactiveCaption
+        Me.Panel8.Controls.Add(Me.Button3)
+        Me.Panel8.Controls.Add(Me.Button1)
+        Me.Panel8.Controls.Add(Me.Button4)
+        Me.Panel8.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel8.Location = New System.Drawing.Point(0, 63)
+        Me.Panel8.Name = "Panel8"
+        Me.Panel8.Padding = New System.Windows.Forms.Padding(15, 5, 15, 5)
+        Me.Panel8.Size = New System.Drawing.Size(292, 50)
+        Me.Panel8.TabIndex = 0
+        '
+        'Button3
+        '
+        Me.Button3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Button3.Location = New System.Drawing.Point(115, 5)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(62, 40)
+        Me.Button3.TabIndex = 0
+        Me.Button3.Text = "Button1"
+        Me.Button3.UseVisualStyleBackColor = True
+        Me.Button3.Visible = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.Button1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.Button1.Location = New System.Drawing.Point(15, 5)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(100, 40)
+        Me.Button1.TabIndex = 0
+        Me.Button1.Text = "EDIT"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.LimeGreen
+        Me.Button4.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button4.ForeColor = System.Drawing.Color.DarkSlateGray
+        Me.Button4.Location = New System.Drawing.Point(177, 5)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(100, 40)
+        Me.Button4.TabIndex = 0
+        Me.Button4.Text = "NEVEAU"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'Panel7
+        '
+        Me.Panel7.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Panel7.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.BD_CB
+        Me.Panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel7.Controls.Add(Me.Lbnm)
+        Me.Panel7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel7.Location = New System.Drawing.Point(0, 0)
+        Me.Panel7.Name = "Panel7"
+        Me.Panel7.Size = New System.Drawing.Size(292, 63)
+        Me.Panel7.TabIndex = 0
+        '
+        'Lbnm
+        '
+        Me.Lbnm.AutoSize = True
+        Me.Lbnm.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbnm.ForeColor = System.Drawing.Color.DarkBlue
+        Me.Lbnm.Location = New System.Drawing.Point(15, 26)
+        Me.Lbnm.Name = "Lbnm"
+        Me.Lbnm.Size = New System.Drawing.Size(63, 20)
+        Me.Lbnm.TabIndex = 0
+        Me.Lbnm.Text = "Label3"
+        Me.Lbnm.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'Panel10
+        '
+        Me.Panel10.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Panel10.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.BD_CB
+        Me.Panel10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel10.Controls.Add(Me.Label4)
+        Me.Panel10.Controls.Add(Me.lbCredit)
+        Me.Panel10.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel10.Location = New System.Drawing.Point(0, 457)
+        Me.Panel10.Name = "Panel10"
+        Me.Panel10.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Panel10.Size = New System.Drawing.Size(292, 63)
+        Me.Panel10.TabIndex = 1
+        '
+        'lbCredit
+        '
+        Me.lbCredit.AutoSize = True
+        Me.lbCredit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbCredit.ForeColor = System.Drawing.Color.DarkBlue
+        Me.lbCredit.Location = New System.Drawing.Point(87, 24)
+        Me.lbCredit.Name = "lbCredit"
+        Me.lbCredit.Size = New System.Drawing.Size(29, 20)
+        Me.lbCredit.TabIndex = 0
+        Me.lbCredit.Text = "00"
+        Me.lbCredit.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'Pl
+        '
+        Me.Pl.Controls.Add(Me.Fpl)
+        Me.Pl.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Pl.Location = New System.Drawing.Point(292, 94)
+        Me.Pl.Name = "Pl"
+        Me.Pl.Size = New System.Drawing.Size(552, 520)
+        Me.Pl.TabIndex = 5
+        '
+        'Fpl
+        '
+        Me.Fpl.AutoScroll = True
+        Me.Fpl.BackColor = System.Drawing.SystemColors.HighlightText
+        Me.Fpl.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Fpl.Location = New System.Drawing.Point(0, 0)
+        Me.Fpl.Name = "Fpl"
+        Me.Fpl.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Fpl.Size = New System.Drawing.Size(552, 520)
+        Me.Fpl.TabIndex = 0
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Label4.Location = New System.Drawing.Point(22, 27)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(53, 15)
+        Me.Label4.TabIndex = 0
+        Me.Label4.Text = "Credit :"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
         'ChoseClient
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -711,7 +754,7 @@ Partial Class ChoseClient
         Me.Controls.Add(Me.Pl)
         Me.Controls.Add(Me.PlLeft)
         Me.Controls.Add(Me.plup)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "ChoseClient"
@@ -720,15 +763,6 @@ Partial Class ChoseClient
         Me.Text = "اختيار الزبون"
         Me.plup.ResumeLayout(False)
         Me.Panel21.ResumeLayout(False)
-        CType(Me.ClientBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PlLeft.ResumeLayout(False)
-        Me.Panel9.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel8.ResumeLayout(False)
-        Me.Pl.ResumeLayout(False)
-        Me.Panel7.ResumeLayout(False)
-        Me.Panel7.PerformLayout()
         Me.Panel22.ResumeLayout(False)
         Me.Panel22.PerformLayout()
         Me.Panel24.ResumeLayout(False)
@@ -747,6 +781,17 @@ Partial Class ChoseClient
         Me.Panel12.ResumeLayout(False)
         Me.Panel14.ResumeLayout(False)
         Me.Panel14.PerformLayout()
+        CType(Me.ClientBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PlLeft.ResumeLayout(False)
+        Me.Panel9.ResumeLayout(False)
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel8.ResumeLayout(False)
+        Me.Panel7.ResumeLayout(False)
+        Me.Panel7.PerformLayout()
+        Me.Panel10.ResumeLayout(False)
+        Me.Panel10.PerformLayout()
+        Me.Pl.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -803,4 +848,7 @@ Partial Class ChoseClient
     Friend WithEvents Button6 As System.Windows.Forms.Button
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Button8 As System.Windows.Forms.Button
+    Friend WithEvents Panel10 As System.Windows.Forms.Panel
+    Friend WithEvents lbCredit As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
 End Class

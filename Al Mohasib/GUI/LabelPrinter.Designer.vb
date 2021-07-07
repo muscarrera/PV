@@ -42,6 +42,7 @@ Partial Class LabelPrinter
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.lbNumArticles = New System.Windows.Forms.Label()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
@@ -68,20 +69,19 @@ Partial Class LabelPrinter
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.plNumPage = New System.Windows.Forms.Panel()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Panel12 = New System.Windows.Forms.Panel()
+        Me.txtPage = New System.Windows.Forms.TextBox()
+        Me.txtNum = New System.Windows.Forms.TextBox()
+        Me.Button15 = New System.Windows.Forms.Button()
         Me.txtCat = New Al_Mohasib.TxtBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.PrintDocDesign = New System.Drawing.Printing.PrintDocument()
-        Me.plNumPage = New System.Windows.Forms.Panel()
-        Me.Button15 = New System.Windows.Forms.Button()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.txtNum = New System.Windows.Forms.TextBox()
-        Me.Panel12 = New System.Windows.Forms.Panel()
-        Me.txtPage = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.lbNumArticles = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.DG2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -194,10 +194,10 @@ Partial Class LabelPrinter
         Me.Panel3.Controls.Add(Me.Panel10)
         Me.Panel3.Controls.Add(Me.Panel5)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel3.Location = New System.Drawing.Point(553, 41)
+        Me.Panel3.Location = New System.Drawing.Point(595, 41)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Padding = New System.Windows.Forms.Padding(11)
-        Me.Panel3.Size = New System.Drawing.Size(550, 390)
+        Me.Panel3.Size = New System.Drawing.Size(508, 390)
         Me.Panel3.TabIndex = 0
         '
         'DG2
@@ -219,7 +219,7 @@ Partial Class LabelPrinter
         Me.DG2.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.DG2.RowTemplate.Height = 26
         Me.DG2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DG2.Size = New System.Drawing.Size(528, 232)
+        Me.DG2.Size = New System.Drawing.Size(486, 232)
         Me.DG2.TabIndex = 2
         '
         'Column1
@@ -275,8 +275,20 @@ Partial Class LabelPrinter
         Me.Panel10.Location = New System.Drawing.Point(11, 311)
         Me.Panel10.Name = "Panel10"
         Me.Panel10.Padding = New System.Windows.Forms.Padding(11)
-        Me.Panel10.Size = New System.Drawing.Size(528, 68)
+        Me.Panel10.Size = New System.Drawing.Size(486, 68)
         Me.Panel10.TabIndex = 4
+        '
+        'lbNumArticles
+        '
+        Me.lbNumArticles.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lbNumArticles.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbNumArticles.ForeColor = System.Drawing.Color.DarkGray
+        Me.lbNumArticles.Location = New System.Drawing.Point(171, 11)
+        Me.lbNumArticles.Name = "lbNumArticles"
+        Me.lbNumArticles.Size = New System.Drawing.Size(229, 46)
+        Me.lbNumArticles.TabIndex = 7
+        Me.lbNumArticles.Text = "23 Articles"
+        Me.lbNumArticles.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Button8
         '
@@ -286,7 +298,7 @@ Partial Class LabelPrinter
         Me.Button8.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button8.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button8.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.Button8.Location = New System.Drawing.Point(442, 11)
+        Me.Button8.Location = New System.Drawing.Point(400, 11)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(75, 46)
         Me.Button8.TabIndex = 5
@@ -335,7 +347,7 @@ Partial Class LabelPrinter
         Me.Panel5.Location = New System.Drawing.Point(11, 11)
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Padding = New System.Windows.Forms.Padding(11)
-        Me.Panel5.Size = New System.Drawing.Size(528, 68)
+        Me.Panel5.Size = New System.Drawing.Size(486, 68)
         Me.Panel5.TabIndex = 1
         '
         'plCats
@@ -347,7 +359,7 @@ Partial Class LabelPrinter
         Me.plCats.Dock = System.Windows.Forms.DockStyle.Fill
         Me.plCats.Location = New System.Drawing.Point(11, 11)
         Me.plCats.Name = "plCats"
-        Me.plCats.Size = New System.Drawing.Size(91, 46)
+        Me.plCats.Size = New System.Drawing.Size(49, 46)
         Me.plCats.TabIndex = 9
         Me.plCats.Visible = False
         '
@@ -390,7 +402,7 @@ Partial Class LabelPrinter
         Me.plEtqs.Controls.Add(Me.btetq)
         Me.plEtqs.Controls.Add(Me.cbEtqs)
         Me.plEtqs.Dock = System.Windows.Forms.DockStyle.Right
-        Me.plEtqs.Location = New System.Drawing.Point(102, 11)
+        Me.plEtqs.Location = New System.Drawing.Point(60, 11)
         Me.plEtqs.Name = "plEtqs"
         Me.plEtqs.Size = New System.Drawing.Size(330, 46)
         Me.plEtqs.TabIndex = 8
@@ -410,7 +422,7 @@ Partial Class LabelPrinter
         '
         Me.Panel8.Controls.Add(Me.Button7)
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel8.Location = New System.Drawing.Point(432, 11)
+        Me.Panel8.Location = New System.Drawing.Point(390, 11)
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(85, 46)
         Me.Panel8.TabIndex = 7
@@ -440,7 +452,7 @@ Partial Class LabelPrinter
         Me.Panel4.Location = New System.Drawing.Point(0, 41)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Padding = New System.Windows.Forms.Padding(11)
-        Me.Panel4.Size = New System.Drawing.Size(553, 390)
+        Me.Panel4.Size = New System.Drawing.Size(595, 390)
         Me.Panel4.TabIndex = 0
         '
         'txtArt
@@ -489,7 +501,7 @@ Partial Class LabelPrinter
         Me.dg1.RowTemplate.DefaultCellStyle.Padding = New System.Windows.Forms.Padding(2)
         Me.dg1.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.dg1.RowTemplate.Height = 25
-        Me.dg1.Size = New System.Drawing.Size(531, 155)
+        Me.dg1.Size = New System.Drawing.Size(573, 155)
         Me.dg1.TabIndex = 2
         '
         'Panel7
@@ -505,7 +517,7 @@ Partial Class LabelPrinter
         Me.Panel7.Location = New System.Drawing.Point(11, 311)
         Me.Panel7.Name = "Panel7"
         Me.Panel7.Padding = New System.Windows.Forms.Padding(11)
-        Me.Panel7.Size = New System.Drawing.Size(531, 68)
+        Me.Panel7.Size = New System.Drawing.Size(573, 68)
         Me.Panel7.TabIndex = 3
         '
         'Panel9
@@ -515,7 +527,7 @@ Partial Class LabelPrinter
         Me.Panel9.Controls.Add(Me.Button13)
         Me.Panel9.Controls.Add(Me.Button12)
         Me.Panel9.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel9.Location = New System.Drawing.Point(64, 11)
+        Me.Panel9.Location = New System.Drawing.Point(106, 11)
         Me.Panel9.Name = "Panel9"
         Me.Panel9.Size = New System.Drawing.Size(150, 46)
         Me.Panel9.TabIndex = 5
@@ -565,7 +577,7 @@ Partial Class LabelPrinter
         'Panel11
         '
         Me.Panel11.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel11.Location = New System.Drawing.Point(214, 11)
+        Me.Panel11.Location = New System.Drawing.Point(256, 11)
         Me.Panel11.Name = "Panel11"
         Me.Panel11.Size = New System.Drawing.Size(66, 46)
         Me.Panel11.TabIndex = 6
@@ -578,7 +590,7 @@ Partial Class LabelPrinter
         Me.Button6.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.Button6.Location = New System.Drawing.Point(280, 11)
+        Me.Button6.Location = New System.Drawing.Point(322, 11)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(75, 46)
         Me.Button6.TabIndex = 3
@@ -606,7 +618,7 @@ Partial Class LabelPrinter
         Me.Button3.ForeColor = System.Drawing.Color.OrangeRed
         Me.Button3.Image = Global.Al_Mohasib.My.Resources.Resources.ok
         Me.Button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button3.Location = New System.Drawing.Point(355, 11)
+        Me.Button3.Location = New System.Drawing.Point(397, 11)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(90, 46)
         Me.Button3.TabIndex = 1
@@ -620,7 +632,7 @@ Partial Class LabelPrinter
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.Button2.Location = New System.Drawing.Point(445, 11)
+        Me.Button2.Location = New System.Drawing.Point(487, 11)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 46)
         Me.Button2.TabIndex = 0
@@ -638,8 +650,94 @@ Partial Class LabelPrinter
         Me.Panel6.Location = New System.Drawing.Point(11, 11)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Padding = New System.Windows.Forms.Padding(11)
-        Me.Panel6.Size = New System.Drawing.Size(531, 145)
+        Me.Panel6.Size = New System.Drawing.Size(573, 145)
         Me.Panel6.TabIndex = 1
+        '
+        'plNumPage
+        '
+        Me.plNumPage.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.plNumPage.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.plNumPage.Controls.Add(Me.Label4)
+        Me.plNumPage.Controls.Add(Me.Label3)
+        Me.plNumPage.Controls.Add(Me.Panel12)
+        Me.plNumPage.Controls.Add(Me.Button15)
+        Me.plNumPage.Location = New System.Drawing.Point(303, 52)
+        Me.plNumPage.Name = "plNumPage"
+        Me.plNumPage.Padding = New System.Windows.Forms.Padding(10)
+        Me.plNumPage.Size = New System.Drawing.Size(256, 69)
+        Me.plNumPage.TabIndex = 6
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.DarkRed
+        Me.Label4.Location = New System.Drawing.Point(160, 12)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(45, 13)
+        Me.Label4.TabIndex = 7
+        Me.Label4.Text = "الصفحة"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.DarkRed
+        Me.Label3.Location = New System.Drawing.Point(41, 12)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(50, 13)
+        Me.Label3.TabIndex = 7
+        Me.Label3.Text = "ع المواد"
+        '
+        'Panel12
+        '
+        Me.Panel12.BackColor = System.Drawing.Color.White
+        Me.Panel12.Controls.Add(Me.txtPage)
+        Me.Panel12.Controls.Add(Me.txtNum)
+        Me.Panel12.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel12.Location = New System.Drawing.Point(10, 29)
+        Me.Panel12.Name = "Panel12"
+        Me.Panel12.Padding = New System.Windows.Forms.Padding(2)
+        Me.Panel12.Size = New System.Drawing.Size(195, 30)
+        Me.Panel12.TabIndex = 7
+        '
+        'txtPage
+        '
+        Me.txtPage.Dock = System.Windows.Forms.DockStyle.Right
+        Me.txtPage.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPage.Location = New System.Drawing.Point(115, 2)
+        Me.txtPage.Name = "txtPage"
+        Me.txtPage.Size = New System.Drawing.Size(78, 26)
+        Me.txtPage.TabIndex = 7
+        Me.txtPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'txtNum
+        '
+        Me.txtNum.Dock = System.Windows.Forms.DockStyle.Left
+        Me.txtNum.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNum.Location = New System.Drawing.Point(2, 2)
+        Me.txtNum.Name = "txtNum"
+        Me.txtNum.Size = New System.Drawing.Size(82, 26)
+        Me.txtNum.TabIndex = 6
+        Me.txtNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Button15
+        '
+        Me.Button15.BackColor = System.Drawing.Color.Maroon
+        Me.Button15.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.OK_22
+        Me.Button15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button15.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button15.FlatAppearance.BorderSize = 0
+        Me.Button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button15.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button15.ForeColor = System.Drawing.Color.Gray
+        Me.Button15.Location = New System.Drawing.Point(205, 10)
+        Me.Button15.Name = "Button15"
+        Me.Button15.Size = New System.Drawing.Size(41, 49)
+        Me.Button15.TabIndex = 5
+        Me.Button15.UseVisualStyleBackColor = False
         '
         'txtCat
         '
@@ -698,104 +796,6 @@ Partial Class LabelPrinter
         '
         'PrintDocDesign
         '
-        '
-        'plNumPage
-        '
-        Me.plNumPage.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.plNumPage.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.plNumPage.Controls.Add(Me.Label4)
-        Me.plNumPage.Controls.Add(Me.Label3)
-        Me.plNumPage.Controls.Add(Me.Panel12)
-        Me.plNumPage.Controls.Add(Me.Button15)
-        Me.plNumPage.Location = New System.Drawing.Point(261, 52)
-        Me.plNumPage.Name = "plNumPage"
-        Me.plNumPage.Padding = New System.Windows.Forms.Padding(10)
-        Me.plNumPage.Size = New System.Drawing.Size(256, 69)
-        Me.plNumPage.TabIndex = 6
-        '
-        'Button15
-        '
-        Me.Button15.BackColor = System.Drawing.Color.Maroon
-        Me.Button15.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.OK_22
-        Me.Button15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Button15.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button15.FlatAppearance.BorderSize = 0
-        Me.Button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button15.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button15.ForeColor = System.Drawing.Color.Gray
-        Me.Button15.Location = New System.Drawing.Point(205, 10)
-        Me.Button15.Name = "Button15"
-        Me.Button15.Size = New System.Drawing.Size(41, 49)
-        Me.Button15.TabIndex = 5
-        Me.Button15.UseVisualStyleBackColor = False
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.DarkRed
-        Me.Label3.Location = New System.Drawing.Point(41, 12)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(50, 13)
-        Me.Label3.TabIndex = 7
-        Me.Label3.Text = "ع المواد"
-        '
-        'txtNum
-        '
-        Me.txtNum.Dock = System.Windows.Forms.DockStyle.Left
-        Me.txtNum.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNum.Location = New System.Drawing.Point(2, 2)
-        Me.txtNum.Name = "txtNum"
-        Me.txtNum.Size = New System.Drawing.Size(82, 26)
-        Me.txtNum.TabIndex = 6
-        Me.txtNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Panel12
-        '
-        Me.Panel12.BackColor = System.Drawing.Color.White
-        Me.Panel12.Controls.Add(Me.txtPage)
-        Me.Panel12.Controls.Add(Me.txtNum)
-        Me.Panel12.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel12.Location = New System.Drawing.Point(10, 29)
-        Me.Panel12.Name = "Panel12"
-        Me.Panel12.Padding = New System.Windows.Forms.Padding(2)
-        Me.Panel12.Size = New System.Drawing.Size(195, 30)
-        Me.Panel12.TabIndex = 7
-        '
-        'txtPage
-        '
-        Me.txtPage.Dock = System.Windows.Forms.DockStyle.Right
-        Me.txtPage.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPage.Location = New System.Drawing.Point(115, 2)
-        Me.txtPage.Name = "txtPage"
-        Me.txtPage.Size = New System.Drawing.Size(78, 26)
-        Me.txtPage.TabIndex = 7
-        Me.txtPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.DarkRed
-        Me.Label4.Location = New System.Drawing.Point(160, 12)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(45, 13)
-        Me.Label4.TabIndex = 7
-        Me.Label4.Text = "الصفحة"
-        '
-        'lbNumArticles
-        '
-        Me.lbNumArticles.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lbNumArticles.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbNumArticles.ForeColor = System.Drawing.Color.DarkGray
-        Me.lbNumArticles.Location = New System.Drawing.Point(171, 11)
-        Me.lbNumArticles.Name = "lbNumArticles"
-        Me.lbNumArticles.Size = New System.Drawing.Size(271, 46)
-        Me.lbNumArticles.TabIndex = 7
-        Me.lbNumArticles.Text = "23 Articles"
-        Me.lbNumArticles.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'LabelPrinter
         '

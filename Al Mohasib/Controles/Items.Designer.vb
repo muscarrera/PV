@@ -25,6 +25,7 @@ Partial Class Items
         Me.Pl = New System.Windows.Forms.Panel()
         Me.LbName = New System.Windows.Forms.Label()
         Me.LbTotal = New System.Windows.Forms.Label()
+        Me.plRet = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.LbStk = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -41,6 +42,7 @@ Partial Class Items
         Me.Pl.BackColor = System.Drawing.Color.Transparent
         Me.Pl.Controls.Add(Me.LbName)
         Me.Pl.Controls.Add(Me.LbTotal)
+        Me.Pl.Controls.Add(Me.plRet)
         Me.Pl.Controls.Add(Me.Panel1)
         Me.Pl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Pl.Location = New System.Drawing.Point(2, 2)
@@ -53,9 +55,9 @@ Partial Class Items
         Me.LbName.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LbName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbName.ForeColor = System.Drawing.Color.DarkCyan
-        Me.LbName.Location = New System.Drawing.Point(0, 0)
+        Me.LbName.Location = New System.Drawing.Point(21, 0)
         Me.LbName.Name = "LbName"
-        Me.LbName.Size = New System.Drawing.Size(223, 21)
+        Me.LbName.Size = New System.Drawing.Size(202, 21)
         Me.LbName.TabIndex = 0
         Me.LbName.Text = "Label1"
         Me.LbName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -71,6 +73,17 @@ Partial Class Items
         Me.LbTotal.TabIndex = 0
         Me.LbTotal.Text = "Label1"
         Me.LbTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'plRet
+        '
+        Me.plRet.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.RT
+        Me.plRet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.plRet.Dock = System.Windows.Forms.DockStyle.Left
+        Me.plRet.Location = New System.Drawing.Point(0, 0)
+        Me.plRet.Name = "plRet"
+        Me.plRet.Size = New System.Drawing.Size(21, 21)
+        Me.plRet.TabIndex = 4
+        Me.plRet.Visible = False
         '
         'Panel1
         '
@@ -154,6 +167,7 @@ Partial Class Items
         Me.LbTva.TabIndex = 0
         Me.LbTva.Text = "Label1"
         Me.LbTva.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LbTva.Visible = False
         '
         'Items
         '
@@ -180,5 +194,6 @@ Partial Class Items
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents LbPrice As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents plRet As System.Windows.Forms.Panel
 
 End Class

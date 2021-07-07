@@ -135,6 +135,7 @@
 
         Lbnm.Text = "[ " & cl.Arid & " ] " & cl.ClientName
 
+        Dim rest As Double = 0
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
             Dim tableName As String = "Facture"
             If isSell = False Then tableName = "Bon"
@@ -153,9 +154,12 @@
                     DataGridView1.Rows.Add(dt.Rows(i).Item(0),
                                            CDate(dt.Rows(i).Item("date")).ToString("dd,MM yy"),
                                            dt.Rows(i).Item("total"), dt.Rows(i).Item("bl"))
+
+                    rest += DblValue(dt, "total", i) - DblValue(dt, "avance", i)
                 Next
             End If
         End Using
+        lbCredit.Text = rest.ToString(Form1.frmDbl)
         If DataGridView1.Rows.Count > 0 Then PlLeft.Visible = True
     End Sub
     Public Sub IsdisActivated(ByVal Arid As Integer)
@@ -295,21 +299,6 @@
     End Sub
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
         searchForClient()
-        '''''searching
-
-        'For i As Integer = 0 To DataGridView1.Rows.Count - 1
-        '    If DataGridView1.Rows(i).Cells(1).Value.ToString.Contains(txtsearch.Text) Then
-        '        DataGridView1.Rows(i).Selected = True
-        '        DataGridView1.FirstDisplayedScrollingRowIndex = DataGridView1.Rows(i).Index
-        '        Exit For
-        '    End If
-        '    If DataGridView1.Rows(i).Cells(0).Value.ToString.Contains(txtsearch.Text) Then
-        '        DataGridView1.Rows(i).Selected = True
-        '        DataGridView1.FirstDisplayedScrollingRowIndex = DataGridView1.Rows(i).Index
-        '        Exit For
-        '    End If
-        'Next
-
     End Sub
     Private Sub txtsearch_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtsearch.KeyPress
         If btOk.Enabled = True Then

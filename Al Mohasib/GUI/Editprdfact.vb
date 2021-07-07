@@ -1,5 +1,7 @@
 ﻿Public Class Editprdfact
 
+    Dim _depot As Integer
+
     Public Property prdName As String
         Get
             Return txtArSearch.text
@@ -16,6 +18,19 @@
             txtsprice.text = value
         End Set
     End Property
+    Public Property depot As Integer
+        Get
+            If chNotDepot.Checked Then Return 0
+            If Not IsNumeric(cbDepot.SelectedValue) Then Return 0
+            Return cbDepot.SelectedValue
+        End Get
+        Set(ByVal value As Integer)
+            _depot = value
+            If value = 0 Then chNotDepot.Checked = True
+            cbDepot.SelectedValue = value
+
+        End Set
+    End Property
     Public Property prdBPrice As Double
         Get
             Return txtbprice.text
@@ -29,6 +44,7 @@
             Return txtqte.text
         End Get
         Set(ByVal value As Double)
+
             txtqte.text = value
         End Set
     End Property
@@ -54,7 +70,8 @@
         End Get
     End Property
 
-    Public Sub New(ByVal name As String, ByVal bprice As String, ByVal sprice As String, ByVal qte As String)
+    Public Sub New(ByVal name As String, ByVal bprice As String,
+                   ByVal sprice As String, ByVal qte As String, ByVal dp As String)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -65,39 +82,16 @@
         prdBPrice = bprice
         prdSPrice = sprice
         prdQte = qte
-
+        Depot = dp
 
 
 
     End Sub
     Private Sub Editprdfact_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'Try
-        '    Dim FTA As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
-        '    Dim FDT = FTA.GetDataByclient(Integer.Parse(Button1.Tag))
-        '    Dim a As Integer = 0
-        '    Dim i As Integer = 0
-        '    If FDT.Rows.Count > 0 Then
-        '        For i = 0 To FDT.Rows.Count - 1
-        '            Dim DFTA As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
-        '            'Dim dt = DFTA.GetDataByprdname(FDT.Rows(0).Item(0), DataGridView1.Rows(0).Cells(1).Value)
-        '            If dt.Rows.Count > 0 Then
-        '                ' DataGridView2.Rows(0).Cells(a).Value = dt.Rows(0).Item("price")
-        '                a += 1
+        'TODO: This line of code loads data into the 'ALMohassinDBDataSet.Depot' table. You can move, or remove it, as needed.
+        Me.DepotTableAdapter.Fill(Me.ALMohassinDBDataSet.Depot)
 
-        '                If a > 3 Then
-        '                    Exit For
-        '                End If
-
-        '            End If
-        '        Next
-
-        '    End If
-
-
-        'Catch ex As Exception
-
-        'End Try
-
+        cbDepot.SelectedValue = _depot
 
         If Form1.admin Then
             Me.Show()

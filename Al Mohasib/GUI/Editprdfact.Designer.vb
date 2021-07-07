@@ -22,6 +22,7 @@ Partial Class Editprdfact
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Editprdfact))
         Me.plup = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
@@ -38,19 +39,30 @@ Partial Class Editprdfact
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Panel17 = New System.Windows.Forms.Panel()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.chNotDepot = New System.Windows.Forms.CheckBox()
+        Me.cbDepot = New System.Windows.Forms.ComboBox()
+        Me.DepotBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.txtTotal = New Al_Mohasib.TxtBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtsprice = New Al_Mohasib.TxtBox()
+        Me.LBSPR = New System.Windows.Forms.Label()
+        Me.LBQTE = New System.Windows.Forms.Label()
         Me.txtqte = New Al_Mohasib.TxtBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.LBQTE = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.LBSPR = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.LBBPRICE = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.txtsprice = New Al_Mohasib.TxtBox()
         Me.txtbprice = New Al_Mohasib.TxtBox()
         Me.txtArSearch = New Al_Mohasib.TxtBox()
         Me.plClavier = New System.Windows.Forms.Panel()
+        Me.cbChangePrice = New System.Windows.Forms.CheckBox()
         Me.Button33 = New System.Windows.Forms.Button()
         Me.Button22 = New System.Windows.Forms.Button()
         Me.Button30 = New System.Windows.Forms.Button()
@@ -63,9 +75,8 @@ Partial Class Editprdfact
         Me.Button31 = New System.Windows.Forms.Button()
         Me.Button28 = New System.Windows.Forms.Button()
         Me.Button26 = New System.Windows.Forms.Button()
-        Me.txtTotal = New Al_Mohasib.TxtBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.DepotTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter()
+        Me.cbChangeName = New System.Windows.Forms.CheckBox()
         Me.plup.SuspendLayout()
         Me.Panel21.SuspendLayout()
         Me.Panel18.SuspendLayout()
@@ -73,6 +84,10 @@ Partial Class Editprdfact
         Me.Panel15.SuspendLayout()
         Me.Panel16.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.plClavier.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -82,7 +97,7 @@ Partial Class Editprdfact
         Me.plup.Controls.Add(Me.Panel18)
         Me.plup.Controls.Add(Me.Panel15)
         Me.plup.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.plup.Location = New System.Drawing.Point(300, 401)
+        Me.plup.Location = New System.Drawing.Point(300, 457)
         Me.plup.Name = "plup"
         Me.plup.Size = New System.Drawing.Size(393, 94)
         Me.plup.TabIndex = 3
@@ -242,39 +257,192 @@ Partial Class Editprdfact
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.txtTotal)
-        Me.GroupBox2.Controls.Add(Me.Label6)
-        Me.GroupBox2.Controls.Add(Me.Label7)
-        Me.GroupBox2.Controls.Add(Me.txtqte)
-        Me.GroupBox2.Controls.Add(Me.Label5)
-        Me.GroupBox2.Controls.Add(Me.Label4)
-        Me.GroupBox2.Controls.Add(Me.LBQTE)
+        Me.GroupBox2.Controls.Add(Me.chNotDepot)
+        Me.GroupBox2.Controls.Add(Me.cbDepot)
+        Me.GroupBox2.Controls.Add(Me.Panel1)
         Me.GroupBox2.Controls.Add(Me.Label3)
-        Me.GroupBox2.Controls.Add(Me.LBSPR)
+        Me.GroupBox2.Controls.Add(Me.Label8)
         Me.GroupBox2.Controls.Add(Me.Label2)
         Me.GroupBox2.Controls.Add(Me.LBBPRICE)
         Me.GroupBox2.Controls.Add(Me.Label1)
-        Me.GroupBox2.Controls.Add(Me.txtsprice)
         Me.GroupBox2.Controls.Add(Me.txtbprice)
         Me.GroupBox2.Controls.Add(Me.txtArSearch)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.Location = New System.Drawing.Point(300, 0)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(393, 401)
+        Me.GroupBox2.Size = New System.Drawing.Size(393, 457)
         Me.GroupBox2.TabIndex = 5
         Me.GroupBox2.TabStop = False
+        '
+        'chNotDepot
+        '
+        Me.chNotDepot.AutoSize = True
+        Me.chNotDepot.BackColor = System.Drawing.Color.Maroon
+        Me.chNotDepot.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chNotDepot.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.chNotDepot.Location = New System.Drawing.Point(33, 385)
+        Me.chNotDepot.Name = "chNotDepot"
+        Me.chNotDepot.Size = New System.Drawing.Size(89, 23)
+        Me.chNotDepot.TabIndex = 17
+        Me.chNotDepot.Text = "الغاء مخزن"
+        Me.chNotDepot.UseVisualStyleBackColor = False
+        '
+        'cbDepot
+        '
+        Me.cbDepot.DataSource = Me.DepotBindingSource
+        Me.cbDepot.DisplayMember = "name"
+        Me.cbDepot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbDepot.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.cbDepot.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbDepot.FormattingEnabled = True
+        Me.cbDepot.Location = New System.Drawing.Point(154, 385)
+        Me.cbDepot.Name = "cbDepot"
+        Me.cbDepot.Size = New System.Drawing.Size(141, 28)
+        Me.cbDepot.TabIndex = 16
+        Me.cbDepot.ValueMember = "dpid"
+        '
+        'DepotBindingSource
+        '
+        Me.DepotBindingSource.DataMember = "Depot"
+        Me.DepotBindingSource.DataSource = Me.ALMohassinDBDataSet
+        '
+        'ALMohassinDBDataSet
+        '
+        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
+        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.Bisque
+        Me.Panel1.Controls.Add(Me.Panel2)
+        Me.Panel1.Controls.Add(Me.Label4)
+        Me.Panel1.Controls.Add(Me.txtsprice)
+        Me.Panel1.Controls.Add(Me.LBSPR)
+        Me.Panel1.Controls.Add(Me.LBQTE)
+        Me.Panel1.Controls.Add(Me.txtqte)
+        Me.Panel1.Controls.Add(Me.Label5)
+        Me.Panel1.Location = New System.Drawing.Point(25, 142)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(349, 229)
+        Me.Panel1.TabIndex = 15
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.Chocolate
+        Me.Panel2.Controls.Add(Me.txtTotal)
+        Me.Panel2.Controls.Add(Me.Label7)
+        Me.Panel2.Controls.Add(Me.Label6)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel2.Location = New System.Drawing.Point(0, 158)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(349, 71)
+        Me.Panel2.TabIndex = 15
+        '
+        'txtTotal
+        '
+        Me.txtTotal.BackColor = System.Drawing.Color.Transparent
+        Me.txtTotal.BorderColor = System.Drawing.Color.Maroon
+        Me.txtTotal.ForeColor = System.Drawing.Color.Maroon
+        Me.txtTotal.IsNumiric = True
+        Me.txtTotal.Location = New System.Drawing.Point(8, 10)
+        Me.txtTotal.MinimumSize = New System.Drawing.Size(0, 44)
+        Me.txtTotal.Name = "txtTotal"
+        Me.txtTotal.ShowClearIcon = False
+        Me.txtTotal.ShowSaveIcon = False
+        Me.txtTotal.Size = New System.Drawing.Size(238, 44)
+        Me.txtTotal.StartUp = 2
+        Me.txtTotal.TabIndex = 12
+        Me.txtTotal.TextSize = 14
+        Me.txtTotal.TxtBackColor = True
+        Me.txtTotal.TxtColor = System.Drawing.Color.White
+        Me.txtTotal.txtReadOnly = False
+        Me.txtTotal.TxtSelect = New Integer() {1, 0}
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.AliceBlue
+        Me.Label7.Location = New System.Drawing.Point(266, 10)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(64, 19)
+        Me.Label7.TabIndex = 13
+        Me.Label7.Text = "المجمـــوع"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.AliceBlue
+        Me.Label6.Location = New System.Drawing.Point(282, 33)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(44, 16)
+        Me.Label6.TabIndex = 14
+        Me.Label6.Text = "Total"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.MediumBlue
+        Me.Label4.Location = New System.Drawing.Point(15, 14)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(100, 16)
+        Me.Label4.TabIndex = 11
+        Me.Label4.Text = "Prix de Vente"
+        '
+        'txtsprice
+        '
+        Me.txtsprice.BackColor = System.Drawing.Color.Transparent
+        Me.txtsprice.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtsprice.IsNumiric = True
+        Me.txtsprice.Location = New System.Drawing.Point(8, 33)
+        Me.txtsprice.MinimumSize = New System.Drawing.Size(0, 44)
+        Me.txtsprice.Name = "txtsprice"
+        Me.txtsprice.ShowClearIcon = False
+        Me.txtsprice.ShowSaveIcon = False
+        Me.txtsprice.Size = New System.Drawing.Size(328, 44)
+        Me.txtsprice.StartUp = 2
+        Me.txtsprice.TabIndex = 1
+        Me.txtsprice.TextSize = 8
+        Me.txtsprice.TxtBackColor = True
+        Me.txtsprice.TxtColor = System.Drawing.Color.White
+        Me.txtsprice.txtReadOnly = False
+        Me.txtsprice.TxtSelect = New Integer() {1, 0}
+        '
+        'LBSPR
+        '
+        Me.LBSPR.AutoSize = True
+        Me.LBSPR.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBSPR.ForeColor = System.Drawing.Color.MediumBlue
+        Me.LBSPR.Location = New System.Drawing.Point(255, 14)
+        Me.LBSPR.Name = "LBSPR"
+        Me.LBSPR.Size = New System.Drawing.Size(78, 19)
+        Me.LBSPR.TabIndex = 11
+        Me.LBSPR.Text = "ثــمن الــبــيـع"
+        '
+        'LBQTE
+        '
+        Me.LBQTE.AutoSize = True
+        Me.LBQTE.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBQTE.ForeColor = System.Drawing.Color.MediumBlue
+        Me.LBQTE.Location = New System.Drawing.Point(292, 84)
+        Me.LBQTE.Name = "LBQTE"
+        Me.LBQTE.Size = New System.Drawing.Size(41, 19)
+        Me.LBQTE.TabIndex = 11
+        Me.LBQTE.Text = "الكمية"
         '
         'txtqte
         '
         Me.txtqte.BackColor = System.Drawing.Color.Transparent
         Me.txtqte.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtqte.IsNumiric = True
-        Me.txtqte.Location = New System.Drawing.Point(31, 272)
+        Me.txtqte.Location = New System.Drawing.Point(8, 103)
         Me.txtqte.MinimumSize = New System.Drawing.Size(0, 44)
         Me.txtqte.Name = "txtqte"
         Me.txtqte.ShowClearIcon = False
         Me.txtqte.ShowSaveIcon = False
-        Me.txtqte.Size = New System.Drawing.Size(343, 44)
+        Me.txtqte.Size = New System.Drawing.Size(328, 44)
         Me.txtqte.StartUp = 2
         Me.txtqte.TabIndex = 2
         Me.txtqte.TextSize = 8
@@ -288,33 +456,11 @@ Partial Class Editprdfact
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.MediumBlue
-        Me.Label5.Location = New System.Drawing.Point(38, 253)
+        Me.Label5.Location = New System.Drawing.Point(15, 84)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(65, 16)
         Me.Label5.TabIndex = 11
         Me.Label5.Text = "Quantité"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.MediumBlue
-        Me.Label4.Location = New System.Drawing.Point(38, 183)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(100, 16)
-        Me.Label4.TabIndex = 11
-        Me.Label4.Text = "Prix de Vente"
-        '
-        'LBQTE
-        '
-        Me.LBQTE.AutoSize = True
-        Me.LBQTE.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBQTE.ForeColor = System.Drawing.Color.MediumBlue
-        Me.LBQTE.Location = New System.Drawing.Point(330, 254)
-        Me.LBQTE.Name = "LBQTE"
-        Me.LBQTE.Size = New System.Drawing.Size(41, 19)
-        Me.LBQTE.TabIndex = 11
-        Me.LBQTE.Text = "الكمية"
         '
         'Label3
         '
@@ -327,16 +473,16 @@ Partial Class Editprdfact
         Me.Label3.TabIndex = 11
         Me.Label3.Text = "Prix d'Achat"
         '
-        'LBSPR
+        'Label8
         '
-        Me.LBSPR.AutoSize = True
-        Me.LBSPR.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBSPR.ForeColor = System.Drawing.Color.MediumBlue
-        Me.LBSPR.Location = New System.Drawing.Point(293, 183)
-        Me.LBSPR.Name = "LBSPR"
-        Me.LBSPR.Size = New System.Drawing.Size(78, 19)
-        Me.LBSPR.TabIndex = 11
-        Me.LBSPR.Text = "ثــمن الــبــيـع"
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.MediumBlue
+        Me.Label8.Location = New System.Drawing.Point(301, 389)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(54, 19)
+        Me.Label8.TabIndex = 11
+        Me.Label8.Text = "المخــزن"
         '
         'Label2
         '
@@ -370,25 +516,6 @@ Partial Class Editprdfact
         Me.Label1.Size = New System.Drawing.Size(74, 19)
         Me.Label1.TabIndex = 11
         Me.Label1.Text = "اســم المــادة"
-        '
-        'txtsprice
-        '
-        Me.txtsprice.BackColor = System.Drawing.Color.Transparent
-        Me.txtsprice.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.txtsprice.IsNumiric = True
-        Me.txtsprice.Location = New System.Drawing.Point(31, 202)
-        Me.txtsprice.MinimumSize = New System.Drawing.Size(0, 44)
-        Me.txtsprice.Name = "txtsprice"
-        Me.txtsprice.ShowClearIcon = False
-        Me.txtsprice.ShowSaveIcon = False
-        Me.txtsprice.Size = New System.Drawing.Size(343, 44)
-        Me.txtsprice.StartUp = 2
-        Me.txtsprice.TabIndex = 1
-        Me.txtsprice.TextSize = 8
-        Me.txtsprice.TxtBackColor = True
-        Me.txtsprice.TxtColor = System.Drawing.Color.White
-        Me.txtsprice.txtReadOnly = False
-        Me.txtsprice.TxtSelect = New Integer() {1, 0}
         '
         'txtbprice
         '
@@ -433,6 +560,8 @@ Partial Class Editprdfact
         Me.plClavier.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.plClavier.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.plClavier.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.plClavier.Controls.Add(Me.cbChangeName)
+        Me.plClavier.Controls.Add(Me.cbChangePrice)
         Me.plClavier.Controls.Add(Me.Button33)
         Me.plClavier.Controls.Add(Me.Button22)
         Me.plClavier.Controls.Add(Me.Button30)
@@ -448,8 +577,21 @@ Partial Class Editprdfact
         Me.plClavier.Dock = System.Windows.Forms.DockStyle.Left
         Me.plClavier.Location = New System.Drawing.Point(0, 0)
         Me.plClavier.Name = "plClavier"
-        Me.plClavier.Size = New System.Drawing.Size(300, 495)
+        Me.plClavier.Size = New System.Drawing.Size(300, 551)
         Me.plClavier.TabIndex = 15
+        '
+        'cbChangePrice
+        '
+        Me.cbChangePrice.AutoSize = True
+        Me.cbChangePrice.BackColor = System.Drawing.Color.Green
+        Me.cbChangePrice.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbChangePrice.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.cbChangePrice.Location = New System.Drawing.Point(20, 474)
+        Me.cbChangePrice.Name = "cbChangePrice"
+        Me.cbChangePrice.Size = New System.Drawing.Size(133, 23)
+        Me.cbChangePrice.TabIndex = 17
+        Me.cbChangePrice.Text = "الثمن الجديد للمنتوج"
+        Me.cbChangePrice.UseVisualStyleBackColor = False
         '
         'Button33
         '
@@ -607,53 +749,28 @@ Partial Class Editprdfact
         Me.Button26.Text = "5"
         Me.Button26.UseVisualStyleBackColor = False
         '
-        'txtTotal
+        'DepotTableAdapter
         '
-        Me.txtTotal.BackColor = System.Drawing.Color.Transparent
-        Me.txtTotal.BorderColor = System.Drawing.Color.Maroon
-        Me.txtTotal.ForeColor = System.Drawing.Color.Maroon
-        Me.txtTotal.IsNumiric = True
-        Me.txtTotal.Location = New System.Drawing.Point(31, 334)
-        Me.txtTotal.MinimumSize = New System.Drawing.Size(0, 44)
-        Me.txtTotal.Name = "txtTotal"
-        Me.txtTotal.ShowClearIcon = False
-        Me.txtTotal.ShowSaveIcon = False
-        Me.txtTotal.Size = New System.Drawing.Size(202, 44)
-        Me.txtTotal.StartUp = 2
-        Me.txtTotal.TabIndex = 12
-        Me.txtTotal.TextSize = 14
-        Me.txtTotal.TxtBackColor = True
-        Me.txtTotal.TxtColor = System.Drawing.Color.White
-        Me.txtTotal.txtReadOnly = False
-        Me.txtTotal.TxtSelect = New Integer() {1, 0}
+        Me.DepotTableAdapter.ClearBeforeFill = True
         '
-        'Label6
+        'cbChangeName
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.Color.MediumBlue
-        Me.Label6.Location = New System.Drawing.Point(326, 362)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(44, 16)
-        Me.Label6.TabIndex = 14
-        Me.Label6.Text = "Total"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.MediumBlue
-        Me.Label7.Location = New System.Drawing.Point(310, 339)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(64, 19)
-        Me.Label7.TabIndex = 13
-        Me.Label7.Text = "المجمـــوع"
+        Me.cbChangeName.AutoSize = True
+        Me.cbChangeName.BackColor = System.Drawing.Color.Green
+        Me.cbChangeName.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbChangeName.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.cbChangeName.Location = New System.Drawing.Point(20, 503)
+        Me.cbChangeName.Name = "cbChangeName"
+        Me.cbChangeName.Size = New System.Drawing.Size(86, 23)
+        Me.cbChangeName.TabIndex = 17
+        Me.cbChangeName.Text = "تعديل الاسم"
+        Me.cbChangeName.UseVisualStyleBackColor = False
         '
         'Editprdfact
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(693, 495)
+        Me.ClientSize = New System.Drawing.Size(693, 551)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.plup)
         Me.Controls.Add(Me.plClavier)
@@ -674,7 +791,14 @@ Partial Class Editprdfact
         Me.Panel16.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.plClavier.ResumeLayout(False)
+        Me.plClavier.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -721,4 +845,14 @@ Partial Class Editprdfact
     Friend WithEvents txtTotal As Al_Mohasib.TxtBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents cbDepot As System.Windows.Forms.ComboBox
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
+    Friend WithEvents DepotBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents DepotTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter
+    Friend WithEvents chNotDepot As System.Windows.Forms.CheckBox
+    Friend WithEvents cbChangePrice As System.Windows.Forms.CheckBox
+    Friend WithEvents cbChangeName As System.Windows.Forms.CheckBox
 End Class

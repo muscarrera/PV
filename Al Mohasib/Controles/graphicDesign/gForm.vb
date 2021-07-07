@@ -62,6 +62,30 @@ Public Class gForm
         End Set
     End Property
 
+    Public Property X_Page As Integer
+        Get
+            Try
+                Return CInt(txtX.text)
+            Catch ex As Exception
+                Return 1
+            End Try
+        End Get
+        Set(ByVal value As Integer)
+            txtX.text = value
+        End Set
+    End Property
+    Public Property Y_Page As Integer
+        Get
+            Try
+                Return CInt(txtY.text)
+            Catch ex As Exception
+                Return 1
+            End Try
+        End Get
+        Set(ByVal value As Integer)
+            txtY.text = value
+        End Set
+    End Property
 
     Public ReadOnly Property Details_imp_Source As DataTable
         Get
@@ -110,11 +134,17 @@ Public Class gForm
             table.Columns.Add("Editeur", GetType(String))
             table.Columns.Add("vidal", GetType(String))
             table.Columns.Add("livreur", GetType(String))
-
+            table.Columns.Add("rest_ttc", GetType(String))
+            table.Columns.Add("x_total_ttc_sn_remise", GetType(String))
+            table.Columns.Add("RealAvance", GetType(String))
+            table.Columns.Add("RealRest", GetType(String))
+            table.Columns.Add("Rest", GetType(String))
+            table.Columns.Add("caisseAvance", GetType(String))
+            table.Columns.Add("caisseRest", GetType(String))
             ' Add  rows with those columns filled in the DataTable.
             table.Rows.Add(1, Now.Date, 1, "Mohamed", String.Format("{0:n2}", 222),
                            String.Format("{0:n2}", 66), String.Format("{0:n2}", 288), "0",
-                              "0", "0", "CHEQUE", "ADMIN", "4 - Artciles", "Med")
+                              "0", "0", "CHEQUE", "ADMIN", "4 - Artciles", "Med", 0, 0, 0, 0, 0, 0, 0)
             Return table
         End Get
     End Property
@@ -131,11 +161,12 @@ Public Class gForm
             table.Columns.Add("tel", GetType(String))
             table.Columns.Add("NvCredit", GetType(String))
             table.Columns.Add("EncCredit", GetType(String))
-
+            table.Columns.Add("RealEncCredit", GetType(String))
         
 
             ' Add  rows with those columns filled in the DataTable.
-            table.Rows.Add(1, "Mohamed", "md123", "AGADIR", "Av 01, Lot 2, Imm 3, hay Dakhla", "1234567890", "05282828283", "123", "23")
+            table.Rows.Add(1, "Mohamed", "md123", "AGADIR", "Av 01, Lot 2, Imm 3, hay Dakhla", "1234567890",
+                           "05282828283", "123", "23", "23")
 
             Return table
         End Get
@@ -162,11 +193,11 @@ Public Class gForm
                               ByVal dt_Client As DataTable,
                               ByVal hightQ As Boolean, ByRef m As Integer)
         'Create a font   
-        Dim F As New Font("Arial", 12, FontStyle.Bold)
-        Dim ff As New Font("Arial", 11, FontStyle.Italic)
+      
 
-        Dim F_T As New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
-        Dim F_D As New Font(Form1.fontName_Normal, Form1.fontSize_Normal)
+        Dim F_T As New Font(tc.pTl, tc.zTl, FontStyle.Bold)
+        Dim F_D As New Font(tc.pIn, tc.zIn)
+        If tc.isBIn Then F_D = New Font(tc.pIn, tc.zIn, FontStyle.Bold)
 
         Dim y As Integer = 20
         Dim h As Integer = 20
@@ -193,7 +224,6 @@ Public Class gForm
 
         Dim params_tva As New Dictionary(Of Double, Double)
 
-
         'Create a new bitmap
         Using Bmp As New Bitmap(_w, _h, Imaging.PixelFormat.Format24bppRgb)
             'Set the resolution to 300 DPI
@@ -207,10 +237,10 @@ Public Class gForm
                     G.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
                     G.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
                     G.TextRenderingHint = Drawing.Text.TextRenderingHint.AntiAlias
-                    h = F.Height + 40
+                    '  h = F.Height + 40
                 End If
 
-
+                G.DrawString("P- ............//", F_D, Brushes.Black, tc.x, _h - 33)
 
                 Using B As New SolidBrush(Color.Black)
                     For Each a As gTopField In TopFieldDic
@@ -291,6 +321,16 @@ Public Class gForm
                         x = x + c.ColWidth
                     Next
 
+                ElseIf tc.Type = "None" Then  '//////////////////////////////////////////////
+
+
+
+                    For Each c As gColClass In tc.details
+                        G.DrawString(c.HeaderName, F_T, Brushes.Black,
+                                        New RectangleF(x, tc.y + 3, c.ColWidth, 15), sfc)
+
+                        x = x + c.ColWidth
+                    Next
 
                 ElseIf tc.Type = "Table_2" Then '//////////////////////////////////////////////
                     G.DrawLine(pen, tc.x, tc.y + tc.TabHeight, tc.x + tc.TabWidth, tc.y + tc.TabHeight)
@@ -382,30 +422,62 @@ Public Class gForm
                     End If
 
                     Dim _x As Integer = tc.x
-
                     Dim plus_h As Integer = F_D.Height
 
+
+                    If tc.hasRows Then
+
+                        Dim __h = plus_h
+                        For Each c As gColClass In tc.details
+                            If c.Field = "name" Then '///////////////////////////////////////////////
+                                Dim _str = details.Rows(m).Item("name")
+                                sf.Alignment = StringAlignment.Near
+                                Dim size As SizeF = G.MeasureString(_str, F_D, c.ColWidth - 3)
+                                __h = size.Height
+                            End If
+                        Next
+                        If m Mod 2 > 0 Then
+                            G.FillRectangle(Brushes.WhiteSmoke, tc.x, y, tc.TabWidth, __h)
+                            G.DrawRectangle(Pens.Black, tc.x, y, tc.TabWidth, __h)
+                        End If
+                        G.DrawRectangle(Pens.Black, tc.x, y, tc.TabWidth, __h)
+                    End If
+
+                    Dim dh_ryal = 1
+                    Dim formatString = "N2"
 
                     For Each c As gColClass In tc.details
                         'plus_h = F_D.Height
                         Dim _str As String = ""
+                        Dim field As String = c.Field
 
-                        If c.Field = "xTotal" Then '////////////////////////////////////////////////
+                        dh_ryal = 1
+                        If c.Field.Contains("-RYL") Then
+                            dh_ryal = 20
+                            field = c.Field.Split("-")(0)
+                            formatString = "N0"
+                        End If
+
+                        If field = "xTotal" Then '////////////////////////////////////////////////
                             _str = details.Rows(m).Item("qte") * details.Rows(m).Item("price")
-                            _str = String.Format("{0:0.00}", CDbl(_str))
+                            _str = CDbl(_str).ToString(formatString)
+                            _str = CDbl(_str * dh_ryal)
                             sf.Alignment = StringAlignment.Far
-                        ElseIf c.Field = "xPriceTTC" Then '/////////////////////////////////////////
+                        ElseIf field = "xPriceTTC" Then '/////////////////////////////////////////
                             _str = details.Rows(m).Item("price")
                             Dim tva As Double = details.Rows(m).Item("tva")
                             _str = _str + ((_str * tva) / 100)
-                            _str = String.Format("{0:0.00}", CDbl(_str))
+                            _str = CDbl(_str * dh_ryal)
+                            _str = CDbl(_str).ToString(formatString)
                             sf.Alignment = StringAlignment.Far
-                        ElseIf c.Field = "xTotalTTC" Then '/////////////////////////////////////////
+                        ElseIf field = "xTotalTTC" Then '/////////////////////////////////////////
                             _str = details.Rows(m).Item("qte") * details.Rows(m).Item("price")
                             Dim tva As Double = details.Rows(m).Item("tva")
+                            _str = CDbl(_str * dh_ryal)
                             _str = _str + ((_str * tva) / 100)
-                            _str = String.Format("{0:0.00}", CDbl(_str))
-                        ElseIf c.Field = "xdepot" Then '////////////////////////////////////////////
+                            _str = CDbl(_str).ToString(formatString)
+                            sf.Alignment = StringAlignment.Far
+                        ElseIf field = "xdepot" Then '////////////////////////////////////////////
                             _str = details.Rows(m).Item("depot")
                             Try
                                 Dim results = From myRow As DataRow In Form1.dt_Depot.Rows Where myRow(0) = _str Select myRow
@@ -415,30 +487,31 @@ Public Class gForm
                             End Try
                             sf.Alignment = StringAlignment.Near
 
-                        ElseIf c.Field = "xname" Then '//////////////////////////////////////////////
+                        ElseIf field = "xname" Then '//////////////////////////////////////////////
                             _str = "[" & details.Rows(m).Item("ref") & "] " & details.Rows(m).Item("name")
                             sf.Alignment = StringAlignment.Near
                             Dim size As SizeF = G.MeasureString(_str, F_D, c.ColWidth - 3)
                             plus_h = size.Height
 
-                        ElseIf c.Field = "name" Then '///////////////////////////////////////////////
+                        ElseIf field = "name" Then '///////////////////////////////////////////////
                             _str = details.Rows(m).Item("name")
                             sf.Alignment = StringAlignment.Near
                             Dim size As SizeF = G.MeasureString(_str, F_D, c.ColWidth - 3)
                             plus_h = size.Height
 
-                        ElseIf c.Field = "tva" Or c.Field = "remise" Then '///////////////////////////
+                        ElseIf field = "tva" Or c.Field = "remise" Then '///////////////////////////
                             _str = details.Rows(m).Item(c.Field) & " %"
 
                             If details.Rows(m).Item(c.Field).ToString = "0" Or details.Rows(m).Item(c.Field).ToString = "" Then _str = "Exo"
                             sf.Alignment = StringAlignment.Center
 
-                        ElseIf c.Field = "price" Then '///////////////////////////////////////////////
-                            _str = details.Rows(m).Item(c.Field)
-                            _str = String.Format("{0:0.00}", CDbl(_str))
+                        ElseIf field = "price" Then '///////////////////////////////////////////////
+                            _str = details.Rows(m).Item("price")
+                            _str = CDbl(_str * dh_ryal)
+                            _str = CDbl(_str).ToString(formatString)
                             sf.Alignment = StringAlignment.Far
 
-                        ElseIf c.Field = "qte" Then '////////////////////////////////////////////////
+                        ElseIf field = "qte" Then '////////////////////////////////////////////////
                             _str = details.Rows(m).Item(c.Field)
                             sf.Alignment = StringAlignment.Center
                         Else
@@ -511,6 +584,17 @@ Public Class gForm
                                 G.DrawString(Str, fn, B, New RectangleF(xx, yy, a.width, a.height), sf)
                             Catch ex As Exception
                             End Try
+
+                        ElseIf a.field.StartsWith("RYL-") Then
+                            Dim s = a.field.Split("-")(1)
+                            Dim Str = CStr(a.designation)
+                            Str &= CInt(data.Rows(0).Item(s) * 20).ToString("N0")
+                            Try
+                                sf.Alignment = StringAlignment.Far
+                                G.DrawString(Str, fn, B, New RectangleF(xx, yy, a.width, a.height), sf)
+                                sf.Alignment = StringAlignment.Near
+                            Catch ex As Exception
+                            End Try
                         ElseIf a.field.StartsWith("total") Then
                             If a.hasBloc Then
                                 Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
@@ -542,7 +626,7 @@ Public Class gForm
                             G.DrawString(CStr(a.designation), fn, B, New RectangleF(xx, yy, a.width, a.height), sf)
                             sf.Alignment = StringAlignment.Far
                             Try
-                            
+
                                 Dim ttr As String = CDbl(data.Rows(0).Item("total_ttc")) + CDbl(data.Rows(0).Item("total_remise"))
                                 G.DrawString(ttr, fn, B, New RectangleF(xx + a.width - 10, yy, a.width, a.height), sf)
                             Catch ex As Exception
@@ -775,9 +859,12 @@ Public Class gForm
         g.TopFieldDic = TopFieldDic
         g.W_Page = W_Page
         g.h_Page = H_Page
+        g.x_Page = X_Page
+        g.y_Page = Y_Page
         g.localName = localname
         g.TabProp = gt.TabProp
         g.is_Landscape = isLandScape
+        g.has_StopEntete = cbEntete.Checked
         g.P_name = p_name
         g.p_Kind = p_Kind
         WriteToXmlFile(Of gGlobClass)(Form1.ImgPah & "\Prt_Dsn\" & localname, g)
@@ -786,16 +873,18 @@ Public Class gForm
         Dim g As New gGlobClass
         Try
 
-       
-        g = ReadFromXmlFile(Of gGlobClass)(Form1.ImgPah & "\Prt_Dsn\" & localname)
-        FooterFieldDic = g.FooterFieldDic
-        TopFieldDic = g.TopFieldDic
-        W_Page = g.W_Page
-        H_Page = g.h_Page
-        p_name = g.P_name
-        p_Kind = g.p_Kind
-        isLandScape = g.is_Landscape
-        gt.TabProp = g.TabProp
+            g = ReadFromXmlFile(Of gGlobClass)(Form1.ImgPah & "\Prt_Dsn\" & localname)
+            FooterFieldDic = g.FooterFieldDic
+            TopFieldDic = g.TopFieldDic
+            W_Page = g.W_Page
+            H_Page = g.h_Page
+            X_Page = g.x_Page
+            Y_Page = g.y_Page
+            p_name = g.P_name
+            p_Kind = g.p_Kind
+            isLandScape = g.is_Landscape
+            cbEntete.Checked = g.has_StopEntete
+            gt.TabProp = g.TabProp
 
         For Each ff As gTopField In TopFieldDic
             Dim bt As New Button
@@ -905,7 +994,7 @@ Public Class gForm
         End If
     End Sub
 
-    Private Sub txt_w_TxtChanged() Handles Txt_H.TxtChanged, Txt_W.TxtChanged
+    Private Sub txt_w_TxtChanged() Handles Txt_H.TxtChanged, Txt_W.TxtChanged, txtY.TxtChanged, txtX.TxtChanged
         If isLandScape Then
             pb.Width = H_Page
             pb.Height = W_Page
@@ -935,4 +1024,5 @@ Public Class gForm
         p_name = doc.DefaultPageSettings.PaperSize.PaperName
         p_Kind = doc.DefaultPageSettings.PaperSize.Kind
     End Sub
+
 End Class

@@ -13,6 +13,9 @@
     End Sub
 
     Private Sub RectangleShape3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RectangleShape3.Click
+
+        lbEncours.Visible = True
+
         Dim id As Integer
         isSearch = True
         _str = "Ventes de " & txtarticlearchive.text
@@ -45,6 +48,7 @@
         Catch ex As Exception
 
         End Try
+        lbEncours.Visible = False
     End Sub
 
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btswitsh.Click
@@ -68,17 +72,26 @@
     Private Sub Button16_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button16.Click
         If DataGridView1.Rows.Count = 0 Then Exit Sub
 
-        Try
-            PrintDoc3.PrinterSettings.PrinterName = Form1.txttimp.Text
-            PrintDoc3.Print()
+        Dim str As String = _str
 
-        Catch ex As Exception
+        str &= " " & Now.Date.ToString("dd-MM-yyyy")
 
-            If Form1.PrintDlg.ShowDialog = Windows.Forms.DialogResult.OK Then
-                PrintDoc3.PrinterSettings.PrinterName = Form1.PrintDlg.PrinterSettings.PrinterName
-                PrintDoc3.Print()
-            End If
-        End Try
+        str = str.Replace("/", " ")
+        str = str.Replace("|", " ")
+
+        SaveDataToHtml(DataGridView1, str)
+
+        'Try
+        '    PrintDoc3.PrinterSettings.PrinterName = Form1.txttimp.Text
+        '    PrintDoc3.Print()
+
+        'Catch ex As Exception
+
+        '    If Form1.PrintDlg.ShowDialog = Windows.Forms.DialogResult.OK Then
+        '        PrintDoc3.PrinterSettings.PrinterName = Form1.PrintDlg.PrinterSettings.PrinterName
+        '        PrintDoc3.Print()
+        '    End If
+        'End Try
     End Sub
   
     Private Sub PrintDoc3_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDoc3.PrintPage
@@ -96,6 +109,7 @@
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         ''//
+        lbEncours.Visible = True
         _str = "Tous les produit"
         isSearch = False
         _strdt = "du " & DtpArt1.Text & " Au  " & DtpArt2.Text
@@ -147,7 +161,7 @@
                             Dim q As Integer = 0
                             Dim itemLOC As Integer = -1
                             For q = 0 To DataGridView1.Rows.Count - 1
-                                If dt2.Rows(t).Item("arid") = DataGridView1.Rows(q).Cells(1).Value Then
+                                If dt2.Rows(t).Item("arid").ToString = DataGridView1.Rows(q).Cells(1).Value.ToString Then
                                     'item found
                                     itemLOC = q
                                     Exit For
@@ -158,7 +172,7 @@
                             'bprice += (bprice * dt2.Rows(t).Item("tva") / 100)
                             Dim sprice As Decimal = dt2.Rows(t).Item("qte") * dt2.Rows(t).Item("price")
                             'sprice += (sprice * dt2.Rows(t).Item("tva") / 100)
-                            Dim dte As Date = CDate(dt2.Rows(t).Item("date"))
+                            'Dim dte As Date = CDate(dt.Rows(i).Item("date"))
                             Dim tv As Decimal = (sprice * dt2.Rows(t).Item("tva") / 100)
 
                             If itemLOC = -1 Then
@@ -185,8 +199,16 @@
                                  '''''''''''''''''''''''''''''''''''
                             End If
                         Next
+
+
                     End If
                 Next
+
+                DataGridView1.Rows.Add("-----", "Total", "-----", String.Format("{0:n}", CDec(tQte)),
+                                                                String.Format("{0:n}", tbPrice),
+                                                                  String.Format("{0:n}", tsPrice),
+                                                                   String.Format("{0:n}", tTva))
+
             End If
         End Using
         ''''''''
@@ -229,5 +251,6 @@
         Next
 
         '''''''''
+        lbEncours.Visible = False
     End Sub
 End Class

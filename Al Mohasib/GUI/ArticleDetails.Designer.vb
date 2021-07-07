@@ -25,8 +25,6 @@ Partial Class ArticleDetails
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.RPl = New Al_Mohasib.RPanel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
@@ -51,6 +49,7 @@ Partial Class ArticleDetails
         Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.plrightA = New System.Windows.Forms.Panel()
+        Me.lbEncours = New System.Windows.Forms.Label()
         Me.btswitsh = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button16 = New System.Windows.Forms.Button()
@@ -59,36 +58,15 @@ Partial Class ArticleDetails
         Me.Button15 = New System.Windows.Forms.Button()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.PrintDoc3 = New System.Drawing.Printing.PrintDocument()
-        Me.Panel1.SuspendLayout()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.RPl = New Al_Mohasib.RPanel()
         Me.Panel2.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.plrightA.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.RPl)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(330, 612)
-        Me.Panel1.TabIndex = 0
-        '
-        'RPl
-        '
-        Me.RPl.Avance = 0.0R
-        Me.RPl.bl = "---"
-        Me.RPl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.RPl.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RPl.EditMode = True
-        Me.RPl.Location = New System.Drawing.Point(0, 0)
-        Me.RPl.Name = "RPl"
-        Me.RPl.Remise = "0"
-        Me.RPl.ShowClc = False
-        Me.RPl.Size = New System.Drawing.Size(330, 612)
-        Me.RPl.TabIndex = 1
         '
         'Panel2
         '
@@ -137,11 +115,11 @@ Partial Class ArticleDetails
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Miriam", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.SystemColors.ButtonShadow
         Me.Label1.Location = New System.Drawing.Point(991, 18)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(190, 14)
+        Me.Label1.Size = New System.Drawing.Size(228, 13)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "للبحت عن السلعة  ( بإدخال جزء من الاسم او الرقم)"
         '
@@ -354,6 +332,7 @@ Partial Class ArticleDetails
         Me.plrightA.BackColor = System.Drawing.Color.DimGray
         Me.plrightA.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.SEARCHART2
         Me.plrightA.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.plrightA.Controls.Add(Me.lbEncours)
         Me.plrightA.Controls.Add(Me.btswitsh)
         Me.plrightA.Controls.Add(Me.Button1)
         Me.plrightA.Controls.Add(Me.Button16)
@@ -367,6 +346,18 @@ Partial Class ArticleDetails
         Me.plrightA.Padding = New System.Windows.Forms.Padding(3)
         Me.plrightA.Size = New System.Drawing.Size(754, 37)
         Me.plrightA.TabIndex = 15
+        '
+        'lbEncours
+        '
+        Me.lbEncours.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbEncours.AutoSize = True
+        Me.lbEncours.BackColor = System.Drawing.Color.Transparent
+        Me.lbEncours.Location = New System.Drawing.Point(293, 12)
+        Me.lbEncours.Name = "lbEncours"
+        Me.lbEncours.Size = New System.Drawing.Size(105, 13)
+        Me.lbEncours.TabIndex = 9
+        Me.lbEncours.Text = "Encours d'analyse ..."
+        Me.lbEncours.Visible = False
         '
         'btswitsh
         '
@@ -418,11 +409,11 @@ Partial Class ArticleDetails
         '
         Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Miriam", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.SystemColors.ButtonShadow
         Me.Label8.Location = New System.Drawing.Point(991, 18)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(190, 14)
+        Me.Label8.Size = New System.Drawing.Size(228, 13)
         Me.Label8.TabIndex = 0
         Me.Label8.Text = "للبحت عن السلعة  ( بإدخال جزء من الاسم او الرقم)"
         '
@@ -457,6 +448,35 @@ Partial Class ArticleDetails
         'PrintDoc3
         '
         '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.RPl)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(330, 612)
+        Me.Panel1.TabIndex = 0
+        '
+        'RPl
+        '
+        Me.RPl.Avance = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.RPl.bl = "---"
+        Me.RPl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.RPl.delivredDay = Nothing
+        Me.RPl.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RPl.EditMode = True
+        Me.RPl.hasManyRemise = False
+        Me.RPl.hideClc = False
+        Me.RPl.Location = New System.Drawing.Point(0, 0)
+        Me.RPl.Name = "RPl"
+        Me.RPl.Num = 0
+        Me.RPl.Remise = "0"
+        Me.RPl.ShowClc = False
+        Me.RPl.ShowProfit = False
+        Me.RPl.Size = New System.Drawing.Size(330, 612)
+        Me.RPl.TabIndex = 1
+        Me.RPl.TypePrinter = "&"
+        '
         'ArticleDetails
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -467,7 +487,6 @@ Partial Class ArticleDetails
         Me.Controls.Add(Me.Panel1)
         Me.Name = "ArticleDetails"
         Me.Text = "Articles"
-        Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.Panel4.ResumeLayout(False)
@@ -476,10 +495,10 @@ Partial Class ArticleDetails
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.plrightA.ResumeLayout(False)
         Me.plrightA.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
@@ -493,7 +512,6 @@ Partial Class ArticleDetails
     Friend WithEvents Button15 As System.Windows.Forms.Button
     Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
     Friend WithEvents RectangleShape3 As Microsoft.VisualBasic.PowerPacks.RectangleShape
-    Friend WithEvents RPl As Al_Mohasib.RPanel
     Friend WithEvents txtarticlearchive As Al_Mohasib.TxtBox
     Friend WithEvents ShapeContainer2 As Microsoft.VisualBasic.PowerPacks.ShapeContainer
     Friend WithEvents btswitsh As System.Windows.Forms.Button
@@ -513,4 +531,7 @@ Partial Class ArticleDetails
     Friend WithEvents DataGridViewTextBoxColumn15 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn18 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn20 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents lbEncours As System.Windows.Forms.Label
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents RPl As Al_Mohasib.RPanel
 End Class

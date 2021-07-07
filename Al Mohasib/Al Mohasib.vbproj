@@ -106,6 +106,7 @@
     <Compile Include="Class\DataAccess.vb" />
     <Compile Include="Class\DrawClass.vb" />
     <Compile Include="Class\NumericStrings.vb" />
+    <Compile Include="Class\PaletteFixModule.vb" />
     <Compile Include="Class\SubClass.vb" />
     <Compile Include="Class\SubFacture.vb" />
     <Compile Include="Controles\AddList.Designer.vb">
@@ -191,6 +192,12 @@
       <DependentUpon>PvArticle.vb</DependentUpon>
     </Compile>
     <Compile Include="Controles\PvArticle.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\PvCat.Designer.vb">
+      <DependentUpon>PvCat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\PvCat.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controles\RPanel.Designer.vb">
@@ -354,6 +361,12 @@
       <DependentUpon>ClientDetails.vb</DependentUpon>
     </Compile>
     <Compile Include="GUI\ClientDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ClientRapport.Designer.vb">
+      <DependentUpon>ClientRapport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ClientRapport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\company.Designer.vb">
@@ -571,6 +584,22 @@
     <Compile Include="GUI\SavePrint.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\SidePanel\AddEditSideElement.Designer.vb">
+      <DependentUpon>AddEditSideElement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\SidePanel\AddEditSideElement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\SidePanel\AddEditSidePanel.Designer.vb">
+      <DependentUpon>AddEditSidePanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\SidePanel\AddEditSidePanel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\SidePanel\SideClass.vb" />
+    <Compile Include="GUI\SidePanel\SideElement.vb" />
+    <Compile Include="GUI\SidePanel\SideGlobal.vb" />
+    <Compile Include="GUI\SidePanel\SidePanel.vb" />
     <Compile Include="GUI\stk.Designer.vb">
       <DependentUpon>stk.vb</DependentUpon>
     </Compile>
@@ -587,6 +616,12 @@
       <DependentUpon>testimage.vb</DependentUpon>
     </Compile>
     <Compile Include="GUI\testimage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\TransformeStock.Designer.vb">
+      <DependentUpon>TransformeStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\TransformeStock.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\TrialVersion.Designer.vb">
@@ -650,6 +685,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controles\PvArticle.resx">
       <DependentUpon>PvArticle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\PvCat.resx">
+      <DependentUpon>PvCat.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controles\RPanel.resx">
       <DependentUpon>RPanel.vb</DependentUpon>
@@ -731,6 +769,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ClientDetails.resx">
       <DependentUpon>ClientDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ClientRapport.resx">
+      <DependentUpon>ClientRapport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\company.resx">
       <DependentUpon>company.vb</DependentUpon>
@@ -837,6 +878,12 @@
     <EmbeddedResource Include="GUI\SavePrint.resx">
       <DependentUpon>SavePrint.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\SidePanel\AddEditSideElement.resx">
+      <DependentUpon>AddEditSideElement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\SidePanel\AddEditSidePanel.resx">
+      <DependentUpon>AddEditSidePanel.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\stk.resx">
       <DependentUpon>stk.vb</DependentUpon>
     </EmbeddedResource>
@@ -845,6 +892,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\testimage.resx">
       <DependentUpon>testimage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\TransformeStock.resx">
+      <DependentUpon>TransformeStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\TrialVersion.resx">
       <DependentUpon>TrialVersion.vb</DependentUpon>
@@ -989,6 +1039,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MyBarcode.dll" />
+    <None Include="Resources\stock-icon-png-14.png" />
+    <None Include="Resources\iconfinder_pdf_3745 %281%29.png" />
+    <None Include="Resources\iconfinder_kde-folder-saved-search_25195 %281%29.png" />
+    <None Include="Resources\RT.png" />
+    <None Include="Resources\RetourItem.png" />
+    <None Include="Resources\catPR.png" />
+    <None Include="Resources\catNX.png" />
+    <None Include="Resources\PREV.png" />
+    <None Include="Resources\NEXT.png" />
+    <None Include="Resources\Black_right_angled_triangle_3.png" />
+    <None Include="Resources\WhatsApp Image 2021-06-02 at 17.59.22.jpeg" />
+    <None Include="Resources\WhatsApp Image 2021-06-02 at 17.59.22 %281%29.jpeg" />
+    <None Include="Resources\WhatsApp Image 2021-06-02 at 13.13.57.jpeg" />
+    <None Include="Resources\WhatsApp Image 2021-06-02 at 13.13.57 %281%29.jpeg" />
+    <None Include="Resources\r.jpg" />
+    <None Include="Resources\gui-10.jpg" />
+    <None Include="Resources\gui-09.jpg" />
+    <None Include="Resources\ADD14.png" />
+    <None Include="Resources\ADD20.png" />
+    <None Include="Resources\BGpRD.png" />
     <None Include="Resources\s-l300.jpg" />
     <None Include="Resources\iconfinder_Gnome-Emblem-System-48_55301.png" />
     <None Include="Resources\consumer-products.jpg" />

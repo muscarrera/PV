@@ -140,11 +140,14 @@
         Dim tName As String = "Bon"
         Dim fld As String = "bonid"
         Dim cl As String = "comid"
+        Dim _pid As String = "PBid"
+
         If isSell Then
             tableName = "Payment"
             tName = "Facture"
             fld = "fctid"
             cl = "clid"
+            _pid = "Pid"
         End If
 
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
@@ -155,7 +158,7 @@
             params.Add(cl, clid)
             params.Add("montant", montant)
             params.Add("way", way)
-            params.Add("date", Format(dte, "dd-MM-yyyy"))
+            params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
             params.Add("Num", num)
             params.Add(fld, fctid)
             params.Add("writer", CStr(Form1.adminName))
@@ -172,7 +175,7 @@
                 params.Add("name", "@" & Pid)
                 params.Add(cl, clid)
                 params.Add("way", way & " - [Rest]")
-                params.Add("date", Format(dte, "dd-MM-yyyy"))
+                params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
                 params.Add("Num", "[" & montant & "]" & num)
                 params.Add(fld, fctid)
                 params.Add("writer", CStr(Form1.adminName))
@@ -201,7 +204,7 @@
                     params.Add("name", "@" & Pid)
                     params.Add(cl, clid)
                     params.Add("way", way & " - [" & montant & "]")
-                    params.Add("date", Format(dte, "dd-MM-yyyy"))
+                    params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
                     params.Add("Num", "[" & fctid & "] - " & num)
                     params.Add(fld, id)
                     params.Add("writer", CStr(Form1.adminName))
@@ -220,6 +223,49 @@
                     If tt = 0 Then Exit For
                     'End If
                 Next
+
+
+
+                If tt > 0 Then
+                    Dim p As Integer = 0
+                    Dim m As Double = 0
+                    Try
+                        params.Clear()
+                        params.Add(fld, 0)
+                        params.Add(cl, clid)
+
+                        Dim pchdt = c.SelectDataTable(tableName, {_pid, "montant"}, params)
+                        p = IntValue(pchdt, _pid, 0)
+                        m = DblValue(pchdt, "montant", 0)
+                    Catch ex As Exception
+                    End Try
+
+                    If p > 0 Then
+                        params.Clear()
+                        where.Clear()
+
+                        params.Add("montant", tt + m)
+                        where.Add(_pid, p)
+                        c.UpdateRecord(tableName, params, where)
+                        params.Clear()
+                    Else
+                        params.Clear()
+                        params.Add("montant", tt)
+                        params.Add("name", clientName)
+                        params.Add(cl, clid)
+                        params.Add("way", "POCHET")
+                        params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
+                        params.Add("Num", "POCHET")
+                        params.Add(fld, 0)
+                        params.Add("writer", CStr(Form1.adminName))
+
+                        c.InsertRecord(tableName, params)
+                        params.Clear()
+                    End If
+                End If
+
+
+
             End If
             where.Add(fld, fctid)
             dt = c.SelectDataTable(tableName, {"*"}, where)
@@ -236,12 +282,17 @@
         Dim tName As String = "Bon"
         Dim fld As String = "bonid"
         Dim cl As String = "comid"
+        Dim _pid As String = "PBid"
+
         If isSell Then
             tableName = "Payment"
             tName = "Facture"
             fld = "fctid"
             cl = "clid"
+            _pid = "Pid"
         End If
+
+        Dim newAvance As Double = 0
 
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
             Dim params As New Dictionary(Of String, Object)
@@ -255,7 +306,7 @@
 
             params.Add("montant", montant)
             params.Add("way", way)
-            params.Add("date", Format(dte, "dd-MM-yyyy"))
+            params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
             params.Add("Num", num)
             params.Add("writer", CStr(Form1.adminName))
 
@@ -293,14 +344,31 @@
                     where.Clear()
                 Next
 
+                params.Clear()
                 params.Add("name", "@" & pid)
                 c.DeleteRecords(tableName, params)
             End If
 
+        End Using
 
-            Dim tt As Double = (Avance + montant) - total - oldMontant
+        LaodUnPaidFactures()
 
-            If editMode = True And tt > 0 And way <> "Cache" And haManyPayement Then
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim params As New Dictionary(Of String, Object)
+            Dim where As New Dictionary(Of String, Object)
+
+
+            If isSell Then
+                where.Add("fctid", fctid)
+            Else
+                where.Add("bonid", fctid)
+            End If
+
+
+            newAvance = c.SelectByScalarSUM(tableName, "SUM(montant)", where)
+            Dim tt As Double = newAvance - total '- oldMontant
+
+            If editMode = True And tt > 0 And haManyPayement Then
                 params.Clear()
                 where.Clear()
 
@@ -308,7 +376,7 @@
                 params.Add("name", "@" & pid)
                 params.Add(cl, clid)
                 params.Add("way", way & " - [Rest]")
-                params.Add("date", Format(dte, "dd-MM-yyyy"))
+                params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
                 params.Add("Num", "[" & montant & "]" & num)
                 params.Add(fld, fctid)
                 params.Add("writer", CStr(Form1.adminName))
@@ -316,10 +384,20 @@
                 c.InsertRecord(tableName, params)
                 params.Clear()
 
-                Dim ids As String() = nm.Split("|")
+                ''''''''''''''''''''''''''''''''''''''
+
+
+
+                Dim _nm As String = fctid
+                For i As Integer = 0 To DGV.Rows.Count - 1
+                    _nm &= "|" & DGV.Rows(i).Cells(1).Value
+                Next
+
+                Dim ids As String() = _nm.Split("|")
 
 
                 For i As Integer = 0 To ids.Length - 1
+                    If i = 0 Then Continue For
 
                     Dim id As Integer = CInt(ids(i))
 
@@ -350,7 +428,7 @@
                     params.Add("name", "@" & pid)
                     params.Add(cl, clid)
                     params.Add("way", way & " - [" & montant & "]")
-                    params.Add("date", Format(dte, "dd-MM-yyyy"))
+                    params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
                     params.Add("Num", "[" & fctid & "] - " & num)
                     params.Add(fld, id)
                     params.Add("writer", CStr(Form1.adminName))
@@ -368,7 +446,48 @@
 
                     If tt = 0 Then Exit For
                 Next
+
+                If tt > 0 Then
+                    Dim p As Integer = 0
+                    Dim m As Double = 0
+                    Try
+                        params.Clear()
+                        params.Add(fld, 0)
+                        params.Add(cl, clid)
+
+                        Dim pchdt = c.SelectDataTable(tableName, {_pid, "montant"}, params)
+                        p = IntValue(pchdt, _pid, 0)
+                        m = DblValue(pchdt, "montant", 0)
+                    Catch ex As Exception
+                    End Try
+
+                    If p > 0 Then
+                        params.Clear()
+                        where.Clear()
+
+                        params.Add("montant", tt + m)
+                        where.Add(_pid, p)
+                        c.UpdateRecord(tableName, params, where)
+                        params.Clear()
+                    Else
+                        params.Clear()
+                        params.Add("montant", tt)
+                        params.Add("name", clientName)
+                        params.Add(cl, clid)
+                        params.Add("way", "POCHET")
+                        params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
+                        params.Add("Num", "POCHET")
+                        params.Add(fld, 0)
+                        params.Add("writer", CStr(Form1.adminName))
+
+                        c.InsertRecord(tableName, params)
+                        params.Clear()
+                    End If
+                End If
+
+
             End If
+            where.Clear()
             where.Add(fld, fctid)
             dt = c.SelectDataTable(tableName, {"*"}, where)
             where = Nothing
@@ -395,7 +514,8 @@
 
 
             For i As Integer = 0 To dt.Rows.Count - 1
-                DGVP.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"),
+                DGVP.Rows.Add(dt.Rows(i).Item(0), DteValue(dt, "date", i).ToString("dd-MM-yyyy"),
+                              dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"),
                               dt.Rows(i).Item("Num"), dt.Rows(i).Item("name"))
                 Avance += CDbl(dt.Rows(i).Item("montant"))
             Next
@@ -404,6 +524,43 @@
             LaodUnPaidFactures()
             allowSelection = Form1.cbMultiPayemnt.Checked
         Catch x As Exception
+        End Try
+
+        'Pochet''''''''''''''''''''''''''
+        If clid = 0 Then Exit Sub
+        Try
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+
+
+                Dim tableName As String = "CompanyPayment"
+                Dim tName As String = "Bon"
+                Dim fld As String = "bonid"
+                Dim cl As String = "comid"
+                Dim _pid As String = "PBid"
+
+                If isSell Then
+                    tableName = "Payment"
+                    tName = "Facture"
+                    fld = "fctid"
+                    cl = "clid"
+                    _pid = "Pid"
+                End If
+
+                Dim params As New Dictionary(Of String, Object)
+            
+                params.Add(fld, 0)
+                params.Add(cl, clid)
+
+                Dim pchdt = c.SelectDataTable(tableName, {_pid, "montant"}, params)
+                If pchdt.rows.count > 0 Then
+                    lbPoch.Tag = IntValue(pchdt, _pid, 0)
+                    lbPoch.Text = DblValue(pchdt, "montant", 0).ToString(Form1.frmDbl)
+                    plPoch.Visible = True
+                End If
+
+                params = Nothing
+            End Using
+        Catch ex As Exception
         End Try
     End Sub
     Private Sub btcon_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btcon.Click
@@ -414,14 +571,12 @@
             Exit Sub
         End If
 
-        Dim _dte As Date = Now.Date
-        If cbway.SelectedItem = "Effet (LC)" Then _dte = CDate(dtpech.Text)
+        Dim _dte As Date = Date.Now 'CDate(dtpech.Text) 
+        If btcon.Tag <> "0" Then _dte = CDate(dtpech.Value)
+        If cbway.SelectedItem = "Effet (LC)" Then _dte = CDate(dtpech.Value)
+
 
         Dim _num As String = txtnum.text
-        If _num.Contains("[") Then _num = _num.Split("[")(0)
-        _num &= " [" & dtpech.Text & " ]"
-
-
         If Form1.RPl.EditMode = True Then _num = "@/" & _num
 
         Dim _nm As String = fctid
@@ -449,7 +604,8 @@
         Avance = 0
 
         For i As Integer = 0 To dt.Rows.Count - 1
-            DGVP.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"),
+            DGVP.Rows.Add(dt.Rows(i).Item(0), DteValue(dt, "date", i).ToString("dd-MM-yyyy"),
+                          dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"),
                           dt.Rows(i).Item("Num"), dt.Rows(i).Item("name"))
             Avance += CDbl(dt.Rows(i).Item("montant"))
         Next
@@ -481,17 +637,19 @@
         btcon.Tag = "0"
         GroupBox1.Visible = False
         allowSelection = False
-
+        dtpech.Value = Now
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         If DGVP.SelectedRows.Count = 0 Then Exit Sub
-        If DGVP.SelectedRows(0).Cells(4).Value.ToString.Contains("@") Then Exit Sub
+        If DGVP.SelectedRows(0).Cells(5).Value.ToString.Contains("@") Then Exit Sub
 
-        txtmontant.text = DGVP.SelectedRows(0).Cells(1).Value.ToString
-        txtmontant.Tag = DGVP.SelectedRows(0).Cells(1).Value.ToString
-        txtnum.text = DGVP.SelectedRows(0).Cells(3).Value.ToString
-        cbway.Text = DGVP.SelectedRows(0).Cells(2).Value.ToString
+        txtmontant.text = DGVP.SelectedRows(0).Cells(2).Value.ToString
+        txtmontant.Tag = DGVP.SelectedRows(0).Cells(2).Value.ToString
+        txtnum.text = DGVP.SelectedRows(0).Cells(4).Value.ToString
+        cbway.Text = DGVP.SelectedRows(0).Cells(3).Value.ToString
         btcon.Tag = DGVP.SelectedRows(0).Cells(0).Value.ToString
+        dtpech.Value = CDate(DGVP.SelectedRows(0).Cells(1).Value)
+
         GroupBox1.Visible = True
         _nm = DGVP.SelectedRows(0).Cells(4).Value
     End Sub
@@ -544,68 +702,14 @@
     End Sub
 
     Private Sub DGVP_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DGVP.CellClick
-
-        'If DGVP.Rows.Count = 0 Then Exit Sub
-        'If DGVP.SelectedRows.Count = 0 Then Exit Sub
-
-        'If My.Computer.Keyboard.CtrlKeyDown Then
-
-        '    If DGVP.SelectedRows(0).Cells(2).Value <> "Cheque" And DGVP.SelectedRows(0).Cells(2).Value <> "Traite" Then
-        '        Exit Sub
-        '    End If
-
-        '    Try
-        '        Dim dt As DataTable
-        '        Dim _dte As Date = Now.Date
-        '        Dim mnt As Double = DGVP.SelectedRows(0).Cells(1).Value * -1
-        '        Dim txt As String = "Le rejet de " & DGVP.SelectedRows(0).Cells(2).Value
-        '        txt &= " [" & DGVP.SelectedRows(0).Cells(3).Value & "]"
-
-        '        If isSell Then
-        '            Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
-        '            ta.Insert("@facture", clid, mnt, "REJETE", _dte, txt, fctid, Form1.admin)
-        '            dt = ta.GetDataByfctid(fctid)
-        '        Else
-        '            Dim ta As New ALMohassinDBDataSetTableAdapters.CompanyPaymentTableAdapter
-        '            ta.Insert("@facture", clid, mnt, "REJETE", _dte, txt, fctid, Form1.admin, _dte)
-        '            dt = ta.GetDataBybonid(fctid)
-        '        End If
-
-
-        '        DGVP.Rows.Clear()
-        '        Avance = 0
-        '        For i As Integer = 0 To dt.Rows.Count - 1
-        '            DGVP.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"),
-        '                          dt.Rows(i).Item("Num"), dt.Rows(i).Item("name"))
-        '            Avance += CDbl(dt.Rows(i).Item("montant"))
-        '        Next
-        '        If isSell Then
-        '            Dim ta As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
-        '            ta.UpdateAvc(Avance, fctid)
-        '        Else
-        '            Dim ta As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
-        '            ta.UpdateAvc(Avance, fctid)
-        '        End If
-
-        '        btcancel_Click(Nothing, Nothing)
-        '    Catch x As Exception
-        '        MsgBox(x.Message)
-        '    End Try
-        'Else
-        'LaoddetailPayment(DGVP.SelectedRows(0).Cells(0).Value)
-        'End If
         btPrint.Enabled = True
     End Sub
     Private Sub DataGridView1_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DGV.CellClick
         If allowSelection = False Then Exit Sub
         _nm = ""
 
-        'Dim a As Boolean = False
-        'If CBool(DGV.SelectedRows(0).Cells(0).Value) = False Then a = True
-        'DGV.SelectedRows(0).Cells(0).Value = a
-
         For i As Integer = 0 To DGV.Rows.Count - 1
-            'If CBool(DGV.SelectedRows(0).Cells(0).Value) = True Then
+
             _nm &= "|" & DGV.SelectedRows(0).Cells(1).Value
         Next
         BtTotal.Text = String.Format("{0:F}", totalSelectionner)
@@ -662,4 +766,101 @@
     End Sub
 
 
+    Private Sub btPanelAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btPanelAdd.Click
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+
+            Dim tableName As String = "CompanyPayment"
+            Dim tName As String = "Bon"
+            Dim fld As String = "bonid"
+            Dim cl As String = "comid"
+            Dim _pid As String = "PBid"
+
+            If isSell Then
+                tableName = "Payment"
+                tName = "Facture"
+                fld = "fctid"
+                cl = "clid"
+                _pid = "Pid"
+            End If
+
+            Dim params As New Dictionary(Of String, Object)
+            Dim where As New Dictionary(Of String, Object)
+
+            Dim TT As Double = CDbl(lbPoch.Text)
+            Dim _p As Integer = CInt(lbPoch.Tag)
+
+            If TT = 0 Then Exit Sub
+            If _p = 0 Then Exit Sub
+
+
+
+            Dim av As Double = total - Avance
+
+            If av > TT Then
+                av = TT
+                TT = 0
+            Else
+                TT -= av
+            End If
+            params.Add("montant", av)
+            params.Add("name", "@POCHET")
+            params.Add(cl, clid)
+            params.Add("way", "Reserve")
+            params.Add("date", Now.Date)
+            params.Add("Num", "@POCHET")
+            params.Add(fld, fctid)
+            params.Add("writer", CStr(Form1.adminName))
+
+            c.InsertRecord(tableName, params)
+
+            params.Clear()
+            where.Clear()
+
+            params.Add("montant", TT)
+            where.Add(_pid, _p)
+            c.UpdateRecord(tableName, params, where)
+            lbPoch.Text = TT.ToString(Form1.frmDbl)
+            params.Clear()
+
+
+            params.Clear()
+            where.Clear()
+            where.Add(fld, fctid)
+            Dim dt = c.SelectDataTable(tableName, {"*"}, where)
+           
+
+            'fill payment
+            DGVP.Rows.Clear()
+            Avance = 0
+
+            For i As Integer = 0 To dt.Rows.Count - 1
+                DGVP.Rows.Add(dt.Rows(i).Item(0), DteValue(dt, "date", i).ToString("dd-MM-yyyy"),
+                              dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"),
+                              dt.Rows(i).Item("Num"), dt.Rows(i).Item("name"))
+                Avance += CDbl(dt.Rows(i).Item("montant"))
+            Next
+
+            For i As Integer = 0 To DGVP.Rows.Count - 1
+                If DGVP.Rows(i).Cells(4).Value.ToString.Contains("@") Then
+                    DGVP.Rows(i).DefaultCellStyle.BackColor = Color.BurlyWood
+                End If
+            Next
+
+            If isSell Then
+                Dim ta As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
+                ta.UpdateAvc(Avance, fctid)
+            Else
+                Dim ta As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
+                ta.UpdateAvc(Avance, fctid)
+            End If
+
+            btcancel_Click(Nothing, Nothing)
+
+            If haManyPayement Then DGV.Columns(0).Visible = False
+            DGVP.ClearSelection()
+
+            where = Nothing
+            params = Nothing
+        End Using
+    End Sub
 End Class

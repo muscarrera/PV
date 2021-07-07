@@ -31,6 +31,10 @@ Partial Class PayFacture
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.plup = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
+        Me.plPoch = New System.Windows.Forms.Panel()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.btPanelAdd = New System.Windows.Forms.Button()
+        Me.lbPoch = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel22 = New System.Windows.Forms.Panel()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -57,6 +61,7 @@ Partial Class PayFacture
         Me.Button35 = New System.Windows.Forms.Button()
         Me.DGVP = New System.Windows.Forms.DataGridView()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -81,8 +86,10 @@ Partial Class PayFacture
         Me.txtnum = New Al_Mohasib.TxtBox()
         Me.txtmontant = New Al_Mohasib.TxtBox()
         Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.plup.SuspendLayout()
         Me.Panel21.SuspendLayout()
+        Me.plPoch.SuspendLayout()
         Me.Panel22.SuspendLayout()
         Me.Panel18.SuspendLayout()
         Me.Panel19.SuspendLayout()
@@ -108,20 +115,73 @@ Partial Class PayFacture
         Me.plup.Dock = System.Windows.Forms.DockStyle.Top
         Me.plup.Location = New System.Drawing.Point(0, 0)
         Me.plup.Name = "plup"
-        Me.plup.Size = New System.Drawing.Size(607, 94)
+        Me.plup.Size = New System.Drawing.Size(776, 94)
         Me.plup.TabIndex = 15
         '
         'Panel21
         '
         Me.Panel21.BackgroundImage = CType(resources.GetObject("Panel21.BackgroundImage"), System.Drawing.Image)
+        Me.Panel21.Controls.Add(Me.Button4)
+        Me.Panel21.Controls.Add(Me.plPoch)
         Me.Panel21.Controls.Add(Me.Button2)
         Me.Panel21.Controls.Add(Me.Panel22)
         Me.Panel21.Controls.Add(Me.Panel23)
         Me.Panel21.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel21.Location = New System.Drawing.Point(457, 0)
         Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(150, 94)
+        Me.Panel21.Size = New System.Drawing.Size(319, 94)
         Me.Panel21.TabIndex = 5
+        '
+        'plPoch
+        '
+        Me.plPoch.Controls.Add(Me.Label6)
+        Me.plPoch.Controls.Add(Me.btPanelAdd)
+        Me.plPoch.Controls.Add(Me.lbPoch)
+        Me.plPoch.Location = New System.Drawing.Point(6, 9)
+        Me.plPoch.Name = "plPoch"
+        Me.plPoch.Size = New System.Drawing.Size(102, 58)
+        Me.plPoch.TabIndex = 7
+        Me.plPoch.Visible = False
+        '
+        'Label6
+        '
+        Me.Label6.BackColor = System.Drawing.SystemColors.AppWorkspace
+        Me.Label6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Label6.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(0, 0)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(82, 22)
+        Me.Label6.TabIndex = 4
+        Me.Label6.Text = "POUCHET"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'btPanelAdd
+        '
+        Me.btPanelAdd.BackColor = System.Drawing.Color.MintCream
+        Me.btPanelAdd.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.ADD14
+        Me.btPanelAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btPanelAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btPanelAdd.FlatAppearance.BorderColor = System.Drawing.Color.Blue
+        Me.btPanelAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btPanelAdd.Location = New System.Drawing.Point(82, 0)
+        Me.btPanelAdd.Name = "btPanelAdd"
+        Me.btPanelAdd.Size = New System.Drawing.Size(20, 24)
+        Me.btPanelAdd.TabIndex = 6
+        Me.btPanelAdd.UseVisualStyleBackColor = False
+        '
+        'lbPoch
+        '
+        Me.lbPoch.BackColor = System.Drawing.Color.LawnGreen
+        Me.lbPoch.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.lbPoch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.lbPoch.Location = New System.Drawing.Point(0, 24)
+        Me.lbPoch.Name = "lbPoch"
+        Me.lbPoch.Size = New System.Drawing.Size(102, 34)
+        Me.lbPoch.TabIndex = 5
+        Me.lbPoch.Tag = "0"
+        Me.lbPoch.Text = "000"
+        Me.lbPoch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Button2
         '
@@ -132,9 +192,9 @@ Partial Class PayFacture
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Button2.Location = New System.Drawing.Point(6, 5)
+        Me.Button2.Location = New System.Drawing.Point(225, 4)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(79, 65)
+        Me.Button2.Size = New System.Drawing.Size(69, 65)
         Me.Button2.TabIndex = 0
         Me.Button2.Text = "خروج"
         Me.Button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -148,7 +208,7 @@ Partial Class PayFacture
         Me.Panel22.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel22.Location = New System.Drawing.Point(0, 73)
         Me.Panel22.Name = "Panel22"
-        Me.Panel22.Size = New System.Drawing.Size(149, 21)
+        Me.Panel22.Size = New System.Drawing.Size(318, 21)
         Me.Panel22.TabIndex = 3
         '
         'Label12
@@ -157,7 +217,7 @@ Partial Class PayFacture
         Me.Label12.BackColor = System.Drawing.Color.Transparent
         Me.Label12.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label12.Location = New System.Drawing.Point(27, 3)
+        Me.Label12.Location = New System.Drawing.Point(249, 3)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(28, 15)
         Me.Label12.TabIndex = 0
@@ -167,7 +227,7 @@ Partial Class PayFacture
         '
         Me.Panel23.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.line
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel23.Location = New System.Drawing.Point(149, 0)
+        Me.Panel23.Location = New System.Drawing.Point(318, 0)
         Me.Panel23.Name = "Panel23"
         Me.Panel23.Size = New System.Drawing.Size(1, 94)
         Me.Panel23.TabIndex = 2
@@ -441,7 +501,7 @@ Partial Class PayFacture
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DGVP.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DGVP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGVP.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column4, Me.Column1, Me.Column2, Me.Column5, Me.Column9})
+        Me.DGVP.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column4, Me.Column11, Me.Column1, Me.Column2, Me.Column5, Me.Column9})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -461,7 +521,7 @@ Partial Class PayFacture
         Me.DGVP.RowHeadersVisible = False
         Me.DGVP.RowTemplate.Height = 30
         Me.DGVP.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGVP.Size = New System.Drawing.Size(342, 262)
+        Me.DGVP.Size = New System.Drawing.Size(511, 262)
         Me.DGVP.TabIndex = 17
         '
         'Column4
@@ -470,6 +530,12 @@ Partial Class PayFacture
         Me.Column4.Name = "Column4"
         Me.Column4.ReadOnly = True
         Me.Column4.Visible = False
+        '
+        'Column11
+        '
+        Me.Column11.HeaderText = "Date"
+        Me.Column11.Name = "Column11"
+        Me.Column11.ReadOnly = True
         '
         'Column1
         '
@@ -502,7 +568,7 @@ Partial Class PayFacture
         Me.plSide.Controls.Add(Me.BtTotal)
         Me.plSide.Controls.Add(Me.DGV)
         Me.plSide.Dock = System.Windows.Forms.DockStyle.Right
-        Me.plSide.Location = New System.Drawing.Point(607, 0)
+        Me.plSide.Location = New System.Drawing.Point(776, 0)
         Me.plSide.Name = "plSide"
         Me.plSide.Size = New System.Drawing.Size(190, 356)
         Me.plSide.TabIndex = 18
@@ -741,11 +807,22 @@ Partial Class PayFacture
         'PrintDoc
         '
         '
+        'Button4
+        '
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Location = New System.Drawing.Point(131, 3)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(75, 67)
+        Me.Button4.TabIndex = 8
+        Me.Button4.Text = "Button4"
+        Me.Button4.UseVisualStyleBackColor = True
+        '
         'PayFacture
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(797, 356)
+        Me.ClientSize = New System.Drawing.Size(966, 356)
         Me.ControlBox = False
         Me.Controls.Add(Me.DGVP)
         Me.Controls.Add(Me.GroupBox1)
@@ -755,12 +832,11 @@ Partial Class PayFacture
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "PayFacture"
-        Me.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "                                                                                 " & _
-            "                           Paiement de facture"
+        Me.Text = "  ***       Paiement ..."
         Me.plup.ResumeLayout(False)
         Me.Panel21.ResumeLayout(False)
+        Me.plPoch.ResumeLayout(False)
         Me.Panel22.ResumeLayout(False)
         Me.Panel22.PerformLayout()
         Me.Panel18.ResumeLayout(False)
@@ -813,11 +889,6 @@ Partial Class PayFacture
     Friend WithEvents DGV As System.Windows.Forms.DataGridView
     Friend WithEvents btPrint As System.Windows.Forms.Button
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents Column4 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column5 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column9 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents lbnum As System.Windows.Forms.Label
@@ -835,4 +906,15 @@ Partial Class PayFacture
     Friend WithEvents Column7 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column10 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column8 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column11 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column9 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents lbPoch As System.Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents btPanelAdd As System.Windows.Forms.Button
+    Friend WithEvents plPoch As System.Windows.Forms.Panel
+    Friend WithEvents Button4 As System.Windows.Forms.Button
 End Class

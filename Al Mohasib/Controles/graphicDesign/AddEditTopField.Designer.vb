@@ -100,7 +100,7 @@ Partial Class AddEditTopField
         Me.CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CB.FormattingEnabled = True
         Me.CB.ItemHeight = 13
-        Me.CB.Items.AddRange(New Object() {"*", "-Titre", "id", "date", "cid", "name", "CLT_ice", "CLT_adresse", "CLT_tel", "CLT_ville", "CLT_ref", "CLT_NvCredit", "CLT_EncCredit", "total_ht", "total_tva", "total_ttc", "x_total_ttc_sn_remise", "total_remise", "total_droitTimbre", "image", "total_avance", "rest_ht", "rest_ttc", "Editeur", "livreur", "vidal", "//En_Chiffre", "MPayement", "tableau_tva", "DPT_ID", "DPT_Nom"})
+        Me.CB.Items.AddRange(New Object() {"*", "-Titre", "id", "date", "cid", "name", "CLT_ice", "CLT_adresse", "CLT_tel", "CLT_ville", "CLT_ref", "CLT_NvCredit", "CLT_EncCredit", "CLT_RealEncCredit", "total_ht", "total_tva", "total_ttc", "x_total_ttc_sn_remise", "total_remise", "total_droitTimbre", "image", "total_avance", "rest_ht", "rest_ttc", "Editeur", "livreur", "vidal", "//En_Chiffre", "MPayement", "tableau_tva", "DPT_ID", "DPT_Nom", "RYL-total_ht", "RYL-total_ttc", "RealAvance", "RealRest", "Rest", "caisseAvance", "caisseRest"})
         Me.CB.Location = New System.Drawing.Point(82, 106)
         Me.CB.Name = "CB"
         Me.CB.Size = New System.Drawing.Size(327, 21)
@@ -140,7 +140,7 @@ Partial Class AddEditTopField
         '
         Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(155, 159)
+        Me.Label3.Location = New System.Drawing.Point(158, 159)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(14, 13)
         Me.Label3.TabIndex = 16
@@ -150,7 +150,7 @@ Partial Class AddEditTopField
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(99, 159)
+        Me.Label1.Location = New System.Drawing.Point(102, 159)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(14, 13)
         Me.Label1.TabIndex = 15
@@ -238,7 +238,7 @@ Partial Class AddEditTopField
         Me.Y.BackColor = System.Drawing.Color.Transparent
         Me.Y.BorderColor = System.Drawing.SystemColors.ControlText
         Me.Y.IsNumiric = False
-        Me.Y.Location = New System.Drawing.Point(148, 175)
+        Me.Y.Location = New System.Drawing.Point(151, 175)
         Me.Y.MinimumSize = New System.Drawing.Size(0, 30)
         Me.Y.Name = "Y"
         Me.Y.ShowClearIcon = False
@@ -277,7 +277,7 @@ Partial Class AddEditTopField
         Me.X.BackColor = System.Drawing.Color.Transparent
         Me.X.BorderColor = System.Drawing.SystemColors.ControlText
         Me.X.IsNumiric = False
-        Me.X.Location = New System.Drawing.Point(82, 175)
+        Me.X.Location = New System.Drawing.Point(85, 175)
         Me.X.MinimumSize = New System.Drawing.Size(0, 30)
         Me.X.Name = "X"
         Me.X.ShowClearIcon = False

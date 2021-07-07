@@ -10,13 +10,15 @@
     Public Event UpdateArticledepot()
     Public Event UpdatearicleDetails()
     Public Event CommandeDate()
-
+    Public Event ReturnItem()
 
     Private _hasRemise As Boolean
     Public isActive As Boolean = False
     Private _EditMode As Boolean
     Private _bl As String
     Private _depot As Integer = 0
+
+
 
 
 
@@ -164,7 +166,11 @@
         RaiseEvent ValueChange()
     End Sub
     Private Sub Button15_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btPlus.Click
-        Value += 1
+        If isActive Then
+            RaiseEvent ReturnItem()
+        Else
+            RaiseEvent ValueChange()
+        End If
     End Sub
     Private Sub Button18_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtDpt.Click
         If isActive Then

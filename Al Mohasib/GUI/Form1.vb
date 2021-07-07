@@ -3,18 +3,19 @@ Imports System.IO
 Imports System.Drawing.Printing
 Imports System.Net.NetworkInformation
 Imports System.Text.RegularExpressions
+Imports System.Text
 
 Public Class Form1
     'members
-    Private TrialName As String = "ALMsbtrFirstaRunSOFI33"
-    Dim nbrDay_Trial As Integer = 60
+    Private TrialName As String = "ALMsbtrFirstaRunSOFI34"
+    Dim nbrDay_Trial As Integer = 120
 
     Public admin As Boolean
     Public adminId As Integer
     Public adminName As String
     Public isMaster As Boolean
     Public isBaseOnRIYAL As Boolean
-
+    Public frmDbl As String = "N2"
 
     Public dualScrean As New Screen2
 
@@ -25,8 +26,18 @@ Public Class Form1
     Dim dt_filtreDataSource As DataTable
     Public dt_Depot As DataTable
 
-    '91   42   20  04  44
+    Public GlobalSidePanel As New SideGlobal
 
+    Public Sub New()
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
+
+    '91   42   20  04  44
     Public ReadOnly Property ImgPah As String
         Get
             Return BtImgPah.Tag
@@ -46,7 +57,6 @@ Public Class Form1
             End If
         End Get
     End Property
-
     Public ReadOnly Property fontName_Normal_pt As String
         Get
             Return txtFnPtFr.Text
@@ -61,7 +71,6 @@ Public Class Form1
             End If
         End Get
     End Property
-
     Public Property EnableDeleting() As Boolean
         Get
             Return True
@@ -70,9 +79,6 @@ Public Class Form1
             RPl.BtDel.Visible = value
         End Set
     End Property
-
-
-
     Private _RplWidth As Integer
     Public Property RplWidth() As Integer
         Get
@@ -87,7 +93,6 @@ Public Class Form1
 
         End Set
     End Property
-
     Private _RplHeight As Integer
     Public Property RplHeight() As Integer
         Get
@@ -103,42 +108,42 @@ Public Class Form1
         End Set
     End Property
 
-
     Private is_true_to_end As Boolean = False
 
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        If isThTrueFileExist() = 0 Then End
+        SetTheTrueMacAdrssDb()
+        If isTheTrueMacAdrss(True) = 0 Then End
+
         HandleRegistryinfo()
 
-        isBaseOnRIYAL = False
+        isBaseOnRIYAL = cbRYL.Checked
+        If isBaseOnRIYAL Then frmDbl = "N0"
+
+        'is_true_to_end = True
+
+        ''Dim CDA As New PricingGetter
+        ''Dim CDA As New BarCode2
+        'Dim CDA As New LabelPrinter
+        '' '
+
+        'If CDA.ShowDialog = Windows.Forms.DialogResult.Cancel Then
+        '    End
+        'End If
 
 
-
-        'Dim CDA As New PricingGetter
-        'Dim CDA As New BarCode2
-        Dim CDA As New LabelPrinter
-
-        is_true_to_end = True
-        If CDA.ShowDialog = Windows.Forms.DialogResult.Cancel Then
-            End
-        End If
-
-
-        If is_true_to_end Then End
+        'If is_true_to_end Then End
 
 
         Try
             'trial(Version)
-            Dim trial As Boolean = checktrialSlave()
+            Dim trial As Boolean = checktrialMaster()
             If trial = False Then
                 MsgBox("Vous devez Contacter l'adminisration pour plus d'infos")
                 End
             End If
         Catch ex As Exception
         End Try
-
-
-
-
 
 
 
@@ -169,7 +174,6 @@ Public Class Form1
                 Button13.Visible = False
                 Button17.Visible = False
 
-
                 Button30.Visible = False
                 Button37.Visible = False
                 Button38.Visible = False
@@ -182,8 +186,8 @@ Public Class Form1
 
         Try
             ' TabControl1.Controls.Remove(TabPageStk)
-            'TabControl1.Controls.Remove(TabPageFac)
-            'TabControl1.Controls.Remove(TabPageChar)
+            TabControl1.Controls.Remove(TabPageFac)
+            TabControl1.Controls.Remove(TabPageChar)
         Catch ex As Exception
         End Try
 
@@ -211,6 +215,9 @@ Public Class Form1
             a.AutoCompleteArticles(txtArSearch, "Client")
             'a.BlockParticulerFct()
             If cbEnsGrp.Checked Then a.FillGroupes()
+
+            a.AutoCompleteArticlesWithRef(txtnameStock, "Article")
+
         End Using
         'charges
         Using a As ChargesClass = New ChargesClass
@@ -220,6 +227,14 @@ Public Class Form1
             a.GetCharges(dtChargeFrom.Value, dtChargeTo.Value, dgvCharge)
             a.GetUnPaiedCharges(dgvCharge, FlpCharges)
         End Using
+
+
+        If cbShowFixedPanel.Checked Then
+            Using a As SideClass = New SideClass
+                a.LoadXml(PL)
+            End Using
+        End If
+
 
         RPl.hasManyRemise = CbArticleRemise.Checked
 
@@ -232,41 +247,13 @@ Public Class Form1
 
         '''''''''''''''''''''''''
 
-        If isArabic Then
-            'TabPageAcu.Text = "   الرئــيسـية  "
-            'TabPageArch.Text = " الارشـــيـف  "
-            'TabPageChar.Text = "  المــصـاريف  "
-            'TabPageFac.Text = "  الـفـــواتر  "
-            'TabPageParm.Text = "  الاعــدادات  "
-            'TabPageStk.Text = "  المـخـــزون  "
-
-            'Button3.Text = "المـوردون"
-            'Button2.Text = "الزبائن"
-            'Button4.Text = "المـواد"
-            'Button5.Text = "المخـازن"
-
-            'DGVS.Columns(1).HeaderText = "المواد"
-            'DGVS.Columns(2).HeaderText = "الوحدة"
-            'DGVS.Columns(3).HeaderText = "الكمية"
-            'DGVS.Columns(4).HeaderText = "ثمن الشراء"
-            'DGVS.Columns(5).HeaderText = "ثمن البيع"
-            'DGVS.RightToLeft = Windows.Forms.RightToLeft.Yes
-
-            'DGVARFA.Columns(2).HeaderText = "الاسم"
-            'DGVARFA.Columns(3).HeaderText = "المجموع"
-            'DGVARFA.Columns(4).HeaderText = "الدفع"
-            'DGVARFA.Columns(5).HeaderText = "الباقي"
-            'DGVARFA.Columns(6).HeaderText = "التاريخ"
-            'DGVARFA.Columns(8).HeaderText = "المحرر"
-            'DGVARFA.Columns(11).HeaderText = "ملاحظة"
-            'DGVARFA.RightToLeft = Windows.Forms.RightToLeft.Yes
-        End If
-
         If admin And cbProfit.Checked Then
             RPl.ShowProfit = True
         Else
             RPl.ShowProfit = False
         End If
+        If isBaseOnRIYAL Then RPl.PlHeader.Height = 80
+
         'RPl.ShowClc = CbBlocCalc.Checked
         RPl.hideClc = CbBlocCalc.Checked
         RPl.TypePrinter = cbPaper.Text
@@ -281,6 +268,7 @@ Public Class Form1
         GB4.Width = 35
         GB5.Width = 35
         GB6.Width = 35
+        GB7.Width = 35
 
         'fulscreen 
         Call CenterToScreen()
@@ -432,6 +420,7 @@ Public Class Form1
                     End If
                 End If
             Case Keys.F8 ' add NOUVEAU FACTURE
+                If plright.Controls.Count > 10 Then Return False
                 Using a As SubClass = New SubClass
                     Try
                         Dim cid As String = 0
@@ -442,6 +431,7 @@ Public Class Form1
                 End Using
 
             Case Keys.F9 ' add NOUVEAU FACTURE
+                If plright.Controls.Count > 10 Then Return False
                 Using a As SubClass = New SubClass()
                     a.NewFacture(CInt(btswitsh.Tag))
                 End Using
@@ -494,14 +484,14 @@ Public Class Form1
                 End If
 
             Case Keys.Space  ' save and print
-               
+
                 Dim a As Integer = 0
 
                 If txtSearch.Focused Then a = 1
                 If txtSearchCode.Focused Then a = 1
 
                 'cancel espace
-                a = 0
+                ' a = 0
 
                 If a = 1 Then
                     If RPl.Total_TTC = 0 Then
@@ -712,6 +702,7 @@ Public Class Form1
         getRegistryinfo(txtEnsGrp, "txtEnsGrp", "1")
         getRegistryinfo(txtEnteteMarge, "txtEnteteMarge", "160")
         getRegistryinfo(txtPiedMarge, "txtPiedMarge", "750")
+        getRegistryinfo(txtDptSkiped, "txtDptSkiped", "")
 
         getRegistryinfo(chbsell, "chbsell", False)
         getRegistryinfo(CbArticleRemise, "CbArticleRemise", False)
@@ -761,6 +752,13 @@ Public Class Form1
         getRegistryinfo(cbCodeDouble, "cbCodeDouble", False)
         getRegistryinfo(cbAffichageLimite, "cbAffichageLimite", False)
         getRegistryinfo(cbBaseOnStartedRemise, "cbBaseOnStartedRemise", False)
+        getRegistryinfo(cbShowDialogPrint, "cbShowDialogPrint", False)
+        getRegistryinfo(cbRYL, "cbRYL", False)
+        getRegistryinfo(cbUseStar, "cbUseStar", False)
+        getRegistryinfo(cbShowFixedPanel, "cbShowFixedPanel", False)
+        getRegistryinfo(cbPvArticle, "cbPvArticle", False)
+        getRegistryinfo(cbPvCats, "cbPvCats", False)
+        getRegistryinfo(cbPvClient, "cbPvClient", False)
 
 
         gbprint.Enabled = chbprint.Checked
@@ -787,6 +785,9 @@ Public Class Form1
         'End Using
 
         '  checktrialMaster_Contrat()
+
+
+
 
         Dim resultkey As Integer = HandleRegistry2()
         If resultkey = 0 Then 'something went wrong
@@ -987,7 +988,7 @@ Public Class Form1
 
             Catch ex As Exception
                 MsgBox("Error 3 : trd run " & vbNewLine & ex.Message)
-                End Try
+            End Try
             Return 1
         End If
 
@@ -1034,6 +1035,179 @@ Public Class Form1
         Dim nics() As NetworkInterface = NetworkInterface.GetAllNetworkInterfaces()
         Return nics(1).GetPhysicalAddress.ToString
     End Function
+
+    Private Sub SetTheTrueMacAdrssDb()
+
+        Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
+        Dim dt = ta.GetData(myMacAdd.Split("/")(0))
+        If dt.Rows.Count > 0 Then
+        Else
+            ta.Insert(myMacAdd.Split("/")(0), myMacAdd.Split("/")(1))
+
+            Dim dt2 = ta.GetData("truefont")
+            If dt2.Rows.Count > 0 Then
+                ta.UpdateKeyVal("false", "truefont")
+            Else
+                ta.Insert("truefont", "False")
+            End If
+        End If
+    End Sub
+    Private Function isTheTrueMacAdrss(ByVal b As Boolean) As Integer
+        'cheque for mac adresse
+        Dim strReg = "Mac_Cmc_adr"
+        Dim myMac As String = myMacAdd.Split("/")(0)
+        Dim regMac As String = ""
+
+        regMac = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strReg, Nothing)
+
+
+        If regMac = Nothing Then
+            regMac = myMac
+
+            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strReg, regMac)
+            Try
+
+                Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
+                Dim dt2 = ta.GetData("truefont")
+                If dt2.Rows.Count > 0 Then
+                    ta.UpdateKeyVal("false", "truefont")
+                Else
+                    ta.Insert("truefont", "False")
+                End If
+
+
+                MsgBox("AL Mohasib System de gestion - Premier utilisation ..")
+
+            Catch ex As Exception
+                MsgBox(ex.Message)
+
+            End Try
+            Return 1
+        ElseIf regMac <> myMac Then
+            Try
+
+                If b Then
+                    Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
+                    Dim dt2 = ta.GetData("truefont")
+                    If dt2.Rows.Count > 0 Then
+                        ta.UpdateKeyVal("false", "truefont")
+                    Else
+                        ta.Insert("truefont", "False")
+                        MsgBox("AL Mohasib System de gestion - Premier utilisation ..")
+                    End If
+                End If
+
+                Dim m = InputBox("Code =  " & Now.Day)
+                If Not IsNumeric(m) Then Return 0 ' end
+
+
+                Dim tr = Now.Day * 11
+                tr += 123
+                tr += 111
+
+                tr = CInt(Now.Day() & "1" & tr & "0")
+                If m = tr Then
+                    regMac = myMac
+                    My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strReg, regMac)
+                    Return 1
+                Else
+                    Return 0
+                End If
+
+            Catch ex As Exception
+                MsgBox(ex.Message)
+                Return 0
+            End Try
+        Else
+            Return 1
+        End If
+
+    End Function
+    Dim myMacAdd As String = ""
+    Private Function isThTrueFileExist() As Integer
+        Dim strReg = "File_Cmc_True_Path"
+        Dim path As String = "c:\cmc.txt"
+        Dim regFile As String = ""
+
+        regFile = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strReg, Nothing)
+
+        Try
+            If regFile = Nothing Then
+
+                Dim m = InputBox("Code = NV fl txt dt pl 3 mo 1000")
+                If Not IsNumeric(m) Then Return 0 ' end
+                Dim tr = (Now.Day + Now.Month + Now.Year) - 1000
+
+                If m = tr Then
+
+                    ' Create or overwrite the file.
+                    Dim fs As FileStream = File.Create(path)
+
+                    ' Add text to the file.
+                    Dim mac = getMacAddress()
+                    mac = Regex.Replace(mac, "[^0-9]", "")
+                    mac &= "/" & Now.Date.ToString("ddMMyy")
+                    Dim info As Byte() = New UTF8Encoding(True).GetBytes(mac)
+                    fs.Write(info, 0, info.Length)
+                    fs.Close()
+                    myMacAdd = mac
+                    File.SetAttributes(path, FileAttributes.Hidden)
+
+                    My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strReg, 112)
+                    Return 1
+                Else
+                    Return 0
+                End If
+
+            Else
+
+
+                If System.IO.File.Exists(path) Then
+                    myMacAdd = My.Computer.FileSystem.ReadAllText(path, System.Text.Encoding.UTF8)
+
+                    If myMacAdd.Contains("/") = False Then
+                        My.Computer.FileSystem.DeleteFile(path)
+                        Dim mac = getMacAddress()
+                        mac = Regex.Replace(mac, "[^0-9]", "")
+                        mac &= "/" & Now.Date.ToString("ddMMyy")
+                        Dim fs As FileStream = File.Create(path)
+                        Dim info As Byte() = New UTF8Encoding(True).GetBytes(mac)
+                        fs.Write(info, 0, info.Length)
+                        fs.Close()
+                        myMacAdd = mac
+                    End If
+                    Return 1
+                Else
+                    Dim m = InputBox("Code = MS fl txt dt pl 3 mo 1000")
+                    If Not IsNumeric(m) Then Return 0 ' end
+                    Dim tr = (Now.Day + Now.Month + Now.Year) - 1000
+
+                    If m = tr Then
+
+                        ' Create or overwrite the file.
+                        Dim fs As FileStream = File.Create(path)
+
+                        ' Add text to the file.
+                        Dim mac = getMacAddress()
+                        mac = Regex.Replace(mac, "[^0-9]", "")
+                        mac &= "/" & Now.Date.ToString("ddMMyy")
+                        Dim info As Byte() = New UTF8Encoding(True).GetBytes(mac)
+                        fs.Write(info, 0, info.Length)
+                        fs.Close()
+
+                        File.SetAttributes(path, FileAttributes.Hidden)
+                        myMacAdd = mac
+                        My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strReg, 112)
+                        Return 1
+                    Else
+                        Return 0
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
     ' for slave
     Private Function checktrialSlave() As Boolean
         isMaster = False
@@ -1042,10 +1216,9 @@ Public Class Form1
         '    'a.LoadDb(btDbDv.Tag)
         'End Using
 
+
+
         Dim resultkey As Integer = HandleRegistry()
-        ' If resultkey = 0 Then 'something went wrong
-        '  Dim fdt As Date
-        ' fdt = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", "ALMsbFirstRun", Nothing)
         Try
             Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
 
@@ -1207,6 +1380,15 @@ Public Class Form1
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbJnImgDb", cbJnImgDb.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbArticleItemDirection", cbArticleItemDirection.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbJnReduireQte", cbJnReduireQte.Checked)
+
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbShowDialogPrint", cbShowDialogPrint.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbRYL", cbRYL.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "txtDptSkiped", txtDptSkiped.Text)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbUseStar", cbUseStar.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbShowFixedPanel", cbShowFixedPanel.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbPvArticle", cbPvArticle.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbPvCats", cbPvCats.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbPvClient", cbPvClient.Checked)
 
 
 
@@ -1374,6 +1556,23 @@ Public Class Form1
             a.FillGroupes(True)
             'a.FillGroupes()
         End Using
+    End Sub
+
+    Private Sub RPl_ReturnItem(ByVal sender As Object, ByVal e As System.EventArgs) Handles RPl.ReturnItem
+        Using a As SubClass = New SubClass(btswitsh.Tag)
+            Dim i As Items = sender
+            a.ReturnItem(i, RPl.isSell)
+        End Using
+        If RPl.EditMode = False Then
+            'Select Search txtbox
+            If chbcb.Checked Then
+                txtSearchCode.Text = ""
+                txtSearchCode.Focus()
+            Else
+                txtSearch.Text = ""
+                txtSearch.Focus()
+            End If
+        End If
     End Sub
 
     Private Sub RPl_SetDetailArticle(ByVal txt As String, ByRef i As Items) Handles RPl.SetDetailArticle
@@ -1564,12 +1763,33 @@ Public Class Form1
             End If
         End If
 
+
+        Dim nbr As Integer = txtNbrCopie.Text
+        Dim nm As String = txttimp.Text
+        If isBl = False Then nm = txtreceipt.Text
+
+
+        Try
+            If cbShowDialogPrint.Checked Then
+                Dim dl As New PrintDialog
+                If dl.ShowDialog = Windows.Forms.DialogResult.OK Then
+                    nm = dl.PrinterSettings.PrinterName
+                    nbr = dl.PrinterSettings.Copies
+                Else
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+            Exit Sub
+        End Try
+
+
         Try
 
             If cbNormalImp.Checked Then
 
-                PrintDoc.PrinterSettings.PrinterName = txttimp.Text
-                PrintDocDepot.PrinterSettings.PrinterName = txttimp.Text
+                PrintDoc.PrinterSettings.PrinterName = nm
+                PrintDocDepot.PrinterSettings.PrinterName = nm
 
                 chbreceipt.Checked = False
                 If isBl = False Then
@@ -1581,18 +1801,19 @@ Public Class Form1
                         PrintDoc.DefaultPageSettings.PaperSize = ps
 
                     Else
-                        PrintDoc.PrinterSettings.PrinterName = txtreceipt.Text
-                        PrintDocDepot.PrinterSettings.PrinterName = txtreceipt.Text
+                        PrintDoc.PrinterSettings.PrinterName = nm
+                        PrintDocDepot.PrinterSettings.PrinterName = nm
                     End If
                 End If
 
-                For i = 0 To CInt(txtNbrCopie.Text) - 1
+                For i = 0 To nbr - 1
                     PrintDoc.Print()
                 Next
 
             Else
 
                 MP_Localname = "Ticket.dat"
+                If RPl.ClId = 0 Then MP_Localname = "Ticket-0.dat"
                 If RPl.isSell = False Then MP_Localname = "Achat-Ticket.dat"
                 Dim g As New gGlobClass
                 Try
@@ -1608,7 +1829,9 @@ Public Class Form1
                 Try
                     If isBl Then
                         MP_Localname = "Default.dat"
+                        If RPl.ClId = 0 Then MP_Localname = "Default-0.dat"
                         If RPl.isSell = False Then MP_Localname = "Achat-Default.dat"
+
                         If isSecond Then
                             MP_Localname = "Default2.dat"
                             If RPl.isSell = False Then MP_Localname = "Achat-Default2.dat"
@@ -1621,14 +1844,16 @@ Public Class Form1
                         PrintDocDesign.DefaultPageSettings.PaperSize = ps
                         PrintDocDesign.DefaultPageSettings.Landscape = g.is_Landscape
 
-                        PrintDocDesign.PrinterSettings.PrinterName = txttimp.Text
+                        PrintDocDesign.PrinterSettings.PrinterName = nm
                     Else
-                        PrintDocDesign.PrinterSettings.PrinterName = txtreceipt.Text
+                        PrintDocDesign.PrinterSettings.PrinterName = nm
                     End If
                 Catch ex As Exception
                 End Try
 
-                PrintDocDesign.Print()
+                For i = 0 To nbr - 1
+                    PrintDocDesign.Print()
+                Next
             End If
 
 
@@ -1647,6 +1872,24 @@ Public Class Form1
                 'print depot
                 If cbPrintDepot.Checked Then
 
+                    Try
+                        If cbShowDialogPrint.Checked Then
+                            Dim dl As New PrintDialog
+                            If dl.ShowDialog = Windows.Forms.DialogResult.OK Then
+                                nm = dl.PrinterSettings.PrinterName
+                                nbr = dl.PrinterSettings.Copies
+                            Else
+                                Exit Sub
+                            End If
+                        End If
+                    Catch ex As Exception
+                        Exit Sub
+                    End Try
+
+
+
+
+
                     Dim dt As DataTable = RPl.DataSource
 
                     MP_Localname = "Depot-Default.dat"
@@ -1658,11 +1901,9 @@ Public Class Form1
                         ps.PaperName = g.p_Kind
                         PrintDocDepot.DefaultPageSettings.PaperSize = ps
                         PrintDocDepot.DefaultPageSettings.Landscape = g.is_Landscape
-
-                        PrintDocDepot.PrinterSettings.PrinterName = txttimp.Text
-                    Else
-                        PrintDocDesign.PrinterSettings.PrinterName = txtreceipt.Text
                     End If
+
+                    PrintDocDepot.PrinterSettings.PrinterName = nm
 
 
                     Dim lst = GetListDepots()
@@ -1684,7 +1925,11 @@ Public Class Form1
                             Catch ex As Exception
                             End Try
 
-                            PrintDocDepot.Print()
+                            If txtDptSkiped.Text.Contains(_kvp.Key) Then Continue For
+
+                            For i = 0 To nbr - 1
+                                PrintDocDepot.Print()
+                            Next
                         End If
 
                     Next
@@ -1847,16 +2092,29 @@ Public Class Form1
             Using a As SubClass = New SubClass
                 a.fillFactures(CInt(btswitsh.Tag))
             End Using
-        ElseIf TabControl1.SelectedIndex = 1 Then
+
+            If cbPvClient.Checked Then
+                RPl.BtDel.Visible = False
+                RPl.BtSave.Left = RPl.BtDel.Left
+            Else
+                RPl.BtDel.Visible = True
+                RPl.BtSave.Left = RPl.BtDel.Left - RPl.BtSave.Width - 5
+            End If
+        ElseIf TabControl1.SelectedIndex = 1 Or TabControl1.SelectedIndex = 2 Then
             PlRcpt.Width = _RplWidth
             RPl.EditMode = True
             RPl.isSell = CBool(btSwitch2.Tag)
             RPl.ClearItems()
-        ElseIf TabControl1.SelectedIndex = 2 Then
-            PlRcpt.Width = 420
-            RPl.EditMode = False
-            RPl.ShowClc = False
-            RPl.ClearItems()
+            'ElseIf TabControl1.SelectedIndex = 2 Then
+            '    PlRcpt.Width = 420
+            '    RPl.EditMode = False
+            '    RPl.ShowClc = False
+            '    RPl.ClearItems()
+
+            If cbSuppression.Checked Then
+                RPl.BtDel.Visible = True
+                RPl.BtSave.Left = RPl.BtDel.Left - RPl.BtSave.Width - 5
+            End If
         Else
             PlRcpt.Width = 0
         End If
@@ -2023,17 +2281,27 @@ Public Class Form1
 
         If DGVARFA.Rows.Count = 0 Then Exit Sub
 
-        Try
-            PrintDoc2.PrinterSettings.PrinterName = txttimp.Text
-            PrintDoc2.Print()
+        'Try
+        '    PrintDoc2.PrinterSettings.PrinterName = txttimp.Text
+        '    PrintDoc2.Print()
 
-        Catch ex As Exception
+        'Catch ex As Exception
 
-            If PrintDlg.ShowDialog = Windows.Forms.DialogResult.OK Then
-                PrintDoc2.PrinterSettings.PrinterName = PrintDlg.PrinterSettings.PrinterName
-                PrintDoc2.Print()
-            End If
-        End Try
+        '    If PrintDlg.ShowDialog = Windows.Forms.DialogResult.OK Then
+        '        PrintDoc2.PrinterSettings.PrinterName = PrintDlg.PrinterSettings.PrinterName
+        '        PrintDoc2.Print()
+        '    End If
+        'End Try
+
+        Dim str As String = "Archive " & txtArSearch.text & " - du " & dte1.Value.ToString("dd-MM-yy") & " Au " & dte2.Value.ToString("dd-MM-yy")
+
+        str = str.Replace("|", " ")
+        str = str.Replace("/", " ")
+        str = str.Replace(":", " ")
+
+
+        SaveDataToHtml(DGVARFA, str)
+
     End Sub
 
     Private Sub txtarticlearchive_KeyUp(ByVal sender As System.Object,
@@ -2381,16 +2649,21 @@ Public Class Form1
         End Using
     End Sub
     Private Sub Button12_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button12.Click
-        'If DGVS.Rows.Count = 0 Then Exit Sub
-        'Try
-        '    PrintDocSTOCK.PrinterSettings.PrinterName = txttimp.Text
-        '    PrintDocSTOCK.Print()
-        'Catch ex As Exception
-        '    If PrintDlg.ShowDialog = Windows.Forms.DialogResult.OK Then
-        '        PrintDocSTOCK.PrinterSettings.PrinterName = PrintDlg.PrinterSettings.PrinterName
-        '        PrintDocSTOCK.Print()
-        '    End If
-        'End Try
+
+        If DGVS.Rows.Count = 0 Then Exit Sub
+
+
+        Try
+            Dim a = 0
+            For i As Integer = 0 To DGVS.Rows.Count - 1
+
+                If DGVS.Rows(i - a).Cells(3).Value <= 0 Then
+                    DGVS.Rows.RemoveAt(i - a)
+                    a += 1
+                End If
+            Next
+        Catch ex As Exception
+        End Try
 
 
         Dim str As String = "Stock "
@@ -2478,12 +2751,12 @@ Public Class Form1
             MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
         End Try
     End Sub
-    Private Sub Button25_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button25.Click
+    Private Sub Button25_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button25.Click, Button48.Click
         Dim artdlg As New ArticleDetails
         If artdlg.ShowDialog = Windows.Forms.DialogResult.OK Then
         End If
     End Sub
-    Private Sub Button26_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button26.Click
+    Private Sub Button26_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button26.Click, Button50.Click
         Dim artdlg As New ClientDetails
         If artdlg.ShowDialog = Windows.Forms.DialogResult.OK Then
         End If
@@ -2673,7 +2946,7 @@ Public Class Form1
                         params.Add("[date] > ", dt2)
                         params.Add("admin = ", True)
 
-                        If cbAffichageLimite.Checked Then params.Add("writer = ", adminName)
+                        If cbAffichageLimite.Checked And admin = False Then params.Add("writer = ", adminName)
 
                         If cbSearchRegler.Text = "Reglé" Then params.Add("payed = ", True)
                         If cbSearchRegler.Text = "Non Reglé" Then params.Add("payed = ", False)
@@ -2689,7 +2962,7 @@ Public Class Form1
                     params.Add("[date] < ", dt1)
                     params.Add("[date] > ", dt2)
                     params.Add("admin = ", True)
-                    If cbAffichageLimite.Checked Then params.Add("writer = ", adminName)
+                    If cbAffichageLimite.Checked And admin = False Then params.Add("writer = ", adminName)
 
                     If cbSearchRegler.Text = "Reglé" Then params.Add("payed = ", True)
                     If cbSearchRegler.Text = "Non Reglé" Then params.Add("payed = ", False)
@@ -2710,7 +2983,7 @@ Public Class Form1
                    String.Format("{0:n}", CDec(dt.Rows(i).Item("total").ToString)),
                      String.Format("{0:n}", CDec(dt.Rows(i).Item("avance").ToString)),
                      String.Format("{0:n}", rest),
-                     CDate(dt.Rows(i).Item("date")).ToString("dd, MMM yy [HH:mm]"),
+                     CDate(dt.Rows(i).Item("date")).ToString("dd-MM-yyyy [HH:mm]"),
                      dt.Rows(i).Item("adresse").ToString, dt.Rows(i).Item("writer").ToString,
                      dt.Rows(i).Item("payed").ToString, dt.Rows(i).Item("remise").ToString,
                    dt.Rows(i).Item("bl").ToString, dt.Rows(i).Item("beInFacture").ToString,
@@ -2918,6 +3191,15 @@ Public Class Form1
         Using a As SubClass = New SubClass
             a.UpdateItemDepot(RPl.SelectedItem)
         End Using
+
+        If chbcb.Checked Then
+            txtSearchCode.Text = ""
+            txtSearchCode.Focus()
+        Else
+            txtSearch.Text = ""
+            txtSearch.Focus()
+        End If
+
     End Sub
 
 
@@ -2972,7 +3254,7 @@ Public Class Form1
                               String.Format("{0:0.00}", RPl.Total_Ht), String.Format("{0:0.00}", RPl.Tva),
                               String.Format("{0:0.00}", RPl.Total_TTC), String.Format("{0:0.00}", RPl.Remise),
                               String.Format("{0:0.00}", RPl.Avance), String.Format("{0:0.00}", 0),
-                              "Cache", adminName, RPl.LbVidal.Text, RPl.bl)
+                              "Cache", adminName, dt_filtreDataSource.Rows.Count, RPl.bl)
 
 
                 Dim dt_Client As New DataTable
@@ -3697,6 +3979,16 @@ Public Class Form1
                 If dpt = 0 Then Button36.Text = "-- Depot --"
             End Using
         End If
+
+
+        If chbcb.Checked Then
+            txtSearchCode.Text = ""
+            txtSearchCode.Focus()
+        Else
+            txtSearch.Text = ""
+            txtSearch.Focus()
+        End If
+
     End Sub
 
     Private Sub CbDepotOrigine_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CbDepotOrigine.CheckedChanged
@@ -3790,6 +4082,7 @@ Public Class Form1
 
         Dim rv As New EtatClient
         rv.isSell = isSell
+        rv.Client = txtArSearch.text.Trim
         rv.CID = clid
         If rv.ShowDialog = Windows.Forms.DialogResult.OK Then
 
@@ -3881,6 +4174,38 @@ Public Class Form1
             data.Columns.Add("livreur", GetType(String))
             data.Columns.Add("rest_ttc", GetType(String))
             data.Columns.Add("x_total_ttc_sn_remise", GetType(String))
+            data.Columns.Add("RealAvance", GetType(String))
+            data.Columns.Add("RealRest", GetType(String))
+            data.Columns.Add("Rest", GetType(String))
+            data.Columns.Add("caisseAvance", GetType(String))
+            data.Columns.Add("caisseRest", GetType(String))
+
+
+            Dim realAvc As Double = RPl.Avance
+            Dim __rest As Double = RPl.Total_TTC - RPl.Avance
+            Dim __RRest As Double = RPl.Total_TTC - RPl.Avance
+            Dim caisseRest As Double = RPl.Total_TTC - payedCache
+
+            Try
+                If ds.isSell And RPl.FctId > 0 Then
+                    Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
+                    Dim rdt = ta.GetDataByfctid(RPl.FctId)
+                    If rdt.Rows.Count > 0 Then
+                        realAvc = 0
+                        For i As Integer = 0 To rdt.Rows.Count - 1
+                            If StrValue(rdt, "name", i).Contains("@") = False Then
+                                realAvc += DblValue(rdt, "montant", i)
+                            End If
+                        Next
+                    End If
+
+                End If
+            Catch ex As Exception
+
+            End Try
+
+
+            __RRest = RPl.Total_TTC - realAvc
 
             'x_total_ttc_sn_remise
             data.Rows.Add(RPl.FctId, dte, RPl.ClId, RPl.ClientName,
@@ -3889,7 +4214,8 @@ Public Class Form1
                           String.Format("{0:n2}", RPl.Avance), String.Format("{0:n2}", 0),
                           "Cache", adminName, RPl.LbVidal.Text, RPl.bl,
                           String.Format("{0:n2}", RPl.Total_TTC - RPl.Avance),
-                           String.Format("{0:n2}", RPl.Total_TTC_Befor_Remise))
+                           String.Format("{0:n2}", RPl.Total_TTC_Befor_Remise), realAvc.ToString(frmDbl),
+                           __RRest.ToString(frmDbl), __rest.ToString(frmDbl), payedCache.ToString(frmDbl), caisseRest.ToString(frmDbl))
 
             Dim dt_Client As New DataTable
             ' Create four typed columns in the DataTable.
@@ -3902,6 +4228,7 @@ Public Class Form1
             dt_Client.Columns.Add("tel", GetType(String))
             dt_Client.Columns.Add("NvCredit", GetType(String))
             dt_Client.Columns.Add("EncCredit", GetType(String))
+            dt_Client.Columns.Add("RealEncCredit", GetType(String))
 
             Dim credit As Double = 0
             Dim EncCreadit As Double = 0
@@ -3929,19 +4256,39 @@ Public Class Form1
                     Dim tac As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
 
                     EncCreadit = ta.ScalarQueryClientCredit(False, RPl.ClId, True)
-                    credit = EncCreadit - (RPl.Total_TTC - RPl.Avance)
+
+                    If ds.EditMode = False Then
+                        credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
+                    Else
+                        credit = EncCreadit
+                        EncCreadit = EncCreadit - (RPl.Total_TTC - RPl.Avance)
+                        If EncCreadit < 0 Then EncCreadit = 0
+                    End If
+
 
                     tel = tac.ScalarQueryTel(RPl.ClId)
                 Else
                     Dim ta As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
                     EncCreadit = ta.ScalarQueryCompanyCredit(False, RPl.ClId, True)
-                    credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
+
+                    If ds.EditMode = False Then
+                        credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
+                    Else
+                        credit = EncCreadit
+                        EncCreadit = EncCreadit - (RPl.Total_TTC - RPl.Avance)
+                        If EncCreadit < 0 Then EncCreadit = 0
+                    End If
+
                 End If
             End If
 
+            Dim realEnc As Double = EncCreadit + (realAvc - RPl.Avance)
+
+
+
             ' Add  rows with those columns filled in the DataTable.
             dt_Client.Rows.Add(RPl.ClId, RPl.ClientName, RPl.ClId, client_ville,
-                                adresse, client_ice, tel, EncCreadit, credit)
+                                adresse, client_ice, tel, credit.ToString(frmDbl), EncCreadit.ToString(frmDbl), realEnc.ToString(frmDbl))
 
             Using g As gDrawClass = New gDrawClass(MP_Localname)
                 g.rtl = cbRTL.Checked
@@ -4006,7 +4353,7 @@ Public Class Form1
 
 
 
-           
+
             Dim tel As String = ""
             Dim adresse = RPl.ClientAdresse.Split("*")(0)
             Dim client_ville As String = ""
@@ -4390,4 +4737,122 @@ Public Class Form1
         ' return the substring with the database name/path
         Return lcConnString.Substring(startIndex, endIndex - startIndex)
     End Function
+
+    Private Sub Button48_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btTransfert.Click
+        If DGVS.SelectedRows.Count = 0 Then Exit Sub
+
+
+
+        Dim tr As New TransformeStock
+        tr.arid = DGVS.SelectedRows(0).Cells("arid").Value
+
+
+        If tr.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            Using g As SubClass = New SubClass()
+                g.ctg_stock_click(btTransfert, e)
+            End Using
+        End If
+    End Sub
+
+    Private Sub txtnameStock_KeyDownOk() Handles txtnameStock.KeyDownOk
+
+        DGVS.DataSource = Nothing
+
+        Dim id As Integer = 0
+
+        ' dpt = cbdepot.SelectedValue
+
+        Try
+            If txtnameStock.text.Contains("|") Then
+                Dim str As String = txtnameStock.text.Trim
+                str = str.Split(CChar("|"))(1)
+                id = CInt(str)
+            Else
+                Exit Sub
+            End If
+        Catch ex As Exception
+            Exit Sub
+        End Try
+
+
+
+        Try
+            ' Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
+            Dim sta As New ALMohassinDBDataSetTableAdapters.DetailstockTableAdapter
+            Dim sdt = sta.GetDataByAridOnly(id)
+
+
+            If sdt.Rows.Count = 0 Then
+                MsgBox("لا يوجد اي سجل", MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, "المخزن")
+            Else
+
+
+                DGVS.DataSource = sdt
+
+                DGVS.Columns(0).Visible = False
+                DGVS.Columns(1).Visible = False
+                ' DGVS.Columns(2).Visible = False
+                DGVS.Columns(4).Visible = False
+                DGVS.Columns(5).Visible = False
+                'DGVS.Columns(9).Visible = False
+                'DGVS.Columns(10).Visible = False
+
+
+                DGVS.Columns(6).DefaultCellStyle.Font = New Font(fontName_Normal, fontSize_Normal, FontStyle.Bold)
+
+                DGVS.Columns(6).HeaderText = "Designation"
+                DGVS.Columns(3).HeaderText = "Qte Stk"
+                DGVS.Columns(2).HeaderText = "Depot N°"
+                DGVS.Columns(7).HeaderText = "Unite"
+
+                DGVS.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+                DGVS.Columns(6).DisplayIndex = 2
+                DGVS.Columns(7).DisplayIndex = 3
+                'DGVS.Columns(4).DisplayIndex = 3
+
+            End If
+            btTransfert.Tag = 0
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+
+    Dim isPanelHide As Boolean = False
+    Public paletteFix_width As Integer = 20
+    Private Sub btPanelHide_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btPanelHide.Click
+
+        If isPanelHide Then
+            btPanelHide.BackgroundImage = My.Resources.gui_10
+            PL.Width = paletteFix_width
+            isPanelHide = False
+        Else
+            btPanelHide.BackgroundImage = My.Resources.gui_09
+            PL.Width = 20
+            isPanelHide = True
+        End If
+    End Sub
+
+    Private Sub btPanelAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btPanelAdd.Click
+        Using a As SideClass = New SideClass
+            a.AddNewPanel()
+        End Using
+    End Sub
+
+    Private Sub Button49_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button49.Click
+        Dim artdlg As New ChoseCompany
+        If artdlg.ShowDialog = Windows.Forms.DialogResult.OK Then
+        End If
+    End Sub
+
+
+    Private Sub Panel36_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Panel36.Click
+        If GB7.Width = 370 Then
+            GB7.Width = 33
+        Else
+            GB7.Width = 370
+        End If
+    End Sub
 End Class
