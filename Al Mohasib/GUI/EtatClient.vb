@@ -8,7 +8,7 @@
 
     Public Property isSell As String
         Get
-            Return True
+            Return factureTable = "Facture"
         End Get
         Set(ByVal value As String)
          
@@ -59,7 +59,12 @@
             Dim ttAvc As Double = 0
 
 
-            order.Add("fctid", "Asc")
+            If isSell Then
+                order.Add("fctid", "Asc")
+            Else
+                order.Add("bonid", "Asc")
+            End If
+
 
             'get last impayed facture date
             Dim dt = a.SelectDataTable(factureTable, {"*"}, params, order)
@@ -73,7 +78,7 @@
                 For i As Integer = 0 To dt.Rows.Count - 1
                     If dte > DteValue(dt, "date", i) Then dte = DteValue(dt, "date", i)
 
-                    DataGridView1.Rows.Add(DteValue(dt, "date", i), IntValue(dt, "fctid", i), "Bon",
+                    DataGridView1.Rows.Add(DteValue(dt, "date", i), dt.Rows(i).Item(0), "Bon",
                                            CDec(DblValue(dt, "total", i)).ToString(Form1.frmDbl))
 
                     RestFact += DblValue(dt, "total", i) - DblValue(dt, "avance", i)
@@ -87,30 +92,38 @@
             params.Clear()
 
             dte = dte.AddDays(-10)
-            params.Add("clid = ", CID)
             params.Add("date >=", dte)
+
+            If isSell Then
+                params.Add("clid = ", CID)
+            Else
+                params.Add("comid = ", CID)
+            End If
 
             dt = a.SelectDataTableSymbols(PayementTable, {"*"}, params)
             If Not IsNothing(dt) Then
                 If dt.Rows.Count > 0 Then
+                    Dim fctid_str = "fctid"
+                    If isSell = False Then fctid_str = "bonid"
+
                     For i As Integer = 0 To dt.Rows.Count - 1
-                        Dim fctId As Integer = IntValue(dt, "fctid", i)
+                        Dim fctId As Integer = IntValue(dt, fctid_str, i)
                         If ls.Contains(fctId) = False Then
                             params.Clear()
-                            params.Add("fctid", fctId)
+                            params.Add(fctid_str, fctId)
                             Dim dtff = a.SelectDataTable(factureTable, {"*"}, params)
                             If dtff.Rows.Count > 0 Then
-                                DataGridView1.Rows.Add(DteValue(dtff, "date", i), IntValue(dtff, "fctid", i), "Bon",
-                                        CDec(DblValue(dtff, "total", i)).ToString(Form1.frmDbl))
+                                DataGridView1.Rows.Add(DteValue(dtff, "date", 0), IntValue(dtff, fctid_str, 0), "Bon *",
+                                        CDec(DblValue(dtff, "total", 0)).ToString(Form1.frmDbl))
 
-                                ttBon += DblValue(dtff, "total", i)
+                                ttBon += DblValue(dtff, "total", 0)
                             End If
                             ls.Add(fctId)
                         End If
 
                         If StrValue(dt, "name", i).StartsWith("@") Then Continue For
 
-                        DataGridView1.Rows.Add(DteValue(dt, "date", i).AddHours(22), IntValue(dt, "fctid", i), "Avance",
+                        DataGridView1.Rows.Add(DteValue(dt, "date", i).AddHours(22), IntValue(dt, fctid_str, i), "Avance",
                                               CDec(DblValue(dt, "montant", i) * -1).ToString(Form1.frmDbl))
 
                         ttAvc += DblValue(dt, "montant", i)
@@ -128,7 +141,14 @@
             If enc > 0 Then DataGridView2.Rows.Add(dte.AddDays(-1).ToString("dd/MM/yyyy"), "", "Ancien Crédit", enc.ToString(Form1.frmDbl))
 
             params.Clear()
-            params.Add("Clid", CID)
+         
+            If isSell Then
+                params.Add("Clid", CID)
+            Else
+                params.Add("compid", CID)
+            End If
+
+
             Client = a.SelectByScalar(ClientTable, "name", params)
 
             'DataGridView1.Columns(0).SortMode = DataGridViewColumnSortMode.Automatic

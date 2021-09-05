@@ -1,6 +1,8 @@
 ﻿Public Class Editprdfact
 
     Dim _depot As Integer
+    Dim isRetour As Boolean = False
+
 
     Public Property prdName As String
         Get
@@ -41,7 +43,10 @@
     End Property
     Public Property prdQte As Double
         Get
-            Return txtqte.text
+            Dim q As Double = CDbl(txtqte.text)
+            If isRetour Then q = q * -1
+
+            Return q
         End Get
         Set(ByVal value As Double)
 
@@ -71,7 +76,7 @@
     End Property
 
     Public Sub New(ByVal name As String, ByVal bprice As String,
-                   ByVal sprice As String, ByVal qte As String, ByVal dp As String)
+                   ByVal sprice As String, ByVal qte As String, ByVal dp As String, ByVal isR As Boolean)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -82,8 +87,8 @@
         prdBPrice = bprice
         prdSPrice = sprice
         prdQte = qte
-        Depot = dp
-
+        depot = dp
+        isRetour = isR
 
 
     End Sub

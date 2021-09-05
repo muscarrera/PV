@@ -48,6 +48,8 @@
     Private _ShowProfit As Boolean
     Private _delivredDay As String
 
+    Event printCaisse()
+
     'properties
     Public ReadOnly Property Total_Ht As Decimal
         Get
@@ -270,7 +272,7 @@
                                a.Depot, a.Poid, a.Total_ht, a.Total_tva, a.id, a.Remise, a.id)
             Next
 
-            If table.Rows.Count > 0 Then
+            If table.Rows.Count > 0 And Form1.isOrderByIdDesc_items.checked Then
                 table.DefaultView.Sort = "id DESC"
                 table = table.DefaultView.ToTable
             End If
@@ -558,6 +560,30 @@
                     AddItemDetails(D, i, RM)
                 End If
 
+            Next
+            UpdateValue()
+            CP.Value = 0
+            CP.ActiveQte(False)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Public Sub AddItemsRapport(ByVal D As DataTable)
+        Try
+            Dim ls As New List(Of String)
+            For i As Integer = 0 To D.Rows.Count - 1
+                Dim RM As Double = CDbl(D.Rows(i).Item("poid"))
+                Dim id = D.Rows(i).Item("arid") & "|" & D.Rows(i).Item("price") & "|" & RM
+
+                If ls.Contains(id) Then
+                    Dim __i As Items
+                    __i = Pl.Controls(ls.IndexOf(id))
+                    __i.Qte += D.Rows(i).Item("qte")
+                Else
+                    ls.Add(id)
+                    AddItemDetails(D, i, RM)
+                End If
             Next
             UpdateValue()
             CP.Value = 0
@@ -864,6 +890,8 @@
     End Sub
 
     Private Sub CP_ReturnItem() Handles CP.ReturnItem
+        If EditMode = True Then Exit Sub
+
         Dim str As String = " عند قيامكم على الضغط على 'موافق' سيتم "
         str = str + vbNewLine
         str = str + " نقل هذه المادة ما بين لائحة المود و المرجوعات..    "
@@ -894,10 +922,11 @@
         If EditMode Then
             _isEditing = True
             Item_Value_changed(0, 0, "Non", SelectedItem)
+
         End If
 
         UpdateValue()
-        'If EditMode Then RaiseEvent SaveFacture(FctId, Total, Avance, Tva, DataSource)
+        If EditMode Then CP.txt.Focus()
     End Sub
     Private Sub CP_UpdatePayment() Handles CP.UpdatePayment
         If FctId = 0 Then
@@ -929,12 +958,20 @@
         End If
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtPrint.Click, BtBlPrint.Click
+
+        Form1.page_Number = 1
+
         Dim BT As Button = sender
         Dim SecondModel As Boolean = False
         If My.Computer.Keyboard.CtrlKeyDown Then SecondModel = True
 
         If FctId = 0 Then
             RaiseEvent CPValueChange()
+            If ClId = -111 Then
+                RaiseEvent printCaisse()
+                Exit Sub
+            End If
+
             Try
                 If DataSource.Rows.Count > 0 And EditMode Then
                     FctId = CInt(Form1.DGVARFA.SelectedRows(0).Cells(0).Value)

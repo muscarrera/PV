@@ -109,80 +109,13 @@ Public Class Articles
     Private Sub Button48_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button48.Click
         txtsearch.Text = ""
 
-        If DGVPRD.SelectedRows.Count = 0 Then
-            Exit Sub
-        End If
-
-        'If DGVPRD.SelectedRows(0).Cells(11).Value = 0 Then
-        '    Exit Sub
-        'End If
-        Dim bprice As Double = String.Format("{0:F}", DGVPRD.SelectedRows(0).Cells(4).Value.ToString)
-        Dim Sprice As Double = String.Format("{0:F}", DGVPRD.SelectedRows(0).Cells(5).Value.ToString)
-        Dim tva As Double = String.Format("{0:F}", DGVPRD.SelectedRows(0).Cells(6).Value.ToString)
-        Dim cid As Integer = DGVPRD.SelectedRows(0).Cells(11).Value
-        Dim price2 As String = ""
-        Dim price3 As String = ""
-        Dim price4 As String = ""
-
-        If Form1.chbsell.Checked Then
-            price2 = String.Format("{0:F}", DGVPRD.SelectedRows(0).Cells(7).Value.ToString)
-            price3 = String.Format("{0:F}", DGVPRD.SelectedRows(0).Cells(8).Value.ToString)
-            price4 = String.Format("{0:F}", DGVPRD.SelectedRows(0).Cells(9).Value.ToString)
-        End If
-
+        If DGVPRD.SelectedRows.Count = 0 Then Exit Sub
+        Dim a As Integer = DGVPRD.SelectedRows(0).Index
 
         Dim art As New AddEditArticle
         art.editMode = True
-
-        art.cbctg.Tag = cid
-        art.cid = cid
-        art.cbctg.SelectedValue = CInt(DGVPRD.SelectedRows(0).Cells(11).Value.ToString)
-        art.CBdp.SelectedValue = CInt(DGVPRD.SelectedRows(0).Cells(12).Value.ToString)
-        art.CBdp.Tag = DGVPRD.SelectedRows(0).Cells(12).Value.ToString
-        art.txtcb.text = DGVPRD.SelectedRows(0).Cells(1).Value.ToString
-        art.txtprdname.Text = DGVPRD.SelectedRows(0).Cells(2).Value.ToString
-
-        art.txtbprice.text = bprice
-        art.txtsprice.text = Sprice
-        art.txtprice2.text = price2
-        art.txtprice3.text = price3
-        art.txtPrice4.text = price4
-
-        art.txtunit.Text = DGVPRD.SelectedRows(0).Cells(3).Value.ToString
-        art.txttva.text = tva
-        art.txtprdname.Tag = DGVPRD.SelectedRows(0).Cells(0).Value.ToString
+        art.id = CInt(DGVPRD.SelectedRows(0).Cells(0).Value)
         art.PlPrice.Visible = Form1.chbsell.Checked
-        art.cbIsMixte.Checked = CBool(DGVPRD.SelectedRows(0).Cells(14).Value)
-        Try
-            art.txtMinStock.text = CInt(DGVPRD.SelectedRows(0).Cells(15).Value)
-        Catch ex As Exception
-            art.txtMinStock.text = "0"
-        End Try
-
-        Try
-            art.TxtPoids.text = DGVPRD.SelectedRows(0).Cells(10).Value.ToString
-        Catch ex As Exception
-            art.TxtPoids.text = "0"
-        End Try
-
-
-        Dim a As Integer = DGVPRD.SelectedRows(0).Index
-
-        If DGVPRD.SelectedRows(0).Cells(7).Value.ToString <> "" And
-            DGVPRD.SelectedRows(0).Cells(7).Value.ToString <> "No Image" Then
-            Try
-                art.PBprd.Tag = DGVPRD.SelectedRows(0).Cells(13).Value
-            Catch ex As Exception
-                Try
-                    art.PBprd.Tag = "noimg.jpg"
-                    art.ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\artnoimg.jpg")
-                Catch exx As Exception
-                End Try
-            End Try
-        End If
-
-
-        art.btprd.Tag = "1"
 
         If art.ShowDialog = Windows.Forms.DialogResult.OK Then
             Dim bt As New Button
@@ -235,8 +168,8 @@ Public Class Articles
         art.btprd.Tag = "0"
         art.editMode = False
         'art.cbctg.Tag = "1"
-
         art.PlPrice.Visible = Form1.chbsell.Checked
+
 
         If art.ShowDialog = Windows.Forms.DialogResult.OK Then
 

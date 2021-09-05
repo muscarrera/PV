@@ -451,6 +451,12 @@
     <Compile Include="GUI\ListMultiCodes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\OpenFactures.Designer.vb">
+      <DependentUpon>OpenFactures.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\OpenFactures.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\PayRecept.Designer.vb">
       <DependentUpon>PayRecept.vb</DependentUpon>
     </Compile>
@@ -811,6 +817,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ListMultiCodes.resx">
       <DependentUpon>ListMultiCodes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\OpenFactures.resx">
+      <DependentUpon>OpenFactures.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PayRecept.resx">
       <DependentUpon>PayRecept.vb</DependentUpon>

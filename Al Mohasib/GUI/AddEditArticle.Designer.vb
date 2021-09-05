@@ -121,7 +121,7 @@ Partial Class AddEditArticle
         'txtcb
         '
         Me.txtcb.BackColor = System.Drawing.Color.White
-        Me.txtcb.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtcb.BorderColor = System.Drawing.SystemColors.ButtonHighlight
         Me.txtcb.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtcb.IsNumiric = False
         Me.txtcb.Location = New System.Drawing.Point(0, 0)
@@ -269,11 +269,13 @@ Partial Class AddEditArticle
         '
         'PBprd
         '
-        Me.PBprd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PBprd.BackColor = System.Drawing.Color.White
+        Me.PBprd.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_17_59_22
+        Me.PBprd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PBprd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PBprd.Location = New System.Drawing.Point(513, 86)
+        Me.PBprd.Location = New System.Drawing.Point(513, 68)
         Me.PBprd.Name = "PBprd"
-        Me.PBprd.Size = New System.Drawing.Size(245, 156)
+        Me.PBprd.Size = New System.Drawing.Size(245, 174)
         Me.PBprd.TabIndex = 11
         Me.PBprd.TabStop = False
         '
@@ -433,7 +435,7 @@ Partial Class AddEditArticle
         'txtPrice4
         '
         Me.txtPrice4.BackColor = System.Drawing.Color.White
-        Me.txtPrice4.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtPrice4.BorderColor = System.Drawing.SystemColors.ButtonHighlight
         Me.txtPrice4.Dock = System.Windows.Forms.DockStyle.Right
         Me.txtPrice4.IsNumiric = True
         Me.txtPrice4.Location = New System.Drawing.Point(55, 0)
@@ -500,7 +502,7 @@ Partial Class AddEditArticle
         'txtprice2
         '
         Me.txtprice2.BackColor = System.Drawing.Color.White
-        Me.txtprice2.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtprice2.BorderColor = System.Drawing.SystemColors.ButtonHighlight
         Me.txtprice2.Dock = System.Windows.Forms.DockStyle.Right
         Me.txtprice2.IsNumiric = True
         Me.txtprice2.Location = New System.Drawing.Point(55, 0)
@@ -576,7 +578,7 @@ Partial Class AddEditArticle
         'txtprice3
         '
         Me.txtprice3.BackColor = System.Drawing.Color.White
-        Me.txtprice3.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtprice3.BorderColor = System.Drawing.SystemColors.ButtonHighlight
         Me.txtprice3.Dock = System.Windows.Forms.DockStyle.Right
         Me.txtprice3.IsNumiric = True
         Me.txtprice3.Location = New System.Drawing.Point(55, 0)
@@ -654,7 +656,7 @@ Partial Class AddEditArticle
         'txtbprice
         '
         Me.txtbprice.BackColor = System.Drawing.Color.White
-        Me.txtbprice.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtbprice.BorderColor = System.Drawing.SystemColors.ButtonHighlight
         Me.txtbprice.Dock = System.Windows.Forms.DockStyle.Right
         Me.txtbprice.IsNumiric = True
         Me.txtbprice.Location = New System.Drawing.Point(88, 0)
@@ -711,7 +713,7 @@ Partial Class AddEditArticle
         'txtsprice
         '
         Me.txtsprice.BackColor = System.Drawing.Color.White
-        Me.txtsprice.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtsprice.BorderColor = System.Drawing.SystemColors.ButtonHighlight
         Me.txtsprice.Dock = System.Windows.Forms.DockStyle.Right
         Me.txtsprice.IsNumiric = True
         Me.txtsprice.Location = New System.Drawing.Point(88, 0)

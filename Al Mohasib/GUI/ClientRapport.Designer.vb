@@ -30,9 +30,9 @@ Partial Class ClientRapport
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.lbQteOut = New System.Windows.Forms.Label()
+        Me.lbAvc = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.lbQteIn = New System.Windows.Forms.Label()
+        Me.lbTotal = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.lbLnbr = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -45,21 +45,19 @@ Partial Class ClientRapport
         Me.Panel29 = New System.Windows.Forms.Panel()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.cbOut = New System.Windows.Forms.CheckBox()
-        Me.cbIn = New System.Windows.Forms.CheckBox()
-        Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.txtDepot = New Al_Mohasib.TxtBox()
-        Me.btDepot = New System.Windows.Forms.Button()
         Me.Panel10 = New System.Windows.Forms.Panel()
-        Me.txt = New Al_Mohasib.TxtBox()
         Me.btInfo = New System.Windows.Forms.Button()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.cbDt = New System.Windows.Forms.CheckBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.dte2 = New System.Windows.Forms.DateTimePicker()
         Me.dte1 = New System.Windows.Forms.DateTimePicker()
+        Me.PrintDocDesign = New System.Drawing.Printing.PrintDocument()
+        Me.txt = New Al_Mohasib.TxtBox()
         Me.Panel2.SuspendLayout()
         Me.pl.SuspendLayout()
         CType(Me.dg_D, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,8 +68,8 @@ Partial Class ClientRapport
         Me.Panel24.SuspendLayout()
         Me.Panel8.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.Panel9.SuspendLayout()
         Me.Panel10.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -150,9 +148,9 @@ Partial Class ClientRapport
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Panel4.Controls.Add(Me.lbQteOut)
+        Me.Panel4.Controls.Add(Me.lbAvc)
         Me.Panel4.Controls.Add(Me.Label7)
-        Me.Panel4.Controls.Add(Me.lbQteIn)
+        Me.Panel4.Controls.Add(Me.lbTotal)
         Me.Panel4.Controls.Add(Me.Label6)
         Me.Panel4.Controls.Add(Me.lbLnbr)
         Me.Panel4.Controls.Add(Me.Label14)
@@ -163,18 +161,18 @@ Partial Class ClientRapport
         Me.Panel4.Size = New System.Drawing.Size(1134, 37)
         Me.Panel4.TabIndex = 14
         '
-        'lbQteOut
+        'lbAvc
         '
-        Me.lbQteOut.BackColor = System.Drawing.Color.LightGray
-        Me.lbQteOut.Dock = System.Windows.Forms.DockStyle.Left
-        Me.lbQteOut.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbQteOut.Location = New System.Drawing.Point(555, 2)
-        Me.lbQteOut.Name = "lbQteOut"
-        Me.lbQteOut.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
-        Me.lbQteOut.Size = New System.Drawing.Size(152, 35)
-        Me.lbQteOut.TabIndex = 18
-        Me.lbQteOut.Text = "0"
-        Me.lbQteOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lbAvc.BackColor = System.Drawing.Color.LightGray
+        Me.lbAvc.Dock = System.Windows.Forms.DockStyle.Left
+        Me.lbAvc.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbAvc.Location = New System.Drawing.Point(555, 2)
+        Me.lbAvc.Name = "lbAvc"
+        Me.lbAvc.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
+        Me.lbAvc.Size = New System.Drawing.Size(152, 35)
+        Me.lbAvc.TabIndex = 18
+        Me.lbAvc.Text = "0"
+        Me.lbAvc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label7
         '
@@ -186,21 +184,21 @@ Partial Class ClientRapport
         Me.Label7.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
         Me.Label7.Size = New System.Drawing.Size(96, 35)
         Me.Label7.TabIndex = 19
-        Me.Label7.Text = "Sortie"
+        Me.Label7.Text = "Avance"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lbQteIn
+        'lbTotal
         '
-        Me.lbQteIn.BackColor = System.Drawing.Color.LightGray
-        Me.lbQteIn.Dock = System.Windows.Forms.DockStyle.Left
-        Me.lbQteIn.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbQteIn.Location = New System.Drawing.Point(307, 2)
-        Me.lbQteIn.Name = "lbQteIn"
-        Me.lbQteIn.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
-        Me.lbQteIn.Size = New System.Drawing.Size(152, 35)
-        Me.lbQteIn.TabIndex = 16
-        Me.lbQteIn.Text = "0"
-        Me.lbQteIn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lbTotal.BackColor = System.Drawing.Color.LightGray
+        Me.lbTotal.Dock = System.Windows.Forms.DockStyle.Left
+        Me.lbTotal.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbTotal.Location = New System.Drawing.Point(307, 2)
+        Me.lbTotal.Name = "lbTotal"
+        Me.lbTotal.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
+        Me.lbTotal.Size = New System.Drawing.Size(152, 35)
+        Me.lbTotal.TabIndex = 16
+        Me.lbTotal.Text = "0"
+        Me.lbTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label6
         '
@@ -212,7 +210,7 @@ Partial Class ClientRapport
         Me.Label6.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
         Me.Label6.Size = New System.Drawing.Size(96, 35)
         Me.Label6.TabIndex = 17
-        Me.Label6.Text = "Entree"
+        Me.Label6.Text = "Total"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lbLnbr
@@ -306,12 +304,12 @@ Partial Class ClientRapport
         Me.Button6.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.Image = CType(resources.GetObject("Button6.Image"), System.Drawing.Image)
         Me.Button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button6.Location = New System.Drawing.Point(996, 3)
+        Me.Button6.Location = New System.Drawing.Point(955, 2)
         Me.Button6.Name = "Button6"
         Me.Button6.Padding = New System.Windows.Forms.Padding(6, 0, 0, 0)
-        Me.Button6.Size = New System.Drawing.Size(115, 33)
+        Me.Button6.Size = New System.Drawing.Size(159, 33)
         Me.Button6.TabIndex = 2
-        Me.Button6.Text = "Recherche"
+        Me.Button6.Text = "Etat Client (Credit)"
         Me.Button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Button6.UseVisualStyleBackColor = True
         '
@@ -329,6 +327,7 @@ Partial Class ClientRapport
         Me.Panel8.BackColor = System.Drawing.Color.White
         Me.Panel8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel8.Controls.Add(Me.GroupBox2)
+        Me.Panel8.Controls.Add(Me.GroupBox3)
         Me.Panel8.Controls.Add(Me.GroupBox1)
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel8.Location = New System.Drawing.Point(5, 5)
@@ -339,90 +338,18 @@ Partial Class ClientRapport
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox2.Controls.Add(Me.cbOut)
-        Me.GroupBox2.Controls.Add(Me.cbIn)
-        Me.GroupBox2.Controls.Add(Me.Panel9)
         Me.GroupBox2.Controls.Add(Me.Panel10)
-        Me.GroupBox2.Controls.Add(Me.Label4)
+        Me.GroupBox2.Controls.Add(Me.cbDt)
         Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.GroupBox2.Location = New System.Drawing.Point(274, 0)
+        Me.GroupBox2.Location = New System.Drawing.Point(206, 0)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(6)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(10)
-        Me.GroupBox2.Size = New System.Drawing.Size(850, 126)
+        Me.GroupBox2.Size = New System.Drawing.Size(873, 126)
         Me.GroupBox2.TabIndex = 0
         Me.GroupBox2.TabStop = False
-        '
-        'cbOut
-        '
-        Me.cbOut.AutoSize = True
-        Me.cbOut.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbOut.Location = New System.Drawing.Point(107, 86)
-        Me.cbOut.Name = "cbOut"
-        Me.cbOut.Size = New System.Drawing.Size(66, 19)
-        Me.cbOut.TabIndex = 2
-        Me.cbOut.Text = "Sortie"
-        Me.cbOut.UseVisualStyleBackColor = True
-        '
-        'cbIn
-        '
-        Me.cbIn.AutoSize = True
-        Me.cbIn.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbIn.Location = New System.Drawing.Point(16, 85)
-        Me.cbIn.Name = "cbIn"
-        Me.cbIn.Size = New System.Drawing.Size(70, 19)
-        Me.cbIn.TabIndex = 2
-        Me.cbIn.Text = "Entree"
-        Me.cbIn.UseVisualStyleBackColor = True
-        '
-        'Panel9
-        '
-        Me.Panel9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel9.Controls.Add(Me.txtDepot)
-        Me.Panel9.Controls.Add(Me.btDepot)
-        Me.Panel9.Location = New System.Drawing.Point(650, 83)
-        Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(187, 32)
-        Me.Panel9.TabIndex = 0
-        '
-        'txtDepot
-        '
-        Me.txtDepot.BackColor = System.Drawing.Color.Transparent
-        Me.txtDepot.BorderColor = System.Drawing.Color.Transparent
-        Me.txtDepot.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtDepot.IsNumiric = False
-        Me.txtDepot.Location = New System.Drawing.Point(0, 0)
-        Me.txtDepot.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtDepot.Name = "txtDepot"
-        Me.txtDepot.ShowClearIcon = False
-        Me.txtDepot.ShowSaveIcon = False
-        Me.txtDepot.Size = New System.Drawing.Size(148, 30)
-        Me.txtDepot.StartUp = 2
-        Me.txtDepot.TabIndex = 12
-        Me.txtDepot.TextSize = 8
-        Me.txtDepot.TxtBackColor = True
-        Me.txtDepot.TxtColor = System.Drawing.Color.White
-        Me.txtDepot.txtReadOnly = False
-        Me.txtDepot.TxtSelect = New Integer() {1, 0}
-        '
-        'btDepot
-        '
-        Me.btDepot.BackColor = System.Drawing.Color.Transparent
-        Me.btDepot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.btDepot.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btDepot.FlatAppearance.BorderSize = 0
-        Me.btDepot.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btDepot.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btDepot.ForeColor = System.Drawing.Color.Teal
-        Me.btDepot.Image = Global.Al_Mohasib.My.Resources.Resources.stock_icon_png_14
-        Me.btDepot.Location = New System.Drawing.Point(148, 0)
-        Me.btDepot.Name = "btDepot"
-        Me.btDepot.Size = New System.Drawing.Size(37, 30)
-        Me.btDepot.TabIndex = 10
-        Me.btDepot.UseVisualStyleBackColor = False
         '
         'Panel10
         '
@@ -433,28 +360,8 @@ Partial Class ClientRapport
         Me.Panel10.Controls.Add(Me.btInfo)
         Me.Panel10.Location = New System.Drawing.Point(16, 29)
         Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(821, 32)
+        Me.Panel10.Size = New System.Drawing.Size(844, 32)
         Me.Panel10.TabIndex = 0
-        '
-        'txt
-        '
-        Me.txt.BackColor = System.Drawing.Color.Transparent
-        Me.txt.BorderColor = System.Drawing.Color.Transparent
-        Me.txt.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txt.IsNumiric = False
-        Me.txt.Location = New System.Drawing.Point(0, 0)
-        Me.txt.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txt.Name = "txt"
-        Me.txt.ShowClearIcon = False
-        Me.txt.ShowSaveIcon = False
-        Me.txt.Size = New System.Drawing.Size(788, 30)
-        Me.txt.StartUp = 2
-        Me.txt.TabIndex = 11
-        Me.txt.TextSize = 8
-        Me.txt.TxtBackColor = True
-        Me.txt.TxtColor = System.Drawing.Color.White
-        Me.txt.txtReadOnly = False
-        Me.txt.TxtSelect = New Integer() {1, 0}
         '
         'btInfo
         '
@@ -463,22 +370,22 @@ Partial Class ClientRapport
         Me.btInfo.FlatAppearance.BorderSize = 0
         Me.btInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btInfo.Image = CType(resources.GetObject("btInfo.Image"), System.Drawing.Image)
-        Me.btInfo.Location = New System.Drawing.Point(788, 0)
+        Me.btInfo.Location = New System.Drawing.Point(811, 0)
         Me.btInfo.Name = "btInfo"
         Me.btInfo.Size = New System.Drawing.Size(31, 30)
         Me.btInfo.TabIndex = 10
         Me.btInfo.UseVisualStyleBackColor = True
         '
-        'Label4
+        'cbDt
         '
-        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(648, 65)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(71, 14)
-        Me.Label4.TabIndex = 1
-        Me.Label4.Text = "Entrepôtes"
+        Me.cbDt.AutoSize = True
+        Me.cbDt.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbDt.Location = New System.Drawing.Point(17, 86)
+        Me.cbDt.Name = "cbDt"
+        Me.cbDt.Size = New System.Drawing.Size(65, 20)
+        Me.cbDt.TabIndex = 3
+        Me.cbDt.Text = "Details"
+        Me.cbDt.UseVisualStyleBackColor = True
         '
         'Label3
         '
@@ -490,6 +397,31 @@ Partial Class ClientRapport
         Me.Label3.TabIndex = 1
         Me.Label3.Text = "Libelle"
         '
+        'GroupBox3
+        '
+        Me.GroupBox3.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox3.Controls.Add(Me.Label8)
+        Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Right
+        Me.GroupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.GroupBox3.Location = New System.Drawing.Point(1079, 0)
+        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(6)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(10)
+        Me.GroupBox3.Size = New System.Drawing.Size(45, 126)
+        Me.GroupBox3.TabIndex = 1
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Visible = False
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Location = New System.Drawing.Point(13, 13)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(88, 14)
+        Me.Label8.TabIndex = 1
+        Me.Label8.Text = "Commule BLs"
+        '
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
@@ -498,9 +430,10 @@ Partial Class ClientRapport
         Me.GroupBox1.Controls.Add(Me.dte2)
         Me.GroupBox1.Controls.Add(Me.dte1)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.GroupBox1.Enabled = False
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(274, 126)
+        Me.GroupBox1.Size = New System.Drawing.Size(206, 126)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         '
@@ -530,7 +463,7 @@ Partial Class ClientRapport
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dte2.Location = New System.Drawing.Point(6, 83)
         Me.dte2.Name = "dte2"
-        Me.dte2.Size = New System.Drawing.Size(243, 20)
+        Me.dte2.Size = New System.Drawing.Size(175, 20)
         Me.dte2.TabIndex = 0
         '
         'dte1
@@ -539,8 +472,31 @@ Partial Class ClientRapport
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dte1.Location = New System.Drawing.Point(6, 34)
         Me.dte1.Name = "dte1"
-        Me.dte1.Size = New System.Drawing.Size(243, 20)
+        Me.dte1.Size = New System.Drawing.Size(175, 20)
         Me.dte1.TabIndex = 0
+        '
+        'PrintDocDesign
+        '
+        '
+        'txt
+        '
+        Me.txt.BackColor = System.Drawing.Color.Transparent
+        Me.txt.BorderColor = System.Drawing.Color.Transparent
+        Me.txt.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt.IsNumiric = False
+        Me.txt.Location = New System.Drawing.Point(0, 0)
+        Me.txt.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txt.Name = "txt"
+        Me.txt.ShowClearIcon = False
+        Me.txt.ShowSaveIcon = False
+        Me.txt.Size = New System.Drawing.Size(811, 30)
+        Me.txt.StartUp = 2
+        Me.txt.TabIndex = 11
+        Me.txt.TextSize = 8
+        Me.txt.TxtBackColor = True
+        Me.txt.TxtColor = System.Drawing.Color.White
+        Me.txt.txtReadOnly = False
+        Me.txt.TxtSelect = New Integer() {1, 0}
         '
         'ClientRapport
         '
@@ -550,7 +506,7 @@ Partial Class ClientRapport
         Me.Controls.Add(Me.Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "ClientRapport"
-        Me.Text = "ClientRapport"
+        Me.Text = "Commule BLs"
         Me.Panel2.ResumeLayout(False)
         Me.pl.ResumeLayout(False)
         CType(Me.dg_D, System.ComponentModel.ISupportInitialize).EndInit()
@@ -562,8 +518,9 @@ Partial Class ClientRapport
         Me.Panel8.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.Panel9.ResumeLayout(False)
         Me.Panel10.ResumeLayout(False)
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
@@ -576,9 +533,9 @@ Partial Class ClientRapport
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Panel13 As System.Windows.Forms.Panel
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
-    Friend WithEvents lbQteOut As System.Windows.Forms.Label
+    Friend WithEvents lbAvc As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents lbQteIn As System.Windows.Forms.Label
+    Friend WithEvents lbTotal As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents lbLnbr As System.Windows.Forms.Label
     Friend WithEvents Label14 As System.Windows.Forms.Label
@@ -591,19 +548,17 @@ Partial Class ClientRapport
     Friend WithEvents Panel29 As System.Windows.Forms.Panel
     Friend WithEvents Panel8 As System.Windows.Forms.Panel
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-    Friend WithEvents cbOut As System.Windows.Forms.CheckBox
-    Friend WithEvents cbIn As System.Windows.Forms.CheckBox
-    Friend WithEvents Panel9 As System.Windows.Forms.Panel
-    Friend WithEvents txtDepot As Al_Mohasib.TxtBox
-    Friend WithEvents btDepot As System.Windows.Forms.Button
     Friend WithEvents Panel10 As System.Windows.Forms.Panel
     Friend WithEvents txt As Al_Mohasib.TxtBox
     Friend WithEvents btInfo As System.Windows.Forms.Button
-    Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents dte2 As System.Windows.Forms.DateTimePicker
     Friend WithEvents dte1 As System.Windows.Forms.DateTimePicker
+    Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
+    Friend WithEvents cbDt As System.Windows.Forms.CheckBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents PrintDocDesign As System.Drawing.Printing.PrintDocument
 End Class

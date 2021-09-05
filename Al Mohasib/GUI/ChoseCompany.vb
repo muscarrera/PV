@@ -130,7 +130,7 @@
 
         Dim sum As Double
         Try
-            sum = Convert.ToDouble(dt.Compute("SUM(qteIn)", "DBNull"))
+            sum = Convert.ToDouble(dt.Compute("SUM(qteIn)", String.Empty))
             lbQteIn.Text = sum & " U"
         Catch ex As Exception
             lbQteIn.Text = "... "

@@ -637,6 +637,10 @@ Public Class Devis
         txtSearch.Text = ""
         txtSearch.Focus()
     End Sub
+
+    Private Sub RPl_printCaisse() Handles RPl.printCaisse
+
+    End Sub
     Private Sub RPl_UpdateQte(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RPl.UpdateQte
         UpdateItem("الكمية السابــقة", RPl.SelectedItem, "qte")
     End Sub
@@ -746,10 +750,7 @@ Public Class Devis
             Exit Sub
         End If
 
-
-
         If Form1.cbNormalImp.Checked Then
-
 
             Try
                 PrintDoc.PrinterSettings.PrinterName = nm
@@ -765,7 +766,7 @@ Public Class Devis
                 Next
 
             Catch ex As Exception
-               
+
             End Try
 
             If RPl.EditMode = False Then

@@ -26,6 +26,7 @@ Partial Class PayRecept
         Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
         Me.PrintDocRes = New System.Drawing.Printing.PrintDocument()
         Me.plClavier = New System.Windows.Forms.Panel()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
@@ -44,11 +45,12 @@ Partial Class PayRecept
         Me.Button33 = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtRest = New System.Windows.Forms.TextBox()
+        Me.txtAvc = New System.Windows.Forms.TextBox()
         Me.txtTotal = New System.Windows.Forms.TextBox()
         Me.txt = New System.Windows.Forms.TextBox()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.plClavier.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -76,6 +78,20 @@ Partial Class PayRecept
         Me.plClavier.Name = "plClavier"
         Me.plClavier.Size = New System.Drawing.Size(430, 530)
         Me.plClavier.TabIndex = 17
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.Color.DarkOrchid
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Font = New System.Drawing.Font("Arial", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.ForeColor = System.Drawing.Color.Honeydew
+        Me.Button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Button3.Location = New System.Drawing.Point(12, 453)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(130, 64)
+        Me.Button3.TabIndex = 0
+        Me.Button3.Text = "VIREMENT"
+        Me.Button3.UseVisualStyleBackColor = False
         '
         'Button2
         '
@@ -301,8 +317,10 @@ Partial Class PayRecept
         Me.Panel1.Controls.Add(Me.Button33)
         Me.Panel1.Controls.Add(Me.Label3)
         Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Controls.Add(Me.txtRest)
+        Me.Panel1.Controls.Add(Me.txtAvc)
         Me.Panel1.Controls.Add(Me.txtTotal)
         Me.Panel1.Controls.Add(Me.txt)
         Me.Panel1.Controls.Add(Me.Annuler)
@@ -347,6 +365,16 @@ Partial Class PayRecept
         Me.Label2.TabIndex = 21
         Me.Label2.Text = "CACHE"
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.ForeColor = System.Drawing.Color.White
+        Me.Label4.Location = New System.Drawing.Point(188, 63)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(50, 13)
+        Me.Label4.TabIndex = 21
+        Me.Label4.Text = "AVANCE"
+        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -370,6 +398,19 @@ Partial Class PayRecept
         Me.txtRest.TabIndex = 20
         Me.txtRest.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'txtAvc
+        '
+        Me.txtAvc.BackColor = System.Drawing.SystemColors.MenuText
+        Me.txtAvc.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtAvc.Font = New System.Drawing.Font("Century Gothic", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtAvc.ForeColor = System.Drawing.Color.White
+        Me.txtAvc.Location = New System.Drawing.Point(191, 83)
+        Me.txtAvc.Name = "txtAvc"
+        Me.txtAvc.ReadOnly = True
+        Me.txtAvc.Size = New System.Drawing.Size(110, 34)
+        Me.txtAvc.TabIndex = 19
+        Me.txtAvc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'txtTotal
         '
         Me.txtTotal.BackColor = System.Drawing.SystemColors.MenuText
@@ -379,7 +420,7 @@ Partial Class PayRecept
         Me.txtTotal.Location = New System.Drawing.Point(19, 83)
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.ReadOnly = True
-        Me.txtTotal.Size = New System.Drawing.Size(275, 41)
+        Me.txtTotal.Size = New System.Drawing.Size(166, 41)
         Me.txtTotal.TabIndex = 19
         Me.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -395,20 +436,6 @@ Partial Class PayRecept
         Me.txt.Size = New System.Drawing.Size(221, 41)
         Me.txt.TabIndex = 18
         Me.txt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.DarkOrchid
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Arial", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.ForeColor = System.Drawing.Color.Honeydew
-        Me.Button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button3.Location = New System.Drawing.Point(12, 453)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(130, 64)
-        Me.Button3.TabIndex = 0
-        Me.Button3.Text = "VIREMENT"
-        Me.Button3.UseVisualStyleBackColor = False
         '
         'PayRecept
         '
@@ -452,4 +479,6 @@ Partial Class PayRecept
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Button3 As System.Windows.Forms.Button
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents txtAvc As System.Windows.Forms.TextBox
 End Class

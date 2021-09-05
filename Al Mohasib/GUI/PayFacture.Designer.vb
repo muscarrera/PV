@@ -31,6 +31,7 @@ Partial Class PayFacture
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.plup = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.plPoch = New System.Windows.Forms.Panel()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.btPanelAdd = New System.Windows.Forms.Button()
@@ -86,7 +87,6 @@ Partial Class PayFacture
         Me.txtnum = New Al_Mohasib.TxtBox()
         Me.txtmontant = New Al_Mohasib.TxtBox()
         Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
-        Me.Button4 = New System.Windows.Forms.Button()
         Me.plup.SuspendLayout()
         Me.Panel21.SuspendLayout()
         Me.plPoch.SuspendLayout()
@@ -131,6 +131,18 @@ Partial Class PayFacture
         Me.Panel21.Name = "Panel21"
         Me.Panel21.Size = New System.Drawing.Size(319, 94)
         Me.Panel21.TabIndex = 5
+        '
+        'Button4
+        '
+        Me.Button4.FlatAppearance.BorderSize = 0
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Location = New System.Drawing.Point(131, 3)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(75, 67)
+        Me.Button4.TabIndex = 8
+        Me.Button4.Text = "Button4"
+        Me.Button4.UseVisualStyleBackColor = True
+        Me.Button4.Visible = False
         '
         'plPoch
         '
@@ -806,17 +818,6 @@ Partial Class PayFacture
         '
         'PrintDoc
         '
-        '
-        'Button4
-        '
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Location = New System.Drawing.Point(131, 3)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 67)
-        Me.Button4.TabIndex = 8
-        Me.Button4.Text = "Button4"
-        Me.Button4.UseVisualStyleBackColor = True
         '
         'PayFacture
         '

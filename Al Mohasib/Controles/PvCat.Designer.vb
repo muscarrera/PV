@@ -22,26 +22,12 @@ Partial Class PvCat
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.PL = New System.Windows.Forms.Panel()
         Me.plB = New System.Windows.Forms.Panel()
         Me.lb = New System.Windows.Forms.Label()
-        Me.PL.SuspendLayout()
+        Me.PL = New System.Windows.Forms.Panel()
         Me.plB.SuspendLayout()
+        Me.PL.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'PL
-        '
-        Me.PL.BackColor = System.Drawing.Color.RoyalBlue
-        Me.PL.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_17_59_22
-        Me.PL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PL.Controls.Add(Me.plB)
-        Me.PL.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PL.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.PL.Location = New System.Drawing.Point(8, 8)
-        Me.PL.Name = "PL"
-        Me.PL.Size = New System.Drawing.Size(169, 181)
-        Me.PL.TabIndex = 4
         '
         'plB
         '
@@ -68,6 +54,20 @@ Partial Class PvCat
         Me.lb.Text = "Label1"
         Me.lb.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         '
+        'PL
+        '
+        Me.PL.BackColor = System.Drawing.Color.RoyalBlue
+        Me.PL.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_17_59_22
+        Me.PL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PL.Controls.Add(Me.plB)
+        Me.PL.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PL.ForeColor = System.Drawing.SystemColors.MenuHighlight
+        Me.PL.Location = New System.Drawing.Point(8, 8)
+        Me.PL.Name = "PL"
+        Me.PL.Size = New System.Drawing.Size(169, 181)
+        Me.PL.TabIndex = 4
+        '
         'PvCat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -78,13 +78,13 @@ Partial Class PvCat
         Me.Name = "PvCat"
         Me.Padding = New System.Windows.Forms.Padding(8, 8, 8, 6)
         Me.Size = New System.Drawing.Size(185, 195)
-        Me.PL.ResumeLayout(False)
         Me.plB.ResumeLayout(False)
+        Me.PL.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
+    Friend WithEvents plB As System.Windows.Forms.Panel
     Friend WithEvents lb As System.Windows.Forms.Label
     Friend WithEvents PL As System.Windows.Forms.Panel
-    Friend WithEvents plB As System.Windows.Forms.Panel
 
 End Class

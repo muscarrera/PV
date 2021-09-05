@@ -27,21 +27,46 @@
         btcon.Tag = "1"
         GB.Visible = True
     End Sub
+    Private Function hasMoreFacture(ByVal id As Integer) As Boolean
 
+
+
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+
+            Dim params As New Dictionary(Of String, Object)
+            params.Add("clid", id)
+            ' added some items
+
+            Dim dt As DataTable = a.SelectDataTable("Bon", {"*"}, params)
+
+            If dt.Rows.Count > 0 Then Return False
+
+
+            Return True
+        End Using
+
+        Return False
+    End Function
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        If DataGridView1.SelectedRows.Count = 0 Then
+        If DataGridView1.SelectedRows.Count = 0 Then Exit Sub
+
+
+        Dim id As Integer = DataGridView1.SelectedRows(0).Cells(0).Value
+        If hasMoreFacture(id) = False Then
+            MsgBox("vous ne disposez pas des autorisations nécessaires pour supprimer ce Fournisseur")
             Exit Sub
         End If
+
         If MsgBox("عند قيامكم على الضغط على 'موافق' سيتم حذف الزبون  المؤشر عليها من القائمة .. إضغط  'لا'  لالغاء الحذف ", MsgBoxStyle.Critical Or MsgBoxStyle.YesNo, "حذف الزبون") = MsgBoxResult.No Then
             Exit Sub
         End If
-        If DataGridView1.SelectedRows(0).Cells(5).Value > 0 Then
-            MsgBox("عذرا لا يمكن اتمام طلبكم.. هذا الزبون ما زال يتوفر على دين. المرجوا قضاء دينه اولا", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
-            Exit Sub
-        End If
+        'If DataGridView1.SelectedRows(0).Cells(5).Value > 0 Then
+        '    MsgBox("عذرا لا يمكن اتمام طلبكم.. هذا الزبون ما زال يتوفر على دين. المرجوا قضاء دينه اولا", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
+        '    Exit Sub
+        'End If
         Try
             Dim ta As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
-            ta.DeleteQuery(DataGridView1.SelectedRows(0).Cells(0).Value)
+            ta.DeleteQuery(id)
             ta.Fill(ALMohassinDBDataSet.company)
         Catch ex As Exception
             MsgBox(ex.Message)

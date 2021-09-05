@@ -147,9 +147,12 @@
         End If
     End Sub
     Private Sub Button14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtDel.Click
+
+
         If isActive Then
             RaiseEvent DeleteItems()
             isActive = False
+
         Else
             RaiseEvent ValueChange()
         End If

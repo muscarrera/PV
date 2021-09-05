@@ -49,14 +49,14 @@
         End Get
         Set(ByVal value As String)
             Try
-                If value = "No Image" Or value = "" Then
+                If value = "No Image" Or value = "" Then Exit Property
 
-                Else
-                    Dim str As String = Form1.BtImgPah.Tag & "\art" & value
+                Dim str As String = Form1.BtImgPah.Tag & "\art" & value
 
-                    PL.BackgroundImage = Image.FromFile(str)
-                End If
-                PL.BackgroundImageLayout = ImageLayout.Stretch
+                Dim mypic As New System.IO.FileStream(str, IO.FileMode.Open)
+                Dim _img As Image = Image.FromStream(mypic)
+                mypic.Close()
+                PL.BackgroundImage = _img
 
             Catch ex As Exception
             End Try

@@ -466,8 +466,8 @@ D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.BarCode1.resources
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.BarCode2.resources
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.LabelPrinter.resources
-C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Debug\ALMohassinDB.mdb
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Debug\Al Mohasib.exe.config
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Debug\ALMohassinDB.mdb
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Debug\Al Mohasib.pdb
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Debug\Al Mohasib.xml
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Debug\MyBarcode.dll
@@ -485,6 +485,7 @@ C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.gTable.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Items.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.PvArticle.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.PvCat.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.RPanel.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Tag.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.TxtBox.resources
@@ -512,6 +513,7 @@ C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChoseDepot.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Client.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ClientDetails.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ClientRapport.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.company.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.CompanyPAYEMENT.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Depot.resources
@@ -547,6 +549,8 @@ C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.paypmt.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.PWDPicker.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.SavePrint.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditSideElement.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditSidePanel.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.stk.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.Stock.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.testimage.resources
@@ -557,7 +561,4 @@ C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al Mohasib.exe
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al Mohasib.xml
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al Mohasib.pdb
-C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditSidePanel.resources
-C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditSideElement.resources
-C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.PvCat.resources
-C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ClientRapport.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.OpenFactures.resources

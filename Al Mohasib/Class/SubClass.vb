@@ -256,6 +256,10 @@ Public Class SubClass
                 '  If IsNumeric(txt.Text) Then str = "%" & txt.Text & "%"
                 artdt = artta.GetDatalikecodebar(str)
 
+            ElseIf Form1.cbsearch.Text = "DirectR" Then
+                Dim str As String = txt.Text
+                artdt = artta.GetDatalikecodebar(str)
+
             ElseIf Form1.cbsearch.Text = "التصنيف" Then
                 artdt = artta.GetDataBycidlikeCodeBar(txt.Text & "%", cid)
                 artdt2 = artta.GetDataBycidlikename("%" & txt.Text & "%", cid)
@@ -290,10 +294,18 @@ Public Class SubClass
         End Try
     End Sub
     Public Sub SearchForcodebar()
-        Dim bt As New Button
         Try
-            bt = Form1.FlowLayoutPanel1.Controls(0)
-            '''''
+            Dim bt As New Button
+
+            If Form1.cbPvArticle.Checked Then
+                Dim pv As New PvArticle
+                pv = Form1.FlowLayoutPanel1.Controls(0)
+                bt.Tag = pv.DataSource
+
+            Else
+                bt = Form1.FlowLayoutPanel1.Controls(0)
+            End If
+
 
 
             ' sell function
@@ -839,6 +851,7 @@ Public Class SubClass
                 End If
             End If
 
+           
             ''''''''''''''''''''''''''''''''''''
             If Form1.cbPvArticle.Checked Then
                 Dim pv As New PvArticle
@@ -903,7 +916,7 @@ Public Class SubClass
                 AddHandler bt.Click, AddressOf art_click
                 ''''''''''''''''''''''''''''''''''''''''''''''''''' list suivant
             End If
-
+          
             If i = myLast Then
                 Dim pv As New PvCat
                 pv.DataSource = artdt
@@ -1042,6 +1055,9 @@ Public Class SubClass
 
             End If
         Next
+        Form1.lbListBon.Text = "[" & dt.Rows.Count & "] Recept(s)"
+        Form1.lbListBon.Tag = dt.Rows.Count
+
         Form1.RPl.ClearItems()
         Dim b As New Button
         b.Tag = fctid
@@ -1050,66 +1066,12 @@ Public Class SubClass
 
 
     Private Sub EditArticle(ByVal R As ALMohassinDBDataSet.ArticleRow)
-
-        'If DGVPRD.SelectedRows(0).Cells(11).Value = 0 Then
-        '    Exit Sub
-        'End If
-        Dim bprice As Double = String.Format("{0:F}", R.bprice)
-        Dim Sprice As Double = String.Format("{0:F}", R.sprice)
-        Dim tva As Double = String.Format("{0:F}", R.tva)
-        Dim cid As Integer = R.cid
-        Dim price2 As String = ""
-        Dim price3 As String = ""
-
-        If Form1.chbsell.Checked Then
-            price2 = String.Format("{0:F}", R.sp3)
-            price3 = String.Format("{0:F}", R.sp4)
-        End If
-
+         
         Dim art As New AddEditArticle
         art.editMode = True
-
-        art.cbctg.Tag = cid
-        art.cid = cid
-        art.cbctg.SelectedValue = cid
-        art.CBdp.SelectedValue = CInt(R.depot)
-        art.CBdp.Tag = R.depot
-        art.txtcb.text = R.codebar
-        art.txtprdname.Text = R.name
-        art.txtbprice.text = bprice
-        art.txtsprice.text = Sprice
-        art.txtprice2.text = price2
-        art.txtprice3.text = price3
-        art.txtunit.Text = R.unite
-        art.txttva.text = tva
-        art.txtprdname.Tag = R.arid
-
+        art.id = R.arid
+ 
         art.PlPrice.Visible = Form1.chbsell.Checked
-
-        Try
-            art.txtMinStock.text = CInt(R.elements)
-        Catch ex As Exception
-            art.txtMinStock.text = "0"
-        End Try
-
-        Try
-            art.TxtPoids.text = R.poid
-        Catch ex As Exception
-            art.TxtPoids.text = "0"
-        End Try
-
-
-        Try
-            If R.img <> "" And R.img <> "No Image" Then
-                art.PBprd.Tag = R.img
-                art.ImgPrd = Image.FromFile(Form1.BtImgPah.Tag & "\art" & R.img)
-            End If
-        Catch ex As Exception
-
-        End Try
-
-        art.btprd.Tag = "1"
-
         If art.ShowDialog = Windows.Forms.DialogResult.OK Then
             Form1.txtSearch.Text = R.codebar
             SearchForArticles(Form1.txtSearch, R.cid)
@@ -1417,6 +1379,9 @@ Public Class SubClass
 
                 Dim b As New Button
                 b.Tag = fid
+                Form1.lbListBon.Text = "[" & CInt(Form1.lbListBon.Tag) + 1 & "] Recept(s)"
+                Form1.lbListBon.Tag = CInt(Form1.lbListBon.Tag) + 1
+
                 'clear the recept liste
                 Form1.RPl.ClearItems()
                 FactureSelected(b, Nothing)
@@ -1794,6 +1759,7 @@ Public Class SubClass
                     fctid = b.ID
                     clientName = b.lb.Text
                     b.isActive = True
+                    b.SendToBack()
                 Else
                     b.isActive = False
                 End If
@@ -1806,6 +1772,8 @@ Public Class SubClass
                     b.ForeColor = Color.DarkSlateGray
                     fctid = b.Tag
                     clientName = b.Text
+                    b.SendToBack()
+
                 Else
                     b.BackColor = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255)) 'Color.DarkSlateGray
                     b.ForeColor = Color.White
@@ -1815,7 +1783,7 @@ Public Class SubClass
         End If
 
 
-
+        Form1.lbListBon.Text = Form1.lbListBon.Text.Split("|")(0) & "  |  " & clientName
 
 
 
@@ -1928,7 +1896,7 @@ Public Class SubClass
     Public Sub UpdateItem(ByVal i As Items, ByVal isS As Boolean)
         Try
 
-            Dim clc As New Editprdfact(i.Name, i.Bprice, i.Price, Math.Abs(i.Qte), i.Depot)
+            Dim clc As New Editprdfact(i.Name, i.Bprice, i.Price, Math.Abs(i.Qte), i.Depot, i.isRetour)
             If clc.ShowDialog = DialogResult.OK Then
                 Dim tableName As String = "DetailsBon"
                 If isS Then tableName = "DetailsFacture"
@@ -2367,7 +2335,12 @@ Public Class SubClass
                     Next
                 End If
 
-           
+
+                Form1.lbListBon.Text = "****     [" & CInt(Form1.lbListBon.Tag) - 1 & "]  Recept(s)    ****"
+                Form1.lbListBon.Tag = CInt(Form1.lbListBon.Tag) - 1
+
+
+
                 Form1.RPl.ClearItems()
                 If Form1.plright.Controls.Count > 0 Then
                     If Form1.cbPvClient.Checked Then
@@ -2704,8 +2677,13 @@ Public Class SubClass
                 localStock = 0
             End Try
 
-            result = localStock + qte
-            If Form1.RPl.isSell Then result = localStock - qte
+            If Form1.RPl.EditMode = False Then
+                result = localStock + qte
+                If Form1.RPl.isSell Then result = localStock - qte
+            Else
+                result = localStock
+            End If
+
         End Using
         Return result
     End Function

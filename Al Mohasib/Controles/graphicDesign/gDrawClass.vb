@@ -13,15 +13,13 @@ Public Class gDrawClass
 
     Dim gTabProp As gTabClass
     Dim localname As String
-    Dim page_Number As Integer = 0
     Public rtl As Boolean = False
 
     Dim up_table_H As Integer = 0
 
     Public Sub New(ByVal lName As String)
         localname = lName
-        page_Number = 1
-        LoadXml()
+         LoadXml()
     End Sub
 
 
@@ -143,9 +141,9 @@ Public Class gDrawClass
                 Next
             End Using
         Else
-            If up_table_H = 0 Then up_table_H = tc.TabHeight + (tc.y - 50)
+            If up_table_H = 0 Then up_table_H = tc.TabHeight + (tc.y - 20)
 
-            tc.y = 50
+            tc.y = 20
             tc.TabHeight = up_table_H
         End If
 
@@ -277,8 +275,8 @@ Public Class gDrawClass
                 '   g.DrawString("[ ..... ]", F_D, Brushes.Black, tc.TabWidth + tc.x - 60, tc.y + tc.TabHeight + 22)
                 y = tc.y + 33
 
-                g.DrawString("P-" & page_Number & "// ....", F_D, Brushes.Black, x_Page, y_Page)
-                page_Number += 1
+                g.DrawString("P-" & Form1.page_Number & "// ....", F_D, Brushes.Black, x_Page, y_Page)
+                Form1.page_Number += 1
 
                 e.HasMorePages = True
                 Return
@@ -603,8 +601,8 @@ Public Class gDrawClass
             Next
         End Using
 
-        If _Ttype.ToUpper.StartsWith("LIS") = False Then g.DrawString("P-" & page_Number & "/" & page_Number, F_D, Brushes.Black, x_Page, y_Page)
-        page_Number = 0
+        If _Ttype.ToUpper.StartsWith("LIS") = False Then g.DrawString("P-" & Form1.page_Number & "/" & Form1.page_Number, F_D, Brushes.Black, x_Page, y_Page)
+        Form1.page_Number = 0
         m = 0
         'Return _Bmp
     End Sub

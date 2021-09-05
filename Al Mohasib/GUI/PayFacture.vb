@@ -657,7 +657,7 @@
         Try
             Dim rest As Decimal = total
             For i As Integer = 0 To DGVP.Rows.Count - 1
-                rest = rest - DGVP.Rows(i).Cells(1).Value
+                rest = rest - DGVP.Rows(i).Cells(2).Value
             Next
             Dim dt As DataTable
 
@@ -863,4 +863,6 @@
             params = Nothing
         End Using
     End Sub
+
+  
 End Class

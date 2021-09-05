@@ -30,20 +30,28 @@
         End Get
         Set(ByVal value As String)
             _img = value
-            ' bw.RunWorkerAsync()
+           
+            'Try
+            '    If value = "No Image" Or value = "" Then
 
-            Try
-                If value = "No Image" Or value = "" Then
+            '    Else
+            '        Dim str As String = Form1.BtImgPah.Tag & "\cat" & value
 
-                Else
-                    Dim str As String = Form1.BtImgPah.Tag & "\cat" & value
+            '        PL.BackgroundImage = Image.FromFile(str)
+            '    End If
+            '    PL.BackgroundImageLayout = ImageLayout.Stretch
 
-                    PL.BackgroundImage = Image.FromFile(str)
-                End If
-                PL.BackgroundImageLayout = ImageLayout.Stretch
+            'Catch ex As Exception
+            'End Try
 
-            Catch ex As Exception
-            End Try
+
+            Dim str As String = Form1.BtImgPah.Tag & "\cat" & value
+
+            Dim mypic As New System.IO.FileStream(str, IO.FileMode.Open)
+            Dim _image As Image = Image.FromStream(mypic)
+            mypic.Close()
+            PL.BackgroundImage = _image
+
         End Set
     End Property
     Public Property CatName As String

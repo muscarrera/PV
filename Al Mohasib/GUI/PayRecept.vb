@@ -1,6 +1,6 @@
 ﻿Public Class PayRecept
 
-    Public avc As Double = 0
+    Public _avc As Double = 0
     Private _pay As Double = 0
     Public total As Double = 0
     Public str As String = ""
@@ -15,6 +15,17 @@
             Return a
         End Get
     End Property
+    Public ReadOnly Property avancePay As Double
+        Get
+            Dim a As Double = pay
+
+            If pay > (avc + total) Then
+                a = total - avc
+            End If
+
+            Return a
+        End Get
+    End Property
     Public Property pay As Double
         Get
             Return _pay
@@ -23,7 +34,7 @@
             _pay = value
             txt.Text = String.Format("{0:n}", CDec(value))
 
-            Dim rest As Decimal = CDec(value - total)
+            Dim rest As Decimal = CDec((value + avc) - total)
             txtRest.Text = String.Format("{0:n}", rest)
 
             If rest < 0 Then
@@ -34,6 +45,16 @@
         End Set
     End Property
 
+    Public Property avc As Double
+        Get
+            Return _avc
+        End Get
+        Set(ByVal value As Double)
+            _avc = value
+            txt.Text = value.ToString(Form1.frmDbl)
+
+        End Set
+    End Property
 
     Private Sub PayRecept_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         pay = 0
@@ -75,6 +96,7 @@
 
 
     Public Sub AddPayement()
+        If pay = 0 Then Exit Sub
 
         Dim isSell = Form1.RPl.isSell
         Dim tableName As String = "CompanyPayment"
@@ -96,7 +118,7 @@
 
             params.Add("name", Form1.RPl.Name)
             params.Add(cl, Form1.RPl.ClId)
-            params.Add("montant", avance)
+            params.Add("montant", avancePay)
             params.Add("way", WAY)
             params.Add("date", Format(Now.Date, "dd-MM-yyyy"))
             params.Add("Num", str)
@@ -161,5 +183,9 @@
 
         AddPayement()
         Me.DialogResult = Windows.Forms.DialogResult.OK
+    End Sub
+
+    Private Sub Label4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label4.Click
+
     End Sub
 End Class

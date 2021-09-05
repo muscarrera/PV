@@ -89,7 +89,7 @@ Public Class AddEditCat
 
         TextBox1.Text = dgvctg.SelectedRows(0).Cells(1).Value
         TextBox1.Tag = dgvctg.SelectedRows(0).Cells(0).Value
-        TextBox1.Text = dgvctg.SelectedRows(0).Cells(1).Value
+        TextBox2.Text = dgvctg.SelectedRows(0).Cells(3).Value
         If dgvctg.SelectedRows(0).Cells(2).Value.ToString <> "" And dgvctg.SelectedRows(0).Cells(2).Value.ToString <> "No Image" Then
             Try
                 Dim pmg3 As New Bitmap(Form1.BtImgPah.Tag.ToString & "\cat" & dgvctg.SelectedRows(0).Cells(2).Value.ToString)
@@ -223,12 +223,14 @@ Public Class AddEditCat
             str = str.Replace("/", "-")
             str = str.Replace("*", "-")
 
-            Using img As Image = ImgPrd
-                img.Save(Form1.BtImgPah.Tag & "\cat" & str & ".jpg", Imaging.ImageFormat.Jpeg)
+            Using bm As Bitmap = New Bitmap(ImgPrd)
+                bm.Save(Form1.BtImgPah.Tag & "\cat" & str & ".jpg", bm.RawFormat)
             End Using
-            Using img As Image = imgWithName
-                img.Save(Form1.BtImgPah.Tag & "\P-cat" & str & ".jpg", Imaging.ImageFormat.Jpeg)
+
+            Using bm As Bitmap = New Bitmap(imgWithName)
+                bm.Save(Form1.BtImgPah.Tag & "\P-cat" & str & ".jpg", bm.RawFormat)
             End Using
+          
 
             PBctg.Tag = str & ".jpg"
         Catch ex As Exception
