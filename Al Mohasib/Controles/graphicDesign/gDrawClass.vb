@@ -379,6 +379,9 @@ Public Class gDrawClass
 
                     Dim size As SizeF = g.MeasureString(_str, F_D, c.ColWidth - 3)
                     plus_h = size.Height
+                ElseIf c.Field = "CheckBox" Then '///////////////////////////////////////////////
+                    _str = ""
+                    g.DrawRectangle(Pens.Black, _x, y + 4, 10, 10)
 
                 ElseIf c.Field = "tva" Or c.Field = "remise" Then '///////////////////////////
                     _str = details.Rows(m).Item(c.Field) & " %"

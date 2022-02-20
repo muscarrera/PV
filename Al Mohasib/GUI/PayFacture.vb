@@ -254,7 +254,7 @@
                         params.Add("name", clientName)
                         params.Add(cl, clid)
                         params.Add("way", "POCHET")
-                        params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
+                        params.Add("date", Format(dte.AddYears(-10), "dd-MM-yyyy HH:mm"))
                         params.Add("Num", "POCHET")
                         params.Add(fld, 0)
                         params.Add("writer", CStr(Form1.adminName))

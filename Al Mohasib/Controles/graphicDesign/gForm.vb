@@ -93,6 +93,7 @@ Public Class gForm
             ' Create four typed columns in the DataTable.
             table.Columns.Add("arid", GetType(Integer))
             table.Columns.Add("name", GetType(String))
+            table.Columns.Add("unit", GetType(String))
             table.Columns.Add("cid", GetType(Integer))
             table.Columns.Add("qte", GetType(Double))
             table.Columns.Add("price", GetType(Double))
@@ -105,13 +106,13 @@ Public Class gForm
             table.Columns.Add("totaltva", GetType(Double))
 
             ' Add  rows with those columns filled in the DataTable.
-            table.Rows.Add(1, "Article1", 1, 3, String.Format("{0:0.00}", 11.5), 11,
+            table.Rows.Add(1, "Article1", "u", 1, 3, String.Format("{0:0.00}", 11.5), 11,
                               20, "REF 123", 4, 0, 2, 3)
-            table.Rows.Add(1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit", 3, 12, String.Format("{0:0.00}", 34.4), 11,
+            table.Rows.Add(1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit", "u", 3, 12, String.Format("{0:0.00}", 34.4), 11,
                              10, "REF 123", 3, 0, 2, 4)
-            table.Rows.Add(1, "Article3", 3, 3, String.Format("{0:0.00}", 66), 11,
+            table.Rows.Add(1, "Article3", "u", 3, 3, String.Format("{0:0.00}", 66), 11,
                              20, "REF 123", 3, 0, 2, 5)
-            table.Rows.Add(1, "Article4", 3, 54, String.Format("{0:0.00}", 5), 11,
+            table.Rows.Add(1, "Article4", "u", 3, 54, String.Format("{0:0.00}", 5), 11,
                              14, "REF 123", 4, 0, 2, 6)
             Return table
         End Get
@@ -504,7 +505,9 @@ Public Class gForm
 
                             If details.Rows(m).Item(c.Field).ToString = "0" Or details.Rows(m).Item(c.Field).ToString = "" Then _str = "Exo"
                             sf.Alignment = StringAlignment.Center
-
+                        ElseIf c.Field = "CheckBox" Then '///////////////////////////////////////////////
+                            _str = ""
+                            G.DrawRectangle(Pens.Black, _x, y + 4, 10, 10)
                         ElseIf field = "price" Then '///////////////////////////////////////////////
                             _str = details.Rows(m).Item("price")
                             _str = CDbl(_str * dh_ryal)

@@ -343,6 +343,8 @@
 
         ' Add any initialization after the InitializeComponent() call.
         IsArabic = Form1.cbArticleItemDirection.Checked
+        If Form1.cbItemCheckBox.Checked Then plCheck.Visible = True
+
     End Sub
     Private Sub PlBody_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Pl.Click, LbQte.Click, LbName.Click, LbTotal.Click, LbTva.Click, Panel1.Click, LbStk.Click, LbPrice.Click, Label3.Click, Label2.Click
         If IsSelected = True Then
@@ -355,5 +357,15 @@
 
     Private Sub Pl_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Pl.DoubleClick, LbTva.DoubleClick, LbTotal.DoubleClick, LbName.DoubleClick, LbQte.DoubleClick, LbStk.DoubleClick, LbPrice.DoubleClick, Label3.DoubleClick, Label2.DoubleClick
         RaiseEvent Item_DoubleClick(Me, e)
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBox1.CheckedChanged
+        'CheckBox1.Checked = Not CheckBox1.Checked
+
+        If CheckBox1.Checked Then
+            CheckBox1.BackColor = Color.Green
+        Else
+            CheckBox1.BackColor = Color.Transparent
+        End If
     End Sub
 End Class

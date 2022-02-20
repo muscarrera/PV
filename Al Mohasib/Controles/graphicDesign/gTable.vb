@@ -161,6 +161,7 @@
         Dim PARAMS As New Dictionary(Of String, String)
         PARAMS.Add("Designation", "name")
         PARAMS.Add("Réf", "ref")
+        PARAMS.Add("Unite", "unit")
         PARAMS.Add("Prix", "price")
         PARAMS.Add("Prix TTC", "xPriceTTC")
         PARAMS.Add("Remise", "remise")
@@ -175,7 +176,7 @@
         PARAMS.Add("Prix TTC (Ryl)", "xPriceTTC-RYL")
         PARAMS.Add("Total (Ryl)", "xTotal-RYL")
         PARAMS.Add("Total TTC (Ryl)", "xTotalTTC-RYL")
-
+        PARAMS.Add("CheckBox", "CheckBox")
 
         ComboBox1.ValueMember = "Value"
         ComboBox1.DisplayMember = "Key"

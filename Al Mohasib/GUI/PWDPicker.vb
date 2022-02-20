@@ -19,7 +19,6 @@
         Me.WindowState = FormWindowState.Maximized
 
         Panel6.Location = New Point((Me.Width - Panel6.Width) \ 2, (Me.Height - Panel6.Height) \ 2)
-
     End Sub
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Me.DialogResult = Windows.Forms.DialogResult.Cancel

@@ -182,8 +182,14 @@ Public Class AddEditArticle
 
 
     Private Sub btprd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btprd.Click
+        If SaveProduct() Then
+            Me.DialogResult = Windows.Forms.DialogResult.OK
+        End If
+   
+    End Sub
 
-        If Validation() = False Then Exit Sub
+    Public Function SaveProduct() As Boolean
+        If Validation() = False Then Return False
 
         '   If isImgChenged Then saveImage()
 
@@ -205,8 +211,6 @@ Public Class AddEditArticle
 
         ' addddd
         If editMode = False Then
-            ''check the name
-
             Try
                 Dim ta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
                 ta.InsertQuery(cid, txtprdname.Text, imagePath, bprice, sprice, txtunit.Text, txtcb.text, "0", tva,
@@ -227,30 +231,31 @@ Public Class AddEditArticle
                     txtunit.Text = ""
                     PBprd.Tag = ""
                     PBprd.BackgroundImage = Nothing
+                    Return False
                 Else
-                    Me.DialogResult = Windows.Forms.DialogResult.OK
+                    Return True
                 End If
             Catch ex As Exception
                 MsgBox(ex.Message)
+                Return False
             End Try
-
 
         Else
 
-
             Try
-
                 Dim ta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
                 ta.UpdateQuery(cid, txtprdname.Text, bprice, sprice, txtunit.Text, tva,
                                price2, price3, price4, TxtPoids.text, txtcb.text, CInt(CBdp.SelectedValue),
                                 cbIsMixte.Checked, txtMinStock.text, imagePath, id)
                 ta.Fill(ALMohassinDBDataSet.Article)
-                Me.DialogResult = Windows.Forms.DialogResult.OK
+                Return True
             Catch ex As Exception
                 MsgBox(ex.Message)
+                Return False
             End Try
         End If
-    End Sub
+    End Function
+
 
     Private Sub Button8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button8.Click
         Me.DialogResult = Windows.Forms.DialogResult.Cancel
@@ -575,5 +580,287 @@ Public Class AddEditArticle
         End Try
 
     End Function
+
+    Dim m = 0
+    Dim table As New DataTable
+    Private gl As New LbGlobalElement
+    Public article As String
+    Public qte As String
+    Private K_nmPage As Integer = 0
+
+
+    Private Sub Button9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button9.Click
+
+        If SaveProduct() = False Then Exit Sub
+
+        Try
+            ' Create four typed columns in the DataTable.
+            table.Columns.Add("Name", GetType(String))
+            table.Columns.Add("Prix(G)", GetType(String))
+            table.Columns.Add("Prix(P)", GetType(String))
+            table.Columns.Add("Prix", GetType(String))
+            table.Columns.Add("Ref", GetType(String))
+            table.Columns.Add("Code", GetType(String))
+            table.Columns.Add("Image_Article", GetType(String))
+
+            article = txtprdname.Text
+            qte = txtsprice.text
+            Dim cde As String = txtcb.text
+
+            If cde.ToString.Contains("|") Then
+
+                Dim str = cde.ToString.Split("|")
+
+                For r As Integer = 0 To str.Length - 1
+                    If IsNumeric(str(r)) Then
+                        cde = str(r)
+                        Exit For
+                    End If
+                Next
+            End If
+
+            If cde.Length > 12 Then cde = cde.Substring(0, 12)
+
+            Dim bigPrice As Integer = 0
+            Dim smallPrice As Double = 0
+            SplitDecimal(qte, bigPrice, smallPrice)
+            Dim SM As Integer = CInt(smallPrice * 100)
+
+            table.Rows.Add(article, bigPrice, "." & String.Format("{0:00}", SM), qte,
+                            cde, cde, imagePath)
+        Catch ex As Exception
+        End Try
+
+        K_nmPage = 0
+        LoadXmlEtqs()
+
+        Dim ps As New Printing.PaperSize(gl.P_name, gl.W_Page, gl.h_Page)
+        ps.PaperName = gl.p_Kind
+        PrintDocument1.DefaultPageSettings.PaperSize = ps
+        PrintDocument1.DefaultPageSettings.Landscape = gl.is_Landscape
+
+        PrintDocument1.PrinterSettings.PrinterName = gl.Printer_name
+        PrintDocument1.Print()
+
+        Me.DialogResult = Windows.Forms.DialogResult.OK
+    End Sub
+
+    Public Sub LoadXmlEtqs()
+        Try
+            gl = ReadFromXmlFile(Of LbGlobalElement)(Form1.ImgPah & "\EtqDsn\Etq-Article.dat")
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub PrintDocument1_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
+        Dim _x As Integer = 0
+        Dim _y As Integer = gl.Start_Y
+        Dim _img As Image = Nothing
+        '   Dim m = 0
+        If gl.is_Repeated = False Then
+
+            Dim NBPAGE = table.Rows.Count / (gl.Nbr_H * gl.Nbr_W)
+
+            If NBPAGE > CInt(NBPAGE) Then
+                NBPAGE = CInt(NBPAGE) + 1
+            Else
+                NBPAGE = CInt(NBPAGE)
+            End If
+
+            For k = K_nmPage To CInt(NBPAGE)
+                For i As Integer = 0 To gl.Nbr_H - 1
+                    _x = gl.Start_X
+                    If i > 0 Then _y += gl.Sp_H
+                    For t As Integer = 0 To gl.Nbr_W - 1
+
+                        If m >= table.Rows.Count Then Exit Sub
+                        PrintLabel(m, _x, _y, e)
+                        _x += gl.W_El  '.Width
+                        _x += gl.Sp_W
+                        m += 1
+                    Next
+                    _y += gl.H_El
+                Next
+                If k < CInt(NBPAGE) Then
+                    k += 1
+                    e.HasMorePages = True
+                    Return
+                End If
+            Next
+        Else
+            While m < table.Rows.Count
+
+
+                For i As Integer = 0 To gl.Nbr_H - 1
+                    _x = gl.Start_X
+                    If i > 0 Then _y += gl.Sp_H
+                    For t As Integer = 0 To gl.Nbr_W - 1
+
+                        PrintLabel(m, _x, _y, e)
+                        _x += gl.W_El
+                        _x += gl.Sp_W
+                    Next
+                    _y += gl.H_El
+                Next
+
+                e.HasMorePages = True
+                m += 1
+                Return
+            End While
+
+        End If
+        K_nmPage = 0
+    End Sub
+    Private alphabet39 As String = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. $/+%*"
+    Private coded39Char As String() = {"000110100", "100100001", "001100001", "101100000", "000110001", "100110000", "001110000", "000100101", "100100100", "001100100", "100001001", "001001001", "101001000", "000011001", "100011000", "001011000", "000001101", "100001100", "001001100", "000011100", "100000011", "001000011", "101000010", "000010011", "100010010", "001010010", "000000111", "100000110", "001000110", "000010110", "110000001", "011000001", "111000000", "010010001", "110010000", "011010000", "010000101", "110000100", "011000100", "010101000", "010100010", "010001010", "000101010", "010010100"}
+
+    Private Sub PrintLabel(ByRef _i As Integer, ByRef xx As Integer, ByRef yy As Integer, ByRef e As System.Drawing.Printing.PrintPageEventArgs)
+
+        Dim pen As New Pen(Brushes.Black, 1.0F)
+        Dim sf As New StringFormat()
+
+        'gl.W_El, gl.H_El
+        e.Graphics.DrawRectangle(Pens.WhiteSmoke, 0, 0, gl.W_El - 2, gl.H_El - 2)
+
+        For Each a As LbElement In gl.elements
+            'Create a brush
+            Dim top_x = a.x + xx
+            Dim top_y = a.y + yy
+
+            Dim fn As Font
+            If a.isBold Then
+                fn = New Font(a.fName, a.fSize, FontStyle.Bold)
+            Else
+                fn = New Font(a.fName, a.fSize)
+            End If
+
+            If a.hasBloc Then
+                e.Graphics.DrawRectangle(pen, top_x, top_y, a.width, a.height)
+                Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
+                e.Graphics.FillRectangle(_br, top_x, top_y, a.width, a.height)
+
+                top_x += 5
+                top_y += 3
+            End If
+
+            Dim str As String = CStr(a.designation)
+
+            If a.field.StartsWith("*") Then
+
+            ElseIf a.field.StartsWith("FOR") Then
+
+                If str = "R" Then
+
+                    Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
+                    e.Graphics.FillRectangle(_br, top_x, top_y, a.width, a.height)
+                ElseIf str = "G" Then
+                    DrawRoundedRectangle(e.Graphics, top_x, top_y, a.width, a.height, a.fSize)
+                ElseIf str = "C" Then
+                    Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
+                    e.Graphics.FillEllipse(_br, top_x, top_y, a.width, a.height)
+                ElseIf str = "S" Then
+
+                    Dim ls = a.points.Split("|")
+
+                    Dim myPoints(ls.Length - 1) As Point
+                    For n As Integer = 0 To ls.Length - 1
+                        Try
+                            myPoints(n) = New Point(ls(n).Split("*")(0) + xx, ls(n).Split("*")(1) + yy)
+                        Catch ex As Exception
+                        End Try
+                    Next
+                    Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
+                    e.Graphics.FillPolygon(_br, myPoints)
+                End If
+
+                str = ""
+
+            ElseIf a.field.StartsWith("IMAGE_PATH") Then
+                Try
+                    str = ""
+                    Dim fullPath As String = a.designation
+                    e.Graphics.DrawImage(Image.FromFile(fullPath), top_x, top_y, a.width, a.height)
+                Catch ex As Exception
+                End Try
+            ElseIf a.field.StartsWith("Image_Article") Then
+                Try
+                    str = ""
+                    Dim fullPath As String = Path.Combine(Form1.ImgPah, table.Rows(_i).Item(a.field))
+                    e.Graphics.DrawImage(Image.FromFile(fullPath), top_x, top_y, a.width, a.height)
+                Catch ex As Exception
+                End Try
+            ElseIf a.field.StartsWith("//") Then  '' codebar G.FillRectangle(Brushes.Gray, top_x, top_y, a.width, a.height)
+
+                Dim code = table.Rows(_i).Item("Code").ToUpper()
+                Dim _str As String = "*"c & code & "*"c
+                Dim strLength As Integer = _str.Length
+                Dim intercharacterGap As String = "0"
+
+                For i As Integer = 0 To code.Length - 1
+
+                    If alphabet39.IndexOf(code(i)) = -1 OrElse code(i) = "*"c Then
+                        e.Graphics.DrawString("INVALID BAR CODE TEXT", Font, Brushes.Red, 10, 10)
+                        Exit Sub
+                    End If
+                Next
+
+                Dim encodedString As String = ""
+
+                For i As Integer = 0 To strLength - 1
+                    If i > 0 Then encodedString += intercharacterGap
+                    encodedString += coded39Char(alphabet39.IndexOf(_str(i)))
+                Next
+
+                Dim encodedStringLength As Integer = encodedString.Length
+                Dim widthOfBarCodeString As Integer = 0
+                Dim wideToNarrowRatio As Double = 3
+
+                If a.Alignement <> 1 Then
+
+                    For i As Integer = 0 To encodedStringLength - 1
+
+                        If encodedString(i) = "1"c Then
+                            widthOfBarCodeString += CInt((wideToNarrowRatio))
+                        Else
+                            widthOfBarCodeString += 1
+                        End If
+                    Next
+                End If
+
+
+                Dim wid As Integer = 0
+                For i As Integer = 0 To encodedStringLength - 1
+
+                    If encodedString(i) = "1"c Then
+                        wid = CInt((wideToNarrowRatio))
+                    Else
+                        wid = 1
+                    End If
+
+                    Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
+                    e.Graphics.FillRectangle(If(i Mod 2 = 0, _br, Brushes.White), top_x, top_y, wid, a.height)
+                    top_x += wid
+                Next
+
+            Else
+
+                str &= table.Rows(_i).Item(a.field)
+            End If
+
+            Dim br = New SolidBrush(Color.FromArgb(a.forColor))
+            sf.Alignment = a.Alignement
+            If a.isVertical Then
+                sf.FormatFlags = StringFormatFlags.DirectionVertical
+            Else
+                sf.FormatFlags = StringFormatFlags.DisplayFormatControl
+            End If
+
+            e.Graphics.DrawString(str, fn, br, New RectangleF(top_x, top_y, a.width, a.height), sf)
+        Next
+
+    End Sub
+
 End Class
 

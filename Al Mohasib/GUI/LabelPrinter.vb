@@ -41,7 +41,7 @@ Public Class LabelPrinter
             tr += 123
             tr *= 11
 
-            tr = CInt(Now.Day() & "0" & tr & "0" & Now.Month)
+            '  tr = CInt(Now.Day() & "0" & tr & "0" & Now.Month)
             If m = tr Then
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "Labeling_Trial_Use", 0)
                 plTrial.Visible = False
@@ -690,7 +690,10 @@ Public Class LabelPrinter
         PrintDocument1.DefaultPageSettings.Landscape = gl.is_Landscape
 
         PrintDocument1.PrinterSettings.PrinterName = gl.Printer_name
-        PrintDocument1.Print()
+        For i As Integer = 0 To gl.Nbr_Q - 1
+            PrintDocument1.Print()
+        Next
+
     End Sub
 
     Private Sub Button9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button9.Click
@@ -984,7 +987,7 @@ Public Class LabelPrinter
         tr += 123
         tr *= 11
 
-        tr = CInt(Now.Day() & "0" & tr & "0" & Now.Month)
+        'tr = CInt(Now.Day() & "0" & tr & "0" & Now.Month)
         If m = tr Then
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "Labeling_Trial_Use", 0)
             plTrial.Visible = False
@@ -1250,11 +1253,6 @@ Public Class LabelPrinter
                 Return MyBase.ProcessCmdKey(msg, keyData)
         End Select
 
-         
         Return True
     End Function
-
-    Private Sub plTrial_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles plTrial.Paint
-
-    End Sub
 End Class

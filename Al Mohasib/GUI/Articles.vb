@@ -118,9 +118,16 @@ Public Class Articles
         art.PlPrice.Visible = Form1.chbsell.Checked
 
         If art.ShowDialog = Windows.Forms.DialogResult.OK Then
-            Dim bt As New Button
-            bt.Tag = DGVPRD.SelectedRows(0).Cells(11).Value
-            ctg3_click(bt, Nothing)
+            'Dim bt As New Button
+            'bt.Tag = DGVPRD.SelectedRows(0).Cells(11).Value
+            'ctg3_click(bt, Nothing)
+            DGVPRD.Rows(a).Cells(1).Value = art.txtcb.text
+            DGVPRD.Rows(a).Cells(2).Value = art.txtprdname.Text
+            DGVPRD.Rows(a).Cells(3).Value = art.txtunit.Text
+            DGVPRD.Rows(a).Cells(4).Value = art.txtbprice.text
+            DGVPRD.Rows(a).Cells(5).Value = art.txtsprice.text
+            DGVPRD.Rows(a).Cells(6).Value = art.txttva.text
+            DGVPRD.Rows(a).Cells(12).Value = art.CBdp.SelectedValue
         End If
 
         Try

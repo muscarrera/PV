@@ -148,11 +148,24 @@
     End Sub
     Private Sub Button14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtDel.Click
 
+        If Form1.cbSecuBage.Checked Then
+            Try
+                Dim sc As New UserParmissionCheck
+                sc.bName.Text = Form1.RPl.SelectedItem.Name
+                sc.lbNum.Text = Form1.RPl.SelectedItem.Qte
+                If sc.ShowDialog = DialogResult.OK Then
+                    RaiseEvent DeleteItems()
+                    isActive = False
+                End If
+            Catch ex As Exception
+            End Try
+
+            Exit Sub
+        End If
 
         If isActive Then
             RaiseEvent DeleteItems()
             isActive = False
-
         Else
             RaiseEvent ValueChange()
         End If

@@ -76,10 +76,10 @@ Partial Class ChoseClient
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.Lbnm = New System.Windows.Forms.Label()
         Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.lbCredit = New System.Windows.Forms.Label()
         Me.Pl = New System.Windows.Forms.Panel()
         Me.Fpl = New System.Windows.Forms.FlowLayoutPanel()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.plup.SuspendLayout()
         Me.Panel21.SuspendLayout()
         Me.Panel22.SuspendLayout()
@@ -649,6 +649,7 @@ Partial Class ChoseClient
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "EDIT"
         Me.Button1.UseVisualStyleBackColor = False
+        Me.Button1.Visible = False
         '
         'Button4
         '
@@ -702,6 +703,18 @@ Partial Class ChoseClient
         Me.Panel10.Size = New System.Drawing.Size(292, 63)
         Me.Panel10.TabIndex = 1
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Label4.Location = New System.Drawing.Point(22, 27)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(53, 15)
+        Me.Label4.TabIndex = 0
+        Me.Label4.Text = "Credit :"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
         'lbCredit
         '
         Me.lbCredit.AutoSize = True
@@ -733,18 +746,6 @@ Partial Class ChoseClient
         Me.Fpl.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Fpl.Size = New System.Drawing.Size(552, 520)
         Me.Fpl.TabIndex = 0
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Label4.Location = New System.Drawing.Point(22, 27)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(53, 15)
-        Me.Label4.TabIndex = 0
-        Me.Label4.Text = "Credit :"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'ChoseClient
         '

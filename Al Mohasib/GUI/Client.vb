@@ -40,6 +40,7 @@ Public Class Client
         txttel.text = ""
         btcon.Tag = "0"
         GB1.Visible = False
+        lbPouch.Visible = False
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
@@ -76,7 +77,7 @@ Public Class Client
         End If
 
         btcon.Tag = "1"
-
+        lbPouch.Visible = True
         GB1.Visible = True
 
     End Sub
@@ -188,6 +189,7 @@ Public Class Client
         End If
         btcancel_Click(Nothing, Nothing)
         GB1.Visible = False
+
     End Sub
 
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
@@ -284,5 +286,20 @@ Public Class Client
         End If
 
         MsgBox("l'autorisation de ce client a bien supprimer")
+    End Sub
+
+    Private Sub lbPouch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbPouch.Click
+        If Form1.admin = False Then Exit Sub
+        If txtname.Tag = 0 Then Exit Sub
+
+        Dim pp As New PochetClient
+        pp.clid = txtname.Tag
+        pp.lbClient.text = txtname.text
+        pp.isSell = True
+
+        If pp.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+        End If
+
     End Sub
 End Class

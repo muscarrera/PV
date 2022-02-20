@@ -42,6 +42,7 @@ Partial Class BackUP
         Me.Button12 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.GB1 = New System.Windows.Forms.GroupBox()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
@@ -53,7 +54,6 @@ Partial Class BackUP
         Me.Button16 = New System.Windows.Forms.Button()
         Me.Button15 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -84,7 +84,7 @@ Partial Class BackUP
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(882, 204)
+        Me.Panel1.Size = New System.Drawing.Size(877, 204)
         Me.Panel1.TabIndex = 1
         '
         'Panel3
@@ -226,7 +226,7 @@ Partial Class BackUP
         '
         Me.Button11.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button11.Location = New System.Drawing.Point(321, 16)
+        Me.Button11.Location = New System.Drawing.Point(316, 16)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(110, 45)
         Me.Button11.TabIndex = 1
@@ -237,7 +237,7 @@ Partial Class BackUP
         '
         Me.Button12.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button12.Location = New System.Drawing.Point(159, 16)
+        Me.Button12.Location = New System.Drawing.Point(154, 16)
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(83, 45)
         Me.Button12.TabIndex = 1
@@ -268,8 +268,18 @@ Partial Class BackUP
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 204)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(882, 235)
+        Me.Panel2.Size = New System.Drawing.Size(877, 235)
         Me.Panel2.TabIndex = 2
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(50, 86)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(177, 17)
+        Me.CheckBox1.TabIndex = 12
+        Me.CheckBox1.Text = "Enable la Suppression des bons"
+        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'GB1
         '
@@ -284,7 +294,7 @@ Partial Class BackUP
         Me.GB1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GB1.Location = New System.Drawing.Point(0, 171)
         Me.GB1.Name = "GB1"
-        Me.GB1.Size = New System.Drawing.Size(882, 64)
+        Me.GB1.Size = New System.Drawing.Size(877, 64)
         Me.GB1.TabIndex = 11
         Me.GB1.TabStop = False
         Me.GB1.Visible = False
@@ -293,7 +303,7 @@ Partial Class BackUP
         '
         Me.Button4.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Location = New System.Drawing.Point(242, 16)
+        Me.Button4.Location = New System.Drawing.Point(237, 16)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(79, 45)
         Me.Button4.TabIndex = 1
@@ -304,7 +314,7 @@ Partial Class BackUP
         '
         Me.Button8.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Location = New System.Drawing.Point(431, 16)
+        Me.Button8.Location = New System.Drawing.Point(426, 16)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(135, 45)
         Me.Button8.TabIndex = 1
@@ -315,7 +325,7 @@ Partial Class BackUP
         '
         Me.Button9.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Location = New System.Drawing.Point(566, 16)
+        Me.Button9.Location = New System.Drawing.Point(561, 16)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(97, 45)
         Me.Button9.TabIndex = 1
@@ -326,7 +336,7 @@ Partial Class BackUP
         '
         Me.Button17.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button17.Location = New System.Drawing.Point(663, 16)
+        Me.Button17.Location = New System.Drawing.Point(658, 16)
         Me.Button17.Name = "Button17"
         Me.Button17.Size = New System.Drawing.Size(119, 45)
         Me.Button17.TabIndex = 2
@@ -337,7 +347,7 @@ Partial Class BackUP
         '
         Me.Button18.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button18.Location = New System.Drawing.Point(782, 16)
+        Me.Button18.Location = New System.Drawing.Point(777, 16)
         Me.Button18.Name = "Button18"
         Me.Button18.Size = New System.Drawing.Size(97, 45)
         Me.Button18.TabIndex = 3
@@ -392,21 +402,11 @@ Partial Class BackUP
         Me.Button5.Text = "Old_Val_Pos"
         Me.Button5.UseVisualStyleBackColor = True
         '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(50, 86)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(177, 17)
-        Me.CheckBox1.TabIndex = 12
-        Me.CheckBox1.Text = "Enable la Suppression des bons"
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
         'BackUP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(882, 439)
+        Me.ClientSize = New System.Drawing.Size(877, 439)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog

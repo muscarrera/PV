@@ -107,6 +107,7 @@
     <Compile Include="Class\DrawClass.vb" />
     <Compile Include="Class\NumericStrings.vb" />
     <Compile Include="Class\PaletteFixModule.vb" />
+    <Compile Include="Class\StockModule.vb" />
     <Compile Include="Class\SubClass.vb" />
     <Compile Include="Class\SubFacture.vb" />
     <Compile Include="Controles\AddList.Designer.vb">
@@ -333,6 +334,12 @@
     <Compile Include="GUI\Calc.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\ChooseCat.Designer.vb">
+      <DependentUpon>ChooseCat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ChooseCat.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\ChoseClient.Designer.vb">
       <DependentUpon>ChoseClient.vb</DependentUpon>
     </Compile>
@@ -385,6 +392,12 @@
       <DependentUpon>Depot.vb</DependentUpon>
     </Compile>
     <Compile Include="GUI\Depot.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\EditDate.Designer.vb">
+      <DependentUpon>EditDate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\EditDate.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\EtatClient.Designer.vb">
@@ -461,6 +474,12 @@
       <DependentUpon>PayRecept.vb</DependentUpon>
     </Compile>
     <Compile Include="GUI\PayRecept.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PochetClient.Designer.vb">
+      <DependentUpon>PochetClient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PochetClient.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\PriceType.Designer.vb">
@@ -636,6 +655,12 @@
     <Compile Include="GUI\TrialVersion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\UserParmissionCheck.Designer.vb">
+      <DependentUpon>UserParmissionCheck.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UserParmissionCheck.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -761,6 +786,9 @@
     <EmbeddedResource Include="GUI\Calc.resx">
       <DependentUpon>Calc.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChooseCat.resx">
+      <DependentUpon>ChooseCat.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\ChoseClient.resx">
       <DependentUpon>ChoseClient.vb</DependentUpon>
     </EmbeddedResource>
@@ -787,6 +815,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Depot.resx">
       <DependentUpon>Depot.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\EditDate.resx">
+      <DependentUpon>EditDate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\EtatClient.resx">
       <DependentUpon>EtatClient.vb</DependentUpon>
@@ -823,6 +854,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PayRecept.resx">
       <DependentUpon>PayRecept.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PochetClient.resx">
+      <DependentUpon>PochetClient.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PriceType.resx">
       <DependentUpon>PriceType.vb</DependentUpon>
@@ -907,6 +941,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\TrialVersion.resx">
       <DependentUpon>TrialVersion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\UserParmissionCheck.resx">
+      <DependentUpon>UserParmissionCheck.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -1048,6 +1085,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MyBarcode.dll" />
+    <None Include="Resources\images.jpeg" />
     <None Include="Resources\stock-icon-png-14.png" />
     <None Include="Resources\iconfinder_pdf_3745 %281%29.png" />
     <None Include="Resources\iconfinder_kde-folder-saved-search_25195 %281%29.png" />
@@ -1162,7 +1200,7 @@
     <None Include="Resources\top fact1.jpg" />
     <None Include="27274.png" />
     <Content Include="ALMohassinDB.mdb">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\04.jpg" />
     <None Include="Resources\011.jpg" />

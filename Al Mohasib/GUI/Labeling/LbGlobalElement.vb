@@ -10,6 +10,7 @@ Public Class LbGlobalElement
 
     Public Nbr_W As Integer = 6
     Public Nbr_H As Integer = 10
+    Public Nbr_Q As Integer = 1
 
     Public Sp_W As Integer = 33
     Public Sp_H As Integer = 33

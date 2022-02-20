@@ -49,6 +49,7 @@
     Private _delivredDay As String
 
     Event printCaisse()
+    Event UpdateDate()
 
     'properties
     Public ReadOnly Property Total_Ht As Decimal
@@ -77,7 +78,6 @@
         End Get
     End Property
 
-    
     Public ReadOnly Property Tva As Decimal
         Get
 
@@ -231,6 +231,15 @@
             CP.bl = value
         End Set
     End Property
+    Public Property Dte As Date
+        Get
+            Return CDate(lbDate.Text)
+        End Get
+        Set(ByVal value As Date)
+            lbDate.Text = value
+        End Set
+    End Property
+
     Public ReadOnly Property SelectedItem As Items
         Get
             Dim a As Items
@@ -249,6 +258,7 @@
             ' Create four typed columns in the DataTable.
             table.Columns.Add("arid", GetType(Integer))
             table.Columns.Add("name", GetType(String))
+            table.Columns.Add("unit", GetType(String))
             table.Columns.Add("price", GetType(Double))
             table.Columns.Add("bprice", GetType(Double))
             table.Columns.Add("tva", GetType(Double))
@@ -267,7 +277,7 @@
             Dim a As Items
             For Each a In Pl.Controls
                 ' Add  rows with those columns filled in the DataTable.
-                table.Rows.Add(a.arid, a.Name, a.Price, a.Bprice, a.Tva,
+                table.Rows.Add(a.arid, a.Name, a.Unite, a.Price, a.Bprice, a.Tva,
                                a.Qte, a.Unite, a.Total_ttc, a.cid, a.code,
                                a.Depot, a.Poid, a.Total_ht, a.Total_tva, a.id, a.Remise, a.id)
             Next
@@ -568,6 +578,41 @@
             MsgBox(ex.Message)
         End Try
     End Sub
+    Public Sub AddItemsBouch(ByVal D As DataTable, ByVal isSell As Boolean)
+        Try
+            For i As Integer = 0 To D.Rows.Count - 1
+                If D.Rows(i).Item("unit") <> "**" Then Continue For
+
+                Dim RM As Double = CDbl(D.Rows(i).Item("poid"))
+
+                If IsExiste(D.Rows(i).Item("arid"), D.Rows(i).Item("depot")) And Form1.cbMergeArt.Checked = True Then
+                    Dim a As Items
+                    Dim aaa_isExit = False
+
+                    For Each a In Pl.Controls
+                        If a.arid <> D.Rows(i).Item("arid") Then Continue For
+                        If Math.Sign(a.Qte) <> Math.Sign(D.Rows(i).Item("qte")) Then Continue For
+
+                        If a.Price = D.Rows(i).Item("price") And a.Remise = RM Then
+                            a.Qte += D.Rows(i).Item("qte")
+                            aaa_isExit = True
+                            Exit For
+                        End If
+                    Next
+
+                    AddItemDetails(D, i, RM)
+                Else
+                    AddItemDetails(D, i, RM)
+                End If
+
+            Next
+            UpdateValue()
+            CP.Value = 0
+            CP.ActiveQte(False)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
 
     Public Sub AddItemsRapport(ByVal D As DataTable)
         Try
@@ -772,6 +817,7 @@
         bl = "---"
         lbProfit.Text = "[]"
         delivredDay = "-"
+        Dte = Now
     End Sub
     Public Function IsExiste(ByVal arid As Integer) As Boolean
         Dim a As Items
@@ -1003,9 +1049,24 @@
         str = str + vbNewLine
         str = str + "  .. إضغط  'لا'  لالغاء الحذف   "
 
-        If MsgBox(str, MsgBoxStyle.YesNo Or MessageBoxIcon.Exclamation, "الغاء الفاتورة") = MsgBoxResult.No Then
+        If MsgBox(str, MsgBoxStyle.YesNo Or MessageBoxIcon.Exclamation, "الغاء الايصال") = MsgBoxResult.No Then
             Exit Sub
         End If
+
+        If Form1.cbSecuBage.Checked Then
+            Try
+                Dim sc As New UserParmissionCheck
+                sc.bName.Text = "Bon N° " & FctId
+                sc.lbNum.Text = Total_TTC
+                If sc.ShowDialog = DialogResult.OK Then
+                    RaiseEvent DeleteFacture(FctId, isSell, EditMode, DataSource)
+                End If
+            Catch ex As Exception
+            End Try
+
+            Exit Sub
+        End If
+
         RaiseEvent DeleteFacture(FctId, isSell, EditMode, DataSource)
     End Sub
     Private Sub Item_Value_changed(ByVal oldValue As Double, ByVal newValue As Double, ByVal Field As String, ByVal itm As Items)
@@ -1114,5 +1175,9 @@
 
         Form1.RplHeight = CP.Height + (hh - e.Y)
         hh = 0
+    End Sub
+
+    Private Sub lbDate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbDate.Click
+        RaiseEvent UpdateDate()
     End Sub
 End Class

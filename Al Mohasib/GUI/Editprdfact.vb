@@ -115,7 +115,11 @@
             txtqte.Focus()
         End If
 
-
+        If Form1.RPl.EditMode Then
+            Label8.Visible = False
+            cbDepot.Visible = False
+            chNotDepot.Visible = False
+        End If
 
 
     End Sub

@@ -90,6 +90,8 @@ Partial Class AddEditArticle
         Me.CategoryTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.CategoryTableAdapter()
         Me.DepotTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.Button9 = New System.Windows.Forms.Button()
+        Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.Panel4.SuspendLayout()
         CType(Me.CategoryBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -281,30 +283,32 @@ Partial Class AddEditArticle
         '
         'btprd
         '
+        Me.btprd.BackColor = System.Drawing.Color.Lime
         Me.btprd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btprd.FlatAppearance.BorderSize = 2
         Me.btprd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btprd.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btprd.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btprd.Image = CType(resources.GetObject("btprd.Image"), System.Drawing.Image)
-        Me.btprd.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btprd.Location = New System.Drawing.Point(390, 442)
+        Me.btprd.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btprd.ForeColor = System.Drawing.Color.White
+        Me.btprd.Image = Global.Al_Mohasib.My.Resources.Resources.Save_32x321
+        Me.btprd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btprd.Location = New System.Drawing.Point(330, 442)
         Me.btprd.Name = "btprd"
-        Me.btprd.Size = New System.Drawing.Size(363, 50)
+        Me.btprd.Padding = New System.Windows.Forms.Padding(22, 0, 0, 0)
+        Me.btprd.Size = New System.Drawing.Size(214, 50)
         Me.btprd.TabIndex = 17
         Me.btprd.Text = "Valider"
-        Me.btprd.UseVisualStyleBackColor = True
+        Me.btprd.UseVisualStyleBackColor = False
         '
         'Button8
         '
         Me.Button8.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Button8.FlatAppearance.BorderSize = 2
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button8.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Button8.Image = CType(resources.GetObject("Button8.Image"), System.Drawing.Image)
         Me.Button8.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button8.Location = New System.Drawing.Point(257, 453)
+        Me.Button8.Location = New System.Drawing.Point(195, 453)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(107, 35)
         Me.Button8.TabIndex = 18
@@ -920,6 +924,27 @@ Partial Class AddEditArticle
         Me.CheckBox1.Text = "الحفاظ على النافدة مفتوحة"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
+        'Button9
+        '
+        Me.Button9.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.Button9.FlatAppearance.BorderColor = System.Drawing.Color.Blue
+        Me.Button9.FlatAppearance.BorderSize = 2
+        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button9.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Button9.Image = Global.Al_Mohasib.My.Resources.Resources.Lprint
+        Me.Button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button9.Location = New System.Drawing.Point(588, 442)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(182, 50)
+        Me.Button9.TabIndex = 17
+        Me.Button9.Text = "Valider & Impr "
+        Me.Button9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button9.UseVisualStyleBackColor = False
+        '
+        'PrintDocument1
+        '
+        '
         'AddEditArticle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -928,6 +953,7 @@ Partial Class AddEditArticle
         Me.ClientSize = New System.Drawing.Size(793, 500)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.btprd)
         Me.Controls.Add(Me.Button8)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
@@ -1025,4 +1051,6 @@ Partial Class AddEditArticle
     Friend WithEvents Panel5 As System.Windows.Forms.Panel
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents Button7 As System.Windows.Forms.Button
+    Friend WithEvents Button9 As System.Windows.Forms.Button
+    Friend WithEvents PrintDocument1 As System.Drawing.Printing.PrintDocument
 End Class

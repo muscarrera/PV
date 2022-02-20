@@ -90,11 +90,15 @@
             _isActive = value
 
             If value Then
-                lbName.Font = New Font("Microsoft Sans Serif", 9, FontStyle.Bold)
-                PL.BackColor = Color.MintCream
+                lbName.Font = New Font("Microsoft Sans Serif", 10, FontStyle.Bold)
+                PL.BackColor = Color.LightGreen
+                Panel1.BackColor = Color.DarkGreen
+                lbName.ForeColor = Color.White
             Else
                 lbName.Font = New Font("Microsoft Sans Serif", 9)
                 PL.BackColor = Color.FromArgb(253, 253, 253)
+                Panel1.BackColor = Color.WhiteSmoke
+                lbName.ForeColor = Color.DarkBlue
             End If
         End Set
     End Property
@@ -116,7 +120,7 @@
         lbArid.ForeColor = Color.FromArgb(255, RND.Next(255), RND.Next(255), RND.Next(255))
 
     End Sub
-    Private Sub lbName_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbName.Click, Pb.Click, PL.Click
+    Private Sub lbName_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbName.Click, Pb.Click, PL.Click, Panel1.Click, lbType.Click, lbTel.Click, lbnum.DoubleClick, lbnum.Click, lbArid.Click, lbAdresse.Click
         isActive = Not isActive
 
         If isActive Then
@@ -125,7 +129,7 @@
             RaiseEvent IsDisActivated(Arid)
         End If
     End Sub
-    Private Sub PL_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PL.DoubleClick, lbName.DoubleClick, Pb.DoubleClick
+    Private Sub PL_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PL.DoubleClick, lbName.DoubleClick, Pb.DoubleClick, Panel1.DoubleClick, lbType.DoubleClick, lbTel.DoubleClick, lbArid.DoubleClick, lbAdresse.DoubleClick
         RaiseEvent IsChoosen(Me, Nothing)
     End Sub
 End Class

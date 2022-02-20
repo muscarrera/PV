@@ -42,7 +42,7 @@ Partial Class ClientBloc
         Me.lbName.BackColor = System.Drawing.Color.Transparent
         Me.lbName.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.lbName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbName.ForeColor = System.Drawing.Color.Gray
+        Me.lbName.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lbName.Location = New System.Drawing.Point(7, 0)
         Me.lbName.Name = "lbName"
         Me.lbName.Size = New System.Drawing.Size(34, 15)

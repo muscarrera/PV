@@ -61,6 +61,8 @@ Partial Class LbSetting
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.txtY = New Al_Mohasib.TxtBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtNbrQ = New Al_Mohasib.TxtBox()
         CType(Me.Pb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PlCommande.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -87,7 +89,7 @@ Partial Class LbSetting
         Me.txtEspW.BackColor = System.Drawing.Color.White
         Me.txtEspW.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtEspW.IsNumiric = True
-        Me.txtEspW.Location = New System.Drawing.Point(278, 54)
+        Me.txtEspW.Location = New System.Drawing.Point(282, 15)
         Me.txtEspW.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtEspW.Name = "txtEspW"
         Me.txtEspW.ShowClearIcon = False
@@ -257,7 +259,7 @@ Partial Class LbSetting
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(11, 63)
+        Me.Label2.Location = New System.Drawing.Point(156, 24)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(20, 13)
         Me.Label2.TabIndex = 5
@@ -268,7 +270,7 @@ Partial Class LbSetting
         Me.txtEspH.BackColor = System.Drawing.Color.White
         Me.txtEspH.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtEspH.IsNumiric = True
-        Me.txtEspH.Location = New System.Drawing.Point(278, 91)
+        Me.txtEspH.Location = New System.Drawing.Point(282, 52)
         Me.txtEspH.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtEspH.Name = "txtEspH"
         Me.txtEspH.ShowClearIcon = False
@@ -285,7 +287,7 @@ Partial Class LbSetting
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(11, 100)
+        Me.Label3.Location = New System.Drawing.Point(156, 61)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(20, 13)
         Me.Label3.TabIndex = 5
@@ -296,7 +298,7 @@ Partial Class LbSetting
         Me.txtX.BackColor = System.Drawing.Color.White
         Me.txtX.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtX.IsNumiric = True
-        Me.txtX.Location = New System.Drawing.Point(31, 54)
+        Me.txtX.Location = New System.Drawing.Point(178, 15)
         Me.txtX.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtX.Name = "txtX"
         Me.txtX.ShowClearIcon = False
@@ -374,7 +376,7 @@ Partial Class LbSetting
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(234, 60)
+        Me.Label4.Location = New System.Drawing.Point(238, 21)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(45, 13)
         Me.Label4.TabIndex = 5
@@ -395,7 +397,7 @@ Partial Class LbSetting
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(234, 97)
+        Me.Label5.Location = New System.Drawing.Point(238, 58)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(42, 13)
         Me.Label5.TabIndex = 5
@@ -412,6 +414,7 @@ Partial Class LbSetting
         Me.Panel1.Controls.Add(Me.txtHel)
         Me.Panel1.Controls.Add(Me.txtEspW)
         Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.txtNbrQ)
         Me.Panel1.Controls.Add(Me.txtNbrH)
         Me.Panel1.Controls.Add(Me.txtEspH)
         Me.Panel1.Controls.Add(Me.Label7)
@@ -419,6 +422,7 @@ Partial Class LbSetting
         Me.Panel1.Controls.Add(Me.Label16)
         Me.Panel1.Controls.Add(Me.Label6)
         Me.Panel1.Controls.Add(Me.txtX)
+        Me.Panel1.Controls.Add(Me.Label8)
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.Label15)
         Me.Panel1.Controls.Add(Me.Label5)
@@ -432,7 +436,7 @@ Partial Class LbSetting
         'cbR
         '
         Me.cbR.AutoSize = True
-        Me.cbR.Location = New System.Drawing.Point(31, 21)
+        Me.cbR.Location = New System.Drawing.Point(16, 97)
         Me.cbR.Name = "cbR"
         Me.cbR.Size = New System.Drawing.Size(41, 17)
         Me.cbR.TabIndex = 9
@@ -465,9 +469,9 @@ Partial Class LbSetting
         Me.PbCode.BackColor = System.Drawing.Color.White
         Me.PbCode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.PbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PbCode.Location = New System.Drawing.Point(31, 132)
+        Me.PbCode.Location = New System.Drawing.Point(13, 138)
         Me.PbCode.Name = "PbCode"
-        Me.PbCode.Size = New System.Drawing.Size(306, 153)
+        Me.PbCode.Size = New System.Drawing.Size(338, 152)
         Me.PbCode.TabIndex = 1
         Me.PbCode.TabStop = False
         '
@@ -476,7 +480,7 @@ Partial Class LbSetting
         Me.txtWel.BackColor = System.Drawing.Color.White
         Me.txtWel.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtWel.IsNumiric = True
-        Me.txtWel.Location = New System.Drawing.Point(145, 12)
+        Me.txtWel.Location = New System.Drawing.Point(79, 15)
         Me.txtWel.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtWel.Name = "txtWel"
         Me.txtWel.ShowClearIcon = False
@@ -495,7 +499,7 @@ Partial Class LbSetting
         Me.txtNbrW.BackColor = System.Drawing.Color.White
         Me.txtNbrW.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtNbrW.IsNumiric = True
-        Me.txtNbrW.Location = New System.Drawing.Point(145, 54)
+        Me.txtNbrW.Location = New System.Drawing.Point(79, 97)
         Me.txtNbrW.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtNbrW.Name = "txtNbrW"
         Me.txtNbrW.ShowClearIcon = False
@@ -514,7 +518,7 @@ Partial Class LbSetting
         Me.txtHel.BackColor = System.Drawing.Color.White
         Me.txtHel.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtHel.IsNumiric = True
-        Me.txtHel.Location = New System.Drawing.Point(278, 12)
+        Me.txtHel.Location = New System.Drawing.Point(79, 52)
         Me.txtHel.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtHel.Name = "txtHel"
         Me.txtHel.ShowClearIcon = False
@@ -533,7 +537,7 @@ Partial Class LbSetting
         Me.txtNbrH.BackColor = System.Drawing.Color.White
         Me.txtNbrH.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtNbrH.IsNumiric = True
-        Me.txtNbrH.Location = New System.Drawing.Point(145, 91)
+        Me.txtNbrH.Location = New System.Drawing.Point(175, 98)
         Me.txtNbrH.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtNbrH.Name = "txtNbrH"
         Me.txtNbrH.ShowClearIcon = False
@@ -550,7 +554,7 @@ Partial Class LbSetting
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(234, 22)
+        Me.Label7.Location = New System.Drawing.Point(13, 61)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(49, 13)
         Me.Label7.TabIndex = 5
@@ -558,17 +562,16 @@ Partial Class LbSetting
         '
         'Label16
         '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(104, 60)
+        Me.Label16.Location = New System.Drawing.Point(56, 98)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(44, 13)
+        Me.Label16.Size = New System.Drawing.Size(25, 30)
         Me.Label16.TabIndex = 5
         Me.Label16.Text = "Nbr W :"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(96, 21)
+        Me.Label6.Location = New System.Drawing.Point(10, 25)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(52, 13)
         Me.Label6.TabIndex = 5
@@ -576,10 +579,9 @@ Partial Class LbSetting
         '
         'Label15
         '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(104, 97)
+        Me.Label15.Location = New System.Drawing.Point(152, 104)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(44, 13)
+        Me.Label15.Size = New System.Drawing.Size(25, 30)
         Me.Label15.TabIndex = 5
         Me.Label15.Text = "Nbr  H :"
         '
@@ -588,7 +590,7 @@ Partial Class LbSetting
         Me.txtY.BackColor = System.Drawing.Color.White
         Me.txtY.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtY.IsNumiric = True
-        Me.txtY.Location = New System.Drawing.Point(31, 91)
+        Me.txtY.Location = New System.Drawing.Point(178, 52)
         Me.txtY.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtY.Name = "txtY"
         Me.txtY.ShowClearIcon = False
@@ -601,6 +603,33 @@ Partial Class LbSetting
         Me.txtY.TxtColor = System.Drawing.Color.White
         Me.txtY.txtReadOnly = False
         Me.txtY.TxtSelect = New Integer() {1, 0}
+        '
+        'Label8
+        '
+        Me.Label8.Location = New System.Drawing.Point(255, 103)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(25, 30)
+        Me.Label8.TabIndex = 5
+        Me.Label8.Text = "Nbr  Q :"
+        '
+        'txtNbrQ
+        '
+        Me.txtNbrQ.BackColor = System.Drawing.Color.White
+        Me.txtNbrQ.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtNbrQ.IsNumiric = True
+        Me.txtNbrQ.Location = New System.Drawing.Point(282, 97)
+        Me.txtNbrQ.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtNbrQ.Name = "txtNbrQ"
+        Me.txtNbrQ.ShowClearIcon = False
+        Me.txtNbrQ.ShowSaveIcon = False
+        Me.txtNbrQ.Size = New System.Drawing.Size(59, 30)
+        Me.txtNbrQ.StartUp = 2
+        Me.txtNbrQ.TabIndex = 6
+        Me.txtNbrQ.TextSize = 8
+        Me.txtNbrQ.TxtBackColor = True
+        Me.txtNbrQ.TxtColor = System.Drawing.Color.White
+        Me.txtNbrQ.txtReadOnly = False
+        Me.txtNbrQ.TxtSelect = New Integer() {1, 0}
         '
         'LbSetting
         '
@@ -665,4 +694,6 @@ Partial Class LbSetting
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Button10 As System.Windows.Forms.Button
     Friend WithEvents cbR As System.Windows.Forms.CheckBox
+    Friend WithEvents txtNbrQ As Al_Mohasib.TxtBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
 End Class

@@ -123,7 +123,7 @@
 
                         If StrValue(dt, "name", i).StartsWith("@") Then Continue For
 
-                        DataGridView1.Rows.Add(DteValue(dt, "date", i).AddHours(22), IntValue(dt, fctid_str, i), "Avance",
+                        DataGridView1.Rows.Add(DteValue(dt, "date", i), IntValue(dt, fctid_str, i), "Avance",
                                               CDec(DblValue(dt, "montant", i) * -1).ToString(Form1.frmDbl))
 
                         ttAvc += DblValue(dt, "montant", i)

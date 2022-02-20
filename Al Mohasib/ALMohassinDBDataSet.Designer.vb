@@ -20204,7 +20204,7 @@ Namespace ALMohassinDBDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(9) {}
+            Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(10) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        id, fctid, name, bprice, price, unit, qte, tva, poid, code, depot, "& _ 
@@ -20259,29 +20259,38 @@ Namespace ALMohassinDBDataSetTableAdapters
             Me._commandCollection(6).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("name", Global.System.Data.OleDb.OleDbType.WChar, 50, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "name", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._commandCollection(7) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(7).Connection = Me.Connection
-            Me._commandCollection(7).CommandText = "UPDATE `DetailsFacture` SET  `depot` = ? WHERE (`id` = ?) "
+            Me._commandCollection(7).CommandText = "SELECT        DetailsFacture.price"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            (DetailsFacture INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "                        Facture ON DetailsFacture.fctid = Facture.fctid)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE "& _ 
+                "       (DetailsFacture.arid = ?) AND (Facture.clid = ?)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Facture.fctid "& _ 
+                "DESC"
             Me._commandCollection(7).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("depot", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "depot", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._commandCollection(7).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_id", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "id", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._commandCollection(7).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("arid", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "arid", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(7).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("clid", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "clid", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._commandCollection(8) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(8).Connection = Me.Connection
-            Me._commandCollection(8).CommandText = "UPDATE       DetailsFacture"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                name = ?, bprice = ?, sprice = ?,"& _ 
-                " unit = ?, qte = ?, [sum] = ?"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (id = ?)"
+            Me._commandCollection(8).CommandText = "UPDATE `DetailsFacture` SET  `depot` = ? WHERE (`id` = ?) "
             Me._commandCollection(8).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("name", Global.System.Data.OleDb.OleDbType.WChar, 50, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "name", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("bprice", Global.System.Data.OleDb.OleDbType.Currency, 0, Global.System.Data.ParameterDirection.Input, CType(19,Byte), CType(0,Byte), "bprice", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("sprice", Global.System.Data.OleDb.OleDbType.Currency, 0, Global.System.Data.ParameterDirection.Input, CType(19,Byte), CType(0,Byte), "sprice", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("unit", Global.System.Data.OleDb.OleDbType.WChar, 50, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "unit", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("qte", Global.System.Data.OleDb.OleDbType.Currency, 0, Global.System.Data.ParameterDirection.Input, CType(19,Byte), CType(0,Byte), "qte", Global.System.Data.DataRowVersion.Current, false, Nothing))
-            Me._commandCollection(8).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("sum", Global.System.Data.OleDb.OleDbType.Currency, 0, Global.System.Data.ParameterDirection.Input, CType(19,Byte), CType(0,Byte), "sum", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(8).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("depot", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "depot", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._commandCollection(8).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_id", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "id", Global.System.Data.DataRowVersion.Original, false, Nothing))
             Me._commandCollection(9) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(9).Connection = Me.Connection
-            Me._commandCollection(9).CommandText = "UPDATE `DetailsFacture` SET  `qte` = ?, `sum` = ? WHERE (`id` = ?) "
+            Me._commandCollection(9).CommandText = "UPDATE       DetailsFacture"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SET                name = ?, bprice = ?, sprice = ?,"& _ 
+                " unit = ?, qte = ?, [sum] = ?"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (id = ?)"
             Me._commandCollection(9).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("name", Global.System.Data.OleDb.OleDbType.WChar, 50, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "name", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("bprice", Global.System.Data.OleDb.OleDbType.Currency, 0, Global.System.Data.ParameterDirection.Input, CType(19,Byte), CType(0,Byte), "bprice", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("sprice", Global.System.Data.OleDb.OleDbType.Currency, 0, Global.System.Data.ParameterDirection.Input, CType(19,Byte), CType(0,Byte), "sprice", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(9).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("unit", Global.System.Data.OleDb.OleDbType.WChar, 50, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "unit", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._commandCollection(9).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("qte", Global.System.Data.OleDb.OleDbType.Currency, 0, Global.System.Data.ParameterDirection.Input, CType(19,Byte), CType(0,Byte), "qte", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._commandCollection(9).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("sum", Global.System.Data.OleDb.OleDbType.Currency, 0, Global.System.Data.ParameterDirection.Input, CType(19,Byte), CType(0,Byte), "sum", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._commandCollection(9).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_id", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "id", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._commandCollection(10) = New Global.System.Data.OleDb.OleDbCommand()
+            Me._commandCollection(10).Connection = Me.Connection
+            Me._commandCollection(10).CommandText = "UPDATE `DetailsFacture` SET  `qte` = ?, `sum` = ? WHERE (`id` = ?) "
+            Me._commandCollection(10).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(10).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("qte", Global.System.Data.OleDb.OleDbType.Currency, 0, Global.System.Data.ParameterDirection.Input, CType(19,Byte), CType(0,Byte), "qte", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(10).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("sum", Global.System.Data.OleDb.OleDbType.Currency, 0, Global.System.Data.ParameterDirection.Input, CType(19,Byte), CType(0,Byte), "sum", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(10).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_id", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "id", Global.System.Data.DataRowVersion.Original, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -20949,10 +20958,42 @@ Namespace ALMohassinDBDataSetTableAdapters
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function ScalarLastPrice(ByVal arid As Global.System.Nullable(Of Integer), ByVal clid As Integer) As Object
+            Dim command As Global.System.Data.OleDb.OleDbCommand = Me.CommandCollection(7)
+            If (arid.HasValue = true) Then
+                command.Parameters(0).Value = CType(arid.Value,Integer)
+            Else
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            command.Parameters(1).Value = CType(clid,Integer)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Object
+            Try 
+                returnValue = command.ExecuteScalar
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return Nothing
+            Else
+                Return CType(returnValue,Object)
+            End If
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function Updatedepot(ByVal depot As Global.System.Nullable(Of Integer), ByVal Original_id As Integer) As Integer
-            Dim command As Global.System.Data.OleDb.OleDbCommand = Me.CommandCollection(7)
+            Dim command As Global.System.Data.OleDb.OleDbCommand = Me.CommandCollection(8)
             If (depot.HasValue = true) Then
                 command.Parameters(0).Value = CType(depot.Value,Integer)
             Else
@@ -20979,7 +21020,7 @@ Namespace ALMohassinDBDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function UpdateDetails(ByVal name As String, ByVal bprice As Global.System.Nullable(Of Decimal), ByVal sprice As Global.System.Nullable(Of Decimal), ByVal unit As String, ByVal qte As Global.System.Nullable(Of Decimal), ByVal sum As Global.System.Nullable(Of Decimal), ByVal Original_id As Integer) As Integer
-            Dim command As Global.System.Data.OleDb.OleDbCommand = Me.CommandCollection(8)
+            Dim command As Global.System.Data.OleDb.OleDbCommand = Me.CommandCollection(9)
             If (name Is Nothing) Then
                 command.Parameters(0).Value = Global.System.DBNull.Value
             Else
@@ -21032,7 +21073,7 @@ Namespace ALMohassinDBDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function UpdateQte(ByVal qte As Global.System.Nullable(Of Decimal), ByVal sum As Global.System.Nullable(Of Decimal), ByVal Original_id As Integer) As Integer
-            Dim command As Global.System.Data.OleDb.OleDbCommand = Me.CommandCollection(9)
+            Dim command As Global.System.Data.OleDb.OleDbCommand = Me.CommandCollection(10)
             If (qte.HasValue = true) Then
                 command.Parameters(0).Value = CType(qte.Value,Decimal)
             Else
@@ -30923,7 +30964,7 @@ Namespace ALMohassinDBDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(1) {}
+            Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(2) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        DetailsFacture.id, DetailsFacture.fctid, DetailsFacture.name, Detai"& _ 
@@ -30952,6 +30993,15 @@ Namespace ALMohassinDBDataSetTableAdapters
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("date", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "date", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("date1", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "date", Global.System.Data.DataRowVersion.Current, false, Nothing))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("arid", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "arid", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(2) = New Global.System.Data.OleDb.OleDbCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "SELECT        Depot.name, Article.name AS Designation, Article.bprice, Article.sp" & _
+                "rice, Article.codebar, Detailstock.dpid, Detailstock.qte, Detailstock.cid, Detai" & _
+                "lstock.arid, Detailstock.unit, Detailstock.DSID, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         Deta" & _
+                "ilstock.qte * Article.bprice AS Valeur" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM            ((Detailstock INNER JOIN" & _
+                "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         Article ON Detailstock.arid = Article.arid) INNER JOI" & _
+                "N" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         Depot ON Detailstock.dpid = Depot.dpid)"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -31057,6 +31107,30 @@ Namespace ALMohassinDBDataSetTableAdapters
             Else
                 Me.Adapter.SelectCommand.Parameters(2).Value = Global.System.DBNull.Value
             End If
+            Dim dataTable As ALMohassinDBDataSet.TracabilityINDataTable = New ALMohassinDBDataSet.TracabilityINDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByStock(ByVal dataTable As ALMohassinDBDataSet.TracabilityINDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByStock() As ALMohassinDBDataSet.TracabilityINDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
             Dim dataTable As ALMohassinDBDataSet.TracabilityINDataTable = New ALMohassinDBDataSet.TracabilityINDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable

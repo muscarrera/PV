@@ -684,9 +684,7 @@ Public Class SubClass
                 Dim arid As Integer = 0
                 Dim price As Double = CDbl(R.sprice)
                 If Form1.RPl.isSell Then
-                    'If Form1.RPl.Num > 0 Then
-                    '    price = R.bprice + (R.bprice * Form1.RPl.Num / 100)
-                    'End If
+                 
                     If Form1.RPl.Num > 0 Then
                         If Form1.cbOptionJenani.Checked = False Then
                             Select Case Form1.RPl.Num
@@ -755,7 +753,20 @@ Public Class SubClass
                         CBR = ""
                     End Try
 
+                    'Last Peice Option
+                    If Form1.cbLastPrice.Checked And Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
+                        Dim at As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
+                        Dim prc = at.ScalarLastPrice(R.arid, Form1.RPl.ClId)
+                        If IsNumeric(prc) Then
+                            If prc > 0 Then
+                                price = prc
+                            End If
+                        End If
+                    End If
+
+
                     Dim params As New Dictionary(Of String, Object)
+
                     params.Add("fctid", CInt(Form1.RPl.FctId))
                     params.Add("name", R.name)
                     params.Add("bprice", CDbl(R.bprice))
@@ -773,8 +784,10 @@ Public Class SubClass
                 End Using
 
                 If arid > 0 Then
+                    Dim ppp = R.sprice
                     R.sprice = price
                     Form1.RPl.AddItems(R, arid, CBool(Form1.btswitsh.Tag))
+                    R.sprice = ppp
                 Else
                     Exit Sub
                 End If
@@ -1810,6 +1823,7 @@ Public Class SubClass
                 Try
                     Form1.RPl.ClientAdresse = dt.Rows(0).Item("adresse")
                     Form1.RPl.bl = dt.Rows(0).Item("bl")
+                    Form1.RPl.Dte = dt.Rows(0).Item("date")
                 Catch ex As Exception
                     Form1.RPl.ClientAdresse = ""
                 End Try
@@ -1925,6 +1939,7 @@ Public Class SubClass
                     Try
                         Dim h As Integer = c.UpdateRecord(tableName, params, where)
                         If h > 0 Then
+
                             'change Article Price
                             If clc.cbChangePrice.Checked Or clc.cbChangeName.Checked Then
                                 Try
@@ -2424,7 +2439,7 @@ Public Class SubClass
                                     Dim dsid As Integer = CInt(dt2.Rows(0).Item(0))
                                     Dim q As Double = CDbl(dt2.Rows(0).Item("qte"))
 
-                                    q -= i.Qte
+                                    ' q -= i.Qte
 
                                     If isS = True Then
                                         q -= i.Qte
@@ -2445,7 +2460,7 @@ Public Class SubClass
                                     params.Clear()
                                     params.Add("qte", q)
                                     params.Add("arid", i.arid)
-                                    params.Add("dpid", i.Depot)
+                                    params.Add("dpid", dpt)
                                     params.Add("cid", i.cid)
                                     params.Add("unit", i.Unite)
                                     c.InsertRecord("Detailstock", params)

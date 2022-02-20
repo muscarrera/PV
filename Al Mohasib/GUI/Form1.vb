@@ -7,7 +7,7 @@ Imports System.Text
 
 Public Class Form1
     'members
-    Private TrialName As String = "ALMsbtrFirstaRunSOFI34"
+    Private TrialName As String = "ALMsbtrFirstaRunSOFI35"
     Dim nbrDay_Trial As Integer = 120
 
     Public admin As Boolean
@@ -118,9 +118,9 @@ Public Class Form1
     Private is_true_to_end As Boolean = False
 
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        If isThTrueFileExist() = 0 Then End
-        SetTheTrueMacAdrssDb()
-        If isTheTrueMacAdrss(True) = 0 Then End
+        'If isThTrueFileExist() = 0 Then End
+        'SetTheTrueMacAdrssDb()
+        'If isTheTrueMacAdrss(True) = 0 Then End
 
         HandleRegistryinfo()
 
@@ -129,15 +129,14 @@ Public Class Form1
 
         'is_true_to_end = True
 
-        ''Dim CDA As New PricingGetter
-        ''Dim CDA As New BarCode2
+        'Dim CDA As New PricingGetter
+        'Dim CDA As New BarCode2
         'Dim CDA As New LabelPrinter
-        '' '
+        ''
 
         'If CDA.ShowDialog = Windows.Forms.DialogResult.Cancel Then
         '    End
         'End If
-
 
         'If is_true_to_end Then End
 
@@ -151,10 +150,8 @@ Public Class Form1
             End If
         Catch ex As Exception
         End Try
-
-
-
         '
+
         Me.DepotTableAdapter.Fill(Me.ALMohassinDBDataSet.Depot)
 
         Dim pwdwin As New PWDPicker
@@ -172,11 +169,13 @@ Public Class Form1
                 adminId = pwdwin.DGV1.SelectedRows(0).Cells(0).Value
                 adminName = pwdwin.DGV1.SelectedRows(0).Cells(1).Value
                 TabControl1.Controls.Remove(TabPageStk)
-                'TabControl1.Controls.Remove(TabPageArch)
                 TabControl1.Controls.Remove(TabPageParm)
-                'TabControl1.Controls.Remove(TabPage)
 
-                btHistorique.Visible = False
+                PlTopArchive.Visible = False
+
+                btRelveClientArch.Visible = False
+                btEtatClientArch.Visible = False
+
 
                 Button13.Visible = False
                 Button17.Visible = False
@@ -255,7 +254,7 @@ Public Class Form1
         '''''''''''''''''''''''''
 
         If admin And cbProfit.Checked Then
-            RPl.ShowProfit = True
+            If adminName.ToUpper.StartsWith("ADMIN") Then RPl.ShowProfit = True
         Else
             RPl.ShowProfit = False
         End If
@@ -752,6 +751,7 @@ Public Class Form1
         getRegistryinfo(cbJnImgDb, "cbJnImgDb", False)
         getRegistryinfo(cbArticleItemDirection, "cbArticleItemDirection", False)
         getRegistryinfo(cbJnReduireQte, "cbJnReduireQte", False)
+        getRegistryinfo(cbLastPrice, "cbLastPrice", False)
 
         getRegistryinfo(txtFnPtFr, "txtFnPtFr", "Arial")
         getRegistryinfo(txtFsPtFr, "txtFsPtFr", 10)
@@ -770,6 +770,8 @@ Public Class Form1
         getRegistryinfo(cbPvCats, "cbPvCats", False)
         getRegistryinfo(cbPvClient, "cbPvClient", False)
         getRegistryinfo(isOrderByIdDesc_items, "isOrderByIdDesc_items", False)
+        getRegistryinfo(cbItemCheckBox, "cbItemCheckBox", False)
+        getRegistryinfo(cbSecuBage, "cbSecuBage", False)
 
 
         gbprint.Enabled = chbprint.Checked
@@ -1401,6 +1403,10 @@ Public Class Form1
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbPvCats", cbPvCats.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbPvClient", cbPvClient.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "isOrderByIdDesc_items", isOrderByIdDesc_items.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbItemCheckBox", cbItemCheckBox.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbLastPrice", cbLastPrice.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbSecuBage", cbSecuBage.Checked)
+
 
                 '" If Not IsNumeric(txtComName.Text) Then txtComName.Text = 0
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "txtHours", txtComName.Text)
@@ -2899,7 +2905,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Button27_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button27.Click
+    Private Sub Button27_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btDevis.Click
         Dim dv As New Devis
         dv.ISSELL = True
         If dv.ShowDialog = Windows.Forms.DialogResult.OK Then
@@ -3075,7 +3081,7 @@ Public Class Form1
                    String.Format("{0:n}", CDec(dt.Rows(i).Item("total").ToString)),
                      String.Format("{0:n}", CDec(dt.Rows(i).Item("avance").ToString)),
                      String.Format("{0:n}", rest),
-                     CDate(dt.Rows(i).Item("date")).ToString("dd-MM-yyyy [HH:mm]"),
+                     CDate(dt.Rows(i).Item("date")),
                      dt.Rows(i).Item("adresse").ToString, dt.Rows(i).Item("writer").ToString,
                      dt.Rows(i).Item("payed").ToString, dt.Rows(i).Item("remise").ToString,
                    dt.Rows(i).Item("bl").ToString, dt.Rows(i).Item("beInFacture").ToString,
@@ -3239,8 +3245,10 @@ Public Class Form1
                 RPl.Avance = DGVARFA.SelectedRows(0).Cells(4).Value
                 RPl.Remise = DGVARFA.SelectedRows(0).Cells(10).Value
                 RPl.bl = DGVARFA.SelectedRows(0).Cells(11).Value
+
                 RPl.isSell = isSell
                 RPl.delivredDay = DGVARFA.SelectedRows(0).Cells(13).Value
+                RPl.Dte = DGVARFA.SelectedRows(0).Cells(6).Value
 
                 If dt.Rows.Count > 0 Then
 
@@ -3441,7 +3449,7 @@ Public Class Form1
     End Sub
 
    
-    Private Sub Button30_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button30.Click
+    Private Sub Button30_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btCaisseArch.Click
         Dim isSell As Boolean = CBool(btSwitch2.Tag)
         'Dim dt1 As Date = Date.Parse(dte2.Text).AddDays(1)
         'Dim dt2 As Date = Date.Parse(dte1.Text).AddHours(addHours)
@@ -3476,10 +3484,21 @@ Public Class Form1
         ProgressBar1.Value = 0
 
         Try
-
+            Dim FerstBon As Integer = 0
             Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                 params.Add("[date] < ", dt1)
                 params.Add("[date] > ", dt2)
+
+                Try
+                    If isSell Then
+
+                        Dim data = a.SelectDataTableSymbols("Facture", {"TOP 1 fctid"}, params)
+                        FerstBon = data.Rows(0).Item(0)
+                    End If
+
+                Catch ex As Exception
+                    FerstBon = 0
+                End Try
 
                 If cbAffichageLimite.Checked And admin = False Then params.Add("writer = ", adminName)
 
@@ -3518,7 +3537,7 @@ Public Class Form1
                 For i As Integer = 0 To dt.Rows.Count - 1
 
                     DGVARFA.Rows.Add(0,
-                     dt.Rows(i).Item(2).ToString, dt.Rows(i).Item("name").ToString,
+                     dt.Rows(i).Item(7).ToString, dt.Rows(i).Item("name").ToString,
                    String.Format("{0:n}", CDec(dt.Rows(i).Item("montant").ToString)),
                      dt.Rows(i).Item("way").ToString,
                   "", CDate(dt.Rows(i).Item("date")).ToString("dd, MMM yy [hh:mm]"),
@@ -3557,10 +3576,13 @@ Public Class Form1
                     Else
                         T_CA += CDec(dt.Rows(i).Item("montant").ToString)
                     End If
-                Next
-                ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' color payed
+                    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' color payed
 
-                ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                    If CInt(dt.Rows(i).Item(7)) < FerstBon Then
+                        DGVARFA.Rows(i).DefaultCellStyle.BackColor = Color.BurlyWood
+                    End If
+                    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                Next
                 DGVARFA.Columns(4).HeaderText = "---"
 
             Else
@@ -3668,39 +3690,37 @@ Public Class Form1
 
     Private Sub RPl_UpdateValueChanged() Handles RPl.UpdateValueChanged
         If cbDual.Checked Then
-            Try
-                dualScrean.PlItems.Controls.Clear()
-                For Each C As Items In RPl.Pl.Controls
+            'Try
+            '    dualScrean.PlItems.Controls.Clear()
+            '    For Each C As Items In RPl.Pl.Controls
 
-                    Dim ap As New Items
-                    ap.Dock = DockStyle.Top
-                    ap.Name = C.Name
-                    ap.Unite = ""
-                    ap.Price = C.Price
-                    ap.Qte = C.Qte
-                    ap.Bprice = 0
-                    ap.id = C.id
-                    ap.arid = C.arid
-                    ap.Tva = 20
-                    ap.cid = 0
-                    ap.Depot = 1
-                    ap.code = 1
-                    ap.Remise = 0
+            '        Dim ap As New Items
+            '        ap.Dock = DockStyle.Top
+            '        ap.Name = C.Name
+            '        ap.Unite = ""
+            '        ap.Price = C.Price
+            '        ap.Qte = C.Qte
+            '        ap.Bprice = 0
+            '        ap.id = C.id
+            '        ap.arid = C.arid
+            '        ap.Tva = 20
+            '        ap.cid = 0
+            '        ap.Depot = 1
+            '        ap.code = 1
+            '        ap.Remise = 0
 
-                    ap.BgColor = Color.White
-                    ap.SideColor = Color.CadetBlue
+            '        ap.BgColor = Color.White
+            '        ap.SideColor = Color.CadetBlue
 
-
-
-                    dualScrean.PlItems.Controls.Add(ap)
-                Next
-                dualScrean.LbSum.Text = RPl.LbSum.Text & " Dhs"
-            Catch ex As Exception
-            End Try
+            '        dualScrean.PlItems.Controls.Add(ap)
+            '    Next
+            '    dualScrean.LbSum.Text = RPl.LbSum.Text & " Dhs"
+            'Catch ex As Exception
+            'End Try
 
 
             Try
-                Dim sp As SerialPort = New SerialPort(TxtComName.text, 9600, Parity.None, 8, StopBits.One)
+                Dim sp As SerialPort = New SerialPort(txtComName.Text, 9600, Parity.None, 8, StopBits.One)
 
                 sp.Open()
                 sp.Write(Convert.ToString(ChrW(12)))
@@ -4044,7 +4064,7 @@ Public Class Form1
         If CbDepotOrigine.Checked Then plDepot.Visible = False
     End Sub
 
-    Private Sub Button37_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button37.Click
+    Private Sub Button37_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btEtatClientArch.Click
         Dim isSell As Boolean = CBool(btSwitch2.Tag)
         Dim tName As String = "Facture"
         If isSell = False Then tName = "Bon"
@@ -4085,7 +4105,7 @@ Public Class Form1
                    String.Format("{0:n}", CDec(dt.Rows(i).Item("total").ToString)),
                      String.Format("{0:n}", CDec(dt.Rows(i).Item("avance").ToString)),
                      String.Format("{0:n}", rest),
-                     CDate(dt.Rows(i).Item("date")).ToString("dd, MMM yy [hh:mm]"),
+                     CDate(dt.Rows(i).Item("date")),
                      dt.Rows(i).Item("adresse").ToString, dt.Rows(i).Item("writer").ToString,
                      dt.Rows(i).Item("payed").ToString, dt.Rows(i).Item("remise").ToString,
                    dt.Rows(i).Item("bl").ToString, dt.Rows(i).Item("beInFacture").ToString,
@@ -4113,7 +4133,7 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub Button38_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button38.Click
+    Private Sub Button38_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btRelveClientArch.Click
 
         Dim isSell As Boolean = CBool(btSwitch2.Tag)
         If txtArSearch.text.Contains("|") = False Then
@@ -4202,8 +4222,8 @@ Public Class Form1
     Private Sub PrintDocDesign_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocDesign.PrintPage
         Try
             Dim ds As RPanel = RPl
-            Dim dte As String = Format(Date.Now, "dd-MM-yyyy [HH:mm]")
-            If RPl.EditMode = True And RPl.ClId <> -111 Then dte = DGVARFA.SelectedRows(0).Cells(6).Value
+            Dim dte As String = Format(ds.Dte, "dd-MM-yyyy [HH:mm]")
+            'If RPl.EditMode = True And RPl.ClId <> -111 Then dte = DGVARFA.SelectedRows(0).Cells(6).Value
 
 
             Dim data As New DataTable
@@ -5079,4 +5099,129 @@ Public Class Form1
         RawPrinter.PrintRaw(PrinterName, DrawerCode)
         'change Mode de recherche
     End Sub
+
+    Private Sub Button54_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button54.Click
+        Dim isSell As Boolean = CBool(btSwitch2.Tag)
+
+        Dim dt1 = New DateTime(dte2.Value.Year, dte2.Value.Month, dte2.Value.Day, 23, 59, 0, 0)
+        Dim dt2 = New DateTime(dte1.Value.Year, dte1.Value.Month, dte1.Value.Day, 0, 5, 0, 0)
+
+        Dim tName As String = "Facture"
+        Dim params As New Dictionary(Of String, Object)
+        Dim dt As DataTable = Nothing
+
+     
+        Try
+
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                params.Add("[date] < ", dt1)
+                params.Add("[date] > ", dt2)
+                params.Add("admin = ", True)
+                dt = a.SelectDataTableSymbols(tName, {"*"}, params)
+            End Using
+
+            Dim str As New List(Of String)
+
+            If dt.Rows.Count > 0 Then
+                Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
+                For i As Integer = 0 To dt.Rows.Count - 1
+                    Dim dtt = ta.GetData(dt.Rows(i).Item(0))
+                    Dim total As Double = dt.Rows(i).Item("total")
+                    Dim tt As Double = 0
+                    If dtt.Rows.Count > 0 Then
+                        For j As Integer = 0 To dtt.Rows.Count - 1
+                            tt += dtt.Rows(j).Item("price") * dtt.Rows(j).Item("qte")
+                        Next
+
+                        If tt <> total Then str.Add(dt.Rows(i).Item(0) & " - - " & total & " - -" & tt)
+                    End If
+                Next
+            End If
+
+
+            TextBox1.Text = str.Count
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Button27_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button27.Click
+        If adminName.Contains("**") = False Then Exit Sub
+
+        RPl.ClearItems()
+
+        Dim isSell As Boolean = CBool(btSwitch2.Tag)
+
+        Dim tName As String = "DetailsFacture"
+
+        Dim params As New Dictionary(Of String, Object)
+
+        Dim avance As Double = 0
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            If DGVARFA.Rows.Count > 2 Then
+                If DGVARFA.Rows(0).Cells(1).Value <> DGVARFA.Rows(1).Cells(1).Value Then Exit Sub
+
+                Try
+                    RPl.ClId = DGVARFA.Rows(0).Cells(1).Value
+                    RPl.ClientAdresse = ""
+                    RPl.ClientName = "**  Cummul ** " & DGVARFA.Rows(0).Cells(2).Value
+                    RPl.FctId = 1
+                    RPl.isSell = CBool(btSwitch2.Tag)
+                    RPl.EditMode = True
+
+                    For i As Integer = 0 To DGVARFA.Rows.Count - 1
+                        avance += DGVARFA.Rows(0).Cells(4).Value
+
+                        params.Clear()
+                        params.Add("fctid", CInt(DGVARFA.Rows(i).Cells(0).Value))
+                        Dim dt2 = c.SelectDataTable(tName, {"*"}, params)
+                        If dt2.Rows.Count > 0 Then
+                            RPl.AddItemsBouch(dt2, True)
+                        End If
+                    Next
+
+                    'remise = ((100 * CDbl(Form1.lbfr.Text)) / (CDbl(Form1.lbft.Text) + CDbl(Form1.lbfr.Text) - CDbl(Form1.lbftva.Text)))
+                    RPl.Remise = 0
+                    RPl.Avance = avance
+                Catch ex As Exception
+                End Try
+            End If
+        End Using
+
+
+    End Sub
+
+    Private Sub RPl_UpdateDate() Handles RPl.UpdateDate
+        If RPl.FctId = 0 Then Exit Sub
+
+        Dim dd As New EditDate
+        dd.lbId.Text = RPl.FctId & " - " & RPl.ClientName
+        dd.dte = RPl.Dte
+
+        If dd.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Dim tName As String = "Facture"
+            If RPl.isSell = False Then tName = "Bon"
+            Dim params As New Dictionary(Of String, Object)
+            Dim where As New Dictionary(Of String, Object)
+
+
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+
+                params.Add("date", dd.dte)
+
+                where.Add("fctid", RPl.FctId)
+
+                If c.UpdateRecord(tName, params, where) Then
+                    RPl.Dte = dd.dte
+
+                    If RPl.EditMode Then DGVARFA.SelectedRows(0).Cells(6).Value = dd.dte
+                     
+                    End If
+            End Using
+        End If
+
+    End Sub
+
+  
 End Class

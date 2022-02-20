@@ -33,8 +33,11 @@ Partial Class Items
         Me.Label2 = New System.Windows.Forms.Label()
         Me.LbQte = New System.Windows.Forms.Label()
         Me.LbTva = New System.Windows.Forms.Label()
+        Me.plCheck = New System.Windows.Forms.Panel()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Pl.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.plCheck.SuspendLayout()
         Me.SuspendLayout()
         '
         'Pl
@@ -44,6 +47,7 @@ Partial Class Items
         Me.Pl.Controls.Add(Me.LbTotal)
         Me.Pl.Controls.Add(Me.plRet)
         Me.Pl.Controls.Add(Me.Panel1)
+        Me.Pl.Controls.Add(Me.plCheck)
         Me.Pl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Pl.Location = New System.Drawing.Point(2, 2)
         Me.Pl.Name = "Pl"
@@ -55,9 +59,9 @@ Partial Class Items
         Me.LbName.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LbName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbName.ForeColor = System.Drawing.Color.DarkCyan
-        Me.LbName.Location = New System.Drawing.Point(21, 0)
+        Me.LbName.Location = New System.Drawing.Point(42, 0)
         Me.LbName.Name = "LbName"
-        Me.LbName.Size = New System.Drawing.Size(202, 21)
+        Me.LbName.Size = New System.Drawing.Size(181, 21)
         Me.LbName.TabIndex = 0
         Me.LbName.Text = "Label1"
         Me.LbName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -79,7 +83,7 @@ Partial Class Items
         Me.plRet.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.RT
         Me.plRet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.plRet.Dock = System.Windows.Forms.DockStyle.Left
-        Me.plRet.Location = New System.Drawing.Point(0, 0)
+        Me.plRet.Location = New System.Drawing.Point(21, 0)
         Me.plRet.Name = "plRet"
         Me.plRet.Size = New System.Drawing.Size(21, 21)
         Me.plRet.TabIndex = 4
@@ -95,9 +99,9 @@ Partial Class Items
         Me.Panel1.Controls.Add(Me.LbQte)
         Me.Panel1.Controls.Add(Me.LbTva)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 21)
+        Me.Panel1.Location = New System.Drawing.Point(21, 21)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(298, 20)
+        Me.Panel1.Size = New System.Drawing.Size(277, 20)
         Me.Panel1.TabIndex = 3
         '
         'LbStk
@@ -161,13 +165,36 @@ Partial Class Items
         '
         Me.LbTva.Dock = System.Windows.Forms.DockStyle.Right
         Me.LbTva.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbTva.Location = New System.Drawing.Point(195, 0)
+        Me.LbTva.Location = New System.Drawing.Point(174, 0)
         Me.LbTva.Name = "LbTva"
         Me.LbTva.Size = New System.Drawing.Size(103, 20)
         Me.LbTva.TabIndex = 0
         Me.LbTva.Text = "Label1"
         Me.LbTva.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.LbTva.Visible = False
+        '
+        'plCheck
+        '
+        Me.plCheck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.plCheck.Controls.Add(Me.CheckBox1)
+        Me.plCheck.Dock = System.Windows.Forms.DockStyle.Left
+        Me.plCheck.Location = New System.Drawing.Point(0, 0)
+        Me.plCheck.Name = "plCheck"
+        Me.plCheck.Size = New System.Drawing.Size(21, 41)
+        Me.plCheck.TabIndex = 5
+        Me.plCheck.Visible = False
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.BackColor = System.Drawing.Color.Transparent
+        Me.CheckBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.CheckBox1.Location = New System.Drawing.Point(0, 0)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Padding = New System.Windows.Forms.Padding(4, 0, 0, 0)
+        Me.CheckBox1.Size = New System.Drawing.Size(21, 41)
+        Me.CheckBox1.TabIndex = 0
+        Me.CheckBox1.UseVisualStyleBackColor = False
         '
         'Items
         '
@@ -181,6 +208,8 @@ Partial Class Items
         Me.Pl.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.plCheck.ResumeLayout(False)
+        Me.plCheck.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -195,5 +224,7 @@ Partial Class Items
     Friend WithEvents LbPrice As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents plRet As System.Windows.Forms.Panel
+    Friend WithEvents plCheck As System.Windows.Forms.Panel
+    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
 
 End Class

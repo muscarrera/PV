@@ -79,6 +79,18 @@ Public Class LbSetting
             txtNbrH.text = value
         End Set
     End Property
+    Public Property Nbr_Q As Integer
+        Get
+            Try
+                Return CInt(txtNbrQ.text)
+            Catch ex As Exception
+                Return 1
+            End Try
+        End Get
+        Set(ByVal value As Integer)
+            txtNbrQ.text = value
+        End Set
+    End Property
 
     Public Property W_El As Integer
         Get
@@ -184,6 +196,7 @@ Public Class LbSetting
 
             Nbr_W = g.Nbr_W
             Nbr_H = g.Nbr_H
+            Nbr_Q = g.Nbr_Q
 
             W_El = g.W_El
             H_El = g.H_El
@@ -310,6 +323,7 @@ Public Class LbSetting
         g.W_El = W_El
         g.H_El = H_El
         g.Nbr_W = Nbr_W
+        g.Nbr_Q = Nbr_Q
         g.Nbr_H = Nbr_H
         g.Sp_W = Sp_W
         g.Sp_H = Sp_H
@@ -810,7 +824,7 @@ Public Class LbSetting
         Pb.BackgroundImage = BMP
     End Sub
     
-    Private Sub txtHel_TxtChanged() Handles txtY.TxtChanged, txtX.TxtChanged, txtWel.TxtChanged, txtNbrW.TxtChanged, txtNbrH.TxtChanged, txtHel.TxtChanged, txtEspW.TxtChanged, txtEspH.TxtChanged
+    Private Sub txtHel_TxtChanged() Handles txtY.TxtChanged, txtX.TxtChanged, txtWel.TxtChanged, txtNbrW.TxtChanged, txtNbrH.TxtChanged, txtHel.TxtChanged, txtEspW.TxtChanged, txtEspH.TxtChanged, txtNbrQ.TxtChanged
         If localName.ToUpper.StartsWith("CAT") Then
             Pb.BackgroundImage = DrawBl(Data, False)
         Else
