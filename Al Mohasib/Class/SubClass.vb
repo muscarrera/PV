@@ -154,9 +154,16 @@ Public Class SubClass
         Dim ctgta As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
         Dim ctgdt = ctgta.GetDataBycat(0)
         Form1.FlowLayoutPanel1.Controls.Clear()
+
         If F Then Form1.FLPStock.Controls.Clear()
-     
-        FillDataSource_Cats(ctgdt)
+
+        If ctgdt.Rows.Count = 1 Then
+            Dim bt As New Button
+            bt.Tag = ctgdt.Rows(0).Item("cid")
+            ctg_click(bt, Nothing)
+        Else
+            FillDataSource_Cats(ctgdt)
+        End If
 
         'Fill stock panel
         If F Then FillGrStock(ctgdt)
@@ -168,13 +175,14 @@ Public Class SubClass
             Form1.txtSearch.Text = ""
             Form1.txtSearch.Focus()
         End If
+
         Form1.RPl.CP.Value = 0
+
     End Sub
-    
     Public Sub FillGroupesByCat(ByVal c As Integer)
         Dim ctgta As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
         Dim ctgdt = ctgta.GetDataBycat(c)
-       
+
         FillDataSource_Cats(ctgdt)
 
         If Form1.chbcb.Checked Then
@@ -361,6 +369,11 @@ Public Class SubClass
                 Form1.FlowLayoutPanel1.Controls.Clear()
                 Dim lb As New Label
 
+                Console.Beep()
+                Console.Beep()
+
+                Beep()
+
                 lb.ForeColor = Color.DarkGray
                 lb.Text = "لا يوجد اي سجل"
                 lb.Font = New Font("Arial", 14, FontStyle.Bold)
@@ -456,6 +469,11 @@ Public Class SubClass
                 Form1.FlowLayoutPanel1.Controls.Clear()
                 Dim lb As New Label
 
+
+                Console.Beep()
+                Console.Beep()
+                Console.Beep()
+
                 lb.ForeColor = Color.DarkGray
                 lb.Text = "لا يوجد اي سجل"
                 lb.Font = New Font("Arial", 14, FontStyle.Bold)
@@ -476,7 +494,6 @@ Public Class SubClass
             Form1.txtSearch.Focus()
         End If
     End Sub
-
 
     Public Sub ctg_click(ByVal sender As System.Object, ByVal e As EventArgs)
 
@@ -646,7 +663,9 @@ Public Class SubClass
             Dim dpt As Integer = Form1.RPl.CP.Depot
             If Form1.CbDepotOrigine.Checked Then dpt = R.depot
 
-            If Form1.RPl.IsExiste(R.arid, dpt) = True And Form1.cbMergeArt.Checked = True Then
+            Dim catsMerg = Form1.txtMergeCat.Text.Split("-")
+
+            If Form1.RPl.IsExiste(R.arid, dpt) = True And Form1.cbMergeArt.Checked = True And catsMerg.Contains(R.cid) = False Then
                 Dim item As Items = Form1.RPl.SelectedItems(R.arid, dpt)
                 Dim ID As Integer = item.id
                 Dim qte As Double = item.Qte + CDbl(Form1.RPl.CP.Value)
@@ -676,6 +695,7 @@ Public Class SubClass
 
                         If c.UpdateRecord(tableName, params, where) Then
                             Form1.RPl.ChangedItemsQte(R.arid, dpt, qte)
+                            Form1.RPl.Pl.ScrollControlIntoView(item)
                         End If
                     End If
 
@@ -684,7 +704,7 @@ Public Class SubClass
                 Dim arid As Integer = 0
                 Dim price As Double = CDbl(R.sprice)
                 If Form1.RPl.isSell Then
-                 
+
                     If Form1.RPl.Num > 0 Then
                         If Form1.cbOptionJenani.Checked = False Then
                             Select Case Form1.RPl.Num
@@ -703,30 +723,63 @@ Public Class SubClass
                     price = R.bprice
                 End If
 
-                If Form1.cbQteCat.Checked Then
+                Dim ii As Integer = 0
 
+
+
+                If Form1.cbQteCat.Checked Then
                     Try
                         Dim cats = Form1.txtQteCat.Text.Split("-")
                         If cats.Contains(R.cid.ToString) Or cats.Contains("*") Then
-                            Dim bn As New byname
-                            bn.lbName.Text = R.name
-                            bn.BTp1.Text = Math.Round(CDbl(R.sprice), 2)
-                            bn.txtPrice.text = Math.Round(CDbl(price), 2)
-                            bn.BTp2.Text = Math.Round(CDbl(R.sp3), 2)
-                            bn.BTp3.Text = Math.Round(CDbl(R.sp4), 2)
-                            bn.BTp4.Text = Math.Round(CDbl(R.sp5), 2)
-
-                            bn.BTACH.Text = Math.Round(CDbl(R.bprice), 2)
-                            If bn.ShowDialog = DialogResult.OK Then
-                                Form1.RPl.CP.Value = bn.qte
-                                price = CDbl(bn.txtPrice.text)
-                            End If
+                            ii += 1
                         End If
                     Catch ex As Exception
                         MsgBox("Error 4 : frth - model Multi-Prix")
                     End Try
-
                 End If
+
+                If Form1.cbPrixCat.Checked Then
+                    Try
+                        Dim cats = Form1.txtPrixCat.Text.Split("-")
+                        If cats.Contains(R.cid.ToString) Or cats.Contains("*") Then
+                            ii += 2
+                        End If
+                    Catch ex As Exception
+                        MsgBox("Error 4 : frth - model Multi-Prix")
+                    End Try
+                End If
+
+                If ii > 0 Then
+                    Dim bn As New byname
+
+                    bn.lbName.Text = R.name
+                    bn.BTp1.Text = Math.Round(CDbl(R.sprice), 2)
+                    bn.txtPrice.text = Math.Round(CDbl(price), 2)
+                    bn.BTp2.Text = Math.Round(CDbl(R.sp3), 2)
+                    bn.BTp3.Text = Math.Round(CDbl(R.sp4), 2)
+                    bn.BTp4.Text = Math.Round(CDbl(R.sp5), 2)
+                    bn.BTACH.Text = Math.Round(CDbl(R.bprice), 2)
+
+                    bn.ii = ii
+
+                    If bn.ShowDialog = DialogResult.OK Then
+
+                        If ii = 1 Then
+                            Form1.RPl.CP.Value = bn.qte
+                        ElseIf ii = 2 Then
+                            price = bn.qte
+                        Else
+                            Form1.RPl.CP.Value = bn.qte
+                            price = CDbl(bn.txtPrice.text)
+                        End If
+
+                    Else
+                        Exit Sub
+                    End If
+                End If
+
+
+
 
 
                 'qte
@@ -753,12 +806,12 @@ Public Class SubClass
                         CBR = ""
                     End Try
 
-                    'Last Peice Option
+                    'Last Price Option
                     If Form1.cbLastPrice.Checked And Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
                         Dim at As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
                         Dim prc = at.ScalarLastPrice(R.arid, Form1.RPl.ClId)
                         If IsNumeric(prc) Then
-                            If prc > 0 Then
+                            If prc > R.bprice Or Form1.RPl.ClientName.Contains("**") Then
                                 price = prc
                             End If
                         End If
@@ -793,14 +846,14 @@ Public Class SubClass
                 End If
             End If
 
-            Form1.txtSearch.Text = ""
-            Form1.txtSearchCode.Text = ""
+                    Form1.txtSearch.Text = ""
+                    Form1.txtSearchCode.Text = ""
 
-            If Form1.chbcb.Checked Then
-                Form1.txtSearchCode.Focus()
-            Else
-                Form1.txtSearch.Focus()
-            End If
+                    If Form1.chbcb.Checked Then
+                        Form1.txtSearchCode.Focus()
+                    Else
+                        Form1.txtSearch.Focus()
+                    End If
         Catch ex As Exception
 
         End Try
@@ -1077,7 +1130,6 @@ Public Class SubClass
         FactureSelected(b, Nothing)
     End Sub
 
-
     Private Sub EditArticle(ByVal R As ALMohassinDBDataSet.ArticleRow)
          
         Dim art As New AddEditArticle
@@ -1189,7 +1241,7 @@ Public Class SubClass
                         params.Add("avance", avance)
                         params.Add("date", Format(Now.Date, "dd-MM-yyyy"))
                         params.Add("admin", False)
-                        params.Add("writer", ds.Tables("FactureInfo").Rows(0).Item("writer"))
+                        params.Add("writer", Form1.adminName)
                         params.Add("tp", 1)
                         params.Add("payed", False)
                         params.Add("poid", 0)
@@ -1282,7 +1334,118 @@ Public Class SubClass
             Exit Sub
         End Try
     End Sub
+    Public Sub loadStrdBon(ByVal Txt As String)
+        Try
+            Dim strpath As String = Form1.BtImgPah.Tag & "\StrdBon"
+            Dim loadPath As String = Path.Combine(strpath, Txt)
+            Dim p As Panel = Form1.plright
 
+            Dim aa As Integer = 0
+            Dim ds As New DataSet
+            ds.ReadXml(loadPath)
+
+            Try
+                If ds.Tables("FactureInfo").Rows.Count > 0 Then
+                    Dim fid As Integer
+                    Dim clientname As String = ds.Tables("FactureInfo").Rows(0).Item("client")
+                    Dim avance As Double = CDbl(ds.Tables("FactureInfo").Rows(0).Item("avance"))
+                    Dim clientId As Integer = CInt(ds.Tables("FactureInfo").Rows(0).Item("clientID"))
+
+                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                        Dim params As New Dictionary(Of String, Object)
+                        params.Add("clid", clientId)
+                        params.Add("name", clientname)
+                        params.Add("total", 0)
+                        params.Add("avance", avance)
+                        params.Add("date", Format(Now.Date, "dd-MM-yyyy"))
+                        params.Add("admin", False)
+                        params.Add("writer", Form1.adminName)
+                        params.Add("tp", 1)
+                        params.Add("payed", False)
+                        params.Add("poid", 0)
+                        params.Add("num", 0)
+                        params.Add("tva", 0)
+                        params.Add("adresse", "")
+                        params.Add("bl", "---")
+                        params.Add("remise", 0)
+                        params.Add("beInFacture", 0)
+
+                        fid = c.InsertRecord("Bon", params, True)
+                        If fid > 0 Then
+
+                            If avance > 0 Then
+                                params.Clear()
+
+                                params.Add("name", "_")
+                                params.Add("comid", clientId)
+                                params.Add("montant", avance)
+                                params.Add("way", "Cache")
+                                params.Add("date", Format(Now.Date, "dd-MM-yyyy"))
+                                params.Add("Num", "")
+                                params.Add("bonid", fid)
+                                params.Add("writer", CStr(Form1.adminName))
+
+                                Dim Pid = c.InsertRecord("CompanyPayment", params, True)
+                            End If
+
+                            If ds.Tables("DetailsFacture").Rows.Count > 0 Then
+                                For j As Integer = 0 To ds.Tables("DetailsFacture").Rows.Count - 1
+                                    params.Clear()
+
+                                    params.Add("fctid", fid)
+                                    params.Add("name", ds.Tables("DetailsFacture").Rows(j).Item("name"))
+                                    params.Add("bprice", CDbl(ds.Tables("DetailsFacture").Rows(j).Item("bprice")))
+                                    params.Add("price", CDbl(ds.Tables("DetailsFacture").Rows(j).Item("price")))
+                                    params.Add("unit", ds.Tables("DetailsFacture").Rows(j).Item("unite"))
+                                    params.Add("qte", CDbl(ds.Tables("DetailsFacture").Rows(j).Item("qte")))
+                                    params.Add("tva", CDbl(20))
+                                    params.Add("poid", 0)
+                                    params.Add("arid", CInt(ds.Tables("DetailsFacture").Rows(j).Item("arid")))
+                                    params.Add("depot", CInt(ds.Tables("DetailsFacture").Rows(j).Item("depot")))
+                                    params.Add("code", ds.Tables("DetailsFacture").Rows(j).Item("code"))
+                                    params.Add("cid", CStr(ds.Tables("DetailsFacture").Rows(j).Item("cid")))
+
+                                    c.InsertRecord("DetailsBon", params)
+                                Next
+                            End If
+
+                            Dim rnd As New Random
+                            Dim bt As New Button
+                            bt.Text = clientname
+                            bt.BackColor = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255)) 'Color.DarkSlateGray
+                            bt.FlatStyle = FlatStyle.Flat
+                            bt.ForeColor = Color.White
+                            bt.Name = "bt" & CStr(rnd.Next) & p.Controls.Count
+                            bt.Font = New Font("Arial", 9, FontStyle.Bold)
+                            bt.Tag = fid
+                            bt.Dock = DockStyle.Left
+                            bt.AutoSize = True
+                            bt.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly
+                            bt.TextAlign = ContentAlignment.MiddleLeft
+                            AddHandler bt.Click, AddressOf FactureSelected
+
+                            p.Controls.Add(bt)
+                            'clear the recept liste
+                            Form1.RPl.ClearItems()
+                            FactureSelected(bt, Nothing)
+
+                            'delete xml file
+                            File.Delete(loadPath)
+
+                            FillGroupes(True)
+                            If isSell Then AppendData(fid, "Creation de la Bon ", "APP", "TABLETE")
+                            bt = Nothing
+                            rnd = Nothing
+                        End If
+                    End Using
+                End If
+            Catch ex As Exception
+            End Try
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Exit Sub
+        End Try
+    End Sub
     ' create new fact
     Public Sub NewFacture(ByVal t As Integer)
         Try
@@ -1413,6 +1576,325 @@ Public Class SubClass
         End Try
     End Sub
 
+    Public Sub NewFactureWatcher(ByVal g As PvModel)
+        Try
+            Dim tableName As String = "Facture"
+            Dim p As Panel = Form1.plright
+            Dim cid As String = 0
+            Dim clientname As String = Form1.txtcltcomptoir.Text.Split("/")(0)
+            Dim clientadesse As String = ""
+            Dim tp As String = 0
+            Dim num As String = 0
+            Dim fid As Integer = 0
+            Dim dte As Date = Date.Now
+
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                Dim params As New Dictionary(Of String, Object)
+                params.Add("clid", cid)
+                params.Add("name", clientname)
+                params.Add("total", 0)
+                params.Add("avance", 0)
+                params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
+                params.Add("admin", False)
+                params.Add("writer", CStr(Form1.adminName))
+                params.Add("tp", tp)
+                params.Add("payed", False)
+                params.Add("poid", 0)
+                params.Add("num", num)
+                params.Add("tva", 0)
+                params.Add("adresse", clientadesse)
+                params.Add("bl", g.bl)
+                params.Add("remise", 0)
+                params.Add("beInFacture", 0)
+                'params.Add("delivredDay", Now.Date.AddDays(2))
+
+                fid = c.InsertRecord(tableName, params, True)
+
+                tableName = "DetailsFacture"
+
+                If fid > 0 Then
+                    For Each r As Article In g.DataSource
+                        Dim prr As Double = r.sprice
+
+                        Try
+                            params.Clear()
+                            params.Add("arid", CInt(r.arid))
+                            prr = c.SelectByScalar("Article", "sprice", params)
+                        Catch ex As Exception
+                        End Try
+
+
+                        params.Clear()
+
+                        params.Add("fctid", fid)
+                        params.Add("name", r.name)
+                        params.Add("bprice", CDbl(r.bprice))
+                        params.Add("price", prr)
+                        params.Add("unit", r.unite)
+                        params.Add("qte", r.qte)
+                        params.Add("tva", r.TVA)
+                        params.Add("poid", 0)
+                        params.Add("arid", CInt(r.arid))
+                        params.Add("depot", r.depot)
+                        params.Add("code", r.ref)
+                        params.Add("cid", CStr(r.cid))
+
+                        c.InsertRecord(tableName, params, True)
+                    Next
+
+                    If Form1.cbPvClient.Checked Then
+                        Dim pv As New CBlock
+                        pv.ID = fid
+                        pv.lb.Text = clientname
+                        pv.Dock = DockStyle.Left
+                        AddHandler pv.Choosed, AddressOf FactureSelected
+                        AddHandler pv.Delete, AddressOf PvClient_DeleteBon
+                        p.Controls.Add(pv)
+
+                    Else
+                        Dim rnd As New Random
+                        Dim bt As New Button
+                        bt.Text = clientname
+                        bt.BackColor = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255)) 'Color.DarkSlateGray
+                        bt.FlatStyle = FlatStyle.Flat
+                        bt.ForeColor = Color.White
+                        bt.Name = "bt" & CStr(rnd.Next) & p.Controls.Count
+                        bt.Font = New Font("Arial", 9, FontStyle.Bold)
+                        bt.Tag = fid
+                        bt.Dock = DockStyle.Left
+                        bt.AutoSize = True
+                        bt.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly
+                        bt.TextAlign = ContentAlignment.MiddleLeft
+                        AddHandler bt.Click, AddressOf FactureSelected
+
+                        p.Controls.Add(bt)
+
+                        bt = Nothing
+                        rnd = Nothing
+                    End If
+                End If
+            End Using
+
+
+            Dim b As New Button
+            b.Tag = fid
+            Form1.lbListBon.Text = "[" & CInt(Form1.lbListBon.Tag) + 1 & "] Recept(s)"
+            Form1.lbListBon.Tag = CInt(Form1.lbListBon.Tag) + 1
+
+            'clear the recept liste
+            Form1.RPl.ClearItems()
+            FactureSelected(b, Nothing)
+
+            If Form1.chbcb.Checked Then
+                Form1.txtSearchCode.Text = ""
+                Form1.txtSearchCode.Focus()
+            Else
+                Form1.txtSearch.Text = ""
+                Form1.txtSearch.Focus()
+            End If
+
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Public Sub NewFactureServerDriver(ByVal g As PvModel)
+        Try
+            Dim tableName As String = "Bon"
+            Dim cid As String = 0
+            Dim clientname As String = "Alimentation Stock"
+            Dim clientadesse As String = ""
+            Dim tp As String = 0
+            Dim num As String = 0
+            Dim fid As Integer = 0
+            Dim dte As Date = Date.Now
+
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                Dim params As New Dictionary(Of String, Object)
+                Dim where As New Dictionary(Of String, Object)
+
+                params.Add("clid", cid)
+                params.Add("name", clientname)
+                params.Add("total", 0)
+                params.Add("avance", 0)
+                params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
+                params.Add("admin", True)
+                params.Add("writer", CStr(Form1.adminName))
+                params.Add("tp", tp)
+                params.Add("payed", False)
+                params.Add("poid", 0)
+                params.Add("num", num)
+                params.Add("tva", 0)
+                params.Add("adresse", clientadesse)
+                params.Add("bl", g.fctId)
+                params.Add("remise", 0)
+                params.Add("beInFacture", 0)
+              
+                fid = c.InsertRecord(tableName, params, True)
+
+                tableName = "DetailsBon"
+
+                If fid > 0 Then
+                    For Each r As Article In g.DataSource
+
+                        params.Clear()
+
+                        params.Add("fctid", fid)
+                        params.Add("name", r.name)
+                        params.Add("bprice", CDbl(r.bprice))
+                        params.Add("price", r.sprice)
+                        params.Add("unit", r.unite)
+                        params.Add("qte", r.qte)
+                        params.Add("tva", r.TVA)
+                        params.Add("poid", 0)
+                        params.Add("arid", CInt(r.arid))
+                        params.Add("depot", r.depot)
+                        params.Add("code", r.ref)
+                        params.Add("cid", CStr(r.cid))
+
+                        c.InsertRecord(tableName, params, True)
+                        params.Clear()
+                        where.Clear()
+
+                        If True Then
+                            where.Add("arid", r.arid)
+                            params.Add("bprice", r.bprice)
+                            params.Add("sprice", r.sprice)
+                            params.Add("name", r.name)
+
+                            c.UpdateRecord("Article", params, where)
+                            params.Clear()
+                            where.Clear()
+                        End If
+                         
+
+                        where.Add("arid", r.arid)
+                        where.Add("dpid", r.depot)
+
+                        Dim dt = c.SelectDataTable("Detailstock", {"*"}, where)
+                        where.Clear()
+
+                        If dt.Rows.Count > 0 Then
+                            Dim qte As Double = r.qte
+                            Dim dsid As Integer = dt.Rows(0).Item(0)
+
+                            qte = qte + dt.Rows(0).Item("qte")
+
+                            params.Add("qte", qte)
+                            where.Add("DSID", dsid)
+
+                            c.UpdateRecord("Detailstock", params, where)
+                        Else
+                            Dim qte As Double = r.qte
+                          
+                            params.Add("arid", r.arid)
+                            params.Add("dpid", r.depot)
+                            params.Add("qte", qte)
+                            params.Add("unit", r.unite)
+                            params.Add("cid", r.cid)
+
+                            c.InsertRecord("Detailstock", params)
+                        End If
+                        params.Clear()
+                        where.Clear()
+                    Next
+                End If
+            End Using
+
+            If Form1.chbcb.Checked Then
+                Form1.txtSearchCode.Text = ""
+                Form1.txtSearchCode.Focus()
+            Else
+                Form1.txtSearch.Text = ""
+                Form1.txtSearch.Focus()
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Public Sub NewArticleServerDriver(ByVal g As Article)
+        Try
+            Dim tableName As String = "Article"
+          
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                Dim params As New Dictionary(Of String, Object)
+                Dim where As New Dictionary(Of String, Object)
+
+                params.Add("cid", g.cid)
+                params.Add("name", g.name)
+                params.Add("img", g.img)
+                params.Add("bprice", g.bprice)
+                params.Add("sprice", g.sprice)
+                params.Add("unite", g.unite)
+                params.Add("qte", g.qte)
+                params.Add("codebar", g.ref)
+                params.Add("tva", g.TVA)
+                params.Add("sp3", g.sprice)
+                params.Add("sp4", g.sprice)
+                params.Add("sp5", g.sprice)
+                params.Add("poid", 1)
+                params.Add("depot", g.depot)
+                params.Add("mixte", True)
+                params.Add("elements", "")
+                params.Add("isMixte", True)
+
+                If g.arid = 0 Then
+                    c.InsertRecord(tableName, params)
+                Else
+                    where.Add("arid", g.arid)
+                    c.UpdateRecord(tableName, params, where)
+                End If
+
+
+            End Using
+
+            If Form1.chbcb.Checked Then
+                Form1.txtSearchCode.Text = ""
+                Form1.txtSearchCode.Focus()
+            Else
+                Form1.txtSearch.Text = ""
+                Form1.txtSearch.Focus()
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Public Sub NewCategoryServerDriver(ByVal g As Article)
+        Try
+            Dim tableName As String = "Category"
+        
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                Dim params As New Dictionary(Of String, Object)
+                Dim where As New Dictionary(Of String, Object)
+
+                params.Add("name", g.name)
+                params.Add("img", g.img)
+                params.Add("pr", g.bprice)
+
+
+                If g.arid = 0 Then
+                    c.InsertRecord(tableName, params)
+                Else
+                    where.Add("cid", g.arid)
+                    c.UpdateRecord(tableName, params, where)
+                End If
+
+            End Using
+
+            If Form1.chbcb.Checked Then
+                Form1.txtSearchCode.Text = ""
+                Form1.txtSearchCode.Focus()
+            Else
+                Form1.txtSearch.Text = ""
+                Form1.txtSearch.Focus()
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
     Public Function getClient(ByVal cid As Integer) As DataTable
         Dim dt As DataTable
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
@@ -1695,7 +2177,7 @@ Public Class SubClass
             params.Add("total", 0)
             params.Add("admin", False)
             params.Add("payed", False)
-
+            params.Add("writer", Form1.adminName)
 
             Dim where As New Dictionary(Of String, Object)
             If Form1.RPl.isSell = True Then
@@ -3309,9 +3791,36 @@ Public Class SubClass
         End Try
 
     End Sub
+    Private Sub PvClient_DeleteBon(ByVal ds As CBlock)
+
+        Dim str As String = " عند قيامكم على الضغط على 'موافق' سيتم حذف ايصال "
+        str = str + vbNewLine
+        str = str & ds.lb.Text & " ( " & ds.ID & ")"
+        str = str + vbNewLine
+        str = str + " و جميع المواد الدفعات المسجلة في القائمة ..    "
+        str = str + vbNewLine
+        str = str + "  .. إضغط  'لا'  لالغاء الحذف   "
+
+        If MsgBox(str, MsgBoxStyle.YesNo Or MessageBoxIcon.Exclamation, "الغاء الفاتورة") = MsgBoxResult.No Then
+            Exit Sub
+        End If
+
+
+        If Form1.RPl.FctId = 0 Then Exit Sub
+
+        DeleteFacture(ds.ID, Form1.RPl.isSell, False, Form1.RPl.DataSource)
 
 
 
+        If Form1.chbcb.Checked Then
+            Form1.txtSearchCode.Text = ""
+            Form1.txtSearchCode.Focus()
+        Else
+            Form1.txtSearch.Text = ""
+            Form1.txtSearch.Focus()
+        End If
+
+    End Sub
 
 #Region "IDisposable Support"
     Private disposedValue As Boolean ' To detect redundant calls
@@ -3344,35 +3853,6 @@ Public Class SubClass
     End Sub
 #End Region
 
-    Private Sub PvClient_DeleteBon(ByVal ds As CBlock)
 
-        Dim str As String = " عند قيامكم على الضغط على 'موافق' سيتم حذف ايصال "
-        str = str + vbNewLine
-        str = str & ds.lb.Text & " ( " & ds.ID & ")"
-        str = str + vbNewLine
-        str = str + " و جميع المواد الدفعات المسجلة في القائمة ..    "
-        str = str + vbNewLine
-        str = str + "  .. إضغط  'لا'  لالغاء الحذف   "
-
-        If MsgBox(str, MsgBoxStyle.YesNo Or MessageBoxIcon.Exclamation, "الغاء الفاتورة") = MsgBoxResult.No Then
-            Exit Sub
-        End If
-
-
-        If Form1.RPl.FctId = 0 Then Exit Sub
-
-        DeleteFacture(ds.ID, Form1.RPl.isSell, False, Form1.RPl.DataSource)
-
-
-
-        If Form1.chbcb.Checked Then
-            Form1.txtSearchCode.Text = ""
-            Form1.txtSearchCode.Focus()
-        Else
-            Form1.txtSearch.Text = ""
-            Form1.txtSearch.Focus()
-        End If
-
-    End Sub
 
 End Class

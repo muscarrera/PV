@@ -334,6 +334,56 @@
     <Compile Include="GUI\Calc.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\Cheque\AddEditBanqueField.Designer.vb">
+      <DependentUpon>AddEditBanqueField.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Cheque\AddEditBanqueField.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Cheque\bForm.Designer.vb">
+      <DependentUpon>bForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Cheque\bForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Cheque\bGlobClass.vb" />
+    <Compile Include="GUI\Cheque\bSetting.Designer.vb">
+      <DependentUpon>bSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Cheque\bSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Cheque\bTopField.vb" />
+    <Compile Include="GUI\Cheque\bTrialVersion.Designer.vb">
+      <DependentUpon>bTrialVersion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Cheque\bTrialVersion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Cheque\ChequePanel.Designer.vb">
+      <DependentUpon>ChequePanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Cheque\ChequePanel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Cheque\ChooseBanque.Designer.vb">
+      <DependentUpon>ChooseBanque.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Cheque\ChooseBanque.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Cheque\SelectBanque.Designer.vb">
+      <DependentUpon>SelectBanque.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Cheque\SelectBanque.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Cheque\SelectBon.Designer.vb">
+      <DependentUpon>SelectBon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Cheque\SelectBon.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\ChooseCat.Designer.vb">
       <DependentUpon>ChooseCat.vb</DependentUpon>
     </Compile>
@@ -661,6 +711,8 @@
     <Compile Include="GUI\UserParmissionCheck.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Models\Article.vb" />
+    <Compile Include="Models\PvModel.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -785,6 +837,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Calc.resx">
       <DependentUpon>Calc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Cheque\AddEditBanqueField.resx">
+      <DependentUpon>AddEditBanqueField.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Cheque\bForm.resx">
+      <DependentUpon>bForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Cheque\bSetting.resx">
+      <DependentUpon>bSetting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Cheque\bTrialVersion.resx">
+      <DependentUpon>bTrialVersion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Cheque\ChequePanel.resx">
+      <DependentUpon>ChequePanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Cheque\ChooseBanque.resx">
+      <DependentUpon>ChooseBanque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Cheque\SelectBanque.resx">
+      <DependentUpon>SelectBanque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Cheque\SelectBon.resx">
+      <DependentUpon>SelectBon.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ChooseCat.resx">
       <DependentUpon>ChooseCat.vb</DependentUpon>
@@ -1085,6 +1161,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MyBarcode.dll" />
+    <None Include="Resources\BGPVAR 33.png" />
+    <None Include="Resources\BGPVAR 3.jpg" />
+    <None Include="Resources\BGzAKHdOWN.jpg" />
+    <None Include="Resources\BGzAKH1.jpg" />
+    <None Include="Resources\BGzAKH.jpg" />
+    <None Include="Resources\LOGO.png" />
+    <None Include="Resources\trial 22.png" />
+    <None Include="Resources\BG BOOK.jpeg" />
+    <None Include="Resources\bgbook.jpg" />
     <None Include="Resources\images.jpeg" />
     <None Include="Resources\stock-icon-png-14.png" />
     <None Include="Resources\iconfinder_pdf_3745 %281%29.png" />
@@ -1200,7 +1285,7 @@
     <None Include="Resources\top fact1.jpg" />
     <None Include="27274.png" />
     <Content Include="ALMohassinDB.mdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\04.jpg" />
     <None Include="Resources\011.jpg" />

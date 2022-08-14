@@ -31,6 +31,7 @@ Partial Class gForm
         Me.Pf = New System.Windows.Forms.FlowLayoutPanel()
         Me.PT = New System.Windows.Forms.FlowLayoutPanel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.cbEntete = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtY = New Al_Mohasib.TxtBox()
@@ -43,7 +44,6 @@ Partial Class gForm
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.pb = New System.Windows.Forms.PictureBox()
-        Me.cbEntete = New System.Windows.Forms.CheckBox()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -69,7 +69,7 @@ Partial Class gForm
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.Panel2)
         Me.SplitContainer1.Size = New System.Drawing.Size(991, 534)
-        Me.SplitContainer1.SplitterDistance = 572
+        Me.SplitContainer1.SplitterDistance = 436
         Me.SplitContainer1.TabIndex = 2
         '
         'Panel1
@@ -80,7 +80,7 @@ Partial Class gForm
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(572, 534)
+        Me.Panel1.Size = New System.Drawing.Size(436, 534)
         Me.Panel1.TabIndex = 0
         '
         'Panel5
@@ -92,7 +92,7 @@ Partial Class gForm
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel5.Location = New System.Drawing.Point(0, 126)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(572, 275)
+        Me.Panel5.Size = New System.Drawing.Size(436, 275)
         Me.Panel5.TabIndex = 3
         '
         'gt
@@ -100,7 +100,7 @@ Partial Class gForm
         Me.gt.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gt.Location = New System.Drawing.Point(0, 0)
         Me.gt.Name = "gt"
-        Me.gt.Size = New System.Drawing.Size(570, 273)
+        Me.gt.Size = New System.Drawing.Size(434, 273)
         Me.gt.TabIndex = 0
         Me.gt.TabProp = GTabClass1
         '
@@ -112,7 +112,7 @@ Partial Class gForm
         Me.Pfp.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Pfp.Location = New System.Drawing.Point(0, 401)
         Me.Pfp.Name = "Pfp"
-        Me.Pfp.Size = New System.Drawing.Size(572, 133)
+        Me.Pfp.Size = New System.Drawing.Size(436, 133)
         Me.Pfp.TabIndex = 2
         '
         'Pf
@@ -120,7 +120,7 @@ Partial Class gForm
         Me.Pf.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Pf.Location = New System.Drawing.Point(0, 0)
         Me.Pf.Name = "Pf"
-        Me.Pf.Size = New System.Drawing.Size(570, 131)
+        Me.Pf.Size = New System.Drawing.Size(434, 131)
         Me.Pf.TabIndex = 0
         '
         'PT
@@ -130,7 +130,7 @@ Partial Class gForm
         Me.PT.Dock = System.Windows.Forms.DockStyle.Top
         Me.PT.Location = New System.Drawing.Point(0, 0)
         Me.PT.Name = "PT"
-        Me.PT.Size = New System.Drawing.Size(572, 126)
+        Me.PT.Size = New System.Drawing.Size(436, 126)
         Me.PT.TabIndex = 4
         '
         'Panel2
@@ -153,8 +153,18 @@ Partial Class gForm
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(415, 534)
+        Me.Panel2.Size = New System.Drawing.Size(551, 534)
         Me.Panel2.TabIndex = 0
+        '
+        'cbEntete
+        '
+        Me.cbEntete.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbEntete.Location = New System.Drawing.Point(578, 11)
+        Me.cbEntete.Name = "cbEntete"
+        Me.cbEntete.Size = New System.Drawing.Size(74, 44)
+        Me.cbEntete.TabIndex = 4
+        Me.cbEntete.Text = "Vider Entete"
+        Me.cbEntete.UseVisualStyleBackColor = True
         '
         'Label2
         '
@@ -309,21 +319,11 @@ Partial Class gForm
         '
         Me.pb.BackColor = System.Drawing.Color.White
         Me.pb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.pb.Location = New System.Drawing.Point(18, 60)
+        Me.pb.Location = New System.Drawing.Point(18, 59)
         Me.pb.Name = "pb"
         Me.pb.Size = New System.Drawing.Size(729, 478)
         Me.pb.TabIndex = 0
         Me.pb.TabStop = False
-        '
-        'cbEntete
-        '
-        Me.cbEntete.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbEntete.Location = New System.Drawing.Point(578, 11)
-        Me.cbEntete.Name = "cbEntete"
-        Me.cbEntete.Size = New System.Drawing.Size(74, 44)
-        Me.cbEntete.TabIndex = 4
-        Me.cbEntete.Text = "Vider Entete"
-        Me.cbEntete.UseVisualStyleBackColor = True
         '
         'gForm
         '

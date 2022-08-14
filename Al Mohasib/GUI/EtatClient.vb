@@ -79,7 +79,7 @@
                     If dte > DteValue(dt, "date", i) Then dte = DteValue(dt, "date", i)
 
                     DataGridView1.Rows.Add(DteValue(dt, "date", i), dt.Rows(i).Item(0), "Bon",
-                                           CDec(DblValue(dt, "total", i)).ToString(Form1.frmDbl))
+                                           CDec(DblValue(dt, "total", i)).ToString(Form1.frmDbl), "Bon")
 
                     RestFact += DblValue(dt, "total", i) - DblValue(dt, "avance", i)
 
@@ -114,7 +114,7 @@
                             Dim dtff = a.SelectDataTable(factureTable, {"*"}, params)
                             If dtff.Rows.Count > 0 Then
                                 DataGridView1.Rows.Add(DteValue(dtff, "date", 0), IntValue(dtff, fctid_str, 0), "Bon *",
-                                        CDec(DblValue(dtff, "total", 0)).ToString(Form1.frmDbl))
+                                        CDec(DblValue(dtff, "total", 0)).ToString(Form1.frmDbl), "Bon *")
 
                                 ttBon += DblValue(dtff, "total", 0)
                             End If
@@ -123,8 +123,8 @@
 
                         If StrValue(dt, "name", i).StartsWith("@") Then Continue For
 
-                        DataGridView1.Rows.Add(DteValue(dt, "date", i), IntValue(dt, fctid_str, i), "Avance",
-                                              CDec(DblValue(dt, "montant", i) * -1).ToString(Form1.frmDbl))
+                        DataGridView1.Rows.Add(DteValue(dt, "date", i), IntValue(dt, fctid_str, i), StrValue(dt, "way", i),
+                                              CDec(DblValue(dt, "montant", i) * -1).ToString(Form1.frmDbl), "Avance")
 
                         ttAvc += DblValue(dt, "montant", i)
                     Next
@@ -138,7 +138,7 @@
             Dim enc As Double = ttBon - ttAvc
 
             DataGridView2.Rows.Add(Now.Date.ToString("dd/MM/yyyy"), "", "REST", RestFact.ToString(Form1.frmDbl))
-            If enc > 0 Then DataGridView2.Rows.Add(dte.AddDays(-1).ToString("dd/MM/yyyy"), "", "Ancien Crédit", enc.ToString(Form1.frmDbl))
+            If enc > 0 Then DataGridView2.Rows.Add(dte.AddDays(-1).ToString("dd/MM/yyyy"), "", "Ancien Crédit", enc.ToString(Form1.frmDbl), "Ancien Crédit")
 
             params.Clear()
          
@@ -153,15 +153,26 @@
 
             'DataGridView1.Columns(0).SortMode = DataGridViewColumnSortMode.Automatic
             DataGridView1.Sort(DataGridView1.Columns(0), System.ComponentModel.ListSortDirection.Ascending)
+            Try
+                For I As Integer = 0 To DataGridView1.Rows.Count - 1
+                    If DataGridView1.Rows(I).Cells(4).Value.ToString = "Avance" Then
+                        DataGridView1.Rows(I).DefaultCellStyle.BackColor = Color.Honeydew
+                    ElseIf DataGridView1.Rows(I).Cells(4).Value.ToString = "Ancien Crédit" Then
+                        DataGridView1.Rows(I).DefaultCellStyle.BackColor = Color.Honeydew
+                        DataGridView1.Rows(I).DefaultCellStyle.ForeColor = Color.Yellow
+                    End If
 
-            For I As Integer = 0 To DataGridView1.Rows.Count - 1
-                If DataGridView1.Rows(I).Cells(2).Value.ToString = "Avance" Then
-                    DataGridView1.Rows(I).DefaultCellStyle.BackColor = Color.Honeydew
-                ElseIf DataGridView1.Rows(I).Cells(2).Value.ToString = "Ancien Crédit" Then
-                    DataGridView1.Rows(I).DefaultCellStyle.BackColor = Color.Honeydew
-                    DataGridView1.Rows(I).DefaultCellStyle.ForeColor = Color.Yellow
-                End If
-            Next
+                    If DataGridView1.Rows(I).Cells(2).Value.ToString = "BON DE RETOUR" Then
+                        DataGridView1.Rows(I).DefaultCellStyle.BackColor = Color.LavenderBlush
+                        DataGridView1.Rows(I).DefaultCellStyle.ForeColor = Color.Red
+
+                    End If
+
+                Next
+            Catch ex As Exception
+
+            End Try
+
 
 
 

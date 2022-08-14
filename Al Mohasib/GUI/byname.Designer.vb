@@ -106,7 +106,7 @@ Partial Class byname
         Me.Panel44.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel44.Location = New System.Drawing.Point(0, 0)
         Me.Panel44.Name = "Panel44"
-        Me.Panel44.Size = New System.Drawing.Size(764, 547)
+        Me.Panel44.Size = New System.Drawing.Size(757, 547)
         Me.Panel44.TabIndex = 4
         '
         'Panel8
@@ -116,10 +116,10 @@ Partial Class byname
         Me.Panel8.Controls.Add(Me.txtPrice)
         Me.Panel8.Controls.Add(Me.Panel11)
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel8.Location = New System.Drawing.Point(499, 63)
+        Me.Panel8.Location = New System.Drawing.Point(493, 63)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(263, 407)
-        Me.Panel8.TabIndex = 4
+        Me.Panel8.Size = New System.Drawing.Size(262, 407)
+        Me.Panel8.TabIndex = 2
         '
         'Panel12
         '
@@ -369,7 +369,7 @@ Partial Class byname
         Me.txtPrice.ShowSaveIcon = False
         Me.txtPrice.Size = New System.Drawing.Size(228, 55)
         Me.txtPrice.StartUp = 2
-        Me.txtPrice.TabIndex = 6
+        Me.txtPrice.TabIndex = 2
         Me.txtPrice.TextSize = 14
         Me.txtPrice.TxtBackColor = True
         Me.txtPrice.TxtColor = System.Drawing.Color.White
@@ -384,7 +384,7 @@ Partial Class byname
         Me.Panel11.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel11.Location = New System.Drawing.Point(0, 0)
         Me.Panel11.Name = "Panel11"
-        Me.Panel11.Size = New System.Drawing.Size(263, 57)
+        Me.Panel11.Size = New System.Drawing.Size(262, 57)
         Me.Panel11.TabIndex = 5
         '
         'Label8
@@ -417,8 +417,8 @@ Partial Class byname
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel2.Location = New System.Drawing.Point(0, 63)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(499, 407)
-        Me.Panel2.TabIndex = 4
+        Me.Panel2.Size = New System.Drawing.Size(493, 407)
+        Me.Panel2.TabIndex = 3
         '
         'Panel1
         '
@@ -438,7 +438,7 @@ Partial Class byname
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(457, 304)
-        Me.Panel3.TabIndex = 1
+        Me.Panel3.TabIndex = 3
         '
         'Panel7
         '
@@ -480,7 +480,7 @@ Partial Class byname
         Me.Button17.Margin = New System.Windows.Forms.Padding(0)
         Me.Button17.Name = "Button17"
         Me.Button17.Size = New System.Drawing.Size(307, 79)
-        Me.Button17.TabIndex = 1
+        Me.Button17.TabIndex = 3
         Me.Button17.Text = "."
         Me.Button17.UseVisualStyleBackColor = True
         '
@@ -493,7 +493,7 @@ Partial Class byname
         Me.Panel6.Location = New System.Drawing.Point(0, 150)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(457, 75)
-        Me.Panel6.TabIndex = 2
+        Me.Panel6.TabIndex = 3
         '
         'Button12
         '
@@ -508,7 +508,7 @@ Partial Class byname
         Me.Button12.Margin = New System.Windows.Forms.Padding(0)
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(157, 75)
-        Me.Button12.TabIndex = 2
+        Me.Button12.TabIndex = 3
         Me.Button12.Text = "2"
         Me.Button12.UseVisualStyleBackColor = True
         '
@@ -542,7 +542,7 @@ Partial Class byname
         Me.Button13.Margin = New System.Windows.Forms.Padding(0)
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(150, 75)
-        Me.Button13.TabIndex = 1
+        Me.Button13.TabIndex = 3
         Me.Button13.Text = "3"
         Me.Button13.UseVisualStyleBackColor = True
         '
@@ -570,7 +570,7 @@ Partial Class byname
         Me.Button8.Margin = New System.Windows.Forms.Padding(0)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(157, 75)
-        Me.Button8.TabIndex = 2
+        Me.Button8.TabIndex = 3
         Me.Button8.Text = "5"
         Me.Button8.UseVisualStyleBackColor = True
         '
@@ -604,7 +604,7 @@ Partial Class byname
         Me.Button9.Margin = New System.Windows.Forms.Padding(0)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(150, 75)
-        Me.Button9.TabIndex = 1
+        Me.Button9.TabIndex = 3
         Me.Button9.Text = "6"
         Me.Button9.UseVisualStyleBackColor = True
         '
@@ -632,7 +632,7 @@ Partial Class byname
         Me.Button3.Margin = New System.Windows.Forms.Padding(0)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(157, 75)
-        Me.Button3.TabIndex = 2
+        Me.Button3.TabIndex = 3
         Me.Button3.Text = "8"
         Me.Button3.UseVisualStyleBackColor = True
         '
@@ -649,7 +649,7 @@ Partial Class byname
         Me.Button2.Margin = New System.Windows.Forms.Padding(0)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(150, 75)
-        Me.Button2.TabIndex = 1
+        Me.Button2.TabIndex = 13
         Me.Button2.Text = "9"
         Me.Button2.UseVisualStyleBackColor = True
         '
@@ -700,7 +700,7 @@ Partial Class byname
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel10.Location = New System.Drawing.Point(0, 0)
         Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(499, 57)
+        Me.Panel10.Size = New System.Drawing.Size(493, 57)
         Me.Panel10.TabIndex = 4
         '
         'Label9
@@ -743,7 +743,7 @@ Partial Class byname
         Me.plFooter.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.plFooter.Location = New System.Drawing.Point(0, 470)
         Me.plFooter.Name = "plFooter"
-        Me.plFooter.Size = New System.Drawing.Size(762, 75)
+        Me.plFooter.Size = New System.Drawing.Size(755, 75)
         Me.plFooter.TabIndex = 4
         '
         'Button15
@@ -758,7 +758,7 @@ Partial Class byname
         Me.Button15.Location = New System.Drawing.Point(0, 0)
         Me.Button15.Margin = New System.Windows.Forms.Padding(0)
         Me.Button15.Name = "Button15"
-        Me.Button15.Size = New System.Drawing.Size(762, 75)
+        Me.Button15.Size = New System.Drawing.Size(755, 75)
         Me.Button15.TabIndex = 3
         Me.Button15.Text = "V A L I D E R"
         Me.Button15.UseVisualStyleBackColor = True
@@ -770,7 +770,7 @@ Partial Class byname
         Me.Panel19.Location = New System.Drawing.Point(0, 0)
         Me.Panel19.Name = "Panel19"
         Me.Panel19.Padding = New System.Windows.Forms.Padding(11)
-        Me.Panel19.Size = New System.Drawing.Size(762, 63)
+        Me.Panel19.Size = New System.Drawing.Size(755, 63)
         Me.Panel19.TabIndex = 5
         '
         'lbName
@@ -779,7 +779,7 @@ Partial Class byname
         Me.lbName.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbName.Location = New System.Drawing.Point(11, 11)
         Me.lbName.Name = "lbName"
-        Me.lbName.Size = New System.Drawing.Size(740, 41)
+        Me.lbName.Size = New System.Drawing.Size(733, 41)
         Me.lbName.TabIndex = 0
         Me.lbName.Text = "desig"
         Me.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -788,7 +788,7 @@ Partial Class byname
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(764, 547)
+        Me.ClientSize = New System.Drawing.Size(757, 547)
         Me.Controls.Add(Me.Panel44)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.MaximizeBox = False

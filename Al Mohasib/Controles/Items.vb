@@ -345,6 +345,14 @@
         IsArabic = Form1.cbArticleItemDirection.Checked
         If Form1.cbItemCheckBox.Checked Then plCheck.Visible = True
 
+        LbName.Font = Form1.itm_fn_gr
+        LbTotal.Font = Form1.itm_fn_gr
+
+        LbQte.Font = Form1.itm_fn_p_g
+        LbPrice.Font = Form1.itm_fn_p
+        LbStk.Font = Form1.itm_fn_p
+        LbTva.Font = Form1.itm_fn_p_i
+
     End Sub
     Private Sub PlBody_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Pl.Click, LbQte.Click, LbName.Click, LbTotal.Click, LbTva.Click, Panel1.Click, LbStk.Click, LbPrice.Click, Label3.Click, Label2.Click
         If IsSelected = True Then

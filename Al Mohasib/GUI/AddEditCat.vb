@@ -73,9 +73,26 @@ Public Class AddEditCat
             Exit Sub
         End If
 
+        Dim cid As Integer = dgvctg.SelectedRows(0).Cells(0).Value
+
         Try
+            For i As Integer = 0 To dgvctg.Rows.Count - 1
+                If cid = dgvctg.SelectedRows(0).Cells(3).Value Then
+                    MsgBox("لا يمكن حذف هذا التصنيف ... لوجوذه في ارتباطات اخرى", MsgBoxStyle.OkOnly)
+                    Exit Sub
+                End If
+            Next
+
+            Dim tac As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
+            Dim dt = tac.GetDataBycid(cid)
+
+            If dt.Rows.Count > 0 Then
+                MsgBox("لا يمكن حذف هذا التصنيف ... لوجوذه في ارتباطات اخرى", MsgBoxStyle.OkOnly)
+                Exit Sub
+            End If
+             
             Dim ta As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
-            ta.DeleteQuery(dgvctg.SelectedRows(0).Cells(0).Value)
+            ta.DeleteQuery(cid)
             ta.Fill(ALMohassinDBDataSet.Category)
             ImgPrd = Nothing
         Catch ex As Exception

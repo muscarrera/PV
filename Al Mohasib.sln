@@ -11,6 +11,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Pricing Getter", "Pricing G
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Al Mohassib POS sv", "Al Mohassib POS sv\Al Mohassib POS sv.vdproj", "{3DC23B15-1754-443B-8689-D1EA59FE7C98}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ImpimCheques", "ImpimCheques\ImpimCheques.vdproj", "{CBD93E9E-78AD-4832-8BDB-8B95CBFD24B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -30,6 +32,8 @@ Global
 		{BE0ED4AA-E1BC-46EC-9F0B-7855A260B41C}.Release|x86.ActiveCfg = Release
 		{3DC23B15-1754-443B-8689-D1EA59FE7C98}.Debug|x86.ActiveCfg = Debug
 		{3DC23B15-1754-443B-8689-D1EA59FE7C98}.Release|x86.ActiveCfg = Release
+		{CBD93E9E-78AD-4832-8BDB-8B95CBFD24B4}.Debug|x86.ActiveCfg = Debug
+		{CBD93E9E-78AD-4832-8BDB-8B95CBFD24B4}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

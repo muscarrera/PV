@@ -476,8 +476,9 @@ Public Class LabelPrinter
                     _y += gl.H_El
                 Next
 
-                e.HasMorePages = True
-                m += 1
+                'e.HasMorePages = True
+                'm += 1
+
                 Return
             End While
 
@@ -1255,4 +1256,8 @@ Public Class LabelPrinter
 
         Return True
     End Function
+
+    Private Sub plTrial_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles plTrial.Paint
+
+    End Sub
 End Class

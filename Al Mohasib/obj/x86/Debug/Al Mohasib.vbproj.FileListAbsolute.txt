@@ -566,3 +566,11 @@ C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al Mohasib.pdb
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.EditDate.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChooseCat.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditBanqueField.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.bForm.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChequePanel.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChooseBanque.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.SelectBon.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.SelectBanque.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.bTrialVersion.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.bSetting.resources

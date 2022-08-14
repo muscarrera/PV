@@ -820,7 +820,7 @@
         Dim rest As Decimal = totalttc - avance
 
         Try
-            e.Graphics.DrawImage(Image.FromFile(Form1.TextBox4.Text), 10, 10, 750, 120)
+            e.Graphics.DrawImage(Image.FromFile(Form1.txtLogo.Text), 10, 10, 750, 120)
         Catch ex As Exception
         End Try
 
@@ -945,7 +945,7 @@
             e.Graphics.DrawString(ttc & " (Dhs)", fnt, Brushes.Black, New RectangleF(615 * a, CInt(m_Pied) + 10, 120, 22), sf)
 
             e.Graphics.DrawString(dt.Rows.Count & "Vidals", fnt, Brushes.Black, New RectangleF(60 * a, CInt(m_Pied) + 10, 260 * a, 22), sf)
-          
+
             h = 28
 
             If remise > 0 Then
@@ -1044,7 +1044,7 @@
         Dim rest As Decimal = totalttc - avance
 
         Try
-            e.Graphics.DrawImage(Image.FromFile(Form1.TextBox4.Text), 10, 10, 750, 120)
+            e.Graphics.DrawImage(Image.FromFile(Form1.txtLogo.Text), 10, 10, 750, 120)
         Catch ex As Exception
         End Try
 
@@ -1156,7 +1156,7 @@
             e.Graphics.DrawString(total, fnt, Brushes.Black, New RectangleF(620 * a, l, 136 * a, 25), sf1)
 
             ''''''carre
-           ' e.Graphics.FillRectangle(Brushes.WhiteSmoke, CInt(50 * a), CInt(l * a), 5, 5)
+            ' e.Graphics.FillRectangle(Brushes.WhiteSmoke, CInt(50 * a), CInt(l * a), 5, 5)
 
 
             l = l + size.Height + 5
@@ -1288,7 +1288,7 @@
         e.Graphics.DrawString(Form1.txttel.Text, fnt, Brushes.Black, New RectangleF(10, 100, 300, 30), sf2)
 
         Try
-            e.Graphics.DrawImage(Image.FromFile(Form1.TextBox4.Text), 10, 10, 300, 120)
+            e.Graphics.DrawImage(Image.FromFile(Form1.txtLogo.Text), 10, 10, 300, 120)
         Catch ex As Exception
 
         End Try
@@ -1469,7 +1469,7 @@
         e.Graphics.DrawString(Form1.txttel.Text, fnt, Brushes.Black, New RectangleF(10, 100, 300, 30), sf2)
 
         Try
-            e.Graphics.DrawImage(Image.FromFile(Form1.TextBox4.Text), 10, 10, 300, 120)
+            e.Graphics.DrawImage(Image.FromFile(Form1.txtLogo.Text), 10, 10, 300, 120)
         Catch ex As Exception
 
         End Try
@@ -1605,7 +1605,7 @@
         e.Graphics.DrawString(dp, fntTitle, Brushes.Black, New RectangleF(10, 80, 300, 30), sf2)
 
         Try
-            e.Graphics.DrawImage(Image.FromFile(Form1.TextBox4.Text), 10, 10, 300, 120)
+            e.Graphics.DrawImage(Image.FromFile(Form1.txtLogo.Text), 10, 10, 300, 120)
         Catch ex As Exception
 
         End Try
@@ -2237,7 +2237,7 @@
         e.Graphics.DrawString("Valeur de stock ", fntTitle, Brushes.Black, 65, 165)
 
 
-         
+
         If m > 0 Then e.Graphics.DrawString("[ ..... ]", fnt, Brushes.Black, 60, 230)
 
         'Draw the table
@@ -2567,7 +2567,7 @@
         e.Graphics.DrawString(Form1.txttel.Text, fnt, Brushes.Black, New RectangleF(10, 80, 300, 30), sf)
 
         Try
-            e.Graphics.DrawImage(Image.FromFile(Form1.TextBox4.Text), 10, 10, 300, 120)
+            e.Graphics.DrawImage(Image.FromFile(Form1.txtLogo.Text), 10, 10, 300, 120)
         Catch ex As Exception
 
         End Try
@@ -2663,7 +2663,7 @@
         e.Graphics.DrawString(Form1.txttel.Text, fnt, Brushes.Black, New RectangleF(10, 80, 300, 30), sf)
 
         Try
-            e.Graphics.DrawImage(Image.FromFile(Form1.TextBox4.Text), 10, 10, 300, 120)
+            e.Graphics.DrawImage(Image.FromFile(Form1.txtLogo.Text), 10, 10, 300, 120)
         Catch ex As Exception
 
         End Try
@@ -2745,7 +2745,7 @@
             Dim w = e.MarginBounds.Width
             Dim a As Double = Form1.txtScale.Text
             Try
-                e.Graphics.DrawImage(Image.FromFile(Form1.TextBox4.Text), 10, 10, 300, 120)
+                e.Graphics.DrawImage(Image.FromFile(Form1.txtLogo.Text), 10, 10, 300, 120)
             Catch ex As Exception
 
             End Try
@@ -2821,7 +2821,7 @@
             l += 20
 
             Try
-                If entete Then e.Graphics.DrawImage(Image.FromFile(Form1.TextBox4.Text), CInt(10 * a), CInt(h - 20), CInt(750 * a), 120)
+                If entete Then e.Graphics.DrawImage(Image.FromFile(Form1.txtLogo.Text), CInt(10 * a), CInt(h - 20), CInt(750 * a), 120)
             Catch ex As Exception
             End Try
 

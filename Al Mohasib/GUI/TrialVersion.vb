@@ -2,6 +2,7 @@
 
     Dim a As Integer = 0
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+
         Dim arr As String() = TextBox1.Text.Split("-")
         arr(0) = arr(0).Remove(2) + 321
         arr(1) = arr(1).Remove(2) + 654

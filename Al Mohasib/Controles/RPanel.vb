@@ -1,4 +1,6 @@
 ﻿Public Class RPanel
+
+
     'Events
     Public Event UpdateItem(ByVal sender As Object, ByVal e As EventArgs)
     Public Event UpdateQte(ByVal sender As Object, ByVal e As EventArgs)
@@ -30,6 +32,8 @@
     Public isSell As Boolean = True
     Public _bl As String
     Public isUniqTva As Boolean
+    Public ModePayement As String = "Cache"
+
     Private _hasManyRemise As Boolean
 
     Private _Num As Integer
@@ -50,6 +54,8 @@
 
     Event printCaisse()
     Event UpdateDate()
+
+    Event GetModePayement(ByVal FctId As Integer)
 
     'properties
     Public ReadOnly Property Total_Ht As Decimal
@@ -142,6 +148,11 @@
                 Lbavc.Text = String.Format("{0:n}", value)
             End Try
 
+            If value > 0 Then
+                RaiseEvent GetModePayement(FctId)
+            Else
+                ModePayement = "Cache"
+            End If
         End Set
     End Property
     Public Property Remise As String
@@ -538,7 +549,7 @@
                 ap.IsSelected = True
                 Item_Doubleclick(ap, Nothing)
             End If
-
+            Pl.ScrollControlIntoView(ap)
             UpdateValue()
             CP.Value = 0
         Catch ex As Exception
@@ -928,6 +939,26 @@
     Private Sub Item_ShowBlocModif(ByVal sender As Object, ByVal e As EventArgs)
         '_oldValue = SelectedItem.Qte
         Dim itm As Items = sender
+        If Form1.cbBadgeMA.Checked And EditMode Then
+            Try
+                Dim sc As New UserParmissionCheck
+                sc.bName.Text = Form1.RPl.SelectedItem.Name
+                sc.lbNum.Text = Form1.RPl.SelectedItem.Qte
+                If sc.ShowDialog = DialogResult.OK Then
+
+                    If itm.cid = 0 Then Exit Sub
+                    itm.IsSelected = True
+                    Item_Doubleclick(itm, e)
+
+                    RaiseEvent UpdateItem(itm, Nothing)
+                End If
+               
+            Catch ex As Exception
+            End Try
+
+            Exit Sub
+        End If
+
         If itm.cid = 0 Then Exit Sub
         itm.IsSelected = True
         Item_Doubleclick(itm, e)
@@ -989,6 +1020,20 @@
         End If
 
         If EditMode Then
+            If Form1.cbBadgeMB.Checked Then
+                Try
+                    Dim sc As New UserParmissionCheck
+                    sc.bName.Text = Form1.RPl.ClientName
+                    sc.lbNum.Text = Form1.RPl.FctId
+                    If sc.ShowDialog = DialogResult.OK Then
+                        RaiseEvent EditFacture(FctId, ClId, ClientName, Total_TTC, Avance, DataSource)
+                    End If
+                Catch ex As Exception
+                End Try
+
+                Exit Sub
+            End If
+
             RaiseEvent EditFacture(FctId, ClId, ClientName, Total_TTC, Avance, DataSource)
         Else
             RaiseEvent SaveFacture(FctId, Total_TTC, Avance, Tva, DataSource)
@@ -1053,7 +1098,7 @@
             Exit Sub
         End If
 
-        If Form1.cbSecuBage.Checked Then
+        If Form1.cbBadgeSB.Checked And EditMode Then
             Try
                 Dim sc As New UserParmissionCheck
                 sc.bName.Text = "Bon N° " & FctId

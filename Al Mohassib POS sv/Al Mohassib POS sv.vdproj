@@ -58,12 +58,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F0BF6B227470830002CA264387D08391"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_A0F2EC3278FE4DCEBF2858DC1F3E97B8"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -77,6 +71,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_5ECAA42F121BA8D081BFFB37B4CE32BF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F0BF6B227470830002CA264387D08391"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -211,6 +211,11 @@
             "AssemblyAsmDisplayName" = "8:MyBarcode, Version=1.0.6854.32559, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_5ECAA42F121BA8D081BFFB37B4CE32BF"
+                    {
+                    "Name" = "8:MyBarcode.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:MyBarcode.dll"
             "TargetName" = "8:"
@@ -237,6 +242,11 @@
             "AssemblyAsmDisplayName" = "8:Al Mohasib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
+                    "_994F9260E6DE7395E35F72E6E49B60F6"
+                    {
+                    "Name" = "8:Al Mohasib.exe"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Al Mohasib.exe"
             "TargetName" = "8:"
@@ -263,6 +273,11 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_F0BF6B227470830002CA264387D08391"
+                    {
+                    "Name" = "8:Microsoft.VisualBasic.PowerPacks.Vs.dll"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Microsoft.VisualBasic.PowerPacks.Vs.dll"
             "TargetName" = "8:"
@@ -339,7 +354,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Al Mohassib POS sv"
         "ProductCode" = "8:{B58B5CE6-79EF-41DB-8819-9176A3F2197C}"
-        "PackageCode" = "8:{2579BDE6-9992-4E0D-9B9C-7CC9565EF9EC}"
+        "PackageCode" = "8:{E3AD7D49-CBC3-4429-BA1A-8D204FB24D80}"
         "UpgradeCode" = "8:{9773ECF7-167E-4948-BEFD-7F0FFFC27014}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"

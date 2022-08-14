@@ -81,8 +81,12 @@
                         'remise += ((dt.Rows(i).Item("total") / 1.2) * dt.Rows(i).Item("remise")) / (100 - dt.Rows(i).Item("remise"))
 
                         params.Clear()
-                        params.Add("fctid", dt.Rows(i).Item(0))
-                        Dim dt2 = c.SelectDataTable("DetailsFacture", {"*"}, params)
+                        params.Add("fctid =", dt.Rows(i).Item(0))
+                        If Form1.cbStarFacture.Checked Then params.Add("codebar LIKE", "%*%")
+
+
+                        Dim dt2 = c.SelectDataTableSymbols("DetailsFacture", {"*"}, params)
+
                         If dt2.Rows.Count > 0 Then
                             Form1.RPl.AddItems(dt2, True)
                         End If

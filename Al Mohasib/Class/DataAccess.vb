@@ -277,7 +277,7 @@ Public Class DataAccess
     ' get data from database by scalar
     Public Function SelectByScalar(ByVal table As String, ByVal field As String, Optional ByVal params As Dictionary(Of String, Object) = Nothing) As Object
         Dim q As String = "SELECT [" & field & "] from [" & table & "]"
-
+        If field.Contains("+") Then q = "SELECT " & field & " from [" & table & "]"
         Dim p As Integer = 1
         If params IsNot Nothing Then
             q &= " WHERE "

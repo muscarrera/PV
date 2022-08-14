@@ -36,6 +36,18 @@ Public Class AddEditArticle
             lbpoids.Left = TxtPoids.Left
         End If
 
+
+        Try
+            If txtMarge.text = "" Then txtMarge.text = 0
+            If txtMarge.text = 0 Then
+                Try
+                    txtMarge.text = String.Format("{0:n}", CDec((txtsprice.text - txtbprice.text) * 100 / txtbprice.text))
+                Catch ex As Exception
+                End Try
+            End If
+        Catch ex As Exception
+        End Try
+
         cr = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255))
         txtcb.Focus()
     End Sub
@@ -202,10 +214,10 @@ Public Class AddEditArticle
         Dim price2 As Double = txtprice2.text
         Dim price3 As Double = txtprice3.text
 
-        If Not IsNumeric(txtPrice4.text) Then
-            txtPrice4.text = sprice
+        If Not IsNumeric(txtMarge.text) Then
+            txtMarge.text = 0
         End If
-        Dim price4 As Double = txtPrice4.text
+        Dim price4 As Double = txtPrice4.text 'txtMarge.text
 
         If cid = 0 Then cid = cbctg.SelectedValue
 
@@ -213,7 +225,7 @@ Public Class AddEditArticle
         If editMode = False Then
             Try
                 Dim ta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-                ta.InsertQuery(cid, txtprdname.Text, imagePath, bprice, sprice, txtunit.Text, txtcb.text, "0", tva,
+                ta.InsertQuery(cid, txtprdname.text, imagePath, bprice, sprice, txtunit.text, txtcb.text, "0", tva,
                                price2, price3, price4, TxtPoids.text, CInt(CBdp.SelectedValue), CBool(cbIsMixte.Checked), txtMinStock.text)
                 ta.Fill(ALMohassinDBDataSet.Article)
                 If CheckBox1.Checked Then
@@ -315,7 +327,8 @@ Public Class AddEditArticle
     Function RandomString()
         Dim r As New Random
         '   Dim s As String = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz0123456789"
-        Dim s As String = "0123456789abcdefghijkl0123456789mnopqrstuvwxyz0123456789"
+        ' Dim s As String = "0123456789abcdefghijkl0123456789mnopqrstuvwxyz0123456789"
+        Dim s As String = "012345678901234567890123456789"
 
         Dim sb As New StringBuilder
 
@@ -390,7 +403,7 @@ Public Class AddEditArticle
     Private Sub cbctg_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbctg.SelectedIndexChanged
         cid = cbctg.SelectedValue
     End Sub
-    Private Sub txttva_TxtChanged() Handles txttva.TxtChanged, txtMinStock.TxtChanged, TxtPoids.TxtChanged
+    Private Sub txttva_TxtChanged() Handles txttva.TxtChanged, txtMinStock.TxtChanged, TxtPoids.TxtChanged, txtunit.TxtChanged, txtprdname.TxtChanged, txtNbr.TxtChanged
         Try
             If txttva.text < 0 Then txttva.text = ""
         Catch ex As Exception
@@ -415,14 +428,6 @@ Public Class AddEditArticle
             txtprice3.text = String.Format("{0:F}", CDbl(txtprice3.text) * tva)
         Catch ex As Exception
         End Try
-    End Sub
-
-   
-    Private Sub txtsprice_TxtChanged() Handles txtsprice.TxtChanged
-        '     PBprd.BackgroundImage = Drawimg(txtprdname.Text, txtsprice.text)
-    End Sub
-    Private Sub txtprdname_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtprdname.TextChanged
-        '   PBprd.BackgroundImage = Drawimg(txtprdname.Text, txtsprice.text)
     End Sub
 
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
@@ -473,6 +478,7 @@ Public Class AddEditArticle
                 txtprice3.text = DblValue(dt, "sp4", 0).ToString(Form1.frmDbl)
                 txtPrice4.text = DblValue(dt, "sp5", 0).ToString(Form1.frmDbl)
 
+                txtMarge.text = DblValue(dt, "sp5", 0).ToString(Form1.frmDbl)
 
                 Try
                     imagePath = StrValue(dt, "img", 0)
@@ -508,13 +514,16 @@ Public Class AddEditArticle
                 Return False
             End If
             If txtunit.Text.Trim = "" Then
-                MsgBox("عذرا لا يمكن اتمام طلبكم.. المرجوا تعبئة الوحدة", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
-                txtunit.Focus()
+                'MsgBox("عذرا لا يمكن اتمام طلبكم.. المرجوا تعبئة الوحدة", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
+                'txtunit.Focus()
+                txtunit.Text = "U"
                 Return False
             End If
 
             If txtprice2.text.Trim = "" Then txtprice2.text = txtsprice.text
             If txtprice3.text.Trim = "" Then txtprice3.text = txtprice2.text
+            If txtPrice4.text.Trim = "" Then txtPrice4.text = txtprice3.text
+
             If TxtPoids.text = "" Or Not IsNumeric(TxtPoids.text) Then TxtPoids.text = 0
 
             ''check the pricess
@@ -640,20 +649,31 @@ Public Class AddEditArticle
         PrintDocument1.DefaultPageSettings.Landscape = gl.is_Landscape
 
         PrintDocument1.PrinterSettings.PrinterName = gl.Printer_name
-        PrintDocument1.Print()
+        Dim nbr As Integer = 1
+
+        If IsNumeric(txtNbr.text) Then nbr = CInt(txtNbr.text)
+
+        For i As Integer = 0 To nbr - 1
+            m = 0
+            PrintDocument1.Print()
+        Next
+
 
         Me.DialogResult = Windows.Forms.DialogResult.OK
     End Sub
-
     Public Sub LoadXmlEtqs()
         Try
-            gl = ReadFromXmlFile(Of LbGlobalElement)(Form1.ImgPah & "\EtqDsn\Etq-Article.dat")
+
+            Dim st = "\EtqDsn\Etq-Article.dat"
+            If cbM.Text = 2 Then st = "\EtqDsn\Etq-Article2.dat"
+            If cbM.Text = 3 Then st = "\EtqDsn\Etq-Article3.dat"
+
+            gl = ReadFromXmlFile(Of LbGlobalElement)(Form1.ImgPah & st)
 
         Catch ex As Exception
 
         End Try
     End Sub
-
     Private Sub PrintDocument1_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
         Dim _x As Integer = 0
         Dim _y As Integer = gl.Start_Y
@@ -683,11 +703,11 @@ Public Class AddEditArticle
                     Next
                     _y += gl.H_El
                 Next
-                If k < CInt(NBPAGE) Then
-                    k += 1
-                    e.HasMorePages = True
-                    Return
-                End If
+                'If k < CInt(NBPAGE) Then
+                '    k += 1
+                '    e.HasMorePages = True
+                '    Return
+                'End If
             Next
         Else
             While m < table.Rows.Count
@@ -705,13 +725,14 @@ Public Class AddEditArticle
                     _y += gl.H_El
                 Next
 
-                e.HasMorePages = True
-                m += 1
-                Return
+                'e.HasMorePages = True
+                'm += 1
+                'Return
             End While
 
         End If
         K_nmPage = 0
+        m = 0
     End Sub
     Private alphabet39 As String = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. $/+%*"
     Private coded39Char As String() = {"000110100", "100100001", "001100001", "101100000", "000110001", "100110000", "001110000", "000100101", "100100100", "001100100", "100001001", "001001001", "101001000", "000011001", "100011000", "001011000", "000001101", "100001100", "001001100", "000011100", "100000011", "001000011", "101000010", "000010011", "100010010", "001010010", "000000111", "100000110", "001000110", "000010110", "110000001", "011000001", "111000000", "010010001", "110010000", "011010000", "010000101", "110000100", "011000100", "010101000", "010100010", "010001010", "000101010", "010010100"}
@@ -862,5 +883,43 @@ Public Class AddEditArticle
 
     End Sub
 
+    Private Sub txtbprice_TxtChanged() Handles txtbprice.TxtChanged
+        'Try
+        '    If txtMarge.text = "" Then txtMarge.text = 0
+        '    If txtbprice.TXT.Focused = False Then Exit Sub
+
+        '    If txtbprice.text <> "" Then
+        '        txtsprice.text = String.Format("{0:n}", CDec(((txtbprice.text * txtMarge.text) / 100) + txtbprice.text))
+        '    End If
+
+        'Catch ex As Exception
+
+        'End Try
+    End Sub
+    Private Sub txtMarge_TxtChanged() Handles txtMarge.TxtChanged
+        'Try
+        '    If txtMarge.text = "" Then Exit Sub
+        '    If txtMarge.TXT.Focused = False Then Exit Sub
+
+        '    If txtbprice.text <> "" Then
+        '        txtsprice.text = String.Format("{0:n}", CDec(((txtbprice.text * txtMarge.text) / 100) + txtbprice.text))
+        '    End If
+        'Catch ex As Exception
+
+        'End Try
+    End Sub
+
+    Private Sub txSpRICE_TxtChanged() Handles txtsprice.TxtChanged
+        'Try
+        '    If txtsprice.text = "" Then Exit Sub
+        '    If txtsprice.TXT.Focused = False Then Exit Sub
+
+        '    If txtbprice.text <> "" Then
+        '        txtMarge.text = String.Format("{0:n}", CDec((txtsprice.text - txtbprice.text) * 100 / txtbprice.text))
+        '    End If
+        'Catch ex As Exception
+
+        'End Try
+    End Sub
 End Class
 

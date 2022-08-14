@@ -742,7 +742,7 @@ Partial Class PayFacture
         Me.cbway.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbway.Font = New System.Drawing.Font("Arial Narrow", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbway.FormattingEnabled = True
-        Me.cbway.Items.AddRange(New Object() {"Cache", "Cheque", "Effet (LC)", "Virement Bancaire", "TPE"})
+        Me.cbway.Items.AddRange(New Object() {"Cache", "Cheque", "Effet (LC)", "Virement Bancaire", "TPE", "BON DE RETOUR"})
         Me.cbway.Location = New System.Drawing.Point(12, 39)
         Me.cbway.Name = "cbway"
         Me.cbway.Size = New System.Drawing.Size(231, 28)

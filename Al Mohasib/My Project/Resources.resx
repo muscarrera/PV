@@ -130,8 +130,8 @@
   <data name="200" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="501" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="images" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="500px-Crystal_Clear_action_exit.svg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\500px-Crystal_Clear_action_exit.svg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,6 +148,9 @@
   <data name="WhatsApp Image 2021-06-02 at 13.13.57" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WhatsApp Image 2021-06-02 at 13.13.57.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BGzAKH1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BGzAKH1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="100" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\100.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -160,8 +163,8 @@
   <data name="iconfinder_pdf_3745 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconfinder_pdf_3745 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AddFile_221" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AddFile_221.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bthome2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bthome2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="COR_221" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\COR_221.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -181,14 +184,14 @@
   <data name="TAGIN-01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TAGIN-01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="gui-13" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\gui-13.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BGzAKH" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BGzAKH.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bbuy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bbuy.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Save_32x321" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Save_32x321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="trial 22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trial 22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Refresh2_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Refresh2_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -259,6 +262,9 @@
   <data name="TAG-02" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TAG-02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BG BOOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BG BOOK.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="editmon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\editmon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -295,6 +301,9 @@
   <data name="addmon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\addmon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bgbook" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bgbook.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="WhatsApp Image 2021-06-02 at 17.59.22 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WhatsApp Image 2021-06-02 at 17.59.22 (1).jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -304,6 +313,9 @@
   <data name="btsearch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btsearch.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BGPVAR 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BGPVAR 3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -312,9 +324,6 @@
   </data>
   <data name="ttal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ttal.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\50.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Remisepng" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Remisepng.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -361,14 +370,14 @@
   <data name="btmenu1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btmenu1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bthome2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bthome2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\50.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sidepanel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sidepanel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bbuy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bbuy.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BRBON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BRBON.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BGPVAR 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BGPVAR 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -391,9 +400,6 @@
   <data name="btsearch2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btsearch2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btstatistic" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\btstatistic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="filled-circle1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\filled-circle1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -403,8 +409,8 @@
   <data name="MENU 20" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MENU 20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="carre" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\carre.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="RT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RT.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TAGIN-04" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TAGIN-04.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -445,6 +451,9 @@
   <data name="iconfinder_CasH 44" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconfinder_CasH 44.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="gui-13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gui-13.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="LOGO-01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LOGO-01.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -466,11 +475,14 @@
   <data name="Ldeletfact" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ldeletfact.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Print_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Print_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="searchmini" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\searchmini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Cash_register_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cash_register_22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BGzAKHdOWN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BGzAKHdOWN.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TAGIN-02" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TAGIN-02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -505,6 +517,9 @@
   <data name="chose" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chose.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Save_32x321" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Save_32x321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="COR_22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\COR_22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -526,8 +541,8 @@
   <data name="sell" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sell.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="r03" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\r03.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="501" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="out" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\out.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -535,8 +550,14 @@
   <data name="BGPVAR 22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BGPVAR 22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Print_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Print_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="btclientcomptoir" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\btclientcomptoir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="carre" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\carre.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="COR 32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\COR 32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -550,8 +571,8 @@
   <data name="iconfinder_kde-folder-saved-search_25195 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconfinder_kde-folder-saved-search_25195 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="searchmini" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\searchmini.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btstatistic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\btstatistic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="filled-circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\filled-circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -571,11 +592,17 @@
   <data name="téléchargement" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\téléchargement.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LOGO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LOGO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="FACTURE 20" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FACTURE 20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="r" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\r.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="r03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\r03.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ic_history_48px-1281" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ic_history_48px-1281.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -625,8 +652,8 @@
   <data name="004855-printer-save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\004855-printer-save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BRBON" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BRBON.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AddFile_221" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AddFile_221.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="key" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\key.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -634,7 +661,7 @@
   <data name="OK 22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OK 22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="images" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\images.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BGPVAR 33" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BGPVAR 33.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

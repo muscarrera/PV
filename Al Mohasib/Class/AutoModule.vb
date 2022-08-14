@@ -128,6 +128,11 @@ Module AutoModule
         'get the rows
         For Each row As DataGridViewRow In dg.Rows
             the_html_file &= "<tr>"
+
+            If row.Cells(0).Value = -1 Then
+                the_html_file &= " <td colspan='100%'></td> </tr> <tr> "
+            End If
+
             'get the cells
             For Each cell As DataGridViewCell In row.Cells
                 If dg.Columns(cell.ColumnIndex).Visible = False Then Continue For

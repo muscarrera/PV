@@ -134,6 +134,19 @@
     End Sub
     Private Sub BtQte_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtQte.Click
         If isActive Then
+            If Form1.cbBadgeMA.Checked And EditMode Then
+                Try
+                    Dim sc As New UserParmissionCheck
+                    sc.bName.Text = Form1.RPl.SelectedItem.Name
+                    sc.lbNum.Text = Form1.RPl.SelectedItem.Qte
+                    If sc.ShowDialog = DialogResult.OK Then
+                      RaiseEvent UpdateQte()
+                    End If
+                Catch ex As Exception
+                End Try
+
+                Exit Sub
+            End If
             RaiseEvent UpdateQte()
         Else
             RaiseEvent ValueChange()
@@ -141,29 +154,45 @@
     End Sub
     Private Sub BtPrix_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtPrix.Click
         If isActive Then
+
+            If Form1.cbBadgeMA.Checked And EditMode Then
+                Try
+                    Dim sc As New UserParmissionCheck
+                    sc.bName.Text = Form1.RPl.SelectedItem.Name
+                    sc.lbNum.Text = Form1.RPl.SelectedItem.Price
+                    If sc.ShowDialog = DialogResult.OK Then
+                         RaiseEvent UpdatePrice()
+                    End If
+                Catch ex As Exception
+                End Try
+
+                Exit Sub
+            End If
             RaiseEvent UpdatePrice()
+
         Else
             RaiseEvent ValueChange()
         End If
     End Sub
     Private Sub Button14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtDel.Click
 
-        If Form1.cbSecuBage.Checked Then
-            Try
-                Dim sc As New UserParmissionCheck
-                sc.bName.Text = Form1.RPl.SelectedItem.Name
-                sc.lbNum.Text = Form1.RPl.SelectedItem.Qte
-                If sc.ShowDialog = DialogResult.OK Then
-                    RaiseEvent DeleteItems()
-                    isActive = False
-                End If
-            Catch ex As Exception
-            End Try
-
-            Exit Sub
-        End If
-
         If isActive Then
+
+            If Form1.cbBadgeSA.Checked And EditMode Then
+                Try
+                    Dim sc As New UserParmissionCheck
+                    sc.bName.Text = Form1.RPl.SelectedItem.Name
+                    sc.lbNum.Text = Form1.RPl.SelectedItem.Qte
+                    If sc.ShowDialog = DialogResult.OK Then
+                        RaiseEvent DeleteItems()
+                        isActive = False
+                    End If
+                Catch ex As Exception
+                End Try
+
+                Exit Sub
+            End If
+
             RaiseEvent DeleteItems()
             isActive = False
         Else
@@ -199,6 +228,21 @@
         'If isActive Then
         '    RaiseEvent UpdatearicleDetails()
         'Else
+
+        If Form1.cbBadgeMB.Checked And EditMode Then
+            Try
+                Dim sc As New UserParmissionCheck
+                sc.bName.Text = Form1.RPl.ClientName
+                sc.lbNum.Text = Form1.RPl.FctId
+                If sc.ShowDialog = DialogResult.OK Then
+                    RaiseEvent UpdateClient()
+                End If
+            Catch ex As Exception
+            End Try
+
+            Exit Sub
+        End If
+
         RaiseEvent UpdateClient()
         'End If
 

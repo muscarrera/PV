@@ -624,34 +624,35 @@
                         A.InsertRecord("Category", params)
                         params.Clear()
                     Next
+                    Dim decimalSeparator As String = Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator
 
                     'articles
                     For i As Integer = 0 To dt2.Rows.Count - 1
                         params.Add("arid", CInt(dt2.Rows(i).Item("arid")))
 
-                        params.Add("name", CStr(dt2.Rows(i).Item("name")))
+                        params.Add("name", StrValue(dt2, "name", i)) ' CStr(dt2.Rows(i).Item("name")))
                         Dim IMMG As String = "-"
-                        If IsDBNull(dt2.Rows(i).Item("img")) Then
-                            IMMG = "No image"
-                        Else
-                            IMMG = CStr(dt2.Rows(i).Item("img"))
-                        End If
+                        'If IsDBNull(dt2.Rows(i).Item("img")) Then
+                        '    IMMG = "No image"
+                        'Else
+                        IMMG = StrValue(dt2, "img", i)
+                        'End If
                         params.Add("img", IMMG)
-                        params.Add("bprice", CDbl(dt2.Rows(i).Item("bprice")))
-                        params.Add("sprice", CDbl(dt2.Rows(i).Item("sprice")))
-                        params.Add("unite", CStr(dt2.Rows(i).Item("unite")))
+                        params.Add("bprice", CDbl(dt2.Rows(i).Item("bprice").ToString.Replace(".", decimalSeparator)))
+                        params.Add("sprice", CDbl(dt2.Rows(i).Item("sprice").ToString.Replace(".", decimalSeparator)))
+                        params.Add("unite", StrValue(dt2, "unite", i))
                         params.Add("qte", CDbl(0))
                         params.Add("tva", 20)
-                        params.Add("sp3", CDbl(dt2.Rows(i).Item("sp2")))
-                        params.Add("sp4", CDbl(dt2.Rows(i).Item("sp3")))
-                        params.Add("sp5", CDbl(dt2.Rows(i).Item("sp3")))
-                        params.Add("depot", 1)
-                        params.Add("poid", 0)
+                        params.Add("sp3", CDbl(dt2.Rows(i).Item("sp3").ToString.Replace(".", decimalSeparator)))
+                        params.Add("sp4", CDbl(dt2.Rows(i).Item("sp4").ToString.Replace(".", decimalSeparator)))
+                        params.Add("sp5", CDbl(dt2.Rows(i).Item("sp5").ToString.Replace(".", decimalSeparator)))
+                        params.Add("depot", IntValue(dt2, "depot", i))
+                        params.Add("poid", 1)
                         params.Add("mixte", False)
 
                         Try
                             params.Add("cid", CInt(dt2.Rows(i).Item("cid")))
-                            params.Add("codebar", CStr(dt2.Rows(i).Item("codebar")))
+                            params.Add("codebar", StrValue(dt2, "codebar", i))
                             params.Add("elements", "-")
                         Catch ex As Exception
                         End Try
