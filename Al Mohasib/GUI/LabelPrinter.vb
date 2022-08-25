@@ -440,21 +440,22 @@ Public Class LabelPrinter
                 NBPAGE = CInt(NBPAGE)
             End If
 
-            For k = K_nmPage To CInt(NBPAGE)
+            For k = K_nmPage To CInt(NBPAGE) - 1
                 For i As Integer = 0 To gl.Nbr_H - 1
                     _x = gl.Start_X
                     If i > 0 Then _y += gl.Sp_H
                     For t As Integer = 0 To gl.Nbr_W - 1
 
-                        If m >= table.Rows.Count Then Exit Sub
                         PrintLabel(m, _x, _y, e)
                         _x += gl.W_El  '.Width
                         _x += gl.Sp_W
                         m += 1
+
+                        If m >= table.Rows.Count Then Exit Sub
                     Next
                     _y += gl.H_El
                 Next
-                If k < CInt(NBPAGE) Then
+                If k < CInt(NBPAGE) - 1 Then
                     k += 1
                     e.HasMorePages = True
                     Return
@@ -569,7 +570,6 @@ Public Class LabelPrinter
                 Dim intercharacterGap As String = "0"
 
                 For i As Integer = 0 To code.Length - 1
-
                     If alphabet39.IndexOf(code(i)) = -1 OrElse code(i) = "*"c Then
                         e.Graphics.DrawString("INVALID BAR CODE TEXT", Font, Brushes.Red, 10, 10)
                         Exit Sub
@@ -577,7 +577,6 @@ Public Class LabelPrinter
                 Next
 
                 Dim encodedString As String = ""
-
                 For i As Integer = 0 To strLength - 1
                     If i > 0 Then encodedString += intercharacterGap
                     encodedString += coded39Char(alphabet39.IndexOf(_str(i)))
@@ -588,9 +587,7 @@ Public Class LabelPrinter
                 Dim wideToNarrowRatio As Double = 3
 
                 If a.Alignement <> 1 Then
-
                     For i As Integer = 0 To encodedStringLength - 1
-
                         If encodedString(i) = "1"c Then
                             widthOfBarCodeString += CInt((wideToNarrowRatio))
                         Else
@@ -599,10 +596,8 @@ Public Class LabelPrinter
                     Next
                 End If
 
-
                 Dim wid As Integer = 0
                 For i As Integer = 0 To encodedStringLength - 1
-
                     If encodedString(i) = "1"c Then
                         wid = CInt((wideToNarrowRatio))
                     Else
@@ -613,7 +608,6 @@ Public Class LabelPrinter
                     e.Graphics.FillRectangle(If(i Mod 2 = 0, _br, Brushes.White), top_x, top_y, wid, a.height)
                     top_x += wid
                 Next
-
             Else
 
                 str &= table.Rows(_i).Item(a.field)
@@ -781,6 +775,7 @@ Public Class LabelPrinter
         'm = 0
     End Sub
     Private m = 0
+    '  Private k = 0
     Private Sub DrawPage(ByRef e As System.Drawing.Printing.PrintPageEventArgs)
 
 

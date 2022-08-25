@@ -550,6 +550,18 @@
     <Compile Include="GUI\PricingGetter\PricingParams.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\ProfitElementRapport.Designer.vb">
+      <DependentUpon>ProfitElementRapport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ProfitElementRapport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ProfitProduitRapport.Designer.vb">
+      <DependentUpon>ProfitProduitRapport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ProfitProduitRapport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\Screen2.Designer.vb">
       <DependentUpon>Screen2.vb</DependentUpon>
     </Compile>
@@ -942,6 +954,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PricingGetter\PricingParams.resx">
       <DependentUpon>PricingParams.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ProfitElementRapport.resx">
+      <DependentUpon>ProfitElementRapport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ProfitProduitRapport.resx">
+      <DependentUpon>ProfitProduitRapport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Screen2.resx">
       <DependentUpon>Screen2.vb</DependentUpon>

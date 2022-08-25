@@ -123,10 +123,10 @@ Public Class Form1
 
         'isBaseOnRIYAL = cbRYL.Checked
         'If isBaseOnRIYAL Then frmDbl = "N0"
-        ' is_true_to_end = True
+        'is_true_to_end = True
 
-        ''Dim CDA As New PricingGetter
-        ''Dim CDA As New BarCode2
+        ' ''Dim CDA As New PricingGetter
+        ' ''Dim CDA As New BarCode2
         'Dim CDA As New LabelPrinter
         'If CDA.ShowDialog = Windows.Forms.DialogResult.Cancel Then
         '    End
@@ -291,7 +291,7 @@ Public Class Form1
 
         If cbSuperAdmin.Checked And adminName.Contains("+") = False Then
             plArchFact.Enabled = False
-            plArchReg.Enabled = False
+            '  plArchReg.Enabled = False
         End If
 
 
@@ -966,7 +966,7 @@ Public Class Form1
         getRegistryinfo(cbJnImgDb, "cbJnImgDb", False)
         getRegistryinfo(cbArticleItemDirection, "cbArticleItemDirection", False)
         getRegistryinfo(cbJnReduireQte, "cbJnReduireQte", False)
-        getRegistryinfo(cbLastPrice, "cbLastPrice", False)
+        getRegistryinfo(cbArtLastPrice, "cbArtLastPrice", "None")
         getRegistryinfo(cbStarFacture, "cbStarFacture", False)
 
         getRegistryinfo(txtFnPtFr, "txtFnPtFr", "Arial")
@@ -1002,6 +1002,8 @@ Public Class Form1
         getRegistryinfo(txtItmFP, "txtItmFP", "Arial")
         getRegistryinfo(txtItmZG, "txtItmZG", "10")
         getRegistryinfo(txtItmZP, "txtItmZP", "9")
+        getRegistryinfo(txtAllowLowPrice, "txtAllowLowPrice", "")
+        getRegistryinfo(cbBprice, "cbBprice", "None")
 
         Try
             itm_fn_gr = New Font(txtItmFG.Text, CInt(txtItmZG.Text), FontStyle.Bold)
@@ -1650,7 +1652,6 @@ Public Class Form1
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbPvClient", cbPvClient.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "isOrderByIdDesc_items", isOrderByIdDesc_items.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbItemCheckBox", cbItemCheckBox.Checked)
-                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbLastPrice", cbLastPrice.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbStarFacture", cbStarFacture.Checked)
 
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbBadgeSB", cbBadgeSB.Checked)
@@ -1666,6 +1667,7 @@ Public Class Form1
                 '" If Not IsNumeric(txtComName.Text) Then txtComName.Text = 0
                 If txtComName.Text = "" Then txtComName.Text = "-"
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "txtHours", txtComName.Text)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "txtAllowLowPrice", txtAllowLowPrice.Text)
 
 
             Catch ex As Exception
@@ -1808,6 +1810,15 @@ Public Class Form1
         txtSearch.Focus()
     End Sub
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btswitsh.Click
+
+        Try
+            Using a As SubClass = New SubClass
+                a.saveChanges()
+            End Using
+        Catch ex As Exception
+        End Try
+
+
         If btswitsh.Tag = 1 Then
             btswitsh.Text = " الدخــول "
             btswitsh.BackColor = Color.Thistle
@@ -1849,7 +1860,12 @@ Public Class Form1
 
             Dim params As New Dictionary(Of String, Object)
 
-            params.Add("fctid", FctId)
+            If RPl.isSell Then
+                params.Add("fctid", FctId)
+            Else
+                params.Add("bonid", FctId)
+            End If
+
 
             Dim str = "Cache"
             Try
@@ -2073,6 +2089,7 @@ Public Class Form1
                                 ByVal table As System.Data.DataTable) Handles RPl.SaveFacture
         If RPl.FctId = 0 Then Exit Sub
 
+
         If cbCaisse.Checked And RPl.ClId = 0 And RPl.EditMode = False And RPl.Avance < RPl.Total_TTC Then
             If PayRecept() = False Then
                 If chbcb.Checked Then
@@ -2085,6 +2102,19 @@ Public Class Form1
                 Exit Sub
             End If
         End If
+
+
+        Try
+            Using a As SubClass = New SubClass
+                If RPl.EditMode = False Then
+                    If a.saveChanges_fct() = False Then Exit Sub
+                End If
+
+            End Using
+        Catch ex As Exception
+        End Try
+
+
 
         Dim isS As Boolean = RPl.isSell
         Using a As SubClass = New SubClass(isS)
@@ -2106,6 +2136,7 @@ Public Class Form1
                                  ByVal tva As System.Double, ByVal table As System.Data.DataTable,
                                  ByVal isSell As System.Boolean, ByVal isBl As System.Boolean, ByVal isSecond As System.Boolean) Handles RPl.SaveAndPrint
         If RPl.FctId = 0 Then Exit Sub
+
         payedCache = RPl.Avance
         If cbCaisse.Checked And RPl.ClId = 0 And RPl.EditMode = False Then
             If PayRecept() = False Then
@@ -2119,7 +2150,6 @@ Public Class Form1
                 Exit Sub
             End If
         End If
-
 
         Dim nbr As Integer = txtNbrCopie.Text
         Dim nm As String = txttimp.Text
@@ -2138,6 +2168,16 @@ Public Class Form1
             End If
         Catch ex As Exception
             Exit Sub
+        End Try
+
+
+        Try
+            Using a As SubClass = New SubClass
+                If RPl.EditMode = False Then
+                    If a.saveChanges_fct() = False Then Exit Sub
+                End If
+            End Using
+        Catch ex As Exception
         End Try
 
 
@@ -2441,6 +2481,17 @@ Public Class Form1
         End Try
     End Sub
     Private Sub TabControl1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TabControl1.SelectedIndexChanged
+        Try
+            Using a As SubClass = New SubClass
+                If RPl.EditMode = False Then
+                    a.saveChanges()
+                    RPl.ClearItems()
+                End If
+
+            End Using
+        Catch ex As Exception
+        End Try
+
         If TabControl1.SelectedIndex = 0 Then
             PlRcpt.Width = _RplWidth
             RPl.EditMode = False
@@ -2885,6 +2936,15 @@ Public Class Form1
     Private Sub Form1_FormClosing(ByVal sender As System.Object,
                                   ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
         Try
+            Using a As SubClass = New SubClass
+                If RPl.EditMode = False Then a.saveChanges()
+            End Using
+        Catch ex As Exception
+        End Try
+
+
+
+        Try
             Dim strpath As String = btSvPath.Tag & "\" & Date.Now.Year.ToString
             If Not Directory.Exists(strpath) Then
                 Directory.CreateDirectory(strpath)
@@ -2957,6 +3017,7 @@ Public Class Form1
     Private Sub Button12_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btSvPath.Click
         Try
             Dim OPF As New OpenFileDialog
+            OPF.InitialDirectory = btSvPath.Tag
             If OPF.ShowDialog = Windows.Forms.DialogResult.OK Then
                 Dim fi As New IO.FileInfo(OPF.FileName)
                 Dim directoryName As String = fi.DirectoryName
@@ -3025,6 +3086,7 @@ Public Class Form1
     Private Sub BtImgPah_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtImgPah.Click
         Try
             Dim OPF As New OpenFileDialog
+            OPF.InitialDirectory = BtImgPah.Tag
             If OPF.ShowDialog = Windows.Forms.DialogResult.OK Then
                 Dim fi As New IO.FileInfo(OPF.FileName)
                 Dim directoryName As String = fi.DirectoryName
@@ -3133,6 +3195,7 @@ Public Class Form1
     Private Sub BtBoundDbPath_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtBoundDbPath.Click
         Try
             Dim OPF As New OpenFileDialog
+            OPF.InitialDirectory = New IO.FileInfo(BtBoundDbPath.Tag).DirectoryName
             If OPF.ShowDialog = Windows.Forms.DialogResult.OK Then
                 Dim fi As New IO.FileInfo(OPF.FileName)
                 'Dim directoryName As String = fi.DirectoryName
@@ -3140,6 +3203,21 @@ Public Class Form1
             End If
 
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "BtBoundDbPath", BtBoundDbPath.Tag)
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
+        End Try
+    End Sub
+    Private Sub btDbDv_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btDbDv.Click
+        Try
+            Dim OPF As New OpenFileDialog
+            OPF.InitialDirectory = New IO.FileInfo(btDbDv.Tag).DirectoryName
+            If OPF.ShowDialog = Windows.Forms.DialogResult.OK Then
+                Dim fi As New IO.FileInfo(OPF.FileName)
+                'Dim directoryName As String = fi.DirectoryName
+                btDbDv.Tag = fi.FullName
+            End If
+
+            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "btDbDv", btDbDv.Tag)
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
         End Try
@@ -3210,6 +3288,7 @@ Public Class Form1
     Private Sub Button27_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btDevis.Click
         Dim dv As New Devis
         dv.ISSELL = True
+        dv.RPl.isSell = True
         If dv.ShowDialog = Windows.Forms.DialogResult.OK Then
 
         End If
@@ -3218,6 +3297,7 @@ Public Class Form1
     Private Sub Button28_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button28.Click
         Dim dv As New Devis
         dv.ISSELL = False
+        dv.RPl.isSell = False
         If dv.ShowDialog = Windows.Forms.DialogResult.OK Then
         End If
     End Sub
@@ -3235,20 +3315,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub btDbDv_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btDbDv.Click
-        Try
-            Dim OPF As New OpenFileDialog
-            If OPF.ShowDialog = Windows.Forms.DialogResult.OK Then
-                Dim fi As New IO.FileInfo(OPF.FileName)
-                'Dim directoryName As String = fi.DirectoryName
-                btDbDv.Tag = fi.FullName
-            End If
-
-            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "btDbDv", btDbDv.Tag)
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
-        End Try
-    End Sub
+  
 
     Private Sub Panel31_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Panel31.Click
         If adminId > 1 Then Exit Sub
@@ -4818,7 +4885,7 @@ Public Class Form1
                     Dim bt As New Button
                     bt.Text = RPl.ClientName
                     bt.Tag = RPl.FctId
-
+                    RPl.ClearItems()
                     a.FactureSelected(bt, Nothing)
                 End Using
             End If
@@ -5367,43 +5434,45 @@ Public Class Form1
         If RPl.FctId = 0 Or RPl.EditMode = True Then Exit Sub
         Dim bp As New byPrice
         If bp.ShowDialog = Windows.Forms.DialogResult.OK Then
-            Dim tableName = "DetailsFacture"
-            If btswitsh.Tag = 0 Then tableName = "DetailsBon"
-            Dim arid As Integer = 0
-            'qte
-            Dim qte As Double = 1
+            RPl.AddItems_F6_Product(CDbl(bp.txt.Text))
 
-            'Price
-            Dim price As Double = CDbl(bp.txt.Text)
-            'tva
-            Dim tva As Double = 20
 
-            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-                Dim params As New Dictionary(Of String, Object)
-                params.Add("fctid", CInt(RPl.FctId))
-                params.Add("name", "Article")
-                params.Add("bprice", price)
-                params.Add("price", price)
-                params.Add("unit", "u")
-                params.Add("qte", qte)
-                params.Add("tva", tva)
-                params.Add("poid", 1)
-                params.Add("arid", 0)
-                params.Add("depot", 0)
-                params.Add("code", "")
-                params.Add("cid", 0)
+            'Dim arid As Integer = 0
+            'Dim qte As Double = 1
+            'Dim price As Double =
+            'Dim tva As Double = 20
 
-                arid = c.InsertRecord(tableName, params, True)
-            End Using
 
-            If arid > 0 Then
-                Dim bt As New Button
-                bt.Text = RPl.ClientName
-                bt.Tag = RPl.FctId
-                Using a As SubClass = New SubClass
-                    a.FactureSelected(bt, Nothing)
-                End Using
-            End If
+            'Dim tableName = "DetailsFacture"
+            'If btswitsh.Tag = 0 Then tableName = "DetailsBon"
+
+
+            'Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            '    Dim params As New Dictionary(Of String, Object)
+            '    params.Add("fctid", CInt(RPl.FctId))
+            '    params.Add("name", "Article")
+            '    params.Add("bprice", price)
+            '    params.Add("price", price)
+            '    params.Add("unit", "u")
+            '    params.Add("qte", qte)
+            '    params.Add("tva", tva)
+            '    params.Add("poid", 1)
+            '    params.Add("arid", 0)
+            '    params.Add("depot", 0)
+            '    params.Add("code", "")
+            '    params.Add("cid", 0)
+
+            '    arid = c.InsertRecord(tableName, params, True)
+            'End Using
+
+            'If arid > 0 Then
+            '    Dim bt As New Button
+            '    bt.Text = RPl.ClientName
+            '    bt.Tag = RPl.FctId
+            '    Using a As SubClass = New SubClass
+            '        a.FactureSelected(bt, Nothing)
+            '    End Using
+            'End If
         End If
     End Sub
 
@@ -5738,7 +5807,7 @@ Public Class Form1
 
                 Dim z As Boolean = False
                 If cbAffichageLimite.Checked And admin = False Then z = True
-                If cbSuperAdmin.Checked And adminName.Contains("+") = False Then z = True
+                ' If cbSuperAdmin.Checked And adminName.Contains("+") = False Then z = True
 
                 If z Then params.Add("writer = ", adminName)
 
@@ -5980,6 +6049,20 @@ Public Class Form1
             itm_fn_p_i = New Font(txtItmFP.Text, CInt(txtItmZP.Text), FontStyle.Italic)
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
+        End Try
+    End Sub
+
+    Private Sub cbArtLastPrice_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbArtLastPrice.SelectedIndexChanged
+        Try
+            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbArtLastPrice", cbArtLastPrice.Text)
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub cbBprice_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbBprice.SelectedIndexChanged
+        Try
+            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbBprice", cbBprice.Text)
+        Catch ex As Exception
         End Try
     End Sub
 End Class

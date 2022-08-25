@@ -616,7 +616,7 @@ Public Class SubClass
             MsgBox(ex.Message)
         End Try
     End Sub
-    Public Sub art_click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Public Sub art_click__old(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim bt As Button = sender
         Dim R As ALMohassinDBDataSet.ArticleRow = bt.Tag
 
@@ -807,15 +807,23 @@ Public Class SubClass
                     End Try
 
                     'Last Price Option
-                    If Form1.cbLastPrice.Checked And Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
-                        Dim at As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
-                        Dim prc = at.ScalarLastPrice(R.arid, Form1.RPl.ClId)
-                        If IsNumeric(prc) Then
-                            If prc > R.bprice Or Form1.RPl.ClientName.Contains("**") Then
-                                price = prc
+                    If Form1.cbArtLastPrice.Text = "LastPrice" Then
+                        If Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
+                            Dim at As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
+                            Dim prc = at.ScalarLastPrice(R.arid, Form1.RPl.ClId)
+                            If IsNumeric(prc) Then
+                                If prc > R.bprice Or Form1.RPl.ClientName.Contains("**") Then
+                                    price = prc
+                                End If
                             End If
                         End If
+                    ElseIf Form1.cbArtLastPrice.Text = "LastMarge" Then
+
+
+
+
                     End If
+
 
 
                     Dim params As New Dictionary(Of String, Object)
@@ -846,19 +854,196 @@ Public Class SubClass
                 End If
             End If
 
-                    Form1.txtSearch.Text = ""
-                    Form1.txtSearchCode.Text = ""
+            Form1.txtSearch.Text = ""
+            Form1.txtSearchCode.Text = ""
 
-                    If Form1.chbcb.Checked Then
-                        Form1.txtSearchCode.Focus()
-                    Else
-                        Form1.txtSearch.Focus()
-                    End If
+            If Form1.chbcb.Checked Then
+                Form1.txtSearchCode.Focus()
+            Else
+                Form1.txtSearch.Focus()
+            End If
         Catch ex As Exception
 
         End Try
 
     End Sub
+
+    Public Sub art_click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Dim bt As Button = sender
+        Dim R As ALMohassinDBDataSet.ArticleRow = bt.Tag
+
+        If My.Computer.Keyboard.CtrlKeyDown Then
+            Try
+                EditArticle(R)
+            Catch ex As Exception
+            End Try
+            Exit Sub
+        End If
+
+        Try
+            'add new bon
+            If Form1.RPl.FctId = 0 Then
+                If Form1.RPl.isSell Then
+                    Dim clientname As String = Form1.txtcltcomptoir.Text.Split("/")(0)
+                    Dim cid As String = 0
+
+                    NewFacture(cid, clientname, "", 0)
+                Else
+                    Exit Sub
+                End If
+            End If
+
+
+            If Form1.CbDepotOrigine.Checked = False Then R.depot = Form1.RPl.CP.Depot
+            Dim catsMerg = Form1.txtMergeCat.Text.Split("-")
+
+            If Form1.RPl.IsExiste(R.arid, R.depot) = True And Form1.cbMergeArt.Checked = True And catsMerg.Contains(R.cid) = False Then
+                Dim item As Items = Form1.RPl.SelectedItems(R.arid, R.depot)
+                Dim ID As Integer = item.id
+                Dim qte As Double = item.Qte + CDbl(Form1.RPl.CP.Value)
+
+                Form1.RPl.ChangedItemsQte(R.arid, R.depot, qte)
+                Form1.RPl.Pl.ScrollControlIntoView(item)
+
+            Else
+                Dim ppp As Double = CDbl(R.sprice)
+
+                If Form1.RPl.isSell Then
+                    If Form1.cbOptionJenani.Checked = False Then
+                        Select Case Form1.RPl.Num
+                            Case 2
+                                R.sprice = R.sp3
+                            Case 3
+                                R.sprice = R.sp4
+                            Case 4
+                                R.sprice = R.sp5
+                        End Select
+                    End If
+                Else
+                    R.sprice = R.bprice
+                End If
+
+                If Form1.CBTVA.Checked = False Then R.tva = 20
+
+                Try
+                    R.codebar = R.codebar.Split("-")(0)
+                Catch ex As Exception
+                    R.codebar = ""
+                End Try
+
+                'Last Price Option
+                If Form1.cbArtLastPrice.Text = "LastPrice" And Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
+
+                    Dim at As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
+                    Dim prc = at.ScalarLastPrice(R.arid, Form1.RPl.ClId)
+                    If IsNumeric(prc) Then
+                        If prc > R.bprice Or Form1.RPl.ClientName.Contains("**") Then
+                            R.sprice = prc
+                        End If
+                    End If
+
+                ElseIf Form1.cbArtLastPrice.Text = "LastMarge" And Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
+
+                    Dim at As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
+                    Dim pDt As DataTable = at.GetDataByLastPrice(R.arid, Form1.RPl.ClId)
+                    If pDt.Rows.Count > 0 Then
+
+                        Dim bp As Double = pDt.Rows(0).Item("bprice")
+                        Dim sp As Double = pDt.Rows(0).Item("price")
+                        If bp > 0 Then
+                            Dim mrg As Double = sp - bp
+                            R.sprice = R.bprice + mrg
+                        End If
+
+                    End If
+
+                End If
+
+                'Qte and Price Directly
+                If Form1.cbQteCat.Checked Or Form1.cbPrixCat.Checked Then
+                    If setPriceOrQte(R) = False Then
+                        Exit Sub
+                    End If
+                End If
+
+                Dim qte As Double = CDbl(Form1.RPl.CP.Value)
+
+                'tva
+
+
+                Form1.RPl.AddItems(R)
+                R.sprice = ppp
+
+            End If
+
+                Form1.txtSearch.Text = ""
+                Form1.txtSearchCode.Text = ""
+
+                If Form1.chbcb.Checked Then
+                    Form1.txtSearchCode.Focus()
+                Else
+                    Form1.txtSearch.Focus()
+                End If
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+    Private Function setPriceOrQte(ByRef R As ALMohassinDBDataSet.ArticleRow)
+        Dim ii As Integer = 0
+        If Form1.cbQteCat.Checked Then
+            Try
+                Dim cats = Form1.txtQteCat.Text.Split("-")
+                If cats.Contains(R.cid.ToString) Or cats.Contains("*") Then
+                    ii += 1
+                End If
+            Catch ex As Exception
+                MsgBox("Error 4 : frth - model Multi-Prix")
+            End Try
+        End If
+
+        If Form1.cbPrixCat.Checked Then
+            Try
+                Dim cats = Form1.txtPrixCat.Text.Split("-")
+                If cats.Contains(R.cid.ToString) Or cats.Contains("*") Then
+                    ii += 2
+                End If
+            Catch ex As Exception
+                MsgBox("Error 4 : frth - model Multi-Prix")
+            End Try
+        End If
+
+        If ii > 0 Then
+            Dim bn As New byname
+
+            bn.lbName.Text = R.name
+            bn.BTp1.Text = Math.Round(CDbl(R.sprice), 2)
+            bn.txtPrice.text = Math.Round(CDbl(R.sprice), 2)
+            bn.BTp2.Text = Math.Round(CDbl(R.sp3), 2)
+            bn.BTp3.Text = Math.Round(CDbl(R.sp4), 2)
+            bn.BTp4.Text = Math.Round(CDbl(R.sp5), 2)
+            bn.BTACH.Text = Math.Round(CDbl(R.bprice), 2)
+
+            bn.ii = ii
+
+            If bn.ShowDialog = DialogResult.OK Then
+
+                If ii = 1 Then
+                    Form1.RPl.CP.Value = bn.qte
+                ElseIf ii = 2 Then
+                    R.sprice = bn.qte
+                Else
+                    Form1.RPl.CP.Value = bn.qte
+                    R.sprice = CDbl(bn.txtPrice.text)
+                End If
+
+            Else
+                Return False
+            End If
+
+        End If
+        Return True
+    End Function
     Public Sub fillFactures(ByVal a As Integer)
         Dim dt As DataTable = Nothing
         Dim p As Panel = Form1.plright
@@ -1074,7 +1259,9 @@ Public Class SubClass
 
     End Sub
     Public Sub FillDataSource_Bon(ByVal dt As DataTable, ByVal p As Panel)
-        Dim fctid As Integer = 0
+
+        Dim b As New Button
+        b.Tag = 0
 
         For i As Integer = 0 To dt.Rows.Count - 1
             If Form1.cbPvClient.Checked Then
@@ -1087,7 +1274,8 @@ Public Class SubClass
                 p.Controls.Add(pv)
 
                 If i = 0 Then
-                    fctid = dt.Rows(i).Item(0)
+                    b.Tag = dt.Rows(i).Item(0)
+                    b.Text = dt.Rows(i).Item("name")
                 End If
             Else
                 Dim rnd As New Random
@@ -1096,7 +1284,6 @@ Public Class SubClass
                     bt.Tag = dt.Rows(i).Item(0)
                     bt.Text = dt.Rows(i).Item("name")
                 Catch ex As Exception
-
                 End Try
 
                 bt.BackColor = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255)) 'Color.DarkSlateGray
@@ -1112,9 +1299,9 @@ Public Class SubClass
                 p.Controls.Add(bt)
                 'clear the recept liste
 
-
                 If i = 0 Then
-                    fctid = dt.Rows(i).Item(0)
+                    b.Tag = dt.Rows(i).Item(0)
+                    b.Text = dt.Rows(i).Item("name")
                 End If
                 bt = Nothing
                 rnd = Nothing
@@ -1125,8 +1312,8 @@ Public Class SubClass
         Form1.lbListBon.Tag = dt.Rows.Count
 
         Form1.RPl.ClearItems()
-        Dim b As New Button
-        b.Tag = fctid
+
+
         FactureSelected(b, Nothing)
     End Sub
 
@@ -1475,6 +1662,13 @@ Public Class SubClass
     End Sub
     Public Sub NewFacture(ByVal clid As String, ByVal cn As String, ByVal cad As String, ByVal nm As String)
         Try
+            Try
+                saveChanges()
+            Catch ex As Exception
+            End Try
+
+
+
             Dim tableName As String = "Facture"
             Dim p As Panel = Form1.plright
             Dim cid As String = clid
@@ -1546,7 +1740,7 @@ Public Class SubClass
                     AddHandler bt.Click, AddressOf FactureSelected
 
                     p.Controls.Add(bt)
-                 
+
                     If isSell Then AppendData(fid, "Creation de la Bon", "-", "-")
                     bt = Nothing
                     rnd = Nothing
@@ -1555,6 +1749,7 @@ Public Class SubClass
 
                 Dim b As New Button
                 b.Tag = fid
+                b.Text = clientname
                 Form1.lbListBon.Text = "[" & CInt(Form1.lbListBon.Tag) + 1 & "] Recept(s)"
                 Form1.lbListBon.Tag = CInt(Form1.lbListBon.Tag) + 1
 
@@ -1575,7 +1770,106 @@ Public Class SubClass
             MsgBox(ex.Message)
         End Try
     End Sub
+    Public Sub saveChanges()
+        If Form1.RPl.FctId = 0 Then Exit Sub
 
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+
+            Dim tb_D = "DetailsFacture"
+            Dim prId_str = "id"
+            If Form1.RPl.isSell = False Then
+                tb_D = "DetailsBon"
+                prId_str = "bid"
+            End If
+
+            Dim params As New Dictionary(Of String, Object)
+            Dim where As New Dictionary(Of String, Object)
+
+            Dim data = Form1.RPl.DataSource
+
+
+            For i As Integer = 0 To data.Rows.Count - 1
+
+                params.Clear()
+                params.Add("fctid", Form1.RPl.FctId)
+                params.Add("name", data.Rows(i).Item("name"))
+                params.Add("bprice", data.Rows(i).Item("bprice"))
+                params.Add("price", data.Rows(i).Item("price"))
+                params.Add("unit", data.Rows(i).Item("unit"))
+                params.Add("qte", data.Rows(i).Item("qte"))
+                params.Add("tva", data.Rows(i).Item("tva"))
+                params.Add("arid", data.Rows(i).Item("arid"))
+                params.Add("depot", data.Rows(i).Item("depot"))
+                params.Add("poid", CInt(data.Rows(i).Item("poid")))
+                params.Add("code", data.Rows(i).Item("code"))
+                params.Add("cid", data.Rows(i).Item("cid"))
+                Dim prId As Integer = data.Rows(i).Item("id")
+
+                If prId > 0 Then
+                    where.Clear()
+                    where.Add(prId_str, prId)
+                    c.UpdateRecord(tb_D, params, where)
+                Else
+                    c.InsertRecord(tb_D, params)
+                End If
+            Next
+        End Using
+    End Sub
+    Public Function saveChanges_fct() As Boolean
+        If Form1.RPl.FctId = 0 Then Return False
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+
+            Dim tb_D = "DetailsFacture"
+            Dim prId_str = "id"
+            If Form1.RPl.isSell = False Then
+                tb_D = "DetailsBon"
+                prId_str = "bid"
+            End If
+
+            Dim params As New Dictionary(Of String, Object)
+            Dim where As New Dictionary(Of String, Object)
+
+            Dim data = Form1.RPl.DataSource
+
+
+            For i As Integer = 0 To data.Rows.Count - 1
+
+                params.Clear()
+                params.Add("fctid", Form1.RPl.FctId)
+                params.Add("name", data.Rows(i).Item("name"))
+                params.Add("bprice", data.Rows(i).Item("bprice"))
+                params.Add("price", data.Rows(i).Item("price"))
+                params.Add("unit", data.Rows(i).Item("unit"))
+                params.Add("qte", data.Rows(i).Item("qte"))
+                params.Add("tva", data.Rows(i).Item("tva"))
+                params.Add("arid", data.Rows(i).Item("arid"))
+                params.Add("depot", data.Rows(i).Item("depot"))
+                params.Add("poid", CInt(data.Rows(i).Item("poid")))
+                params.Add("code", data.Rows(i).Item("code"))
+                params.Add("cid", data.Rows(i).Item("cid"))
+                Dim prId As Integer = data.Rows(i).Item("id")
+
+                If prId > 0 Then
+                    where.Clear()
+                    where.Add(prId_str, prId)
+                    c.UpdateRecord(tb_D, params, where)
+                Else
+                    Dim pid = c.InsertRecord(tb_D, params, True)
+
+                    Dim a As Items
+                    For Each a In Form1.RPl.Pl.Controls()
+                        If prId = a.id Then
+                            a.id = pid
+                            Exit For
+                        End If
+                    Next
+
+                End If
+            Next
+            Return True
+        End Using
+
+    End Function
     Public Sub NewFactureWatcher(ByVal g As PvModel)
         Try
             Dim tableName As String = "Facture"
@@ -1981,29 +2275,19 @@ Public Class SubClass
 
                 If cid <> 0 Then
 
-                    If isS = False Then
-                        tableName = "Article"
-
-                        params.Add("bprice", table.Rows(i).Item("bprice"))
-                        where.Add("arid", arid)
-
-                        c.UpdateRecord(tableName, params, where)
-                    End If
-
-                    params.Clear()
-                    where.Clear()
-
                     where.Add("arid", arid)
                     where.Add("dpid", dpid)
 
                     Dim dt = c.SelectDataTable("Detailstock", {"*"}, where)
                     where.Clear()
+                    Dim old_Qte As Double = 0
 
                     If dt.Rows.Count > 0 Then
                         Dim qte As Double = table.Rows(i).Item("qte")
                         Dim dsid As Integer = dt.Rows(0).Item(0)
+                        old_Qte = dt.Rows(0).Item("qte")
                         If isS Then qte = qte * (-1)
-                        qte = qte + dt.Rows(0).Item("qte")
+                        qte = qte + old_Qte
 
                         params.Add("qte", qte)
                         where.Add("DSID", dsid)
@@ -2021,6 +2305,41 @@ Public Class SubClass
 
                         c.InsertRecord("Detailstock", params)
                     End If
+
+
+
+                    If isS = False Then
+
+                        params.Clear()
+                        where.Clear()
+
+                        'update bprice
+                        If CDbl(table.Rows(i).Item("bprice")) <> CDbl(table.Rows(i).Item("price")) Then
+
+                            If Form1.cbBprice.Text = "DPA" Then
+ 
+                                params.Add("bprice", table.Rows(i).Item("price"))
+                                where.Add("arid", arid)
+                                c.UpdateRecord("Article", params, where)
+
+
+                            ElseIf Form1.cbBprice.Text = "CUMP" Then
+                                Try
+                                    If old_Qte < 0 Then old_Qte = 0
+                                    Dim b As Double = table.Rows(i).Item("bprice") * old_Qte
+                                    b += table.Rows(i).Item("price") * table.Rows(i).Item("qte")
+                                    b /= old_Qte + table.Rows(i).Item("qte")
+
+                                    params.Add("bprice", b)
+                                    where.Add("arid", arid)
+                                    c.UpdateRecord("Article", params, where)
+                                Catch ex As Exception
+                                End Try
+                            End If
+                        End If
+                    End If
+
+
                     params.Clear()
                     where.Clear()
                 End If
@@ -2055,6 +2374,7 @@ Public Class SubClass
 
                 Dim id As Integer = table.Rows(i).Item("dsid")
                 Dim arid As Integer = table.Rows(i).Item("arid")
+                Dim pr As Double = table.Rows(i).Item("price")
 
                 Dim field = "sprice"
                 If fd = 2 Then field = "sp3"
@@ -2064,15 +2384,34 @@ Public Class SubClass
                 params.Clear()
                 where.Clear()
                 where.Add("arid", arid)
-                Dim pr As Double = c.SelectByScalar("Article", field, where)
+                pr = c.SelectByScalar("Article", field, where)
 
                 params.Clear()
                 where.Clear()
-                params.Add("price", pr)
-                where.Add("id", id)
 
-                c.UpdateRecord("DetailsFacture", params, where)
+                If id > 0 Then
+                    params.Add("price", pr)
+                    where.Add("id", id)
+                    c.UpdateRecord("DetailsFacture", params, where)
+                Else
+
+                    params.Add("fctid", Form1.RPl.FctId)
+                    params.Add("name", table.Rows(i).Item("name"))
+                    params.Add("bprice", table.Rows(i).Item("bprice"))
+                    params.Add("price", pr)
+                    params.Add("unit", table.Rows(i).Item("unit"))
+                    params.Add("qte", table.Rows(i).Item("qte"))
+                    params.Add("tva", table.Rows(i).Item("tva"))
+                    params.Add("arid", table.Rows(i).Item("arid"))
+                    params.Add("depot", table.Rows(i).Item("depot"))
+                    params.Add("poid", table.Rows(i).Item("poid"))
+                    params.Add("code", table.Rows(i).Item("code"))
+                    params.Add("cid", table.Rows(i).Item("cid"))
+
+                    c.InsertRecord("DetailsFacture", params)
+                End If
             Next
+
             'End If
             params.Clear()
             where.Clear()
@@ -2235,6 +2574,12 @@ Public Class SubClass
         End Using
     End Sub
     Public Sub FactureSelected(ByVal sender As Object, ByVal e As EventArgs)
+
+        Try
+            saveChanges()
+        Catch ex As Exception
+        End Try
+
         Dim bt As Button = sender
         Dim pl As Panel = Form1.plright
         Dim rnd As New Random
@@ -2258,30 +2603,21 @@ Public Class SubClass
                 Else
                     b.isActive = False
                 End If
-            Next
-
+            Next 
         Else
             For Each b As Button In pl.Controls
-                If CStr(b.Tag) = CStr(bt.Tag) Then
-                    b.BackColor = Color.White
-                    b.ForeColor = Color.DarkSlateGray
-                    fctid = b.Tag
-                    clientName = b.Text
-                    b.SendToBack()
-
-                Else
-                    b.BackColor = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255)) 'Color.DarkSlateGray
-                    b.ForeColor = Color.White
-                End If
+                b.BackColor = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255)) 'Color.DarkSlateGray
+                b.ForeColor = Color.White
             Next
-
+            bt.BackColor = Color.White
+            bt.ForeColor = Color.DarkSlateGray
+            fctid = bt.Tag
+            clientName = bt.Text
+            bt.SendToBack()
         End If
-
-
+         
         Form1.lbListBon.Text = Form1.lbListBon.Text.Split("|")(0) & "  |  " & clientName
-
-
-
+         
         'clear the recept liste
         Form1.RPl.ClearItems()
         Form1.RPl.FctId = fctid
@@ -2317,73 +2653,67 @@ Public Class SubClass
                 End Try
 
             End If
-        End Using
+             
+            tableName = "DetailsFacture"
+            If Form1.btswitsh.Tag = 0 Then tableName = "DetailsBon"
+             
+            params.Clear()
 
-        tableName = "DetailsFacture"
-        If Form1.btswitsh.Tag = 0 Then tableName = "DetailsBon"
-
-        'fill the recept items
-        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-            Dim params As New Dictionary(Of String, Object)
             params.Add("fctid", CInt(bt.Tag))
-            Dim dt = c.SelectDataTable(tableName, {"*"}, params)
+            Dim order As New Dictionary(Of String, String)
+            If Form1.RPl.isSell Then
+                order.Add("id", "ASC")
+            Else
+                order.Add("bid", "ASC")
+            End If
+
+            dt = c.SelectDataTable(tableName, {"*"}, params, order)
 
             If dt.Rows.Count > 0 Then
                 Form1.RPl.AddItems(dt, CBool(Form1.btswitsh.Tag))
             End If
-        End Using
-        
+            End Using
 
-        Form1.txtSearch.Text = ""
-        Form1.txtSearchCode.Text = ""
 
-        If Form1.chbcb.Checked Then
-            Form1.txtSearchCode.Focus()
-        Else
-            Form1.txtSearch.Focus()
-        End If
+            Form1.txtSearch.Text = ""
+            Form1.txtSearchCode.Text = ""
 
-        rnd = Nothing
+            If Form1.chbcb.Checked Then
+                Form1.txtSearchCode.Focus()
+            Else
+                Form1.txtSearch.Focus()
+            End If
+
+            rnd = Nothing
     End Sub
     
     Public Sub UpdateItem(ByVal i As Items, ByVal qte As Double, ByVal isS As Boolean, ByVal Field As String)
         Try
+            If i.id > 0 Then
+                Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                    Dim params As New Dictionary(Of String, Object)
+                    params.Add(Field, qte)
 
-            Dim tableName As String = "DetailsBon"
-            If isS Then tableName = "DetailsFacture"
+                    Dim tableName As String = "DetailsBon"
+                    If isS Then tableName = "DetailsFacture"
 
-            Dim oldqte As Double = CDbl(i.Qte)
 
-            If Field = "qte" Then
-                Using a As SubClass = New SubClass
-                    If Form1.CbQteStk.Checked And isS Then
-                        Dim stk = a.getStock(i.arid, i.Depot, 0)
-                        If qte >= stk Then qte = oldqte
-                        If qte < 0 Then qte = 0
+                    Dim where As New Dictionary(Of String, Object)
+                    If isS Then
+                        where.Add("id", CInt(i.id))
+                    Else
+                        where.Add("bid", CInt(i.id))
                     End If
-                End Using
-            End If
 
-            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
-                Dim params As New Dictionary(Of String, Object)
-                params.Add(Field, qte)
-
-                Dim where As New Dictionary(Of String, Object)
-                If isS Then
-                    where.Add("id", CInt(i.id))
-                Else
-                    where.Add("bid", CInt(i.id))
-                End If
-
-                Try
-                    Dim h As Integer = c.UpdateRecord(tableName, params, where)
-                    If h > 0 Then
+                    If c.UpdateRecord(tableName, params, where) Then
                         Form1.RPl.ChangedItemsQte(i.id, qte, Field)
                     End If
-                Catch ex As Exception
-                    MsgBox(ex.Message)
-                End Try
-            End Using
+
+                End Using
+            Else
+
+                Form1.RPl.ChangedItemsQte(i.id, qte, Field)
+            End If
 
         Catch ex As Exception
 
@@ -2392,60 +2722,64 @@ Public Class SubClass
     Public Sub UpdateItem(ByVal i As Items, ByVal isS As Boolean)
         Try
 
-            Dim clc As New Editprdfact(i.Name, i.Bprice, i.Price, Math.Abs(i.Qte), i.Depot, i.isRetour)
+            Dim clc As New Editprdfact(i.Name, i.Bprice, i.Price, Math.Abs(i.Qte), i.Depot, i.isRetour, i.cid)
             If clc.ShowDialog = DialogResult.OK Then
                 Dim tableName As String = "DetailsBon"
                 If isS Then tableName = "DetailsFacture"
 
                 Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
 
-                    Dim params As New Dictionary(Of String, Object)
-                    Dim qte As Double = clc.prdQte
-                    'Dim oldqte As Double = CDbl(i.Qte)
+                    Dim h As Integer = 1
+                    If i.id > 0 Then
+                        Dim params As New Dictionary(Of String, Object)
+                        Dim qte As Double = clc.prdQte
+                        'Dim oldqte As Double = CDbl(i.Qte)
 
-                    params.Add("name", clc.prdName)
-                    params.Add("bprice", clc.prdBPrice)
-                    params.Add("price", clc.prdSPrice)
-                    params.Add("qte", clc.prdQte)
-                    params.Add("depot", clc.depot)
+                        params.Add("name", clc.prdName)
+                        params.Add("bprice", clc.prdBPrice)
+                        params.Add("price", clc.prdSPrice)
+                        params.Add("qte", clc.prdQte)
+                        params.Add("depot", clc.depot)
 
 
-                    Dim where As New Dictionary(Of String, Object)
-                    'where.Add("fctid", CInt(Form1.RPl.FctId))
-                    If isS Then
-                        where.Add("id", CInt(i.id))
-                    Else
-                        where.Add("bid", CInt(i.id))
-                    End If
+                        Dim where As New Dictionary(Of String, Object)
+                        'where.Add("fctid", CInt(Form1.RPl.FctId))
+                        If isS Then
+                            where.Add("id", CInt(i.id))
+                        Else
+                            where.Add("bid", CInt(i.id))
+                        End If
 
-                    Try
-                        Dim h As Integer = c.UpdateRecord(tableName, params, where)
-                        If h > 0 Then
-
-                            'change Article Price
-                            If clc.cbChangePrice.Checked Or clc.cbChangeName.Checked Then
-                                Try
-                                    params.Clear()
-                                    where.Clear()
-                                    'name
-                                    If clc.cbChangeName.Checked Then params.Add("name", clc.prdName)
-                                    'price
-                                    If clc.cbChangePrice.Checked Then
-                                        If isS Then
-                                            params.Add("sprice", clc.prdSPrice)
-                                        Else
-                                            params.Add("bprice", clc.prdSPrice)
-                                        End If
-                                    End If
-
-                                    where.Add("arid", i.arid)
-                                    c.UpdateRecord("Article", params, where)
-                                Catch ex As Exception
-                                End Try
-                            End If
-
+                        If c.UpdateRecord(tableName, params, where) Then
                             Form1.RPl.ChangedItems(i.id, clc.prdName, clc.prdBPrice, clc.prdSPrice, clc.prdQte, clc.depot)
                         End If
+
+                    Else
+                        Form1.RPl.ChangedItems(i.id, clc.prdName, clc.prdBPrice, clc.prdSPrice, clc.prdQte, clc.depot)
+                    End If
+
+                   Try
+                        'change Article Price
+                        If clc.cbChangePrice.Checked Or clc.cbChangeName.Checked Then
+
+                            Dim params As New Dictionary(Of String, Object)
+                            Dim where As New Dictionary(Of String, Object)
+
+                            If clc.cbChangeName.Checked Then params.Add("name", clc.prdName)
+                            'price
+                            If clc.cbChangePrice.Checked Then
+                                If isS Then
+                                    params.Add("sprice", clc.prdSPrice)
+                                Else
+                                    params.Add("bprice", clc.prdSPrice)
+                                End If
+                            End If
+
+                            where.Add("arid", i.arid)
+                            c.UpdateRecord("Article", params, where)
+                        End If
+
+
                     Catch ex As Exception
                         MsgBox(ex.Message)
                     End Try
@@ -2527,38 +2861,36 @@ Public Class SubClass
     Public Sub ReturnItem(ByRef i As Items, ByVal isS As Boolean)
         Try
 
+            If i.id > 0 Then
 
-            Dim tableName As String = "DetailsBon"
-            If isS Then tableName = "DetailsFacture"
+                Dim tableName As String = "DetailsBon"
+                If isS Then tableName = "DetailsFacture"
 
-            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
 
-                Dim params As New Dictionary(Of String, Object)
-
-
-                params.Add("qte", i.Qte * -1)
-
-
-
-                Dim where As New Dictionary(Of String, Object)
-                'where.Add("fctid", CInt(Form1.RPl.FctId))
-                If isS Then
-                    where.Add("id", CInt(i.id))
-                Else
-                    where.Add("bid", CInt(i.id))
-                End If
-
-                Try
-                    Dim h As Integer = c.UpdateRecord(tableName, params, where)
-                    If h > 0 Then
-                        i.isRetour = Not i.isRetour
+                    Dim params As New Dictionary(Of String, Object)
+                    params.Add("qte", i.Qte * -1)
+                    Dim where As New Dictionary(Of String, Object)
+                    'where.Add("fctid", CInt(Form1.RPl.FctId))
+                    If isS Then
+                        where.Add("id", CInt(i.id))
+                    Else
+                        where.Add("bid", CInt(i.id))
                     End If
-                Catch ex As Exception
-                    MsgBox(ex.Message)
-                End Try
 
-            End Using
+                    Try
+                        Dim h As Integer = c.UpdateRecord(tableName, params, where)
+                        If h > 0 Then
+                            i.isRetour = Not i.isRetour
+                        End If
+                    Catch ex As Exception
+                        MsgBox(ex.Message)
+                    End Try
 
+                End Using
+            Else
+                  i.isRetour = Not i.isRetour
+            End If
         Catch ex As Exception
 
         End Try
@@ -2590,57 +2922,63 @@ Public Class SubClass
     End Sub
     Public Sub DeleteItem(ByRef i As Al_Mohasib.Items, ByVal id As System.Int32)
 
-        Dim tableName As String = "DetailsFacture"
-        Dim FC = "id"
-        Dim isS As Boolean = CBool(Form1.RPl.isSell)
-        If isS = False Then
-            tableName = "DetailsBon"
-            FC = "bid"
+       
+        If i.id > 0 Then
+
+            Dim tableName As String = "DetailsFacture"
+            Dim FC = "id"
+            Dim isS As Boolean = CBool(Form1.RPl.isSell)
+            If isS = False Then
+                tableName = "DetailsBon"
+                FC = "bid"
+            End If
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                Dim where As New Dictionary(Of String, Object)
+                where.Add(FC, i.id)
+                'where.Add("arid", i.id)
+
+                If c.DeleteRecords(tableName, where) Then
+                    Form1.RPl.DeleteItems()
+                End If
+
+                'Stock
+                Try
+                    If Form1.RPl.EditMode Then
+
+                        Dim params As New Dictionary(Of String, Object)
+                        params.Add("arid", i.arid)
+                        params.Add("dpid", i.Depot)
+
+                        Dim dt = c.SelectDataTable("Detailstock", {"*"}, params)
+                        params.Clear()
+                        where.Clear()
+
+                        Dim qte As Double = i.Qte
+                        If isS Then qte *= -1
+
+                        Dim dsid As Integer = dt.Rows(0).Item(0)
+                        'If isS = False Then qte = qte * (-1)
+                        qte = dt.Rows(0).Item("qte") - qte
+
+                        params.Add("qte", qte)
+                        where.Add("DSID", dsid)
+
+                        c.UpdateRecord("Detailstock", params, where)
+
+                        Form1.DGVARFA.SelectedRows(0).Cells(3).Value = Form1.RPl.Total_TTC
+                        Form1.DGVARFA.SelectedRows(0).Cells(4).Value = Form1.RPl.Avance
+                        Form1.DGVARFA.SelectedRows(0).Cells(5).Value = Form1.RPl.Tva
+
+                        If isS Then AppendData(id, "Supression ", "-", i.Name)
+                    End If
+                Catch ex As Exception
+
+                End Try
+            End Using
+        Else
+            Form1.RPl.DeleteItems()
         End If
 
-        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
-            Dim where As New Dictionary(Of String, Object)
-            where.Add(FC, i.id)
-            'where.Add("arid", i.id)
-
-            If c.DeleteRecords(tableName, where) Then
-                Form1.RPl.DeleteItems()
-            End If
-
-            'Stock
-            Try
-                If Form1.RPl.EditMode Then
-
-                    Dim params As New Dictionary(Of String, Object)
-                    params.Add("arid", i.arid)
-                    params.Add("dpid", i.Depot)
-
-                    Dim dt = c.SelectDataTable("Detailstock", {"*"}, params)
-                    params.Clear()
-                    where.Clear()
-
-                    Dim qte As Double = i.Qte
-                    If isS Then qte *= -1
-
-                    Dim dsid As Integer = dt.Rows(0).Item(0)
-                    'If isS = False Then qte = qte * (-1)
-                    qte = dt.Rows(0).Item("qte") - qte
-
-                    params.Add("qte", qte)
-                    where.Add("DSID", dsid)
-
-                    c.UpdateRecord("Detailstock", params, where)
-
-                    Form1.DGVARFA.SelectedRows(0).Cells(3).Value = Form1.RPl.Total_TTC
-                    Form1.DGVARFA.SelectedRows(0).Cells(4).Value = Form1.RPl.Avance
-                    Form1.DGVARFA.SelectedRows(0).Cells(5).Value = Form1.RPl.Tva
-
-                    If isS Then AppendData(id, "Supression ", "-", i.Name)
-                End If
-            Catch ex As Exception
-
-            End Try
-        End Using
     End Sub
     Public Sub UpdatePayment(ByVal fctid As Integer, ByVal clientName As String, ByVal clid As Integer, ByVal isSell As Boolean,
                              ByVal editMode As Boolean, ByVal total As Double, ByRef avc As Double)

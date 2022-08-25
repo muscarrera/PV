@@ -435,3 +435,112 @@ D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al Mohasib.exe
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al Mohasib.xml
 D:\prjt test\code a barre - Adnan\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al Mohasib.pdb
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Release\Al Mohasib.exe.config
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al Mohasib.exe
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al Mohasib.xml
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al Mohasib.pdb
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Release\ALMohassinDB.mdb
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Release\Al Mohasib.pdb
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Release\Al Mohasib.xml
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\bin\Release\MyBarcode.dll
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al Mohasib.vbprojResolveAssemblyReference.cache
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddList.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddPanel.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ArtBloc.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.CBlock.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ClientBloc.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.CPanel.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddEditTopField.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.gChooseDesign.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.gColumn.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.gForm.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.gTable.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Items.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.PvArticle.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.PvCat.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.RPanel.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Tag.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.TxtBox.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Addadmin.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddArticleToFacture.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddCharges.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddDepot.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddEditArticle.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddEditCat.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddEditCharges.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddMashine.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddMelange.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.addtoliste.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ArticleDetails.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Articles.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AvanceCheck.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.BackUP.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.BarCode1.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.BarCode2.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.byPrice.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.byname.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Calc.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddEditBanqueField.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.bForm.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.bSetting.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.bTrialVersion.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ChequePanel.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ChooseBanque.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.SelectBanque.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.SelectBon.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ChooseCat.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ChoseClient.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ChoseCompany.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ChoseDepot.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Client.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ClientDetails.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ClientRapport.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.company.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.CompanyPAYEMENT.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Depot.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.EditDate.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.EtatClient.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddEditElement.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.CatSetting.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.DSBarCode.BarCodeCtrl.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.LbSetting.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ShapeElement.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ShapeTrace.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.LabelPrinter.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.LabelSetting.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ListMultiCodes.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.OpenFactures.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.PayRecept.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.PochetClient.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.PriceType.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.PricingGetter.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.PricingParams.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Screen2.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Devis.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Commande.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Editprdfact.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.EditStock.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Facture.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Form1.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.GestionStock.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.LookForDevis.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Massar.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.num.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.OpenAvoir.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ChoseLivreur.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.PAYEMENT.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.PayFacture.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.paypmt.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.PWDPicker.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.SavePrint.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddEditSideElement.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.AddEditSidePanel.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.stk.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Stock.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.testimage.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.TransformeStock.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.TrialVersion.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.UserParmissionCheck.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.Resources.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al Mohasib.vbproj.GenerateResource.Cache
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Release\Al_Mohasib.ProfitProduitRapport.resources

@@ -2,6 +2,7 @@
 
     Dim _depot As Integer
     Dim isRetour As Boolean = False
+    Dim cid As Integer
 
 
     Public Property prdName As String
@@ -64,9 +65,9 @@
 
 
             If Double.Parse(prdSPrice) < Double.Parse(prdBPrice) And Form1.RPl.isSell = True Then
+                If Form1.txtAllowLowPrice.Text.Contains("*") Or Form1.txtAllowLowPrice.Text.Contains(cid) Then Return True
+
                 Dim str As String = "ثمن البيع يجب ان يكون أكبر من ثمن الشراء"
-
-
                 MsgBox(str, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
                 Return False
             End If
@@ -76,7 +77,7 @@
     End Property
 
     Public Sub New(ByVal name As String, ByVal bprice As String,
-                   ByVal sprice As String, ByVal qte As String, ByVal dp As String, ByVal isR As Boolean)
+                   ByVal sprice As String, ByVal qte As String, ByVal dp As String, ByVal isR As Boolean, ByVal _cid As Integer)
 
         ' This call is required by the designer.
         InitializeComponent()
@@ -89,7 +90,7 @@
         prdQte = qte
         depot = dp
         isRetour = isR
-
+        cid = _cid
 
     End Sub
     Private Sub Editprdfact_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load

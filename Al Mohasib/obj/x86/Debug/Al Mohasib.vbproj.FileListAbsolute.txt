@@ -574,3 +574,5 @@ C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.SelectBanque.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.bTrialVersion.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.bSetting.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ProfitProduitRapport.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib -Patiserier - Copie\Al Mohasib\obj\x86\Debug\Al_Mohasib.ProfitElementRapport.resources

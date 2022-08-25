@@ -8,6 +8,7 @@ Public Class ChequePanel
     Dim nb_trial As Integer = 0
     Dim bonId As Integer = 0
     Dim str_Path As String = ""
+    Dim _montant As Double
 
     Public Property Pid As Integer
         Get
@@ -38,21 +39,26 @@ Public Class ChequePanel
             txtClient.text = clientName & "|" & value
         End Set
     End Property
-    Public ReadOnly Property montant As Double
+    Public Property montant As Double
         Get
-            Try
+            'Try
 
-                If IsNumeric(txtMontant.text.Trim) Then
+            '    If IsNumeric(txtMontant.text.Trim) Then
 
-                    Return txtMontant.text
-                Else
-                    Return 0
-                End If
+            '        Return txtMontant.text
+            '    Else
+            '        Return 0
+            '    End If
 
-            Catch ex As Exception
-                Return 0
-            End Try
+            'Catch ex As Exception
+            '    Return 0
+            'End Try
+            Return _montant
         End Get
+        Set(ByVal value As Double)
+            _montant = value
+            lbMontant.Text = value.ToString("N2") & " dhs"
+        End Set
     End Property
     Public Property clientName As String
         Get
@@ -139,7 +145,7 @@ Public Class ChequePanel
         lbT.Text = "00"
         lbA.Text = "00"
         lbR.Text = "00"
-        txtMontant.text = ""
+        montant = 0
         txtEcheance.text = Now.Date.ToString("dd/MM/yyyy")
         txtRef.text = ""
         bonId = 0
@@ -170,7 +176,7 @@ Public Class ChequePanel
                 Dim bid = IntValue(dt, fld, 0)
 
                 CbWay.SelectedItem = StrValue(dt, "way", 0)
-                txtMontant.text = DblValue(dt, "montant", 0).ToString("N2")
+                montant = DblValue(dt, "montant", 0).ToString("N2")
                 txtEcheance.text = DteValue(dt, "paydate", 0).ToString("dd/MM/yyyy")
                 txtRef.text = StrValue(dt, "Num", 0)
                 params.Clear()
@@ -351,7 +357,7 @@ Public Class ChequePanel
 
             params.Add("name", clientName)
             params.Add(cl, clid)
-            params.Add("montant", txtMontant.text)
+            params.Add("montant", montant)
             params.Add("way", CbWay.Text)
             params.Add("date", Now)
             params.Add("Num", txtRef.text)
@@ -399,7 +405,7 @@ Public Class ChequePanel
 
             params.Add("name", clientName)
             params.Add(cl, clid)
-            params.Add("montant", txtMontant.text)
+            params.Add("montant", montant)
             params.Add("way", CbWay.Text)
             params.Add("Num", txtRef.text)
             params.Add(fld, txtBon.text)
@@ -834,5 +840,29 @@ Public Class ChequePanel
         If chs.ShowDialog = Windows.Forms.DialogResult.OK Then
             txtC.text = chs.clientName & "|" & chs.cid
         End If
+    End Sub
+
+    Private Sub lbMontant_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbMontant.Click
+        txtMontant.TXT.Focus()
+    End Sub
+
+    Private Sub txtMontant_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtMontant.Enter
+        txtMontant.text = montant
+        plM.BackColor = Color.GreenYellow
+    End Sub
+
+    Private Sub txtMontant_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtMontant.Leave
+        txtMontant.text = ""
+        plM.BackColor = Color.Transparent
+    End Sub
+
+    Private Sub txtMontant_TxtChanged() Handles txtMontant.TxtChanged
+        Try
+           
+                montant = txtMontant.text
+          
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

@@ -31,26 +31,20 @@ Partial Class ChequePanel
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel16 = New System.Windows.Forms.Panel()
-        Me.txtC = New Al_Mohasib.TxtBox()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Panel18 = New System.Windows.Forms.Panel()
-        Me.txtB = New Al_Mohasib.TxtBox()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Panel20 = New System.Windows.Forms.Panel()
-        Me.txtM = New Al_Mohasib.TxtBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Panel19 = New System.Windows.Forms.Panel()
-        Me.txtR = New Al_Mohasib.TxtBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Panel17 = New System.Windows.Forms.Panel()
-        Me.txtD2 = New Al_Mohasib.TxtBox()
         Me.Button13 = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Panel21 = New System.Windows.Forms.Panel()
-        Me.txtD1 = New Al_Mohasib.TxtBox()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -91,7 +85,6 @@ Partial Class ChequePanel
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btcancel = New System.Windows.Forms.Button()
         Me.Panel6 = New System.Windows.Forms.Panel()
-        Me.txtClient = New Al_Mohasib.TxtBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Button17 = New System.Windows.Forms.Button()
@@ -104,23 +97,31 @@ Partial Class ChequePanel
         Me.lbT = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Panel10 = New System.Windows.Forms.Panel()
-        Me.txtBon = New Al_Mohasib.TxtBox()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.plMsg = New System.Windows.Forms.Panel()
         Me.lbMsg = New System.Windows.Forms.Label()
         Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.txtRef = New Al_Mohasib.TxtBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Panel7 = New System.Windows.Forms.Panel()
-        Me.txtMontant = New Al_Mohasib.TxtBox()
+        Me.plM = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel8 = New System.Windows.Forms.Panel()
-        Me.txtEcheance = New Al_Mohasib.TxtBox()
         Me.Button14 = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
+        Me.lbMontant = New System.Windows.Forms.Label()
+        Me.txtClient = New Al_Mohasib.TxtBox()
+        Me.txtBon = New Al_Mohasib.TxtBox()
+        Me.txtRef = New Al_Mohasib.TxtBox()
+        Me.txtMontant = New Al_Mohasib.TxtBox()
+        Me.txtEcheance = New Al_Mohasib.TxtBox()
+        Me.txtC = New Al_Mohasib.TxtBox()
+        Me.txtB = New Al_Mohasib.TxtBox()
+        Me.txtM = New Al_Mohasib.TxtBox()
+        Me.txtR = New Al_Mohasib.TxtBox()
+        Me.txtD2 = New Al_Mohasib.TxtBox()
+        Me.txtD1 = New Al_Mohasib.TxtBox()
         Me.Panel1.SuspendLayout()
         Me.Panel14.SuspendLayout()
         Me.Panel15.SuspendLayout()
@@ -148,7 +149,7 @@ Partial Class ChequePanel
         Me.Panel10.SuspendLayout()
         Me.plMsg.SuspendLayout()
         Me.Panel9.SuspendLayout()
-        Me.Panel7.SuspendLayout()
+        Me.plM.SuspendLayout()
         Me.Panel8.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -259,26 +260,6 @@ Partial Class ChequePanel
         Me.Panel16.Size = New System.Drawing.Size(225, 31)
         Me.Panel16.TabIndex = 2
         '
-        'txtC
-        '
-        Me.txtC.BackColor = System.Drawing.Color.Transparent
-        Me.txtC.BorderColor = System.Drawing.Color.Transparent
-        Me.txtC.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtC.IsNumiric = False
-        Me.txtC.Location = New System.Drawing.Point(62, 0)
-        Me.txtC.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtC.Name = "txtC"
-        Me.txtC.ShowClearIcon = False
-        Me.txtC.ShowSaveIcon = False
-        Me.txtC.Size = New System.Drawing.Size(119, 30)
-        Me.txtC.StartUp = 2
-        Me.txtC.TabIndex = 2
-        Me.txtC.TextSize = 8
-        Me.txtC.TxtBackColor = True
-        Me.txtC.TxtColor = System.Drawing.Color.White
-        Me.txtC.txtReadOnly = False
-        Me.txtC.TxtSelect = New Integer() {1, 0}
-        '
         'Button4
         '
         Me.Button4.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.FACTURE_20
@@ -331,26 +312,6 @@ Partial Class ChequePanel
         Me.Panel18.Size = New System.Drawing.Size(225, 31)
         Me.Panel18.TabIndex = 3
         '
-        'txtB
-        '
-        Me.txtB.BackColor = System.Drawing.Color.Transparent
-        Me.txtB.BorderColor = System.Drawing.Color.Transparent
-        Me.txtB.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtB.IsNumiric = False
-        Me.txtB.Location = New System.Drawing.Point(62, 0)
-        Me.txtB.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtB.Name = "txtB"
-        Me.txtB.ShowClearIcon = False
-        Me.txtB.ShowSaveIcon = False
-        Me.txtB.Size = New System.Drawing.Size(120, 30)
-        Me.txtB.StartUp = 2
-        Me.txtB.TabIndex = 3
-        Me.txtB.TextSize = 8
-        Me.txtB.TxtBackColor = True
-        Me.txtB.TxtColor = System.Drawing.Color.White
-        Me.txtB.txtReadOnly = False
-        Me.txtB.TxtSelect = New Integer() {1, 0}
-        '
         'Button8
         '
         Me.Button8.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.BTGROUP
@@ -385,26 +346,6 @@ Partial Class ChequePanel
         Me.Panel20.Size = New System.Drawing.Size(225, 31)
         Me.Panel20.TabIndex = 6
         '
-        'txtM
-        '
-        Me.txtM.BackColor = System.Drawing.Color.Transparent
-        Me.txtM.BorderColor = System.Drawing.Color.Transparent
-        Me.txtM.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtM.IsNumiric = False
-        Me.txtM.Location = New System.Drawing.Point(62, 0)
-        Me.txtM.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtM.Name = "txtM"
-        Me.txtM.ShowClearIcon = False
-        Me.txtM.ShowSaveIcon = False
-        Me.txtM.Size = New System.Drawing.Size(161, 30)
-        Me.txtM.StartUp = 2
-        Me.txtM.TabIndex = 6
-        Me.txtM.TextSize = 8
-        Me.txtM.TxtBackColor = True
-        Me.txtM.TxtColor = System.Drawing.Color.White
-        Me.txtM.txtReadOnly = False
-        Me.txtM.TxtSelect = New Integer() {1, 0}
-        '
         'Label13
         '
         Me.Label13.Dock = System.Windows.Forms.DockStyle.Left
@@ -425,26 +366,6 @@ Partial Class ChequePanel
         Me.Panel19.Name = "Panel19"
         Me.Panel19.Size = New System.Drawing.Size(225, 31)
         Me.Panel19.TabIndex = 6
-        '
-        'txtR
-        '
-        Me.txtR.BackColor = System.Drawing.Color.Transparent
-        Me.txtR.BorderColor = System.Drawing.Color.Transparent
-        Me.txtR.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtR.IsNumiric = False
-        Me.txtR.Location = New System.Drawing.Point(62, 0)
-        Me.txtR.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtR.Name = "txtR"
-        Me.txtR.ShowClearIcon = False
-        Me.txtR.ShowSaveIcon = False
-        Me.txtR.Size = New System.Drawing.Size(161, 30)
-        Me.txtR.StartUp = 2
-        Me.txtR.TabIndex = 6
-        Me.txtR.TextSize = 8
-        Me.txtR.TxtBackColor = True
-        Me.txtR.TxtColor = System.Drawing.Color.White
-        Me.txtR.txtReadOnly = False
-        Me.txtR.TxtSelect = New Integer() {1, 0}
         '
         'Label19
         '
@@ -467,26 +388,6 @@ Partial Class ChequePanel
         Me.Panel17.Name = "Panel17"
         Me.Panel17.Size = New System.Drawing.Size(225, 31)
         Me.Panel17.TabIndex = 5
-        '
-        'txtD2
-        '
-        Me.txtD2.BackColor = System.Drawing.Color.Transparent
-        Me.txtD2.BorderColor = System.Drawing.Color.Transparent
-        Me.txtD2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtD2.IsNumiric = False
-        Me.txtD2.Location = New System.Drawing.Point(52, 0)
-        Me.txtD2.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtD2.Name = "txtD2"
-        Me.txtD2.ShowClearIcon = False
-        Me.txtD2.ShowSaveIcon = False
-        Me.txtD2.Size = New System.Drawing.Size(136, 30)
-        Me.txtD2.StartUp = 2
-        Me.txtD2.TabIndex = 5
-        Me.txtD2.TextSize = 8
-        Me.txtD2.TxtBackColor = True
-        Me.txtD2.TxtColor = System.Drawing.Color.White
-        Me.txtD2.txtReadOnly = False
-        Me.txtD2.TxtSelect = New Integer() {1, 0}
         '
         'Button13
         '
@@ -521,26 +422,6 @@ Partial Class ChequePanel
         Me.Panel21.Name = "Panel21"
         Me.Panel21.Size = New System.Drawing.Size(225, 31)
         Me.Panel21.TabIndex = 5
-        '
-        'txtD1
-        '
-        Me.txtD1.BackColor = System.Drawing.Color.Transparent
-        Me.txtD1.BorderColor = System.Drawing.Color.Transparent
-        Me.txtD1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtD1.IsNumiric = False
-        Me.txtD1.Location = New System.Drawing.Point(52, 0)
-        Me.txtD1.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtD1.Name = "txtD1"
-        Me.txtD1.ShowClearIcon = False
-        Me.txtD1.ShowSaveIcon = False
-        Me.txtD1.Size = New System.Drawing.Size(136, 30)
-        Me.txtD1.StartUp = 2
-        Me.txtD1.TabIndex = 5
-        Me.txtD1.TextSize = 8
-        Me.txtD1.TxtBackColor = True
-        Me.txtD1.TxtColor = System.Drawing.Color.White
-        Me.txtD1.txtReadOnly = False
-        Me.txtD1.TxtSelect = New Integer() {1, 0}
         '
         'Button5
         '
@@ -963,7 +844,7 @@ Partial Class ChequePanel
         Me.Panel11.Controls.Add(Me.Panel10)
         Me.Panel11.Controls.Add(Me.plMsg)
         Me.Panel11.Controls.Add(Me.Panel9)
-        Me.Panel11.Controls.Add(Me.Panel7)
+        Me.Panel11.Controls.Add(Me.plM)
         Me.Panel11.Controls.Add(Me.Panel8)
         Me.Panel11.Location = New System.Drawing.Point(10, 0)
         Me.Panel11.Name = "Panel11"
@@ -1078,26 +959,6 @@ Partial Class ChequePanel
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(272, 31)
         Me.Panel6.TabIndex = 2
-        '
-        'txtClient
-        '
-        Me.txtClient.BackColor = System.Drawing.Color.Transparent
-        Me.txtClient.BorderColor = System.Drawing.Color.Transparent
-        Me.txtClient.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtClient.IsNumiric = False
-        Me.txtClient.Location = New System.Drawing.Point(62, 0)
-        Me.txtClient.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtClient.Name = "txtClient"
-        Me.txtClient.ShowClearIcon = False
-        Me.txtClient.ShowSaveIcon = False
-        Me.txtClient.Size = New System.Drawing.Size(166, 30)
-        Me.txtClient.StartUp = 2
-        Me.txtClient.TabIndex = 2
-        Me.txtClient.TextSize = 8
-        Me.txtClient.TxtBackColor = True
-        Me.txtClient.TxtColor = System.Drawing.Color.White
-        Me.txtClient.txtReadOnly = False
-        Me.txtClient.TxtSelect = New Integer() {1, 0}
         '
         'Button2
         '
@@ -1256,26 +1117,6 @@ Partial Class ChequePanel
         Me.Panel10.Size = New System.Drawing.Size(272, 31)
         Me.Panel10.TabIndex = 3
         '
-        'txtBon
-        '
-        Me.txtBon.BackColor = System.Drawing.Color.Transparent
-        Me.txtBon.BorderColor = System.Drawing.Color.Transparent
-        Me.txtBon.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtBon.IsNumiric = False
-        Me.txtBon.Location = New System.Drawing.Point(62, 0)
-        Me.txtBon.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtBon.Name = "txtBon"
-        Me.txtBon.ShowClearIcon = False
-        Me.txtBon.ShowSaveIcon = False
-        Me.txtBon.Size = New System.Drawing.Size(167, 30)
-        Me.txtBon.StartUp = 2
-        Me.txtBon.TabIndex = 3
-        Me.txtBon.TextSize = 8
-        Me.txtBon.TxtBackColor = True
-        Me.txtBon.TxtColor = System.Drawing.Color.White
-        Me.txtBon.txtReadOnly = False
-        Me.txtBon.TxtSelect = New Integer() {1, 0}
-        '
         'Button6
         '
         Me.Button6.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.BTGROUP
@@ -1330,26 +1171,6 @@ Partial Class ChequePanel
         Me.Panel9.Size = New System.Drawing.Size(297, 31)
         Me.Panel9.TabIndex = 7
         '
-        'txtRef
-        '
-        Me.txtRef.BackColor = System.Drawing.Color.Transparent
-        Me.txtRef.BorderColor = System.Drawing.Color.Transparent
-        Me.txtRef.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtRef.IsNumiric = False
-        Me.txtRef.Location = New System.Drawing.Point(62, 0)
-        Me.txtRef.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtRef.Name = "txtRef"
-        Me.txtRef.ShowClearIcon = False
-        Me.txtRef.ShowSaveIcon = False
-        Me.txtRef.Size = New System.Drawing.Size(233, 30)
-        Me.txtRef.StartUp = 2
-        Me.txtRef.TabIndex = 7
-        Me.txtRef.TextSize = 8
-        Me.txtRef.TxtBackColor = True
-        Me.txtRef.TxtColor = System.Drawing.Color.White
-        Me.txtRef.txtReadOnly = False
-        Me.txtRef.TxtSelect = New Integer() {1, 0}
-        '
         'Label5
         '
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Left
@@ -1361,35 +1182,16 @@ Partial Class ChequePanel
         Me.Label5.Text = "Ref/N°"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Panel7
+        'plM
         '
-        Me.Panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel7.Controls.Add(Me.txtMontant)
-        Me.Panel7.Controls.Add(Me.Label3)
-        Me.Panel7.Location = New System.Drawing.Point(36, 237)
-        Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(297, 31)
-        Me.Panel7.TabIndex = 5
-        '
-        'txtMontant
-        '
-        Me.txtMontant.BackColor = System.Drawing.Color.Transparent
-        Me.txtMontant.BorderColor = System.Drawing.Color.Transparent
-        Me.txtMontant.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtMontant.IsNumiric = True
-        Me.txtMontant.Location = New System.Drawing.Point(62, 0)
-        Me.txtMontant.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtMontant.Name = "txtMontant"
-        Me.txtMontant.ShowClearIcon = False
-        Me.txtMontant.ShowSaveIcon = False
-        Me.txtMontant.Size = New System.Drawing.Size(233, 30)
-        Me.txtMontant.StartUp = 2
-        Me.txtMontant.TabIndex = 5
-        Me.txtMontant.TextSize = 8
-        Me.txtMontant.TxtBackColor = True
-        Me.txtMontant.TxtColor = System.Drawing.Color.White
-        Me.txtMontant.txtReadOnly = False
-        Me.txtMontant.TxtSelect = New Integer() {1, 0}
+        Me.plM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.plM.Controls.Add(Me.lbMontant)
+        Me.plM.Controls.Add(Me.txtMontant)
+        Me.plM.Controls.Add(Me.Label3)
+        Me.plM.Location = New System.Drawing.Point(36, 237)
+        Me.plM.Name = "plM"
+        Me.plM.Size = New System.Drawing.Size(297, 31)
+        Me.plM.TabIndex = 5
         '
         'Label3
         '
@@ -1412,26 +1214,6 @@ Partial Class ChequePanel
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(297, 31)
         Me.Panel8.TabIndex = 6
-        '
-        'txtEcheance
-        '
-        Me.txtEcheance.BackColor = System.Drawing.Color.Transparent
-        Me.txtEcheance.BorderColor = System.Drawing.Color.Transparent
-        Me.txtEcheance.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtEcheance.IsNumiric = False
-        Me.txtEcheance.Location = New System.Drawing.Point(62, 0)
-        Me.txtEcheance.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtEcheance.Name = "txtEcheance"
-        Me.txtEcheance.ShowClearIcon = False
-        Me.txtEcheance.ShowSaveIcon = False
-        Me.txtEcheance.Size = New System.Drawing.Size(198, 30)
-        Me.txtEcheance.StartUp = 2
-        Me.txtEcheance.TabIndex = 6
-        Me.txtEcheance.TextSize = 8
-        Me.txtEcheance.TxtBackColor = True
-        Me.txtEcheance.TxtColor = System.Drawing.Color.White
-        Me.txtEcheance.txtReadOnly = False
-        Me.txtEcheance.TxtSelect = New Integer() {1, 0}
         '
         'Button14
         '
@@ -1466,6 +1248,240 @@ Partial Class ChequePanel
         '
         'PrintDoc
         '
+        '
+        'lbMontant
+        '
+        Me.lbMontant.BackColor = System.Drawing.Color.Transparent
+        Me.lbMontant.Dock = System.Windows.Forms.DockStyle.Right
+        Me.lbMontant.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.lbMontant.Font = New System.Drawing.Font("Century Gothic", 13.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbMontant.ForeColor = System.Drawing.Color.Green
+        Me.lbMontant.Location = New System.Drawing.Point(140, 0)
+        Me.lbMontant.Name = "lbMontant"
+        Me.lbMontant.Size = New System.Drawing.Size(155, 29)
+        Me.lbMontant.TabIndex = 6
+        Me.lbMontant.Text = "0.00 dhs"
+        Me.lbMontant.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtClient
+        '
+        Me.txtClient.BackColor = System.Drawing.Color.Transparent
+        Me.txtClient.BorderColor = System.Drawing.Color.Transparent
+        Me.txtClient.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtClient.IsNumiric = False
+        Me.txtClient.Location = New System.Drawing.Point(62, 0)
+        Me.txtClient.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtClient.Name = "txtClient"
+        Me.txtClient.ShowClearIcon = False
+        Me.txtClient.ShowSaveIcon = False
+        Me.txtClient.Size = New System.Drawing.Size(166, 30)
+        Me.txtClient.StartUp = 2
+        Me.txtClient.TabIndex = 2
+        Me.txtClient.TextSize = 8
+        Me.txtClient.TxtBackColor = True
+        Me.txtClient.TxtColor = System.Drawing.Color.White
+        Me.txtClient.txtReadOnly = False
+        Me.txtClient.TxtSelect = New Integer() {1, 0}
+        '
+        'txtBon
+        '
+        Me.txtBon.BackColor = System.Drawing.Color.Transparent
+        Me.txtBon.BorderColor = System.Drawing.Color.Transparent
+        Me.txtBon.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtBon.IsNumiric = False
+        Me.txtBon.Location = New System.Drawing.Point(62, 0)
+        Me.txtBon.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtBon.Name = "txtBon"
+        Me.txtBon.ShowClearIcon = False
+        Me.txtBon.ShowSaveIcon = False
+        Me.txtBon.Size = New System.Drawing.Size(167, 30)
+        Me.txtBon.StartUp = 2
+        Me.txtBon.TabIndex = 3
+        Me.txtBon.TextSize = 8
+        Me.txtBon.TxtBackColor = True
+        Me.txtBon.TxtColor = System.Drawing.Color.White
+        Me.txtBon.txtReadOnly = False
+        Me.txtBon.TxtSelect = New Integer() {1, 0}
+        '
+        'txtRef
+        '
+        Me.txtRef.BackColor = System.Drawing.Color.Transparent
+        Me.txtRef.BorderColor = System.Drawing.Color.Transparent
+        Me.txtRef.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtRef.IsNumiric = False
+        Me.txtRef.Location = New System.Drawing.Point(62, 0)
+        Me.txtRef.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtRef.Name = "txtRef"
+        Me.txtRef.ShowClearIcon = False
+        Me.txtRef.ShowSaveIcon = False
+        Me.txtRef.Size = New System.Drawing.Size(233, 30)
+        Me.txtRef.StartUp = 2
+        Me.txtRef.TabIndex = 7
+        Me.txtRef.TextSize = 8
+        Me.txtRef.TxtBackColor = True
+        Me.txtRef.TxtColor = System.Drawing.Color.White
+        Me.txtRef.txtReadOnly = False
+        Me.txtRef.TxtSelect = New Integer() {1, 0}
+        '
+        'txtMontant
+        '
+        Me.txtMontant.BackColor = System.Drawing.Color.Transparent
+        Me.txtMontant.BorderColor = System.Drawing.Color.Transparent
+        Me.txtMontant.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtMontant.IsNumiric = True
+        Me.txtMontant.Location = New System.Drawing.Point(62, 0)
+        Me.txtMontant.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtMontant.Name = "txtMontant"
+        Me.txtMontant.ShowClearIcon = False
+        Me.txtMontant.ShowSaveIcon = False
+        Me.txtMontant.Size = New System.Drawing.Size(233, 30)
+        Me.txtMontant.StartUp = 2
+        Me.txtMontant.TabIndex = 5
+        Me.txtMontant.TextSize = 8
+        Me.txtMontant.TxtBackColor = True
+        Me.txtMontant.TxtColor = System.Drawing.Color.White
+        Me.txtMontant.txtReadOnly = False
+        Me.txtMontant.TxtSelect = New Integer() {1, 0}
+        '
+        'txtEcheance
+        '
+        Me.txtEcheance.BackColor = System.Drawing.Color.Transparent
+        Me.txtEcheance.BorderColor = System.Drawing.Color.Transparent
+        Me.txtEcheance.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtEcheance.IsNumiric = False
+        Me.txtEcheance.Location = New System.Drawing.Point(62, 0)
+        Me.txtEcheance.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtEcheance.Name = "txtEcheance"
+        Me.txtEcheance.ShowClearIcon = False
+        Me.txtEcheance.ShowSaveIcon = False
+        Me.txtEcheance.Size = New System.Drawing.Size(198, 30)
+        Me.txtEcheance.StartUp = 2
+        Me.txtEcheance.TabIndex = 6
+        Me.txtEcheance.TextSize = 8
+        Me.txtEcheance.TxtBackColor = True
+        Me.txtEcheance.TxtColor = System.Drawing.Color.White
+        Me.txtEcheance.txtReadOnly = False
+        Me.txtEcheance.TxtSelect = New Integer() {1, 0}
+        '
+        'txtC
+        '
+        Me.txtC.BackColor = System.Drawing.Color.Transparent
+        Me.txtC.BorderColor = System.Drawing.Color.Transparent
+        Me.txtC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtC.IsNumiric = False
+        Me.txtC.Location = New System.Drawing.Point(62, 0)
+        Me.txtC.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtC.Name = "txtC"
+        Me.txtC.ShowClearIcon = False
+        Me.txtC.ShowSaveIcon = False
+        Me.txtC.Size = New System.Drawing.Size(119, 30)
+        Me.txtC.StartUp = 2
+        Me.txtC.TabIndex = 2
+        Me.txtC.TextSize = 8
+        Me.txtC.TxtBackColor = True
+        Me.txtC.TxtColor = System.Drawing.Color.White
+        Me.txtC.txtReadOnly = False
+        Me.txtC.TxtSelect = New Integer() {1, 0}
+        '
+        'txtB
+        '
+        Me.txtB.BackColor = System.Drawing.Color.Transparent
+        Me.txtB.BorderColor = System.Drawing.Color.Transparent
+        Me.txtB.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtB.IsNumiric = False
+        Me.txtB.Location = New System.Drawing.Point(62, 0)
+        Me.txtB.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtB.Name = "txtB"
+        Me.txtB.ShowClearIcon = False
+        Me.txtB.ShowSaveIcon = False
+        Me.txtB.Size = New System.Drawing.Size(120, 30)
+        Me.txtB.StartUp = 2
+        Me.txtB.TabIndex = 3
+        Me.txtB.TextSize = 8
+        Me.txtB.TxtBackColor = True
+        Me.txtB.TxtColor = System.Drawing.Color.White
+        Me.txtB.txtReadOnly = False
+        Me.txtB.TxtSelect = New Integer() {1, 0}
+        '
+        'txtM
+        '
+        Me.txtM.BackColor = System.Drawing.Color.Transparent
+        Me.txtM.BorderColor = System.Drawing.Color.Transparent
+        Me.txtM.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtM.IsNumiric = False
+        Me.txtM.Location = New System.Drawing.Point(62, 0)
+        Me.txtM.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtM.Name = "txtM"
+        Me.txtM.ShowClearIcon = False
+        Me.txtM.ShowSaveIcon = False
+        Me.txtM.Size = New System.Drawing.Size(161, 30)
+        Me.txtM.StartUp = 2
+        Me.txtM.TabIndex = 6
+        Me.txtM.TextSize = 8
+        Me.txtM.TxtBackColor = True
+        Me.txtM.TxtColor = System.Drawing.Color.White
+        Me.txtM.txtReadOnly = False
+        Me.txtM.TxtSelect = New Integer() {1, 0}
+        '
+        'txtR
+        '
+        Me.txtR.BackColor = System.Drawing.Color.Transparent
+        Me.txtR.BorderColor = System.Drawing.Color.Transparent
+        Me.txtR.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtR.IsNumiric = False
+        Me.txtR.Location = New System.Drawing.Point(62, 0)
+        Me.txtR.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtR.Name = "txtR"
+        Me.txtR.ShowClearIcon = False
+        Me.txtR.ShowSaveIcon = False
+        Me.txtR.Size = New System.Drawing.Size(161, 30)
+        Me.txtR.StartUp = 2
+        Me.txtR.TabIndex = 6
+        Me.txtR.TextSize = 8
+        Me.txtR.TxtBackColor = True
+        Me.txtR.TxtColor = System.Drawing.Color.White
+        Me.txtR.txtReadOnly = False
+        Me.txtR.TxtSelect = New Integer() {1, 0}
+        '
+        'txtD2
+        '
+        Me.txtD2.BackColor = System.Drawing.Color.Transparent
+        Me.txtD2.BorderColor = System.Drawing.Color.Transparent
+        Me.txtD2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtD2.IsNumiric = False
+        Me.txtD2.Location = New System.Drawing.Point(52, 0)
+        Me.txtD2.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtD2.Name = "txtD2"
+        Me.txtD2.ShowClearIcon = False
+        Me.txtD2.ShowSaveIcon = False
+        Me.txtD2.Size = New System.Drawing.Size(136, 30)
+        Me.txtD2.StartUp = 2
+        Me.txtD2.TabIndex = 5
+        Me.txtD2.TextSize = 8
+        Me.txtD2.TxtBackColor = True
+        Me.txtD2.TxtColor = System.Drawing.Color.White
+        Me.txtD2.txtReadOnly = False
+        Me.txtD2.TxtSelect = New Integer() {1, 0}
+        '
+        'txtD1
+        '
+        Me.txtD1.BackColor = System.Drawing.Color.Transparent
+        Me.txtD1.BorderColor = System.Drawing.Color.Transparent
+        Me.txtD1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtD1.IsNumiric = False
+        Me.txtD1.Location = New System.Drawing.Point(52, 0)
+        Me.txtD1.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtD1.Name = "txtD1"
+        Me.txtD1.ShowClearIcon = False
+        Me.txtD1.ShowSaveIcon = False
+        Me.txtD1.Size = New System.Drawing.Size(136, 30)
+        Me.txtD1.StartUp = 2
+        Me.txtD1.TabIndex = 5
+        Me.txtD1.TextSize = 8
+        Me.txtD1.TxtBackColor = True
+        Me.txtD1.TxtColor = System.Drawing.Color.White
+        Me.txtD1.txtReadOnly = False
+        Me.txtD1.TxtSelect = New Integer() {1, 0}
         '
         'ChequePanel
         '
@@ -1510,7 +1526,7 @@ Partial Class ChequePanel
         Me.Panel10.ResumeLayout(False)
         Me.plMsg.ResumeLayout(False)
         Me.Panel9.ResumeLayout(False)
-        Me.Panel7.ResumeLayout(False)
+        Me.plM.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -1519,7 +1535,7 @@ Partial Class ChequePanel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
-    Friend WithEvents Panel7 As System.Windows.Forms.Panel
+    Friend WithEvents plM As System.Windows.Forms.Panel
     Friend WithEvents txtMontant As Al_Mohasib.TxtBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Panel6 As System.Windows.Forms.Panel
@@ -1613,4 +1629,5 @@ Partial Class ChequePanel
     Friend WithEvents Label25 As System.Windows.Forms.Label
     Friend WithEvents Panel28 As System.Windows.Forms.Panel
     Friend WithEvents Panel29 As System.Windows.Forms.Panel
+    Friend WithEvents lbMontant As System.Windows.Forms.Label
 End Class

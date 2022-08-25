@@ -85,10 +85,6 @@ Partial Class ChoseCompany
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.Panel18 = New System.Windows.Forms.Panel()
-        Me.txtRP = New Al_Mohasib.TxtBox()
-        Me.Button12 = New System.Windows.Forms.Button()
-        Me.Label12 = New System.Windows.Forms.Label()
         Me.Button11 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -117,7 +113,6 @@ Partial Class ChoseCompany
         Me.Panel14.SuspendLayout()
         Me.Panel15.SuspendLayout()
         Me.TabPage4.SuspendLayout()
-        Me.Panel18.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -953,7 +948,6 @@ Partial Class ChoseCompany
         '
         'TabPage4
         '
-        Me.TabPage4.Controls.Add(Me.Panel18)
         Me.TabPage4.Controls.Add(Me.Button11)
         Me.TabPage4.Location = New System.Drawing.Point(4, 29)
         Me.TabPage4.Name = "TabPage4"
@@ -963,75 +957,18 @@ Partial Class ChoseCompany
         Me.TabPage4.Text = "Profit Produit"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
-        'Panel18
-        '
-        Me.Panel18.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel18.Controls.Add(Me.txtRP)
-        Me.Panel18.Controls.Add(Me.Button12)
-        Me.Panel18.Controls.Add(Me.Label12)
-        Me.Panel18.Location = New System.Drawing.Point(63, 17)
-        Me.Panel18.Name = "Panel18"
-        Me.Panel18.Size = New System.Drawing.Size(434, 32)
-        Me.Panel18.TabIndex = 7
-        '
-        'txtRP
-        '
-        Me.txtRP.BackColor = System.Drawing.Color.Transparent
-        Me.txtRP.BorderColor = System.Drawing.Color.Transparent
-        Me.txtRP.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtRP.IsNumiric = False
-        Me.txtRP.Location = New System.Drawing.Point(93, 0)
-        Me.txtRP.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtRP.Name = "txtRP"
-        Me.txtRP.ShowClearIcon = False
-        Me.txtRP.ShowSaveIcon = False
-        Me.txtRP.Size = New System.Drawing.Size(308, 30)
-        Me.txtRP.StartUp = 2
-        Me.txtRP.TabIndex = 11
-        Me.txtRP.TextSize = 8
-        Me.txtRP.TxtBackColor = True
-        Me.txtRP.TxtColor = System.Drawing.Color.White
-        Me.txtRP.txtReadOnly = False
-        Me.txtRP.TxtSelect = New Integer() {1, 0}
-        '
-        'Button12
-        '
-        Me.Button12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Button12.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button12.FlatAppearance.BorderSize = 0
-        Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button12.Image = CType(resources.GetObject("Button12.Image"), System.Drawing.Image)
-        Me.Button12.Location = New System.Drawing.Point(401, 0)
-        Me.Button12.Name = "Button12"
-        Me.Button12.Size = New System.Drawing.Size(31, 30)
-        Me.Button12.TabIndex = 10
-        Me.Button12.UseVisualStyleBackColor = True
-        '
-        'Label12
-        '
-        Me.Label12.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label12.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(0, 0)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(93, 30)
-        Me.Label12.TabIndex = 1
-        Me.Label12.Text = "Ref Articles"
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'Button11
         '
         Me.Button11.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button11.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button11.Image = CType(resources.GetObject("Button11.Image"), System.Drawing.Image)
         Me.Button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button11.Location = New System.Drawing.Point(534, 17)
+        Me.Button11.Location = New System.Drawing.Point(235, 26)
         Me.Button11.Name = "Button11"
         Me.Button11.Padding = New System.Windows.Forms.Padding(6, 0, 0, 0)
-        Me.Button11.Size = New System.Drawing.Size(113, 33)
+        Me.Button11.Size = New System.Drawing.Size(212, 33)
         Me.Button11.TabIndex = 8
-        Me.Button11.Text = "Load ..."
+        Me.Button11.Text = "Rapport Article"
         Me.Button11.UseVisualStyleBackColor = True
         '
         'GroupBox1
@@ -1124,7 +1061,6 @@ Partial Class ChoseCompany
         Me.Panel14.ResumeLayout(False)
         Me.Panel15.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
-        Me.Panel18.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
@@ -1198,9 +1134,5 @@ Partial Class ChoseCompany
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents Button10 As System.Windows.Forms.Button
     Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
-    Friend WithEvents Panel18 As System.Windows.Forms.Panel
-    Friend WithEvents txtRP As Al_Mohasib.TxtBox
-    Friend WithEvents Button12 As System.Windows.Forms.Button
-    Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Button11 As System.Windows.Forms.Button
 End Class

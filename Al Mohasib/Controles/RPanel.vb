@@ -210,7 +210,6 @@
             Return t
         End Get
     End Property
-
     Public ReadOnly Property Total_Remise As Decimal
         Get
             Dim t As Decimal = 0
@@ -231,7 +230,6 @@
             Return t
         End Get
     End Property
-
     Public Property bl As String
         Get
             Return _bl
@@ -250,7 +248,6 @@
             lbDate.Text = value
         End Set
     End Property
-
     Public ReadOnly Property SelectedItem As Items
         Get
             Dim a As Items
@@ -285,13 +282,21 @@
             table.Columns.Add("dsid", GetType(Double))
             table.Columns.Add("remise", GetType(Double))
             table.Columns.Add("id", GetType(Double))
+            table.Columns.Add("xOrder", GetType(Integer))
             Dim a As Items
+            Dim i = 0
             For Each a In Pl.Controls
                 ' Add  rows with those columns filled in the DataTable.
                 table.Rows.Add(a.arid, a.Name, a.Unite, a.Price, a.Bprice, a.Tva,
                                a.Qte, a.Unite, a.Total_ttc, a.cid, a.code,
-                               a.Depot, a.Poid, a.Total_ht, a.Total_tva, a.id, a.Remise, a.id)
+                               a.Depot, a.Poid, a.Total_ht, a.Total_tva, a.id, a.Remise, a.id, i)
+                i += 1
             Next
+
+            If i > 1 Then
+                table.DefaultView.Sort = "xOrder DESC"
+                table = table.DefaultView.ToTable
+            End If
 
             If table.Rows.Count > 0 And Form1.isOrderByIdDesc_items.checked Then
                 table.DefaultView.Sort = "id DESC"
@@ -305,18 +310,31 @@
             Dim t As Decimal = 0
             Dim a As Items
 
+            'If hasManyRemise = True Then
+            '    For Each a In Pl.Controls
+            '        t += a.Profit_ht
+            '    Next
+            'Else
+            '    t = (Total_Ht - (Total_Ht * Remise / 100))
+            '    Dim b As Decimal = 0
+            '    For Each a In Pl.Controls
+            '        b += (a.Qte * a.Bprice) / ((100 + a.Tva) / 100)
+            '    Next
+
+            '    t = t - b
+            'End If
+
             If hasManyRemise = True Then
                 For Each a In Pl.Controls
                     t += a.Profit_ht
                 Next
             Else
-                t = (Total_Ht - (Total_Ht * Remise / 100))
                 Dim b As Decimal = 0
                 For Each a In Pl.Controls
-                    b += (a.Qte * a.Bprice) / ((100 + a.Tva) / 100)
+                    b += a.Qte * a.Bprice
                 Next
 
-                t = t - b
+                t = Total_TTC - b
             End If
             Return t
         End Get
@@ -458,7 +476,7 @@
     End Property
 
     'Subs & functions
-    Public Sub AddItems(ByVal R As ALMohassinDBDataSet.ArticleRow, ByVal id As Integer, ByVal isSell As Boolean)
+    Public Sub AddItems(ByVal R As ALMohassinDBDataSet.ArticleRow, ByVal id As Integer, ByVal isSell As Boolean) 'old and stable one
         Try
             'Never add charges items to selling items
 
@@ -476,7 +494,7 @@
                 'If Num > 0 Then
                 '    ap.Price = R.bprice + (R.bprice * Num / 100)
                 'End If
-                 
+
                 If Num > 0 Then
                     'Select Case Form1.RPl.Num
                     '    Case 2
@@ -489,7 +507,7 @@
                     '        ap.Price = R.sprice
                     'End Select
                 End If
-                 
+
             Else
                 ap.Price = R.bprice
             End If
@@ -510,7 +528,7 @@
 
             ap.LbTva.Visible = Form1.CbArticleRemise.Visible
 
-            If Form1.cbBaseOnStartedRemise.checked Then ap.Remise = R.poid
+            If Form1.cbBaseOnStartedRemise.Checked Then ap.Remise = R.poid
 
             ''''''''
             Dim qte As Double = CP.Value
@@ -556,7 +574,118 @@
             MsgBox(ex.Message)
         End Try
     End Sub
-    Public Sub AddItems(ByVal D As DataTable, ByVal isSell As Boolean)
+    Public Sub AddItems(ByVal R As ALMohassinDBDataSet.ArticleRow)
+        Try
+
+            Dim ap As New Items
+            ap.Dock = DockStyle.Top
+            ap.Index = Pl.Controls.Count
+            ap.Name = R.name
+            ap.Unite = R.unite
+            ap.Price = R.sprice
+
+            ap.Bprice = R.bprice
+            ap.BgColor = Color.White
+            ap.SideColor = Color.Moccasin
+            ap.id = CInt(R.arid + Pl.Controls.Count) * -1
+            ap.arid = R.arid
+            ap.Tva = R.tva
+            ap.cid = R.cid
+            ap.code = R.codebar
+            ap.Poid = R.poid
+            ap.Depot = R.depot
+            ap.Remise = 0
+
+            ap.LbTva.Visible = Form1.CbArticleRemise.Visible
+
+            If Form1.cbBaseOnStartedRemise.Checked Then ap.Remise = R.poid
+
+            ''''''''
+            If Form1.CbQteStk.Checked Then
+                Using c As SubClass = New SubClass
+                    ap.ColorStock = c.CheckForMinStock(ap.arid, ap.Depot, CP.Value)
+                    ap.Stock = c.getStock(ap.arid, ap.Depot, CP.Value)
+                End Using
+            End If
+
+
+            ap.Qte = CP.Value
+
+            'ap.IsArabic = True
+
+            AddHandler ap.Click, AddressOf ClearPanel
+            AddHandler ap.ItemDoubleClick, AddressOf Item_Doubleclick
+            AddHandler ap.Item_DoubleClick, AddressOf Item_ShowBlocModif
+            AddHandler ap.RemiseChanged, AddressOf UpdateValue
+
+
+            Pl.Controls.Add(ap)
+            ap.BringToFront()
+
+            If Form1.CbBlocModArt.Checked Then
+                Item_ShowBlocModif(ap, Nothing)
+                CP.ActiveQte(False)
+            Else
+                ap.IsSelected = True
+                Item_Doubleclick(ap, Nothing)
+            End If
+
+            Pl.ScrollControlIntoView(ap)
+            UpdateValue()
+            CP.Value = 0
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Public Sub AddItems_F6_Product(ByVal pr As Double)
+        Try
+
+            Dim ap As New Items
+            ap.Dock = DockStyle.Top
+            ap.Index = Pl.Controls.Count
+            ap.Name = "Article"
+            ap.Unite = "U"
+            ap.Price = pr
+
+            ap.Bprice = pr
+            ap.BgColor = Color.White
+            ap.SideColor = Color.Moccasin
+            ap.id = New Random().Next * -1
+            ap.arid = 0
+            ap.Tva = 20
+            ap.cid = 0
+            ap.code = "art"
+            ap.Poid = 0
+            ap.Depot = 0
+            ap.Remise = 0
+            ap.Qte = 1
+
+            'ap.IsArabic = True
+
+            AddHandler ap.Click, AddressOf ClearPanel
+            AddHandler ap.ItemDoubleClick, AddressOf Item_Doubleclick
+            AddHandler ap.Item_DoubleClick, AddressOf Item_ShowBlocModif
+            AddHandler ap.RemiseChanged, AddressOf UpdateValue
+
+            ap.SendToBack()
+            Pl.Controls.Add(ap)
+
+            If Form1.CbBlocModArt.Checked Then
+                Item_ShowBlocModif(ap, Nothing)
+                CP.ActiveQte(False)
+            Else
+                ap.IsSelected = True
+                Item_Doubleclick(ap, Nothing)
+            End If
+
+            Pl.ScrollControlIntoView(ap)
+            UpdateValue()
+            CP.Value = 0
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Public Sub AddItems__old(ByVal D As DataTable, ByVal isSell As Boolean)
         Try
             For i As Integer = 0 To D.Rows.Count - 1
                 Dim RM As Double = CDbl(D.Rows(i).Item("poid"))
@@ -581,6 +710,67 @@
                     AddItemDetails(D, i, RM)
                 End If
 
+            Next
+            UpdateValue()
+            CP.Value = 0
+            CP.ActiveQte(False)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Public Sub AddItems(ByVal D As DataTable, ByVal isSell As Boolean)
+        Try
+            For i As Integer = 0 To D.Rows.Count - 1
+                Dim RM As Double = CDbl(D.Rows(i).Item("poid"))
+                Dim ap As New Items
+                Dim qte = D.Rows(i).Item("qte")
+
+                ap.Dock = DockStyle.Top
+                ap.Index = Pl.Controls.Count
+                ap.Name = D.Rows(i).Item("name")
+                ap.Unite = D.Rows(i).Item("unit")
+                ap.Price = D.Rows(i).Item("price")
+                ap.Qte = D.Rows(i).Item("qte")
+                ap.Bprice = D.Rows(i).Item("bprice")
+                ap.id = D.Rows(i).Item(0)
+                ap.arid = D.Rows(i).Item("arid")
+                ap.Tva = D.Rows(i).Item("tva")
+                ap.cid = D.Rows(i).Item("cid")
+                ap.Depot = D.Rows(i).Item("depot")
+                ap.code = D.Rows(i).Item("code")
+
+                ap.Remise = RM
+
+                If qte < 0 Then
+                    ap.isRetour = True
+                    ap.Qte = qte * -1
+                Else
+                    ap.Qte = qte
+                End If
+
+                ap.BgColor = Color.White
+                ap.SideColor = Color.Moccasin
+
+                ap.LbTva.Visible = Form1.CbArticleRemise.Visible
+                ''''''''
+                If Form1.CbQteStk.Checked Then
+                    Using c As SubClass = New SubClass
+                        ap.ColorStock = c.CheckForMinStock(ap.arid, ap.Depot, ap.Qte)
+                        ap.Stock = c.getStock(ap.arid, ap.Depot, ap.Qte)
+                    End Using
+                End If
+
+
+                AddHandler ap.Click, AddressOf ClearPanel
+                AddHandler ap.ItemDoubleClick, AddressOf Item_Doubleclick
+                AddHandler ap.Item_DoubleClick, AddressOf Item_ShowBlocModif
+                AddHandler ap.ItemValueChanged, AddressOf Item_Value_changed
+                AddHandler ap.RemiseChanged, AddressOf UpdateValue
+
+
+                Pl.Controls.Add(ap)
+                ap.BringToFront()
+                ap = Nothing
             Next
             UpdateValue()
             CP.Value = 0
@@ -751,10 +941,13 @@
                     Item_Doubleclick(a, Nothing)
                 End If
 
-                Using c As SubClass = New SubClass
-                    a.ColorStock = c.CheckForMinStock(a.arid, a.Depot, a.Qte)
-                    a.Stock = c.getStock(a.arid, a.Depot, a.Qte)
-                End Using
+                If Form1.CbQteStk.Checked Then
+                    Using c As SubClass = New SubClass
+                        a.ColorStock = c.CheckForMinStock(a.arid, a.Depot, a.Qte)
+                        a.Stock = c.getStock(a.arid, a.Depot, a.Qte)
+                    End Using
+                End If
+
                 Exit For
             End If
         Next
@@ -773,10 +966,13 @@
                 UpdateValue()
                 CP.Value = 0
 
-                Using c As SubClass = New SubClass
-                    a.ColorStock = c.CheckForMinStock(a.arid, a.Depot, a.Qte)
-                    a.Stock = c.getStock(a.arid, a.Depot, a.Qte)
-                End Using
+                If Form1.CbQteStk.Checked Then
+                    Using c As SubClass = New SubClass
+                        a.ColorStock = c.CheckForMinStock(a.arid, a.Depot, a.Qte)
+                        a.Stock = c.getStock(a.arid, a.Depot, a.Qte)
+                    End Using
+                End If
+
                 Exit For
             End If
         Next
@@ -1195,18 +1391,22 @@
 
 
 
+        If isSell Then
+            Dim clc As New ChoseLivreur
+            If clc.ShowDialog = DialogResult.OK Then
+                Try
+                    bl = clc.DataGridView1.SelectedRows(0).Cells(0).Value
+                    ' bl = InputBox("Infos =  ")
+                Catch ex As Exception
+                    bl = "---"
+                End Try
 
-        Dim clc As New ChoseLivreur
-        If clc.ShowDialog = DialogResult.OK Then
-            Try
-                bl = clc.DataGridView1.SelectedRows(0).Cells(0).Value
-                ' bl = InputBox("Infos =  ")
-            Catch ex As Exception
-                bl = "---"
-            End Try
-
-            If clc.Button1.Tag = 2 Then bl = "-"
+                If clc.Button1.Tag = 2 Then bl = "-"
+            End If
+        Else
+            bl = InputBox("Infos / Ref :", "BON D'ACHATS ..", bl)
         End If
+
             RaiseEvent SetDetailFacture()
     End Sub
 

@@ -84,15 +84,11 @@
                     Dim rest As Decimal = CDec(dt.Rows(i).Item("total").ToString - CDec(dt.Rows(i).Item("avance").ToString))
 
                     DG.Rows.Add(dt.Rows(i).Item(0).ToString,
-                     dt.Rows(i).Item("clid").ToString, dt.Rows(i).Item("name").ToString,
-                   String.Format("{0:n}", CDec(dt.Rows(i).Item("total").ToString)),
-                     String.Format("{0:n}", CDec(dt.Rows(i).Item("avance").ToString)),
-                     String.Format("{0:n}", rest),
-                     CDate(dt.Rows(i).Item("date")),
-                     dt.Rows(i).Item("adresse").ToString, dt.Rows(i).Item("writer").ToString,
-                     dt.Rows(i).Item("payed").ToString, dt.Rows(i).Item("remise").ToString,
-                   dt.Rows(i).Item("bl").ToString, dt.Rows(i).Item("beInFacture").ToString,
-                   dt.Rows(i).Item("tp").ToString)
+                     dt.Rows(i).Item("clid").ToString, dt.Rows(i).Item("date").ToString,
+                     dt.Rows(i).Item("name").ToString,
+                   String.Format("{0:n2}", CDec(dt.Rows(i).Item("total").ToString)),
+                     String.Format("{0:n2}", CDec(dt.Rows(i).Item("avance").ToString)),
+                     String.Format("{0:n2}", rest))
 
 
                 Next

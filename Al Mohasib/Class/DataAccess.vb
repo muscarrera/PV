@@ -473,14 +473,14 @@ Public Class DataAccess
             Dim p As Integer = 1
             For Each kvp As KeyValuePair(Of String, Object) In params
                 If p > 1 Then q &= ", "
-                q &= "[" & kvp.Key & "] =:" & p
+                q &= kvp.Key & " :" & p
                 p += 1
             Next
             Dim pp As Integer = p
             q &= " WHERE "
             For Each kvp As KeyValuePair(Of String, Object) In where
                 If p > pp Then q &= " AND "
-                q &= kvp.Key & ":" & p
+                q &= kvp.Key & " :" & p
                 p += 1
             Next
         End If

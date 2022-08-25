@@ -812,25 +812,30 @@
     Dim dt_Art As New DataTable
 
     Private Sub Button11_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button11.Click
-       
-        Dim BTA As New ALMohassinDBDataSetTableAdapters.TracabilityINTableAdapter
 
-        dt_in = BTA.GetDataByRapportDala3_Achat("%" & txtRP.text & "%")
-        dt_Out = BTA.GetDataByRapportDal3_Vente("%" & txtRP.text & "%")
+        Dim rp As New ProfitProduitRapport
+        If rp.ShowDialog = Windows.Forms.DialogResult.OK Then
 
+        End If
 
+        'Dim BTA As New ALMohassinDBDataSetTableAdapters.TracabilityINTableAdapter
 
-        Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-         
-        Dim str As String = "%" & txtRP.text & "%"
-        dt_Art = artta.GetDatalikecodebar(str)
+        'dt_in = BTA.GetDataByRapportDala3_Achat("%" & txtRP.text & "%")
+        'dt_Out = BTA.GetDataByRapportDal3_Vente("%" & txtRP.text & "%")
 
 
 
+        'Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
 
-            filtreTheData_RapportDala3()
+        'Dim str As String = "%" & txtRP.text & "%"
+        'dt_Art = artta.GetDatalikecodebar(str)
 
-            STR_TITLE = "Rapport Article :  " & txtRP.text
+
+
+
+        '    filtreTheData_RapportDala3()
+
+        '    STR_TITLE = "Rapport Article :  " & txtRP.text
     End Sub
     Private Sub filtreTheData_RapportDala3()
 

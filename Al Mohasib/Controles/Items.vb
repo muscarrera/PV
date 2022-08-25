@@ -107,7 +107,13 @@
             Return t
         End Get
     End Property
-
+    Public ReadOnly Property Profit_ttc() As Decimal
+        Get
+            Dim t As Decimal = Qte * Bprice
+            t = Total_ttc - t
+            Return t
+        End Get
+    End Property
     Shadows Property Name() As String
         Get
             Return _name

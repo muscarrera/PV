@@ -493,29 +493,30 @@ Public Class Devis
             If Field <> "qte" Then
                 clc.desc = i.Price & " Dhs"
             End If
-            Dim tableName As String = "DetailsFacture"
-            If btswitsh.Tag = 0 Then
-                tableName = "DetailsBon"
-            End If
+          
             If clc.ShowDialog = DialogResult.OK Then
-                Using c As DataAccess = New DataAccess(conString, True)
+                Dim qte As Double = CDbl(clc.CPanel1.Value)
 
-                    Dim params As New Dictionary(Of String, Object)
-                    Dim qte As Double = CDbl(clc.CPanel1.Value)
-                    Dim oldqte As Double = CDbl(i.Qte)
+                If i.id > 0 Then
+                    Using c As DataAccess = New DataAccess(conString, True)
+                        Dim tableName As String = "DetailsFacture"
+                        If btswitsh.Tag = 0 Then tableName = "DetailsBon"
 
-                    params.Add(Field, qte)
-                    Dim where As New Dictionary(Of String, Object)
-                    If btswitsh.Tag = 1 Then
-                        where.Add("id", CInt(i.id))
-                    Else
-                        where.Add("bid", CInt(i.id))
-                    End If
+                        Dim params As New Dictionary(Of String, Object)
 
-                    If c.UpdateRecord(tableName, params, where) Then
-                        RPl.ChangedItemsQte(i.id, qte, Field)
-                    End If
-                End Using
+                        params.Add(Field, qte)
+                        Dim where As New Dictionary(Of String, Object)
+                        If btswitsh.Tag = 1 Then
+                            where.Add("id", CInt(i.id))
+                        Else
+                            where.Add("bid", CInt(i.id))
+                        End If
+
+                         c.UpdateRecord(tableName, params, where)  
+                    End Using
+                End If
+
+                RPl.ChangedItemsQte(i.id, qte, Field)
             End If
         Catch ex As Exception
 
@@ -525,7 +526,7 @@ Public Class Devis
 
         Dim tableName As String = "DetailsFacture"
         Dim FC = "id"
-        Dim isS As Boolean = CBool(Form1.RPl.isSell)
+        Dim isS As Boolean = CBool(RPl.isSell)
         If isS = False Then
             tableName = "DetailsBon"
             FC = "bid"
