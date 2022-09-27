@@ -26,211 +26,208 @@
             MsgBox("well done")
         End Using
     End Sub
-    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
-        Try
-            Dim ta As New ALMohassinDBDataSetTableAdapters.DetailstockTableAdapter
-            Dim ta2 As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
-            Dim ta3 As New ALMohassinDBDataSetTableAdapters.DetailsBonTableAdapter
-            DGVS.Rows.Clear()
-
-    
-            '''''''''''''''''''''''''' ---------------------------- details facture 
-
-            Dim dt22 = ta2.GetDataBydate(Now.Date.AddDays(1), Now.Date.AddDays(-1), cbdepot.SelectedValue)
-            For j As Integer = 0 To dt22.Rows.Count - 1
+    'Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
+    '    Try
+    '        Dim ta As New ALMohassinDBDataSetTableAdapters.DetailstockTableAdapter
+    '        Dim ta2 As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
+    '        Dim ta3 As New ALMohassinDBDataSetTableAdapters.DetailsBonTableAdapter
+    '        DGVS.Rows.Clear()
 
 
-                Dim qteout As Double = 0
-                qteout = dt22.Rows(j).Item("qte")
+    '        '''''''''''''''''''''''''' ---------------------------- details facture 
 
-                'search for the barcode in dgv2
-                Dim i As Integer = 0
-                Dim itemLOC As Integer = -1
-                For i = 0 To DGVS.Rows.Count - 1
-                    If dt22.Rows(j).Item("name") = DGVS.Rows(i).Cells(2).Value Then
-                        'item found
-                        itemLOC = i
-                        Exit For
-                    End If
-                Next
-
-                'if item no found 
-                If itemLOC = -1 Then
-                    DGVS.Rows.Add("", dt22.Rows(j).Item("code"), dt22.Rows(j).Item("name"), dt22.Rows(j).Item("unit"), 0, qteout, 0 - qteout, "", dt22.Rows(j).Item("depot"))
-
-                Else
-                    ' if already exist increase its count
-                    Dim qte As Double = 0
-
-                    qte = DGVS.Rows(itemLOC).Cells(5).Value + qteout
-                    DGVS.Rows(itemLOC).Cells(5).Value = qte
-                    DGVS.Rows(itemLOC).Cells(6).Value = DGVS.Rows(itemLOC).Cells(4).Value - qte
-
-                End If
-            Next
+    '        Dim dt22 = ta2.GetDataBydate(Now.Date.AddDays(1), Now.Date.AddDays(-1), cbdepot.SelectedValue)
+    '        For j As Integer = 0 To dt22.Rows.Count - 1
 
 
+    '            Dim qteout As Double = 0
+    '            qteout = dt22.Rows(j).Item("qte")
 
+    '            'search for the barcode in dgv2
+    '            Dim i As Integer = 0
+    '            Dim itemLOC As Integer = -1
+    '            For i = 0 To DGVS.Rows.Count - 1
+    '                If dt22.Rows(j).Item("name") = DGVS.Rows(i).Cells(2).Value Then
+    '                    'item found
+    '                    itemLOC = i
+    '                    Exit For
+    '                End If
+    '            Next
 
-            '''''''''''''''''''''''''' ---------------------------- details bon
+    '            'if item no found 
+    '            If itemLOC = -1 Then
+    '                DGVS.Rows.Add("", dt22.Rows(j).Item("code"), dt22.Rows(j).Item("name"), dt22.Rows(j).Item("unit"), 0, qteout, 0 - qteout, "", dt22.Rows(j).Item("depot"))
 
+    '            Else
+    '                ' if already exist increase its count
+    '                Dim qte As Double = 0
 
-            Dim dt33 = ta3.GetDataBydate(Now.Date.AddDays(1), Now.Date.AddDays(-1), cbdepot.SelectedValue)
-            For j As Integer = 0 To dt33.Rows.Count - 1
+    '                qte = DGVS.Rows(itemLOC).Cells(5).Value + qteout
+    '                DGVS.Rows(itemLOC).Cells(5).Value = qte
+    '                DGVS.Rows(itemLOC).Cells(6).Value = DGVS.Rows(itemLOC).Cells(4).Value - qte
 
-                Dim qtein As Double = 0
-                qtein = dt33.Rows(j).Item("qte")
-
-                'search for the barcode in dgv2
-                Dim i As Integer = 0
-                Dim itemLOC As Integer = -1
-                For i = 0 To DGVS.Rows.Count - 1
-                    If dt33.Rows(j).Item("name") = DGVS.Rows(i).Cells(2).Value Then
-                        'item found
-                        itemLOC = i
-                        Exit For
-                    End If
-                Next
-
-                'if item no found 
-                If itemLOC = -1 Then
-                    DGVS.Rows.Add("", dt33.Rows(j).Item("code"), dt33.Rows(j).Item("name"), dt33.Rows(j).Item("unit"), qtein, 0, qtein, "", dt33.Rows(j).Item("depot"))
-
-                Else
-                    ' if already exist increase its count
-                    Dim qte As Double = 0
-
-
-                    qte = DGVS.Rows(itemLOC).Cells(4).Value + qtein
-                    DGVS.Rows(itemLOC).Cells(4).Value = qte
-                    DGVS.Rows(itemLOC).Cells(6).Value = qte - DGVS.Rows(itemLOC).Cells(5).Value
-
-
-                End If
-            Next
+    '            End If
+    '        Next
 
 
 
-            '''''''''''''''''''''--------------------------------------------
 
-            For i = 0 To DGVS.Rows.Count - 1
-                Dim sta As New ALMohassinDBDataSetTableAdapters.DetailstockTableAdapter
-                Dim sdt = sta.GetDataByname(DGVS.Rows(i).Cells(2).Value, DGVS.Rows(i).Cells(8).Value)
-                DGVS.Rows(i).Cells(7).Value = sdt.Rows(0).Item("qte")
-                DGVS.Rows(i).Cells(0).Value = sdt.Rows(0).Item(0)
-            Next
+    '        '''''''''''''''''''''''''' ---------------------------- details bon
 
 
+    '        Dim dt33 = ta3.GetDataBydate(Now.Date.AddDays(1), Now.Date.AddDays(-1), cbdepot.SelectedValue)
+    '        For j As Integer = 0 To dt33.Rows.Count - 1
 
-            TextBox1.Text = "1"
-        Catch ex As Exception
-            TextBox1.Text = "0"
-        End Try
+    '            Dim qtein As Double = 0
+    '            qtein = dt33.Rows(j).Item("qte")
 
-    End Sub
+    '            'search for the barcode in dgv2
+    '            Dim i As Integer = 0
+    '            Dim itemLOC As Integer = -1
+    '            For i = 0 To DGVS.Rows.Count - 1
+    '                If dt33.Rows(j).Item("name") = DGVS.Rows(i).Cells(2).Value Then
+    '                    'item found
+    '                    itemLOC = i
+    '                    Exit For
+    '                End If
+    '            Next
+
+    '            'if item no found 
+    '            If itemLOC = -1 Then
+    '                DGVS.Rows.Add("", dt33.Rows(j).Item("code"), dt33.Rows(j).Item("name"), dt33.Rows(j).Item("unit"), qtein, 0, qtein, "", dt33.Rows(j).Item("depot"))
+
+    '            Else
+    '                ' if already exist increase its count
+    '                Dim qte As Double = 0
+
+
+    '                qte = DGVS.Rows(itemLOC).Cells(4).Value + qtein
+    '                DGVS.Rows(itemLOC).Cells(4).Value = qte
+    '                DGVS.Rows(itemLOC).Cells(6).Value = qte - DGVS.Rows(itemLOC).Cells(5).Value
+
+
+    '            End If
+    '        Next
+
+
+
+    '        '''''''''''''''''''''--------------------------------------------
+
+    '        For i = 0 To DGVS.Rows.Count - 1
+    '            Dim sta As New ALMohassinDBDataSetTableAdapters.DetailstockTableAdapter
+    '            Dim sdt = sta.GetDataByname(DGVS.Rows(i).Cells(2).Value, DGVS.Rows(i).Cells(8).Value)
+    '            DGVS.Rows(i).Cells(7).Value = sdt.Rows(0).Item("qte")
+    '            DGVS.Rows(i).Cells(0).Value = sdt.Rows(0).Item(0)
+    '        Next
+
+
+
+    '        TextBox1.Text = "1"
+    '    Catch ex As Exception
+    '        TextBox1.Text = "0"
+    '    End Try
+
+    'End Sub
 
     Private Sub GestionStock_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'ALMohassinDBDataSet.company' table. You can move, or remove it, as needed.
-        Me.CompanyTableAdapter.Fill(Me.ALMohassinDBDataSet.company)
-        'TODO: This line of code loads data into the 'ALMohassinDBDataSet.Depot' table. You can move, or remove it, as needed.
-        Me.DepotTableAdapter.Fill(Me.ALMohassinDBDataSet.Depot)
+   
 
     End Sub
 
-    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
-        Try
+    'Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+    '    Try
 
-           If My.Computer.Keyboard.CtrlKeyDown Then
-                ChangeValue()
-                Exit Sub
-            End If
+    '       If My.Computer.Keyboard.CtrlKeyDown Then
+    '            ChangeValue()
+    '            Exit Sub
+    '        End If
 
-            'Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsStockTableAdapter
-            Dim ta2 As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
-            Dim ta3 As New ALMohassinDBDataSetTableAdapters.DetailsBonTableAdapter
-            Dim dt1 As Date = DTP1.Text
-            Dim dt2 As Date = DTP2.Text
-            DGVS.Rows.Clear()
+    '        'Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsStockTableAdapter
+    '        Dim ta2 As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
+    '        Dim ta3 As New ALMohassinDBDataSetTableAdapters.DetailsBonTableAdapter
+    '        Dim dt1 As Date = DTP1.Text
+    '        Dim dt2 As Date = DTP2.Text
+    '        DGVS.Rows.Clear()
 
-            Dim dt22 = ta2.GetDataBydate(dt2.AddDays(1), dt1.AddDays(-1), cbdepot.SelectedValue)
-            For j As Integer = 0 To dt22.Rows.Count - 1
-                Dim qteout As Double = 0
-                qteout = dt22.Rows(j).Item("qte")
+    '        Dim dt22 = ta2.GetDataBydate(dt2.AddDays(1), dt1.AddDays(-1), cbdepot.SelectedValue)
+    '        For j As Integer = 0 To dt22.Rows.Count - 1
+    '            Dim qteout As Double = 0
+    '            qteout = dt22.Rows(j).Item("qte")
 
-                'search for the barcode in dgv2
-                Dim i As Integer = 0
-                Dim itemLOC As Integer = -1
-                For i = 0 To DGVS.Rows.Count - 1
-                    If dt22.Rows(j).Item("name") = DGVS.Rows(i).Cells(2).Value Then
-                        'item found
-                        itemLOC = i
-                        Exit For
-                    End If
-                Next
+    '            'search for the barcode in dgv2
+    '            Dim i As Integer = 0
+    '            Dim itemLOC As Integer = -1
+    '            For i = 0 To DGVS.Rows.Count - 1
+    '                If dt22.Rows(j).Item("name") = DGVS.Rows(i).Cells(2).Value Then
+    '                    'item found
+    '                    itemLOC = i
+    '                    Exit For
+    '                End If
+    '            Next
 
-                'if item no found 
-                If itemLOC = -1 Then
-                    DGVS.Rows.Add("", dt22.Rows(j).Item("code"), dt22.Rows(j).Item("name"), dt22.Rows(j).Item("unit"), 0, qteout, 0 - qteout, "", dt22.Rows(j).Item("depot"), dt22.Rows(j).Item("arid"), dt22.Rows(j).Item("cid"))
+    '            'if item no found 
+    '            If itemLOC = -1 Then
+    '                DGVS.Rows.Add("", dt22.Rows(j).Item("code"), dt22.Rows(j).Item("name"), dt22.Rows(j).Item("unit"), 0, qteout, 0 - qteout, "", dt22.Rows(j).Item("depot"), dt22.Rows(j).Item("arid"), dt22.Rows(j).Item("cid"))
 
-                Else
-                    ' if already exist increase its count
-                    Dim qte As Double = 0
+    '            Else
+    '                ' if already exist increase its count
+    '                Dim qte As Double = 0
 
-                    qte = DGVS.Rows(itemLOC).Cells(5).Value + qteout
-                    DGVS.Rows(itemLOC).Cells(5).Value = qte
-                    DGVS.Rows(itemLOC).Cells(6).Value = DGVS.Rows(itemLOC).Cells(4).Value - qte
+    '                qte = DGVS.Rows(itemLOC).Cells(5).Value + qteout
+    '                DGVS.Rows(itemLOC).Cells(5).Value = qte
+    '                DGVS.Rows(itemLOC).Cells(6).Value = DGVS.Rows(itemLOC).Cells(4).Value - qte
 
-                End If
-            Next
+    '            End If
+    '        Next
 
-            '''''''''''''''''''''''''' ---------------------------- details bon
-            Dim dt33 = ta3.GetDataBydate(dt2.AddDays(1), dt1.AddDays(-1), cbdepot.SelectedValue)
-            For j As Integer = 0 To dt33.Rows.Count - 1
+    '        '''''''''''''''''''''''''' ---------------------------- details bon
+    '        Dim dt33 = ta3.GetDataBydate(dt2.AddDays(1), dt1.AddDays(-1), cbdepot.SelectedValue)
+    '        For j As Integer = 0 To dt33.Rows.Count - 1
 
-                Dim qtein As Double = 0
-                qtein = dt33.Rows(j).Item("qte")
+    '            Dim qtein As Double = 0
+    '            qtein = dt33.Rows(j).Item("qte")
 
-                'search for the barcode in dgv2
-                Dim i As Integer = 0
-                Dim itemLOC As Integer = -1
-                For i = 0 To DGVS.Rows.Count - 1
-                    If dt33.Rows(j).Item("name") = DGVS.Rows(i).Cells(2).Value Then
-                        'item found
-                        itemLOC = i
-                        Exit For
-                    End If
-                Next
+    '            'search for the barcode in dgv2
+    '            Dim i As Integer = 0
+    '            Dim itemLOC As Integer = -1
+    '            For i = 0 To DGVS.Rows.Count - 1
+    '                If dt33.Rows(j).Item("name") = DGVS.Rows(i).Cells(2).Value Then
+    '                    'item found
+    '                    itemLOC = i
+    '                    Exit For
+    '                End If
+    '            Next
 
-                'if item no found 
-                If itemLOC = -1 Then
-                    DGVS.Rows.Add("", dt33.Rows(j).Item("code"), dt33.Rows(j).Item("name"),
-                                  dt33.Rows(j).Item("unit"), qtein, 0, qtein, "", dt33.Rows(j).Item("depot"),
-                                  dt33.Rows(j).Item("arid"), dt33.Rows(j).Item("cid"))
+    '            'if item no found 
+    '            If itemLOC = -1 Then
+    '                DGVS.Rows.Add("", dt33.Rows(j).Item("code"), dt33.Rows(j).Item("name"),
+    '                              dt33.Rows(j).Item("unit"), qtein, 0, qtein, "", dt33.Rows(j).Item("depot"),
+    '                              dt33.Rows(j).Item("arid"), dt33.Rows(j).Item("cid"))
 
-                Else
-                    ' if already exist increase its count
-                    Dim qte As Double = 0
+    '            Else
+    '                ' if already exist increase its count
+    '                Dim qte As Double = 0
 
-                    qte = DGVS.Rows(itemLOC).Cells(4).Value + qtein
-                    DGVS.Rows(itemLOC).Cells(4).Value = qte
-                    DGVS.Rows(itemLOC).Cells(6).Value = qte - DGVS.Rows(itemLOC).Cells(5).Value
-                End If
-            Next
+    '                qte = DGVS.Rows(itemLOC).Cells(4).Value + qtein
+    '                DGVS.Rows(itemLOC).Cells(4).Value = qte
+    '                DGVS.Rows(itemLOC).Cells(6).Value = qte - DGVS.Rows(itemLOC).Cells(5).Value
+    '            End If
+    '        Next
 
-            '''''''''''''''''''''--------------------------------------------
-            For i = 0 To DGVS.Rows.Count - 1
-                Dim sta As New ALMohassinDBDataSetTableAdapters.DetailstockTableAdapter
-                Dim sdt = sta.GetDataByids(DGVS.Rows(i).Cells(9).Value, DGVS.Rows(i).Cells(8).Value)
-                DGVS.Rows(i).Cells(7).Value = sdt.Rows(0).Item("qte")
-                DGVS.Rows(i).Cells(0).Value = sdt.Rows(0).Item(0)
-            Next
+    '        '''''''''''''''''''''--------------------------------------------
+    '        'For i = 0 To DGVS.Rows.Count - 1
+    '        '    Dim sta As New ALMohassinDBDataSetTableAdapters.DetailstockTableAdapter
+    '        '    Dim sdt = sta.GetDataByids(DGVS.Rows(i).Cells(9).Value, DGVS.Rows(i).Cells(8).Value)
+    '        '    DGVS.Rows(i).Cells(7).Value = sdt.Rows(0).Item("qte")
+    '        '    DGVS.Rows(i).Cells(0).Value = sdt.Rows(0).Item(0)
+    '        'Next
 
-            TextBox1.Text = "2"
-        Catch ex As Exception
-            TextBox1.Text = "0"
-        End Try
+    '        TextBox1.Text = "2"
+    '    Catch ex As Exception
+    '        TextBox1.Text = "0"
+    '    End Try
 
-    End Sub
+    'End Sub
 
     Public Sub Editstok(ByVal Qten As String, ByVal oldqte As String, ByVal qte1 As String, ByVal qte2 As String, ByVal d As Double)
         Dim MyCon As OleDb.OleDbConnection = Nothing
@@ -278,142 +275,142 @@
         End Try
     End Sub
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
-        Try
-            Dim edtstk As New EditStock
-            If TextBox1.Text = "0" Then
-                Exit Sub
-                ' 'search for today
-            ElseIf TextBox1.Text = "1" Then
-                edtstk.TextBox1.Tag = DGVS.SelectedRows(0).Cells(4).Value
-                Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsStockTableAdapter
-                Dim dt = ta.GetDataforedit(Now.Date.AddDays(1), Now.Date.AddDays(-1), cbdepot.SelectedValue, DGVS.SelectedRows(0).Cells(0).Value, "IN")
-                edtstk.DGVS.Rows.Clear()
-                Dim comta As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
-                Dim dpta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
+        'Try
+        '    Dim edtstk As New EditStock
+        '    If TextBox1.Text = "0" Then
+        '        Exit Sub
+        '        ' 'search for today
+        '    ElseIf TextBox1.Text = "1" Then
+        '        edtstk.TextBox1.Tag = DGVS.SelectedRows(0).Cells(4).Value
+        '        Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsStockTableAdapter
+        '        Dim dt = ta.GetDataforedit(Now.Date.AddDays(1), Now.Date.AddDays(-1), cbdepot.SelectedValue, DGVS.SelectedRows(0).Cells(0).Value, "IN")
+        '        edtstk.DGVS.Rows.Clear()
+        '        Dim comta As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
+        '        Dim dpta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
 
-                For i As Integer = 0 To dt.Rows.Count - 1
-                    edtstk.DGVS.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("codebar"), dt.Rows(i).Item("name"), dt.Rows(i).Item("unit"), dt.Rows(i).Item("qte"), dt.Rows(i).Item("dpid"), dt.Rows(i).Item("date"))
-                 
-                    Dim dpdt = dpta.GetDataByid(dt.Rows(i).Item("dpid"))
-                    edtstk.DGVS.Rows(i).Cells(5).Value = dpdt.Rows(0).Item("name").ToString
-                Next
+        '        For i As Integer = 0 To dt.Rows.Count - 1
+        '            edtstk.DGVS.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("codebar"), dt.Rows(i).Item("name"), dt.Rows(i).Item("unit"), dt.Rows(i).Item("qte"), dt.Rows(i).Item("dpid"), dt.Rows(i).Item("date"))
 
-                If edtstk.ShowDialog = Windows.Forms.DialogResult.OK Then
-                    Dim dpid As Integer
-                    Dim ddt = dpta.GetDataByname(edtstk.DGVS.Rows(0).Cells(5).Value)
-                    dpid = ddt.Rows(0).Item(0)
+        '            Dim dpdt = dpta.GetDataByid(dt.Rows(i).Item("dpid"))
+        '            edtstk.DGVS.Rows(i).Cells(5).Value = dpdt.Rows(0).Item("name").ToString
+        '        Next
 
-                    Editstok(dpid, DGVS.SelectedRows(0).Cells(7).Value, DGVS.SelectedRows(0).Cells(4).Value, edtstk.TextBox1.Text, 1)
-                    Button4_Click(Nothing, Nothing)
-                End If
-                'search by date
-            ElseIf TextBox1.Text = "2" Then
-                edtstk.TextBox1.Tag = DGVS.SelectedRows(0).Cells(4).Value
-                Dim dt1 As Date = DTP1.Text
-                Dim dt2 As Date = DTP2.Text
+        '        If edtstk.ShowDialog = Windows.Forms.DialogResult.OK Then
+        '            Dim dpid As Integer
+        '            Dim ddt = dpta.GetDataByname(edtstk.DGVS.Rows(0).Cells(5).Value)
+        '            dpid = ddt.Rows(0).Item(0)
 
-                Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsStockTableAdapter
-                Dim dt = ta.GetDataforedit(dt2.AddDays(1), dt1.AddDays(-1), cbdepot.SelectedValue, DGVS.SelectedRows(0).Cells(0).Value, "IN")
-                edtstk.DGVS.Rows.Clear()
-                Dim comta As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
-                Dim dpta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
+        '            Editstok(dpid, DGVS.SelectedRows(0).Cells(7).Value, DGVS.SelectedRows(0).Cells(4).Value, edtstk.TextBox1.Text, 1)
+        '            Button4_Click(Nothing, Nothing)
+        '        End If
+        '        'search by date
+        '    ElseIf TextBox1.Text = "2" Then
+        '        edtstk.TextBox1.Tag = DGVS.SelectedRows(0).Cells(4).Value
+        '        Dim dt1 As Date = DTP1.Text
+        '        Dim dt2 As Date = DTP2.Text
 
-                For i As Integer = 0 To dt.Rows.Count - 1
-                    edtstk.DGVS.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("codebar"), dt.Rows(i).Item("name"), dt.Rows(i).Item("unit"), dt.Rows(i).Item("qte"), dt.Rows(i).Item("dpid"), dt.Rows(i).Item("date"))
-                  
-                    Dim dpdt = dpta.GetDataByid(dt.Rows(i).Item("dpid"))
-                    edtstk.DGVS.Rows(i).Cells(5).Value = dpdt.Rows(0).Item("name").ToString
-                Next
-                If edtstk.ShowDialog = Windows.Forms.DialogResult.OK Then
-                    Dim dpid As Integer
-                    Dim ddt = dpta.GetDataByname(edtstk.DGVS.Rows(0).Cells(5).Value)
-                    dpid = ddt.Rows(0).Item(0)
+        '        Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsStockTableAdapter
+        '        Dim dt = ta.GetDataforedit(dt2.AddDays(1), dt1.AddDays(-1), cbdepot.SelectedValue, DGVS.SelectedRows(0).Cells(0).Value, "IN")
+        '        edtstk.DGVS.Rows.Clear()
+        '        Dim comta As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
+        '        Dim dpta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
 
-                    Editstok(dpid, DGVS.SelectedRows(0).Cells(7).Value, DGVS.SelectedRows(0).Cells(4).Value, edtstk.TextBox1.Text, 1)
+        '        For i As Integer = 0 To dt.Rows.Count - 1
+        '            edtstk.DGVS.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("codebar"), dt.Rows(i).Item("name"), dt.Rows(i).Item("unit"), dt.Rows(i).Item("qte"), dt.Rows(i).Item("dpid"), dt.Rows(i).Item("date"))
 
-                    Button5_Click(Nothing, Nothing)
-                End If
-            Else
-                Exit Sub
-            End If
-        Catch ex As Exception
-        End Try
+        '            Dim dpdt = dpta.GetDataByid(dt.Rows(i).Item("dpid"))
+        '            edtstk.DGVS.Rows(i).Cells(5).Value = dpdt.Rows(0).Item("name").ToString
+        '        Next
+        '        If edtstk.ShowDialog = Windows.Forms.DialogResult.OK Then
+        '            Dim dpid As Integer
+        '            Dim ddt = dpta.GetDataByname(edtstk.DGVS.Rows(0).Cells(5).Value)
+        '            dpid = ddt.Rows(0).Item(0)
+
+        '            Editstok(dpid, DGVS.SelectedRows(0).Cells(7).Value, DGVS.SelectedRows(0).Cells(4).Value, edtstk.TextBox1.Text, 1)
+
+        '            Button5_Click(Nothing, Nothing)
+        '        End If
+        '    Else
+        '        Exit Sub
+        '    End If
+        'Catch ex As Exception
+        'End Try
     End Sub
 
     Private Sub Button8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button8.Click
-        Try
-            Dim edtstk As New EditStock
-            If TextBox1.Text = "0" Then
-                Exit Sub
-                ' 'search for today
-            ElseIf TextBox1.Text = "1" Then
-            
-                edtstk.TextBox1.Tag = DGVS.SelectedRows(0).Cells(5).Value
-                Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsStockTableAdapter
-                Dim dt = ta.GetDataforedit(Now.Date.AddDays(1), Now.Date.AddDays(-1), cbdepot.SelectedValue, DGVS.SelectedRows(0).Cells(0).Value, "OUT")
-                edtstk.DGVS.Rows.Clear()
-                Dim comta As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
-                Dim dpta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
+        'Try
+        '    Dim edtstk As New EditStock
+        '    If TextBox1.Text = "0" Then
+        '        Exit Sub
+        '        ' 'search for today
+        '    ElseIf TextBox1.Text = "1" Then
 
-                For i As Integer = 0 To dt.Rows.Count - 1
-                    edtstk.DGVS.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("codebar"),
-                                         dt.Rows(i).Item("name"), dt.Rows(i).Item("unit"),
-                                         dt.Rows(i).Item("qte"), dt.Rows(i).Item("dpid"),
-                                         dt.Rows(i).Item("date"))
-                    Dim dpdt = dpta.GetDataByid(dt.Rows(i).Item("dpid"))
-                    edtstk.DGVS.Rows(i).Cells(5).Value = dpdt.Rows(0).Item("name").ToString
+        '        edtstk.TextBox1.Tag = DGVS.SelectedRows(0).Cells(5).Value
+        '        Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsStockTableAdapter
+        '        Dim dt = ta.GetDataforedit(Now.Date.AddDays(1), Now.Date.AddDays(-1), cbdepot.SelectedValue, DGVS.SelectedRows(0).Cells(0).Value, "OUT")
+        '        edtstk.DGVS.Rows.Clear()
+        '        Dim comta As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
+        '        Dim dpta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
 
-                Next
+        '        For i As Integer = 0 To dt.Rows.Count - 1
+        '            edtstk.DGVS.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("codebar"),
+        '                                 dt.Rows(i).Item("name"), dt.Rows(i).Item("unit"),
+        '                                 dt.Rows(i).Item("qte"), dt.Rows(i).Item("dpid"),
+        '                                 dt.Rows(i).Item("date"))
+        '            Dim dpdt = dpta.GetDataByid(dt.Rows(i).Item("dpid"))
+        '            edtstk.DGVS.Rows(i).Cells(5).Value = dpdt.Rows(0).Item("name").ToString
 
-                If edtstk.ShowDialog = Windows.Forms.DialogResult.OK Then
+        '        Next
 
-                    Dim dpid As Integer
-                    Dim ddt = dpta.GetDataByname(edtstk.DGVS.Rows(0).Cells(5).Value)
-                    dpid = ddt.Rows(0).Item(0)
+        '        If edtstk.ShowDialog = Windows.Forms.DialogResult.OK Then
 
-
-                    Editstok(dpid, DGVS.SelectedRows(0).Cells(7).Value, DGVS.SelectedRows(0).Cells(5).Value, edtstk.TextBox1.Text, -1)
-
-                    Button4_Click(Nothing, Nothing)
-                End If
-
-                'search by date
-            ElseIf TextBox1.Text = "2" Then
+        '            Dim dpid As Integer
+        '            Dim ddt = dpta.GetDataByname(edtstk.DGVS.Rows(0).Cells(5).Value)
+        '            dpid = ddt.Rows(0).Item(0)
 
 
-                edtstk.TextBox1.Tag = DGVS.SelectedRows(0).Cells(5).Value
-                Dim dt1 As Date = DTP1.Text
-                Dim dt2 As Date = DTP2.Text
+        '            Editstok(dpid, DGVS.SelectedRows(0).Cells(7).Value, DGVS.SelectedRows(0).Cells(5).Value, edtstk.TextBox1.Text, -1)
 
-                Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsStockTableAdapter
-                Dim dt = ta.GetDataforedit(dt2.AddDays(1), dt1.AddDays(-1), cbdepot.SelectedValue, DGVS.SelectedRows(0).Cells(0).Value, "OUT")
-                edtstk.DGVS.Rows.Clear()
-                Dim comta As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
-                Dim dpta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
+        '            Button4_Click(Nothing, Nothing)
+        '        End If
 
-                For i As Integer = 0 To dt.Rows.Count - 1
-                    edtstk.DGVS.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("codebar"), dt.Rows(i).Item("name"), dt.Rows(i).Item("unit"), dt.Rows(i).Item("qte"), dt.Rows(i).Item("dpid"), dt.Rows(i).Item("date"))
-            
-                    Dim dpdt = dpta.GetDataByid(dt.Rows(i).Item("dpid"))
-                    edtstk.DGVS.Rows(i).Cells(5).Value = dpdt.Rows(0).Item("name").ToString
-
-                Next
-
-                If edtstk.ShowDialog = Windows.Forms.DialogResult.OK Then
-                    Dim dpid As Integer
-                    Dim ddt = dpta.GetDataByname(edtstk.DGVS.Rows(0).Cells(5).Value)
-                    dpid = ddt.Rows(0).Item(0)
+        '        'search by date
+        '    ElseIf TextBox1.Text = "2" Then
 
 
-                    Editstok(dpid, DGVS.SelectedRows(0).Cells(7).Value, DGVS.SelectedRows(0).Cells(5).Value, edtstk.TextBox1.Text, -1)
+        '        edtstk.TextBox1.Tag = DGVS.SelectedRows(0).Cells(5).Value
+        '        Dim dt1 As Date = DTP1.Text
+        '        Dim dt2 As Date = DTP2.Text
 
-                    Button5_Click(Nothing, Nothing)
-                End If
-            Else
-                Exit Sub
-            End If
-        Catch ex As Exception
-        End Try
+        '        Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsStockTableAdapter
+        '        Dim dt = ta.GetDataforedit(dt2.AddDays(1), dt1.AddDays(-1), cbdepot.SelectedValue, DGVS.SelectedRows(0).Cells(0).Value, "OUT")
+        '        edtstk.DGVS.Rows.Clear()
+        '        Dim comta As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
+        '        Dim dpta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
+
+        '        For i As Integer = 0 To dt.Rows.Count - 1
+        '            edtstk.DGVS.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("codebar"), dt.Rows(i).Item("name"), dt.Rows(i).Item("unit"), dt.Rows(i).Item("qte"), dt.Rows(i).Item("dpid"), dt.Rows(i).Item("date"))
+
+        '            Dim dpdt = dpta.GetDataByid(dt.Rows(i).Item("dpid"))
+        '            edtstk.DGVS.Rows(i).Cells(5).Value = dpdt.Rows(0).Item("name").ToString
+
+        '        Next
+
+        '        If edtstk.ShowDialog = Windows.Forms.DialogResult.OK Then
+        '            Dim dpid As Integer
+        '            Dim ddt = dpta.GetDataByname(edtstk.DGVS.Rows(0).Cells(5).Value)
+        '            dpid = ddt.Rows(0).Item(0)
+
+
+        '            Editstok(dpid, DGVS.SelectedRows(0).Cells(7).Value, DGVS.SelectedRows(0).Cells(5).Value, edtstk.TextBox1.Text, -1)
+
+        '            Button5_Click(Nothing, Nothing)
+        '        End If
+        '    Else
+        '        Exit Sub
+        '    End If
+        'Catch ex As Exception
+        'End Try
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
@@ -568,8 +565,8 @@
                 e.Graphics.DrawString(":نوع الاستعلام", fnt, Brushes.Black, 645 * a, 130) '+ Integer.Parse(txttitle.Tag))
                 e.Graphics.DrawString(": التاريخ", fnt, Brushes.Black, 635 * a, 150) '+ Integer.Parse(txttitle.Tag))
 
-                Dim dpta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
-                Dim dpdt = dpta.GetDataByid(DGVS.Rows(0).Cells(8).Value)
+                'Dim dpta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
+                'Dim dpdt = dpta.GetDataByid(DGVS.Rows(0).Cells(8).Value)
                 Dim dtt As String = Format(Now.Date, "dd-MM-yyyy").ToString
                 Dim tt As String = ""
                 If TextBox1.Text = "1" Then
@@ -587,7 +584,7 @@
                     dtt = "-"
                 End If
 
-                e.Graphics.DrawString(dpdt.Rows(0).Item("name").ToString, fnt, Brushes.Black, 450 * a, 110) ' + Integer.Parse(txttitle.Tag))
+                'e.Graphics.DrawString(dpdt.Rows(0).Item("name").ToString, fnt, Brushes.Black, 450 * a, 110) ' + Integer.Parse(txttitle.Tag))
                 e.Graphics.DrawString(tt, fnt, Brushes.Black, 450 * a, 130) '+ Integer.Parse(txttitle.Tag))
                 e.Graphics.DrawString(dtt, fnt, Brushes.Black, 450 * a, 150) ' + Integer.Parse(txttitle.Tag))
 

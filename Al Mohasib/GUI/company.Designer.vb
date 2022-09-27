@@ -22,7 +22,6 @@ Partial Class company
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(company))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -68,15 +67,12 @@ Partial Class company
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.CompanyBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
-        Me.CompanyTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.companyTableAdapter()
-        Me.CompidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GerantDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AdressDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CreditDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AdressDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GerantDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CompidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.plup.SuspendLayout()
         Me.Panel21.SuspendLayout()
         CType(Me.pbedit, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,8 +88,6 @@ Partial Class company
         Me.GB.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CompanyBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'plup
@@ -605,7 +599,6 @@ Partial Class company
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle1.Padding = New System.Windows.Forms.Padding(2)
         Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
@@ -618,7 +611,6 @@ Partial Class company
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CompidDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.GerantDataGridViewTextBoxColumn, Me.AdressDataGridViewTextBoxColumn, Me.TelDataGridViewTextBoxColumn, Me.CreditDataGridViewTextBoxColumn})
-        Me.DataGridView1.DataSource = Me.CompanyBindingSource
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -639,51 +631,13 @@ Partial Class company
         Me.DataGridView1.Size = New System.Drawing.Size(608, 489)
         Me.DataGridView1.TabIndex = 0
         '
-        'CompanyBindingSource
+        'CreditDataGridViewTextBoxColumn
         '
-        Me.CompanyBindingSource.DataMember = "company"
-        Me.CompanyBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'CompanyTableAdapter
-        '
-        Me.CompanyTableAdapter.ClearBeforeFill = True
-        '
-        'CompidDataGridViewTextBoxColumn
-        '
-        Me.CompidDataGridViewTextBoxColumn.DataPropertyName = "compid"
-        Me.CompidDataGridViewTextBoxColumn.FillWeight = 39.59564!
-        Me.CompidDataGridViewTextBoxColumn.HeaderText = "ID"
-        Me.CompidDataGridViewTextBoxColumn.Name = "CompidDataGridViewTextBoxColumn"
-        Me.CompidDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'NameDataGridViewTextBoxColumn
-        '
-        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
-        Me.NameDataGridViewTextBoxColumn.FillWeight = 116.0555!
-        Me.NameDataGridViewTextBoxColumn.HeaderText = "DESIGNATION"
-        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
-        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'GerantDataGridViewTextBoxColumn
-        '
-        Me.GerantDataGridViewTextBoxColumn.DataPropertyName = "gerant"
-        Me.GerantDataGridViewTextBoxColumn.FillWeight = 82.60817!
-        Me.GerantDataGridViewTextBoxColumn.HeaderText = "NOM RESP."
-        Me.GerantDataGridViewTextBoxColumn.Name = "GerantDataGridViewTextBoxColumn"
-        Me.GerantDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AdressDataGridViewTextBoxColumn
-        '
-        Me.AdressDataGridViewTextBoxColumn.DataPropertyName = "adress"
-        Me.AdressDataGridViewTextBoxColumn.FillWeight = 53.78318!
-        Me.AdressDataGridViewTextBoxColumn.HeaderText = "ADRESSE"
-        Me.AdressDataGridViewTextBoxColumn.Name = "AdressDataGridViewTextBoxColumn"
-        Me.AdressDataGridViewTextBoxColumn.ReadOnly = True
+        Me.CreditDataGridViewTextBoxColumn.DataPropertyName = "credit"
+        Me.CreditDataGridViewTextBoxColumn.FillWeight = 82.60817!
+        Me.CreditDataGridViewTextBoxColumn.HeaderText = "CRD"
+        Me.CreditDataGridViewTextBoxColumn.Name = "CreditDataGridViewTextBoxColumn"
+        Me.CreditDataGridViewTextBoxColumn.ReadOnly = True
         '
         'TelDataGridViewTextBoxColumn
         '
@@ -693,13 +647,37 @@ Partial Class company
         Me.TelDataGridViewTextBoxColumn.Name = "TelDataGridViewTextBoxColumn"
         Me.TelDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'CreditDataGridViewTextBoxColumn
+        'AdressDataGridViewTextBoxColumn
         '
-        Me.CreditDataGridViewTextBoxColumn.DataPropertyName = "credit"
-        Me.CreditDataGridViewTextBoxColumn.FillWeight = 82.60817!
-        Me.CreditDataGridViewTextBoxColumn.HeaderText = "CRD"
-        Me.CreditDataGridViewTextBoxColumn.Name = "CreditDataGridViewTextBoxColumn"
-        Me.CreditDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AdressDataGridViewTextBoxColumn.DataPropertyName = "adress"
+        Me.AdressDataGridViewTextBoxColumn.FillWeight = 53.78318!
+        Me.AdressDataGridViewTextBoxColumn.HeaderText = "ADRESSE"
+        Me.AdressDataGridViewTextBoxColumn.Name = "AdressDataGridViewTextBoxColumn"
+        Me.AdressDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'GerantDataGridViewTextBoxColumn
+        '
+        Me.GerantDataGridViewTextBoxColumn.DataPropertyName = "gerant"
+        Me.GerantDataGridViewTextBoxColumn.FillWeight = 82.60817!
+        Me.GerantDataGridViewTextBoxColumn.HeaderText = "NOM RESP."
+        Me.GerantDataGridViewTextBoxColumn.Name = "GerantDataGridViewTextBoxColumn"
+        Me.GerantDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'NameDataGridViewTextBoxColumn
+        '
+        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
+        Me.NameDataGridViewTextBoxColumn.FillWeight = 116.0555!
+        Me.NameDataGridViewTextBoxColumn.HeaderText = "DESIGNATION"
+        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
+        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'CompidDataGridViewTextBoxColumn
+        '
+        Me.CompidDataGridViewTextBoxColumn.DataPropertyName = "compid"
+        Me.CompidDataGridViewTextBoxColumn.FillWeight = 39.59564!
+        Me.CompidDataGridViewTextBoxColumn.HeaderText = "ID"
+        Me.CompidDataGridViewTextBoxColumn.Name = "CompidDataGridViewTextBoxColumn"
+        Me.CompidDataGridViewTextBoxColumn.ReadOnly = True
         '
         'company
         '
@@ -735,8 +713,6 @@ Partial Class company
         Me.GB.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CompanyBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -777,9 +753,7 @@ Partial Class company
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
-    Friend WithEvents CompanyBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents CompanyTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.companyTableAdapter
+    'Friend WithEvents CompanyTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.companyTableAdapter
     Friend WithEvents txttel As Al_Mohasib.TxtBox
     Friend WithEvents txtad As Al_Mohasib.TxtBox
     Friend WithEvents txtcin As Al_Mohasib.TxtBox

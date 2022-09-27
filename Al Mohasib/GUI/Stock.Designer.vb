@@ -22,7 +22,6 @@ Partial Class Stock
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Stock))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -72,9 +71,6 @@ Partial Class Stock
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Button4 = New System.Windows.Forms.Button()
-        Me.DepotBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
-        Me.CompanyBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Panel8 = New System.Windows.Forms.Panel()
@@ -87,8 +83,6 @@ Partial Class Stock
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CompanyTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.companyTableAdapter()
-        Me.DepotTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter()
         Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
         Me.plup.SuspendLayout()
         Me.Panel21.SuspendLayout()
@@ -107,9 +101,6 @@ Partial Class Stock
         Me.Panel2.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.Panel14.SuspendLayout()
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CompanyBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel7.SuspendLayout()
         Me.Panel8.SuspendLayout()
         CType(Me.DGVS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -655,21 +646,6 @@ Partial Class Stock
         Me.Button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button4.UseVisualStyleBackColor = False
         '
-        'DepotBindingSource
-        '
-        Me.DepotBindingSource.DataMember = "Depot"
-        Me.DepotBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'CompanyBindingSource
-        '
-        Me.CompanyBindingSource.DataMember = "company"
-        Me.CompanyBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
         'Panel7
         '
         Me.Panel7.Controls.Add(Me.FlowLayoutPanel1)
@@ -782,14 +758,6 @@ Partial Class Stock
         Me.Column6.HeaderText = "Prix"
         Me.Column6.Name = "Column6"
         '
-        'CompanyTableAdapter
-        '
-        Me.CompanyTableAdapter.ClearBeforeFill = True
-        '
-        'DepotTableAdapter
-        '
-        Me.DepotTableAdapter.ClearBeforeFill = True
-        '
         'PrintDoc
         '
         '
@@ -832,9 +800,6 @@ Partial Class Stock
         Me.Panel12.ResumeLayout(False)
         Me.Panel14.ResumeLayout(False)
         Me.Panel14.PerformLayout()
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CompanyBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel7.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
         CType(Me.DGVS, System.ComponentModel.ISupportInitialize).EndInit()
@@ -859,9 +824,6 @@ Partial Class Stock
     Friend WithEvents Panel8 As System.Windows.Forms.Panel
     Friend WithEvents DGVS As System.Windows.Forms.DataGridView
     Friend WithEvents FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
-    Friend WithEvents CompanyBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents CompanyTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.companyTableAdapter
     Friend WithEvents Panel21 As System.Windows.Forms.Panel
     Friend WithEvents Panel22 As System.Windows.Forms.Panel
     Friend WithEvents Panel23 As System.Windows.Forms.Panel
@@ -870,8 +832,6 @@ Partial Class Stock
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Panel11 As System.Windows.Forms.Panel
     Friend WithEvents dtpstock As System.Windows.Forms.DateTimePicker
-    Friend WithEvents DepotBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents DepotTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents Label3 As System.Windows.Forms.Label

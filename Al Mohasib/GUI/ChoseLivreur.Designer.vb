@@ -22,21 +22,15 @@ Partial Class ChoseLivreur
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.MachineBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.MachineTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.MachineTableAdapter()
         Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MachineBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button1
@@ -64,7 +58,6 @@ Partial Class ChoseLivreur
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
@@ -77,7 +70,6 @@ Partial Class ChoseLivreur
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NameDataGridViewTextBoxColumn})
-        Me.DataGridView1.DataSource = Me.MachineBindingSource
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -97,11 +89,6 @@ Partial Class ChoseLivreur
         Me.DataGridView1.Size = New System.Drawing.Size(416, 309)
         Me.DataGridView1.TabIndex = 0
         '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'Button2
         '
         Me.Button2.FlatAppearance.BorderColor = System.Drawing.Color.Red
@@ -113,15 +100,6 @@ Partial Class ChoseLivreur
         Me.Button2.TabIndex = 3
         Me.Button2.Text = "الغاء"
         Me.Button2.UseVisualStyleBackColor = True
-        '
-        'MachineBindingSource
-        '
-        Me.MachineBindingSource.DataMember = "Machine"
-        Me.MachineBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'MachineTableAdapter
-        '
-        Me.MachineTableAdapter.ClearBeforeFill = True
         '
         'NameDataGridViewTextBoxColumn
         '
@@ -147,17 +125,12 @@ Partial Class ChoseLivreur
         Me.Text = "السائق"
         Me.GroupBox1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MachineBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
     Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents MachineBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents MachineTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.MachineTableAdapter
     Friend WithEvents NameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

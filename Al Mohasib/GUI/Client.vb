@@ -3,8 +3,10 @@
 Public Class Client
 
     Private Sub Client_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'ALMohassinDBDataSet.Client' table. You can move, or remove it, as needed.
-        Me.ClientTableAdapter.Fill(Me.ALMohassinDBDataSet.Client)
+         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            DataGridView1.DataSource = a.SelectDataTable("Client", {"*"})
+        End Using
+
         If Form1.admin = False Then
             DataGridView1.Columns(6).Visible = False
             btAllow.Visible = False
@@ -100,9 +102,15 @@ Public Class Client
             'Exit Sub
         End If
         Try
-            Dim ta As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
-            ta.DeleteQuery(id)
-            ta.Fill(ALMohassinDBDataSet.Client)
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+                '''''''''''''''''''
+                params.Add("Clid", id)
+                If a.DeleteRecords("Client", params) Then
+                    DataGridView1.Rows.Remove(DataGridView1.SelectedRows(0))
+                End If
+
+            End Using
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -152,41 +160,39 @@ Public Class Client
         Dim adresse As String = txtad.text & "*" & txtVille.text & "*" & txtIce.text
 
 
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim params As New Dictionary(Of String, Object)
+            params.Add("name", txtname.text)
+            params.Add("CIN", txtcin.text)
+            params.Add("Adress", adresse)
+            params.Add("tel", txttel.text)
+            params.Add("credit", "0")
+            params.Add("type", CInt(txtcrd.text))
 
-        ' addddd
-        If btcon.Tag = "0" Then
-            ''check the name
+            If btcon.Tag = "1" Then
+                Dim where As New Dictionary(Of String, Object)
+                where.Add("Clid", txtname.Tag)
+                c.UpdateRecord("Client", params, where)
+                where = Nothing
+            Else
+                For i As Integer = 0 To DataGridView1.Rows.Count - 1
+                    If txtname.text = DataGridView1.Rows(i).Cells(1).Value Then
+                        MsgBox("عذرا لا يمكن اتمام طلبكم.. يجب عدم تكرار نفس الاسم", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
+                        txtname.Focus()
+                        DataGridView1.Rows(i).Selected = True
+                        DataGridView1.FirstDisplayedScrollingRowIndex = DataGridView1.SelectedRows(0).Index
+                        Exit Sub
+                    End If
+                Next
+                c.InsertRecord("Client", params, True)
+            End If
+        End Using
 
-            For i As Integer = 0 To DataGridView1.Rows.Count - 1
-                If txtname.text = DataGridView1.Rows(i).Cells(1).Value Then
-                    MsgBox("عذرا لا يمكن اتمام طلبكم.. يجب عدم تكرار نفس الاسم", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
-                    txtname.Focus()
-                    DataGridView1.Rows(i).Selected = True
-                    DataGridView1.FirstDisplayedScrollingRowIndex = DataGridView1.SelectedRows(0).Index
-                    Exit Sub
-                End If
-            Next
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
 
+            DataGridView1.DataSource = c.SelectDataTable("Client", {"*"})
+        End Using
 
-            Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
-                ta.InsertQuery(txtname.text, txtcin.text, adresse, txttel.text, "0", CInt(txtcrd.text))
-                ta.Fill(ALMohassinDBDataSet.Client)
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-
-            'updateeee
-        Else
-            Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
-                ta.UpdateQuery(txtname.text, txtcin.text, adresse, txttel.text, tp, txtname.Tag)
-                ta.Fill(ALMohassinDBDataSet.Client)
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-
-        End If
         btcancel_Click(Nothing, Nothing)
         GB1.Visible = False
 

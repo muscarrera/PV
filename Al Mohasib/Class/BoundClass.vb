@@ -1,6 +1,6 @@
 ﻿Imports System.IO
 
-Public Class BoundClass
+Public Class BoundClassAAAAA
     Implements IDisposable
     Private _PathDocs As String
     Private _DbPath As String

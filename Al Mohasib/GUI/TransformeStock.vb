@@ -45,9 +45,10 @@
     End Property
     Private Sub TransformeStock_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'ALMohassinDBDataSet.Depot' table. You can move, or remove it, as needed.
-        Me.DepotTableAdapter.Fill(Me.ALMohassinDBDataSet.Depot)
-
-        Me.DepotTableAdapter.Fill(Me.ALMohassinDBDataSet.Depot)
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Cb1.DataSource = a.SelectDataTableSymbols("Depot", {"*"})
+            Cb2.DataSource = a.SelectDataTableSymbols("Depot", {"*"})
+        End Using
 
         Cb1_SelectedIndexChanged(Nothing, Nothing)
         Cb2_SelectedIndexChanged(Nothing, Nothing)

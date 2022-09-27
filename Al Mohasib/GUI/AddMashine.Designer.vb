@@ -36,19 +36,19 @@ Partial Class AddMashine
         Me.RsDel = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
-        Me.AdminFactureBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.AdminFactureTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.AdminFactureTableAdapter()
-        Me.AdminFactureBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        'Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
+        'Me.AdminFactureBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        ''Me.AdminFactureTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.AdminFactureTableAdapter()
+        'Me.AdminFactureBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Machine = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1.SuspendLayout()
         Me.pl.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AdminFactureBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AdminFactureBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        'CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        'CType(Me.AdminFactureBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        'CType(Me.AdminFactureBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TxtBox1
@@ -207,25 +207,25 @@ Partial Class AddMashine
         Me.DataGridView1.Size = New System.Drawing.Size(369, 327)
         Me.DataGridView1.TabIndex = 0
         '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'AdminFactureBindingSource
-        '
-        Me.AdminFactureBindingSource.DataMember = "AdminFacture"
-        Me.AdminFactureBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'AdminFactureTableAdapter
-        '
-        Me.AdminFactureTableAdapter.ClearBeforeFill = True
-        '
-        'AdminFactureBindingSource1
-        '
-        Me.AdminFactureBindingSource1.DataMember = "AdminFacture"
-        Me.AdminFactureBindingSource1.DataSource = Me.ALMohassinDBDataSet
-        '
+        ''ALMohassinDBDataSet
+        ''
+        'Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
+        'Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        ''
+        ''AdminFactureBindingSource
+        ''
+        'Me.AdminFactureBindingSource.DataMember = "AdminFacture"
+        'Me.AdminFactureBindingSource.DataSource = Me.ALMohassinDBDataSet
+        ''
+        ''AdminFactureTableAdapter
+        ''
+        'Me.AdminFactureTableAdapter.ClearBeforeFill = True
+        ''
+        ''AdminFactureBindingSource1
+        ''
+        'Me.AdminFactureBindingSource1.DataMember = "AdminFacture"
+        'Me.AdminFactureBindingSource1.DataSource = Me.ALMohassinDBDataSet
+        ''
         'ID
         '
         Me.ID.HeaderText = "ID"
@@ -252,19 +252,19 @@ Partial Class AddMashine
         Me.pl.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AdminFactureBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AdminFactureBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        'CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        'CType(Me.AdminFactureBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        'CType(Me.AdminFactureBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents TxtBox1 As Al_Mohasib.TxtBox
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
-    Friend WithEvents AdminFactureBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents AdminFactureTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.AdminFactureTableAdapter
-    Friend WithEvents AdminFactureBindingSource1 As System.Windows.Forms.BindingSource
+    'Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
+    'Friend WithEvents AdminFactureBindingSource As System.Windows.Forms.BindingSource
+    ''Friend WithEvents AdminFactureTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.AdminFactureTableAdapter
+    'Friend WithEvents AdminFactureBindingSource1 As System.Windows.Forms.BindingSource
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents ShapeContainer1 As Microsoft.VisualBasic.PowerPacks.ShapeContainer
     Friend WithEvents RsOk As Microsoft.VisualBasic.PowerPacks.RectangleShape

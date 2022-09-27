@@ -22,7 +22,6 @@ Partial Class AddDepot
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -31,23 +30,18 @@ Partial Class AddDepot
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.dgvctg = New System.Windows.Forms.DataGridView()
-        Me.DpidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DepotBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
         Me.Button45 = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.TextBox1 = New Al_Mohasib.TxtBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btcid = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.DepotTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter()
-        Me.TextBox1 = New Al_Mohasib.TxtBox()
+        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DpidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvctg, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -87,7 +81,6 @@ Partial Class AddDepot
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle1.Padding = New System.Windows.Forms.Padding(5)
         Me.dgvctg.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvctg.AutoGenerateColumns = False
         Me.dgvctg.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvctg.BackgroundColor = System.Drawing.SystemColors.Info
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -101,7 +94,6 @@ Partial Class AddDepot
         Me.dgvctg.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvctg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvctg.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DpidDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn})
-        Me.dgvctg.DataSource = Me.DepotBindingSource
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -130,30 +122,6 @@ Partial Class AddDepot
         Me.dgvctg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvctg.Size = New System.Drawing.Size(287, 394)
         Me.dgvctg.TabIndex = 20
-        '
-        'DpidDataGridViewTextBoxColumn
-        '
-        Me.DpidDataGridViewTextBoxColumn.DataPropertyName = "dpid"
-        Me.DpidDataGridViewTextBoxColumn.HeaderText = "ID"
-        Me.DpidDataGridViewTextBoxColumn.Name = "DpidDataGridViewTextBoxColumn"
-        Me.DpidDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'NameDataGridViewTextBoxColumn
-        '
-        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
-        Me.NameDataGridViewTextBoxColumn.HeaderText = "الاســم"
-        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
-        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'DepotBindingSource
-        '
-        Me.DepotBindingSource.DataMember = "Depot"
-        Me.DepotBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'Button45
         '
@@ -185,6 +153,25 @@ Partial Class AddDepot
         Me.Panel1.Size = New System.Drawing.Size(320, 186)
         Me.Panel1.TabIndex = 17
         Me.Panel1.Visible = False
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BackColor = System.Drawing.Color.White
+        Me.TextBox1.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.TextBox1.IsNumiric = False
+        Me.TextBox1.Location = New System.Drawing.Point(5, 49)
+        Me.TextBox1.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ShowClearIcon = False
+        Me.TextBox1.ShowSaveIcon = False
+        Me.TextBox1.Size = New System.Drawing.Size(297, 30)
+        Me.TextBox1.StartUp = 2
+        Me.TextBox1.TabIndex = 14
+        Me.TextBox1.TextSize = 8
+        Me.TextBox1.TxtBackColor = True
+        Me.TextBox1.TxtColor = System.Drawing.Color.White
+        Me.TextBox1.txtReadOnly = False
+        Me.TextBox1.TxtSelect = New Integer() {1, 0}
         '
         'Label1
         '
@@ -264,28 +251,19 @@ Partial Class AddDepot
         Me.Button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button3.UseVisualStyleBackColor = False
         '
-        'DepotTableAdapter
+        'NameDataGridViewTextBoxColumn
         '
-        Me.DepotTableAdapter.ClearBeforeFill = True
+        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
+        Me.NameDataGridViewTextBoxColumn.HeaderText = "الاســم"
+        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
+        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
         '
-        'TextBox1
+        'DpidDataGridViewTextBoxColumn
         '
-        Me.TextBox1.BackColor = System.Drawing.Color.White
-        Me.TextBox1.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.TextBox1.IsNumiric = False
-        Me.TextBox1.Location = New System.Drawing.Point(5, 49)
-        Me.TextBox1.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ShowClearIcon = False
-        Me.TextBox1.ShowSaveIcon = False
-        Me.TextBox1.Size = New System.Drawing.Size(297, 40)
-        Me.TextBox1.StartUp = 2
-        Me.TextBox1.TabIndex = 14
-        Me.TextBox1.TextSize = 8
-        Me.TextBox1.TxtBackColor = True
-        Me.TextBox1.TxtColor = System.Drawing.Color.White
-        Me.TextBox1.txtReadOnly = False
-        Me.TextBox1.TxtSelect = New Integer() {1, 0}
+        Me.DpidDataGridViewTextBoxColumn.DataPropertyName = "dpid"
+        Me.DpidDataGridViewTextBoxColumn.HeaderText = "ID"
+        Me.DpidDataGridViewTextBoxColumn.Name = "DpidDataGridViewTextBoxColumn"
+        Me.DpidDataGridViewTextBoxColumn.ReadOnly = True
         '
         'AddDepot
         '
@@ -306,8 +284,6 @@ Partial Class AddDepot
         Me.Text = "AddDepot"
         Me.GroupBox1.ResumeLayout(False)
         CType(Me.dgvctg, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
@@ -323,10 +299,7 @@ Partial Class AddDepot
     Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
-    Friend WithEvents DepotBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents DepotTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter
+    Friend WithEvents TextBox1 As Al_Mohasib.TxtBox
     Friend WithEvents DpidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents NameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TextBox1 As Al_Mohasib.TxtBox
 End Class

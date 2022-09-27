@@ -2,11 +2,14 @@
 
     Private Sub Addadmin_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'ALMohassinDBDataSet.admin' table. You can move, or remove it, as needed.
-        Me.AdminTableAdapter.Fill(Me.ALMohassinDBDataSet.admin)
 
-        If Form1.adminid <> "1" Then
-            DataGridView1.Columns(3).Visible = False
-        End If
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            DataGridView1.DataSource = a.SelectDataTableSymbols("admin", {"*"})
+            If Form1.adminId <> "1" Then
+                DataGridView1.Columns(3).Visible = False
+            End If
+        End Using
+
     End Sub
 
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -22,14 +25,18 @@
             MsgBox("فشل في العملية. لايمكن حذف  الادمين الرئيسي ")
             Exit Sub
         End If
+ 
 
-        Try
-            Dim ta As New ALMohassinDBDataSetTableAdapters.adminTableAdapter
-            ta.DeleteQuery(DataGridView1.SelectedRows(0).Cells(0).Value)
-        Catch ex As Exception
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+            '''''''''''''''''''
+            params.Add("adid", DataGridView1.SelectedRows(0).Cells(0).Value)
+            If a.DeleteRecords("admin", params) Then
+                DataGridView1.Rows.Remove(DataGridView1.SelectedRows(0))
+            End If
+ 
+        End Using
 
-        End Try
-        AdminTableAdapter.Fill(ALMohassinDBDataSet.admin)
 
     End Sub
 
@@ -63,30 +70,43 @@
 
     Private Sub Button34_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Try
-            If TextBox2.Text = "" Then
-                Exit Sub
-            End If
-
-
-            Dim ta As New ALMohassinDBDataSetTableAdapters.adminTableAdapter
+            If TextBox2.Text = "" Then Exit Sub
+         
             Dim a As String = "not"
             If ComboBox1.Text = "مسؤول" Or ComboBox1.Text = "admin" Then
                 a = "admin"
             End If
-            If Button2.Tag = "1" Then
 
-                ta.UpdateQuery(TextBox1.Text, a, TextBox2.Text, TextBox1.Tag)
-            Else
-                ta.Insert(TextBox1.Text, a, TextBox2.Text)
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                Dim params As New Dictionary(Of String, Object)
+                params.Add("name", TextBox1.Text)
+                params.Add("admin", a)
+                params.Add("pwd", TextBox2.Text)
 
-            End If
+
+                If Button2.Tag = "1" Then
+                    Dim where As New Dictionary(Of String, Object)
+                    where.Add("adid", TextBox1.Tag)
+                    c.UpdateRecord("admin", params, where)
+                    where = Nothing
+
+                Else
+
+                    c.InsertRecord("admin", params, True)
+                End If
+            End Using
+
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+
+                DataGridView1.DataSource = c.SelectDataTableSymbols("admin", {"*"})
+            End Using
+
             TextBox1.Text = ""
             TextBox2.Text = ""
             TextBox1.Tag = ""
         Catch ex As Exception
-
         End Try
-        AdminTableAdapter.Fill(ALMohassinDBDataSet.admin)
+
         TextBox2.Tag = "0"
         Button2.Tag = "2"
         TextBox1.Enabled = True

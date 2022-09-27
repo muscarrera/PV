@@ -143,6 +143,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property _2298366_audio_doodle_fast_forward_forward_music_icon() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("2298366_audio_doodle_fast forward_forward_music_icon", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property _5() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("5", resourceCulture)
@@ -176,6 +186,16 @@ Namespace My.Resources
         Friend ReadOnly Property _501() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("501", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property _8872217_arrow_bold_forvard_icon() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("8872217_arrow_bold_forvard_icon", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -256,6 +276,16 @@ Namespace My.Resources
         Friend ReadOnly Property addmon() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("addmon", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property all() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("all", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

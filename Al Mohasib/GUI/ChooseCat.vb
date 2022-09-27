@@ -1,8 +1,10 @@
 ﻿Public Class ChooseCat
 
     Private Sub ChooseCat_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'ALMohassinDBDataSet.Category' table. You can move, or remove it, as needed.
-        Me.CategoryTableAdapter.Fill(Me.ALMohassinDBDataSet.Category)
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            DataGridView1.DataSource = a.SelectDataTableSymbols("Category", {"*"})
+        End Using
+
         Button1.Tag = 0
     End Sub
 

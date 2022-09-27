@@ -18,8 +18,11 @@ Public Class AddEditArticle
 
 
     Private Sub AddEditArticle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.DepotTableAdapter.Fill(Me.ALMohassinDBDataSet.Depot)
-        Me.CategoryTableAdapter.Fill(Me.ALMohassinDBDataSet.Category)
+
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            cbctg.DataSource = a.SelectDataTableSymbols("Category", {"*"})
+            CBdp.DataSource = a.SelectDataTableSymbols("Depot", {"*"})
+        End Using
 
         If Form1.CBTVA.Checked = False Then
             txttva.Visible = False
@@ -204,8 +207,6 @@ Public Class AddEditArticle
         If Validation() = False Then Return False
 
         '   If isImgChenged Then saveImage()
-
-
         Dim bprice As Double = txtbprice.text
         Dim sprice As Double = txtsprice.text
         Dim tva As Double = 20
@@ -218,16 +219,36 @@ Public Class AddEditArticle
             txtMarge.text = 0
         End If
         Dim price4 As Double = txtPrice4.text 'txtMarge.text
-
         If cid = 0 Then cid = cbctg.SelectedValue
 
+        Dim params As New Dictionary(Of String, Object)
+        params.Add("cid", cid)
+        params.Add("name", txtprdname.text)
+        params.Add("img", imagePath)
+        params.Add("bprice", bprice)
+        params.Add("sprice", sprice)
+        params.Add("unite", txtunit.text)
+        params.Add("codebar", txtcb.text)
+        params.Add("tva", tva)
+        params.Add("sp3", price2)
+        params.Add("sp4", price3)
+        params.Add("sp5", price4)
+        params.Add("poid", TxtPoids.text)
+        params.Add("depot", CInt(CBdp.SelectedValue))
+        params.Add("mixte", CBool(cbIsMixte.Checked))
+        params.Add("elements", txtMinStock.text)
+        params.Add("isMixte", CBool(cbIsMixte.Checked))
         ' addddd
-        If editMode = False Then
-            Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-                ta.InsertQuery(cid, txtprdname.text, imagePath, bprice, sprice, txtunit.text, txtcb.text, "0", tva,
-                               price2, price3, price4, TxtPoids.text, CInt(CBdp.SelectedValue), CBool(cbIsMixte.Checked), txtMinStock.text)
-                ta.Fill(ALMohassinDBDataSet.Article)
+        Dim x As Integer = 0
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim where As New Dictionary(Of String, Object)
+
+            If editMode Then
+                where.Add("arid", id)
+                x = a.UpdateRecord("Article", params, where)
+            Else
+                x = a.InsertRecord("Article", params)
+
                 If CheckBox1.Checked Then
                     txtcb.text = ""
                     txtbprice.text = ""
@@ -239,33 +260,28 @@ Public Class AddEditArticle
                     TxtPoids.text = ""
                     txtMinStock.text = ""
 
-                    txtprdname.Text = ""
-                    txtunit.Text = ""
+                    txtprdname.text = ""
+                    txtunit.text = ""
                     PBprd.Tag = ""
                     PBprd.BackgroundImage = Nothing
-                    Return False
-                Else
-                    Return True
+                    x = 0
+              
                 End If
-            Catch ex As Exception
-                MsgBox(ex.Message)
-                Return False
-            End Try
+            End If
 
+            'where.Clear()
+            'params.Clear()
+            'params.Add("val", "true")
+            'where.Add("vkey LIKE ", "article%")
+            'a.UpdateRecordSymbols("Value", params, where)
+        End Using
+
+        If x > 0 Then
+            Return True
         Else
-
-            Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-                ta.UpdateQuery(cid, txtprdname.Text, bprice, sprice, txtunit.Text, tva,
-                               price2, price3, price4, TxtPoids.text, txtcb.text, CInt(CBdp.SelectedValue),
-                                cbIsMixte.Checked, txtMinStock.text, imagePath, id)
-                ta.Fill(ALMohassinDBDataSet.Article)
-                Return True
-            Catch ex As Exception
-                MsgBox(ex.Message)
-                Return False
-            End Try
+            Return False
         End If
+
     End Function
 
 
@@ -554,31 +570,39 @@ Public Class AddEditArticle
             If Form1.cbCodeDouble.Checked Then
                 ''''''''''''''''''''''''''''''''''''
                 Dim ls = txtcb.text.Trim.Split("-")
+                Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
 
-                Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-                Dim artdt As DataTable
-                For i As Integer = 0 To ls.Length - 1
 
-                    If ls(i).Length <= 5 Then Continue For
+                    Dim params As New Dictionary(Of String, Object)
+                    Dim artdt As DataTable
+
                     '''''''''''''''''''
+                     
+                      For i As Integer = 0 To ls.Length - 1
 
-                    artdt = artta.GetDatalikecodebar("%" & ls(i) & "%")
+                        If ls(i).Length <= 5 Then Continue For
+                        '''''''''''''''''''
 
-                    If artdt.Rows.Count > 0 Then
-                        For t As Integer = 0 To artdt.Rows.Count - 1
-                            If artdt.Rows(t).Item(0) = txtprdname.Tag Then Continue For
-                            Dim str As String = "عذرا لا يمكن اتمام طلبكم.. المرجوا تعبئة رمز جديد"
-                            str &= vbNewLine
-                            str &= ls(i) & "  |  " & artdt.Rows(t).Item("name") & " [" & artdt.Rows(t).Item(0) & "]"
-                            str &= vbNewLine
-                            str &= ls(i) & "  |  " & txtprdname.Text
+                        params.Clear()
+                        params.Add("codebar LIKE ", "%" & ls(i) & "%")
+                        artdt = a.SelectDataTableSymbols("article", {"*"}, params)
 
-                            MsgBox(str, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
-                            txtcb.Focus()
-                            Return False
-                        Next
-                    End If
-                Next
+                        If artdt.Rows.Count > 0 Then
+                            For t As Integer = 0 To artdt.Rows.Count - 1
+                                If artdt.Rows(t).Item(0) = txtprdname.Tag Then Continue For
+                                Dim str As String = "عذرا لا يمكن اتمام طلبكم.. المرجوا تعبئة رمز جديد"
+                                str &= vbNewLine
+                                str &= ls(i) & "  |  " & artdt.Rows(t).Item("name") & " [" & artdt.Rows(t).Item(0) & "]"
+                                str &= vbNewLine
+                                str &= ls(i) & "  |  " & txtprdname.text
+
+                                MsgBox(str, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
+                                txtcb.Focus()
+                                Return False
+                            Next
+                        End If
+                    Next
+                End Using
                 ''''''''''''''''''''''''''''''''''''
             End If
 

@@ -60,18 +60,16 @@
                     End Using
 
                     ''''''''''''''''''
-                    Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
+                    'Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
 
-                    For t As Integer = 0 To dgvfct.Rows.Count - 1
-                        Dim dt = ta.GetDataByfctid(CInt(dgvfct.Rows(t).Cells(0).Value))
-                        For i As Integer = 0 To dt.Rows.Count - 1
-                            DGVP.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"), dt.Rows(i).Item("date"), dt.Rows(i).Item("Num"), dt.Rows(i).Item("writer"), dt.Rows(i).Item("fctid"), dt.Rows(i).Item("fctid"))
-                        Next
-                    Next
+                    'For t As Integer = 0 To dgvfct.Rows.Count - 1
+                    '    Dim dt = ta.GetDataByfctid(CInt(dgvfct.Rows(t).Cells(0).Value))
+                    '    For i As Integer = 0 To dt.Rows.Count - 1
+                    '        DGVP.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"), dt.Rows(i).Item("date"), dt.Rows(i).Item("Num"), dt.Rows(i).Item("writer"), dt.Rows(i).Item("fctid"), dt.Rows(i).Item("fctid"))
+                    '    Next
+                    'Next
                 End If
 
-                Dim cta As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
-                cta.Updatecredit(txtcrd.Text, txtname.Tag)
             End If
         Catch ex As Exception
 
@@ -164,17 +162,20 @@
                 txtcrd.Tag = txtcrd.Text
 
 
-                Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
-                DGVP.Rows.Clear()
+                 DGVP.Rows.Clear()
+                Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                    Dim tableName As String = "Payment"
 
+                    Dim params As New Dictionary(Of String, Object)
+                    params.Add("cid", Integer.Parse(txtname.Tag))
 
-                Dim dt = ta.GetData(Integer.Parse(txtname.Tag))
-                For i As Integer = 0 To dt.Rows.Count - 1
+                    Dim dt = c.SelectDataTable(tableName, {"*"}, params)
+                    For i As Integer = 0 To dt.Rows.Count - 1
 
-                    DGVP.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"), dt.Rows(i).Item("date"), dt.Rows(i).Item("Num"), dt.Rows(i).Item("writer"), dt.Rows(i).Item("fctid"), dt.Rows(i).Item("fctid"))
+                        DGVP.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"), dt.Rows(i).Item("date"), dt.Rows(i).Item("Num"), dt.Rows(i).Item("writer"), dt.Rows(i).Item("fctid"), dt.Rows(i).Item("fctid"))
 
-                Next
-
+                    Next
+                End Using
 
 
 
@@ -371,21 +372,27 @@
             txtcrd.Tag = txtcrd.Text
 
 
-            Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
-            DGVP.Rows.Clear()
+                    'Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
+                    'DGVP.Rows.Clear()
+                    '        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                    '            Dim tableName As String = "Payment"
+                    '            If isSell = False Then tableName = "CompanyPayment"
+                    '            Dim params As New Dictionary(Of String, Object)
 
-            For j As Integer = 0 To dgvfct.Rows.Count - 1
-                Dim dt = ta.GetDataByfctid(dgvfct.Rows(j).Cells(0).Value)
-                For i As Integer = 0 To dt.Rows.Count - 1
+                    '            For j As Integer = 0 To dgvfct.Rows.Count - 1
+                    '                params.Add("fctid", dgvfct.Rows(j).Cells(0).Value)
 
-                    DGVP.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"), dt.Rows(i).Item("date"), dt.Rows(i).Item("Num"), dt.Rows(i).Item("writer"), dgvfct.Rows(j).Cells(1).Value, dt.Rows(i).Item("fctid"))
+                    '                Dim dt = ta.GetDataByfctid(
+                    '                For i As Integer = 0 To dt.Rows.Count - 1
 
-                Next
+                    '                    DGVP.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"), dt.Rows(i).Item("date"), dt.Rows(i).Item("Num"), dt.Rows(i).Item("writer"), dgvfct.Rows(j).Cells(1).Value, dt.Rows(i).Item("fctid"))
+
+                    '                Next
 
 
 
-            Next
-
+                    '            Next
+                    '        End Using
 
 
                     If def < 0 Then
@@ -394,18 +401,18 @@
                     End If
 
                 Catch ex As Exception
-                If MyTRans IsNot Nothing Then
-                    MyTRans.Rollback()
-                End If
-                If MyCon IsNot Nothing Then
-                    If MyCon.State = ConnectionState.Open Then
-                        MyCon.Close()
+                    If MyTRans IsNot Nothing Then
+                        MyTRans.Rollback()
                     End If
+                    If MyCon IsNot Nothing Then
+                        If MyCon.State = ConnectionState.Open Then
+                            MyCon.Close()
+                        End If
 
-                End If
-                '  lbcrd.Text = lbcrd.Tag
-                MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
-            End Try
+                    End If
+                    '  lbcrd.Text = lbcrd.Tag
+                    MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
+                End Try
                 DGVP.Rows(a).Selected = True
                 DGVP.FirstDisplayedScrollingRowIndex = DGVP.Rows(a).Index
 
@@ -496,23 +503,23 @@
 
 
             Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
-                Dim dt = ta.GetDataBynum(txt, "شيك")
-                dgvfct.Rows.Clear()
-                DGVP.Rows.Clear()
-                If dt.Rows.Count > 0 Then
+                'Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
+                'Dim dt = ta.GetDataBynum(txt, "شيك")
+                'dgvfct.Rows.Clear()
+                'DGVP.Rows.Clear()
+                'If dt.Rows.Count > 0 Then
 
 
-                    For i As Integer = 0 To dt.Rows.Count - 1
+                '    For i As Integer = 0 To dt.Rows.Count - 1
 
-                        DGVP.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"), dt.Rows(i).Item("date"), dt.Rows(i).Item("Num"), dt.Rows(i).Item("writer"), dt.Rows(i).Item("fctid"))
+                '        DGVP.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"), dt.Rows(i).Item("date"), dt.Rows(i).Item("Num"), dt.Rows(i).Item("writer"), dt.Rows(i).Item("fctid"))
 
-                    Next
+                '    Next
 
-                Else
-                    MsgBox("لا يوجد")
+                'Else
+                '    MsgBox("لا يوجد")
 
-                End If
+                'End If
 
 
 
@@ -764,15 +771,15 @@
         Try
 
 
-            Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
+            'Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
 
 
-            Dim dt = ta.GetDataByfctid(0)
-            For i As Integer = 0 To dt.Rows.Count - 1
+            'Dim dt = ta.GetDataByfctid(0)
+            'For i As Integer = 0 To dt.Rows.Count - 1
 
-                DGVP.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"), dt.Rows(i).Item("date"), dt.Rows(i).Item("Num"), dt.Rows(i).Item("writer"), dt.Rows(i).Item("name"), dt.Rows(i).Item("fctid"))
+            '    DGVP.Rows.Add(dt.Rows(i).Item(0), dt.Rows(i).Item("montant"), dt.Rows(i).Item("way"), dt.Rows(i).Item("date"), dt.Rows(i).Item("Num"), dt.Rows(i).Item("writer"), dt.Rows(i).Item("name"), dt.Rows(i).Item("fctid"))
 
-            Next
+            'Next
         Catch ex As Exception
 
         End Try

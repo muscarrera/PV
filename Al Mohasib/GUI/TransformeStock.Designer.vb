@@ -22,7 +22,6 @@ Partial Class TransformeStock
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel10 = New System.Windows.Forms.Panel()
@@ -42,18 +41,11 @@ Partial Class TransformeStock
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
-        Me.DepotBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DepotTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter()
-        Me.DepotBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel10.SuspendLayout()
         Me.Panel11.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DepotBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel23
@@ -178,8 +170,6 @@ Partial Class TransformeStock
         '
         'Cb2
         '
-        Me.Cb2.DataSource = Me.DepotBindingSource1
-        Me.Cb2.DisplayMember = "name"
         Me.Cb2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.Cb2.FormattingEnabled = True
         Me.Cb2.ItemHeight = 13
@@ -191,8 +181,6 @@ Partial Class TransformeStock
         '
         'Cb1
         '
-        Me.Cb1.DataSource = Me.DepotBindingSource
-        Me.Cb1.DisplayMember = "name"
         Me.Cb1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.Cb1.FormattingEnabled = True
         Me.Cb1.ItemHeight = 13
@@ -303,25 +291,6 @@ Partial Class TransformeStock
         Me.Panel1.Size = New System.Drawing.Size(547, 47)
         Me.Panel1.TabIndex = 13
         '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'DepotBindingSource
-        '
-        Me.DepotBindingSource.DataMember = "Depot"
-        Me.DepotBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'DepotTableAdapter
-        '
-        Me.DepotTableAdapter.ClearBeforeFill = True
-        '
-        'DepotBindingSource1
-        '
-        Me.DepotBindingSource1.DataMember = "Depot"
-        Me.DepotBindingSource1.DataSource = Me.ALMohassinDBDataSet
-        '
         'TransformeStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -339,9 +308,6 @@ Partial Class TransformeStock
         Me.Panel11.PerformLayout()
         Me.Panel24.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DepotBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -364,8 +330,4 @@ Partial Class TransformeStock
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents txtQte As Al_Mohasib.TxtBox
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
-    Friend WithEvents DepotBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents DepotTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter
-    Friend WithEvents DepotBindingSource1 As System.Windows.Forms.BindingSource
 End Class

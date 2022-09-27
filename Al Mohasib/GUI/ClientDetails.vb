@@ -31,8 +31,8 @@
                     Dim params As New Dictionary(Of String, Object)
                     params.Add("clid = ", clid)
                     params.Add("payed = ", False)
-                    params.Add("[admin] = ", True)
-                    params.Add("[date] < ", dtt)
+                    params.Add("admin = ", True)
+                    params.Add("date < ", dtt)
 
                     Dim dt2 = a.SelectDataTableSymbols("Facture", {"*"}, params)
 
@@ -135,7 +135,7 @@
                     Dim params As New Dictionary(Of String, Object)
                     params.Add("clid = ", clid)
                     params.Add("payed = ", False)
-                    params.Add("[admin] = ", True)
+                    params.Add("admin = ", True)
 
                     Dim dt2 = a.SelectDataTableSymbols(ftableName, {"*"}, params)
 
@@ -290,9 +290,9 @@
 
             Dim params As New Dictionary(Of String, Object)
             params.Add("clid = ", id)
-            params.Add("[admin] = ", True)
-            params.Add("[date] < ", dtt2)
-            params.Add("[date] > ", dtt1)
+            params.Add("admin = ", True)
+            params.Add("date < ", dtt2)
+            params.Add("date > ", dtt1)
 
             Dim dt2 = a.SelectDataTableSymbols(ftableName, {"*"}, params)
 
@@ -395,7 +395,7 @@
 
                     Dim params As New Dictionary(Of String, Object)
                     params.Add("clid = ", clid)
-                    params.Add("[admin] = ", True)
+                    params.Add("admin = ", True)
 
                     Dim dt2 = a.SelectDataTableSymbols(ftableName, {"*"}, params)
 
@@ -545,10 +545,10 @@
 
             Dim params As New Dictionary(Of String, Object)
             params.Add("clid = ", id)
-            params.Add("[admin] = ", True)
-            params.Add("[payed] = ", False)
-            params.Add("[date] < ", dtt2)
-            params.Add("[date] > ", dtt1)
+            params.Add("admin = ", True)
+            params.Add("payed = ", False)
+            params.Add("date < ", dtt2)
+            params.Add("date > ", dtt1)
 
             Dim dt2 = a.SelectDataTableSymbols(ftableName, {"*"}, params)
 
@@ -660,14 +660,11 @@
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
 
             Dim params As New Dictionary(Of String, Object)
-            If btswitsh.Tag = 0 Then
-                params.Add("comid = ", id)
-            Else
-                params.Add("clid = ", id)
-            End If
+         
+            params.Add("cid = ", id)
 
-            params.Add("[date] < ", dtt2)
-            params.Add("[date] > ", dtt1)
+            params.Add("date < ", dtt2)
+            params.Add("date > ", dtt1)
 
             Dim dt2 = a.SelectDataTableSymbols(ftableName, {"*"}, params)
 

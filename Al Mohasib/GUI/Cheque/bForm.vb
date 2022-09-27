@@ -180,18 +180,34 @@ Public Class bForm
                                 top_y += 3
                             End If
 
-                            sf.Alignment = a.Alignement
+                        If a.field.ToUpper.StartsWith("FOR") Then
 
+                            Dim ls = a.points.Split("|")
+
+                            Dim myPoints(ls.Length - 1) As Point
+                            For n As Integer = 0 To ls.Length - 1
+                                Try
+                                    myPoints(n) = New Point(ls(n).Split("*")(0), ls(n).Split("*")(1))
+                                Catch ex As Exception
+                                End Try
+                            Next
+                            Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
+                            G.FillPolygon(_br, myPoints)
+
+                        Else
+                            sf.Alignment = a.Alignement
                             Dim str As String = data.Rows(0).Item(a.field)
                             str = a.str_start & str & a.str_end
                             G.DrawString(str, fn, B, New RectangleF(top_x, top_y, a.width, a.height), sf)
-
 
                             top_x -= 5
                             top_y -= 3
                             G.DrawRectangle(New Pen(Brushes.Azure, 3), a.x, a.y, a.width, a.height)
                             top_x += 5
                             top_y += 3
+                        End If
+
+
                     Next
                 End Using
 

@@ -118,7 +118,7 @@
             If dt2.Rows.Count > 0 Then
                 For i As Integer = 0 To dt2.Rows.Count - 1
                     params.Clear()
-                    params.Add(fld, dt2.Rows(i).Item(fld))
+                    params.Add(fld, dt2.Rows(i).Item("fctid"))
 
                     Dim dt = c.SelectDataTable(tName, {"*"}, params)
 
@@ -139,14 +139,14 @@
         Dim tableName As String = "CompanyPayment"
         Dim tName As String = "Bon"
         Dim fld As String = "bonid"
-        Dim cl As String = "comid"
+        Dim cl As String = "cid"
         Dim _pid As String = "PBid"
 
         If isSell Then
             tableName = "Payment"
             tName = "Facture"
             fld = "fctid"
-            cl = "clid"
+            cl = "cid"
             _pid = "Pid"
         End If
 
@@ -158,9 +158,9 @@
             params.Add(cl, clid)
             params.Add("montant", montant)
             params.Add("way", way)
-            params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
+            params.Add("date", dte) ' Format(dte, "dd-MM-yyyy HH:mm"))
             params.Add("Num", num)
-            params.Add(fld, fctid)
+            params.Add("fctid", fctid)
             params.Add("writer", CStr(Form1.adminName))
 
             Dim Pid = c.InsertRecord(tableName, params, True)
@@ -175,9 +175,9 @@
                 params.Add("name", "@" & Pid)
                 params.Add(cl, clid)
                 params.Add("way", way & " - [Rest]")
-                params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
+                params.Add("date", dte) 'Format(dte, "dd-MM-yyyy HH:mm"))
                 params.Add("Num", "[" & montant & "]" & num)
-                params.Add(fld, fctid)
+                params.Add("fctid", fctid)
                 params.Add("writer", CStr(Form1.adminName))
 
                 c.InsertRecord(tableName, params)
@@ -204,9 +204,9 @@
                     params.Add("name", "@" & Pid)
                     params.Add(cl, clid)
                     params.Add("way", way & " - [" & montant & "]")
-                    params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
+                    params.Add("date", dte) 'Format(dte, "dd-MM-yyyy HH:mm"))
                     params.Add("Num", "[" & fctid & "] - " & num)
-                    params.Add(fld, id)
+                    params.Add("fctid", id)
                     params.Add("writer", CStr(Form1.adminName))
 
                     c.InsertRecord(tableName, params)
@@ -231,7 +231,7 @@
                     Dim m As Double = 0
                     Try
                         params.Clear()
-                        params.Add(fld, 0)
+                        params.Add("fctid", 0)
                         params.Add(cl, clid)
 
                         Dim pchdt = c.SelectDataTable(tableName, {_pid, "montant"}, params)
@@ -254,9 +254,9 @@
                         params.Add("name", clientName)
                         params.Add(cl, clid)
                         params.Add("way", "POCHET")
-                        params.Add("date", Format(dte.AddYears(-10), "dd-MM-yyyy HH:mm"))
+                        params.Add("date", dte.AddYears(-10)) ' Format(dte.AddYears(-10), "dd-MM-yyyy HH:mm"))
                         params.Add("Num", "POCHET")
-                        params.Add(fld, 0)
+                        params.Add("fctid", 0)
                         params.Add("writer", CStr(Form1.adminName))
 
                         c.InsertRecord(tableName, params)
@@ -267,7 +267,7 @@
 
 
             End If
-            where.Add(fld, fctid)
+            where.Add("fctid", fctid)
             dt = c.SelectDataTable(tableName, {"*"}, where)
             where = Nothing
             params = Nothing
@@ -281,14 +281,14 @@
         Dim tableName As String = "CompanyPayment"
         Dim tName As String = "Bon"
         Dim fld As String = "bonid"
-        Dim cl As String = "comid"
+        Dim cl As String = "cid"
         Dim _pid As String = "PBid"
 
         If isSell Then
             tableName = "Payment"
             tName = "Facture"
             fld = "fctid"
-            cl = "clid"
+            cl = "cid"
             _pid = "Pid"
         End If
 
@@ -306,7 +306,7 @@
 
             params.Add("montant", montant)
             params.Add("way", way)
-            params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
+            params.Add("date", dte) 'Format(, "dd-MM-yyyy HH:mm")
             params.Add("Num", num)
             params.Add("writer", CStr(Form1.adminName))
 
@@ -323,7 +323,7 @@
                     If isSell Then
                         where.Add("fctid", dt2.Rows(i).Item("fctid"))
                     Else
-                        where.Add("bonid", dt2.Rows(i).Item("bonid"))
+                        where.Add("bonid", dt2.Rows(i).Item("fctid"))
                     End If
 
                     Dim avc As Double = c.SelectByScalar(tName, "avance", where)
@@ -358,14 +358,10 @@
             Dim where As New Dictionary(Of String, Object)
 
 
-            If isSell Then
-                where.Add("fctid", fctid)
-            Else
-                where.Add("bonid", fctid)
-            End If
 
+            where.Add("fctid", fctid)
 
-            newAvance = c.SelectByScalarSUM(tableName, "SUM(montant)", where)
+            newAvance = c.SelectByScalarSum(tableName, "SUM(montant)", where)
             Dim tt As Double = newAvance - total '- oldMontant
 
             If editMode = True And tt > 0 And haManyPayement Then
@@ -376,9 +372,9 @@
                 params.Add("name", "@" & pid)
                 params.Add(cl, clid)
                 params.Add("way", way & " - [Rest]")
-                params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
+                params.Add("date", dte) 'Format(dte, "dd-MM-yyyy HH:mm"))
                 params.Add("Num", "[" & montant & "]" & num)
-                params.Add(fld, fctid)
+                params.Add("fctid", fctid)
                 params.Add("writer", CStr(Form1.adminName))
 
                 c.InsertRecord(tableName, params)
@@ -428,9 +424,9 @@
                     params.Add("name", "@" & pid)
                     params.Add(cl, clid)
                     params.Add("way", way & " - [" & montant & "]")
-                    params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
+                    params.Add("date", dte) ' Format(dte, "dd-MM-yyyy HH:mm"))
                     params.Add("Num", "[" & fctid & "] - " & num)
-                    params.Add(fld, id)
+                    params.Add("fctid", id)
                     params.Add("writer", CStr(Form1.adminName))
 
                     c.InsertRecord(tableName, params)
@@ -452,7 +448,7 @@
                     Dim m As Double = 0
                     Try
                         params.Clear()
-                        params.Add(fld, 0)
+                        params.Add("fctid", 0)
                         params.Add(cl, clid)
 
                         Dim pchdt = c.SelectDataTable(tableName, {_pid, "montant"}, params)
@@ -475,9 +471,9 @@
                         params.Add("name", clientName)
                         params.Add(cl, clid)
                         params.Add("way", "POCHET")
-                        params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
+                        params.Add("date", dte) ' Format(dte, "dd-MM-yyyy HH:mm"))
                         params.Add("Num", "POCHET")
-                        params.Add(fld, 0)
+                        params.Add("fctid", 0)
                         params.Add("writer", CStr(Form1.adminName))
 
                         c.InsertRecord(tableName, params)
@@ -488,7 +484,7 @@
 
             End If
             where.Clear()
-            where.Add(fld, fctid)
+            where.Add("fctid", fctid)
             dt = c.SelectDataTable(tableName, {"*"}, where)
             where = Nothing
             params = Nothing
@@ -504,14 +500,14 @@
         Avance = 0
         Dim dt As DataTable
         Try
-            If isSell Then
-                Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
-                dt = ta.GetDataByfctid(fctid)
-            Else
-                Dim ta As New ALMohassinDBDataSetTableAdapters.CompanyPaymentTableAdapter
-                dt = ta.GetDataBybonid(fctid)
-            End If
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                Dim tableName As String = "Payment"
+                If isSell = False Then tableName = "CompanyPayment"
+                Dim params As New Dictionary(Of String, Object)
+                params.Add("fctid", fctid)
 
+                dt = c.SelectDataTable(tableName, {"*"}, params)
+            End Using
 
             For i As Integer = 0 To dt.Rows.Count - 1
                 DGVP.Rows.Add(dt.Rows(i).Item(0), DteValue(dt, "date", i).ToString("dd-MM-yyyy"),
@@ -535,20 +531,20 @@
                 Dim tableName As String = "CompanyPayment"
                 Dim tName As String = "Bon"
                 Dim fld As String = "bonid"
-                Dim cl As String = "comid"
+                Dim cl As String = "cid"
                 Dim _pid As String = "PBid"
 
                 If isSell Then
                     tableName = "Payment"
                     tName = "Facture"
                     fld = "fctid"
-                    cl = "clid"
+                    cl = "cid"
                     _pid = "Pid"
                 End If
 
                 Dim params As New Dictionary(Of String, Object)
             
-                params.Add(fld, 0)
+                params.Add("fctid", 0)
                 params.Add(cl, clid)
 
                 Dim pchdt = c.SelectDataTable(tableName, {_pid, "montant"}, params)
@@ -597,9 +593,7 @@
                          _num, CInt(btcon.Tag), isSell, dt)
         End If
 
-
         'fill payment
-
         DGVP.Rows.Clear()
         Avance = 0
 
@@ -617,11 +611,28 @@
         Next
 
         If isSell Then
-            Dim ta As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
-            ta.UpdateAvc(Avance, fctid)
+
+
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+                Dim where As New Dictionary(Of String, Object)
+
+                where.Add("fctid", fctid)
+                params.Add("avance", Avance)
+                c.UpdateRecord("Facture", params, where)
+
+            End Using
+
         Else
-            Dim ta As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
-            ta.UpdateAvc(Avance, fctid)
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+                Dim where As New Dictionary(Of String, Object)
+
+                where.Add("bonid", fctid)
+                params.Add("avance", Avance)
+                c.UpdateRecord("Bon", params, where)
+
+            End Using
         End If
 
         btcancel_Click(Nothing, Nothing)
@@ -660,16 +671,30 @@
                 rest = rest - DGVP.Rows(i).Cells(2).Value
             Next
             Dim dt As DataTable
+            Dim tb As String = "payment"
+            If Form1.RPl.isSell = False Then tb = "CompanyPayment"
 
-            If isSell Then
-                Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
-                ta.Insert("facture", clid, rest, "CACHE", Now.Date, "0", fctid, Form1.admin)
-                dt = ta.GetDataByfctid(fctid)
-            Else
-                Dim ta As New ALMohassinDBDataSetTableAdapters.CompanyPaymentTableAdapter
-                ta.Insert("facture", clid, rest, "CACHE", Now.Date, "0", fctid, Form1.admin, Now.Date)
-                dt = ta.GetDataBybonid(fctid)
-            End If
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+                params.Add("name", "facture")
+                params.Add("cid", clid)
+                params.Add("montant", rest)
+                params.Add("way", "CACHE")
+                params.Add("date", Now)
+                params.Add("Num", "0")
+                params.Add("fctid", fctid)
+                params.Add("writer", Form1.admin)
+                params.Add("paydate", Now.Date)
+
+                c.InsertRecord(tb, params, True)
+            End Using
+
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+                params.Add("fctid", fctid)
+              
+                dt = c.SelectDataTable(tb, {"*"}, params)
+            End Using
 
             DGVP.Rows.Clear()
             Avance = 0
@@ -679,11 +704,26 @@
             Next
             'update facture
             If isSell Then
-                Dim ta As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
-                ta.UpdateAvc(Avance, fctid)
+              
+                Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                    Dim params As New Dictionary(Of String, Object)
+                    Dim where As New Dictionary(Of String, Object)
+
+                    where.Add("fctid", fctid)
+                    params.Add("avance", Avance)
+                    c.UpdateRecord("Facture", params, where)
+
+                End Using
             Else
-                Dim ta As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
-                ta.UpdateAvc(Avance, fctid)
+                Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                    Dim params As New Dictionary(Of String, Object)
+                    Dim where As New Dictionary(Of String, Object)
+                    where.Add("bonid", fctid)
+
+                    params.Add("avance", Avance)
+                    c.UpdateRecord("Bon", params, where)
+
+                End Using
             End If
             'end dialoge
             Me.DialogResult = Windows.Forms.DialogResult.OK
@@ -772,14 +812,14 @@
             Dim tableName As String = "CompanyPayment"
             Dim tName As String = "Bon"
             Dim fld As String = "bonid"
-            Dim cl As String = "comid"
+            Dim cl As String = "cid"
             Dim _pid As String = "PBid"
 
             If isSell Then
                 tableName = "Payment"
                 tName = "Facture"
                 fld = "fctid"
-                cl = "clid"
+                cl = "cid"
                 _pid = "Pid"
             End If
 
@@ -792,10 +832,7 @@
             If TT = 0 Then Exit Sub
             If _p = 0 Then Exit Sub
 
-
-
             Dim av As Double = total - Avance
-
             If av > TT Then
                 av = TT
                 TT = 0
@@ -808,7 +845,7 @@
             params.Add("way", "Reserve")
             params.Add("date", Now.Date)
             params.Add("Num", "@POCHET")
-            params.Add(fld, fctid)
+            params.Add("fctid", fctid)
             params.Add("writer", CStr(Form1.adminName))
 
             c.InsertRecord(tableName, params)
@@ -820,14 +857,11 @@
             where.Add(_pid, _p)
             c.UpdateRecord(tableName, params, where)
             lbPoch.Text = TT.ToString(Form1.frmDbl)
-            params.Clear()
-
 
             params.Clear()
             where.Clear()
             where.Add(fld, fctid)
             Dim dt = c.SelectDataTable(tableName, {"*"}, where)
-           
 
             'fill payment
             DGVP.Rows.Clear()
@@ -847,11 +881,18 @@
             Next
 
             If isSell Then
-                Dim ta As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
-                ta.UpdateAvc(Avance, fctid)
+                params.Clear()
+                where.Clear()
+
+                where.Add("fctid", fctid)
+                params.Add("avance", Avance)
+                c.UpdateRecord("Facture", params, where)
             Else
-                Dim ta As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
-                ta.UpdateAvc(Avance, fctid)
+                params.Clear()
+                where.Clear()
+                where.Add("bonid", fctid)
+                params.Add("avance", Avance)
+                c.UpdateRecord("Bon", params, where)
             End If
 
             btcancel_Click(Nothing, Nothing)
@@ -863,6 +904,4 @@
             params = Nothing
         End Using
     End Sub
-
-  
 End Class

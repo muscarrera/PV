@@ -121,7 +121,7 @@
             Dim params As New Dictionary(Of String, Object)
             params.Add("ListBl", lst)
             params.Add("clid", Clid)
-            params.Add("date", Format(d, "dd-MM-yyyy"))
+            params.Add("date", d)
             params.Add("remise", r)
             params.Add("timbre", tmbr)
             params.Add("mode", mode)
@@ -155,7 +155,7 @@
 
             params.Add("ListBl", lst)
             params.Add("clid", Clid)
-            params.Add("date", Format(d, "dd-MM-yyyy"))
+            params.Add("date", d)
             params.Add("remise", r)
             params.Add("timbre", tmbr)
             params.Add("mode", mode)
@@ -234,10 +234,10 @@
 
             params.Add("name", "@-FCT" & fid)
 
-            params.Add("clid", clid)
+            params.Add("cid", clid)
             params.Add("montant", montant * -1)
             params.Add("way", "Droit de Timber")
-            params.Add("date", Format(Now.Date, "dd-MM-yyyy"))
+            params.Add("date", Now)
             params.Add("Num", "@-FCT" & fid)
             params.Add("fctid", bid)
             params.Add("writer", CStr(Form1.adminName))

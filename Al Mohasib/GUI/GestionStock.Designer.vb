@@ -22,7 +22,6 @@ Partial Class GestionStock
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(GestionStock))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -49,8 +48,6 @@ Partial Class GestionStock
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.cbdepot = New System.Windows.Forms.ComboBox()
-        Me.DepotBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.DTP2 = New System.Windows.Forms.DateTimePicker()
@@ -61,21 +58,15 @@ Partial Class GestionStock
         Me.Label3 = New System.Windows.Forms.Label()
         Me.plup = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Panel22 = New System.Windows.Forms.Panel()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel15 = New System.Windows.Forms.Panel()
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel17 = New System.Windows.Forms.Panel()
-        Me.CompanyBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.DGVS = New System.Windows.Forms.DataGridView()
-        Me.DepotTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter()
-        Me.CompanyTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.companyTableAdapter()
-        Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
-        Me.PrintPrev = New System.Windows.Forms.PrintPreviewDialog()
-        Me.PrintDlg = New System.Windows.Forms.PrintDialog()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -87,21 +78,21 @@ Partial Class GestionStock
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
+        Me.PrintPrev = New System.Windows.Forms.PrintPreviewDialog()
+        Me.PrintDlg = New System.Windows.Forms.PrintDialog()
         Me.Panel12.SuspendLayout()
         Me.Panel14.SuspendLayout()
         Me.Panel19.SuspendLayout()
         Me.Panel18.SuspendLayout()
         Me.Panel7.SuspendLayout()
         Me.Panel24.SuspendLayout()
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.plup.SuspendLayout()
         Me.Panel21.SuspendLayout()
         Me.Panel15.SuspendLayout()
         Me.Panel16.SuspendLayout()
-        CType(Me.CompanyBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel8.SuspendLayout()
         CType(Me.DGVS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -342,8 +333,6 @@ Partial Class GestionStock
         '
         'cbdepot
         '
-        Me.cbdepot.DataSource = Me.DepotBindingSource
-        Me.cbdepot.DisplayMember = "name"
         Me.cbdepot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbdepot.FormattingEnabled = True
         Me.cbdepot.Location = New System.Drawing.Point(6, 40)
@@ -351,16 +340,6 @@ Partial Class GestionStock
         Me.cbdepot.Size = New System.Drawing.Size(172, 21)
         Me.cbdepot.TabIndex = 5
         Me.cbdepot.ValueMember = "dpid"
-        '
-        'DepotBindingSource
-        '
-        Me.DepotBindingSource.DataMember = "Depot"
-        Me.DepotBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'Panel2
         '
@@ -478,6 +457,14 @@ Partial Class GestionStock
         Me.Panel21.Size = New System.Drawing.Size(204, 94)
         Me.Panel21.TabIndex = 10
         '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(6, 40)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(31, 20)
+        Me.TextBox1.TabIndex = 4
+        Me.TextBox1.Visible = False
+        '
         'Panel22
         '
         Me.Panel22.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.btmenu1
@@ -544,11 +531,6 @@ Partial Class GestionStock
         Me.Panel17.Size = New System.Drawing.Size(1, 94)
         Me.Panel17.TabIndex = 2
         '
-        'CompanyBindingSource
-        '
-        Me.CompanyBindingSource.DataMember = "company"
-        Me.CompanyBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
         'Panel8
         '
         Me.Panel8.Controls.Add(Me.DGVS)
@@ -595,40 +577,6 @@ Partial Class GestionStock
         Me.DGVS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DGVS.Size = New System.Drawing.Size(964, 532)
         Me.DGVS.TabIndex = 2
-        '
-        'DepotTableAdapter
-        '
-        Me.DepotTableAdapter.ClearBeforeFill = True
-        '
-        'CompanyTableAdapter
-        '
-        Me.CompanyTableAdapter.ClearBeforeFill = True
-        '
-        'PrintDoc
-        '
-        '
-        'PrintPrev
-        '
-        Me.PrintPrev.AutoScrollMargin = New System.Drawing.Size(0, 0)
-        Me.PrintPrev.AutoScrollMinSize = New System.Drawing.Size(0, 0)
-        Me.PrintPrev.ClientSize = New System.Drawing.Size(400, 300)
-        Me.PrintPrev.Document = Me.PrintDoc
-        Me.PrintPrev.Enabled = True
-        Me.PrintPrev.Icon = CType(resources.GetObject("PrintPrev.Icon"), System.Drawing.Icon)
-        Me.PrintPrev.Name = "PrintPrev"
-        Me.PrintPrev.Visible = False
-        '
-        'PrintDlg
-        '
-        Me.PrintDlg.UseEXDialog = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(6, 40)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(31, 20)
-        Me.TextBox1.TabIndex = 4
-        Me.TextBox1.Visible = False
         '
         'Column5
         '
@@ -715,6 +663,24 @@ Partial Class GestionStock
         Me.Column11.ReadOnly = True
         Me.Column11.Visible = False
         '
+        'PrintDoc
+        '
+        '
+        'PrintPrev
+        '
+        Me.PrintPrev.AutoScrollMargin = New System.Drawing.Size(0, 0)
+        Me.PrintPrev.AutoScrollMinSize = New System.Drawing.Size(0, 0)
+        Me.PrintPrev.ClientSize = New System.Drawing.Size(400, 300)
+        Me.PrintPrev.Document = Me.PrintDoc
+        Me.PrintPrev.Enabled = True
+        Me.PrintPrev.Icon = CType(resources.GetObject("PrintPrev.Icon"), System.Drawing.Icon)
+        Me.PrintPrev.Name = "PrintPrev"
+        Me.PrintPrev.Visible = False
+        '
+        'PrintDlg
+        '
+        Me.PrintDlg.UseEXDialog = True
+        '
         'GestionStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -737,8 +703,6 @@ Partial Class GestionStock
         Me.Panel18.ResumeLayout(False)
         Me.Panel7.ResumeLayout(False)
         Me.Panel24.ResumeLayout(False)
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.Panel1.ResumeLayout(False)
@@ -750,7 +714,6 @@ Partial Class GestionStock
         Me.Panel15.PerformLayout()
         Me.Panel16.ResumeLayout(False)
         Me.Panel16.PerformLayout()
-        CType(Me.CompanyBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel8.ResumeLayout(False)
         CType(Me.DGVS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -781,9 +744,6 @@ Partial Class GestionStock
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents Panel8 As System.Windows.Forms.Panel
     Friend WithEvents DGVS As System.Windows.Forms.DataGridView
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
-    Friend WithEvents DepotBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents DepotTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter
     Friend WithEvents Button6 As System.Windows.Forms.Button
     Friend WithEvents Panel21 As System.Windows.Forms.Panel
     Friend WithEvents Panel22 As System.Windows.Forms.Panel
@@ -795,8 +755,6 @@ Partial Class GestionStock
     Friend WithEvents Panel17 As System.Windows.Forms.Panel
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Panel24 As System.Windows.Forms.Panel
-    Friend WithEvents CompanyBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents CompanyTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.companyTableAdapter
     Friend WithEvents PrintDoc As System.Drawing.Printing.PrintDocument
     Friend WithEvents PrintPrev As System.Windows.Forms.PrintPreviewDialog
     Friend WithEvents Button7 As System.Windows.Forms.Button

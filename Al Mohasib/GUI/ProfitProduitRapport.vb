@@ -252,17 +252,35 @@ Public Class ProfitProduitRapport
         Dim str As String = InputBox("Code / Ref  de groupe d'article", "Rapport ..")
         If str = "" Then Exit Sub
 
-        Dim BTA As New ALMohassinDBDataSetTableAdapters.TracabilityINTableAdapter
+     Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+            Dim tb As String = "Bon"
+            Dim tb_D As String = "DetailsBon"
 
-        dt_in = BTA.GetDataByRapportDala3_Achat("%" & str & "%")
-        dt_OUT = BTA.GetDataByRapportDal3_Vente("%" & str & "%")
+            params.Add(tb_D & ".code LIKE ", "%" & str & "%")
+            params.Add(tb_D & ".pid = ", 0)
+         
+            dt_in = a.SelectDataTableSymbols("(" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".bonid)",
+                            {tb & ".date, " & tb & ".name AS Nom, " & tb & ".bonid AS ID, " & tb_D & ".name AS Designation, " &
+                                tb_D & ".unit, " & tb_D & ".price AS Prix, " & tb_D & ".qte AS Qte, " & tb_D & ".price * DetailsBon.qte AS Total, " &
+                tb_D & ".arid "}, params)
 
-        Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-        Dim dfta As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
-        dt_Art = artta.GetDatalikecodebar("%" & str & "%")
-        dt_Pr = dfta.GetDataByfctid(0)
-        dt_Pr.Rows.Clear()
-        dt_Pr.Rows.Add(0, 0, "Creation", 0, 0, Now.ToString(), True, Form1.adminName)
+                params.Clear()
+
+                tb = "Facture"
+            tb_D = "DetailsFacture"
+
+            params.Add(tb_D & ".code LIKE ", "%" & str & "%")
+            params.Add(tb_D & ".pid = ", 0)
+
+
+            dt_OUT = a.SelectDataTableSymbols("(" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".fctid)",
+                        {tb & ".date, " & tb & ".name AS Nom, " & tb & ".fctid AS ID, " & tb_D & ".name AS Designation, " &
+                            tb_D & ".unit, " & tb_D & ".price AS Prix, " & tb_D & ".qte AS Qte, " & tb_D & ".price * DetailsFacture.qte AS Total, " &
+            tb_D & ".bprice * DetailsFacture.qte AS Total_Achat, " & tb_D & ".arid "}, params)
+
+        End Using
+
 
 
 

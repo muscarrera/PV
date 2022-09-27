@@ -94,17 +94,13 @@
             dte = dte.AddDays(-10)
             params.Add("date >=", dte)
 
-            If isSell Then
-                params.Add("clid = ", CID)
-            Else
-                params.Add("comid = ", CID)
-            End If
+            params.Add("cid = ", CID)
 
             dt = a.SelectDataTableSymbols(PayementTable, {"*"}, params)
             If Not IsNothing(dt) Then
                 If dt.Rows.Count > 0 Then
                     Dim fctid_str = "fctid"
-                    If isSell = False Then fctid_str = "bonid"
+                    '  If isSell = False Then fctid_str = "bonid"
 
                     For i As Integer = 0 To dt.Rows.Count - 1
                         Dim fctId As Integer = IntValue(dt, fctid_str, i)
@@ -141,7 +137,7 @@
             If enc > 0 Then DataGridView2.Rows.Add(dte.AddDays(-1).ToString("dd/MM/yyyy"), "", "Ancien Crédit", enc.ToString(Form1.frmDbl), "Ancien Crédit")
 
             params.Clear()
-         
+
             If isSell Then
                 params.Add("Clid", CID)
             Else

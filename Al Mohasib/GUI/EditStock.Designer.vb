@@ -22,7 +22,6 @@ Partial Class EditStock
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(EditStock))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -41,11 +40,15 @@ Partial Class EditStock
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel6 = New System.Windows.Forms.Panel()
-        Me.DepotBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
-        Me.DepotTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.DGVS = New System.Windows.Forms.DataGridView()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel22 = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
         Me.Panel13 = New System.Windows.Forms.Panel()
@@ -54,20 +57,9 @@ Partial Class EditStock
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.plup = New System.Windows.Forms.Panel()
-        Me.CompanyBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.CompanyTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.companyTableAdapter()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel2.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.Panel5.SuspendLayout()
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel8.SuspendLayout()
         CType(Me.DGVS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel21.SuspendLayout()
@@ -75,7 +67,6 @@ Partial Class EditStock
         Me.Panel14.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.plup.SuspendLayout()
-        CType(Me.CompanyBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Button8
@@ -86,7 +77,7 @@ Partial Class EditStock
         Me.Button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.Button8.FlatAppearance.BorderSize = 0
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Font = New System.Drawing.Font("AGA Arabesque Free Sample", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
+        Me.Button8.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
         Me.Button8.Location = New System.Drawing.Point(32, 3)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(72, 65)
@@ -103,7 +94,7 @@ Partial Class EditStock
         Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("AGA Arabesque Free Sample", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
         Me.Button2.Location = New System.Drawing.Point(37, 8)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(68, 65)
@@ -128,11 +119,11 @@ Partial Class EditStock
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("ae_AlArabiya", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.SystemColors.ControlDark
         Me.Label1.Location = New System.Drawing.Point(34, 2)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(41, 19)
+        Me.Label1.Size = New System.Drawing.Size(34, 17)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "التأكيد"
         '
@@ -171,11 +162,11 @@ Partial Class EditStock
         '
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("ae_AlArabiya", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.SystemColors.ControlDark
         Me.Label4.Location = New System.Drawing.Point(113, 11)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(45, 19)
+        Me.Label4.Size = New System.Drawing.Size(46, 17)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "المجموع"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -204,11 +195,11 @@ Partial Class EditStock
         '
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("ae_AlArabiya", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.SystemColors.ControlDark
         Me.Label2.Location = New System.Drawing.Point(68, 1)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(45, 19)
+        Me.Label2.Size = New System.Drawing.Size(46, 17)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "المجموع"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -221,20 +212,6 @@ Partial Class EditStock
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(1, 94)
         Me.Panel6.TabIndex = 2
-        '
-        'DepotBindingSource
-        '
-        Me.DepotBindingSource.DataMember = "Depot"
-        Me.DepotBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'DepotTableAdapter
-        '
-        Me.DepotTableAdapter.ClearBeforeFill = True
         '
         'Panel8
         '
@@ -282,6 +259,59 @@ Partial Class EditStock
         Me.DGVS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.DGVS.Size = New System.Drawing.Size(964, 518)
         Me.DGVS.TabIndex = 2
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "id"
+        Me.Column5.Name = "Column5"
+        Me.Column5.Visible = False
+        '
+        'Column1
+        '
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Honeydew
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle2
+        Me.Column1.FillWeight = 15.68643!
+        Me.Column1.HeaderText = "الترميز"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
+        'Column2
+        '
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.Honeydew
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle3
+        Me.Column2.FillWeight = 69.44329!
+        Me.Column2.HeaderText = "المادة"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        '
+        'Column7
+        '
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.Honeydew
+        Me.Column7.DefaultCellStyle = DataGridViewCellStyle4
+        Me.Column7.FillWeight = 12.12402!
+        Me.Column7.HeaderText = "الوحدة"
+        Me.Column7.Name = "Column7"
+        Me.Column7.ReadOnly = True
+        '
+        'Column3
+        '
+        Me.Column3.FillWeight = 26.74236!
+        Me.Column3.HeaderText = "الكمية"
+        Me.Column3.Name = "Column3"
+        '
+        'Column4
+        '
+        Me.Column4.FillWeight = 26.39618!
+        Me.Column4.HeaderText = "المخزن"
+        Me.Column4.Name = "Column4"
+        Me.Column4.ReadOnly = True
+        '
+        'Column9
+        '
+        Me.Column9.FillWeight = 31.138!
+        Me.Column9.HeaderText = "التاريخ"
+        Me.Column9.Name = "Column9"
+        Me.Column9.ReadOnly = True
         '
         'Panel22
         '
@@ -373,68 +403,6 @@ Partial Class EditStock
         Me.plup.Size = New System.Drawing.Size(984, 94)
         Me.plup.TabIndex = 11
         '
-        'CompanyBindingSource
-        '
-        Me.CompanyBindingSource.DataMember = "company"
-        Me.CompanyBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'CompanyTableAdapter
-        '
-        Me.CompanyTableAdapter.ClearBeforeFill = True
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "id"
-        Me.Column5.Name = "Column5"
-        Me.Column5.Visible = False
-        '
-        'Column1
-        '
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.Honeydew
-        Me.Column1.DefaultCellStyle = DataGridViewCellStyle2
-        Me.Column1.FillWeight = 15.68643!
-        Me.Column1.HeaderText = "الترميز"
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        '
-        'Column2
-        '
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.Honeydew
-        Me.Column2.DefaultCellStyle = DataGridViewCellStyle3
-        Me.Column2.FillWeight = 69.44329!
-        Me.Column2.HeaderText = "المادة"
-        Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
-        '
-        'Column7
-        '
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.Honeydew
-        Me.Column7.DefaultCellStyle = DataGridViewCellStyle4
-        Me.Column7.FillWeight = 12.12402!
-        Me.Column7.HeaderText = "الوحدة"
-        Me.Column7.Name = "Column7"
-        Me.Column7.ReadOnly = True
-        '
-        'Column3
-        '
-        Me.Column3.FillWeight = 26.74236!
-        Me.Column3.HeaderText = "الكمية"
-        Me.Column3.Name = "Column3"
-        '
-        'Column4
-        '
-        Me.Column4.FillWeight = 26.39618!
-        Me.Column4.HeaderText = "المخزن"
-        Me.Column4.Name = "Column4"
-        Me.Column4.ReadOnly = True
-        '
-        'Column9
-        '
-        Me.Column9.FillWeight = 31.138!
-        Me.Column9.HeaderText = "التاريخ"
-        Me.Column9.Name = "Column9"
-        Me.Column9.ReadOnly = True
-        '
         'EditStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -453,8 +421,6 @@ Partial Class EditStock
         Me.Panel4.PerformLayout()
         Me.Panel5.ResumeLayout(False)
         Me.Panel5.PerformLayout()
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel8.ResumeLayout(False)
         CType(Me.DGVS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel21.ResumeLayout(False)
@@ -463,7 +429,6 @@ Partial Class EditStock
         Me.Panel14.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.plup.ResumeLayout(False)
-        CType(Me.CompanyBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -475,10 +440,7 @@ Partial Class EditStock
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
     Friend WithEvents Panel5 As System.Windows.Forms.Panel
-    Friend WithEvents DepotBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
     Friend WithEvents Panel6 As System.Windows.Forms.Panel
-    Friend WithEvents DepotTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter
     Friend WithEvents Panel8 As System.Windows.Forms.Panel
     Friend WithEvents DGVS As System.Windows.Forms.DataGridView
     Friend WithEvents Panel22 As System.Windows.Forms.Panel
@@ -489,8 +451,6 @@ Partial Class EditStock
     Friend WithEvents Panel14 As System.Windows.Forms.Panel
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents plup As System.Windows.Forms.Panel
-    Friend WithEvents CompanyBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents CompanyTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.companyTableAdapter
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label

@@ -22,17 +22,8 @@ Partial Class Addadmin
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.AdidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AdminDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PwdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AdminBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ALMohassinDBDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.AdminTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.adminTableAdapter()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -52,10 +43,11 @@ Partial Class Addadmin
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.ShapeContainer2 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.RectangleShape1 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
+        Me.PwdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AdminDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AdidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AdminBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -66,11 +58,9 @@ Partial Class Addadmin
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AdidDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.AdminDataGridViewTextBoxColumn, Me.PwdDataGridViewTextBoxColumn})
-        Me.DataGridView1.DataSource = Me.AdminBindingSource
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
         Me.DataGridView1.MultiSelect = False
@@ -80,50 +70,6 @@ Partial Class Addadmin
         Me.DataGridView1.Size = New System.Drawing.Size(383, 427)
         Me.DataGridView1.TabIndex = 0
         '
-        'AdidDataGridViewTextBoxColumn
-        '
-        Me.AdidDataGridViewTextBoxColumn.DataPropertyName = "adid"
-        Me.AdidDataGridViewTextBoxColumn.HeaderText = "adid"
-        Me.AdidDataGridViewTextBoxColumn.Name = "AdidDataGridViewTextBoxColumn"
-        Me.AdidDataGridViewTextBoxColumn.ReadOnly = True
-        Me.AdidDataGridViewTextBoxColumn.Visible = False
-        '
-        'NameDataGridViewTextBoxColumn
-        '
-        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
-        Me.NameDataGridViewTextBoxColumn.HeaderText = "name"
-        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
-        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AdminDataGridViewTextBoxColumn
-        '
-        Me.AdminDataGridViewTextBoxColumn.DataPropertyName = "admin"
-        Me.AdminDataGridViewTextBoxColumn.HeaderText = "admin"
-        Me.AdminDataGridViewTextBoxColumn.Name = "AdminDataGridViewTextBoxColumn"
-        Me.AdminDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'PwdDataGridViewTextBoxColumn
-        '
-        Me.PwdDataGridViewTextBoxColumn.DataPropertyName = "pwd"
-        Me.PwdDataGridViewTextBoxColumn.HeaderText = "pwd"
-        Me.PwdDataGridViewTextBoxColumn.Name = "PwdDataGridViewTextBoxColumn"
-        Me.PwdDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AdminBindingSource
-        '
-        Me.AdminBindingSource.DataMember = "admin"
-        Me.AdminBindingSource.DataSource = Me.ALMohassinDBDataSetBindingSource
-        '
-        'ALMohassinDBDataSetBindingSource
-        '
-        Me.ALMohassinDBDataSetBindingSource.DataSource = Me.ALMohassinDBDataSet
-        Me.ALMohassinDBDataSetBindingSource.Position = 0
-        '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.DataGridView1)
@@ -132,10 +78,6 @@ Partial Class Addadmin
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(383, 427)
         Me.Panel1.TabIndex = 1
-        '
-        'AdminTableAdapter
-        '
-        Me.AdminTableAdapter.ClearBeforeFill = True
         '
         'TextBox1
         '
@@ -352,6 +294,35 @@ Partial Class Addadmin
         Me.RectangleShape1.Name = "RectangleShape1"
         Me.RectangleShape1.Size = New System.Drawing.Size(107, 31)
         '
+        'PwdDataGridViewTextBoxColumn
+        '
+        Me.PwdDataGridViewTextBoxColumn.DataPropertyName = "pwd"
+        Me.PwdDataGridViewTextBoxColumn.HeaderText = "pwd"
+        Me.PwdDataGridViewTextBoxColumn.Name = "PwdDataGridViewTextBoxColumn"
+        Me.PwdDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'AdminDataGridViewTextBoxColumn
+        '
+        Me.AdminDataGridViewTextBoxColumn.DataPropertyName = "admin"
+        Me.AdminDataGridViewTextBoxColumn.HeaderText = "admin"
+        Me.AdminDataGridViewTextBoxColumn.Name = "AdminDataGridViewTextBoxColumn"
+        Me.AdminDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'NameDataGridViewTextBoxColumn
+        '
+        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
+        Me.NameDataGridViewTextBoxColumn.HeaderText = "name"
+        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
+        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'AdidDataGridViewTextBoxColumn
+        '
+        Me.AdidDataGridViewTextBoxColumn.DataPropertyName = "adid"
+        Me.AdidDataGridViewTextBoxColumn.HeaderText = "adid"
+        Me.AdidDataGridViewTextBoxColumn.Name = "AdidDataGridViewTextBoxColumn"
+        Me.AdidDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AdidDataGridViewTextBoxColumn.Visible = False
+        '
         'Addadmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -373,9 +344,6 @@ Partial Class Addadmin
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "المستخدم"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AdminBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSetBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -387,14 +355,6 @@ Partial Class Addadmin
     End Sub
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents ALMohassinDBDataSetBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
-    Friend WithEvents AdminBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents AdminTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.adminTableAdapter
-    Friend WithEvents AdidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents NameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents AdminDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PwdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -414,4 +374,8 @@ Partial Class Addadmin
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents ShapeContainer2 As Microsoft.VisualBasic.PowerPacks.ShapeContainer
     Friend WithEvents RectangleShape1 As Microsoft.VisualBasic.PowerPacks.RectangleShape
+    Friend WithEvents AdidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents NameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents AdminDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PwdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

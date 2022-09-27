@@ -139,9 +139,9 @@
         Dim tTva As Double = 0
 
         Dim params As New Dictionary(Of String, Object)
-        params.Add("[admin] = ", True)
-        params.Add("[date] < ", dtt2)
-        params.Add("[date] > ", dtt1)
+        params.Add("admin = ", True)
+        params.Add("date < ", dtt2)
+        params.Add("date > ", dtt1)
 
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
             Dim dt As DataTable = a.SelectDataTableSymbols(tableName, {"*"}, params)

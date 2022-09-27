@@ -12,6 +12,6 @@
     Public hasBloc As Boolean = False
     Public Alignement As Integer = 0
     Public fName As String = "Arial"
-
+    Public points As String
     Public isDeleted As Boolean = False
 End Class

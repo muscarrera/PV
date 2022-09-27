@@ -11,44 +11,48 @@
 
     Private Sub Stock_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'ALMohassinDBDataSet.Depot' table. You can move, or remove it, as needed.
-        Me.DepotTableAdapter.Fill(Me.ALMohassinDBDataSet.Depot)
+        '  Me.DepotTableAdapter.Fill(Me.ALMohassinDBDataSet.Depot)
 
         AvId = 0
 
         'TODO: This line of code loads data into the 'ALMohassinDBDataSet.company' table. You can move, or remove it, as needed.
-        Me.CompanyTableAdapter.Fill(Me.ALMohassinDBDataSet.company)
+        ' Me.CompanyTableAdapter.Fill(Me.ALMohassinDBDataSet.company)
         'fill category in main page
 
         Try
-            Dim ctgta As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
-            Dim ctgdt = ctgta.GetData()
-            For i As Integer = 0 To ctgdt.Rows.Count - 1
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
 
-                Dim bt As New Button
+                Dim ctgdt = a.SelectDataTableSymbols("Category", {"*"})
+                '''''''''''''''''''
+                For i As Integer = 0 To ctgdt.Rows.Count - 1
+
+                    Dim bt As New Button
 
 
-                bt.BackColor = Color.LightGoldenrodYellow
-                bt.Text = ctgdt.Rows(i).Item("name").ToString
-                bt.Name = "ctg" & i
-                bt.Tag = ctgdt.Rows(i).Item("cid")
+                    bt.BackColor = Color.LightGoldenrodYellow
+                    bt.Text = ctgdt.Rows(i).Item("name").ToString
+                    bt.Name = "ctg" & i
+                    bt.Tag = ctgdt.Rows(i).Item("cid")
 
-                bt.TextAlign = ContentAlignment.BottomCenter
-                Try
-                    If ctgdt.Rows(i).Item("img").ToString = "No Image" Or ctgdt.Rows(i).Item("img").ToString = "" Then
-                        bt.BackgroundImage = Form1.BackgroundImage
-                    Else
-                        bt.BackgroundImage = Image.FromFile(ctgdt.Rows(i).Item("img").ToString)
-                    End If
+                    bt.TextAlign = ContentAlignment.BottomCenter
+                    Try
+                        If ctgdt.Rows(i).Item("img").ToString = "No Image" Or ctgdt.Rows(i).Item("img").ToString = "" Then
+                            bt.BackgroundImage = Form1.BackgroundImage
+                        Else
+                            bt.BackgroundImage = Image.FromFile(ctgdt.Rows(i).Item("img").ToString)
+                        End If
 
-                    bt.BackgroundImageLayout = ImageLayout.Stretch
-                Catch ex As Exception
+                        bt.BackgroundImageLayout = ImageLayout.Stretch
+                    Catch ex As Exception
 
-                End Try
-                bt.Width = 125
-                bt.Height = 90
-                Me.FlowLayoutPanel1.Controls.Add(bt)
-                AddHandler bt.Click, AddressOf ctg_click
-            Next
+                    End Try
+                    bt.Width = 125
+                    bt.Height = 90
+                    Me.FlowLayoutPanel1.Controls.Add(bt)
+                    AddHandler bt.Click, AddressOf ctg_click
+                Next
+
+            End Using
         Catch ex As Exception
 
         End Try
@@ -57,81 +61,81 @@
     End Sub
 
     Private Sub ctg_click2(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        If Button1.Tag = "1" Then
-            Select Case MsgBox("العمل الحالي عير مسجل. اضغط على موافق لحفظ العمل.", MsgBoxStyle.Information Or MsgBoxStyle.YesNoCancel, "AL Mohasseb Stock")
-                Case MsgBoxResult.Yes
-                    Button1_Click(Nothing, Nothing)
-                Case MsgBoxResult.Cancel
-                    Exit Sub
+        'If Button1.Tag = "1" Then
+        '    Select Case MsgBox("العمل الحالي عير مسجل. اضغط على موافق لحفظ العمل.", MsgBoxStyle.Information Or MsgBoxStyle.YesNoCancel, "AL Mohasseb Stock")
+        '        Case MsgBoxResult.Yes
+        '            Button1_Click(Nothing, Nothing)
+        '        Case MsgBoxResult.Cancel
+        '            Exit Sub
 
-            End Select
-        End If
+        '    End Select
+        'End If
 
-        Dim bt2 As Button = sender
-        DGVS.Rows.Clear()
-        Try
-            Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            Dim artdt = artta.GetDataBycid(bt2.Tag)
+        'Dim bt2 As Button = sender
+        'DGVS.Rows.Clear()
+        'Try
+        '    Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
+        '    Dim artdt = artta.GetDataBycid(bt2.Tag)
 
-            If artdt.Rows.Count > 0 Then
-                For i As Integer = 0 To artdt.Rows.Count - 1
+        '    If artdt.Rows.Count > 0 Then
+        '        For i As Integer = 0 To artdt.Rows.Count - 1
 
-                    DGVS.Rows.Add(artdt.Rows(i).Item("arid").ToString, artdt.Rows(i).Item("codebar").ToString, artdt.Rows(i).Item("name").ToString, "", artdt.Rows(i).Item("unite").ToString, bt2.Tag)
+        '            DGVS.Rows.Add(artdt.Rows(i).Item("arid").ToString, artdt.Rows(i).Item("codebar").ToString, artdt.Rows(i).Item("name").ToString, "", artdt.Rows(i).Item("unite").ToString, bt2.Tag)
 
-                Next
+        '        Next
 
-            End If
+        '    End If
 
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        'End Try
 
-        Button1.Tag = "0"
+        'Button1.Tag = "0"
 
 
 
     End Sub
     Private Sub ctg_click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        If Button1.Tag = "1" Then
-            For i As Integer = 0 To DGVS.Rows.Count - 1
-                If i > DGVS.Rows.Count - 1 Then Exit For
-                If DGVS.Rows(i).Cells(3).Value = "" Then
-                    DGVS.Rows.Remove(DGVS.Rows(i))
-                    i -= 1
+        'If Button1.Tag = "1" Then
+        '    For i As Integer = 0 To DGVS.Rows.Count - 1
+        '        If i > DGVS.Rows.Count - 1 Then Exit For
+        '        If DGVS.Rows(i).Cells(3).Value = "" Then
+        '            DGVS.Rows.Remove(DGVS.Rows(i))
+        '            i -= 1
 
-                End If
-            Next
-        End If
-        Dim bt2 As Button = sender
-        Try
-            Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            Dim artdt = artta.GetDataBycid(bt2.Tag)
-            If artdt.Rows.Count > 0 Then
-                For i As Integer = 0 To artdt.Rows.Count - 1
-                    Dim price As Double = CDbl(artdt.Rows(i).Item("sprice").ToString)
-                    If txttype.Text = "IN" Then price = CDbl(artdt.Rows(i).Item("bprice").ToString)
-                    Dim ARID As String = artdt.Rows(i).Item("arid").ToString
-                    Dim ISEXIST As Boolean = False
+        '        End If
+        '    Next
+        'End If
+        'Dim bt2 As Button = sender
+        'Try
+        '    Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
+        '    Dim artdt = artta.GetDataBycid(bt2.Tag)
+        '    If artdt.Rows.Count > 0 Then
+        '        For i As Integer = 0 To artdt.Rows.Count - 1
+        '            Dim price As Double = CDbl(artdt.Rows(i).Item("sprice").ToString)
+        '            If txttype.Text = "IN" Then price = CDbl(artdt.Rows(i).Item("bprice").ToString)
+        '            Dim ARID As String = artdt.Rows(i).Item("arid").ToString
+        '            Dim ISEXIST As Boolean = False
 
-                    For T As Integer = 0 To DGVS.Rows.Count - 1
-                        If DGVS.Rows(T).Cells(0).Value = ARID Then
-                            ISEXIST = True
-                            Exit For
-                        End If
-                        If DGVS.Rows(T).Cells(3).Value = "" Then Exit For
-                    Next
+        '            For T As Integer = 0 To DGVS.Rows.Count - 1
+        '                If DGVS.Rows(T).Cells(0).Value = ARID Then
+        '                    ISEXIST = True
+        '                    Exit For
+        '                End If
+        '                If DGVS.Rows(T).Cells(3).Value = "" Then Exit For
+        '            Next
 
-                    If ISEXIST = False Then
-                        DGVS.Rows.Add(ARID, artdt.Rows(i).Item("codebar").ToString,
-                                                        artdt.Rows(i).Item("name").ToString, "", artdt.Rows(i).Item("unite").ToString,
-                                                        bt2.Tag, artdt.Rows(i).Item("depot").ToString, price)
-                    End If
+        '            If ISEXIST = False Then
+        '                DGVS.Rows.Add(ARID, artdt.Rows(i).Item("codebar").ToString,
+        '                                                artdt.Rows(i).Item("name").ToString, "", artdt.Rows(i).Item("unite").ToString,
+        '                                                bt2.Tag, artdt.Rows(i).Item("depot").ToString, price)
+        '            End If
 
-                Next
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+        '        Next
+        '    End If
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        'End Try
     End Sub
     Private Sub Save_XmlFile(ByVal Id As Integer)
 

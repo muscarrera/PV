@@ -63,56 +63,61 @@
                 AddHandler bTT.Click, AddressOf EditSidePanel
                 p.Controls.Add(bTT)
 
-                'load list of side element
-                Dim i As Integer = 0
-                For Each el As SideElement In pp.ls
-                    i += 1
-                    Dim bt As New Button
-                    bt.FlatStyle = FlatStyle.Flat
-                    bt.FlatAppearance.BorderColor = Color.FromArgb(pp.backColor)
-                    bt.BackColor = Color.WhiteSmoke
-                    If i Mod 2 = 0 Then bt.BackColor = Color.Aqua
+                Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                    Dim params As New Dictionary(Of String, Object)
 
-                    bt.Text = el.elementName
-                    bt.Name = el.index & "|" & i
-                    bt.BackgroundImageLayout = ImageLayout.Stretch
-                    bt.Visible = True
-                    bt.Height = pp.heigth
-                    bt.TextAlign = ContentAlignment.BottomCenter
-                    bt.Dock = DockStyle.Top
-                    bt.ForeColor = Color.FromArgb(el.color)
-                    bt.Font = fn
-                    Try
-                        bt.BackgroundImage = Image.FromFile(el.img)
-                    Catch ex As Exception
-                    End Try
+                 
+                    'load list of side element
+                    Dim i As Integer = 0
+                    For Each el As SideElement In pp.ls
+                        i += 1
+                        Dim bt As New Button
+                        bt.FlatStyle = FlatStyle.Flat
+                        bt.FlatAppearance.BorderColor = Color.FromArgb(pp.backColor)
+                        bt.BackColor = Color.WhiteSmoke
+                        If i Mod 2 = 0 Then bt.BackColor = Color.Aqua
 
-                    If el.isArticle Then
-                        If el.id = 0 Then
-                            AddHandler bt.Click, AddressOf addNewElement
-                        Else
-                            Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-                            Dim artdt = artta.GetDataByarid(el.id)
-                            If artdt.Rows.Count = 0 Then
+                        bt.Text = el.elementName
+                        bt.Name = el.index & "|" & i
+                        bt.BackgroundImageLayout = ImageLayout.Stretch
+                        bt.Visible = True
+                        bt.Height = pp.heigth
+                        bt.TextAlign = ContentAlignment.BottomCenter
+                        bt.Dock = DockStyle.Top
+                        bt.ForeColor = Color.FromArgb(el.color)
+                        bt.Font = fn
+                        Try
+                            bt.BackgroundImage = Image.FromFile(el.img)
+                        Catch ex As Exception
+                        End Try
+
+                        If el.isArticle Then
+                            If el.id = 0 Then
                                 AddHandler bt.Click, AddressOf addNewElement
                             Else
-                                bt.Tag = artdt.Rows(0)
-                                AddHandler bt.Click, AddressOf art_click
+                                params.Add("arid", el.id)
+                                Dim artdt = a.SelectDataTable("article", {"*"}, params)
+                                If artdt.Rows.Count = 0 Then
+                                    AddHandler bt.Click, AddressOf addNewElement
+                                Else
+                                    bt.Tag = artdt.Rows(0)
+                                    AddHandler bt.Click, AddressOf art_click
+                                End If
+                            End If
+                        Else
+                            bt.Tag = el.id
+                            If el.id = 0 Then
+                                AddHandler bt.Click, AddressOf addNewElement
+                            Else
+                                AddHandler bt.Click, AddressOf ctg_click
                             End If
                         End If
-                    Else
-                        bt.Tag = el.id
-                        If el.id = 0 Then
-                            AddHandler bt.Click, AddressOf addNewElement
-                        Else
-                            AddHandler bt.Click, AddressOf ctg_click
-                        End If
-                    End If
 
-                    p.Controls.Add(bt)
-                    i_el += 1
-                Next
+                        p.Controls.Add(bt)
+                        i_el += 1
+                    Next
 
+                End Using
                 pl.Controls.Add(p)
                 i_pl += 1
             Next

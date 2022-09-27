@@ -22,7 +22,6 @@ Partial Class ChoseClient
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ChoseClient))
         Me.plup = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
@@ -59,9 +58,6 @@ Partial Class ChoseClient
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Panel13 = New System.Windows.Forms.Panel()
-        Me.ClientBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
-        Me.ClientTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.ClientTableAdapter()
         Me.PlLeft = New System.Windows.Forms.Panel()
         Me.Panel9 = New System.Windows.Forms.Panel()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
@@ -93,8 +89,6 @@ Partial Class ChoseClient
         Me.Panel19.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.Panel14.SuspendLayout()
-        CType(Me.ClientBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PlLeft.SuspendLayout()
         Me.Panel9.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -533,20 +527,6 @@ Partial Class ChoseClient
         Me.Panel13.Size = New System.Drawing.Size(1, 94)
         Me.Panel13.TabIndex = 2
         '
-        'ClientBindingSource
-        '
-        Me.ClientBindingSource.DataMember = "Client"
-        Me.ClientBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'ClientTableAdapter
-        '
-        Me.ClientTableAdapter.ClearBeforeFill = True
-        '
         'PlLeft
         '
         Me.PlLeft.Controls.Add(Me.Panel9)
@@ -782,8 +762,6 @@ Partial Class ChoseClient
         Me.Panel12.ResumeLayout(False)
         Me.Panel14.ResumeLayout(False)
         Me.Panel14.PerformLayout()
-        CType(Me.ClientBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PlLeft.ResumeLayout(False)
         Me.Panel9.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -807,9 +785,7 @@ Partial Class ChoseClient
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Panel20 As System.Windows.Forms.Panel
     Friend WithEvents plup As System.Windows.Forms.Panel
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
-    Friend WithEvents ClientBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents ClientTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.ClientTableAdapter
+    ' Friend WithEvents ClientTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.ClientTableAdapter
     Friend WithEvents Panel21 As System.Windows.Forms.Panel
     Friend WithEvents Panel22 As System.Windows.Forms.Panel
     Friend WithEvents Panel24 As System.Windows.Forms.Panel

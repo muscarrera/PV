@@ -64,6 +64,17 @@ Namespace My
                 Return CType(Me("ALMohassinDBConnectionString"),String)
             End Get
         End Property
+
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(), _
+    Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+    Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString), _
+    Global.System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=root;password=azertyui;database=movedb;persistsecurityin" & _
+       "fo=True")> _
+        Public ReadOnly Property movedbConnectionString() As String
+            Get
+                Return CType(Me("movedbConnectionString"), String)
+            End Get
+        End Property
     End Class
 End Namespace
 

@@ -3,7 +3,11 @@
 
     Private Sub PWDPicker_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'ALMohassinDBDataSet.admin' table. You can move, or remove it, as needed.
-        Me.AdminTableAdapter.Fill(Me.ALMohassinDBDataSet.admin)
+
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            DGV1.DataSource = a.SelectDataTableSymbols("admin", {"*"})
+        End Using
+
         TextBox1.Select()
         Try
             If DGV1.Rows.Count Then

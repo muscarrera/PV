@@ -323,7 +323,7 @@ Public Class ChequePanel
     End Sub
     Private Function savePayement() As Boolean
 
-        If Not IsNumeric(txtMontant.text) Then Return False
+        ' If Not IsNumeric(lbMontant.Text) Then Return False
 
         Dim _dte As Date = Date.Now
         If IsDate(txtEcheance.text) Then _dte = CDate(txtEcheance.text)
@@ -346,8 +346,8 @@ Public Class ChequePanel
 
         Dim tableName As String = "CompanyPayment"
         Dim tName As String = "Bon"
-        Dim fld As String = "bonid"
-        Dim cl As String = "comid"
+        Dim fld As String = "fctid"
+        Dim cl As String = "cid"
         Dim _pid As String = "PBid"
         Dim nPid As Integer = 0
 
@@ -394,8 +394,8 @@ Public Class ChequePanel
 
         Dim tableName As String = "CompanyPayment"
         Dim tName As String = "Bon"
-        Dim fld As String = "bonid"
-        Dim cl As String = "comid"
+        Dim fld As String = "fctid"
+        Dim cl As String = "cid"
         Dim _pid As String = "PBid"
         Dim nPid As Integer = 0
 
@@ -508,18 +508,18 @@ Public Class ChequePanel
             Dim params As New Dictionary(Of String, Object)
 
             If Not IsNothing(cbB.SelectedItem) Then If cbB.SelectedItem.ToString.Length > 2 Then params.Add("way = ", cbB.Text)
-            If txtC.text.Contains("|") Then params.Add("comid = ", txtC.text.Split("|")(1))
-            If IsNumeric(txtB.text) Then params.Add("bonid = ", txtB.text)
+            If txtC.text.Contains("|") Then params.Add("cid = ", txtC.text.Split("|")(1))
+            If IsNumeric(txtB.text) Then params.Add("fctid = ", txtB.text)
 
             If IsDate(txtD1.text) Then
                 Dim d As Date = txtD1.text
                 Dim dt1 = New DateTime(d.Year, d.Month, d.Day, 0, 1, 0, 0)
-                params.Add("[date] > ", dt1)
+                params.Add("date > ", dt1)
             End If
             If IsDate(txtD2.text) Then
                 Dim d As Date = txtD2.text
                 Dim dt1 = New DateTime(d.Year, d.Month, d.Day, 23, 59, 0, 0)
-                params.Add("[date] < ", dt1)
+                params.Add("date < ", dt1)
             End If
 
             If txtR.text <> "" Then params.Add("Num LIKE ", txtR.text)
@@ -528,7 +528,7 @@ Public Class ChequePanel
             Dim dt As DataTable
             params.Add("name NOT  LIKE  ", "@%")
 
-            dt = a.SelectDataTableSymbols("CompanyPayment", {"TOP 50 *"}, params)
+            dt = a.SelectDataTableSymbols("CompanyPayment", {"*"}, params, , "LIMIT 50")
 
 
             dg.DataSource = dt
@@ -726,11 +726,28 @@ Public Class ChequePanel
                         top_y += 3
                     End If
 
-                    sf.Alignment = a.Alignement
+                    If a.field.ToUpper.StartsWith("FOR") Then
 
-                    Dim str As String = data.Rows(0).Item(a.field)
-                    str = a.str_start & str & a.str_end
-                    g.DrawString(str, fn, B, New RectangleF(top_x, top_y, a.width, a.height), sf)
+                        Dim ls = a.points.Split("|")
+
+                        Dim myPoints(ls.Length - 1) As Point
+                        For n As Integer = 0 To ls.Length - 1
+                            Try
+                                myPoints(n) = New Point(ls(n).Split("*")(0), ls(n).Split("*")(1))
+                            Catch ex As Exception
+                            End Try
+                        Next
+                        Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
+                        g.FillPolygon(_br, myPoints)
+
+                    Else
+                        sf.Alignment = a.Alignement
+
+                        Dim str As String = data.Rows(0).Item(a.field)
+                        str = a.str_start & str & a.str_end
+                        g.DrawString(str, fn, B, New RectangleF(top_x, top_y, a.width, a.height), sf)
+                    End If
+
                 Catch ex As Exception
                 End Try
             Next

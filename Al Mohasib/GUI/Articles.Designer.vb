@@ -33,7 +33,7 @@ Partial Class Articles
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel24 = New System.Windows.Forms.Panel()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.txtsearch = New System.Windows.Forms.TextBox()
+        Me.txt = New System.Windows.Forms.TextBox()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Panel25 = New System.Windows.Forms.Panel()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -54,7 +54,6 @@ Partial Class Articles
         Me.FlowLayoutPanel5 = New System.Windows.Forms.FlowLayoutPanel()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.DGVPRD = New System.Windows.Forms.DataGridView()
-        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -71,6 +70,7 @@ Partial Class Articles
         Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.plup.SuspendLayout()
         Me.Panel21.SuspendLayout()
         Me.Panel24.SuspendLayout()
@@ -146,7 +146,7 @@ Partial Class Articles
         '
         Me.Panel24.BackgroundImage = CType(resources.GetObject("Panel24.BackgroundImage"), System.Drawing.Image)
         Me.Panel24.Controls.Add(Me.Label9)
-        Me.Panel24.Controls.Add(Me.txtsearch)
+        Me.Panel24.Controls.Add(Me.txt)
         Me.Panel24.Controls.Add(Me.Button5)
         Me.Panel24.Controls.Add(Me.Panel25)
         Me.Panel24.Controls.Add(Me.Panel26)
@@ -168,13 +168,13 @@ Partial Class Articles
         Me.Label9.TabIndex = 0
         Me.Label9.Text = "Réf/Designation"
         '
-        'txtsearch
+        'txt
         '
-        Me.txtsearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtsearch.Location = New System.Drawing.Point(15, 23)
-        Me.txtsearch.Name = "txtsearch"
-        Me.txtsearch.Size = New System.Drawing.Size(198, 20)
-        Me.txtsearch.TabIndex = 5
+        Me.txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txt.Location = New System.Drawing.Point(15, 23)
+        Me.txt.Name = "txt"
+        Me.txt.Size = New System.Drawing.Size(198, 20)
+        Me.txt.TabIndex = 5
         '
         'Button5
         '
@@ -455,15 +455,6 @@ Partial Class Articles
         Me.DGVPRD.Size = New System.Drawing.Size(839, 463)
         Me.DGVPRD.TabIndex = 20
         '
-        'Panel2
-        '
-        Me.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel2.Location = New System.Drawing.Point(842, 16)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(10, 463)
-        Me.Panel2.TabIndex = 0
-        '
         'Column1
         '
         Me.Column1.HeaderText = "id"
@@ -577,6 +568,15 @@ Partial Class Articles
         Me.Column16.ReadOnly = True
         Me.Column16.Visible = False
         '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel2.Location = New System.Drawing.Point(842, 16)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(10, 463)
+        Me.Panel2.TabIndex = 0
+        '
         'Articles
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -635,7 +635,7 @@ Partial Class Articles
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Button6 As System.Windows.Forms.Button
-    Friend WithEvents txtsearch As System.Windows.Forms.TextBox
+    Friend WithEvents txt As System.Windows.Forms.TextBox
     Friend WithEvents FlowLayoutPanel5 As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Column1 As System.Windows.Forms.DataGridViewTextBoxColumn

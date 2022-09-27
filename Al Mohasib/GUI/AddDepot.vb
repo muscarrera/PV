@@ -1,8 +1,12 @@
 ﻿Public Class AddDepot
 
     Private Sub AddDepot_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'ALMohassinDBDataSet.Depot' table. You can move, or remove it, as needed.
-        Me.DepotTableAdapter.Fill(Me.ALMohassinDBDataSet.Depot)
+   
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            dgvctg.DataSource = a.SelectDataTableSymbols("Depot", {"*"})
+
+        End Using
+
 
     End Sub
 
@@ -14,46 +18,36 @@
             Exit Sub
         End If
 
-        ' addddd
-        If btcid.Tag = "1" Then
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim params As New Dictionary(Of String, Object)
+            params.Add("name", TextBox1.text)
+
+            If btcid.Tag = "1" Then
+                For i As Integer = 0 To dgvctg.Rows.Count - 1
+                    If TextBox1.text = dgvctg.Rows(i).Cells(1).Value Then
+                        MsgBox("عذرا لا يمكن اتمام طلبكم.. يجب عدم تكرار نفس الاسم", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
+                        TextBox1.Focus()
+                        dgvctg.Rows(i).Selected = True
+                        dgvctg.FirstDisplayedScrollingRowIndex = dgvctg.Rows(i).Index
+                        Exit Sub
+                    End If
+                Next
+
+                c.InsertRecord("Depot", params, True)
+            Else
+                Dim where As New Dictionary(Of String, Object)
+                where.Add("dpid", TextBox1.Tag)
+                c.UpdateRecord("Depot", params, where)
+                where = Nothing
+            End If
+        End Using
+
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+
+            dgvctg.DataSource = c.SelectDataTableSymbols("Depot", {"*"})
+        End Using
 
 
-            ''check the name
-
-            For i As Integer = 0 To dgvctg.Rows.Count - 1
-                If TextBox1.Text = dgvctg.Rows(i).Cells(1).Value Then
-                    MsgBox("عذرا لا يمكن اتمام طلبكم.. يجب عدم تكرار نفس الاسم", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
-                    TextBox1.Focus()
-                    dgvctg.Rows(i).Selected = True
-                    dgvctg.FirstDisplayedScrollingRowIndex = dgvctg.Rows(i).Index
-                    Exit Sub
-                End If
-            Next
-
-
-            Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
-                ta.Insert(TextBox1.Text)
-                ta.Fill(ALMohassinDBDataSet.Depot)
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-
-
-
-            'updateeee
-        Else
-
-            Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
-                ta.Update(TextBox1.Text, TextBox1.Tag, Label1.Tag)
-                ta.Fill(ALMohassinDBDataSet.Depot)
-
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-
-        End If
 
 
         TextBox1.Text = ""
@@ -96,13 +90,16 @@
             Exit Sub
         End If
 
-        Try
-            Dim ta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
-            ta.Delete(dgvctg.SelectedRows(0).Cells(0).Value, dgvctg.SelectedRows(0).Cells(1).Value)
-            ta.Fill(ALMohassinDBDataSet.Depot)
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+            '''''''''''''''''''
+            params.Add("cid", dgvctg.SelectedRows(0).Cells(0).Value)
+
+            If a.DeleteRecords("Depot", params) Then
+                dgvctg.Rows.Remove(dgvctg.SelectedRows(0))
+            End If
+        End Using
 
     End Sub
 

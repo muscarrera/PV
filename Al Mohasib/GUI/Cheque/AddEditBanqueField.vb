@@ -1,6 +1,7 @@
 ﻿Public Class AddEditBanqueField
 
     Dim _tabProp As bTopField
+    Dim _points As String
 
     Public Property Prop As bTopField
         Get
@@ -19,11 +20,19 @@
             _tabProp.backColor = btColor.BackColor.ToArgb
             _tabProp.hasBloc = cbBloc.Checked
             _tabProp.Alignement = Align
+            _tabProp.points = _points
+
             Return _tabProp
         End Get
         Set(ByVal value As bTopField)
             _tabProp = value
             If IsNothing(value) Then Exit Property
+
+            Try
+                _points = value.points
+            Catch ex As Exception
+            End Try
+
 
             txt.text = value.str_start
             TxtBox1.text = value.str_end
@@ -39,6 +48,7 @@
             cbBloc.Checked = value.hasBloc
             Align = value.Alignement
             txtF1.text = value.fName
+
 
         End Set
     End Property
@@ -111,4 +121,18 @@
     End Sub
 
 
+    Private Sub CB_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CB.SelectedIndexChanged
+        If CB.Text = "Forms" Then
+            txt.text = "S"
+
+            Dim st As New ShapeTrace
+            st.Data = _points
+            st.PB.Width = W.text
+            st.PB.Height = H.text
+
+            If st.ShowDialog = Windows.Forms.DialogResult.OK Then
+                _points = st.Data
+            End If
+        End If
+    End Sub
 End Class

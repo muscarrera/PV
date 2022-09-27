@@ -6,415 +6,15 @@ AlMohasib
 </name>
 </assembly>
 <members>
-<member name="T:Al_Mohasib.ALMohassinDBDataSet.CategoryDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.ArticleDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.ClientDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.companyDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.FactureDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.AdminFactureDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DetailsFactureDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.PaymentDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DetailsBonDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.BonDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.CompanyPaymentDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.AdminBonDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.valueDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.adminDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DepotDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.StockDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DetailsStockDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DetailstockDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.Depot1DataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.MachineDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.Facture_ListeDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.ChargeDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.TracabilityINDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.CategoryRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.ArticleRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.ClientRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.companyRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.FactureRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.AdminFactureRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DetailsFactureRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.PaymentRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DetailsBonRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.BonRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.CompanyPaymentRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.AdminBonRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.valueRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.adminRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DepotRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.StockRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DetailsStockRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DetailstockRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.Depot1Row">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.MachineRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.Facture_ListeRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.ChargeRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.TracabilityINRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.CategoryRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.ArticleRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.ClientRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.companyRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.FactureRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.AdminFactureRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DetailsFactureRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.PaymentRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DetailsBonRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.BonRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.CompanyPaymentRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.AdminBonRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.valueRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.adminRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DepotRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.StockRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DetailsStockRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.DetailstockRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.Depot1RowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.MachineRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.Facture_ListeRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.ChargeRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet.TracabilityINRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet">
-	<summary>
-Represents a strongly typed in-memory cache of data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.CategoryTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.ArticleTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.ClientTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.companyTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.FactureTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.AdminFactureTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.PaymentTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.DetailsBonTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.BonTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.CompanyPaymentTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.AdminBonTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.valueTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.adminTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.StockTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.DetailsStockTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.DetailstockTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.Depot1TableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.MachineTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.Facture_ListeTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.ChargeTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.TracabilityINTableAdapter">
-	<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member><member name="M:Al_Mohasib.ALMohassinDBDataSetTableAdapters.TableAdapterManager.UpdateUpdatedRows(Al_Mohasib.ALMohassinDBDataSet,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
-	<summary>
-Update rows in top-down order.
-</summary>
-</member><member name="M:Al_Mohasib.ALMohassinDBDataSetTableAdapters.TableAdapterManager.UpdateInsertedRows(Al_Mohasib.ALMohassinDBDataSet,System.Collections.Generic.List{System.Data.DataRow})">
-	<summary>
-Insert rows in top-down order.
-</summary>
-</member><member name="M:Al_Mohasib.ALMohassinDBDataSetTableAdapters.TableAdapterManager.UpdateDeletedRows(Al_Mohasib.ALMohassinDBDataSet,System.Collections.Generic.List{System.Data.DataRow})">
-	<summary>
-Delete rows in bottom-up order.
-</summary>
-</member><member name="M:Al_Mohasib.ALMohassinDBDataSetTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
-	<summary>
-Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
-</summary>
-</member><member name="M:Al_Mohasib.ALMohassinDBDataSetTableAdapters.TableAdapterManager.UpdateAll(Al_Mohasib.ALMohassinDBDataSet)">
-	<summary>
-Update all changes to the dataset.
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.TableAdapterManager.UpdateOrderOption">
-	<summary>
-Update Order Option
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer">
-	<summary>
-Used to sort self-referenced table's rows
-</summary>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSetTableAdapters.TableAdapterManager">
-	<summary>
-TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
-</summary>
-</member><member name="T:Al_Mohasib.NumericStrings">
+<member name="T:Al_Mohasib.NumericStrings">
 	<summary>
  Converts Integer or Decimal numbers into their textual String representations (converts numbers to words).
  </summary>
 	<remarks></remarks>
+</member><member name="T:Al_Mohasib.ALMohassinDBDataSet">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.
@@ -456,6 +56,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources._2298366_audio_doodle_fast_forward_forward_music_icon">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources._5">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -469,6 +73,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources._501">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources._8872217_arrow_bold_forvard_icon">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -501,6 +109,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.addmon">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.all">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>

@@ -107,18 +107,20 @@ Public Class AddEditSideElement
         isArticle = False
 
         Try
-            Dim artta As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
-            Dim artdt As DataTable = artta.GetData()
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
 
-            '''''''''''''''''''
+                Dim artdt = a.SelectDataTableSymbols("Category", {"*"})
+                '''''''''''''''''''
 
-            If artdt.Rows.Count = 0 Then
-            Else
+                If artdt.Rows.Count = 0 Then
+                Else
 
-                For i As Integer = 0 To artdt.Rows.Count - 1
-                    dg.Rows.Add(artdt.Rows(i).Item(0), StrValue(artdt, "name", i), "", StrValue(artdt, "img", i))
-                Next
-            End If
+                    For i As Integer = 0 To artdt.Rows.Count - 1
+                        dg.Rows.Add(artdt.Rows(i).Item(0), StrValue(artdt, "name", i), "", StrValue(artdt, "img", i))
+                    Next
+                End If
+
+            End Using
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -212,24 +214,24 @@ Public Class AddEditSideElement
         If txt.text.Trim = "" Then Exit Sub
 
         Try
-            Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            Dim artdt2 As DataTable
-            Dim artdt As DataTable
+            'Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
+            'Dim artdt2 As DataTable
+            'Dim artdt As DataTable
 
-            '''''''''''''''''''
+            ' '''''''''''''''''''
 
 
-            artdt = artta.GetDatalikecodebar("%" & txt.text & "%")
-            artdt2 = artta.GetDatalikename("%" & txt.text & "%")
-            artdt.Merge(artdt2, False)
+            'artdt = artta.GetDatalikecodebar("%" & txt.text & "%")
+            'artdt2 = artta.GetDatalikename("%" & txt.text & "%")
+            'artdt.Merge(artdt2, False)
 
-            If artdt.Rows.Count = 0 Then
-            Else
+            'If artdt.Rows.Count = 0 Then
+            'Else
 
-                For i As Integer = 0 To artdt.Rows.Count - 1
-                    dg.Rows.Add(artdt.Rows(i).Item(0), StrValue(artdt, "name", i), StrValue(artdt, "sprice", i), StrValue(artdt, "img", i))
-                Next
-            End If
+            '    For i As Integer = 0 To artdt.Rows.Count - 1
+            '        dg.Rows.Add(artdt.Rows(i).Item(0), StrValue(artdt, "name", i), StrValue(artdt, "sprice", i), StrValue(artdt, "img", i))
+            '    Next
+            'End If
 
         Catch ex As Exception
             MsgBox(ex.Message)

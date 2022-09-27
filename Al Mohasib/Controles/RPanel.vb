@@ -476,129 +476,31 @@
     End Property
 
     'Subs & functions
-    Public Sub AddItems(ByVal R As ALMohassinDBDataSet.ArticleRow, ByVal id As Integer, ByVal isSell As Boolean) 'old and stable one
-        Try
-            'Never add charges items to selling items
-
-            If R.cid = -100 And isSell = True Then Exit Sub
-
-            Dim h As Integer = 0
-            Dim ap As New Items
-            ap.Dock = DockStyle.Top
-            ap.Index = Pl.Controls.Count
-            ap.Name = R.name
-            ap.Unite = R.unite
-            If isSell Then
-                ap.Price = R.sprice
-                'use many prices 
-                'If Num > 0 Then
-                '    ap.Price = R.bprice + (R.bprice * Num / 100)
-                'End If
-
-                If Num > 0 Then
-                    'Select Case Form1.RPl.Num
-                    '    Case 2
-                    '        ap.Price = R.sp3
-                    '    Case 3
-                    '        ap.Price = R.sp4
-                    '    Case 4
-                    '        ap.Price = R.sp5
-                    '    Case Else
-                    '        ap.Price = R.sprice
-                    'End Select
-                End If
-
-            Else
-                ap.Price = R.bprice
-            End If
-
-            ap.Bprice = R.bprice
-            ap.BgColor = Color.White
-            ap.SideColor = Color.Moccasin
-            ap.id = id
-            ap.arid = R.arid
-            ap.Tva = 20
-            If isUniqTva Then ap.Tva = R.tva
-            ap.cid = R.cid
-            ap.code = R.codebar
-            ap.Poid = R.poid
-            ap.Depot = CP.Depot ' R.depot
-            If Form1.CbDepotOrigine.Checked Then ap.Depot = R.depot
-            ap.Remise = 0
-
-            ap.LbTva.Visible = Form1.CbArticleRemise.Visible
-
-            If Form1.cbBaseOnStartedRemise.Checked Then ap.Remise = R.poid
-
-            ''''''''
-            Dim qte As Double = CP.Value
-
-            Using c As SubClass = New SubClass
-
-                If Form1.CbQteStk.Checked And isSell Then
-                    Dim stk = c.getStock(ap.arid, ap.Depot, 0)
-                    If qte >= stk Then qte = stk
-
-                    If ClId = -1 Then qte = stk
-
-                    If qte < 0 Then qte = 0
-                End If
-
-                ap.ColorStock = c.CheckForMinStock(ap.arid, ap.Depot, qte)
-                ap.Stock = c.getStock(ap.arid, ap.Depot, qte)
-            End Using
-
-            ap.Qte = qte
-
-            'ap.IsArabic = True
-
-            AddHandler ap.Click, AddressOf ClearPanel
-            AddHandler ap.ItemDoubleClick, AddressOf Item_Doubleclick
-            AddHandler ap.Item_DoubleClick, AddressOf Item_ShowBlocModif
-            AddHandler ap.RemiseChanged, AddressOf UpdateValue
-
-            ap.SendToBack()
-            Pl.Controls.Add(ap)
-
-            If Form1.CbBlocModArt.Checked Then
-                Item_ShowBlocModif(ap, Nothing)
-                CP.ActiveQte(False)
-            Else
-                ap.IsSelected = True
-                Item_Doubleclick(ap, Nothing)
-            End If
-            Pl.ScrollControlIntoView(ap)
-            UpdateValue()
-            CP.Value = 0
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-    End Sub
-    Public Sub AddItems(ByVal R As ALMohassinDBDataSet.ArticleRow)
+    Public Sub AddItems(ByVal R As DataRow)
         Try
 
             Dim ap As New Items
             ap.Dock = DockStyle.Top
             ap.Index = Pl.Controls.Count
-            ap.Name = R.name
-            ap.Unite = R.unite
-            ap.Price = R.sprice
+            ap.Name = R("name")
+            ap.Unite = R("unite")
+            ap.Price = R("sprice")
 
-            ap.Bprice = R.bprice
+            ap.Bprice = R("bprice")
             ap.BgColor = Color.White
             ap.SideColor = Color.Moccasin
-            ap.id = CInt(R.arid + Pl.Controls.Count) * -1
-            ap.arid = R.arid
-            ap.Tva = R.tva
-            ap.cid = R.cid
-            ap.code = R.codebar
-            ap.Poid = R.poid
-            ap.Depot = R.depot
+            ap.id = CInt(R("arid") & "0" & Pl.Controls.Count) * -1
+            ap.arid = R("arid")
+            ap.Tva = R("tva")
+            ap.cid = R("cid")
+            ap.code = R("codebar")
+            ap.Poid = R("poid")
+            ap.Depot = R("depot")
             ap.Remise = 0
 
             ap.LbTva.Visible = Form1.CbArticleRemise.Visible
 
-            If Form1.cbBaseOnStartedRemise.Checked Then ap.Remise = R.poid
+            If Form1.cbBaseOnStartedRemise.Checked Then ap.Remise = R("poid")
 
             ''''''''
             If Form1.CbQteStk.Checked Then
@@ -1126,7 +1028,11 @@
         Dim it As Items = sender
 
         For Each i As Items In Pl.Controls
-            If i.id = it.id Then Continue For
+            If i.id = it.id Then
+                Form1.RplFocusedIndex = Pl.Controls.Count - 1 - i.Index
+                Continue For
+            End If
+
             i.IsSelected = False
         Next
 
@@ -1180,23 +1086,33 @@
         UpdateValue()
     End Sub
     Private Sub CP_UpdateQte() Handles CP.UpdateQte
-        _oldValue = SelectedItem.Qte
-        If SelectedItem.cid = 0 Then Exit Sub
-        RaiseEvent UpdateQte(Me, Nothing)
-        'If EditMode Then RaiseEvent SaveFacture(FctId, Total, Avance, Tva, DataSource)
+        Try
+            _oldValue = SelectedItem.Qte
+            If SelectedItem.cid = 0 Then Exit Sub
+            RaiseEvent UpdateQte(Me, Nothing)
+            'If EditMode Then RaiseEvent SaveFacture(FctId, Total, Avance, Tva, DataSource)
+
+        Catch ex As Exception
+
+        End Try
     End Sub
     Private Sub CP_UpdatePrice() Handles CP.UpdatePrice
         RaiseEvent UpdatePrice(Me, Nothing)
     End Sub
     Private Sub CP_DeleteItems() Handles CP.DeleteItems
-        _oldValue = SelectedItem.Qte
-        RaiseEvent DeleteItem(SelectedItem, FctId)
-        CP.ActiveQte(False)
-        If EditMode Then
-            _isEditing = True
-            Item_Value_changed(0, 0, "Non", SelectedItem)
+        Try
+            _oldValue = SelectedItem.Qte
+            RaiseEvent DeleteItem(SelectedItem, FctId)
+            CP.ActiveQte(False)
+            If EditMode Then
+                _isEditing = True
+                Item_Value_changed(0, 0, "Non", SelectedItem)
 
-        End If
+            End If
+        Catch ex As Exception
+
+        End Try
+
 
         UpdateValue()
         If EditMode Then CP.txt.Focus()
@@ -1281,6 +1197,14 @@
             RaiseEvent CPValueChange()
             Exit Sub
         End If
+
+
+        If _hideClc Then
+            CP_DeleteItems()
+            Exit Sub
+        End If
+
+
 
         Dim str As String = " عند قيامكم على الضغط على 'موافق' سيتم حذف ايصال "
         str = str + vbNewLine
@@ -1407,7 +1331,7 @@
             bl = InputBox("Infos / Ref :", "BON D'ACHATS ..", bl)
         End If
 
-            RaiseEvent SetDetailFacture()
+        RaiseEvent SetDetailFacture()
     End Sub
 
     Dim hh As Integer = 0

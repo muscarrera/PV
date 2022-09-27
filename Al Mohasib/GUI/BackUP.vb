@@ -25,27 +25,25 @@ Public Class BackUP
             strpath = sdf.FileName
 
             Dim ds As New ALMohassinDBDataSet()
-            Dim ada As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
-            ada.Fill(ds.Client)
-            Dim ada6 As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
-            ada6.Fill1(ds.Payment)
-            Dim ada1 As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
-            ada1.Fill(ds.company)
-            Dim ada7 As New ALMohassinDBDataSetTableAdapters.CompanyPaymentTableAdapter
-            ada7.Fill1(ds.CompanyPayment)
-            Dim ada9 As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
-            ada9.Fill(ds.Category)
+            'Dim ada As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
+            'ada.Fill(ds.Client)
+            'Dim ada6 As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
+            'ada6.Fill1(ds.Payment)
+            'Dim ada1 As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
+            'ada1.Fill(ds.company)
+            'Dim ada7 As New ALMohassinDBDataSetTableAdapters.CompanyPaymentTableAdapter
+            'ada7.Fill1(ds.CompanyPayment)
+            'Dim ada9 As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
+            'ada9.Fill(ds.Category)
 
-            Dim ada8 As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            ada8.Fill(ds.Article)
-            Dim ada2 As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
-            ada2.Fill(ds.Facture)
-            Dim ada3 As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
-            ada3.Fill1(ds.DetailsFacture)
-            Dim ada4 As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
-            ada4.Fill(ds.Bon)
-            Dim ada5 As New ALMohassinDBDataSetTableAdapters.DetailsBonTableAdapter
-            ada5.Fill1(ds.DetailsBon)
+            'Dim ada2 As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
+            'ada2.Fill(ds.Facture)
+            'Dim ada3 As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
+            'ada3.Fill1(ds.DetailsFacture)
+            'Dim ada4 As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
+            'ada4.Fill(ds.Bon)
+            'Dim ada5 As New ALMohassinDBDataSetTableAdapters.DetailsBonTableAdapter
+            'ada5.Fill1(ds.DetailsBon)
 
             ds.WriteXml(strpath & Date.Now.Day.ToString & "-" & Date.Now.Month.ToString & "-" & Date.Now.Year.ToString & ".xml")
 
@@ -164,10 +162,10 @@ Public Class BackUP
             MyCon = New OleDb.OleDbConnection(My.Settings.ALMohassinDBConnectionString)
             MyCon.Open()
             Dim ds As New ALMohassinDBDataSet()
-            Dim ada9 As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
-            ada9.Fill(ds.Category)
-            Dim ada8 As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            ada8.Fill(ds.Article)
+            'Dim ada9 As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
+            'ada9.Fill(ds.Category)
+            'Dim ada8 As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
+            'ada8.Fill(ds.Article)
 
             ds.WriteXml(strpath & Date.Now.Day.ToString & "-" & Date.Now.Month.ToString & "-" & Date.Now.Year.ToString & "-Produits.xml")
 
@@ -195,7 +193,7 @@ Public Class BackUP
 
             'open olidb connection and start transaction
 
-            Dim tmp As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
+            '  Dim tmp As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
             conn.ConnectionString = My.Settings.ALMohassinDBConnectionString
             conn.Open()
             trans = conn.BeginTransaction
@@ -295,91 +293,91 @@ Public Class BackUP
 
         Dim conn As New OleDb.OleDbConnection
         Dim trans As OleDb.OleDbTransaction = Nothing
-        Try
+        '  Try
 
 
 
-            'open olidb connection and start transaction
+        'open olidb connection and start transaction
+        '
+        ' Dim tmp As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
+        'Dim DT = tmp.GetData()
 
-            Dim tmp As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
-            Dim DT = tmp.GetData()
-
-            conn.ConnectionString = My.Settings.ALMohassinDBConnectionString
-            conn.Open()
-            trans = conn.BeginTransaction
-            Dim CMd As New OleDb.OleDbCommand
+        '    conn.ConnectionString = My.Settings.ALMohassinDBConnectionString
+        '    conn.Open()
+        '    trans = conn.BeginTransaction
+        '    Dim CMd As New OleDb.OleDbCommand
 
 
-            For i As Integer = 0 To DT.Rows.Count - 1
-                If DT.Rows(i).Item("payed") = False Then
+        '    For i As Integer = 0 To DT.Rows.Count - 1
+        '        If DT.Rows(i).Item("payed") = False Then
 
-                    If DT.Rows(i).Item("total") = DT.Rows(i).Item("avance") Then
-                        CMd.CommandText = "update  facture set payed=:1 where fctid=:2"
-                        Dim CMD71 As New OleDb.OleDbCommand
-                        CMd.Connection = conn
-                        CMd.Transaction = trans
+        '            If DT.Rows(i).Item("total") = DT.Rows(i).Item("avance") Then
+        '                CMd.CommandText = "update  facture set payed=:1 where fctid=:2"
+        '                Dim CMD71 As New OleDb.OleDbCommand
+        '                CMd.Connection = conn
+        '                CMd.Transaction = trans
 
-                        CMd.Parameters.AddWithValue(":1", True)
-                        CMd.Parameters.AddWithValue(":2", DT.Rows(i).Item("fctid"))
-                        CMd.ExecuteNonQuery()
-                        CMd.Dispose()
-                    End If
-                End If
-            Next
+        '                CMd.Parameters.AddWithValue(":1", True)
+        '                CMd.Parameters.AddWithValue(":2", DT.Rows(i).Item("fctid"))
+        '                CMd.ExecuteNonQuery()
+        '                CMd.Dispose()
+        '            End If
+        '        End If
+        '    Next
 
-            trans.Commit()
-            conn.Close()
+        '    trans.Commit()
+        '    conn.Close()
 
-            MsgBox("  تم التعديل  بنجاح ")
+        '    MsgBox("  تم التعديل  بنجاح ")
 
-        Catch ex As Exception
+        'Catch ex As Exception
 
-            trans.Rollback()
-            conn.Close()
-            MsgBox(ex.Message)
-        End Try
+        '    trans.Rollback()
+        '    conn.Close()
+        '    MsgBox(ex.Message)
+        'End Try
     End Sub
     Private Sub Button12_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button12.Click
-        Dim a As Integer = 0
-        Try
+        'Dim a As Integer = 0
+        'Try
 
 
 
-            'open olidb connection and start transaction
+        '    'open olidb connection and start transaction
 
-            Dim TAC As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
-            Dim DTc = TAC.GetData()
+        '    Dim TAC As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
+        '    Dim DTc = TAC.GetData()
 
-            Dim TAa As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            Dim DTa = TAa.GetData()
-            Dim f As Integer = 0
-            For i As Integer = 0 To DTa.Rows.Count - 1
-                f = 0
-                For j As Integer = 0 To DTc.Rows.Count - 1
-                    If DTc.Rows(j).Item("Cid") = DTa.Rows(i).Item("Cid") Then
-                        f = 1
-                        Exit For
-                    End If
-                Next
+        '    Dim TAa As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
+        '    Dim DTa = TAa.GetData()
+        '    Dim f As Integer = 0
+        '    For i As Integer = 0 To DTa.Rows.Count - 1
+        '        f = 0
+        '        For j As Integer = 0 To DTc.Rows.Count - 1
+        '            If DTc.Rows(j).Item("Cid") = DTa.Rows(i).Item("Cid") Then
+        '                f = 1
+        '                Exit For
+        '            End If
+        '        Next
 
-                If f = 0 Then
+        '        If f = 0 Then
 
-                    TAa.DeleteQuery(DTa.Rows(i).Item(0))
-                    a += 1
+        '            TAa.DeleteQuery(DTa.Rows(i).Item(0))
+        '            a += 1
 
-                End If
+        '        End If
 
-            Next
-
-
-
-            MsgBox(a & "  تم التعديل  بنجاح ")
-
-        Catch ex As Exception
+        '    Next
 
 
-            MsgBox(ex.Message)
-        End Try
+
+        '    MsgBox(a & "  تم التعديل  بنجاح ")
+
+        'Catch ex As Exception
+
+
+        '    MsgBox(ex.Message)
+        'End Try
     End Sub
     Private Sub Button13_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button13.Click
         Try
@@ -545,7 +543,7 @@ Public Class BackUP
 
             'open olidb connection and start transaction
 
-            Dim tmp As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
+            '    Dim tmp As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
             conn.ConnectionString = My.Settings.ALMohassinDBConnectionString
             conn.Open()
             trans = conn.BeginTransaction

@@ -22,7 +22,6 @@ Partial Class AddEditArticle
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AddEditArticle))
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.txtcb = New Al_Mohasib.TxtBox()
@@ -31,8 +30,6 @@ Partial Class AddEditArticle
         Me.btprint = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.cbctg = New System.Windows.Forms.ComboBox()
-        Me.CategoryBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
         Me.btprdimg = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -84,12 +81,9 @@ Partial Class AddEditArticle
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.CBdp = New System.Windows.Forms.ComboBox()
-        Me.DepotBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.CategoryTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.CategoryTableAdapter()
-        Me.DepotTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
@@ -98,8 +92,6 @@ Partial Class AddEditArticle
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Panel4.SuspendLayout()
-        CType(Me.CategoryBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBprd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.PlPrice.SuspendLayout()
@@ -109,7 +101,6 @@ Partial Class AddEditArticle
         Me.Panel3.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel4
@@ -196,7 +187,6 @@ Partial Class AddEditArticle
         '
         'cbctg
         '
-        Me.cbctg.DataSource = Me.CategoryBindingSource
         Me.cbctg.DisplayMember = "name"
         Me.cbctg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbctg.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -206,16 +196,6 @@ Partial Class AddEditArticle
         Me.cbctg.Size = New System.Drawing.Size(199, 28)
         Me.cbctg.TabIndex = 12
         Me.cbctg.ValueMember = "cid"
-        '
-        'CategoryBindingSource
-        '
-        Me.CategoryBindingSource.DataMember = "Category"
-        Me.CategoryBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'btprdimg
         '
@@ -911,7 +891,6 @@ Partial Class AddEditArticle
         '
         'CBdp
         '
-        Me.CBdp.DataSource = Me.DepotBindingSource
         Me.CBdp.DisplayMember = "name"
         Me.CBdp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CBdp.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -921,11 +900,6 @@ Partial Class AddEditArticle
         Me.CBdp.Size = New System.Drawing.Size(168, 28)
         Me.CBdp.TabIndex = 13
         Me.CBdp.ValueMember = "dpid"
-        '
-        'DepotBindingSource
-        '
-        Me.DepotBindingSource.DataMember = "Depot"
-        Me.DepotBindingSource.DataSource = Me.ALMohassinDBDataSet
         '
         'Label13
         '
@@ -956,14 +930,6 @@ Partial Class AddEditArticle
         Me.Label12.Size = New System.Drawing.Size(51, 17)
         Me.Label12.TabIndex = 22
         Me.Label12.Text = "التصنيف"
-        '
-        'CategoryTableAdapter
-        '
-        Me.CategoryTableAdapter.ClearBeforeFill = True
-        '
-        'DepotTableAdapter
-        '
-        Me.DepotTableAdapter.ClearBeforeFill = True
         '
         'CheckBox1
         '
@@ -1071,8 +1037,6 @@ Partial Class AddEditArticle
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Article Infos"
         Me.Panel4.ResumeLayout(False)
-        CType(Me.CategoryBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBprd, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
@@ -1088,7 +1052,6 @@ Partial Class AddEditArticle
         Me.Panel2.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1107,11 +1070,6 @@ Partial Class AddEditArticle
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
-    Friend WithEvents CategoryBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents CategoryTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
-    Friend WithEvents DepotBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents DepotTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter
     Friend WithEvents lbchangeimg As System.Windows.Forms.Label
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents CBdp As System.Windows.Forms.ComboBox

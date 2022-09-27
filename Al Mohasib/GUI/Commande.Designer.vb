@@ -22,22 +22,16 @@ Partial Class Commande
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Commande))
         Me.btd1 = New System.Windows.Forms.Button()
         Me.Button38 = New System.Windows.Forms.Button()
         Me.btd3 = New System.Windows.Forms.Button()
-        Me.DepotBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
         Me.btd4 = New System.Windows.Forms.Button()
         Me.Button39 = New System.Windows.Forms.Button()
-        Me.DepotTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter()
         Me.btd2 = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -76,16 +70,6 @@ Partial Class Commande
         Me.btd3.Text = "Button5"
         Me.btd3.UseVisualStyleBackColor = True
         '
-        'DepotBindingSource
-        '
-        Me.DepotBindingSource.DataMember = "Depot"
-        Me.DepotBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'btd4
         '
         Me.btd4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -109,10 +93,6 @@ Partial Class Commande
         Me.Button39.TabIndex = 0
         Me.Button39.Text = ">>"
         Me.Button39.UseVisualStyleBackColor = True
-        '
-        'DepotTableAdapter
-        '
-        Me.DepotTableAdapter.ClearBeforeFill = True
         '
         'btd2
         '
@@ -174,8 +154,6 @@ Partial Class Commande
         Me.Name = "Commande"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Commande"
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -184,11 +162,9 @@ Partial Class Commande
     Friend WithEvents btd1 As System.Windows.Forms.Button
     Friend WithEvents Button38 As System.Windows.Forms.Button
     Friend WithEvents btd3 As System.Windows.Forms.Button
-    Friend WithEvents DepotBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
     Friend WithEvents btd4 As System.Windows.Forms.Button
     Friend WithEvents Button39 As System.Windows.Forms.Button
-    Friend WithEvents DepotTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter
+    ' Friend WithEvents DepotTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter
     Friend WithEvents btd2 As System.Windows.Forms.Button
     Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
     Friend WithEvents Button1 As System.Windows.Forms.Button

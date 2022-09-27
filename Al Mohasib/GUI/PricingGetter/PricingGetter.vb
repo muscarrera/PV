@@ -189,35 +189,39 @@ Public Class PricingGetter
     Public Sub SearchForcodebarOnly(ByRef txt As TextBox)
 
         Try
-            Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            Dim artdt As DataTable
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
 
-            '''''''''''''''''''
+                Dim params As New Dictionary(Of String, Object)
+                Dim artdt As DataTable
 
-            artdt = artta.GetDatalikecodebar("%" & txt.Text & "%")
+                '''''''''''''''''''
+                params.Add("codebar LIKE ", "%" & txt.Text & "%")
+                artdt = a.SelectDataTableSymbols("article", {"*"}, params)
+                 
+                If artdt.Rows.Count > 0 Then
 
-            If artdt.Rows.Count > 0 Then
+                    Label1.Text = String.Format("{0:n2}", CDec(artdt.Rows(0).Item("sprice").ToString())) & "  Dhs"
+                    Label2.Text = artdt.Rows(0).Item("name").ToString & " - " & artdt.Rows(0).Item("unite").ToString
 
-                Label1.Text = String.Format("{0:n2}", CDec(artdt.Rows(0).Item("sprice").ToString())) & "  Dhs"
-                Label2.Text = artdt.Rows(0).Item("name").ToString & " - " & artdt.Rows(0).Item("unite").ToString
+                    Try
+                        Dim str As String = txtImgPr & "\art" & artdt.Rows(0).Item("img").ToString
+                        Using bm As Bitmap = New Bitmap(str)
+                            Dim ms As New MemoryStream()
+                            bm.Save(ms, ImageFormat.Bmp)
+                            PbProduct.Image = Image.FromStream(ms)
+                        End Using
+                    Catch ex As Exception
+                        PbProduct.Image = My.Resources.consumer_products
+                    End Try
 
-                Try
-                    Dim str As String = txtImgPr & "\art" & artdt.Rows(0).Item("img").ToString
-                    Using bm As Bitmap = New Bitmap(str)
-                        Dim ms As New MemoryStream()
-                        bm.Save(ms, ImageFormat.Bmp)
-                        PbProduct.Image = Image.FromStream(ms)
-                    End Using
-                Catch ex As Exception
-                    PbProduct.Image = My.Resources.consumer_products
-                End Try
+                    pl.Visible = True
+                    Timer2.Enabled = True
 
-                pl.Visible = True
-                Timer2.Enabled = True
+                Else
 
-            Else
+                End If
 
-            End If
+            End Using
         Catch ex As Exception
 
         End Try
@@ -226,38 +230,42 @@ Public Class PricingGetter
     Public Sub getBalancebyRef(ByRef ref As String)
 
         Try
-            Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            Dim artdt As DataTable
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
 
-            '''''''''''''''''''
+                Dim params As New Dictionary(Of String, Object)
+                Dim artdt As DataTable
 
-            artdt = artta.GetDataByRef(ref, True)
+                '''''''''''''''''''
+                params.Add("codebar", ref)
+                params.Add("mixte", True)
+                artdt = a.SelectDataTableSymbols("article", {"*"}, params)
 
-            If artdt.Rows.Count > 0 Then
+                If artdt.Rows.Count > 0 Then
 
-                Label1.Text = String.Format("{0:n2}", CDec(artdt.Rows(0).Item("sprice").ToString())) & "  Dhs"
-                Label2.Text = artdt.Rows(0).Item("name").ToString & " - " & artdt.Rows(0).Item("unite").ToString
+                    Label1.Text = String.Format("{0:n2}", CDec(artdt.Rows(0).Item("sprice").ToString())) & "  Dhs"
+                    Label2.Text = artdt.Rows(0).Item("name").ToString & " - " & artdt.Rows(0).Item("unite").ToString
 
-                Dim str As String = txtImgPr & "\art" & artdt.Rows(0).Item("img").ToString
+                    Dim str As String = txtImgPr & "\art" & artdt.Rows(0).Item("img").ToString
 
-                Try
-                    Using bm As Bitmap = New Bitmap(str)
-                        Dim ms As New MemoryStream()
-                        bm.Save(ms, ImageFormat.Bmp)
-                        PbProduct.Image = Image.FromStream(ms)
-                    End Using
-                Catch ex As Exception
-                    PbProduct.Image = My.Resources.consumer_products
-                End Try
+                    Try
+                        Using bm As Bitmap = New Bitmap(str)
+                            Dim ms As New MemoryStream()
+                            bm.Save(ms, ImageFormat.Bmp)
+                            PbProduct.Image = Image.FromStream(ms)
+                        End Using
+                    Catch ex As Exception
+                        PbProduct.Image = My.Resources.consumer_products
+                    End Try
 
 
-                pl.Visible = True
-                Timer2.Enabled = True
-            Else
+                    pl.Visible = True
+                    Timer2.Enabled = True
+                Else
 
-            End If
+                End If
+
+            End Using
         Catch ex As Exception
-
         End Try
     End Sub
 

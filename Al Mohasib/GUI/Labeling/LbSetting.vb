@@ -289,6 +289,7 @@ Public Class LbSetting
 
     Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
         Dim doc As New PrintDocument
+        doc.PrinterSettings.PrinterName = Printer_name
         Dim ps As New PageSetupDialog
         With ps
             .Document = doc

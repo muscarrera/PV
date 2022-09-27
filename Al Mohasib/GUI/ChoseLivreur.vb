@@ -1,8 +1,11 @@
 ﻿Public Class ChoseLivreur
 
     Private Sub ChoseLivreur_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'ALMohassinDBDataSet.Machine' table. You can move, or remove it, as needed.
-        Me.MachineTableAdapter.Fill(Me.ALMohassinDBDataSet.Machine)
+     
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            DataGridView1.DataSource = a.SelectDataTableSymbols("Machine", {"*"})
+        End Using
+
         Button1.Tag = 0
     End Sub
 

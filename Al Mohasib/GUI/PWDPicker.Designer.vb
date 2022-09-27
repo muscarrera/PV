@@ -22,7 +22,6 @@ Partial Class PWDPicker
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -38,7 +37,6 @@ Partial Class PWDPicker
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Button29 = New System.Windows.Forms.Button()
-        Me.AdminTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.adminTableAdapter()
         Me.Button25 = New System.Windows.Forms.Button()
         Me.Button27 = New System.Windows.Forms.Button()
         Me.Button24 = New System.Windows.Forms.Button()
@@ -46,14 +44,8 @@ Partial Class PWDPicker
         Me.Button28 = New System.Windows.Forms.Button()
         Me.Button26 = New System.Windows.Forms.Button()
         Me.plClavier = New System.Windows.Forms.Panel()
-        Me.AdidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.DGV1 = New System.Windows.Forms.DataGridView()
-        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AdminDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PwdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AdminBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -63,12 +55,14 @@ Partial Class PWDPicker
         Me.ShapeContainer2 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.RectangleShape1 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.Panel7 = New System.Windows.Forms.Panel()
+        Me.PwdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AdminDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AdidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel3.SuspendLayout()
         Me.plClavier.SuspendLayout()
         Me.Panel6.SuspendLayout()
         CType(Me.DGV1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AdminBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -203,10 +197,6 @@ Partial Class PWDPicker
         Me.Button29.Text = "8"
         Me.Button29.UseVisualStyleBackColor = False
         '
-        'AdminTableAdapter
-        '
-        Me.AdminTableAdapter.ClearBeforeFill = True
-        '
         'Button25
         '
         Me.Button25.BackColor = System.Drawing.Color.Gray
@@ -307,20 +297,12 @@ Partial Class PWDPicker
         Me.plClavier.Size = New System.Drawing.Size(300, 418)
         Me.plClavier.TabIndex = 12
         '
-        'AdidDataGridViewTextBoxColumn
-        '
-        Me.AdidDataGridViewTextBoxColumn.DataPropertyName = "adid"
-        Me.AdidDataGridViewTextBoxColumn.HeaderText = "adid"
-        Me.AdidDataGridViewTextBoxColumn.Name = "AdidDataGridViewTextBoxColumn"
-        Me.AdidDataGridViewTextBoxColumn.ReadOnly = True
-        Me.AdidDataGridViewTextBoxColumn.Visible = False
-        '
         'Panel6
         '
         Me.Panel6.Controls.Add(Me.DGV1)
         Me.Panel6.Controls.Add(Me.Panel2)
         Me.Panel6.Controls.Add(Me.plClavier)
-        Me.Panel6.Location = New System.Drawing.Point(239, 32)
+        Me.Panel6.Location = New System.Drawing.Point(45, 57)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Padding = New System.Windows.Forms.Padding(11)
         Me.Panel6.Size = New System.Drawing.Size(917, 440)
@@ -334,7 +316,6 @@ Partial Class PWDPicker
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle1.Padding = New System.Windows.Forms.Padding(5)
         Me.DGV1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.DGV1.AutoGenerateColumns = False
         Me.DGV1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DGV1.BackgroundColor = System.Drawing.Color.White
         Me.DGV1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
@@ -349,7 +330,6 @@ Partial Class PWDPicker
         Me.DGV1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DGV1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DGV1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AdidDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.AdminDataGridViewTextBoxColumn, Me.PwdDataGridViewTextBoxColumn})
-        Me.DGV1.DataSource = Me.AdminBindingSource
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -370,39 +350,6 @@ Partial Class PWDPicker
         Me.DGV1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DGV1.Size = New System.Drawing.Size(263, 418)
         Me.DGV1.TabIndex = 11
-        '
-        'NameDataGridViewTextBoxColumn
-        '
-        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
-        Me.NameDataGridViewTextBoxColumn.HeaderText = "Utilisateur"
-        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
-        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AdminDataGridViewTextBoxColumn
-        '
-        Me.AdminDataGridViewTextBoxColumn.DataPropertyName = "admin"
-        Me.AdminDataGridViewTextBoxColumn.HeaderText = ""
-        Me.AdminDataGridViewTextBoxColumn.Name = "AdminDataGridViewTextBoxColumn"
-        Me.AdminDataGridViewTextBoxColumn.ReadOnly = True
-        Me.AdminDataGridViewTextBoxColumn.Visible = False
-        '
-        'PwdDataGridViewTextBoxColumn
-        '
-        Me.PwdDataGridViewTextBoxColumn.DataPropertyName = "pwd"
-        Me.PwdDataGridViewTextBoxColumn.HeaderText = "pwd"
-        Me.PwdDataGridViewTextBoxColumn.Name = "PwdDataGridViewTextBoxColumn"
-        Me.PwdDataGridViewTextBoxColumn.ReadOnly = True
-        Me.PwdDataGridViewTextBoxColumn.Visible = False
-        '
-        'AdminBindingSource
-        '
-        Me.AdminBindingSource.DataMember = "admin"
-        Me.AdminBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'Panel2
         '
@@ -514,6 +461,37 @@ Partial Class PWDPicker
         Me.Panel7.Size = New System.Drawing.Size(91, 68)
         Me.Panel7.TabIndex = 17
         '
+        'PwdDataGridViewTextBoxColumn
+        '
+        Me.PwdDataGridViewTextBoxColumn.DataPropertyName = "pwd"
+        Me.PwdDataGridViewTextBoxColumn.HeaderText = "pwd"
+        Me.PwdDataGridViewTextBoxColumn.Name = "PwdDataGridViewTextBoxColumn"
+        Me.PwdDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PwdDataGridViewTextBoxColumn.Visible = False
+        '
+        'AdminDataGridViewTextBoxColumn
+        '
+        Me.AdminDataGridViewTextBoxColumn.DataPropertyName = "admin"
+        Me.AdminDataGridViewTextBoxColumn.HeaderText = ""
+        Me.AdminDataGridViewTextBoxColumn.Name = "AdminDataGridViewTextBoxColumn"
+        Me.AdminDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AdminDataGridViewTextBoxColumn.Visible = False
+        '
+        'NameDataGridViewTextBoxColumn
+        '
+        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
+        Me.NameDataGridViewTextBoxColumn.HeaderText = "Utilisateur"
+        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
+        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'AdidDataGridViewTextBoxColumn
+        '
+        Me.AdidDataGridViewTextBoxColumn.DataPropertyName = "adid"
+        Me.AdidDataGridViewTextBoxColumn.HeaderText = "adid"
+        Me.AdidDataGridViewTextBoxColumn.Name = "AdidDataGridViewTextBoxColumn"
+        Me.AdidDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AdidDataGridViewTextBoxColumn.Visible = False
+        '
         'PWDPicker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -534,8 +512,6 @@ Partial Class PWDPicker
         Me.plClavier.ResumeLayout(False)
         Me.Panel6.ResumeLayout(False)
         CType(Me.DGV1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AdminBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.Panel1.ResumeLayout(False)
@@ -555,7 +531,6 @@ Partial Class PWDPicker
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents Button29 As System.Windows.Forms.Button
     Friend WithEvents Panel7 As System.Windows.Forms.Panel
-    Friend WithEvents AdminTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.adminTableAdapter
     Friend WithEvents Button25 As System.Windows.Forms.Button
     Friend WithEvents Button27 As System.Windows.Forms.Button
     Friend WithEvents Button24 As System.Windows.Forms.Button
@@ -563,14 +538,8 @@ Partial Class PWDPicker
     Friend WithEvents Button28 As System.Windows.Forms.Button
     Friend WithEvents Button26 As System.Windows.Forms.Button
     Friend WithEvents plClavier As System.Windows.Forms.Panel
-    Friend WithEvents AdidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Panel6 As System.Windows.Forms.Panel
     Friend WithEvents DGV1 As System.Windows.Forms.DataGridView
-    Friend WithEvents NameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents AdminDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PwdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents AdminBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -579,4 +548,8 @@ Partial Class PWDPicker
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents ShapeContainer2 As Microsoft.VisualBasic.PowerPacks.ShapeContainer
     Friend WithEvents RectangleShape1 As Microsoft.VisualBasic.PowerPacks.RectangleShape
+    Friend WithEvents AdidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents NameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents AdminDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PwdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

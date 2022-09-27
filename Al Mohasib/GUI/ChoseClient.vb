@@ -361,14 +361,13 @@
 
 
             Dim table As DataTable
+            params.Clear()
+            params.Add("fctid", id)
             If isSell Then
-                Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
-                table = ta.GetData(id)
+                table = c.SelectDataTable("DetailsFacture", {"*"}, params)
             Else
-                Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsBonTableAdapter
-                table = ta.GetData(id)
+                table = c.SelectDataTable("DetailsBon", {"*"}, params)
             End If
-
 
             'Stock
             For i As Integer = 0 To table.Rows.Count - 1

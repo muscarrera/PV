@@ -67,16 +67,58 @@
         Dim dt1 As Date = dte1.Value.AddDays(-1)
         Dim dt2 As Date = dte2.Value.AddDays(1)
 
-        Dim BTA As New ALMohassinDBDataSetTableAdapters.TracabilityINTableAdapter
-        If arid > 0 Then
-            dt_in = BTA.GetDataIN(dt1, dt2, arid)
-            dt_Out = BTA.GetDataOut(dt1, dt2, arid)
-        Else
-            dt_in = BTA.GetDataByInDt(dt1, dt2)
-            dt_Out = BTA.GetDataByOutDt(dt1, dt2)
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+            Dim tb As String = "Bon"
+            Dim tb_D As String = "DetailsBon"
 
-        End If
-  
+            If arid > 0 Then
+
+                params.Add(tb & ".date >", dt1)
+                params.Add(tb & ".date <", dt2)
+                params.Add(tb_D & ".arid =", arid)
+
+
+                dt_in = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".bonid) INNER JOIN Depot ON " & tb_D & ".depot = Depot.dpid)",
+                            {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
+                                  tb_D & ".price AS Prix, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_ENTREE"}, params)
+
+                params.Clear()
+
+                tb = "Facture"
+                tb_D = "DetailsFacture"
+                params.Add(tb & ".date >", dt1)
+                params.Add(tb & ".date <", dt2)
+                params.Add(tb_D & ".arid =", arid)
+
+                dt_Out = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".fctid) INNER JOIN Depot ON " & tb_D & ".depot = Depot.dpid)",
+                            {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
+                                  tb_D & ".price AS Prix, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_SORTIE"}, params)
+
+            Else
+                params.Clear()
+
+                params.Add(tb & ".date >", dt1)
+                params.Add(tb & ".date <", dt2)
+                dt_in = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".bonid) INNER JOIN Depot ON " & tb_D & ".depot = Depot.dpid)",
+                              {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
+                                  tb_D & ".price AS Prix, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_ENTREE"}, params)
+
+                params.Clear()
+
+                tb = "Facture"
+                tb_D = "DetailsFacture"
+                params.Add(tb & ".date >", dt1)
+                params.Add(tb & ".date <", dt2)
+
+                dt_Out = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".fctid) INNER JOIN Depot ON " & tb_D & ".depot = Depot.dpid)",
+                            {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
+                                  tb_D & ".price AS Prix, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_SORTIE"}, params)
+
+
+            End If
+        End Using
+
     End Sub
     Private Sub filtreTheData()
         If cbComul.Checked Then
@@ -88,9 +130,10 @@
 
         Dim dt As New DataTable
 
-        Dim d_i As DataTable = dt_in.Copy
-        Dim d_o As DataTable = dt_Out.Copy
-
+        Dim d_i As New DataTable
+        d_i = dt_in.Copy
+        Dim d_o As New DataTable
+        d_o = dt_Out.Copy
 
 
         If cbIn.Checked = True And cbOut.Checked = False Then
@@ -99,8 +142,9 @@
         ElseIf cbIn.Checked = False And cbOut.Checked = True Then
             If Not IsNothing(d_o) Then dt = d_o
         ElseIf cbIn.Checked = True And cbOut.Checked = True Then
+            d_i.Merge(d_o, False)
             dt = d_i
-            dt.Merge(d_o, False)
+
         Else
             dt.Rows.Clear()
             Exit Sub
@@ -127,60 +171,21 @@
 
         dg_D.DataSource = dt
 
+      
 
-        dg_D.Columns(0).Visible = False
-        dg_D.Columns(2).Visible = False
-        dg_D.Columns(3).Visible = False
-        dg_D.Columns(4).Visible = False
-        dg_D.Columns(6).Visible = False
-        dg_D.Columns(7).Visible = False
-        dg_D.Columns(8).Visible = False
+        dg_D.Sort(dg_D.Columns(0), System.ComponentModel.ListSortDirection.Ascending)
 
-
-        dg_D.Columns(11).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
-        '' dg_D.Columns(14).DefaultCellStyle.ForeColor = Form1.Color_Default_Text
-        dg_D.Columns(11).AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-
-        Try
-            dg_D.Columns(1).HeaderText = "ID"
-            dg_D.Columns(13).HeaderText = "Qte SORTIE"
-            dg_D.Columns(15).HeaderText = "Qte ENTREE"
-
-            dg_D.Columns(10).HeaderText = "Date"
-            dg_D.Columns(11).HeaderText = "Entrepote"
-            dg_D.Columns(9).HeaderText = "Libelle"
-            dg_D.Columns(12).HeaderText = "prix de vente"
-            dg_D.Columns(14).HeaderText = "prix d'achat"
-
-        Catch ex As Exception
-
-        End Try
-
-        dg_D.Sort(dg_D.Columns(11), System.ComponentModel.ListSortDirection.Ascending)
-
-        Try
-            '0 2345678 9CL 10 DT 11DP 12PO 13QO 14PI 15QI
-
-            dg_D.Columns(1).DisplayIndex = 1
-            dg_D.Columns(10).DisplayIndex = 2
-            dg_D.Columns(9).DisplayIndex = 3
-            dg_D.Columns(13).DisplayIndex = 4
-            dg_D.Columns(12).DisplayIndex = 5
-            dg_D.Columns(15).DisplayIndex = 6
-            dg_D.Columns(14).DisplayIndex = 7
-        Catch ex As Exception
-        End Try
 
         Dim sum As Double
         Try
-            sum = Convert.ToDouble(dt.Compute("SUM(qteIn)", String.Empty))
+            sum = Convert.ToDouble(dt.Compute("SUM(Qte_ENTREE)", String.Empty))
             lbQteIn.Text = sum & " U"
         Catch ex As Exception
             lbQteIn.Text = "... "
         End Try
 
         Try
-            sum = Convert.ToDouble(dt.Compute("SUM(qteOut)", String.Empty))
+            sum = Convert.ToDouble(dt.Compute("SUM(Qte_SORTIE)", String.Empty))
             lbQteOut.Text = sum & " U"
         Catch ex As Exception
             lbQteOut.Text = "... "
@@ -199,7 +204,7 @@
         Dim d_i As DataTable = dt_in.Copy
         Dim d_o As DataTable = dt_Out.Copy
 
-        Dim gg = From rows In d_o.AsEnumerable()
+        Dim gg As DataTable = From rows In d_o.AsEnumerable()
         Group rows By Key = New With {.price = rows("price"), .arid = rows("arid")} Into Group
         Select Group.CopyToDataTable
 
@@ -304,7 +309,7 @@
         ''If Me.Height < 700 Then Me.Height = 700
     End Sub
     Private Sub cbOut_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbOut.CheckedChanged, cbIn.CheckedChanged, cbComul.CheckedChanged
-        filtreTheData()
+        'filtreTheData()
     End Sub
 
     Private Sub txtDepot_TxtChanged() Handles txtDepot.TxtChanged
@@ -355,12 +360,21 @@
 
     Private Sub Search_Search()
 
-
         Dim dt1 As Date = dte1.Value.AddDays(-1)
         Dim dt2 As Date = dte2.Value.AddDays(1)
+         
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+            Dim tb As String = "Article"
+            Dim tb_D As String = "Detailstock"
 
-        Dim BTA As New ALMohassinDBDataSetTableAdapters.TracabilityINTableAdapter
-        dt_stk = BTA.GetDataByStock()
+
+            dt_stk = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".arid = " & tb & ".arid) INNER JOIN Depot ON Detailstock.dpid = Depot.dpid)",
+                        {"Depot.name, " & tb & ".name AS Designation, " & tb & ".bprice, " & tb & ".sprice, " & tb & ".codebar, " &
+                            tb_D & ".dpid, " & tb_D & ".qte, " & tb_D & ".cid, " & tb_D & ".arid, " &
+            tb_D & ".unit, " & tb_D & ".DSID,    Detailstock.qte * Article.bprice AS Valeur"})
+
+        End Using
 
 
     End Sub
@@ -444,36 +458,27 @@
         dg_D.DataSource = dt
 
         Try
-            dg_D.Columns(0).Visible = False
-            dg_D.Columns(1).Visible = False '2 3 4
+            dg_D.Columns(3).Visible = False
+            dg_D.Columns(4).Visible = False '2 3 4
             dg_D.Columns(5).Visible = False
-            dg_D.Columns(6).Visible = False
+            dg_D.Columns(8).Visible = False
             dg_D.Columns(7).Visible = False ' 8
             dg_D.Columns(9).Visible = False
             dg_D.Columns(10).Visible = False
 
-            dg_D.Columns(11).Visible = False
-            dg_D.Columns(12).Visible = False
-            dg_D.Columns(13).Visible = False
-            ' dg_D.Columns(14).Visible = False ' 15 
-            dg_D.Columns(15).Visible = False ' 17
-            dg_D.Columns(17).Visible = False ' 19
-            dg_D.Columns(19).Visible = False
 
-            dg_D.Columns(14).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
+            dg_D.Columns(2).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
             '' dg_D.Columns(14).DefaultCellStyle.ForeColor = Form1.Color_Default_Text
-            dg_D.Columns(14).AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+            dg_D.Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.None
 
-            dg_D.Columns(18).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
-            dg_D.Columns(2).HeaderText = "Entrepote"
-            dg_D.Columns(16).HeaderText = "Ref"
-            dg_D.Columns(3).HeaderText = "prix d'achat"
+            dg_D.Columns(11).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
+            dg_D.Columns(0).HeaderText = "Entrepote"
+            dg_D.Columns(2).HeaderText = "prix d'achat"
 
-
-            dg_D.Columns(16).DisplayIndex = 1
-            dg_D.Columns(14).DisplayIndex = 2
-            dg_D.Columns(8).DisplayIndex = 3
-            dg_D.Columns(4).DisplayIndex = 4
+            dg_D.Columns(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            dg_D.Columns(3).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            dg_D.Columns(6).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            dg_D.Columns(11).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
 
         Catch ex As Exception
         End Try

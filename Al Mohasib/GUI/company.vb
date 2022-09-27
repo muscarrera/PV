@@ -65,17 +65,25 @@
         '    Exit Sub
         'End If
         Try
-            Dim ta As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
-            ta.DeleteQuery(id)
-            ta.Fill(ALMohassinDBDataSet.company)
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+                '''''''''''''''''''
+                params.Add("compid", id)
+                If a.DeleteRecords("company", params) Then
+                    DataGridView1.Rows.Remove(DataGridView1.SelectedRows(0))
+                End If
+
+            End Using
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+       
     End Sub
 
     Private Sub company_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'ALMohassinDBDataSet.company' table. You can move, or remove it, as needed.
-        Me.CompanyTableAdapter.Fill(Me.ALMohassinDBDataSet.company)
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            DataGridView1.DataSource = a.SelectDataTable("company", {"*"})
+        End Using
 
     End Sub
 
@@ -89,47 +97,38 @@
             Exit Sub
         End If
 
-        ' addddd
-        If btcon.Tag = "0" Then
-
-
-            ''check the name
-
-            For i As Integer = 0 To DataGridView1.Rows.Count - 1
-                If txtname.Text = DataGridView1.Rows(i).Cells(1).Value Then
-                    MsgBox("عذرا لا يمكن اتمام طلبكم.. يجب عدم تكرار نفس الاسم", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
-                    txtname.Focus()
-                    DataGridView1.Rows(i).Selected = True
-                    DataGridView1.FirstDisplayedScrollingRowIndex = DataGridView1.SelectedRows(0).Index
-                    Exit Sub
-                End If
-            Next
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim params As New Dictionary(Of String, Object)
+            params.Add("name", txtname.text)
+            params.Add("gerant", txtcin.text)
+            params.Add("Adress", txtad.text)
+            params.Add("tel", txttel.text)
+            params.Add("credit", "0")
 
 
 
-            Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
-                ta.InsertQuery(txtname.Text, txtcin.Text, txtad.Text, txttel.Text, "0")
-                ta.Fill(ALMohassinDBDataSet.company)
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
+            If btcon.Tag = "0" Then
+                For i As Integer = 0 To DataGridView1.Rows.Count - 1
+                    If txtname.text = DataGridView1.Rows(i).Cells(1).Value Then
+                        MsgBox("عذرا لا يمكن اتمام طلبكم.. يجب عدم تكرار نفس الاسم", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
+                        txtname.Focus()
+                        DataGridView1.Rows(i).Selected = True
+                        DataGridView1.FirstDisplayedScrollingRowIndex = DataGridView1.SelectedRows(0).Index
+                        Exit Sub
+                    End If
+                Next
+                c.InsertRecord("company", params, True)
+            Else
+                Dim where As New Dictionary(Of String, Object)
+                where.Add("compid", txtname.Tag)
+                c.UpdateRecord("company", params, where)
+                where = Nothing
+            End If
+        End Using
 
-
-
-            'updateeee
-        Else
-
-
-            Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
-                ta.UpdateQuery(txtname.Text, txtcin.Text, txtad.Text, txttel.Text, txtname.Tag)
-                ta.Fill(ALMohassinDBDataSet.company)
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-
-        End If
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            DataGridView1.DataSource = c.SelectDataTable("company", {"*"})
+        End Using
         btcancel_Click(Nothing, Nothing)
         GB.Visible = False
     End Sub

@@ -25,8 +25,11 @@ Public Class AddEditCat
         End Set
     End Property
     Private Sub AddEditCat_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'ALMohassinDBDataSet.Category' table. You can move, or remove it, as needed.
-        Me.CategoryTableAdapter.Fill(Me.ALMohassinDBDataSet.Category)
+
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            dgvctg.DataSource = a.SelectDataTableSymbols("Category", {"*"})
+
+        End Using
 
     End Sub
 
@@ -83,17 +86,22 @@ Public Class AddEditCat
                 End If
             Next
 
-            Dim tac As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            Dim dt = tac.GetDataBycid(cid)
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+                '''''''''''''''''''
+                params.Add("cid", cid)
+                Dim dt = a.SelectDataTable("article", {"*"}, params)
 
-            If dt.Rows.Count > 0 Then
-                MsgBox("لا يمكن حذف هذا التصنيف ... لوجوذه في ارتباطات اخرى", MsgBoxStyle.OkOnly)
-                Exit Sub
-            End If
+                If dt.Rows.Count > 0 Then
+                    MsgBox("لا يمكن حذف هذا التصنيف ... لوجوذه في ارتباطات اخرى", MsgBoxStyle.OkOnly)
+                    Exit Sub
+                End If
+              
+                If a.DeleteRecords("Category", params) Then
+                    dgvctg.Rows.Remove(dgvctg.SelectedRows(0))
+                End If
+            End Using
              
-            Dim ta As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
-            ta.DeleteQuery(cid)
-            ta.Fill(ALMohassinDBDataSet.Category)
             ImgPrd = Nothing
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -136,45 +144,42 @@ Public Class AddEditCat
             cp = CInt(TextBox2.Text)
         End If
 
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim params As New Dictionary(Of String, Object)
+            params.Add("name", TextBox1.Text)
+            params.Add("img", PBctg.Tag)
+            params.Add("pr", cp)
 
-        ' addddd
-        If btcid.Tag = "0" Then
-            ''check the name
-
-            For i As Integer = 0 To dgvctg.Rows.Count - 1
-                If TextBox1.Text = dgvctg.Rows(i).Cells(1).Value Then
-                    MsgBox("عذرا لا يمكن اتمام طلبكم.. يجب عدم تكرار نفس الاسم", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
-                    TextBox1.Focus()
-                    dgvctg.Rows(i).Selected = True
-                    dgvctg.FirstDisplayedScrollingRowIndex = dgvctg.Rows(i).Index
-                    Exit Sub
-                End If
-            Next
 
             saveImage()
 
-            Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
-                ta.InsertQuery(TextBox1.Text, PBctg.Tag, cp)
-                ta.Fill(ALMohassinDBDataSet.Category)
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
 
-            'updateeee
-        Else
+            If btcid.Tag = "0" Then
+                For i As Integer = 0 To dgvctg.Rows.Count - 1
+                    If TextBox1.Text = dgvctg.Rows(i).Cells(1).Value Then
+                        MsgBox("عذرا لا يمكن اتمام طلبكم.. يجب عدم تكرار نفس الاسم", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
+                        TextBox1.Focus()
+                        dgvctg.Rows(i).Selected = True
+                        dgvctg.FirstDisplayedScrollingRowIndex = dgvctg.Rows(i).Index
+                        Exit Sub
+                    End If
+                Next
 
-            saveImage()
-            Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
-                ta.UpdateQuery(TextBox1.Text, PBctg.Tag, cp, TextBox1.Tag)
-                ta.Fill(ALMohassinDBDataSet.Category)
 
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
+                c.InsertRecord("Category", params, True)
+            Else
+                Dim where As New Dictionary(Of String, Object)
+                where.Add("cid", TextBox1.Tag)
+                c.UpdateRecord("Category", params, where)
+                where = Nothing
+            End If
+        End Using
 
-        End If
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+
+            dgvctg.DataSource = c.SelectDataTableSymbols("Category", {"*"})
+        End Using
+
         Panel1.Visible = False
 
     End Sub

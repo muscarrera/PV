@@ -89,7 +89,7 @@ Partial Class CompanyPAYEMENT
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
         Me.CompanyBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.CompanyTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.companyTableAdapter()
+        ' Me.CompanyTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.companyTableAdapter()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.CompidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -794,7 +794,7 @@ Partial Class CompanyPAYEMENT
         '
         'CompanyTableAdapter
         '
-        Me.CompanyTableAdapter.ClearBeforeFill = True
+        '    Me.CompanyTableAdapter.ClearBeforeFill = True
         '
         'GroupBox3
         '
@@ -992,7 +992,7 @@ Partial Class CompanyPAYEMENT
     Friend WithEvents DGVP As System.Windows.Forms.DataGridView
     Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
     Friend WithEvents CompanyBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents CompanyTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.companyTableAdapter
+    'Friend WithEvents CompanyTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.companyTableAdapter
     Friend WithEvents DateTimePicker1 As System.Windows.Forms.DateTimePicker
     Friend WithEvents Column4 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column1 As System.Windows.Forms.DataGridViewTextBoxColumn

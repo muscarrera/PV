@@ -42,6 +42,7 @@ Partial Class AddEditBanqueField
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TxtBox1 = New Al_Mohasib.TxtBox()
         Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.CbAlign = New System.Windows.Forms.ComboBox()
@@ -50,7 +51,6 @@ Partial Class AddEditBanqueField
         Me.btcancel = New System.Windows.Forms.Button()
         Me.btcon = New System.Windows.Forms.Button()
         Me.txtF1 = New Al_Mohasib.TxtBox()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel11.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.SuspendLayout()
@@ -205,7 +205,7 @@ Partial Class AddEditBanqueField
         Me.CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CB.FormattingEnabled = True
         Me.CB.ItemHeight = 13
-        Me.CB.Items.AddRange(New Object() {"*", "Nom", "Date", "Montant", "En_Chiffre"})
+        Me.CB.Items.AddRange(New Object() {"*", "Nom", "Date", "Montant", "En_Chiffre", "Forms"})
         Me.CB.Location = New System.Drawing.Point(71, 4)
         Me.CB.Name = "CB"
         Me.CB.Size = New System.Drawing.Size(213, 21)
@@ -341,6 +341,19 @@ Partial Class AddEditBanqueField
         Me.Panel11.Size = New System.Drawing.Size(346, 374)
         Me.Panel11.TabIndex = 44
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.SystemColors.Control
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(295, 200)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(31, 30)
+        Me.Button1.TabIndex = 45
+        Me.Button1.Text = "..."
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'Label7
         '
         Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -445,19 +458,6 @@ Partial Class AddEditBanqueField
         Me.txtF1.TxtColor = System.Drawing.Color.White
         Me.txtF1.txtReadOnly = False
         Me.txtF1.TxtSelect = New Integer() {1, 0}
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.SystemColors.Control
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(295, 200)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(31, 30)
-        Me.Button1.TabIndex = 45
-        Me.Button1.Text = "..."
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button1.UseVisualStyleBackColor = False
         '
         'AddEditBanqueField
         '

@@ -9,9 +9,19 @@
         Dim dt2 As Date = Date.Parse(DateTimePicker1.Text).AddDays(-1)
         Dim dt As DataTable = Nothing
         Try
-         
-            Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
-            dt = ta.GetDataBydtcaisse(dt1, dt2)
+            'Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            '    Dim params As New Dictionary(Of String, Object)
+            '    params.Add("date < ", dt1)
+            '    params.Add("date > ", dt2)
+
+            '    Dim tb As String = "Payement"
+            '    If Form1.RPl.isSell = False Then tb = "CompanyPayment"
+
+            '    tt = a.SelectByScalar(tb, " SUM(montant) AS total", params)
+            'End Using
+
+            'Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
+            'dt = ta.GetDataBydtcaisse(dt1, dt2)
 
             If dt.Rows.Count > 0 Then
 

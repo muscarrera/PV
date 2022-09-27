@@ -102,12 +102,12 @@
         Dim tableName As String = "CompanyPayment"
         Dim tName As String = "Bon"
         Dim fld As String = "bonid"
-        Dim cl As String = "comid"
+
         If isSell Then
             tableName = "Payment"
             tName = "Facture"
             fld = "fctid"
-            cl = "clid"
+
         End If
 
         Dim fctid = Form1.RPl.FctId
@@ -117,12 +117,12 @@
             Dim where As New Dictionary(Of String, Object)
 
             params.Add("name", Form1.RPl.Name)
-            params.Add(cl, Form1.RPl.ClId)
+            params.Add("cid", Form1.RPl.ClId)
             params.Add("montant", avancePay)
             params.Add("way", WAY)
-            params.Add("date", Format(Now.Date, "dd-MM-yyyy"))
+            params.Add("date", Now) 'Format(Now.Date, "dd-MM-yyyy"))
             params.Add("Num", str)
-            params.Add(fld, fctid)
+            params.Add("fctid", fctid)
             params.Add("writer", CStr(Form1.adminName))
 
             Dim Pid = c.InsertRecord(tableName, params, True)

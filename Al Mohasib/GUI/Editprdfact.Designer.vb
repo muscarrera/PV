@@ -22,7 +22,6 @@ Partial Class Editprdfact
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Editprdfact))
         Me.plup = New System.Windows.Forms.Panel()
         Me.Panel21 = New System.Windows.Forms.Panel()
@@ -41,8 +40,6 @@ Partial Class Editprdfact
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.chNotDepot = New System.Windows.Forms.CheckBox()
         Me.cbDepot = New System.Windows.Forms.ComboBox()
-        Me.DepotBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.txtTotal = New Al_Mohasib.TxtBox()
@@ -62,6 +59,7 @@ Partial Class Editprdfact
         Me.txtbprice = New Al_Mohasib.TxtBox()
         Me.txtArSearch = New Al_Mohasib.TxtBox()
         Me.plClavier = New System.Windows.Forms.Panel()
+        Me.cbChangeName = New System.Windows.Forms.CheckBox()
         Me.cbChangePrice = New System.Windows.Forms.CheckBox()
         Me.Button33 = New System.Windows.Forms.Button()
         Me.Button22 = New System.Windows.Forms.Button()
@@ -75,8 +73,6 @@ Partial Class Editprdfact
         Me.Button31 = New System.Windows.Forms.Button()
         Me.Button28 = New System.Windows.Forms.Button()
         Me.Button26 = New System.Windows.Forms.Button()
-        Me.DepotTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter()
-        Me.cbChangeName = New System.Windows.Forms.CheckBox()
         Me.plup.SuspendLayout()
         Me.Panel21.SuspendLayout()
         Me.Panel18.SuspendLayout()
@@ -84,8 +80,6 @@ Partial Class Editprdfact
         Me.Panel15.SuspendLayout()
         Me.Panel16.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.plClavier.SuspendLayout()
@@ -289,8 +283,6 @@ Partial Class Editprdfact
         '
         'cbDepot
         '
-        Me.cbDepot.DataSource = Me.DepotBindingSource
-        Me.cbDepot.DisplayMember = "name"
         Me.cbDepot.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbDepot.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cbDepot.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -300,16 +292,6 @@ Partial Class Editprdfact
         Me.cbDepot.Size = New System.Drawing.Size(141, 28)
         Me.cbDepot.TabIndex = 16
         Me.cbDepot.ValueMember = "dpid"
-        '
-        'DepotBindingSource
-        '
-        Me.DepotBindingSource.DataMember = "Depot"
-        Me.DepotBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'Panel1
         '
@@ -580,6 +562,19 @@ Partial Class Editprdfact
         Me.plClavier.Size = New System.Drawing.Size(300, 551)
         Me.plClavier.TabIndex = 15
         '
+        'cbChangeName
+        '
+        Me.cbChangeName.AutoSize = True
+        Me.cbChangeName.BackColor = System.Drawing.Color.Green
+        Me.cbChangeName.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbChangeName.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.cbChangeName.Location = New System.Drawing.Point(20, 503)
+        Me.cbChangeName.Name = "cbChangeName"
+        Me.cbChangeName.Size = New System.Drawing.Size(86, 23)
+        Me.cbChangeName.TabIndex = 17
+        Me.cbChangeName.Text = "تعديل الاسم"
+        Me.cbChangeName.UseVisualStyleBackColor = False
+        '
         'cbChangePrice
         '
         Me.cbChangePrice.AutoSize = True
@@ -749,23 +744,6 @@ Partial Class Editprdfact
         Me.Button26.Text = "5"
         Me.Button26.UseVisualStyleBackColor = False
         '
-        'DepotTableAdapter
-        '
-        Me.DepotTableAdapter.ClearBeforeFill = True
-        '
-        'cbChangeName
-        '
-        Me.cbChangeName.AutoSize = True
-        Me.cbChangeName.BackColor = System.Drawing.Color.Green
-        Me.cbChangeName.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbChangeName.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.cbChangeName.Location = New System.Drawing.Point(20, 503)
-        Me.cbChangeName.Name = "cbChangeName"
-        Me.cbChangeName.Size = New System.Drawing.Size(86, 23)
-        Me.cbChangeName.TabIndex = 17
-        Me.cbChangeName.Text = "تعديل الاسم"
-        Me.cbChangeName.UseVisualStyleBackColor = False
-        '
         'Editprdfact
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -791,8 +769,6 @@ Partial Class Editprdfact
         Me.Panel16.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        CType(Me.DepotBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
@@ -849,9 +825,6 @@ Partial Class Editprdfact
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
-    Friend WithEvents DepotBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents DepotTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.DepotTableAdapter
     Friend WithEvents chNotDepot As System.Windows.Forms.CheckBox
     Friend WithEvents cbChangePrice As System.Windows.Forms.CheckBox
     Friend WithEvents cbChangeName As System.Windows.Forms.CheckBox

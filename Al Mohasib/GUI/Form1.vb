@@ -30,14 +30,125 @@ Public Class Form1
     Friend Shared page_Number As Integer
     Dim _EnableDeleting As Boolean
     Public itm_fn_gr, itm_fn_p, itm_fn_p_g, itm_fn_p_i As Font
+    Public PromosPah As String = "c:"
+
+
+    Public Def_Oper_Sell = "BL"
+    Public Def_Oper_Buy = "BA"
+
+    Public TB_Bon As String = "Facture"
+    Public TB_Details As String = "detailsfacture"
+    Public TB_Client As String = "client"
+    Public TB_Payement As String = "payment"
+
+
+    Public Property Operation As String
+        Get
+            Return ""
+        End Get
+        Set(ByVal value As String)
+
+
+            Try
+                Using a As SubClass = New SubClass
+                    a.saveChanges()
+                End Using
+            Catch ex As Exception
+            End Try
+
+
+            If value = "BL" Then
+                TB_Bon = "Facture"
+                TB_Details = "detailsfacture"
+                TB_Client = "client"
+                TB_Payement = "payment"
+
+                btswitsh.Text = " البيع - BL "
+                btswitsh.BackColor = Color.Teal
+                plrightA.BackColor = Color.Teal
+                btSwitch2.Text = " البيع - BL "
+                btSwitch2.BackColor = Color.Teal
+
+                btswitsh.Tag = 1
+                btSwitch2.Tag = 1
+                RPl.isSell = True
+               
+
+            ElseIf value = "BA" Then
+                TB_Bon = "bon"
+                TB_Details = "detailsbon"
+                TB_Client = "company"
+                TB_Payement = "companypayment"
+
+                btswitsh.Text = "الشراء - Achat"
+                btSwitch2.Text = "الشراء - Achat"
+
+                btswitsh.BackColor = Color.Thistle
+                plrightA.BackColor = Color.Thistle
+                btSwitch2.BackColor = Color.Thistle
+
+                btswitsh.Tag = 0
+                btSwitch2.Tag = 0
+
+                Button33.Visible = False
+                RPl.isSell = False
+
+
+            ElseIf value = "DV" Then
+                TB_Bon = "Devis"
+                TB_Details = "detailsdevis"
+                TB_Client = "client"
+                TB_Payement = "payment"
+
+                btswitsh.Text = "  DEVIS  "
+                btswitsh.BackColor = Color.Teal
+                plrightA.BackColor = Color.Teal
+                btSwitch2.Text = "  DEVIS  "
+                btSwitch2.BackColor = Color.Teal
+
+                btswitsh.Tag = 1
+                btSwitch2.Tag = 1
+                RPl.isSell = True
+
+            ElseIf value = "BC" Then
+                TB_Bon = "boncommand"
+                TB_Details = "detailsboncommand"
+                TB_Client = "company"
+                TB_Payement = "companypayment"
+
+                btswitsh.Text = "  Bon Commande  "
+                btSwitch2.Text = "  Bon Commande  "
+
+                btswitsh.BackColor = Color.Thistle
+                plrightA.BackColor = Color.Thistle
+                btSwitch2.BackColor = Color.Thistle
+
+                btswitsh.Tag = 0
+                btSwitch2.Tag = 0
+
+                Button33.Visible = False
+                RPl.isSell = False
+
+            End If
+
+
+            plright.Controls.Clear()
+            RPl.ClearItems()
+
+            Using a As SubClass = New SubClass
+                If RPl.EditMode = False Then a.fillFactures(CInt(btswitsh.Tag))
+                txtArSearch.text = ""
+                a.AutoCompleteArticles(txtArSearch, TB_Client)
+            End Using
+
+        End Set
+    End Property
 
     Public Sub New()
-
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-
     End Sub
 
     '91   42   20  04  44
@@ -89,7 +200,7 @@ Public Class Form1
             Return _RplWidth
         End Get
         Set(ByVal value As Integer)
-            If value <= 20 Then value = 22
+            If value <= 30 Then value = 33
 
             _RplWidth = value
             PlRcpt.Width = value
@@ -121,32 +232,27 @@ Public Class Form1
 
         HandleRegistryinfo()
 
+
         'isBaseOnRIYAL = cbRYL.Checked
         'If isBaseOnRIYAL Then frmDbl = "N0"
         'is_true_to_end = True
 
-        ' ''Dim CDA As New PricingGetter
-        ' ''Dim CDA As New BarCode2
-        'Dim CDA As New LabelPrinter
+        'Dim CDA As New AddEditPromos
+        ''Dim CDA As New PricingGetter
+        ' '' ''Dim CDA As New BarCode2
+        ' '' '' Dim CDA As New LabelPrinter
         'If CDA.ShowDialog = Windows.Forms.DialogResult.Cancel Then
         '    End
         'End If
         'If is_true_to_end Then End
 
 
-        Try
-            'trial(Version)
-            Dim trial As Boolean = checktrialSlave()
-
-            If trial = False Then
-                MsgBox("Vous devez Contacter l'adminisration pour plus d'infos")
-                End
-            End If
-        Catch ex As Exception
-        End Try
+        'check Trial
+        If TrialVersion_Slave = False Then
+            MsgBox("Vous devez Contacter l'administration pour plus d'infos", MsgBoxStyle.Information, "***TRIAL***")
+            End
+        End If
         '
-
-        Me.DepotTableAdapter.Fill(Me.ALMohassinDBDataSet.Depot)
 
         Dim pwdwin As New PWDPicker
 
@@ -200,8 +306,8 @@ Public Class Form1
 
         Try
             ' TabControl1.Controls.Remove(TabPageStk)
-            TabControl1.Controls.Remove(TabPageFac)
-            TabControl1.Controls.Remove(TabPageChar)
+            'TabControl1.Controls.Remove(TabPageFac)
+            'TabControl1.Controls.Remove(TabPageChar)
         Catch ex As Exception
         End Try
 
@@ -233,8 +339,22 @@ Public Class Form1
             a.AutoCompleteArticlesWithRef(txtnameStock, "Article")
 
         End Using
-        'charges
 
+        'depot
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Try
+                dt_Depot = a.SelectDataTableSymbols("Depot", {"*"})
+                cbdepot.DataSource = dt_Depot
+
+                If dt_Depot.Rows.Count > 0 Then
+                    RPl.CP.Depot = dt_Depot.Rows(0).Item(0)
+                    Button36.Text = "[" & dt_Depot.Rows(0).Item("name") & "]"
+                End If
+            Catch ex As Exception
+            End Try
+        End Using
+
+        'charges
         Using a As ChargesClass = New ChargesClass
             dtChargeFrom.Value = DateSerial(Date.Now.Year, Date.Now.Month, 0)
             dtChargeTo.Value = DateSerial(Date.Now.Year, Date.Now.Month + 1, 1)
@@ -252,17 +372,6 @@ Public Class Form1
 
         RPl.hasManyRemise = CbArticleRemise.Checked
 
-        Try
-            'Fill List of depots
-            Dim dtta As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
-            dt_Depot = dtta.GetData()
-
-            If dt_Depot.Rows.Count > 0 Then
-                RPl.CP.Depot = dt_Depot.Rows(0).Item(0)
-                Button36.Text = "[" & dt_Depot.Rows(0).Item("name") & "]"
-            End If
-        Catch ex As Exception
-        End Try
 
         '''''''''''''''''''''''''
 
@@ -470,7 +579,7 @@ Public Class Form1
     End Sub
     Private Sub WatcherLogChange(ByVal sender As Object, ByVal e As FileSystemEventArgs)
 
-        
+
 
 
         Try
@@ -691,6 +800,20 @@ Public Class Form1
                     End If
                 End If
 
+            Case Keys.Up
+
+                If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                If TabControl1.SelectedIndex <> 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                RplFocusedArrow(1)
+
+
+            Case Keys.Down
+                If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                If TabControl1.SelectedIndex <> 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                RplFocusedArrow(-1)
+
+
+
             Case Keys.Space  ' save and print
 
                 If RPl.EditMode = True Then Return False
@@ -784,6 +907,26 @@ Public Class Form1
 
         Return True
     End Function
+
+    Public RplFocusedIndex As Integer = -1
+    Private Sub RplFocusedArrow(ByVal aA As Integer)
+        Try
+            Dim pv As Items = RPl.Pl.Controls(RplFocusedIndex)
+            pv.IsSelected = False
+            RplFocusedIndex += aA
+        Catch ex As Exception
+
+        End Try
+
+
+
+        If RplFocusedIndex < 0 Then RplFocusedIndex = 0
+        If RplFocusedIndex > RPl.Pl.Controls.Count - 1 Then RplFocusedIndex = RPl.Pl.Controls.Count - 1
+
+        Dim it As Items = RPl.Pl.Controls(RplFocusedIndex)
+        it.IsSelected = True
+        RPl.Pl.ScrollControlIntoView(it)
+    End Sub
 
     Private Sub getRegistryinfo(ByRef txt As TextBox, ByVal str As String, ByVal v As String)
         Try
@@ -1004,6 +1147,7 @@ Public Class Form1
         getRegistryinfo(txtItmZP, "txtItmZP", "9")
         getRegistryinfo(txtAllowLowPrice, "txtAllowLowPrice", "")
         getRegistryinfo(cbBprice, "cbBprice", "None")
+        getRegistryinfo(PromosPah, "PromosPah", ImgPah)
 
         Try
             itm_fn_gr = New Font(txtItmFG.Text, CInt(txtItmZG.Text), FontStyle.Bold)
@@ -1024,6 +1168,7 @@ Public Class Form1
         gbprint.Enabled = chbprint.Checked
 
         msg = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "EnableDeleting", Nothing)
+
         If msg = Nothing Then
             msg = True
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "EnableDeleting", msg)
@@ -1035,514 +1180,9 @@ Public Class Form1
 
     End Sub
 
-    ' for master
-    Private Function checktrialMaster() As Boolean
-        isMaster = True
-        'Using a As BoundClass = New BoundClass
-        '    'If a.LoadNewChangement() Then
-        '    '    a.DeletOldFiles()
-        '   End If
-        'End Using
-
-        '  checktrialMaster_Contrat()
-
-
-
-
-        Dim resultkey As Integer = HandleRegistry2()
-        If resultkey = 0 Then 'something went wrong
-            Dim fdt As Date
-            fdt = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", TrialName, Nothing)
-            Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
-
-                Dim dt2 = ta.GetData("truefont")
-
-                If dt2.Rows(0).Item("val") = "true" Then
-                    bttrial.Enabled = False
-                    Return True
-                    Exit Function
-                Else
-                    Dim trial As New TrialVersion
-                    If trial.ShowDialog = Windows.Forms.DialogResult.Cancel Then
-                        Return False
-                        Exit Function
-                    Else
-                        Return True
-                        Exit Function
-                    End If
-                End If
-            Catch ex As Exception
-                Return False
-            End Try
-        Else
-
-            Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
-                Dim dt = ta.GetData("truefont")
-                If dt.Rows(0).Item("val") = "true" Then
-                    bttrial.Enabled = False
-                Else
-                    Dim ms = "Votre licence d'application expirera bientôt" & vbNewLine
-                    ms &= "***** ---------------------------------------------***** " & vbNewLine & vbNewLine
-
-                    ms &= "Vous devez activer les fenêtres dans les paramètres." & vbNewLine
-
-                    Try
-                        Dim ALMohasibfirstRunDate As Date
-                        ALMohasibfirstRunDate = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", TrialName, Nothing)
-
-                        ms &= "Merci de contactez le support technique avant : " & vbNewLine
-                        ms &= nbrDay_Trial - (Now - ALMohasibfirstRunDate).Days & "Jours" & vbNewLine
-                        ms &= "--------------------------------- "
-                    Catch ex As Exception
-                    End Try
-
-                    MsgBox(ms, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, "AL Mohasib POS \*****/")
-                End If
-                Return True
-            Catch ex As Exception
-                Return True
-            End Try
-
-        End If
-    End Function
-    Private Function HandleRegistry2() As Integer
-
-
-        Dim ALMohasibfirstRunDate As Date
-        Dim LastRunDate As Date
-
-        ALMohasibfirstRunDate = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", TrialName, Nothing)
-
-        LastRunDate = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", "lastDate" & TrialName, Nothing)
-
-
-
-        '''''''''''''''''''''''''''''''''''''''''''''       '''''''''''''''''''''''''''''''''''''''''''''
-        '''''''''''''''''''''''''''''''''''''''''''''       '''''''''''''''''''''''''''''''''''''''''''''
-        LastRunDate = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", "lastDate" & TrialName, Nothing)
-
-        Dim sz = (Now - LastRunDate).Days
-
-        'Reglage de date 
-        If LastRunDate = Nothing Then
-            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", "lastDate" & TrialName, Now.Date)
-        ElseIf (Now - LastRunDate).Days <= -1 Then
-            MsgBox("Merci de regler la date de votre PC .." & LastRunDate, MsgBoxStyle.Information, "Error_Date")
-            End
-        End If
-
-        If CDate(Now) > CDate(LastRunDate) Then My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", "lastDate" & TrialName, Now.Date)
-
-        '''''''''''''''''''''''''''''''''''''''''''''       '''''''''''''''''''''''''''''''''''''''''''''
-        '''''''''''''''''''''''''''''''''''''''''''''       '''''''''''''''''''''''''''''''''''''''''''''
-
-        'mac adresse
-        Dim mac = getMacAddress()
-        mac = Regex.Replace(mac, "[^0-9]", "")
-
-        If ALMohasibfirstRunDate = Nothing Then
-            ALMohasibfirstRunDate = Now
-            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", TrialName, ALMohasibfirstRunDate)
-            Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
-                Dim dt = ta.GetData("keypsv")
-                Dim val As String = ALMohasibfirstRunDate.Day & ALMohasibfirstRunDate.Hour & "-" & ALMohasibfirstRunDate.Second & "1d5-" & ALMohasibfirstRunDate.ToString("yy") & "2H7" & "-" & mac.ToString.Substring(mac.ToString.Length - 4) & "-" & mac.ToString.Substring(0, 4) & ALMohasibfirstRunDate.Month
-                If dt.Rows.Count > 0 Then
-                    ta.UpdateKeyVal(val, "keypsv")
-                Else
-                    ta.Insert("keypsv", val)
-                End If
-                Dim dt2 = ta.GetData("truefont")
-                If dt.Rows.Count > 0 Then
-                    ta.UpdateKeyVal("false", "truefont")
-                Else
-                    ta.Insert("truefont", "False")
-                End If
-                MsgBox("AL Mohasib System de gestion - Premier utilisation ..")
-
-            Catch ex As Exception
-                MsgBox("Error 1 : frst run " & vbNewLine & ex.Message)
-
-            End Try
-            Return 1
-        ElseIf (Now - ALMohasibfirstRunDate).Days > nbrDay_Trial Then
-            Try
-
-                Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
-                Dim dt = ta.GetData("keypsv")
-                Dim val As String = ALMohasibfirstRunDate.Day & ALMohasibfirstRunDate.Hour & "-" & ALMohasibfirstRunDate.Second & "1d5-" & ALMohasibfirstRunDate.ToString("yy") & "2H7" & "-" & mac.ToString.Substring(mac.ToString.Length - 4) & "-" & mac.ToString.Substring(0, 4) & ALMohasibfirstRunDate.Month
-                ''''''
-                If dt.Rows.Count > 0 Then
-
-                    If dt.Rows(0).Item("val") <> val Then
-
-                        ta.UpdateKeyVal(val, "keypsv")
-                        Dim dt2 = ta.GetData("truefont")
-                        If dt.Rows.Count > 0 Then
-                            ta.UpdateKeyVal("false", "truefont")
-                        Else
-                            ta.Insert("truefont", "False")
-                            MsgBox("AL Mohasib System de gestion - Premier utilisation ..")
-                        End If
-
-                    Else
-
-                    End If
-                Else
-
-                    ta.Insert("keypsv", val)
-                    Dim dt2 = ta.GetData("truefont")
-                    If dt.Rows.Count > 0 Then
-                        ta.UpdateKeyVal("false", "truefont")
-                    Else
-                        ta.Insert("truefont", "False")
-                    End If
-                    MsgBox("AL Mohasib System de gestion - Premier utilisation ..")
-
-                End If
-                '''''''
-
-            Catch ex As Exception
-                MsgBox("Error 2 : scnd run " & vbNewLine & ex.Message)
-            End Try
-            Return 0
-        Else
-
-            Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
-                Dim dt = ta.GetData("keypsv")
-                Dim val As String = ALMohasibfirstRunDate.Day & ALMohasibfirstRunDate.Hour & "-" & ALMohasibfirstRunDate.Second & "1d5-" & ALMohasibfirstRunDate.ToString("yy") & "2H7" & "-" & mac.ToString.Substring(mac.ToString.Length - 4) & "-" & mac.ToString.Substring(0, 4) & ALMohasibfirstRunDate.Month
-                ''''''
-                If dt.Rows.Count > 0 Then
-
-                    If dt.Rows(0).Item("val") <> val Then
-
-                        ta.UpdateKeyVal(val, "keypsv")
-                        Dim dt2 = ta.GetData("truefont")
-                        If dt.Rows.Count > 0 Then
-                            ta.UpdateKeyVal("false", "truefont")
-                        Else
-
-                            ta.Insert("truefont", "False")
-                            MsgBox("AL Mohasib System de gestion - Premier utilisation ..")
-                        End If
-
-                    Else
-
-                    End If
-                Else
-
-                    ta.Insert("keypsv", val)
-                    Dim dt2 = ta.GetData("truefont")
-                    If dt.Rows.Count > 0 Then
-                        ta.UpdateKeyVal("false", "truefont")
-                    Else
-                        ta.Insert("truefont", "False")
-                    End If
-                    MsgBox("AL Mohasib System de gestion - Premier utilisation ..")
-
-                End If
-                '''''''
-
-            Catch ex As Exception
-                MsgBox("Error 3 : trd run " & vbNewLine & ex.Message)
-            End Try
-            Return 1
-        End If
-
-    End Function
-    Private Sub checktrialMaster_Contrat()
-
-        'Dim LastRunDate = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", "date_contrat", Nothing)
-
-        ''Regla$* de date 
-        'If LastRunDate = Nothing Then
-        '    My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", "date_contrat", 0)
-        '    LastRunDate = 0
-        'End If
-
-        Dim ALMohasibfirstRunDate As Date
-        ALMohasibfirstRunDate = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", TrialName, Nothing)
-
-        'mac adresse
-        Dim mac = getMacAddress()
-        mac = Regex.Replace(mac, "[^0-9]", "")
-
-        If (Now - ALMohasibfirstRunDate).Days > 330 Then
-            Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
-
-            Try
-                ta.UpdateKeyVal("false", "truefont")
-            Catch ex As Exception
-            End Try
-
-            ALMohasibfirstRunDate = Now
-            Dim val As String = ALMohasibfirstRunDate.Day & ALMohasibfirstRunDate.Hour & "-" & ALMohasibfirstRunDate.Second & "1d5-" & ALMohasibfirstRunDate.ToString("yy") & "2H7" & "-" & mac.ToString.Substring(mac.ToString.Length - 4) & "-" & mac.ToString.Substring(0, 4) & ALMohasibfirstRunDate.Month
-
-            Try
-                ta.UpdateKeyVal(val, "keypsv")
-            Catch ex As Exception
-            End Try
-
-            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", TrialName, ALMohasibfirstRunDate)
-        End If
-
-
-    End Sub
-    Function getMacAddress()
-        Dim nics() As NetworkInterface = NetworkInterface.GetAllNetworkInterfaces()
-        Return nics(1).GetPhysicalAddress.ToString
-    End Function
-
-    Private Sub SetTheTrueMacAdrssDb()
-
-        Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
-        Dim dt = ta.GetData(myMacAdd.Split("/")(0))
-        If dt.Rows.Count > 0 Then
-        Else
-            ta.Insert(myMacAdd.Split("/")(0), myMacAdd.Split("/")(1))
-
-            Dim dt2 = ta.GetData("truefont")
-            If dt2.Rows.Count > 0 Then
-                ta.UpdateKeyVal("false", "truefont")
-            Else
-                ta.Insert("truefont", "False")
-            End If
-        End If
-    End Sub
-    Private Function isTheTrueMacAdrss(ByVal b As Boolean) As Integer
-        'cheque for mac adresse
-        Dim strReg = "Mac_Cmc_adr"
-        Dim myMac As String = myMacAdd.Split("/")(0)
-        Dim regMac As String = ""
-
-        regMac = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strReg, Nothing)
-
-
-        If regMac = Nothing Then
-            regMac = myMac
-
-            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strReg, regMac)
-            Try
-
-                Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
-                Dim dt2 = ta.GetData("truefont")
-                If dt2.Rows.Count > 0 Then
-                    ta.UpdateKeyVal("false", "truefont")
-                Else
-                    ta.Insert("truefont", "False")
-                End If
-
-
-                MsgBox("AL Mohasib System de gestion - Premier utilisation ..")
-
-            Catch ex As Exception
-                MsgBox(ex.Message)
-
-            End Try
-            Return 1
-        ElseIf regMac <> myMac Then
-            Try
-
-                If b Then
-                    Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
-                    Dim dt2 = ta.GetData("truefont")
-                    If dt2.Rows.Count > 0 Then
-                        ta.UpdateKeyVal("false", "truefont")
-                    Else
-                        ta.Insert("truefont", "False")
-                        MsgBox("AL Mohasib System de gestion - Premier utilisation ..")
-                    End If
-                End If
-
-                Dim m = InputBox("Code =  " & Now.Day)
-                If Not IsNumeric(m) Then Return 0 ' end
-
-
-                Dim tr = Now.Day * 11
-                tr += 123
-                tr += 111
-
-                tr = CInt(Now.Day() & "1" & tr & "0")
-                If m = tr Then
-                    regMac = myMac
-                    My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strReg, regMac)
-                    Return 1
-                Else
-                    Return 0
-                End If
-
-            Catch ex As Exception
-                MsgBox(ex.Message)
-                Return 0
-            End Try
-        Else
-            Return 1
-        End If
-
-    End Function
-    Dim myMacAdd As String = ""
-    Private Function isThTrueFileExist() As Integer
-        Dim strReg = "File_Cmc_True_Path"
-        Dim path As String = "c:\cmc.txt"
-        Dim regFile As String = ""
-
-        regFile = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strReg, Nothing)
-
-        Try
-            If regFile = Nothing Then
-
-                Dim m = InputBox("Code = NV fl txt dt pl 3 mo 1000")
-                If Not IsNumeric(m) Then Return 0 ' end
-                Dim tr = (Now.Day + Now.Month + Now.Year) - 1000
-
-                If m = tr Then
-
-                    ' Create or overwrite the file.
-                    Dim fs As FileStream = File.Create(path)
-
-                    ' Add text to the file.
-                    Dim mac = getMacAddress()
-                    mac = Regex.Replace(mac, "[^0-9]", "")
-                    mac &= "/" & Now.Date.ToString("ddMMyy")
-                    Dim info As Byte() = New UTF8Encoding(True).GetBytes(mac)
-                    fs.Write(info, 0, info.Length)
-                    fs.Close()
-                    myMacAdd = mac
-                    File.SetAttributes(path, FileAttributes.Hidden)
-
-                    My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strReg, 112)
-                    Return 1
-                Else
-                    Return 0
-                End If
-
-            Else
-
-
-                If System.IO.File.Exists(path) Then
-                    myMacAdd = My.Computer.FileSystem.ReadAllText(path, System.Text.Encoding.UTF8)
-
-                    If myMacAdd.Contains("/") = False Then
-                        My.Computer.FileSystem.DeleteFile(path)
-                        Dim mac = getMacAddress()
-                        mac = Regex.Replace(mac, "[^0-9]", "")
-                        mac &= "/" & Now.Date.ToString("ddMMyy")
-                        Dim fs As FileStream = File.Create(path)
-                        Dim info As Byte() = New UTF8Encoding(True).GetBytes(mac)
-                        fs.Write(info, 0, info.Length)
-                        fs.Close()
-                        myMacAdd = mac
-                    End If
-                    Return 1
-                Else
-                    Dim m = InputBox("Code = MS fl txt dt pl 3 mo 1000")
-                    If Not IsNumeric(m) Then Return 0 ' end
-                    Dim tr = (Now.Day + Now.Month + Now.Year) - 1000
-
-                    If m = tr Then
-
-                        ' Create or overwrite the file.
-                        Dim fs As FileStream = File.Create(path)
-
-                        ' Add text to the file.
-                        Dim mac = getMacAddress()
-                        mac = Regex.Replace(mac, "[^0-9]", "")
-                        mac &= "/" & Now.Date.ToString("ddMMyy")
-                        Dim info As Byte() = New UTF8Encoding(True).GetBytes(mac)
-                        fs.Write(info, 0, info.Length)
-                        fs.Close()
-
-                        File.SetAttributes(path, FileAttributes.Hidden)
-                        myMacAdd = mac
-                        My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strReg, 112)
-                        Return 1
-                    Else
-                        Return 0
-                    End If
-                End If
-            End If
-        Catch ex As Exception
-            Return 0
-        End Try
-    End Function
-    ' for slave
-    Private Function checktrialSlave() As Boolean
-        isMaster = False
-        'Using a As BoundClass = New BoundClass
-        '    a.LoadDb()
-        '    'a.LoadDb(btDbDv.Tag)
-        'End Using
-
-        Dim resultkey As Integer = HandleRegistry()
-        Try
-            Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
-
-            Dim dt2 = ta.GetData("truefont")
-
-            If dt2.Rows(0).Item("val") = "true" Then
-                bttrial.Enabled = False
-                Return True
-                Exit Function
-            Else
-                If resultkey = 1 Then
-                    Return True
-                Else
-                    Return False
-                End If
-
-
-            End If
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
-    Private Function HandleRegistry() As Integer
-        Dim ALMohasibfirstRunDate As Date
-        Dim LastRunDate As Date
-
-        ALMohasibfirstRunDate = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", TrialName, Nothing)
-
-        LastRunDate = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", "lastDate", Nothing)
-
-        '''''''''''''''''''''''''''''''''''''''''''''       '''''''''''''''''''''''''''''''''''''''''''''
-        '''''''''''''''''''''''''''''''''''''''''''''       '''''''''''''''''''''''''''''''''''''''''''''
-        LastRunDate = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", "lastDate", Nothing)
-
-        Dim sz = (Now - LastRunDate).Days
-
-        'Reglage de date 
-        If LastRunDate = Nothing Then
-            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", "lastDate", Now.Date)
-        ElseIf (Now - LastRunDate).Days <= -1 Then
-            MsgBox("Merci de regler la date de votre PC ..", MsgBoxStyle.Information, "Error_Date")
-            End
-        End If
-
-        If CDate(Now) > CDate(LastRunDate) Then My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", "lastDate", Now.Date)
-
-        '''''''''''''''''''''''''''''''''''''''''''''       '''''''''''''''''''''''''''''''''''''''''''''
-        '''''''''''''''''''''''''''''''''''''''''''''       '''''''''''''''''''''''''''''''''''''''''''''
-
-
-        If ALMohasibfirstRunDate = Nothing Then
-            ALMohasibfirstRunDate = Now
-            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", TrialName, ALMohasibfirstRunDate)
-
-            Return 1
-        ElseIf (Now - ALMohasibfirstRunDate).Days > nbrDay_Trial Then
-            Return 0
-        Else
-            Return 1
-        End If
-
-    End Function
-
     Private Sub DGVS_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles DGVS.Click
         If DGVS.SelectedRows.Count > 0 Then
-            Dim id As Integer = DGVS.SelectedRows(0).Cells(0).Value
+            Dim id As Integer = DGVS.SelectedRows(0).Cells(6).Value
             Dim qte As Integer = 0
 
             If My.Computer.Keyboard.CtrlKeyDown Then
@@ -1585,13 +1225,22 @@ Public Class Form1
             If fntdlg.ShowDialog = Windows.Forms.DialogResult.Cancel Then
                 Exit Sub
             End If
-
             txtfname.Text = fntdlg.Font.Name
             txtfntsize.Text = CInt(fntdlg.Font.Size)
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim pr As New Dictionary(Of String, Object)
+                pr.Add("val", "Font")
+                Dim wh As New Dictionary(Of String, Object)
+                wh.Add("vkey", txtfname.Text)
+                a.UpdateRecord("value", pr, wh)
 
-            Dim TA As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
-            TA.UpdateKeyVal(txtfname.Text, "Font")
-            TA.UpdateKeyVal(txtfntsize.Text, "FontSize")
+                pr.Clear()
+                pr.Add("val", "FontSize")
+                wh.Clear()
+                wh.Add("vkey", txtfntsize.Text)
+                a.UpdateRecord("value", pr, wh)
+
+            End Using
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
         End Try
@@ -1747,8 +1396,14 @@ Public Class Form1
     End Sub
     Private Sub cbsearch_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbsearch.SelectedIndexChanged
         Try
-            Dim TA As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
-            TA.UpdateKeyVal(cbsearch.Text, "searchway")
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim pr As New Dictionary(Of String, Object)
+                pr.Add("val", "searchway")
+                Dim wh As New Dictionary(Of String, Object)
+                wh.Add("vkey", cbsearch.Text)
+                a.UpdateRecord("value", pr, wh)
+            End Using
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
         End Try
@@ -1811,61 +1466,54 @@ Public Class Form1
     End Sub
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btswitsh.Click
 
-        Try
-            Using a As SubClass = New SubClass
-                a.saveChanges()
-            End Using
-        Catch ex As Exception
-        End Try
-
 
         If btswitsh.Tag = 1 Then
-            btswitsh.Text = " الدخــول "
-            btswitsh.BackColor = Color.Thistle
-            plrightA.BackColor = Color.Thistle
-            'BtLoadFct.Visible = False
-            btswitsh.Tag = 0
-            RPl.isSell = False
-            plright.Controls.Clear()
-            RPl.ClearItems()
+            Operation = Def_Oper_Buy
         Else
-            btswitsh.Text = " الخروج "
-            btswitsh.BackColor = Color.Teal
-            plrightA.BackColor = Color.Teal
-            btswitsh.Tag = 1
-            RPl.isSell = True
-            'BtLoadFct.Visible = True
-            plright.Controls.Clear()
-            RPl.ClearItems()
+            Operation = Def_Oper_Sell
         End If
-        Using a As SubClass = New SubClass
-            a.fillFactures(CInt(btswitsh.Tag))
-            a.FillGroupes(True)
-            'a.FillGroupes()
-        End Using
+      
+        'Try
+        '    Using a As SubClass = New SubClass
+        '        a.saveChanges()
+        '    End Using
+        'Catch ex As Exception
+        'End Try
+
+
+        'If btswitsh.Tag = 1 Then
+        '    btswitsh.Text = " الدخــول "
+        '    btswitsh.BackColor = Color.Thistle
+        '    plrightA.BackColor = Color.Thistle
+        '    'BtLoadFct.Visible = False
+        '    btswitsh.Tag = 0
+        '    RPl.isSell = False
+        '    plright.Controls.Clear()
+        '    RPl.ClearItems()
+        'Else
+        '    btswitsh.Text = " الخروج "
+        '    btswitsh.BackColor = Color.Teal
+        '    plrightA.BackColor = Color.Teal
+        '    btswitsh.Tag = 1
+        '    RPl.isSell = True
+        '    'BtLoadFct.Visible = True
+        '    plright.Controls.Clear()
+        '    RPl.ClearItems()
+        'End If
+        'Using a As SubClass = New SubClass
+        '    a.fillFactures(CInt(btswitsh.Tag))
+        '    a.FillGroupes(True)
+        '    'a.FillGroupes()
+        'End Using
     End Sub
 
     Private Sub RPl_GetModePayement(ByVal FctId As Integer) Handles RPl.GetModePayement
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
-          
-            Dim tableName = "Facture"
             Dim ptName = "Payment"
-              Dim fc = "fctid"
-            If RPl.isSell = False Then
-                tableName = "Bon"
-                ptName = "CompanyPayment"
-                fc = "bonid"
-            End If
-
+            If RPl.isSell = False Then ptName = "CompanyPayment"
 
             Dim params As New Dictionary(Of String, Object)
-
-            If RPl.isSell Then
-                params.Add("fctid", FctId)
-            Else
-                params.Add("bonid", FctId)
-            End If
-
+            params.Add("fctid", FctId)
 
             Dim str = "Cache"
             Try
@@ -1876,7 +1524,7 @@ Public Class Form1
                 str = "Cache"
             End Try
             RPl.ModePayement = str
-         
+
             params = Nothing
         End Using
     End Sub
@@ -1894,13 +1542,8 @@ Public Class Form1
         Else
             Exit Sub
         End If
-
-
         Try
-
-
             MP_Localname = "Caisse.dat"
-
             Dim g As New gGlobClass
             Try
 
@@ -1991,21 +1634,23 @@ Public Class Form1
         End If
     End Sub
     Private Sub RPl_UpdatePrice(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RPl.UpdatePrice
-        Dim clc As New Calc
-        clc.title = "الثمن السابــق"
-        clc.desc = RPl.SelectedItem.Price & " Dhs"
+        Try
+            Dim clc As New Calc
+            clc.title = "الثمن السابــق"
+            clc.desc = RPl.SelectedItem.Price & " Dhs"
 
-        If clc.ShowDialog = DialogResult.OK Then
-            If clc.CPanel1.Value < RPl.SelectedItem.Bprice Then
-                MsgBox(" ثمن البيع يجب ان يكون أكبر من ثمن الشراء", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
-                Exit Sub
+            If clc.ShowDialog = DialogResult.OK Then
+                If clc.CPanel1.Value < RPl.SelectedItem.Bprice Then
+                    MsgBox(" ثمن البيع يجب ان يكون أكبر من ثمن الشراء", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
+                    Exit Sub
+                End If
+
+                Using a As SubClass = New SubClass
+                    a.UpdateItem(RPl.SelectedItem, clc.CPanel1.Value, RPl.isSell, "price")
+                End Using
             End If
-
-            Using a As SubClass = New SubClass
-                a.UpdateItem(RPl.SelectedItem, clc.CPanel1.Value, RPl.isSell, "price")
-            End Using
-        End If
-
+        Catch ex As Exception
+        End Try
         If RPl.EditMode = False Then
             'Select Search txtbox
             If chbcb.Checked Then
@@ -2206,19 +1851,18 @@ Public Class Form1
                 For i = 0 To nbr - 1
                     PrintDoc.Print()
                 Next
-
             Else
 
                 MP_Localname = "Ticket.dat"
                 If RPl.ClId = 0 Then MP_Localname = "Ticket-0.dat"
                 If RPl.isSell = False Then MP_Localname = "Achat-Ticket.dat"
                 Dim g As New gGlobClass
+
                 Try
                     If isSecond Then
                         MP_Localname = "Ticket2.dat"
                         If RPl.isSell = False Then MP_Localname = "Achat-Ticket2.dat"
                     End If
-
                     g = ReadFromXmlFile(Of gGlobClass)(ImgPah & "\Prt_Dsn\" & MP_Localname)
                 Catch ex As Exception
                 End Try
@@ -2536,34 +2180,40 @@ Public Class Form1
 
     End Sub
     Private Sub btSwitch2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btSwitch2.Click
-        Dim tb As String = "Client"
-        DGVARFA.Rows.Clear()
-        RPl.ClearItems()
+        'Dim tb As String = "Client"
+        'DGVARFA.Rows.Clear()
+        'RPl.ClearItems()
+
+        'If btSwitch2.Tag = 1 Then
+        '    btSwitch2.Text = " الدخــول "
+        '    btSwitch2.BackColor = Color.Thistle
+        '    btSwitch2.BackColor = Color.Thistle
+        '    btSwitch2.Tag = 0
+
+        '    Button33.Visible = False
+        '    RPl.isSell = False
+        '    tb = "company"
+        'Else
+        '    btSwitch2.Text = " الخروج "
+        '    btSwitch2.BackColor = Color.Teal
+        '    btSwitch2.BackColor = Color.Teal
+        '    btSwitch2.Tag = 1
+
+        '    Button33.Visible = True
+        '    RPl.isSell = True
+        '    tb = "Client"
+        'End If
 
         If btSwitch2.Tag = 1 Then
-            btSwitch2.Text = " الدخــول "
-            btSwitch2.BackColor = Color.Thistle
-            btSwitch2.BackColor = Color.Thistle
-            btSwitch2.Tag = 0
-
-            Button33.Visible = False
-            RPl.isSell = False
-            tb = "company"
+            Operation = Def_Oper_Buy
         Else
-            btSwitch2.Text = " الخروج "
-            btSwitch2.BackColor = Color.Teal
-            btSwitch2.BackColor = Color.Teal
-            btSwitch2.Tag = 1
-
-            Button33.Visible = True
-            RPl.isSell = True
-            tb = "Client"
+            Operation = Def_Oper_Sell
         End If
 
-        Using a As SubClass = New SubClass(btSwitch2.Tag)
-            txtArSearch.text = ""
-            a.AutoCompleteArticles(txtArSearch, tb)
-        End Using
+        'Using a As SubClass = New SubClass(btSwitch2.Tag)
+        '    txtArSearch.text = ""
+        '    a.AutoCompleteArticles(txtArSearch, tb)
+        'End Using
 
     End Sub
 
@@ -2955,50 +2605,50 @@ Public Class Form1
             End If
 
             Dim ds As New ALMohassinDBDataSet()
-            Dim ada As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
-            ada.Fill(ds.Client)
+            'Dim ada As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
+            'ada.Fill(ds.Client)
 
-            Dim ada6 As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
-            ada6.Fill1(ds.Payment)
+            'Dim ada6 As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
+            'ada6.Fill1(ds.Payment)
 
-            Dim ada1 As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
-            ada1.Fill(ds.company)
+            'Dim ada1 As New ALMohassinDBDataSetTableAdapters.companyTableAdapter
+            'ada1.Fill(ds.company)
 
-            Dim ada7 As New ALMohassinDBDataSetTableAdapters.CompanyPaymentTableAdapter
-            ada7.Fill1(ds.CompanyPayment)
+            'Dim ada7 As New ALMohassinDBDataSetTableAdapters.CompanyPaymentTableAdapter
+            'ada7.Fill1(ds.CompanyPayment)
 
-            Dim ada9 As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
-            ada9.Fill(ds.Category)
+            'Dim ada9 As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
+            'ada9.Fill(ds.Category)
 
-            Dim ada8 As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            ada8.Fill(ds.Article)
+            'Dim ada8 As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
+            'ada8.Fill(ds.Article)
 
-            Dim ada2 As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
-            ada2.Fill(ds.Facture)
+            'Dim ada2 As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
+            'ada2.Fill(ds.Facture)
 
-            Dim ada3 As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
-            ada3.Fill1(ds.DetailsFacture)
+            'Dim ada3 As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
+            'ada3.Fill1(ds.DetailsFacture)
 
-            Dim ada4 As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
-            ada4.Fill(ds.Bon)
+            'Dim ada4 As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
+            'ada4.Fill(ds.Bon)
 
-            Dim ada5 As New ALMohassinDBDataSetTableAdapters.DetailsBonTableAdapter
-            ada5.Fill1(ds.DetailsBon)
+            'Dim ada5 As New ALMohassinDBDataSetTableAdapters.DetailsBonTableAdapter
+            'ada5.Fill1(ds.DetailsBon)
 
-            Dim adaa9 As New ALMohassinDBDataSetTableAdapters.DetailstockTableAdapter
-            adaa9.Fill(ds.Detailstock)
+            'Dim adaa9 As New ALMohassinDBDataSetTableAdapters.DetailstockTableAdapter
+            'adaa9.Fill(ds.Detailstock)
 
-            Dim adaa6 As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
-            adaa6.Fill(ds.Depot)
+            'Dim adaa6 As New ALMohassinDBDataSetTableAdapters.DepotTableAdapter
+            'adaa6.Fill(ds.Depot)
 
-            Dim adaa7 As New ALMohassinDBDataSetTableAdapters.MachineTableAdapter
-            adaa7.Fill(ds.Machine)
+            'Dim adaa7 As New ALMohassinDBDataSetTableAdapters.MachineTableAdapter
+            'adaa7.Fill(ds.Machine)
 
-            Dim adaa8 As New ALMohassinDBDataSetTableAdapters.Facture_ListeTableAdapter
-            adaa8.Fill(ds.Facture_Liste)
+            'Dim adaa8 As New ALMohassinDBDataSetTableAdapters.Facture_ListeTableAdapter
+            'adaa8.Fill(ds.Facture_Liste)
 
-            Dim adaB9 As New ALMohassinDBDataSetTableAdapters.ChargeTableAdapter
-            adaB9.Fill(ds.Charge)
+            'Dim adaB9 As New ALMohassinDBDataSetTableAdapters.ChargeTableAdapter
+            'adaB9.Fill(ds.Charge)
 
             ds.WriteXml(strpath & "\" & Date.Now.Day.ToString & ".xml")
 
@@ -3056,7 +2706,7 @@ Public Class Form1
 
 
         If e.KeyChar = Chr(13) And FlowLayoutPanel1.Controls.Count = 1 Then
-          
+
 
             If txtSearch.Text.ToUpper.StartsWith("AA") Then
                 Dim str As String = txtSearch.Text.Remove(0, 2)
@@ -3292,6 +2942,23 @@ Public Class Form1
         If dv.ShowDialog = Windows.Forms.DialogResult.OK Then
 
         End If
+
+        'Dim fm As New Form1
+        'fm.Operation = "DV"
+        'fm.btswitsh.Enabled = False
+        'fm.btSwitch2.Enabled = False
+        'TabControl1.Controls.Remove(TabPageStk)
+        'TabControl1.Controls.Remove(TabPageFac)
+        'TabControl1.Controls.Remove(TabPageChar)
+        'TabControl1.Controls.Remove(TabPageParm)
+
+        'fm.btCaisseArch.Visible = False
+        'fm.btEtatClientArch.Visible = False
+        'fm.btRelveClientArch.Visible = False
+
+        'If fm.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+        'End If
     End Sub
 
     Private Sub Button28_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button28.Click
@@ -3315,7 +2982,7 @@ Public Class Form1
 
     End Sub
 
-  
+
 
     Private Sub Panel31_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Panel31.Click
         If adminId > 1 Then Exit Sub
@@ -3377,10 +3044,6 @@ Public Class Form1
     Private Sub Button29_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btSearchArch.Click
         Dim isSell As Boolean = CBool(btSwitch2.Tag)
 
-
-        'Dim dt1 As Date = Date.Parse(dte2.Value).AddDays(1) 'dte2.Value.AddDays(1)
-        'Dim dt2 As Date = Date.Parse(dte1.Value).AddHours(addHours) '.AddHours(-12) dte1.Value.AddDays(-1)
-
         Dim dt1 = New DateTime(dte2.Value.Year, dte2.Value.Month, dte2.Value.Day, 23, 59, 0, 0)
         Dim dt2 = New DateTime(dte1.Value.Year, dte1.Value.Month, dte1.Value.Day, 0, 1, 0, 0)
 
@@ -3409,8 +3072,8 @@ Public Class Form1
 
                     Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                         params.Add("clid = ", clid)
-                        params.Add("[date] < ", dt1)
-                        params.Add("[date] > ", dt2)
+                        params.Add("date < ", dt1.ToString("yyyy-MM-dd HH:mm"))
+                        params.Add("date > ", dt2.ToString("yyyy-MM-dd HH:mm"))
                         params.Add("admin = ", True)
 
                         If cbAffichageLimite.Checked And admin = False Then params.Add("writer = ", adminName)
@@ -3420,14 +3083,13 @@ Public Class Form1
                         If CbSearchFacture.Text = "Facturé" Then params.Add("beInFacture > ", 0)
                         If CbSearchFacture.Text = "Non Facturé" Then params.Add("beInFacture = ", 0)
 
-
                         dt = a.SelectDataTableSymbols(tName, {"*"}, params)
                     End Using
                 End If
             Else
                 Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-                    params.Add("[date] < ", dt1)
-                    params.Add("[date] > ", dt2)
+                    params.Add("date < ", dt1.ToString("yyyy-MM-dd HH:mm"))
+                    params.Add("date > ", dt2.ToString("yyyy-MM-dd HH:mm"))
                     params.Add("admin = ", True)
                     If cbAffichageLimite.Checked And admin = False Then params.Add("writer = ", adminName)
 
@@ -3559,46 +3221,26 @@ Public Class Form1
             Dim isSell As Boolean = CBool(btSwitch2.Tag)
 
             If My.Computer.Keyboard.CtrlKeyDown Then
-                'Dim a As Integer = 0
-                'If isSell = False Then Exit Sub
-                'If DGVARFA.SelectedRows(0).Cells(12).Value <> 0 And DGVARFA.SelectedRows(0).Cells(12).Value <> -5 Then Exit Sub
-                ' '''''''''''
-                'Dim pwdwin As New PWDPicker
-                'If pwdwin.ShowDialog = Windows.Forms.DialogResult.Cancel Then
-                '    Exit Sub
-                'End If
-                ' '''''''''''
-                'Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-                '    If DGVARFA.SelectedRows(0).Cells(12).Value = 0 Then a = -5
 
-                '    Dim param As New Dictionary(Of String, Object)
-                '    Dim where As New Dictionary(Of String, Object)
-
-                '    param.Add("beInFacture", a)
-                '    where.Add("fctid", CInt(DGVARFA.SelectedRows(0).Cells(0).Value))
-
-                '    c.UpdateRecord("Facture", param, where)
-
-                '    DGVARFA.SelectedRows(0).Cells(12).Value = a
-
-                '    ''''''''''
-                '    DGVARFA.SelectedRows(0).Cells(0).Style.BackColor = Color.Blue
-                '    DGVARFA.SelectedRows(0).Cells(0).Style.Font = New Font("Arial", 11, FontStyle.Bold)
-                '    DGVARFA.SelectedRows(0).Cells(0).Style.ForeColor = Color.White
-                'End Using
             Else
                 '''' Regelar Click '''''''
                 RPl.EditMode = True
 
                 Dim a As Integer = DGVARFA.SelectedRows(0).Cells(0).Value
                 Dim dt As DataTable
-                If isSell Then
-                    Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
-                    dt = ta.GetData(a)
-                Else
-                    Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsBonTableAdapter
-                    dt = ta.GetData(a)
-                End If
+
+
+                Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                    Dim params As New Dictionary(Of String, Object)
+
+                    params.Add("fctid", a)
+                    If isSell Then
+                        dt = c.SelectDataTable("DetailsFacture", {"*"}, params)
+                    Else
+                        dt = c.SelectDataTable("DetailsBon", {"*"}, params)
+                    End If
+
+                End Using
 
                 RPl.ClearItems()
 
@@ -3760,9 +3402,11 @@ Public Class Form1
 
                 If RPl.ClId > 0 Then
                     If ds.isSell Then
-
-                        Dim tac As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
-                        tel = tac.ScalarQueryTel(RPl.ClId)
+                        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                            Dim params As New Dictionary(Of String, Object)
+                            params.Add("Clid", RPl.ClId)
+                            tel = c.SelectByScalar("Client", "tel", params)
+                        End Using
                     End If
                 End If
 
@@ -3817,7 +3461,7 @@ Public Class Form1
         End Using
     End Sub
 
-   
+
     Private Sub Button30_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btCaisseArch.Click
         ' Dim isSell As Boolean = CBool(btSwitch2.Tag)
         'Dim dt1 As Date = Date.Parse(dte2.Text).AddDays(1)
@@ -4396,7 +4040,7 @@ Public Class Form1
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "SearchMethod", cbsearch.Text)
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbShowRef", cbShowRef.Checked)
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbShowGloblCredit", cbShowGloblCredit.Checked)
-            
+
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbNormalImp", cbNormalImp.Checked)
 
         Catch ex As Exception
@@ -4652,17 +4296,23 @@ Public Class Form1
 
             Try
                 If ds.isSell And RPl.FctId > 0 Then
-                    Dim ta As New ALMohassinDBDataSetTableAdapters.PaymentTableAdapter
-                    Dim rdt = ta.GetDataByfctid(RPl.FctId)
-                    If rdt.Rows.Count > 0 Then
-                        realAvc = 0
-                        For i As Integer = 0 To rdt.Rows.Count - 1
-                            If StrValue(rdt, "name", i).Contains("@") = False Then
-                                realAvc += DblValue(rdt, "montant", i)
-                            End If
-                        Next
-                    End If
+                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                        Dim tableName As String = "Payment"
 
+
+                        Dim params As New Dictionary(Of String, Object)
+                        params.Add("fctid", RPl.FctId)
+
+                        Dim rdt = c.SelectDataTable(tableName, {"*"}, params)
+                        If rdt.Rows.Count > 0 Then
+                            realAvc = 0
+                            For i As Integer = 0 To rdt.Rows.Count - 1
+                                If StrValue(rdt, "name", i).Contains("@") = False Then
+                                    realAvc += DblValue(rdt, "montant", i)
+                                End If
+                            Next
+                        End If
+                    End Using
                 End If
             Catch ex As Exception
 
@@ -4716,10 +4366,28 @@ Public Class Form1
 
             If RPl.ClId > 0 Then
                 If ds.isSell Then
-                    Dim ta As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
-                    Dim tac As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
+                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                        Dim params As New Dictionary(Of String, Object)
+                        params.Add("payed", False)
+                        params.Add("Clid", RPl.ClId)
+                        params.Add("admin", True)
+                        Try
+                            EncCreadit = c.SelectByScalar("Facture", "SUM(total - avance) AS credit", params)
+                        Catch ex As Exception
+                            EncCreadit = 0
+                        End Try
 
-                    EncCreadit = ta.ScalarQueryClientCredit(False, RPl.ClId, True)
+
+                        params.Clear()
+
+                        Try
+                            params.Add("Clid", RPl.ClId)
+                            tel = c.SelectByScalar("Client", "tel", params)
+                        Catch ex As Exception
+
+                        End Try
+
+                    End Using
 
                     If ds.EditMode = False Then
                         credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
@@ -4729,11 +4397,22 @@ Public Class Form1
                         If EncCreadit < 0 Then EncCreadit = 0
                     End If
 
-
-                    tel = tac.ScalarQueryTel(RPl.ClId)
                 Else
-                    Dim ta As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
-                    EncCreadit = ta.ScalarQueryCompanyCredit(False, RPl.ClId, True)
+
+
+                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                        Dim params As New Dictionary(Of String, Object)
+                        params.Add("payed", False)
+                        params.Add("Clid", RPl.ClId)
+                        params.Add("admin", True)
+                        Try
+                            EncCreadit = c.SelectByScalar("Bon", "SUM(total - avance) AS credit", params)
+                        Catch ex As Exception
+                            EncCreadit = 0
+                        End Try
+
+                    End Using
+
 
                     If ds.EditMode = False Then
                         credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
@@ -5059,16 +4738,35 @@ Public Class Form1
 
             If RPl.ClId > 0 Then
                 If RPl.isSell Then
-                    Dim ta As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
-                    Dim tac As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
 
-                    EncCreadit = ta.ScalarQueryClientCredit(False, RPl.ClId, True)
+
+                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                        Dim params As New Dictionary(Of String, Object)
+                        params.Add("payed", False)
+                        params.Add("Clid", RPl.ClId)
+                        params.Add("admin", True)
+                        EncCreadit = c.SelectByScalar("Facture", "SUM(total - avance) AS credit", params)
+
+                        params.Clear()
+
+
+                        params.Add("Clid", RPl.ClId)
+                        tel = c.SelectByScalar("Client", "tel", params)
+                    End Using
+
                     credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
 
-                    tel = tac.ScalarQueryTel(RPl.ClId)
                 Else
-                    Dim ta As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
-                    EncCreadit = ta.ScalarQueryCompanyCredit(False, RPl.ClId, True)
+
+
+                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                        Dim params As New Dictionary(Of String, Object)
+                        params.Add("payed", False)
+                        params.Add("Clid", RPl.ClId)
+                        params.Add("admin", True)
+                        EncCreadit = c.SelectByScalar("Bon", "SUM(total - avance) AS credit", params)
+                    End Using
+
                     credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
                 End If
             End If
@@ -5243,9 +4941,28 @@ Public Class Form1
 
 
         Try
-            ' Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            Dim sta As New ALMohassinDBDataSetTableAdapters.DetailstockTableAdapter
-            Dim sdt = sta.GetDataByAridOnly(id)
+            Dim sdt As DataTable
+
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+
+                Dim tb_A As String = "article"
+                Dim tb_D_A As String = "detailstock"
+
+                params.Add(tb_D_A & ".arid =", id)
+
+                '                SELECT        Article.codebar, Article.name, Article.unite, Detailstock.qte, Detailstock.arid, Detailstock.DSID
+                'FROM            (Detailstock INNER JOIN
+                '                         Article ON Detailstock.arid = Article.arid)
+                'WHERE        (Detailstock.dpid = ?) AND (Detailstock.cid = ?)
+
+                sdt = a.SelectDataTableSymbols("(" & tb_D_A & " INNER JOIN " & tb_A & " ON " & tb_D_A & ".arid = " & tb_A & ".arid) ",
+                    {tb_A & ".codebar, " & tb_A & ".name, " & tb_A & ".unite, " & tb_D_A & ".qte, " &
+                        tb_D_A & ".arid, " & tb_D_A & ".dpid, " & tb_D_A & ".DSID"}, params)
+
+            End Using
+
+
 
 
             If sdt.Rows.Count = 0 Then
@@ -5254,28 +4971,19 @@ Public Class Form1
 
 
                 DGVS.DataSource = sdt
-
                 DGVS.Columns(0).Visible = False
-                DGVS.Columns(1).Visible = False
-                ' DGVS.Columns(2).Visible = False
                 DGVS.Columns(4).Visible = False
-                DGVS.Columns(5).Visible = False
-                'DGVS.Columns(9).Visible = False
-                'DGVS.Columns(10).Visible = False
+                DGVS.Columns(6).Visible = False
 
-
-                DGVS.Columns(6).DefaultCellStyle.Font = New Font(fontName_Normal, fontSize_Normal, FontStyle.Bold)
-
-                DGVS.Columns(6).HeaderText = "Designation"
-                DGVS.Columns(3).HeaderText = "Qte Stk"
-                DGVS.Columns(2).HeaderText = "Depot N°"
-                DGVS.Columns(7).HeaderText = "Unite"
-
+                DGVS.Columns(3).DefaultCellStyle.Font = New Font(fontName_Normal, fontSize_Normal, FontStyle.Bold)
                 DGVS.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
-                DGVS.Columns(6).DisplayIndex = 2
-                DGVS.Columns(7).DisplayIndex = 3
-                'DGVS.Columns(4).DisplayIndex = 3
+                DGVS.Columns(1).HeaderText = "Designation"
+                DGVS.Columns(3).HeaderText = "Qte Stk"
+                DGVS.Columns(5).HeaderText = "Depot N°"
+                DGVS.Columns(2).HeaderText = "Unite"
+
+
 
             End If
             btTransfert.Tag = 0
@@ -5369,12 +5077,12 @@ Public Class Form1
             ' Create four typed columns in the DataTable.
             dt_Client.Columns.Add("Clid", GetType(Integer))
             dt_Client.Columns.Add("name", GetType(String))
-          
+
 
 
             Dim table As New DataTable
 
-         
+
             table.Columns.Add("name", GetType(String))
             table.Columns.Add("price", GetType(String))
             table.Columns.Add("tva", GetType(Double))
@@ -5384,7 +5092,7 @@ Public Class Form1
             table.Columns.Add("depot", GetType(String))
             table.Columns.Add("totaltva", GetType(String))
             table.Columns.Add("remise", GetType(String))
-      
+
 
             Using g As gDrawClass = New gDrawClass(MP_Localname)
                 g.rtl = cbRTL.Checked
@@ -5428,7 +5136,7 @@ Public Class Form1
 
     End Sub
 
-    
+
     Private Sub Button11_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button11.Click
 
         If RPl.FctId = 0 Or RPl.EditMode = True Then Exit Sub
@@ -5529,12 +5237,12 @@ Public Class Form1
         Dim params As New Dictionary(Of String, Object)
         Dim dt As DataTable = Nothing
 
-     
+
         Try
 
             Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-                params.Add("[date] < ", dt1)
-                params.Add("[date] > ", dt2)
+                params.Add("date < ", dt1)
+                params.Add("date > ", dt2)
                 params.Add("admin = ", True)
                 dt = a.SelectDataTableSymbols(tName, {"*"}, params)
             End Using
@@ -5542,19 +5250,24 @@ Public Class Form1
             Dim str As New List(Of String)
 
             If dt.Rows.Count > 0 Then
-                Dim ta As New ALMohassinDBDataSetTableAdapters.DetailsFactureTableAdapter
-                For i As Integer = 0 To dt.Rows.Count - 1
-                    Dim dtt = ta.GetData(dt.Rows(i).Item(0))
-                    Dim total As Double = dt.Rows(i).Item("total")
-                    Dim tt As Double = 0
-                    If dtt.Rows.Count > 0 Then
-                        For j As Integer = 0 To dtt.Rows.Count - 1
-                            tt += dtt.Rows(j).Item("price") * dtt.Rows(j).Item("qte")
-                        Next
+                Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                    params.Clear()
+                    For i As Integer = 0 To dt.Rows.Count - 1
 
-                        If tt <> total Then str.Add(dt.Rows(i).Item(0) & " - - " & total & " - -" & tt)
-                    End If
-                Next
+                        params.Add("fctid", dt.Rows(i).Item(0))
+                        Dim dtt = c.SelectDataTable("DetailsFacture", {"*"}, params)
+
+                        Dim total As Double = dt.Rows(i).Item("total")
+                        Dim tt As Double = 0
+                        If dtt.Rows.Count > 0 Then
+                            For j As Integer = 0 To dtt.Rows.Count - 1
+                                tt += dtt.Rows(j).Item("price") * dtt.Rows(j).Item("qte")
+                            Next
+
+                            If tt <> total Then str.Add(dt.Rows(i).Item(0) & " - - " & total & " - -" & tt)
+                        End If
+                    Next
+                End Using
             End If
 
 
@@ -5635,14 +5348,14 @@ Public Class Form1
                     RPl.Dte = dd.dte
 
                     If RPl.EditMode Then DGVARFA.SelectedRows(0).Cells(6).Value = dd.dte
-                     
-                    End If
+
+                End If
             End Using
         End If
 
     End Sub
 
-  
+
     Private Sub Button30_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button30.Click
         Try
             Dim OPF As New OpenFileDialog
@@ -5661,7 +5374,7 @@ Public Class Form1
             MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
         End Try
     End Sub
-     
+
     Private Sub Button37_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button37.Click
         Try
             Dim OPF As New OpenFileDialog
@@ -5791,13 +5504,13 @@ Public Class Form1
         Try
             Dim FerstBon As Integer = 0
             Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-                params.Add("[date] < ", dt1)
-                params.Add("[date] > ", dt2)
+                params.Add("date < ", dt1)
+                params.Add("date > ", dt2)
 
                 Try
                     If isSell Then
 
-                        Dim data = a.SelectDataTableSymbols("Facture", {"TOP 1 fctid"}, params)
+                        Dim data = a.SelectDataTableSymbols("Facture", {"fctid"}, params, , "LIMIT 1")
                         FerstBon = data.Rows(0).Item(0)
                     End If
 
@@ -5818,7 +5531,7 @@ Public Class Form1
 
                 tName = "Facture"
                 If isSell = False Then tName = "Bon"
- 
+
                 Dim dt_cr = a.SelectDataTableSymbols(tName, {"SUM(total)", "SUM(avance)"}, params)
 
                 If dt_cr.Rows.Count > 0 Then
@@ -5907,8 +5620,8 @@ Public Class Form1
 
                 If admin = True Then
                     params.Clear()
-                    params.Add("[date] < ", dt1)
-                    params.Add("[date] > ", dt2)
+                    params.Add("date < ", dt1)
+                    params.Add("date > ", dt2)
                     params.Add("admin = ", True)
 
                     Dim dt3 = a.SelectDataTableSymbols(tName, {"*"}, params)
@@ -6019,7 +5732,6 @@ Public Class Form1
             txtItmFG.Text = fntdlg.Font.Name
             txtItmZG.Text = CInt(fntdlg.Font.Size)
 
-            Dim TA As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "txtItmFG", txtItmFG.Text)
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "txtItmZG", txtItmZG.Text)
 
@@ -6027,7 +5739,7 @@ Public Class Form1
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
         End Try
-         
+
     End Sub
 
     Private Sub Button64_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button64.Click
@@ -6040,7 +5752,6 @@ Public Class Form1
             txtItmFP.Text = fntdlg.Font.Name
             txtItmZP.Text = CInt(fntdlg.Font.Size)
 
-            Dim TA As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "txtItmFP", txtItmFP.Text)
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "txtItmZP", txtItmZP.Text)
 

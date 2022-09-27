@@ -105,7 +105,7 @@ Public Class Devis
                 If chs.isEditing = True Then
                     fid = chs.id
                 Else
-                    Using c As DataAccess = New DataAccess(conString)
+                    Using c As DataAccess2 = New DataAccess2(conString)
                         Dim params As New Dictionary(Of String, Object)
                         params.Add("clid", cid)
                         params.Add("name", clientname)
@@ -187,7 +187,7 @@ Public Class Devis
 
                 'GET AVANCE OF THIS FACTURE
                 'fill the recept items
-                Using c As DataAccess = New DataAccess(conString)
+                Using c As DataAccess2 = New DataAccess2(conString)
                     Dim params As New Dictionary(Of String, Object)
                     params.Add(fld, CInt(bt.Tag))
                     Dim dt = c.SelectDataTable(tableName, {"*"}, params)
@@ -212,7 +212,7 @@ Public Class Devis
                 If btswitsh.Tag = 0 Then tableName = "DetailsBon"
 
                 'fill the recept items
-                Using c As DataAccess = New DataAccess(conString)
+                Using c As DataAccess2 = New DataAccess2(conString)
                     Dim params As New Dictionary(Of String, Object)
                     params.Add("fctid", CInt(bt.Tag))
                     Dim dt = c.SelectDataTable(tableName, {"*"}, params)
@@ -261,70 +261,92 @@ Public Class Devis
 
         FlowLayoutPanel1.Controls.Clear()
         Try
-            Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            Dim artdt2 As DataTable
-            Dim artdt As DataTable
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
 
-            '''''''''''''''''''
+                Dim artdt2 As DataTable
+                Dim artdt As DataTable
 
-            If Form1.cbsearch.Text = "الاسم" Then
-                artdt = artta.GetDatalikename("%" & txt.Text & "%")
+                '''''''''''''''''''
 
-            ElseIf Form1.cbsearch.Text = "الرمز" Then
-                artdt = artta.GetDatalikecodebar(txt.Text & "%")
+                If Form1.cbsearch.Text = "الاسم" Then
+                    params.Add("name LIKE ", "%" & txt.Text & "%")
+                    artdt = a.SelectDataTableSymbols("article", {"*"}, params)
 
-            ElseIf Form1.cbsearch.Text = "التصنيف" Then
-                artdt = artta.GetDataBycidlikeCodeBar(txt.Text & "%", cid)
-                artdt2 = artta.GetDataBycidlikename("%" & txt.Text & "%", cid)
-                artdt.Merge(artdt2, False)
-            Else
-                artdt = artta.GetDatalikecodebar("%" & txt.Text & "%")
-                artdt2 = artta.GetDatalikename("%" & txt.Text & "%")
-                artdt.Merge(artdt2, False)
-            End If
+                ElseIf Form1.cbsearch.Text = "الرمز" Then
+                    params.Add("codebar LIKE ", "%" & txt.Text & "%")
+                    artdt = a.SelectDataTableSymbols("article", {"*"}, params)
 
 
-            If artdt.Rows.Count = 0 Then
-                Dim lb As New Label
+                ElseIf Form1.cbsearch.Text = "DirectR" Then
+                    params.Add("codebar = ", txt.Text)
+                    artdt = a.SelectDataTableSymbols("article", {"*"}, params)
 
-                lb.ForeColor = Color.DarkGray
-                lb.Text = "لا يوجد اي سجل"
-                FlowLayoutPanel1.Controls.Add(lb)
+                ElseIf Form1.cbsearch.Text = "التصنيف" Then
+                    params.Add("name LIKE ", "%" & txt.Text & "%")
+                    artdt = a.SelectDataTableSymbols("article", {"*"}, params)
+                    params.Clear()
 
-            Else
-                For i As Integer = 0 To artdt.Rows.Count - 1
+                    params.Add("codebar LIKE ", "%" & txt.Text & "%")
+                    artdt2 = a.SelectDataTableSymbols("article", {"*"}, params)
 
-                    Dim bt As New Button
+                    artdt.Merge(artdt2, False)
+                Else
+                    params.Add("name LIKE ", "%" & txt.Text & "%")
+                    artdt = a.SelectDataTableSymbols("article", {"*"}, params)
+                    params.Clear()
 
-                    bt.Visible = True
-                    bt.BackColor = Color.LightSeaGreen
-                    bt.Text = artdt.Rows(i).Item("name").ToString
-                    bt.Name = "art" & i
-                    bt.Tag = artdt.Rows(i)
-                    bt.TextAlign = ContentAlignment.BottomCenter
-                    Try
-                        If artdt.Rows(i).Item("img").ToString = "No Image" Or artdt.Rows(i).Item("img").ToString = "" Then
+                    params.Add("codebar LIKE ", "%" & txt.Text & "%")
+                    artdt2 = a.SelectDataTableSymbols("article", {"*"}, params)
 
-                        Else
-                            bt.BackgroundImage = Image.FromFile(artdt.Rows(i).Item("img").ToString)
+                    artdt.Merge(artdt2, False)
+                End If
+
+
+                If artdt.Rows.Count = 0 Then
+                    Dim lb As New Label
+
+                    lb.ForeColor = Color.DarkGray
+                    lb.Text = "لا يوجد اي سجل"
+                    FlowLayoutPanel1.Controls.Add(lb)
+
+                Else
+                    For i As Integer = 0 To artdt.Rows.Count - 1
+
+                        Dim bt As New Button
+
+                        bt.Visible = True
+                        bt.BackColor = Color.LightSeaGreen
+                        bt.Text = artdt.Rows(i).Item("name").ToString
+                        bt.Name = "art" & i
+                        bt.Tag = artdt.Rows(i)
+                        bt.TextAlign = ContentAlignment.BottomCenter
+                        Try
+                            If artdt.Rows(i).Item("img").ToString = "No Image" Or artdt.Rows(i).Item("img").ToString = "" Then
+
+                            Else
+                                bt.BackgroundImage = Image.FromFile(artdt.Rows(i).Item("img").ToString)
+                            End If
+
+                            bt.BackgroundImageLayout = ImageLayout.Stretch
+                            bt.ImageAlign = ContentAlignment.BottomCenter
+                        Catch ex As Exception
+
+                        End Try
+                        bt.Width = Form1.txtlongerbt.Text
+                        bt.Height = Form1.txtlargebt.Text
+                        FlowLayoutPanel1.Controls.Add(bt)
+                        AddHandler bt.Click, AddressOf art_click
+
+                        If i = 20 Then
+                            Exit For
                         End If
+                    Next
 
-                        bt.BackgroundImageLayout = ImageLayout.Stretch
-                        bt.ImageAlign = ContentAlignment.BottomCenter
-                    Catch ex As Exception
+                End If
 
-                    End Try
-                    bt.Width = Form1.txtlongerbt.Text
-                    bt.Height = Form1.txtlargebt.Text
-                    FlowLayoutPanel1.Controls.Add(bt)
-                    AddHandler bt.Click, AddressOf art_click
+            End Using
 
-                    If i = 20 Then
-                        Exit For
-                    End If
-                Next
-
-            End If
             txt.Focus()
 
         Catch ex As Exception
@@ -348,45 +370,52 @@ Public Class Devis
         Dim bt2 As Button = sender
         FlowLayoutPanel1.Controls.Clear()
         Try
-            Dim artta As New ALMohassinDBDataSetTableAdapters.ArticleTableAdapter
-            Dim artdt = artta.GetDataBycid(bt2.Tag)
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
 
-            If artdt.Rows.Count = 0 Then
-                Dim lb As New Label
+                Dim params As New Dictionary(Of String, Object)
+                Dim artdt As DataTable
 
-                lb.ForeColor = Color.DarkGray
-                lb.Text = "لا يوجد اي سجل"
-                FlowLayoutPanel1.Controls.Add(lb)
-            Else
+                '''''''''''''''''''
+                params.Add("cid = ", bt2.Tag)
+                artdt = a.SelectDataTableSymbols("article", {"*"}, params)
+                If artdt.Rows.Count = 0 Then
+                    Dim lb As New Label
 
-                For i As Integer = 0 To artdt.Rows.Count - 1
-                    Dim bt As New Button
-                    bt.Visible = True
-                    bt.FlatStyle = FlatStyle.Flat
-                    bt.BackColor = Color.LightSeaGreen
-                    bt.Text = artdt.Rows(i).Item("name").ToString
-                    bt.Name = "art" & i
-                    bt.Tag = artdt.Rows(i)
-                    bt.TextAlign = ContentAlignment.BottomCenter
-                    Try
-                        If artdt.Rows(i).Item("img").ToString = "No Image" Or artdt.Rows(i).Item("img").ToString = "" Then
+                    lb.ForeColor = Color.DarkGray
+                    lb.Text = "لا يوجد اي سجل"
+                    FlowLayoutPanel1.Controls.Add(lb)
+                Else
 
-                        Else
-                            bt.BackgroundImage = Image.FromFile(artdt.Rows(i).Item("img").ToString)
+                    For i As Integer = 0 To artdt.Rows.Count - 1
+                        Dim bt As New Button
+                        bt.Visible = True
+                        bt.FlatStyle = FlatStyle.Flat
+                        bt.BackColor = Color.LightSeaGreen
+                        bt.Text = artdt.Rows(i).Item("name").ToString
+                        bt.Name = "art" & i
+                        bt.Tag = artdt.Rows(i)
+                        bt.TextAlign = ContentAlignment.BottomCenter
+                        Try
+                            If artdt.Rows(i).Item("img").ToString = "No Image" Or artdt.Rows(i).Item("img").ToString = "" Then
 
-                        End If
-                        bt.BackgroundImageLayout = ImageLayout.Stretch
-                        bt.ImageAlign = ContentAlignment.BottomCenter
-                    Catch ex As Exception
+                            Else
+                                bt.BackgroundImage = Image.FromFile(artdt.Rows(i).Item("img").ToString)
 
-                    End Try
-                    bt.Width = Form1.txtlongerbt.Text
-                    bt.Height = Form1.txtlargebt.Text
-                    FlowLayoutPanel1.Controls.Add(bt)
-                    AddHandler bt.Click, AddressOf art_click
-                Next
+                            End If
+                            bt.BackgroundImageLayout = ImageLayout.Stretch
+                            bt.ImageAlign = ContentAlignment.BottomCenter
+                        Catch ex As Exception
 
-            End If
+                        End Try
+                        bt.Width = Form1.txtlongerbt.Text
+                        bt.Height = Form1.txtlargebt.Text
+                        FlowLayoutPanel1.Controls.Add(bt)
+                        AddHandler bt.Click, AddressOf art_click
+                    Next
+
+                End If
+
+            End Using
             txtSearch.Text = ""
             txtSearch.Focus()
         Catch ex As Exception
@@ -395,18 +424,18 @@ Public Class Devis
     End Sub
     Private Sub art_click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim bt As Button = sender
-        Dim R As ALMohassinDBDataSet.ArticleRow = bt.Tag
+        Dim R As DataRow = bt.Tag
 
         If My.Computer.Keyboard.CtrlKeyDown Then
             Try
-                Dim cde As String = R.codebar
+                Dim cde As String = R("codebar")
                 If cde.Length > 12 Then cde = cde.Substring(0, 12)
                 If cde.Length < 12 Then cde = cde.Substring(0, 12)
 
                 Dim CD As New BarCode1
                 CD.Code = cde
-                CD.article = R.name
-                CD.qte = R.unite
+                CD.article = R("name")
+                CD.qte = R("unite")
 
                 If CD.ShowDialog = DialogResult.OK Then
                 End If
@@ -429,49 +458,49 @@ Public Class Devis
             End If
 
             '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-            If RPl.IsExiste(R.arid) = False Then
+            If RPl.IsExiste(R("arid")) = False Then
                 Dim arid As Integer = 0
 
-                Using c As DataAccess = New DataAccess(conString)
-                    Dim price As Double = CDbl(R.sprice)
-                    If btswitsh.Tag = 0 Then price = CDbl(R.bprice)
+                Using c As DataAccess2 = New DataAccess2(conString)
+                    Dim price As Double = CDbl(R("sprice"))
+                    If btswitsh.Tag = 0 Then price = CDbl(R("bprice"))
                     Dim params As New Dictionary(Of String, Object)
                     params.Add("fctid", CInt(RPl.FctId))
-                    params.Add("name", R.name)
-                    params.Add("bprice", CDbl(R.bprice))
+                    params.Add("name", R("name"))
+                    params.Add("bprice", CDbl(R("bprice")))
                     params.Add("price", price)
-                    params.Add("unit", R.unite)
+                    params.Add("unit", R("unite"))
                     params.Add("qte", CDbl(RPl.CP.Value))
-                    params.Add("tva", CDbl(R.tva))
-                    params.Add("poid", CDbl(R.poid))
-                    params.Add("arid", CInt(R.arid))
-                    params.Add("depot", CInt(R.depot))
-                    params.Add("code", CStr(R.codebar))
-                    params.Add("cid", CStr(R.cid))
+                    params.Add("tva", CDbl(R("tva")))
+                    params.Add("poid", CDbl(R("poid")))
+                    params.Add("arid", CInt(R("arid")))
+                    params.Add("depot", CInt(R("depot")))
+                    params.Add("code", CStr(R("codebar")))
+                    params.Add("cid", CStr(R("cid")))
 
                     arid = c.InsertRecord(tName, params, True)
                 End Using
 
                 If arid > 0 Then
-                    RPl.AddItems(R, arid, CBool(btswitsh.Tag))
+                    '   RPl.AddItems(R, arid, CBool(btswitsh.Tag))
                 Else
                     Exit Sub
                 End If
             Else
-                Using c As DataAccess = New DataAccess(conString)
+                Using c As DataAccess2 = New DataAccess2(conString)
 
-                    If R.cid <> 0 Then
+                    If R("cid") <> 0 Then
                         Dim params As New Dictionary(Of String, Object)
-                        Dim qte As Double = CDbl(RPl.SelectedQte(R.arid)) + CDbl(RPl.CP.Value)
+                        Dim qte As Double = CDbl(RPl.SelectedQte(R("arid"))) + CDbl(RPl.CP.Value)
 
                         params.Add("qte", qte)
 
                         Dim where As New Dictionary(Of String, Object)
                         where.Add("fctid", fid)
-                        where.Add("arid", R.arid)
+                        where.Add("arid", R("arid"))
 
                         If c.UpdateRecord(tName, params, where) Then
-                            RPl.ChangedItemsQte(R.arid)
+                            RPl.ChangedItemsQte(R("arid"))
                         End If
                     End If
 
@@ -498,7 +527,7 @@ Public Class Devis
                 Dim qte As Double = CDbl(clc.CPanel1.Value)
 
                 If i.id > 0 Then
-                    Using c As DataAccess = New DataAccess(conString, True)
+                    Using c As DataAccess2 = New DataAccess2(conString, True)
                         Dim tableName As String = "DetailsFacture"
                         If btswitsh.Tag = 0 Then tableName = "DetailsBon"
 
@@ -512,7 +541,7 @@ Public Class Devis
                             where.Add("bid", CInt(i.id))
                         End If
 
-                         c.UpdateRecord(tableName, params, where)  
+                        c.UpdateRecord(tableName, params, where)
                     End Using
                 End If
 
@@ -532,7 +561,7 @@ Public Class Devis
             FC = "bid"
         End If
 
-        Using c As DataAccess = New DataAccess(conString, True)
+        Using c As DataAccess2 = New DataAccess2(conString, True)
             Dim where As New Dictionary(Of String, Object)
             where.Add(FC, i.id)
             'where.Add("arid", i.id)
@@ -546,7 +575,7 @@ Public Class Devis
     Public Sub SaveFacture(ByVal id As Integer, ByVal total As Double, ByVal avance As Double,
                            ByVal tva As Double, ByVal table As DataTable, ByVal Remise As String, ByVal BL As String)
 
-        Using c As DataAccess = New DataAccess(conString, True)
+        Using c As DataAccess2 = New DataAccess2(conString, True)
             Dim isPayed As Boolean = False
             If avance >= total Then isPayed = True
 
@@ -594,7 +623,7 @@ Public Class Devis
             tableName = "Bon"
         End If
 
-        Using c As DataAccess = New DataAccess(conString)
+        Using c As DataAccess2 = New DataAccess2(conString)
             Dim params As New Dictionary(Of String, Object)
             params.Add("admin", False)
             dt = c.SelectDataTable(tableName, {"*"}, params)
@@ -653,36 +682,38 @@ Public Class Devis
         DeleteItem(i, id)
     End Sub
     Public Sub FillGroupes(ByVal F As Boolean)
-        Dim ctgta As New ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
-        Dim ctgdt = ctgta.GetData()
-        FlowLayoutPanel1.Controls.Clear()
-        For i As Integer = 0 To ctgdt.Rows.Count - 1
-            Dim bt As New Button
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
 
-            bt.BackColor = Color.LightGoldenrodYellow
-            bt.Text = ctgdt.Rows(i).Item("name").ToString
-            bt.Name = "ctg" & i
-            bt.Tag = ctgdt.Rows(i).Item("cid")
+            Dim ctgdt = a.SelectDataTableSymbols("Category", {"*"})
+            FlowLayoutPanel1.Controls.Clear()
+            For i As Integer = 0 To ctgdt.Rows.Count - 1
+                Dim bt As New Button
 
-            bt.TextAlign = ContentAlignment.BottomCenter
-            Try
-                If ctgdt.Rows(i).Item("img").ToString = "No Image" Or ctgdt.Rows(i).Item("img").ToString = "" Then
-                    bt.BackColor = Color.Moccasin
-                Else
-                    bt.BackgroundImage = Image.FromFile(ctgdt.Rows(i).Item("img").ToString)
-                End If
-                bt.BackgroundImageLayout = ImageLayout.Stretch
-            Catch ex As Exception
-            End Try
-            bt.Width = 125
-            bt.Height = 90
+                bt.BackColor = Color.LightGoldenrodYellow
+                bt.Text = ctgdt.Rows(i).Item("name").ToString
+                bt.Name = "ctg" & i
+                bt.Tag = ctgdt.Rows(i).Item("cid")
 
-            AddHandler bt.Click, AddressOf ctg_click
-            FlowLayoutPanel1.Controls.Add(bt)
-        Next
+                bt.TextAlign = ContentAlignment.BottomCenter
+                Try
+                    If ctgdt.Rows(i).Item("img").ToString = "No Image" Or ctgdt.Rows(i).Item("img").ToString = "" Then
+                        bt.BackColor = Color.Moccasin
+                    Else
+                        bt.BackgroundImage = Image.FromFile(ctgdt.Rows(i).Item("img").ToString)
+                    End If
+                    bt.BackgroundImageLayout = ImageLayout.Stretch
+                Catch ex As Exception
+                End Try
+                bt.Width = 125
+                bt.Height = 90
 
-        '''''''' add temperory mixete element
+                AddHandler bt.Click, AddressOf ctg_click
+                FlowLayoutPanel1.Controls.Add(bt)
+            Next
 
+            '''''''' add temperory mixete element
+
+        End Using
         Dim btMlg As New Button
 
         btMlg.BackColor = Color.LightGoldenrodYellow
@@ -704,7 +735,7 @@ Public Class Devis
     End Sub
     Public Sub DeleteFacture(ByVal id As Integer, ByVal b As Boolean)
         Dim AAA As Boolean = False
-        Using c As DataAccess = New DataAccess(conString, True)
+        Using c As DataAccess2 = New DataAccess2(conString, True)
             Dim tableName = "Facture"
             If b = False Then tableName = "Bon"
 
@@ -994,7 +1025,7 @@ Public Class Devis
 
     Public Sub AppendData(ByVal fctid As String, ByVal desg As String, ByVal qte As String, ByVal price As String)
 
-        Using c As DataAccess = New DataAccess(conString, True)
+        Using c As DataAccess2 = New DataAccess2(conString, True)
             Dim params As New Dictionary(Of String, Object)
             params.Add("fctid", fctid)
             params.Add("date", Now.Date)
@@ -1068,21 +1099,24 @@ Public Class Devis
                 client_ice = "-"
             End Try
 
-            If RPl.ClId > 0 Then
-                If ds.isSell Then
-                    Dim ta As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
-                    Dim tac As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
+            'If RPl.ClId > 0 Then
+            '    If ds.isSell Then
+            '        Dim ta As New ALMohassinDBDataSetTableAdapters.FactureTableAdapter
+            '        Dim tac As New ALMohassinDBDataSetTableAdapters.ClientTableAdapter
+            '          SELECT        SUM(total - avance) AS credit
+            '        FROM            Facture
+            '        WHERE        (payed = ?) AND (clid = ?) AND (admin = ?)
 
-                    EncCreadit = ta.ScalarQueryClientCredit(False, RPl.ClId, True)
-                    credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
+            '        EncCreadit = ta.ScalarQueryClientCredit(False, RPl.ClId, True)
+            '        credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
 
-                    tel = tac.ScalarQueryTel(RPl.ClId)
-                Else
-                    Dim ta As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
-                    EncCreadit = ta.ScalarQueryCompanyCredit(False, RPl.ClId, True)
-                    credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
-                End If
-            End If
+            '        tel = tac.ScalarQueryTel(RPl.ClId)
+            '    Else
+            '        Dim ta As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
+            '        EncCreadit = ta.ScalarQueryCompanyCredit(False, RPl.ClId, True)
+            '        credit = EncCreadit + (RPl.Total_TTC - RPl.Avance)
+            '    End If
+            'End If
 
             ' Add  rows with those columns filled in the DataTable.
             dt_Client.Rows.Add(RPl.ClId, RPl.ClientName, RPl.ClId, client_ville,

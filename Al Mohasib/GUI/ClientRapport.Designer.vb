@@ -46,6 +46,7 @@ Partial Class ClientRapport
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.txt = New Al_Mohasib.TxtBox()
         Me.btInfo = New System.Windows.Forms.Button()
         Me.cbDt = New System.Windows.Forms.CheckBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -57,7 +58,6 @@ Partial Class ClientRapport
         Me.dte2 = New System.Windows.Forms.DateTimePicker()
         Me.dte1 = New System.Windows.Forms.DateTimePicker()
         Me.PrintDocDesign = New System.Drawing.Printing.PrintDocument()
-        Me.txt = New Al_Mohasib.TxtBox()
         Me.Panel2.SuspendLayout()
         Me.pl.SuspendLayout()
         CType(Me.dg_D, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -347,7 +347,7 @@ Partial Class ClientRapport
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(6)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(10)
-        Me.GroupBox2.Size = New System.Drawing.Size(873, 126)
+        Me.GroupBox2.Size = New System.Drawing.Size(868, 126)
         Me.GroupBox2.TabIndex = 0
         Me.GroupBox2.TabStop = False
         '
@@ -360,8 +360,28 @@ Partial Class ClientRapport
         Me.Panel10.Controls.Add(Me.btInfo)
         Me.Panel10.Location = New System.Drawing.Point(16, 29)
         Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(844, 32)
+        Me.Panel10.Size = New System.Drawing.Size(839, 32)
         Me.Panel10.TabIndex = 0
+        '
+        'txt
+        '
+        Me.txt.BackColor = System.Drawing.Color.Transparent
+        Me.txt.BorderColor = System.Drawing.Color.Transparent
+        Me.txt.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt.IsNumiric = False
+        Me.txt.Location = New System.Drawing.Point(0, 0)
+        Me.txt.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txt.Name = "txt"
+        Me.txt.ShowClearIcon = False
+        Me.txt.ShowSaveIcon = False
+        Me.txt.Size = New System.Drawing.Size(806, 30)
+        Me.txt.StartUp = 2
+        Me.txt.TabIndex = 11
+        Me.txt.TextSize = 8
+        Me.txt.TxtBackColor = True
+        Me.txt.TxtColor = System.Drawing.Color.White
+        Me.txt.txtReadOnly = False
+        Me.txt.TxtSelect = New Integer() {1, 0}
         '
         'btInfo
         '
@@ -370,7 +390,7 @@ Partial Class ClientRapport
         Me.btInfo.FlatAppearance.BorderSize = 0
         Me.btInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btInfo.Image = CType(resources.GetObject("btInfo.Image"), System.Drawing.Image)
-        Me.btInfo.Location = New System.Drawing.Point(811, 0)
+        Me.btInfo.Location = New System.Drawing.Point(806, 0)
         Me.btInfo.Name = "btInfo"
         Me.btInfo.Size = New System.Drawing.Size(31, 30)
         Me.btInfo.TabIndex = 10
@@ -403,11 +423,11 @@ Partial Class ClientRapport
         Me.GroupBox3.Controls.Add(Me.Label8)
         Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Right
         Me.GroupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.GroupBox3.Location = New System.Drawing.Point(1079, 0)
+        Me.GroupBox3.Location = New System.Drawing.Point(1074, 0)
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(6)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Padding = New System.Windows.Forms.Padding(10)
-        Me.GroupBox3.Size = New System.Drawing.Size(45, 126)
+        Me.GroupBox3.Size = New System.Drawing.Size(50, 126)
         Me.GroupBox3.TabIndex = 1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Visible = False
@@ -477,26 +497,6 @@ Partial Class ClientRapport
         '
         'PrintDocDesign
         '
-        '
-        'txt
-        '
-        Me.txt.BackColor = System.Drawing.Color.Transparent
-        Me.txt.BorderColor = System.Drawing.Color.Transparent
-        Me.txt.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txt.IsNumiric = False
-        Me.txt.Location = New System.Drawing.Point(0, 0)
-        Me.txt.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txt.Name = "txt"
-        Me.txt.ShowClearIcon = False
-        Me.txt.ShowSaveIcon = False
-        Me.txt.Size = New System.Drawing.Size(811, 30)
-        Me.txt.StartUp = 2
-        Me.txt.TabIndex = 11
-        Me.txt.TextSize = 8
-        Me.txt.TxtBackColor = True
-        Me.txt.TxtColor = System.Drawing.Color.White
-        Me.txt.txtReadOnly = False
-        Me.txt.TxtSelect = New Integer() {1, 0}
         '
         'ClientRapport
         '

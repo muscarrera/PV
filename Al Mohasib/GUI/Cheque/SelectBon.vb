@@ -55,8 +55,8 @@
 
                     Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                         params.Add("clid = ", clid)
-                        params.Add("[date] < ", dt1)
-                        params.Add("[date] > ", dt2)
+                        params.Add("date < ", dt1)
+                        params.Add("date > ", dt2)
                         params.Add("admin = ", True)
 
 
@@ -67,8 +67,8 @@
                 End If
             Else
                 Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-                    params.Add("[date] < ", dt1)
-                    params.Add("[date] > ", dt2)
+                    params.Add("date < ", dt1)
+                    params.Add("date > ", dt2)
                     params.Add("admin = ", True)
 
                     If cbSearchRegler.Text = "Reglé" Then params.Add("payed = ", True)

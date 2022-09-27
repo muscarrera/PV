@@ -22,7 +22,6 @@ Partial Class AddEditCat
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -30,12 +29,6 @@ Partial Class AddEditCat
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AddEditCat))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.dgvctg = New System.Windows.Forms.DataGridView()
-        Me.CidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ImgDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CategoryBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ALMohassinDBDataSet = New Al_Mohasib.ALMohassinDBDataSet()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -51,15 +44,16 @@ Partial Class AddEditCat
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button45 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.CategoryTableAdapter = New Al_Mohasib.ALMohassinDBDataSetTableAdapters.CategoryTableAdapter()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.PrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ImgDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvctg, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CategoryBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel7.SuspendLayout()
         Me.Panel6.SuspendLayout()
@@ -89,7 +83,6 @@ Partial Class AddEditCat
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle1.Padding = New System.Windows.Forms.Padding(5)
         Me.dgvctg.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvctg.AutoGenerateColumns = False
         Me.dgvctg.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvctg.BackgroundColor = System.Drawing.SystemColors.Info
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -103,7 +96,6 @@ Partial Class AddEditCat
         Me.dgvctg.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvctg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvctg.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CidDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.ImgDataGridViewTextBoxColumn, Me.PrDataGridViewTextBoxColumn})
-        Me.dgvctg.DataSource = Me.CategoryBindingSource
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -132,48 +124,6 @@ Partial Class AddEditCat
         Me.dgvctg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvctg.Size = New System.Drawing.Size(287, 324)
         Me.dgvctg.TabIndex = 20
-        '
-        'CidDataGridViewTextBoxColumn
-        '
-        Me.CidDataGridViewTextBoxColumn.DataPropertyName = "cid"
-        Me.CidDataGridViewTextBoxColumn.FillWeight = 74.61929!
-        Me.CidDataGridViewTextBoxColumn.HeaderText = "cid"
-        Me.CidDataGridViewTextBoxColumn.Name = "CidDataGridViewTextBoxColumn"
-        Me.CidDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'NameDataGridViewTextBoxColumn
-        '
-        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
-        Me.NameDataGridViewTextBoxColumn.FillWeight = 150.7614!
-        Me.NameDataGridViewTextBoxColumn.HeaderText = "name"
-        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
-        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'ImgDataGridViewTextBoxColumn
-        '
-        Me.ImgDataGridViewTextBoxColumn.DataPropertyName = "img"
-        Me.ImgDataGridViewTextBoxColumn.HeaderText = "img"
-        Me.ImgDataGridViewTextBoxColumn.Name = "ImgDataGridViewTextBoxColumn"
-        Me.ImgDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ImgDataGridViewTextBoxColumn.Visible = False
-        '
-        'PrDataGridViewTextBoxColumn
-        '
-        Me.PrDataGridViewTextBoxColumn.DataPropertyName = "pr"
-        Me.PrDataGridViewTextBoxColumn.FillWeight = 74.61929!
-        Me.PrDataGridViewTextBoxColumn.HeaderText = "Ctg Parent"
-        Me.PrDataGridViewTextBoxColumn.Name = "PrDataGridViewTextBoxColumn"
-        Me.PrDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'CategoryBindingSource
-        '
-        Me.CategoryBindingSource.DataMember = "Category"
-        Me.CategoryBindingSource.DataSource = Me.ALMohassinDBDataSet
-        '
-        'ALMohassinDBDataSet
-        '
-        Me.ALMohassinDBDataSet.DataSetName = "ALMohassinDBDataSet"
-        Me.ALMohassinDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'Panel1
         '
@@ -380,10 +330,6 @@ Partial Class AddEditCat
         Me.Button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button3.UseVisualStyleBackColor = False
         '
-        'CategoryTableAdapter
-        '
-        Me.CategoryTableAdapter.ClearBeforeFill = True
-        '
         'Button2
         '
         Me.Button2.Dock = System.Windows.Forms.DockStyle.Right
@@ -431,6 +377,38 @@ Partial Class AddEditCat
         Me.Panel4.Size = New System.Drawing.Size(778, 24)
         Me.Panel4.TabIndex = 19
         '
+        'PrDataGridViewTextBoxColumn
+        '
+        Me.PrDataGridViewTextBoxColumn.DataPropertyName = "pr"
+        Me.PrDataGridViewTextBoxColumn.FillWeight = 74.61929!
+        Me.PrDataGridViewTextBoxColumn.HeaderText = "Ctg Parent"
+        Me.PrDataGridViewTextBoxColumn.Name = "PrDataGridViewTextBoxColumn"
+        Me.PrDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'ImgDataGridViewTextBoxColumn
+        '
+        Me.ImgDataGridViewTextBoxColumn.DataPropertyName = "img"
+        Me.ImgDataGridViewTextBoxColumn.HeaderText = "img"
+        Me.ImgDataGridViewTextBoxColumn.Name = "ImgDataGridViewTextBoxColumn"
+        Me.ImgDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ImgDataGridViewTextBoxColumn.Visible = False
+        '
+        'NameDataGridViewTextBoxColumn
+        '
+        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
+        Me.NameDataGridViewTextBoxColumn.FillWeight = 150.7614!
+        Me.NameDataGridViewTextBoxColumn.HeaderText = "name"
+        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
+        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'CidDataGridViewTextBoxColumn
+        '
+        Me.CidDataGridViewTextBoxColumn.DataPropertyName = "cid"
+        Me.CidDataGridViewTextBoxColumn.FillWeight = 74.61929!
+        Me.CidDataGridViewTextBoxColumn.HeaderText = "cid"
+        Me.CidDataGridViewTextBoxColumn.Name = "CidDataGridViewTextBoxColumn"
+        Me.CidDataGridViewTextBoxColumn.ReadOnly = True
+        '
         'AddEditCat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -449,8 +427,6 @@ Partial Class AddEditCat
         Me.Text = "  GROUPES"
         Me.GroupBox1.ResumeLayout(False)
         CType(Me.dgvctg, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CategoryBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ALMohassinDBDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel7.ResumeLayout(False)
         Me.Panel7.PerformLayout()
@@ -471,9 +447,6 @@ Partial Class AddEditCat
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Button45 As System.Windows.Forms.Button
     Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents ALMohassinDBDataSet As Al_Mohasib.ALMohassinDBDataSet
-    Friend WithEvents CategoryBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents CategoryTableAdapter As Al_Mohasib.ALMohassinDBDataSetTableAdapters.CategoryTableAdapter
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Panel5 As System.Windows.Forms.Panel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel

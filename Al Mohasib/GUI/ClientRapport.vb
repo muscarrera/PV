@@ -81,9 +81,7 @@ Public Class ClientRapport
 
 
         dg_D.Columns(1).Visible = False
-        'dg_D.Columns(2).Visible = False
         dg_D.Columns(6).Visible = False
-        ' dg_D.Columns(7).Visible = False
         dg_D.Columns(8).Visible = False
         dg_D.Columns(9).Visible = False
         dg_D.Columns(10).Visible = False

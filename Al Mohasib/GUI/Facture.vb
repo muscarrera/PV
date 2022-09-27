@@ -152,8 +152,8 @@
                 Dim params As New Dictionary(Of String, Object)
                 params.Add("clid = ", clid)
                 params.Add("beInFacture = ", 0)
-                params.Add("[date] >", dt1)
-                params.Add("[date] <", dt2)
+                params.Add("date >", dt1)
+                params.Add("date <", dt2)
 
                 Dim dt = c.SelectDataTableSymbols("Facture", {"*"}, params)
 
@@ -224,8 +224,8 @@
             Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                 Dim params As New Dictionary(Of String, Object)
                 params.Add("beInFacture <= ", CInt(0))
-                params.Add("[date] >", dt1)
-                params.Add("[date] <", dt2)
+                params.Add("date >", dt1)
+                params.Add("date <", dt2)
 
                 Dim dt = c.SelectDataTableSymbols("Facture", {"*"}, params)
 

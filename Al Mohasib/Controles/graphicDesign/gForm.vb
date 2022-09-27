@@ -1028,5 +1028,5 @@ Public Class gForm
         p_Kind = doc.DefaultPageSettings.PaperSize.Kind
     End Sub
 
-    
+   
 End Class

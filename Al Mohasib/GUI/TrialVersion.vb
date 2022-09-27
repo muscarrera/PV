@@ -13,8 +13,14 @@
         Dim str As String = arr(0) & "1-2" & arr(3) & "-3" & arr(1) & "-" & arr(4) & "4-0" & arr(2)
         If TextBox2.Text = str Then
             Try
-                Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
-                ta.UpdateKeyVal("true", "truefont")
+                Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                    Dim params As New Dictionary(Of String, Object)
+                    Dim where As New Dictionary(Of String, Object)
+                    params.Add("vkey", "truefont")
+                    where.Add("val", "true")
+
+                    a.UpdateRecord("value", params, where)
+                End Using
             Catch ex As Exception
 
             End Try
@@ -27,13 +33,21 @@
     End Sub
 
     Private Sub trialversion_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim ta As New ALMohassinDBDataSetTableAdapters.valueTableAdapter
-        Dim dt = ta.GetData("keypsv")
-        Try
-            TextBox1.Text = dt.Rows(0).Item("val")
-        Catch ex As Exception
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+            params.Add("vkey", "keypsv")
 
-        End Try
+
+            Dim dt = a.SelectDataTable("value", {"*"}, params)
+
+            Try
+                TextBox1.Text = dt.Rows(0).Item("val")
+            Catch ex As Exception
+
+            End Try
+
+        End Using
+
 
     End Sub
 
