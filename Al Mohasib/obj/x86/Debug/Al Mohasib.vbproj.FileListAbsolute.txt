@@ -688,3 +688,4 @@ C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.vbproj
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.exe
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.xml
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.pdb
+C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PromosList.resources

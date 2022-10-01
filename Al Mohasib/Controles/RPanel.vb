@@ -1,6 +1,8 @@
 ﻿Public Class RPanel
 
 
+
+
     'Events
     Public Event UpdateItem(ByVal sender As Object, ByVal e As EventArgs)
     Public Event UpdateQte(ByVal sender As Object, ByVal e As EventArgs)
@@ -24,6 +26,11 @@
     Public Event SetDetailArticle(ByVal txt As String, ByRef i As Items)
     Public Event CommandeDate()
     Public Event UpdateValueChanged()
+    Event printCaisse()
+    Event UpdateDate()
+    Event GetModePayement(ByVal FctId As Integer)
+
+
     'Members
     Public ClientName As String
     Public ClientAdresse As String
@@ -52,10 +59,8 @@
     Private _ShowProfit As Boolean
     Private _delivredDay As String
 
-    Event printCaisse()
-    Event UpdateDate()
-
-    Event GetModePayement(ByVal FctId As Integer)
+    Public ListPromos As New List(Of Promos)
+    Public HasPromo As Boolean = False
 
     'properties
     Public ReadOnly Property Total_Ht As Decimal
@@ -474,6 +479,8 @@
             End If
         End Set
     End Property
+
+   
 
     'Subs & functions
     Public Sub AddItems(ByVal R As DataRow)
@@ -1008,6 +1015,8 @@
 
             'lbHT.Text = "T. Ht : " & String.Format("{0:n}", CDec(Total_Ht - (Total_Ht * Remise / 100)))
 
+            'test promos
+            If Not BwPromos.IsBusy Then BwPromos.RunWorkerAsync()
 
             Try
                 If ShowProfit Then
@@ -1054,7 +1063,7 @@
 
                     RaiseEvent UpdateItem(itm, Nothing)
                 End If
-               
+
             Catch ex As Exception
             End Try
 
@@ -1335,11 +1344,11 @@
     End Sub
 
     Dim hh As Integer = 0
-    Private Sub Panel2_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel2.MouseDown
+    Private Sub Panel2_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles plPromo.MouseDown
         hh = e.Y
     End Sub
 
-    Private Sub Panel2_MouseUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel2.MouseUp
+    Private Sub Panel2_MouseUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles plPromo.MouseUp
         If hh = 0 Then Exit Sub
 
         Form1.RplHeight = CP.Height + (hh - e.Y)
@@ -1348,5 +1357,94 @@
 
     Private Sub lbDate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbDate.Click
         RaiseEvent UpdateDate()
+    End Sub
+
+    Private Sub BwPromos_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BwPromos.DoWork
+        Dim paramsArts As New Dictionary(Of Integer, String)
+        Dim paramsCats As New Dictionary(Of Integer, String)
+
+        Dim _montTotal As Double = 1
+        Dim _pntTotal As Integer = 0
+        Dim hasTotalPromo As Boolean = False
+
+
+        Dim myPoint As Integer = 0
+        Dim remTotal As Double = 0
+
+        For Each p As Promos In ListPromos
+            For Each r As PromosArticle In p.startList
+                If r.type = "Article" Then
+
+                    Try
+                        paramsArts.Add(r.arid, r.qte & "|" & r.point)
+                    Catch ex As Exception
+                    End Try
+
+                ElseIf r.type = "Categorie" Then
+
+                    Try
+                        paramsCats.Add(r.arid, r.qte & "|" & r.point)
+                    Catch ex As Exception
+                    End Try
+
+                ElseIf r.type = "Total" Then
+                    _montTotal = r.qte
+                    _pntTotal = r.point
+                    hasTotalPromo = True
+                End If
+            Next
+        Next
+
+        Dim RslArts As New Dictionary(Of Integer, Double)
+        Dim RslCats As New Dictionary(Of Integer, Double)
+
+        Dim a As Items
+        For Each a In Pl.Controls
+
+            If paramsArts.ContainsKey(a.arid) Then
+
+                Try
+                    remTotal += a.Total_ttc
+                    RslArts.Add(a.arid, a.Qte)
+                Catch ex As Exception
+                    RslArts(a.arid) += a.Qte
+                End Try
+
+            ElseIf paramsCats.ContainsKey(a.cid) Then
+
+                Try
+                    remTotal += a.Total_ttc
+                    RslCats.Add(a.arid, a.Qte)
+                Catch ex As Exception
+                    RslCats(a.arid) += a.Qte
+                End Try
+            End If
+        Next
+
+
+        For Each kv In RslArts
+            Try
+                myPoint += CInt((kv.Value / paramsArts(kv.Key).Split("|")(0)) * paramsArts(kv.Key).Split("|")(1))
+            Catch ex As Exception
+            End Try
+        Next
+
+        For Each kv In RslCats
+            Try
+                myPoint += CInt((kv.Value / paramsCats(kv.Key).Split("|")(0)) * paramsCats(kv.Key).Split("|")(1))
+            Catch ex As Exception
+            End Try
+        Next
+
+        If hasTotalPromo Then
+            remTotal = Total_TTC - remTotal
+            myPoint += CInt((Total_TTC / _montTotal) * _pntTotal)
+        End If
+
+        lbPoint.Invoke(Sub()
+                           lbPoint.Text = myPoint & "P"
+                       End Sub)
+
+
     End Sub
 End Class

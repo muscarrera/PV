@@ -235,9 +235,9 @@ Public Class Form1
 
         'isBaseOnRIYAL = cbRYL.Checked
         'If isBaseOnRIYAL Then frmDbl = "N0"
-        'is_true_to_end = True
+        is_true_to_end = True
 
-        'Dim CDA As New AddEditPromos
+        Dim CDA As New PromosList
         ''Dim CDA As New PricingGetter
         ' '' ''Dim CDA As New BarCode2
         ' '' '' Dim CDA As New LabelPrinter
@@ -437,6 +437,30 @@ Public Class Form1
             getRegistryinfo(RplHeight, "RplHeight", 248)
         Catch ex As Exception
         End Try
+
+        Try
+            Dim dir1 As New DirectoryInfo(ImgPah & "\PROMO")
+            If dir1.Exists = False Then dir1.Create()
+
+            Dim aryFi As IO.FileInfo() = dir1.GetFiles("*.dat")
+            Dim fi As IO.FileInfo
+            For Each fi In aryFi
+
+                Try
+                    Dim _g As New Promos
+                    _g = ReadFromXmlFile(Of Promos)(fi.FullName)
+                    If _g.ech < Now Then Continue For
+
+                    RPl.ListPromos.Add(_g)
+                    RPl.plPromo.Height = 20
+                    RPl.Panel1.Height = 70
+                    RPl.plPromo.BackColor = Color.PaleGreen
+                Catch ex As Exception
+                End Try
+            Next
+        Catch ex As Exception
+        End Try
+
 
 
         If cbListToRight.Checked Then PlRcpt.Dock = DockStyle.Right
@@ -5775,5 +5799,13 @@ Public Class Form1
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbBprice", cbBprice.Text)
         Catch ex As Exception
         End Try
+    End Sub
+ 
+    Private Sub Button65_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button65.Click
+        Dim CDA As New PromosList
+        
+        If CDA.ShowDialog = Windows.Forms.DialogResult.Cancel Then
+            End
+        End If
     End Sub
 End Class

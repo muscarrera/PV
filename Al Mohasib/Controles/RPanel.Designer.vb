@@ -25,11 +25,14 @@ Partial Class RPanel
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RPanel))
         Me.PlTop = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.BtDel = New System.Windows.Forms.Button()
         Me.BtSave = New System.Windows.Forms.Button()
         Me.BtBlPrint = New System.Windows.Forms.Button()
         Me.BtPrint = New System.Windows.Forms.Button()
+        Me.plDate = New System.Windows.Forms.Panel()
+        Me.lbDate = New System.Windows.Forms.Label()
+        Me.plPromo = New System.Windows.Forms.Panel()
+        Me.lbPoint = New System.Windows.Forms.Label()
         Me.PlBody = New System.Windows.Forms.Panel()
         Me.Pl = New System.Windows.Forms.Panel()
         Me.PlHeader = New System.Windows.Forms.Panel()
@@ -45,13 +48,13 @@ Partial Class RPanel
         Me.LbSum = New System.Windows.Forms.Label()
         Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
-        Me.plDate = New System.Windows.Forms.Panel()
-        Me.lbDate = New System.Windows.Forms.Label()
         Me.CP = New Al_Mohasib.CPanel()
+        Me.BwPromos = New System.ComponentModel.BackgroundWorker()
         Me.Panel1.SuspendLayout()
+        Me.plDate.SuspendLayout()
+        Me.plPromo.SuspendLayout()
         Me.PlBody.SuspendLayout()
         Me.PlHeader.SuspendLayout()
-        Me.plDate.SuspendLayout()
         Me.SuspendLayout()
         '
         'PlTop
@@ -67,29 +70,18 @@ Partial Class RPanel
         Me.Panel1.BackColor = System.Drawing.SystemColors.Control
         Me.Panel1.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.bgbuy
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Panel1.Controls.Add(Me.plDate)
-        Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Controls.Add(Me.BtDel)
         Me.Panel1.Controls.Add(Me.BtSave)
         Me.Panel1.Controls.Add(Me.BtBlPrint)
         Me.Panel1.Controls.Add(Me.BtPrint)
+        Me.Panel1.Controls.Add(Me.plDate)
+        Me.Panel1.Controls.Add(Me.plPromo)
         Me.Panel1.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 257)
+        Me.Panel1.Location = New System.Drawing.Point(0, 255)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(385, 58)
+        Me.Panel1.Size = New System.Drawing.Size(385, 60)
         Me.Panel1.TabIndex = 2
-        '
-        'Panel2
-        '
-        Me.Panel2.AutoScroll = True
-        Me.Panel2.BackColor = System.Drawing.Color.MediumBlue
-        Me.Panel2.Cursor = System.Windows.Forms.Cursors.HSplit
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 55)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(385, 3)
-        Me.Panel2.TabIndex = 3
         '
         'BtDel
         '
@@ -170,6 +162,53 @@ Partial Class RPanel
         Me.BtPrint.UseVisualStyleBackColor = False
         Me.BtPrint.Visible = False
         '
+        'plDate
+        '
+        Me.plDate.BackColor = System.Drawing.Color.Transparent
+        Me.plDate.Controls.Add(Me.lbDate)
+        Me.plDate.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.plDate.Location = New System.Drawing.Point(0, 35)
+        Me.plDate.Name = "plDate"
+        Me.plDate.Size = New System.Drawing.Size(385, 20)
+        Me.plDate.TabIndex = 4
+        '
+        'lbDate
+        '
+        Me.lbDate.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lbDate.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbDate.ForeColor = System.Drawing.Color.Navy
+        Me.lbDate.Location = New System.Drawing.Point(0, 0)
+        Me.lbDate.Name = "lbDate"
+        Me.lbDate.Size = New System.Drawing.Size(385, 20)
+        Me.lbDate.TabIndex = 1
+        Me.lbDate.Text = "1/1"
+        Me.lbDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'plPromo
+        '
+        Me.plPromo.AutoScroll = True
+        Me.plPromo.BackColor = System.Drawing.Color.MediumBlue
+        Me.plPromo.Controls.Add(Me.lbPoint)
+        Me.plPromo.Cursor = System.Windows.Forms.Cursors.HSplit
+        Me.plPromo.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.plPromo.Location = New System.Drawing.Point(0, 55)
+        Me.plPromo.Name = "plPromo"
+        Me.plPromo.Size = New System.Drawing.Size(385, 5)
+        Me.plPromo.TabIndex = 3
+        '
+        'lbPoint
+        '
+        Me.lbPoint.BackColor = System.Drawing.Color.Transparent
+        Me.lbPoint.Dock = System.Windows.Forms.DockStyle.Left
+        Me.lbPoint.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbPoint.ForeColor = System.Drawing.Color.Green
+        Me.lbPoint.Location = New System.Drawing.Point(0, 0)
+        Me.lbPoint.Name = "lbPoint"
+        Me.lbPoint.Size = New System.Drawing.Size(69, 5)
+        Me.lbPoint.TabIndex = 2
+        Me.lbPoint.Text = "1/1"
+        Me.lbPoint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'PlBody
         '
         Me.PlBody.BackColor = System.Drawing.SystemColors.ButtonHighlight
@@ -190,7 +229,7 @@ Partial Class RPanel
         Me.Pl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Pl.Location = New System.Drawing.Point(0, 0)
         Me.Pl.Name = "Pl"
-        Me.Pl.Size = New System.Drawing.Size(385, 198)
+        Me.Pl.Size = New System.Drawing.Size(385, 196)
         Me.Pl.TabIndex = 2
         '
         'PlHeader
@@ -208,7 +247,7 @@ Partial Class RPanel
         Me.PlHeader.Controls.Add(Me.ShapeContainer1)
         Me.PlHeader.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.PlHeader.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PlHeader.Location = New System.Drawing.Point(0, 198)
+        Me.PlHeader.Location = New System.Drawing.Point(0, 196)
         Me.PlHeader.Name = "PlHeader"
         Me.PlHeader.Size = New System.Drawing.Size(385, 59)
         Me.PlHeader.TabIndex = 1
@@ -348,28 +387,6 @@ Partial Class RPanel
         Me.LineShape1.Y1 = 6
         Me.LineShape1.Y2 = 6
         '
-        'plDate
-        '
-        Me.plDate.BackColor = System.Drawing.Color.Transparent
-        Me.plDate.Controls.Add(Me.lbDate)
-        Me.plDate.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.plDate.Location = New System.Drawing.Point(0, 35)
-        Me.plDate.Name = "plDate"
-        Me.plDate.Size = New System.Drawing.Size(385, 20)
-        Me.plDate.TabIndex = 4
-        '
-        'lbDate
-        '
-        Me.lbDate.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lbDate.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbDate.ForeColor = System.Drawing.Color.Navy
-        Me.lbDate.Location = New System.Drawing.Point(0, 0)
-        Me.lbDate.Name = "lbDate"
-        Me.lbDate.Size = New System.Drawing.Size(385, 20)
-        Me.lbDate.TabIndex = 1
-        Me.lbDate.Text = "1/1"
-        Me.lbDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'CP
         '
         Me.CP.bl = "---"
@@ -386,6 +403,9 @@ Partial Class RPanel
         Me.CP.TabIndex = 0
         Me.CP.Value = 1.0R
         '
+        'BwPromos
+        '
+        '
         'RPanel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -395,10 +415,11 @@ Partial Class RPanel
         Me.Name = "RPanel"
         Me.Size = New System.Drawing.Size(385, 573)
         Me.Panel1.ResumeLayout(False)
+        Me.plDate.ResumeLayout(False)
+        Me.plPromo.ResumeLayout(False)
         Me.PlBody.ResumeLayout(False)
         Me.PlHeader.ResumeLayout(False)
         Me.PlHeader.PerformLayout()
-        Me.plDate.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -423,9 +444,11 @@ Partial Class RPanel
     Friend WithEvents BtBlPrint As System.Windows.Forms.Button
     Friend WithEvents lbProfit As System.Windows.Forms.Label
     Friend WithEvents CP As Al_Mohasib.CPanel
-    Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents plPromo As System.Windows.Forms.Panel
     Friend WithEvents lbDh As System.Windows.Forms.Label
     Friend WithEvents plDate As System.Windows.Forms.Panel
     Friend WithEvents lbDate As System.Windows.Forms.Label
+    Friend WithEvents BwPromos As System.ComponentModel.BackgroundWorker
+    Friend WithEvents lbPoint As System.Windows.Forms.Label
 
 End Class

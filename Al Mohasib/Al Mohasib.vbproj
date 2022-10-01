@@ -565,6 +565,12 @@
     <Compile Include="GUI\Promos\AddEditPromos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\Promos\PromosList.Designer.vb">
+      <DependentUpon>PromosList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Promos\PromosList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\Screen2.Designer.vb">
       <DependentUpon>Screen2.vb</DependentUpon>
     </Compile>
@@ -972,6 +978,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Promos\AddEditPromos.resx">
       <DependentUpon>AddEditPromos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Promos\PromosList.resx">
+      <DependentUpon>PromosList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Screen2.resx">
       <DependentUpon>Screen2.vb</DependentUpon>
