@@ -69,7 +69,7 @@ Partial Class gForm
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.Panel2)
         Me.SplitContainer1.Size = New System.Drawing.Size(991, 534)
-        Me.SplitContainer1.SplitterDistance = 156
+        Me.SplitContainer1.SplitterDistance = 421
         Me.SplitContainer1.TabIndex = 2
         '
         'Panel1
@@ -80,7 +80,7 @@ Partial Class gForm
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(156, 534)
+        Me.Panel1.Size = New System.Drawing.Size(421, 534)
         Me.Panel1.TabIndex = 0
         '
         'Panel5
@@ -92,7 +92,7 @@ Partial Class gForm
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel5.Location = New System.Drawing.Point(0, 126)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(156, 275)
+        Me.Panel5.Size = New System.Drawing.Size(421, 275)
         Me.Panel5.TabIndex = 3
         '
         'gt
@@ -100,7 +100,7 @@ Partial Class gForm
         Me.gt.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gt.Location = New System.Drawing.Point(0, 0)
         Me.gt.Name = "gt"
-        Me.gt.Size = New System.Drawing.Size(154, 273)
+        Me.gt.Size = New System.Drawing.Size(419, 273)
         Me.gt.TabIndex = 0
         Me.gt.TabProp = GTabClass1
         '
@@ -112,7 +112,7 @@ Partial Class gForm
         Me.Pfp.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Pfp.Location = New System.Drawing.Point(0, 401)
         Me.Pfp.Name = "Pfp"
-        Me.Pfp.Size = New System.Drawing.Size(156, 133)
+        Me.Pfp.Size = New System.Drawing.Size(421, 133)
         Me.Pfp.TabIndex = 2
         '
         'Pf
@@ -120,7 +120,7 @@ Partial Class gForm
         Me.Pf.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Pf.Location = New System.Drawing.Point(0, 0)
         Me.Pf.Name = "Pf"
-        Me.Pf.Size = New System.Drawing.Size(154, 131)
+        Me.Pf.Size = New System.Drawing.Size(419, 131)
         Me.Pf.TabIndex = 0
         '
         'PT
@@ -130,7 +130,7 @@ Partial Class gForm
         Me.PT.Dock = System.Windows.Forms.DockStyle.Top
         Me.PT.Location = New System.Drawing.Point(0, 0)
         Me.PT.Name = "PT"
-        Me.PT.Size = New System.Drawing.Size(156, 126)
+        Me.PT.Size = New System.Drawing.Size(421, 126)
         Me.PT.TabIndex = 4
         '
         'Panel2
@@ -153,7 +153,7 @@ Partial Class gForm
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(831, 534)
+        Me.Panel2.Size = New System.Drawing.Size(566, 534)
         Me.Panel2.TabIndex = 0
         '
         'cbEntete

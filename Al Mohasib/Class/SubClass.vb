@@ -169,7 +169,7 @@ Public Class SubClass
                 bt.Tag = ctgdt.Rows(0).Item("cid")
                 ctg_click(bt, Nothing)
             Else
-                FillDataSource_Cats(ctgdt)
+                FillDataSource_Cats(ctgdt, True)
             End If
 
             'Fill stock panel
@@ -194,8 +194,85 @@ Public Class SubClass
             params.Add("pr", c)
             Dim ctgdt = a.SelectDataTable("category", {"*"}, params)
 
-            FillDataSource_Cats(ctgdt)
+            FillDataSource_Cats(ctgdt, False)
         End Using
+        If Form1.chbcb.Checked Then
+            Form1.txtSearchCode.Text = ""
+            Form1.txtSearchCode.Focus()
+        Else
+            Form1.txtSearch.Text = ""
+            Form1.txtSearch.Focus()
+        End If
+        Form1.RPl.CP.Value = 0
+    End Sub
+    Public Sub FillMonGroupe(ByVal c As Integer)
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+
+            Dim params As New Dictionary(Of String, Object)
+            params.Add("facture.clid", c)
+            Dim artdt = a.SelectDataTable("((detailsfacture INNER JOIN facture ON detailsfacture.fctid = Facture.fctid) INNER JOIN article ON detailsfacture.arid = article.arid)",
+                                          {"article.*"}, params)
+
+
+            If artdt.Rows.Count = 0 Then
+                Dim lb As New Label
+
+                lb.ForeColor = Color.DarkGray
+                lb.Text = "لا يوجد اي سجل"
+                Form1.FlowLayoutPanel1.Controls.Add(lb)
+            Else
+                Dim myLast = Form1.indexLastArticle
+                'Fill Articles
+                FillDataSource_Articles(artdt, 0, artdt.Rows.Count - 1, myLast)
+            End If
+        
+        End Using
+
+        If Form1.chbcb.Checked Then
+            Form1.txtSearchCode.Text = ""
+            Form1.txtSearchCode.Focus()
+        Else
+            Form1.txtSearch.Text = ""
+            Form1.txtSearch.Focus()
+        End If
+        Form1.RPl.CP.Value = 0
+    End Sub
+    Public Sub FillMesCadeaux()
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+
+            If Form1.ListCadeau.Count = 0 Then Exit Sub
+
+            Form1.FlowLayoutPanel1.Controls.Clear()
+
+            For Each __g In Form1.ListCadeau
+                For Each cd In __g.startList
+                    Dim bt As New PromoArticleBloc
+                    'bt.BackgroundImageLayout = ImageLayout.Stretch
+                    'bt.Visible = True
+                    'bt.FlatStyle = FlatStyle.Flat
+                    'bt.BackColor = Color.LightSeaGreen
+                    'bt.Text = cd.name & "[Points : " & cd.point & "]"
+                    bt.DataSource = cd
+                    'bt.TextAlign = ContentAlignment.BottomCenter
+
+
+                    bt.Width = 220 'Form1.txtlongerbt.Text
+                    bt.Height = 120 'Form1.txtlargebt.Text
+                    AddHandler bt.Choosed, AddressOf art_Cadeaux_click
+                    Form1.FlowLayoutPanel1.Controls.Add(bt)
+
+                    Try
+                        If Form1.RPl.FerstPointToWin >= cd.point Then Form1.RPl.FerstPointToWin = cd.point
+                    Catch ex As Exception
+
+                    End Try
+
+                Next
+            Next
+            Form1.FlowLayoutPanel1.Visible = True
+
+        End Using
+
         If Form1.chbcb.Checked Then
             Form1.txtSearchCode.Text = ""
             Form1.txtSearchCode.Focus()
@@ -511,6 +588,16 @@ Public Class SubClass
 
         Dim bt2 As Button = sender
         Form1.FlowLayoutPanel1.Controls.Clear()
+
+        If bt2.Tag = -300 Then
+            If Form1.RPl.ClId > 0 Then FillMonGroupe(Form1.RPl.ClId)
+            Exit Sub
+        ElseIf bt2.Tag = -500 Then
+            FillMesCadeaux()
+            Exit Sub
+        End If
+
+
         FillGroupesByCat(bt2.Tag)
         '   FillGroupesByCat_reader(bt2.Tag)
 
@@ -648,14 +735,25 @@ Public Class SubClass
             Exit Sub
         End If
 
+
+        If Form1.isWorkingWithCatSelect Then
+            If Form1.ls_CatSelect.Contains(R("cid")) = False Then
+                Exit Sub
+            End If
+        End If
+
+
+
         Try
-            'add new bon
+            ''add new bon
             If Form1.RPl.FctId = 0 Then
                 If Form1.RPl.isSell Then
-                    Dim clientname As String = Form1.txtcltcomptoir.Text.Split("/")(0)
-                    Dim cid As String = 0
+                    '        Dim clientname As String = Form1.txtcltcomptoir.Text.Split("/")(0)
+                    '        Dim cid As String = 0
 
-                    NewFacture(cid, clientname, "", 0)
+                    'NewFacture(cid, clientname, "", 0)
+
+                    Form1.RPl.FctId = -198722
                 Else
                     Exit Sub
                 End If
@@ -675,6 +773,7 @@ Public Class SubClass
 
             Else
                 Dim ppp As Double = CDbl(R("sprice"))
+
 
                 If Form1.RPl.isSell Then
                     If Form1.cbOptionJenani.Checked = False Then
@@ -699,7 +798,7 @@ Public Class SubClass
                     R("codebar") = ""
                 End Try
 
-              
+
                 'Last Price Option
                 If Form1.cbArtLastPrice.Text = "LastPrice" And Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
 
@@ -727,9 +826,9 @@ Public Class SubClass
                             End If
                         End If
 
-                    End Using 
+                    End Using
 
-                ElseIf Form1.cbArtLastPrice.Text = "LastMarge" And Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
+                ElseIf Form1.cbArtLastPrice.Text.StartsWith("LastMarge") And Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
 
                     Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                         Dim params As New Dictionary(Of String, Object)
@@ -743,15 +842,33 @@ Public Class SubClass
                         params.Add(tb_D_A & ".arid  = ", R("arid"))
 
                         Dim pDt As DataTable = c.SelectDataTableSymbols("(" & tb_D_A & " INNER JOIN " & tb_A & " ON " & tb_D_A & ".fctid = " & tb_A & ".fctid) ",
-                            {tb_D_A & ".price," & tb_D_A & ".bprice"}, params, order)
+                            {tb_D_A & ".price," & tb_D_A & ".bprice, " & tb_D_A & ".rprice"}, params, order)
                         If pDt.Rows.Count > 0 Then
 
                             Dim bp As Double = pDt.Rows(0).Item("bprice")
+
                             Dim sp As Double = pDt.Rows(0).Item("price")
-                            If bp > 0 Then
-                                Dim mrg As Double = sp - bp
-                                R("sprice") = R("bprice") + mrg
+
+                            If Form1.cbArtLastPrice.Text.EndsWith("PV") Then
+                                bp = pDt.Rows(0).Item("rprice")
+
+                                If bp > 0 Then
+                                    Dim mrg As Double = sp - bp
+                                    R("sprice") += mrg
+                                Else
+                                    bp = pDt.Rows(0).Item("bprice")
+                                    If bp > 0 Then
+                                        Dim mrg As Double = sp - bp
+                                        R("sprice") = R("bprice") + mrg
+                                    End If
+                                End If
+                            Else
+                                If bp > 0 Then
+                                    Dim mrg As Double = sp - bp
+                                    R("sprice") = R("bprice") + mrg
+                                End If
                             End If
+
 
                         End If
                     End Using
@@ -769,25 +886,56 @@ Public Class SubClass
 
                 'tva
 
-
+                R("sp3") = ppp
                 Form1.RPl.AddItems(R)
                 R("sprice") = ppp
 
             End If
 
-                Form1.txtSearch.Text = ""
-                Form1.txtSearchCode.Text = ""
+            Form1.txtSearch.Text = ""
+            Form1.txtSearchCode.Text = ""
 
-                If Form1.chbcb.Checked Then
-                    Form1.txtSearchCode.Focus()
-                Else
-                    Form1.txtSearch.Focus()
-                End If
+            If Form1.chbcb.Checked Then
+                Form1.txtSearchCode.Focus()
+            Else
+                Form1.txtSearch.Focus()
+            End If
         Catch ex As Exception
 
         End Try
 
     End Sub
+    Public Sub art_Cadeaux_click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+        Try
+            Dim bt As Button = sender
+            Dim R As PromosArticle = bt.Tag
+            If Form1.RPl.FctId = 0 Then Exit Sub
+
+            Dim p = R.point
+            If Form1.RPl.TotalPoint + Form1.RPl.myPoint < p + Form1.RPl.usedPoint Then
+                MsgBox("point cumuler est insuffisant")
+                Exit Sub
+            End If
+
+
+            Form1.RPl.AddItemsCadeau(R, "Cadeaux")
+
+
+            Form1.txtSearch.Text = ""
+            Form1.txtSearchCode.Text = ""
+
+            If Form1.chbcb.Checked Then
+                Form1.txtSearchCode.Focus()
+            Else
+                Form1.txtSearch.Focus()
+            End If
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
     Private Function setPriceOrQte(ByRef R As DataRow)
         Dim ii As Integer = 0
         If Form1.cbQteCat.Checked Then
@@ -878,7 +1026,9 @@ Public Class SubClass
     'Fill Articles
     Private Sub FillDataSource_Articles(ByVal artdt As DataTable, ByVal iStart As Integer, ByVal iEnd As Integer, ByVal myLast As Integer)
         Dim fn As Font = New Font(Form1.txtfname.Text, CInt(Form1.txtfntsize.Text), FontStyle.Bold)
-        Form1.FlowLayoutPanel1.Visible = False
+        ' Form1.FlowLayoutPanel1.Visible = False
+        Form1.FlowLayoutPanel1.SuspendLayout()
+
         For i As Integer = iStart To iEnd
             If i = artdt.Rows.Count Then
                 Form1.indexStartArticle = i '- Form1.indexLastArticle
@@ -899,7 +1049,15 @@ Public Class SubClass
                 End If
             End If
 
-           
+
+            If Form1.isWorkingWithCatSelect Then
+                If Form1.ls_CatSelect.Contains(artdt.Rows(i).Item("cid")) = False Then
+                    Continue For
+                End If
+            End If
+
+
+
             ''''''''''''''''''''''''''''''''''''
             If Form1.cbPvArticle.Checked Then
                 Dim pv As New PvArticle
@@ -981,16 +1139,76 @@ Public Class SubClass
                 Exit For
             End If
         Next
-        Form1.FlowLayoutPanel1.Visible = True
+        ' Form1.FlowLayoutPanel1.Visible = True
+        Form1.FlowLayoutPanel1.ResumeLayout()
     End Sub
-    Private Sub FillDataSource_Cats(ByVal ctgdt As DataTable)
+    Private Sub FillDataSource_Cats(ByVal ctgdt As DataTable, ByVal b As Boolean)
         Dim fn As Font = New Font(Form1.txtfname.Text, CInt(Form1.txtfntsize.Text), FontStyle.Bold)
 
         Form1.FlowLayoutPanel1.Visible = False
+
+        'article pour client
+        If Form1.cbArticleClient.Checked And b Then
+            If Form1.cbPvCats.Checked Then
+                Dim pv As New PvCat
+                pv.CID = -300
+                pv.CatName = "Mon Grp"
+                pv.Width = Form1.txtlongerbt.Text
+                pv.Height = Form1.txtlargebt.Text
+                pv.fnt = fn
+                'Form1.FlowLayoutPanel1.Controls.Add(pv)
+                AddHandler pv.Choosed, AddressOf ctg_click
+                Form1.FlowLayoutPanel1.Controls.Add(pv)
+
+                Dim pv2 As New PvCat
+                pv2.CID = -500
+                pv2.CatName = "CADEAUX"
+                pv2.Width = Form1.txtlongerbt.Text
+                pv2.Height = Form1.txtlargebt.Text
+                pv2.fnt = fn
+                'Form1.FlowLayoutPanel1.Controls.Add(pv)
+                AddHandler pv2.Choosed, AddressOf ctg_click
+                Form1.FlowLayoutPanel1.Controls.Add(pv2)
+            Else
+                Dim btM As New Button
+                btM.BackColor = Color.LightGoldenrodYellow
+                btM.Text = "Mon Grp"
+                btM.Name = "ctgMongrp"
+                btM.Tag = -300
+                btM.Width = Form1.txtlongerbt.Text
+                btM.Height = Form1.txtlargebt.Text
+                AddHandler btM.Click, AddressOf ctg_click
+                Form1.FlowLayoutPanel1.Controls.Add(btM)
+
+                Dim btc As New Button
+                btc.BackColor = Color.LightGoldenrodYellow
+                btc.Text = "CADEAUX"
+                btc.Name = "ctgMongrpcAD"
+                btc.Tag = -500
+                btc.Width = Form1.txtlongerbt.Text
+                btc.Height = Form1.txtlargebt.Text
+                AddHandler btc.Click, AddressOf ctg_click
+                Form1.FlowLayoutPanel1.Controls.Add(btc)
+            End If
+        End If
+
+
+
+
+
+
         If Form1.cbPvCats.Checked Then
             ''''''''''''''''''''''''''''''''''''
             Dim pvs(ctgdt.Rows.Count - 1) As PvCat
             For i As Integer = 0 To ctgdt.Rows.Count - 1
+
+                If Form1.isWorkingWithCatSelect Then
+                    If Form1.ls_CatSelect.Contains(ctgdt.Rows(i).Item(0)) = False Then
+                        Continue For
+                    End If
+                End If
+
+
 
                 Dim pv As New PvCat
                 pv.CID = ctgdt.Rows(i).Item(0)
@@ -1008,11 +1226,14 @@ Public Class SubClass
             Next
             Form1.FlowLayoutPanel1.Controls.AddRange(pvs)
         Else
-
             ''''''''''''''''''''''''''''''''''''''''''''''''''' list suivant
             Dim pvs(ctgdt.Rows.Count - 1) As Button
             For i As Integer = 0 To ctgdt.Rows.Count - 1
-
+                If Form1.isWorkingWithCatSelect Then
+                    If Form1.ls_CatSelect.Contains(ctgdt.Rows(i).Item(0)) = False Then
+                        Continue For
+                    End If
+                End If
 
                 Dim bt As New Button
 
@@ -1189,6 +1410,8 @@ Public Class SubClass
                 Form1.DGVS.Columns(5).HeaderText = "Depot N°"
                 Form1.DGVS.Columns(2).HeaderText = "Unite"
 
+
+                Form1.DGVS.Columns(3).DefaultCellStyle.Format = "n2"
             End If
             Form1.btTransfert.Tag = bt2.Tag
         Catch ex As Exception
@@ -1559,6 +1782,9 @@ Public Class SubClass
     End Sub
     Public Sub saveChanges()
         If Form1.RPl.FctId = 0 Then Exit Sub
+        If Form1.RPl.FctId = -198722 Then NewFacture__0(True)
+
+
 
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
 
@@ -1586,6 +1812,7 @@ Public Class SubClass
                 params.Add("poid", CInt(data.Rows(i).Item("poid")))
                 params.Add("code", data.Rows(i).Item("code"))
                 params.Add("cid", data.Rows(i).Item("cid"))
+                params.Add("rprice", data.Rows(i).Item("rprice"))
                 Dim prId As Integer = data.Rows(i).Item("id")
 
                 If prId > 0 Then
@@ -1598,8 +1825,90 @@ Public Class SubClass
             Next
         End Using
     End Sub
+    Public Function NewFacture__0(ByVal a As Boolean) As Boolean
+        Try
+            Dim p As Panel = Form1.plright
+            Dim cid As String = 0
+            Dim clientname As String = Form1.txtcltcomptoir.Text
+            Dim clientadesse As String = ""
+            Dim tp As String = 0
+            Dim num As String = ""
+            Dim fid As Integer = 0
+            Dim dte As Date = Now
+
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+                params.Add("clid", cid)
+                params.Add("name", clientname)
+                params.Add("total", 0)
+                params.Add("avance", 0)
+                params.Add("date", dte) 'Format(dte, "dd-MM-yyyy HH:mm"))
+                params.Add("admin", False)
+                params.Add("writer", CStr(Form1.adminName))
+                params.Add("tp", tp)
+                params.Add("payed", False)
+                params.Add("poid", 0)
+                params.Add("num", num)
+                params.Add("tva", 0)
+                params.Add("adresse", clientadesse)
+                params.Add("bl", "---")
+                params.Add("remise", 0)
+                params.Add("beInFacture", 0)
+                'params.Add("delivredDay", Now.Date.AddDays(2))
+
+                fid = c.InsertRecord(Form1.TB_Bon, params, True)
+            End Using
+
+
+            If fid > 0 Then
+
+                If a Then
+                    If Form1.cbPvClient.Checked Then
+
+                        Dim pv As New CBlock
+                        pv.ID = fid
+                        pv.lb.Text = clientname
+                        pv.Dock = DockStyle.Left
+                        AddHandler pv.Choosed, AddressOf FactureSelected
+                        AddHandler pv.Delete, AddressOf PvClient_DeleteBon
+                        p.Controls.Add(pv)
+
+                    Else
+                        Dim rnd As New Random
+                        Dim bt As New Button
+                        bt.Text = clientname
+                        bt.BackColor = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255)) 'Color.DarkSlateGray
+                        bt.FlatStyle = FlatStyle.Flat
+                        bt.ForeColor = Color.White
+                        bt.Name = "bt" & CStr(rnd.Next) & p.Controls.Count
+                        bt.Font = New Font("Arial", 9, FontStyle.Bold)
+                        bt.Tag = fid
+                        bt.Dock = DockStyle.Left
+                        bt.AutoSize = True
+                        bt.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly
+                        bt.TextAlign = ContentAlignment.MiddleLeft
+                        AddHandler bt.Click, AddressOf FactureSelected
+
+                        p.Controls.Add(bt)
+                    End If
+                End If
+
+                Form1.RPl.FctId = fid
+                Form1.RPl.ClientName = clientname
+                Form1.RPl.Dte = Now
+                Return True
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+        Return False
+    End Function
+
     Public Function saveChanges_fct() As Boolean
         If Form1.RPl.FctId = 0 Then Return False
+        If Form1.RPl.FctId = -198722 Then If NewFacture__0(False) = False Then Return False
+
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
 
             Dim prId_str = "id"
@@ -1626,6 +1935,7 @@ Public Class SubClass
                 params.Add("poid", CInt(data.Rows(i).Item("poid")))
                 params.Add("code", data.Rows(i).Item("code"))
                 params.Add("cid", data.Rows(i).Item("cid"))
+                params.Add("rprice", data.Rows(i).Item("rprice"))
                 Dim prId As Integer = data.Rows(i).Item("id")
 
                 If prId > 0 Then
@@ -1972,7 +2282,8 @@ Public Class SubClass
         Dim dt As DataTable
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             Dim params As New Dictionary(Of String, Object)
-            params.Add("Clid", cid)
+            'params.Add("Clid", cid)
+            params.Add("code", cid)
 
             Try
                 dt = c.SelectDataTable(Form1.TB_Client, {"*"}, params)
@@ -2124,6 +2435,22 @@ Public Class SubClass
             Form1.lbLastBon.Tag = Form1.RPl.FctId
             Form1.btPrint_Top.Visible = True
 
+            Try
+                If Form1.cbPromos.Checked And isS Then
+                    params.Clear()
+                    where.Clear()
+                    where.Add("fctid", id)
+                    c.DeleteRecords("promo", where)
+
+                    params.Add("cid", Form1.RPl.ClId)
+                    params.Add("fctid", id)
+                    params.Add("pointIN", Form1.RPl.myPoint)
+                    params.Add("pointOUT", Form1.RPl.usedPoint)
+               
+                    c.InsertRecord("promo", params)
+                End If
+            Catch ex As Exception
+            End Try
 
             If isS Then
                 AppendData(id, table)
@@ -2264,6 +2591,19 @@ Public Class SubClass
             Form1.DGVARFA.SelectedRows(0).Cells(4).Value = rpl.Avance
             params = Nothing
             where = Nothing
+
+            Try
+                If Form1.cbPromos.Checked And isS Then
+                    params.Clear()
+                    params.Add("pointIN", rpl.myPoint)
+                    params.Add("pointOUT", rpl.usedPoint)
+                    where.Clear()
+                    where.Add("fctid", rpl.FctId)
+                    c.UpdateRecord("promo", params, where)
+                End If
+            Catch ex As Exception
+            End Try
+
 
             Try
                 Dim s = "Changement QTE"
@@ -2435,6 +2775,25 @@ Public Class SubClass
             If dt.Rows.Count > 0 Then
                 Form1.RPl.AddItems(dt, CBool(Form1.btswitsh.Tag))
             End If
+
+
+            Try
+                Form1.RPl.TotalPoint = 0
+                If Form1.cbPromos.Checked And Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
+                    params.Clear()
+                    params.Add("cid = ", Form1.RPl.ClId)
+                    params.Add("fctid <> ", fctid)
+                    Dim dtPoint = c.SelectDataTableSymbols("promo", {"(SUM(pointIN) - SUM(pointOUT)) AS points"}, params)
+
+                    If dtPoint.Rows.Count > 0 Then
+                        Form1.RPl.TotalPoint = dtPoint.Rows(0).Item("points")
+                    End If
+                End If
+            Catch ex As Exception
+                Form1.RPl.TotalPoint = 0
+            End Try
+
+
             End Using
 
 
@@ -2915,24 +3274,23 @@ Public Class SubClass
                     Next
                 End If
 
-
-                Form1.lbListBon.Text = "****     [" & CInt(Form1.lbListBon.Tag) - 1 & "]  Recept(s)    ****"
-                Form1.lbListBon.Tag = CInt(Form1.lbListBon.Tag) - 1
-
+            Form1.lbListBon.Text = "****     [" & CInt(Form1.lbListBon.Tag) - 1 & "]  Recept(s)    ****"
+            Form1.lbListBon.Tag = CInt(Form1.lbListBon.Tag) - 1
 
 
-                Form1.RPl.ClearItems()
-                If Form1.plright.Controls.Count > 0 Then
-                    If Form1.cbPvClient.Checked Then
-                        Dim bt As New Button
-                        bt.Tag = TryCast(Form1.plright.Controls(0), CBlock).ID
-                        FactureSelected(bt, Nothing)
-                    Else
-                        FactureSelected(Form1.plright.Controls(0), Nothing)
-                    End If
 
+            Form1.RPl.ClearItems()
+            If Form1.plright.Controls.Count > 0 Then
+                If Form1.cbPvClient.Checked Then
+                    Dim bt As New Button
+                    bt.Tag = TryCast(Form1.plright.Controls(0), CBlock).ID
+                    FactureSelected(bt, Nothing)
+                Else
+                    FactureSelected(Form1.plright.Controls(0), Nothing)
                 End If
+
             End If
+        End If
         End If
 
 
@@ -3530,69 +3888,105 @@ Public Class SubClass
         Next
     End Sub
     Public Sub UpdateClient(ByVal fid As Integer, ByVal isS As Boolean, ByVal EdtMode As Boolean)
-        Dim chs As New ChoseClient
-        chs.isSell = isS
-        If chs.ShowDialog = Windows.Forms.DialogResult.OK Then
-            Dim cid As String = chs.cid
-            Dim clientname As String = chs.clientName
-            Dim adresse As String = chs.clientadresse
-            Dim tp As String = chs.tp
+        Dim cc As New SelectClient
+        If cc.ShowDialog = Windows.Forms.DialogResult.OK Then
+            updateClient_PromoStyle(fid, isS, cc.cid, cc.cName, cc.cAdress, cc.num, EdtMode)
+        End If
 
-            If cid <> 0 And isS = True And tp <> 0 Then
-                If tp = "" Then tp = "1"
-                If CheckForUnpaidFacture(cid, tp) = False Then Exit Sub
+        'Dim chs As New ChoseClient
+        'chs.isSell = isS
+        'If chs.ShowDialog = Windows.Forms.DialogResult.OK Then
+        '    Dim cid As String = chs.cid
+        '    Dim clientname As String = chs.clientName
+        '    Dim adresse As String = chs.clientadresse
+        '    Dim tp As String = chs.tp
+        'End If
+    End Sub
+    Public Sub updateClient_PromoStyle(ByVal fid As Integer, ByVal isS As Boolean, ByVal cid As Integer,
+                                       ByVal clientname As String, ByVal adresse As String, ByVal tp As String, ByVal EdtMode As Boolean)
+        If cid <> 0 And isS = True And tp <> 0 Then
+            If tp = "" Then tp = "1"
+            If CheckForUnpaidFacture(cid, tp) = False Then Exit Sub
+        End If
+
+        Using z As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim where As New Dictionary(Of String, Object)
+            Dim tName As String = "Facture"
+            If isS Then
+                where.Add("fctid", fid)
+            Else
+                where.Add("bonid", fid)
+                tName = "Bon"
             End If
 
-            Using z As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
-                Dim where As New Dictionary(Of String, Object)
-                Dim tName As String = "Facture"
-                If isS Then
-                    where.Add("fctid", fid)
-                Else
-                    where.Add("bonid", fid)
-                    tName = "Bon"
-                End If
 
+            Dim params As New Dictionary(Of String, Object)
+            params.Add("clid", cid)
+            params.Add("name", clientname)
+            params.Add("adresse", adresse)
+            z.UpdateRecord(tName, params, where)
+            Form1.RPl.TotalPoint = 0
 
-                Dim params As New Dictionary(Of String, Object)
-                params.Add("clid", cid)
-                params.Add("name", clientname)
-                params.Add("adresse", adresse)
-                z.UpdateRecord(tName, params, where)
+            Form1.RPl.ClId = cid
+            Form1.RPl.ClientName = clientname
+            Form1.RPl.ClientAdresse = adresse
 
-                If EdtMode Then
-                    Form1.DGVARFA.SelectedRows(0).Cells(2).Value = clientname
-                    Form1.DGVARFA.SelectedRows(0).Cells(1).Value = cid
-                    Form1.DGVARFA.SelectedRows(0).Cells(8).Value = adresse
-                Else
+            If EdtMode Then
+                Form1.DGVARFA.SelectedRows(0).Cells(2).Value = clientname
+                Form1.DGVARFA.SelectedRows(0).Cells(1).Value = cid
+                Form1.DGVARFA.SelectedRows(0).Cells(8).Value = adresse
+
+                Try
+                    If Form1.cbPromos.Checked And isS Then
+                        params.Clear()
+                        where.Clear()
+
+                        params.Add("cid", cid)
+                        where.Add("fctid", fid)
+                        z.UpdateRecord("promo", params, where)
+                    End If
+                Catch ex As Exception
+                End Try
+            Else
+                Try
+
+                    If Form1.cbPvClient.Checked Then
+                        For Each b As CBlock In Form1.plright.Controls
+                            If b.ID = fid Then
+                                b.lb.Text = clientname
+                            End If
+                        Next
+
+                    Else
+                        For Each b As Button In Form1.plright.Controls
+                            If b.Tag = fid Then
+                                b.Text = clientname
+                            End If
+                        Next
+                    End If
+
                     Try
-                        Form1.RPl.ClId = cid
-                        Form1.RPl.ClientName = clientname
-                        Form1.RPl.ClientAdresse = adresse
+                        If Form1.cbPromos.Checked And isS And cid > 0 Then
+                            params.Clear()
 
-                        If Form1.cbPvClient.Checked Then
-                            For Each b As CBlock In Form1.plright.Controls
-                                If b.ID = fid Then
-                                    b.lb.Text = clientname
-                                End If
-                            Next
+                            params.Add("cid = ", cid)
+                            params.Add("fctid <> ", fid)
+                            Dim dtPoint = z.SelectDataTableSymbols("promo", {"(SUM(pointIN) - SUM(pointOUT)) AS points"}, params)
 
-                        Else
-                            For Each b As Button In Form1.plright.Controls
-                                If b.Tag = fid Then
-                                    b.Text = clientname
-                                End If
-                            Next
+                            If dtPoint.Rows.Count > 0 Then
+                                Form1.RPl.TotalPoint = dtPoint.Rows(0).Item("points")
+                            End If
+
+                            Form1.RPl.UpdateValue()
                         End If
-
-
                     Catch ex As Exception
+                        Form1.RPl.TotalPoint = 0
                     End Try
-                End If
-            End Using
-        End If
+                Catch ex As Exception
+                End Try
+            End If
+        End Using
     End Sub
-
     Public Sub UpdateValues(ByVal params As Dictionary(Of String, String))
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             For Each k As KeyValuePair(Of String, String) In params

@@ -23,7 +23,59 @@ Partial Class ChequePanel
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ChequePanel))
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.Button11 = New System.Windows.Forms.Button()
+        Me.Button14 = New System.Windows.Forms.Button()
+        Me.Button17 = New System.Windows.Forms.Button()
+        Me.Panel7 = New System.Windows.Forms.Panel()
+        Me.btBloc = New System.Windows.Forms.Button()
+        Me.btList = New System.Windows.Forms.Button()
+        Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.btMode = New System.Windows.Forms.Button()
+        Me.Button19 = New System.Windows.Forms.Button()
+        Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.Panel12 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.plMainSearch = New System.Windows.Forms.Panel()
+        Me.TxtBox1 = New Al_Mohasib.TxtBox()
+        Me.plBlocSearch = New System.Windows.Forms.Panel()
+        Me.Button20 = New System.Windows.Forms.Button()
+        Me.btSearchIcon = New System.Windows.Forms.Button()
+        Me.Panel13 = New System.Windows.Forms.Panel()
+        Me.Panel22 = New System.Windows.Forms.Panel()
+        Me.Panel24 = New System.Windows.Forms.Panel()
+        Me.btSetting = New System.Windows.Forms.Button()
+        Me.btTrial = New System.Windows.Forms.Button()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Button12 = New System.Windows.Forms.Button()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Button9 = New System.Windows.Forms.Button()
+        Me.Button16 = New System.Windows.Forms.Button()
+        Me.Button15 = New System.Windows.Forms.Button()
+        Me.Button10 = New System.Windows.Forms.Button()
+        Me.Panel23 = New System.Windows.Forms.Panel()
+        Me.lbActive = New System.Windows.Forms.Label()
+        Me.pl = New System.Windows.Forms.Panel()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.PlFooter = New System.Windows.Forms.Panel()
+        Me.lbTotal = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lbNbr = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Button21 = New System.Windows.Forms.Button()
+        Me.btPage = New System.Windows.Forms.Button()
+        Me.Button22 = New System.Windows.Forms.Button()
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Button18 = New System.Windows.Forms.Button()
         Me.Panel15 = New System.Windows.Forms.Panel()
@@ -53,76 +105,21 @@ Partial Class ChequePanel
         Me.txtD1 = New Al_Mohasib.TxtBox()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Panel24 = New System.Windows.Forms.Panel()
-        Me.btSetting = New System.Windows.Forms.Button()
-        Me.btTrial = New System.Windows.Forms.Button()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Button12 = New System.Windows.Forms.Button()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Button9 = New System.Windows.Forms.Button()
-        Me.Button16 = New System.Windows.Forms.Button()
-        Me.Button15 = New System.Windows.Forms.Button()
-        Me.Button10 = New System.Windows.Forms.Button()
-        Me.Panel23 = New System.Windows.Forms.Panel()
-        Me.lbActive = New System.Windows.Forms.Label()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Panel25 = New System.Windows.Forms.Panel()
-        Me.Panel26 = New System.Windows.Forms.Panel()
-        Me.dg = New System.Windows.Forms.DataGridView()
-        Me.Panel27 = New System.Windows.Forms.Panel()
-        Me.lbQteIn = New System.Windows.Forms.Label()
-        Me.Label24 = New System.Windows.Forms.Label()
-        Me.lbLnbr = New System.Windows.Forms.Label()
-        Me.Label25 = New System.Windows.Forms.Label()
-        Me.Panel29 = New System.Windows.Forms.Panel()
-        Me.Panel28 = New System.Windows.Forms.Panel()
-        Me.Panel12 = New System.Windows.Forms.Panel()
-        Me.Panel11 = New System.Windows.Forms.Panel()
-        Me.Button11 = New System.Windows.Forms.Button()
-        Me.Panel22 = New System.Windows.Forms.Panel()
-        Me.CbWay = New System.Windows.Forms.ComboBox()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.cbBanque = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.btcancel = New System.Windows.Forms.Button()
-        Me.Panel6 = New System.Windows.Forms.Panel()
-        Me.txtClient = New Al_Mohasib.TxtBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Button17 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Panel13 = New System.Windows.Forms.Panel()
-        Me.lbR = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.lbA = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.lbT = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Panel10 = New System.Windows.Forms.Panel()
-        Me.txtBon = New Al_Mohasib.TxtBox()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.plMsg = New System.Windows.Forms.Panel()
-        Me.lbMsg = New System.Windows.Forms.Label()
-        Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.txtRef = New Al_Mohasib.TxtBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.plM = New System.Windows.Forms.Panel()
-        Me.lbMontant = New System.Windows.Forms.Label()
-        Me.txtMontant = New Al_Mohasib.TxtBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Panel8 = New System.Windows.Forms.Panel()
-        Me.txtEcheance = New Al_Mohasib.TxtBox()
-        Me.Button14 = New System.Windows.Forms.Button()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
-        Me.Panel1.SuspendLayout()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2.SuspendLayout()
+        Me.Panel5.SuspendLayout()
+        Me.Panel11.SuspendLayout()
+        Me.Panel10.SuspendLayout()
+        Me.Panel6.SuspendLayout()
+        Me.Panel7.SuspendLayout()
+        Me.Panel8.SuspendLayout()
+        Me.Panel9.SuspendLayout()
+        Me.Panel12.SuspendLayout()
+        Me.plMainSearch.SuspendLayout()
+        Me.Panel24.SuspendLayout()
+        Me.Panel23.SuspendLayout()
+        Me.Panel4.SuspendLayout()
+        Me.PlFooter.SuspendLayout()
         Me.Panel14.SuspendLayout()
         Me.Panel15.SuspendLayout()
         Me.Panel16.SuspendLayout()
@@ -131,36 +128,732 @@ Partial Class ChequePanel
         Me.Panel19.SuspendLayout()
         Me.Panel17.SuspendLayout()
         Me.Panel21.SuspendLayout()
-        Me.Panel2.SuspendLayout()
-        Me.Panel24.SuspendLayout()
-        Me.Panel23.SuspendLayout()
-        Me.Panel3.SuspendLayout()
-        Me.Panel25.SuspendLayout()
-        Me.Panel26.SuspendLayout()
-        CType(Me.dg, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel27.SuspendLayout()
-        Me.Panel29.SuspendLayout()
-        Me.Panel12.SuspendLayout()
-        Me.Panel11.SuspendLayout()
-        Me.Panel22.SuspendLayout()
-        Me.Panel5.SuspendLayout()
-        Me.Panel6.SuspendLayout()
-        Me.Panel13.SuspendLayout()
-        Me.Panel10.SuspendLayout()
-        Me.plMsg.SuspendLayout()
-        Me.Panel9.SuspendLayout()
-        Me.plM.SuspendLayout()
-        Me.Panel8.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Panel1
+        'Panel2
         '
-        Me.Panel1.Controls.Add(Me.Panel14)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel1.Location = New System.Drawing.Point(0, 95)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(332, 469)
-        Me.Panel1.TabIndex = 0
+        Me.Panel2.Controls.Add(Me.Panel5)
+        Me.Panel2.Controls.Add(Me.Panel24)
+        Me.Panel2.Controls.Add(Me.Panel23)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(1142, 148)
+        Me.Panel2.TabIndex = 0
+        '
+        'Panel5
+        '
+        Me.Panel5.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Panel5.Controls.Add(Me.Button1)
+        Me.Panel5.Controls.Add(Me.Button2)
+        Me.Panel5.Controls.Add(Me.Panel11)
+        Me.Panel5.Controls.Add(Me.Panel6)
+        Me.Panel5.Controls.Add(Me.Panel7)
+        Me.Panel5.Controls.Add(Me.Panel8)
+        Me.Panel5.Controls.Add(Me.Panel9)
+        Me.Panel5.Controls.Add(Me.Panel22)
+        Me.Panel5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel5.Location = New System.Drawing.Point(0, 59)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Padding = New System.Windows.Forms.Padding(5)
+        Me.Panel5.Size = New System.Drawing.Size(1142, 89)
+        Me.Panel5.TabIndex = 34
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.Location = New System.Drawing.Point(332, 46)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(37, 37)
+        Me.Button1.TabIndex = 22
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.Color.Transparent
+        Me.Button2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button2.Location = New System.Drawing.Point(369, 46)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(33, 37)
+        Me.Button2.TabIndex = 21
+        Me.Button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button2.UseVisualStyleBackColor = False
+        '
+        'Panel11
+        '
+        Me.Panel11.Controls.Add(Me.Label7)
+        Me.Panel11.Controls.Add(Me.Panel10)
+        Me.Panel11.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel11.Location = New System.Drawing.Point(5, 46)
+        Me.Panel11.Name = "Panel11"
+        Me.Panel11.Padding = New System.Windows.Forms.Padding(4)
+        Me.Panel11.Size = New System.Drawing.Size(240, 37)
+        Me.Panel11.TabIndex = 10
+        '
+        'Label7
+        '
+        Me.Label7.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label7.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(222, Byte), Integer))
+        Me.Label7.Location = New System.Drawing.Point(108, 4)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Padding = New System.Windows.Forms.Padding(3)
+        Me.Label7.Size = New System.Drawing.Size(73, 29)
+        Me.Label7.TabIndex = 9
+        Me.Label7.Text = "Modifie"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Panel10
+        '
+        Me.Panel10.BackColor = System.Drawing.Color.Transparent
+        Me.Panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel10.Controls.Add(Me.Button6)
+        Me.Panel10.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel10.Location = New System.Drawing.Point(4, 4)
+        Me.Panel10.Name = "Panel10"
+        Me.Panel10.Size = New System.Drawing.Size(104, 29)
+        Me.Panel10.TabIndex = 8
+        '
+        'Button6
+        '
+        Me.Button6.BackColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(222, Byte), Integer))
+        Me.Button6.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button6.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button6.ForeColor = System.Drawing.Color.Ivory
+        Me.Button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button6.Location = New System.Drawing.Point(0, 0)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(102, 27)
+        Me.Button6.TabIndex = 2
+        Me.Button6.Text = "Nouveau"
+        Me.Button6.UseVisualStyleBackColor = False
+        '
+        'Panel6
+        '
+        Me.Panel6.Controls.Add(Me.Button11)
+        Me.Panel6.Controls.Add(Me.Button14)
+        Me.Panel6.Controls.Add(Me.Button17)
+        Me.Panel6.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel6.Location = New System.Drawing.Point(402, 46)
+        Me.Panel6.Name = "Panel6"
+        Me.Panel6.Padding = New System.Windows.Forms.Padding(2)
+        Me.Panel6.Size = New System.Drawing.Size(317, 37)
+        Me.Panel6.TabIndex = 5
+        '
+        'Button11
+        '
+        Me.Button11.BackColor = System.Drawing.Color.Transparent
+        Me.Button11.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button11.FlatAppearance.BorderSize = 0
+        Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button11.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button11.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.Button11.Image = Global.Al_Mohasib.My.Resources.Resources._7787506_filter_funnel_sort_sorting_conversion_icon
+        Me.Button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button11.Location = New System.Drawing.Point(5, 2)
+        Me.Button11.Name = "Button11"
+        Me.Button11.Padding = New System.Windows.Forms.Padding(3)
+        Me.Button11.Size = New System.Drawing.Size(104, 33)
+        Me.Button11.TabIndex = 3
+        Me.Button11.Tag = ""
+        Me.Button11.Text = "En cours"
+        Me.Button11.UseVisualStyleBackColor = False
+        '
+        'Button14
+        '
+        Me.Button14.BackColor = System.Drawing.Color.Transparent
+        Me.Button14.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button14.FlatAppearance.BorderSize = 0
+        Me.Button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button14.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button14.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.Button14.Image = CType(resources.GetObject("Button14.Image"), System.Drawing.Image)
+        Me.Button14.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button14.Location = New System.Drawing.Point(109, 2)
+        Me.Button14.Name = "Button14"
+        Me.Button14.Padding = New System.Windows.Forms.Padding(3)
+        Me.Button14.Size = New System.Drawing.Size(97, 33)
+        Me.Button14.TabIndex = 1
+        Me.Button14.Text = "Payé"
+        Me.Button14.UseVisualStyleBackColor = False
+        '
+        'Button17
+        '
+        Me.Button17.BackColor = System.Drawing.Color.Transparent
+        Me.Button17.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button17.FlatAppearance.BorderSize = 0
+        Me.Button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button17.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button17.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.Button17.Image = Global.Al_Mohasib.My.Resources.Resources._3844437_hamburger_list_menu_more_navigation_icon
+        Me.Button17.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button17.Location = New System.Drawing.Point(206, 2)
+        Me.Button17.Name = "Button17"
+        Me.Button17.Padding = New System.Windows.Forms.Padding(3)
+        Me.Button17.Size = New System.Drawing.Size(109, 33)
+        Me.Button17.TabIndex = 2
+        Me.Button17.Text = "Impayé"
+        Me.Button17.UseVisualStyleBackColor = False
+        '
+        'Panel7
+        '
+        Me.Panel7.Controls.Add(Me.btBloc)
+        Me.Panel7.Controls.Add(Me.btList)
+        Me.Panel7.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel7.Location = New System.Drawing.Point(719, 46)
+        Me.Panel7.Name = "Panel7"
+        Me.Panel7.Padding = New System.Windows.Forms.Padding(7)
+        Me.Panel7.Size = New System.Drawing.Size(129, 37)
+        Me.Panel7.TabIndex = 4
+        '
+        'btBloc
+        '
+        Me.btBloc.BackColor = System.Drawing.Color.Transparent
+        Me.btBloc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btBloc.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btBloc.FlatAppearance.BorderSize = 0
+        Me.btBloc.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btBloc.Image = Global.Al_Mohasib.My.Resources.Resources._172626_user_male_icon
+        Me.btBloc.Location = New System.Drawing.Point(22, 7)
+        Me.btBloc.Name = "btBloc"
+        Me.btBloc.Size = New System.Drawing.Size(50, 23)
+        Me.btBloc.TabIndex = 3
+        Me.btBloc.UseVisualStyleBackColor = False
+        '
+        'btList
+        '
+        Me.btList.BackColor = System.Drawing.Color.Transparent
+        Me.btList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btList.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btList.FlatAppearance.BorderSize = 0
+        Me.btList.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btList.Image = Global.Al_Mohasib.My.Resources.Resources._3844437_hamburger_list_menu_more_navigation_icon
+        Me.btList.Location = New System.Drawing.Point(72, 7)
+        Me.btList.Name = "btList"
+        Me.btList.Size = New System.Drawing.Size(50, 23)
+        Me.btList.TabIndex = 2
+        Me.btList.UseVisualStyleBackColor = False
+        '
+        'Panel8
+        '
+        Me.Panel8.Controls.Add(Me.btMode)
+        Me.Panel8.Controls.Add(Me.Button19)
+        Me.Panel8.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel8.Location = New System.Drawing.Point(848, 46)
+        Me.Panel8.Name = "Panel8"
+        Me.Panel8.Padding = New System.Windows.Forms.Padding(5, 5, 10, 5)
+        Me.Panel8.Size = New System.Drawing.Size(289, 37)
+        Me.Panel8.TabIndex = 3
+        '
+        'btMode
+        '
+        Me.btMode.BackColor = System.Drawing.Color.Transparent
+        Me.btMode.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btMode.FlatAppearance.BorderSize = 0
+        Me.btMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btMode.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.btMode.Image = Global.Al_Mohasib.My.Resources.Resources._9004741_calendar_date_schedule_event_icon
+        Me.btMode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btMode.Location = New System.Drawing.Point(22, 5)
+        Me.btMode.Name = "btMode"
+        Me.btMode.Size = New System.Drawing.Size(162, 27)
+        Me.btMode.TabIndex = 2
+        Me.btMode.Text = "V : Vente"
+        Me.btMode.UseVisualStyleBackColor = False
+        '
+        'Button19
+        '
+        Me.Button19.BackColor = System.Drawing.Color.Transparent
+        Me.Button19.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button19.FlatAppearance.BorderSize = 0
+        Me.Button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button19.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.Button19.Image = Global.Al_Mohasib.My.Resources.Resources.EDIT_22X22
+        Me.Button19.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button19.Location = New System.Drawing.Point(184, 5)
+        Me.Button19.Name = "Button19"
+        Me.Button19.Padding = New System.Windows.Forms.Padding(8, 0, 8, 0)
+        Me.Button19.Size = New System.Drawing.Size(95, 27)
+        Me.Button19.TabIndex = 0
+        Me.Button19.Text = "Mode"
+        Me.Button19.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button19.UseVisualStyleBackColor = False
+        '
+        'Panel9
+        '
+        Me.Panel9.Controls.Add(Me.Panel12)
+        Me.Panel9.Controls.Add(Me.plMainSearch)
+        Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel9.Location = New System.Drawing.Point(5, 5)
+        Me.Panel9.Name = "Panel9"
+        Me.Panel9.Padding = New System.Windows.Forms.Padding(5)
+        Me.Panel9.Size = New System.Drawing.Size(1132, 41)
+        Me.Panel9.TabIndex = 2
+        '
+        'Panel12
+        '
+        Me.Panel12.Controls.Add(Me.Label1)
+        Me.Panel12.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel12.Location = New System.Drawing.Point(389, 5)
+        Me.Panel12.Name = "Panel12"
+        Me.Panel12.Padding = New System.Windows.Forms.Padding(2)
+        Me.Panel12.Size = New System.Drawing.Size(88, 31)
+        Me.Panel12.TabIndex = 8
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.SystemColors.ButtonShadow
+        Me.Label1.Location = New System.Drawing.Point(5, 9)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(77, 12)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "T:  M:   V:   N:"
+        '
+        'plMainSearch
+        '
+        Me.plMainSearch.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.plMainSearch.Controls.Add(Me.TxtBox1)
+        Me.plMainSearch.Controls.Add(Me.plBlocSearch)
+        Me.plMainSearch.Controls.Add(Me.Button20)
+        Me.plMainSearch.Controls.Add(Me.btSearchIcon)
+        Me.plMainSearch.Controls.Add(Me.Panel13)
+        Me.plMainSearch.Dock = System.Windows.Forms.DockStyle.Right
+        Me.plMainSearch.Location = New System.Drawing.Point(477, 5)
+        Me.plMainSearch.Name = "plMainSearch"
+        Me.plMainSearch.Size = New System.Drawing.Size(650, 31)
+        Me.plMainSearch.TabIndex = 7
+        '
+        'TxtBox1
+        '
+        Me.TxtBox1.BackColor = System.Drawing.Color.Transparent
+        Me.TxtBox1.BorderColor = System.Drawing.Color.Transparent
+        Me.TxtBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TxtBox1.IsNumiric = False
+        Me.TxtBox1.Location = New System.Drawing.Point(33, 0)
+        Me.TxtBox1.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.TxtBox1.Name = "TxtBox1"
+        Me.TxtBox1.ShowClearIcon = False
+        Me.TxtBox1.ShowSaveIcon = False
+        Me.TxtBox1.Size = New System.Drawing.Size(567, 30)
+        Me.TxtBox1.StartUp = 2
+        Me.TxtBox1.TabIndex = 9
+        Me.TxtBox1.TextSize = 8
+        Me.TxtBox1.TxtBackColor = True
+        Me.TxtBox1.TxtColor = System.Drawing.Color.WhiteSmoke
+        Me.TxtBox1.txtReadOnly = False
+        Me.TxtBox1.TxtSelect = New Integer() {1, 0}
+        '
+        'plBlocSearch
+        '
+        Me.plBlocSearch.AutoSize = True
+        Me.plBlocSearch.Dock = System.Windows.Forms.DockStyle.Left
+        Me.plBlocSearch.Location = New System.Drawing.Point(27, 0)
+        Me.plBlocSearch.Name = "plBlocSearch"
+        Me.plBlocSearch.Padding = New System.Windows.Forms.Padding(3, 1, 3, 1)
+        Me.plBlocSearch.Size = New System.Drawing.Size(6, 30)
+        Me.plBlocSearch.TabIndex = 7
+        '
+        'Button20
+        '
+        Me.Button20.BackColor = System.Drawing.Color.Transparent
+        Me.Button20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button20.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button20.FlatAppearance.BorderSize = 0
+        Me.Button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button20.Location = New System.Drawing.Point(600, 0)
+        Me.Button20.Name = "Button20"
+        Me.Button20.Size = New System.Drawing.Size(50, 30)
+        Me.Button20.TabIndex = 6
+        Me.Button20.UseVisualStyleBackColor = False
+        '
+        'btSearchIcon
+        '
+        Me.btSearchIcon.BackColor = System.Drawing.Color.Transparent
+        Me.btSearchIcon.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.SORTCOLOR20
+        Me.btSearchIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btSearchIcon.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btSearchIcon.FlatAppearance.BorderSize = 0
+        Me.btSearchIcon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btSearchIcon.Location = New System.Drawing.Point(0, 0)
+        Me.btSearchIcon.Name = "btSearchIcon"
+        Me.btSearchIcon.Padding = New System.Windows.Forms.Padding(0, 0, 10, 0)
+        Me.btSearchIcon.Size = New System.Drawing.Size(27, 30)
+        Me.btSearchIcon.TabIndex = 8
+        Me.btSearchIcon.UseVisualStyleBackColor = False
+        '
+        'Panel13
+        '
+        Me.Panel13.BackColor = System.Drawing.Color.Silver
+        Me.Panel13.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel13.Location = New System.Drawing.Point(0, 30)
+        Me.Panel13.Name = "Panel13"
+        Me.Panel13.Size = New System.Drawing.Size(650, 1)
+        Me.Panel13.TabIndex = 5
+        '
+        'Panel22
+        '
+        Me.Panel22.BackColor = System.Drawing.Color.Silver
+        Me.Panel22.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel22.Location = New System.Drawing.Point(5, 83)
+        Me.Panel22.Name = "Panel22"
+        Me.Panel22.Size = New System.Drawing.Size(1132, 1)
+        Me.Panel22.TabIndex = 6
+        '
+        'Panel24
+        '
+        Me.Panel24.BackColor = System.Drawing.Color.Silver
+        Me.Panel24.Controls.Add(Me.btSetting)
+        Me.Panel24.Controls.Add(Me.btTrial)
+        Me.Panel24.Controls.Add(Me.Label17)
+        Me.Panel24.Controls.Add(Me.Label14)
+        Me.Panel24.Controls.Add(Me.Button12)
+        Me.Panel24.Controls.Add(Me.Label22)
+        Me.Panel24.Controls.Add(Me.Label20)
+        Me.Panel24.Controls.Add(Me.Label15)
+        Me.Panel24.Controls.Add(Me.Button9)
+        Me.Panel24.Controls.Add(Me.Button16)
+        Me.Panel24.Controls.Add(Me.Button15)
+        Me.Panel24.Controls.Add(Me.Button10)
+        Me.Panel24.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel24.Location = New System.Drawing.Point(0, 18)
+        Me.Panel24.Name = "Panel24"
+        Me.Panel24.Size = New System.Drawing.Size(1142, 41)
+        Me.Panel24.TabIndex = 2
+        '
+        'btSetting
+        '
+        Me.btSetting.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.iconfinder_Gnome_Emblem_System_48_55301
+        Me.btSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btSetting.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btSetting.FlatAppearance.BorderSize = 0
+        Me.btSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btSetting.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btSetting.ForeColor = System.Drawing.SystemColors.HighlightText
+        Me.btSetting.Location = New System.Drawing.Point(1040, 0)
+        Me.btSetting.Name = "btSetting"
+        Me.btSetting.Size = New System.Drawing.Size(52, 41)
+        Me.btSetting.TabIndex = 13
+        Me.btSetting.UseVisualStyleBackColor = True
+        '
+        'btTrial
+        '
+        Me.btTrial.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.trial_22
+        Me.btTrial.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.btTrial.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btTrial.FlatAppearance.BorderSize = 0
+        Me.btTrial.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btTrial.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btTrial.ForeColor = System.Drawing.SystemColors.HighlightText
+        Me.btTrial.Location = New System.Drawing.Point(1092, 0)
+        Me.btTrial.Name = "btTrial"
+        Me.btTrial.Size = New System.Drawing.Size(50, 41)
+        Me.btTrial.TabIndex = 14
+        Me.btTrial.UseVisualStyleBackColor = True
+        '
+        'Label17
+        '
+        Me.Label17.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.ForeColor = System.Drawing.Color.SaddleBrown
+        Me.Label17.Location = New System.Drawing.Point(946, 10)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(43, 19)
+        Me.Label17.TabIndex = 11
+        Me.Label17.Text = "خـروج"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ForeColor = System.Drawing.Color.Navy
+        Me.Label14.Location = New System.Drawing.Point(123, 11)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(46, 19)
+        Me.Label14.TabIndex = 11
+        Me.Label14.Text = "بـحــــت"
+        '
+        'Button12
+        '
+        Me.Button12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button12.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Button12.FlatAppearance.BorderSize = 0
+        Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button12.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button12.ForeColor = System.Drawing.Color.SaddleBrown
+        Me.Button12.Image = Global.Al_Mohasib.My.Resources.Resources.vector_cancel_icon_png_302651
+        Me.Button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button12.Location = New System.Drawing.Point(844, 3)
+        Me.Button12.Name = "Button12"
+        Me.Button12.Size = New System.Drawing.Size(145, 35)
+        Me.Button12.TabIndex = 10
+        Me.Button12.Text = "       Deconecter"
+        Me.Button12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button12.UseVisualStyleBackColor = True
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.ForeColor = System.Drawing.Color.Navy
+        Me.Label22.Location = New System.Drawing.Point(610, 11)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(43, 19)
+        Me.Label22.TabIndex = 11
+        Me.Label22.Text = "الـبـنـك"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.Color.Navy
+        Me.Label20.Location = New System.Drawing.Point(442, 11)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(53, 19)
+        Me.Label20.TabIndex = 11
+        Me.Label20.Text = "تــعــديــل"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.ForeColor = System.Drawing.Color.Navy
+        Me.Label15.Location = New System.Drawing.Point(272, 11)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(49, 19)
+        Me.Label15.TabIndex = 11
+        Me.Label15.Text = "جــديــــد"
+        '
+        'Button9
+        '
+        Me.Button9.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Button9.FlatAppearance.BorderSize = 0
+        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button9.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button9.ForeColor = System.Drawing.Color.Navy
+        Me.Button9.Image = Global.Al_Mohasib.My.Resources.Resources.usersearch
+        Me.Button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button9.Location = New System.Drawing.Point(13, 3)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(156, 35)
+        Me.Button9.TabIndex = 10
+        Me.Button9.Text = "          Recherche"
+        Me.Button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button9.UseVisualStyleBackColor = True
+        '
+        'Button16
+        '
+        Me.Button16.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Button16.FlatAppearance.BorderSize = 0
+        Me.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button16.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button16.ForeColor = System.Drawing.Color.Navy
+        Me.Button16.Image = Global.Al_Mohasib.My.Resources.Resources.FACTURE_20
+        Me.Button16.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button16.Location = New System.Drawing.Point(509, 3)
+        Me.Button16.Name = "Button16"
+        Me.Button16.Size = New System.Drawing.Size(154, 35)
+        Me.Button16.TabIndex = 10
+        Me.Button16.Text = "        Banques"
+        Me.Button16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button16.UseVisualStyleBackColor = True
+        '
+        'Button15
+        '
+        Me.Button15.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Button15.FlatAppearance.BorderSize = 0
+        Me.Button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button15.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button15.ForeColor = System.Drawing.Color.Navy
+        Me.Button15.Image = Global.Al_Mohasib.My.Resources.Resources.FACTURE_20
+        Me.Button15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button15.Location = New System.Drawing.Point(341, 3)
+        Me.Button15.Name = "Button15"
+        Me.Button15.Size = New System.Drawing.Size(154, 35)
+        Me.Button15.TabIndex = 10
+        Me.Button15.Text = "           Modifier"
+        Me.Button15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button15.UseVisualStyleBackColor = True
+        '
+        'Button10
+        '
+        Me.Button10.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Button10.FlatAppearance.BorderSize = 0
+        Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button10.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button10.ForeColor = System.Drawing.Color.Navy
+        Me.Button10.Image = Global.Al_Mohasib.My.Resources.Resources.ADD14
+        Me.Button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button10.Location = New System.Drawing.Point(190, 3)
+        Me.Button10.Name = "Button10"
+        Me.Button10.Size = New System.Drawing.Size(142, 35)
+        Me.Button10.TabIndex = 10
+        Me.Button10.Text = "      Nouveau"
+        Me.Button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button10.UseVisualStyleBackColor = True
+        '
+        'Panel23
+        '
+        Me.Panel23.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Panel23.Controls.Add(Me.lbActive)
+        Me.Panel23.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel23.Location = New System.Drawing.Point(0, 0)
+        Me.Panel23.Name = "Panel23"
+        Me.Panel23.Size = New System.Drawing.Size(1142, 18)
+        Me.Panel23.TabIndex = 1
+        '
+        'lbActive
+        '
+        Me.lbActive.AutoSize = True
+        Me.lbActive.Dock = System.Windows.Forms.DockStyle.Right
+        Me.lbActive.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbActive.ForeColor = System.Drawing.SystemColors.Control
+        Me.lbActive.Location = New System.Drawing.Point(1123, 0)
+        Me.lbActive.Name = "lbActive"
+        Me.lbActive.Size = New System.Drawing.Size(19, 15)
+        Me.lbActive.TabIndex = 12
+        Me.lbActive.Text = "00"
+        Me.lbActive.Visible = False
+        '
+        'pl
+        '
+        Me.pl.BackColor = System.Drawing.Color.White
+        Me.pl.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pl.Location = New System.Drawing.Point(321, 148)
+        Me.pl.Name = "pl"
+        Me.pl.Size = New System.Drawing.Size(821, 397)
+        Me.pl.TabIndex = 0
+        '
+        'Panel4
+        '
+        Me.Panel4.Controls.Add(Me.PlFooter)
+        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel4.Location = New System.Drawing.Point(0, 545)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(1142, 37)
+        Me.Panel4.TabIndex = 1
+        '
+        'PlFooter
+        '
+        Me.PlFooter.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.PlFooter.Controls.Add(Me.lbTotal)
+        Me.PlFooter.Controls.Add(Me.Label2)
+        Me.PlFooter.Controls.Add(Me.lbNbr)
+        Me.PlFooter.Controls.Add(Me.Label4)
+        Me.PlFooter.Controls.Add(Me.Button21)
+        Me.PlFooter.Controls.Add(Me.btPage)
+        Me.PlFooter.Controls.Add(Me.Button22)
+        Me.PlFooter.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PlFooter.Location = New System.Drawing.Point(0, 5)
+        Me.PlFooter.Name = "PlFooter"
+        Me.PlFooter.Size = New System.Drawing.Size(1142, 32)
+        Me.PlFooter.TabIndex = 37
+        '
+        'lbTotal
+        '
+        Me.lbTotal.BackColor = System.Drawing.Color.LightGray
+        Me.lbTotal.Dock = System.Windows.Forms.DockStyle.Left
+        Me.lbTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbTotal.Location = New System.Drawing.Point(238, 0)
+        Me.lbTotal.Name = "lbTotal"
+        Me.lbTotal.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
+        Me.lbTotal.Size = New System.Drawing.Size(153, 32)
+        Me.lbTotal.TabIndex = 12
+        Me.lbTotal.Text = "0"
+        Me.lbTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label2
+        '
+        Me.Label2.BackColor = System.Drawing.Color.Gainsboro
+        Me.Label2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(161, 0)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
+        Me.Label2.Size = New System.Drawing.Size(77, 32)
+        Me.Label2.TabIndex = 7
+        Me.Label2.Text = "Total :"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lbNbr
+        '
+        Me.lbNbr.BackColor = System.Drawing.Color.LightGray
+        Me.lbNbr.Dock = System.Windows.Forms.DockStyle.Left
+        Me.lbNbr.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbNbr.Location = New System.Drawing.Point(71, 0)
+        Me.lbNbr.Name = "lbNbr"
+        Me.lbNbr.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
+        Me.lbNbr.Size = New System.Drawing.Size(90, 32)
+        Me.lbNbr.TabIndex = 8
+        Me.lbNbr.Text = "0"
+        Me.lbNbr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label4
+        '
+        Me.Label4.BackColor = System.Drawing.Color.Gainsboro
+        Me.Label4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(0, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
+        Me.Label4.Size = New System.Drawing.Size(71, 32)
+        Me.Label4.TabIndex = 9
+        Me.Label4.Text = "Nbre :"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Button21
+        '
+        Me.Button21.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button21.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button21.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.Button21.Location = New System.Drawing.Point(962, 0)
+        Me.Button21.Name = "Button21"
+        Me.Button21.Padding = New System.Windows.Forms.Padding(4, 0, 0, 0)
+        Me.Button21.Size = New System.Drawing.Size(60, 32)
+        Me.Button21.TabIndex = 5
+        Me.Button21.Text = "<"
+        Me.Button21.UseVisualStyleBackColor = True
+        '
+        'btPage
+        '
+        Me.btPage.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btPage.Enabled = False
+        Me.btPage.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btPage.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btPage.Location = New System.Drawing.Point(1022, 0)
+        Me.btPage.Name = "btPage"
+        Me.btPage.Padding = New System.Windows.Forms.Padding(4, 0, 0, 0)
+        Me.btPage.Size = New System.Drawing.Size(60, 32)
+        Me.btPage.TabIndex = 4
+        Me.btPage.Text = "-"
+        Me.btPage.UseVisualStyleBackColor = True
+        '
+        'Button22
+        '
+        Me.Button22.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button22.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button22.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.Button22.Location = New System.Drawing.Point(1082, 0)
+        Me.Button22.Name = "Button22"
+        Me.Button22.Padding = New System.Windows.Forms.Padding(4, 0, 0, 0)
+        Me.Button22.Size = New System.Drawing.Size(60, 32)
+        Me.Button22.TabIndex = 6
+        Me.Button22.Text = ">"
+        Me.Button22.UseVisualStyleBackColor = True
         '
         'Panel14
         '
@@ -241,7 +934,7 @@ Partial Class ChequePanel
         Me.Button3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Button3.Image = Global.Al_Mohasib.My.Resources.Resources.vector_cancel_icon_png_302651
         Me.Button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button3.Location = New System.Drawing.Point(24, 380)
+        Me.Button3.Location = New System.Drawing.Point(35, 356)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(63, 35)
         Me.Button3.TabIndex = 7
@@ -312,7 +1005,7 @@ Partial Class ChequePanel
         Me.Button7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Button7.Image = Global.Al_Mohasib.My.Resources.Resources.searchmini
         Me.Button7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button7.Location = New System.Drawing.Point(94, 379)
+        Me.Button7.Location = New System.Drawing.Point(105, 355)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(153, 36)
         Me.Button7.TabIndex = 6
@@ -566,929 +1259,22 @@ Partial Class ChequePanel
         Me.Label21.Text = "Date 1"
         Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Panel2
-        '
-        Me.Panel2.Controls.Add(Me.Panel24)
-        Me.Panel2.Controls.Add(Me.Panel23)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1142, 95)
-        Me.Panel2.TabIndex = 0
-        '
-        'Panel24
-        '
-        Me.Panel24.BackColor = System.Drawing.Color.Silver
-        Me.Panel24.Controls.Add(Me.btSetting)
-        Me.Panel24.Controls.Add(Me.btTrial)
-        Me.Panel24.Controls.Add(Me.Label17)
-        Me.Panel24.Controls.Add(Me.Label14)
-        Me.Panel24.Controls.Add(Me.Button12)
-        Me.Panel24.Controls.Add(Me.Label22)
-        Me.Panel24.Controls.Add(Me.Label20)
-        Me.Panel24.Controls.Add(Me.Label15)
-        Me.Panel24.Controls.Add(Me.Button9)
-        Me.Panel24.Controls.Add(Me.Button16)
-        Me.Panel24.Controls.Add(Me.Button15)
-        Me.Panel24.Controls.Add(Me.Button10)
-        Me.Panel24.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel24.Location = New System.Drawing.Point(0, 18)
-        Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(1142, 41)
-        Me.Panel24.TabIndex = 2
-        '
-        'btSetting
-        '
-        Me.btSetting.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.iconfinder_Gnome_Emblem_System_48_55301
-        Me.btSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btSetting.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btSetting.FlatAppearance.BorderSize = 0
-        Me.btSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btSetting.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btSetting.ForeColor = System.Drawing.SystemColors.HighlightText
-        Me.btSetting.Location = New System.Drawing.Point(1040, 0)
-        Me.btSetting.Name = "btSetting"
-        Me.btSetting.Size = New System.Drawing.Size(52, 41)
-        Me.btSetting.TabIndex = 13
-        Me.btSetting.UseVisualStyleBackColor = True
-        '
-        'btTrial
-        '
-        Me.btTrial.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.trial_22
-        Me.btTrial.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.btTrial.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btTrial.FlatAppearance.BorderSize = 0
-        Me.btTrial.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btTrial.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btTrial.ForeColor = System.Drawing.SystemColors.HighlightText
-        Me.btTrial.Location = New System.Drawing.Point(1092, 0)
-        Me.btTrial.Name = "btTrial"
-        Me.btTrial.Size = New System.Drawing.Size(50, 41)
-        Me.btTrial.TabIndex = 14
-        Me.btTrial.UseVisualStyleBackColor = True
-        '
-        'Label17
-        '
-        Me.Label17.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.ForeColor = System.Drawing.Color.SaddleBrown
-        Me.Label17.Location = New System.Drawing.Point(946, 10)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(43, 19)
-        Me.Label17.TabIndex = 11
-        Me.Label17.Text = "خـروج"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.Color.Navy
-        Me.Label14.Location = New System.Drawing.Point(123, 11)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(46, 19)
-        Me.Label14.TabIndex = 11
-        Me.Label14.Text = "بـحــــت"
-        '
-        'Button12
-        '
-        Me.Button12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button12.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Button12.FlatAppearance.BorderSize = 0
-        Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button12.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button12.ForeColor = System.Drawing.Color.SaddleBrown
-        Me.Button12.Image = Global.Al_Mohasib.My.Resources.Resources.vector_cancel_icon_png_302651
-        Me.Button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button12.Location = New System.Drawing.Point(844, 3)
-        Me.Button12.Name = "Button12"
-        Me.Button12.Size = New System.Drawing.Size(145, 35)
-        Me.Button12.TabIndex = 10
-        Me.Button12.Text = "       Deconecter"
-        Me.Button12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button12.UseVisualStyleBackColor = True
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.ForeColor = System.Drawing.Color.Navy
-        Me.Label22.Location = New System.Drawing.Point(610, 11)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(43, 19)
-        Me.Label22.TabIndex = 11
-        Me.Label22.Text = "الـبـنـك"
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.ForeColor = System.Drawing.Color.Navy
-        Me.Label20.Location = New System.Drawing.Point(442, 11)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(53, 19)
-        Me.Label20.TabIndex = 11
-        Me.Label20.Text = "تــعــديــل"
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.ForeColor = System.Drawing.Color.Navy
-        Me.Label15.Location = New System.Drawing.Point(272, 11)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(49, 19)
-        Me.Label15.TabIndex = 11
-        Me.Label15.Text = "جــديــــد"
-        '
-        'Button9
-        '
-        Me.Button9.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Button9.FlatAppearance.BorderSize = 0
-        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button9.ForeColor = System.Drawing.Color.Navy
-        Me.Button9.Image = Global.Al_Mohasib.My.Resources.Resources.usersearch
-        Me.Button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button9.Location = New System.Drawing.Point(13, 3)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(156, 35)
-        Me.Button9.TabIndex = 10
-        Me.Button9.Text = "          Recherche"
-        Me.Button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button9.UseVisualStyleBackColor = True
-        '
-        'Button16
-        '
-        Me.Button16.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Button16.FlatAppearance.BorderSize = 0
-        Me.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button16.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button16.ForeColor = System.Drawing.Color.Navy
-        Me.Button16.Image = Global.Al_Mohasib.My.Resources.Resources.FACTURE_20
-        Me.Button16.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button16.Location = New System.Drawing.Point(509, 3)
-        Me.Button16.Name = "Button16"
-        Me.Button16.Size = New System.Drawing.Size(154, 35)
-        Me.Button16.TabIndex = 10
-        Me.Button16.Text = "        Banques"
-        Me.Button16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button16.UseVisualStyleBackColor = True
-        '
-        'Button15
-        '
-        Me.Button15.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Button15.FlatAppearance.BorderSize = 0
-        Me.Button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button15.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button15.ForeColor = System.Drawing.Color.Navy
-        Me.Button15.Image = Global.Al_Mohasib.My.Resources.Resources.FACTURE_20
-        Me.Button15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button15.Location = New System.Drawing.Point(341, 3)
-        Me.Button15.Name = "Button15"
-        Me.Button15.Size = New System.Drawing.Size(154, 35)
-        Me.Button15.TabIndex = 10
-        Me.Button15.Text = "           Modifier"
-        Me.Button15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button15.UseVisualStyleBackColor = True
-        '
-        'Button10
-        '
-        Me.Button10.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Button10.FlatAppearance.BorderSize = 0
-        Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button10.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button10.ForeColor = System.Drawing.Color.Navy
-        Me.Button10.Image = Global.Al_Mohasib.My.Resources.Resources.ADD14
-        Me.Button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button10.Location = New System.Drawing.Point(190, 3)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(142, 35)
-        Me.Button10.TabIndex = 10
-        Me.Button10.Text = "      Nouveau"
-        Me.Button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button10.UseVisualStyleBackColor = True
-        '
-        'Panel23
-        '
-        Me.Panel23.BackColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Panel23.Controls.Add(Me.lbActive)
-        Me.Panel23.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel23.Location = New System.Drawing.Point(0, 0)
-        Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(1142, 18)
-        Me.Panel23.TabIndex = 1
-        '
-        'lbActive
-        '
-        Me.lbActive.AutoSize = True
-        Me.lbActive.Dock = System.Windows.Forms.DockStyle.Right
-        Me.lbActive.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbActive.ForeColor = System.Drawing.SystemColors.Control
-        Me.lbActive.Location = New System.Drawing.Point(1123, 0)
-        Me.lbActive.Name = "lbActive"
-        Me.lbActive.Size = New System.Drawing.Size(19, 15)
-        Me.lbActive.TabIndex = 12
-        Me.lbActive.Text = "00"
-        Me.lbActive.Visible = False
-        '
-        'Panel3
-        '
-        Me.Panel3.BackColor = System.Drawing.Color.White
-        Me.Panel3.Controls.Add(Me.Panel25)
-        Me.Panel3.Controls.Add(Me.Panel12)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel3.Location = New System.Drawing.Point(332, 95)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(810, 469)
-        Me.Panel3.TabIndex = 0
-        '
-        'Panel25
-        '
-        Me.Panel25.BackColor = System.Drawing.SystemColors.Control
-        Me.Panel25.Controls.Add(Me.Panel26)
-        Me.Panel25.Controls.Add(Me.Panel29)
-        Me.Panel25.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel25.Location = New System.Drawing.Point(0, 0)
-        Me.Panel25.Name = "Panel25"
-        Me.Panel25.Padding = New System.Windows.Forms.Padding(10, 0, 33, 0)
-        Me.Panel25.Size = New System.Drawing.Size(431, 469)
-        Me.Panel25.TabIndex = 11
-        '
-        'Panel26
-        '
-        Me.Panel26.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel26.BackColor = System.Drawing.Color.White
-        Me.Panel26.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_17_59_22__1_
-        Me.Panel26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Panel26.Controls.Add(Me.dg)
-        Me.Panel26.Controls.Add(Me.Panel27)
-        Me.Panel26.Location = New System.Drawing.Point(0, 0)
-        Me.Panel26.Name = "Panel26"
-        Me.Panel26.Padding = New System.Windows.Forms.Padding(20)
-        Me.Panel26.Size = New System.Drawing.Size(431, 469)
-        Me.Panel26.TabIndex = 8
-        '
-        'dg
-        '
-        Me.dg.AllowUserToAddRows = False
-        Me.dg.AllowUserToDeleteRows = False
-        Me.dg.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dg.BackgroundColor = System.Drawing.Color.White
-        Me.dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dg.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dg.Location = New System.Drawing.Point(20, 20)
-        Me.dg.Name = "dg"
-        Me.dg.ReadOnly = True
-        Me.dg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dg.Size = New System.Drawing.Size(391, 377)
-        Me.dg.TabIndex = 10
-        '
-        'Panel27
-        '
-        Me.Panel27.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Panel27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel27.Controls.Add(Me.lbQteIn)
-        Me.Panel27.Controls.Add(Me.Label24)
-        Me.Panel27.Controls.Add(Me.lbLnbr)
-        Me.Panel27.Controls.Add(Me.Label25)
-        Me.Panel27.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel27.Location = New System.Drawing.Point(20, 397)
-        Me.Panel27.Name = "Panel27"
-        Me.Panel27.Padding = New System.Windows.Forms.Padding(4)
-        Me.Panel27.Size = New System.Drawing.Size(391, 52)
-        Me.Panel27.TabIndex = 7
-        '
-        'lbQteIn
-        '
-        Me.lbQteIn.BackColor = System.Drawing.Color.LightGray
-        Me.lbQteIn.Dock = System.Windows.Forms.DockStyle.Left
-        Me.lbQteIn.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbQteIn.Location = New System.Drawing.Point(311, 4)
-        Me.lbQteIn.Name = "lbQteIn"
-        Me.lbQteIn.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
-        Me.lbQteIn.Size = New System.Drawing.Size(233, 42)
-        Me.lbQteIn.TabIndex = 22
-        Me.lbQteIn.Text = "0"
-        Me.lbQteIn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label24
-        '
-        Me.Label24.BackColor = System.Drawing.Color.Gainsboro
-        Me.Label24.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label24.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.Location = New System.Drawing.Point(215, 4)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
-        Me.Label24.Size = New System.Drawing.Size(96, 42)
-        Me.Label24.TabIndex = 23
-        Me.Label24.Text = "Total"
-        Me.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lbLnbr
-        '
-        Me.lbLnbr.BackColor = System.Drawing.Color.LightGray
-        Me.lbLnbr.Dock = System.Windows.Forms.DockStyle.Left
-        Me.lbLnbr.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbLnbr.Location = New System.Drawing.Point(75, 4)
-        Me.lbLnbr.Name = "lbLnbr"
-        Me.lbLnbr.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
-        Me.lbLnbr.Size = New System.Drawing.Size(140, 42)
-        Me.lbLnbr.TabIndex = 20
-        Me.lbLnbr.Text = "0"
-        Me.lbLnbr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label25
-        '
-        Me.Label25.BackColor = System.Drawing.Color.Gainsboro
-        Me.Label25.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label25.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.Location = New System.Drawing.Point(4, 4)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
-        Me.Label25.Size = New System.Drawing.Size(71, 42)
-        Me.Label25.TabIndex = 21
-        Me.Label25.Text = "Nbre :"
-        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Panel29
-        '
-        Me.Panel29.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel29.BackColor = System.Drawing.Color.White
-        Me.Panel29.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_17_59_22__1_
-        Me.Panel29.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Panel29.Controls.Add(Me.Panel28)
-        Me.Panel29.Location = New System.Drawing.Point(335, 374)
-        Me.Panel29.Name = "Panel29"
-        Me.Panel29.Size = New System.Drawing.Size(0, 92)
-        Me.Panel29.TabIndex = 10
-        '
-        'Panel28
-        '
-        Me.Panel28.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel28.BackColor = System.Drawing.SystemColors.HighlightText
-        Me.Panel28.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.LOGO
-        Me.Panel28.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Panel28.Location = New System.Drawing.Point(13, 16)
-        Me.Panel28.Name = "Panel28"
-        Me.Panel28.Size = New System.Drawing.Size(0, 61)
-        Me.Panel28.TabIndex = 9
-        '
-        'Panel12
-        '
-        Me.Panel12.BackColor = System.Drawing.SystemColors.Control
-        Me.Panel12.Controls.Add(Me.Panel11)
-        Me.Panel12.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel12.Location = New System.Drawing.Point(431, 0)
-        Me.Panel12.Name = "Panel12"
-        Me.Panel12.Padding = New System.Windows.Forms.Padding(10, 0, 33, 0)
-        Me.Panel12.Size = New System.Drawing.Size(379, 469)
-        Me.Panel12.TabIndex = 9
-        '
-        'Panel11
-        '
-        Me.Panel11.BackColor = System.Drawing.Color.White
-        Me.Panel11.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_17_59_22__1_
-        Me.Panel11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Panel11.Controls.Add(Me.Button11)
-        Me.Panel11.Controls.Add(Me.Panel22)
-        Me.Panel11.Controls.Add(Me.Panel5)
-        Me.Panel11.Controls.Add(Me.btcancel)
-        Me.Panel11.Controls.Add(Me.Panel6)
-        Me.Panel11.Controls.Add(Me.Button17)
-        Me.Panel11.Controls.Add(Me.Button1)
-        Me.Panel11.Controls.Add(Me.Panel13)
-        Me.Panel11.Controls.Add(Me.Panel10)
-        Me.Panel11.Controls.Add(Me.plMsg)
-        Me.Panel11.Controls.Add(Me.Panel9)
-        Me.Panel11.Controls.Add(Me.plM)
-        Me.Panel11.Controls.Add(Me.Panel8)
-        Me.Panel11.Location = New System.Drawing.Point(10, 0)
-        Me.Panel11.Name = "Panel11"
-        Me.Panel11.Size = New System.Drawing.Size(384, 469)
-        Me.Panel11.TabIndex = 8
-        '
-        'Button11
-        '
-        Me.Button11.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button11.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Button11.FlatAppearance.BorderSize = 0
-        Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button11.Font = New System.Drawing.Font("Century Gothic", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Button11.Image = Global.Al_Mohasib.My.Resources.Resources.CANCEL_22
-        Me.Button11.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button11.Location = New System.Drawing.Point(338, 19)
-        Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(30, 30)
-        Me.Button11.TabIndex = 7
-        Me.Button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button11.UseVisualStyleBackColor = True
-        '
-        'Panel22
-        '
-        Me.Panel22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel22.Controls.Add(Me.CbWay)
-        Me.Panel22.Controls.Add(Me.Label16)
-        Me.Panel22.Location = New System.Drawing.Point(35, 200)
-        Me.Panel22.Name = "Panel22"
-        Me.Panel22.Size = New System.Drawing.Size(297, 31)
-        Me.Panel22.TabIndex = 4
-        '
-        'CbWay
-        '
-        Me.CbWay.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.CbWay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CbWay.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.CbWay.FormattingEnabled = True
-        Me.CbWay.Items.AddRange(New Object() {"Cheque", "Effet (LC)", "Cache", "Virement Bancaire", "TPE", "AUTRE"})
-        Me.CbWay.Location = New System.Drawing.Point(62, 0)
-        Me.CbWay.Name = "CbWay"
-        Me.CbWay.Size = New System.Drawing.Size(233, 21)
-        Me.CbWay.TabIndex = 4
-        '
-        'Label16
-        '
-        Me.Label16.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label16.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(0, 0)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(62, 29)
-        Me.Label16.TabIndex = 0
-        Me.Label16.Text = "Mode"
-        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Panel5
-        '
-        Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel5.Controls.Add(Me.cbBanque)
-        Me.Panel5.Controls.Add(Me.Label1)
-        Me.Panel5.Location = New System.Drawing.Point(37, 28)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(272, 31)
-        Me.Panel5.TabIndex = 0
-        '
-        'cbBanque
-        '
-        Me.cbBanque.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.cbBanque.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbBanque.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbBanque.FormattingEnabled = True
-        Me.cbBanque.Location = New System.Drawing.Point(62, 0)
-        Me.cbBanque.Name = "cbBanque"
-        Me.cbBanque.Size = New System.Drawing.Size(208, 21)
-        Me.cbBanque.TabIndex = 1
-        '
-        'Label1
-        '
-        Me.Label1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(0, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(62, 29)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Banque"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'btcancel
-        '
-        Me.btcancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btcancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btcancel.Font = New System.Drawing.Font("Century Gothic", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btcancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btcancel.Image = Global.Al_Mohasib.My.Resources.Resources.vector_cancel_icon_png_302651
-        Me.btcancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btcancel.Location = New System.Drawing.Point(35, 406)
-        Me.btcancel.Name = "btcancel"
-        Me.btcancel.Size = New System.Drawing.Size(63, 35)
-        Me.btcancel.TabIndex = 7
-        Me.btcancel.Text = "Reset"
-        Me.btcancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btcancel.UseVisualStyleBackColor = True
-        '
-        'Panel6
-        '
-        Me.Panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel6.Controls.Add(Me.txtClient)
-        Me.Panel6.Controls.Add(Me.Button2)
-        Me.Panel6.Controls.Add(Me.Label2)
-        Me.Panel6.Location = New System.Drawing.Point(37, 65)
-        Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(272, 31)
-        Me.Panel6.TabIndex = 2
-        '
-        'txtClient
-        '
-        Me.txtClient.BackColor = System.Drawing.Color.Transparent
-        Me.txtClient.BorderColor = System.Drawing.Color.Transparent
-        Me.txtClient.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtClient.IsNumiric = False
-        Me.txtClient.Location = New System.Drawing.Point(62, 0)
-        Me.txtClient.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtClient.Name = "txtClient"
-        Me.txtClient.ShowClearIcon = False
-        Me.txtClient.ShowSaveIcon = False
-        Me.txtClient.Size = New System.Drawing.Size(166, 30)
-        Me.txtClient.StartUp = 2
-        Me.txtClient.TabIndex = 2
-        Me.txtClient.TextSize = 8
-        Me.txtClient.TxtBackColor = True
-        Me.txtClient.TxtColor = System.Drawing.Color.White
-        Me.txtClient.txtReadOnly = False
-        Me.txtClient.TxtSelect = New Integer() {1, 0}
-        '
-        'Button2
-        '
-        Me.Button2.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.FACTURE_20
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Button2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(228, 0)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(42, 29)
-        Me.Button2.TabIndex = 8
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Label2
-        '
-        Me.Label2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(0, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(62, 29)
-        Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Client"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Button17
-        '
-        Me.Button17.BackColor = System.Drawing.Color.Blue
-        Me.Button17.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Button17.FlatAppearance.BorderSize = 0
-        Me.Button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button17.Font = New System.Drawing.Font("Century Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Button17.Image = Global.Al_Mohasib.My.Resources.Resources.SAVE_20
-        Me.Button17.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button17.Location = New System.Drawing.Point(111, 406)
-        Me.Button17.Name = "Button17"
-        Me.Button17.Size = New System.Drawing.Size(116, 36)
-        Me.Button17.TabIndex = 6
-        Me.Button17.Tag = "0"
-        Me.Button17.Text = "Enregistrer"
-        Me.Button17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button17.UseVisualStyleBackColor = False
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.Black
-        Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Century Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Button1.Image = Global.Al_Mohasib.My.Resources.Resources.Print_22X22
-        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button1.Location = New System.Drawing.Point(231, 406)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(100, 36)
-        Me.Button1.TabIndex = 6
-        Me.Button1.Tag = "0"
-        Me.Button1.Text = "Imprimer"
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.UseVisualStyleBackColor = False
-        '
-        'Panel13
-        '
-        Me.Panel13.BackColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.Panel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel13.Controls.Add(Me.lbR)
-        Me.Panel13.Controls.Add(Me.Label12)
-        Me.Panel13.Controls.Add(Me.lbA)
-        Me.Panel13.Controls.Add(Me.Label9)
-        Me.Panel13.Controls.Add(Me.lbT)
-        Me.Panel13.Controls.Add(Me.Label7)
-        Me.Panel13.Location = New System.Drawing.Point(37, 139)
-        Me.Panel13.Name = "Panel13"
-        Me.Panel13.Size = New System.Drawing.Size(296, 31)
-        Me.Panel13.TabIndex = 3
-        '
-        'lbR
-        '
-        Me.lbR.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lbR.Font = New System.Drawing.Font("Century Gothic", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbR.Location = New System.Drawing.Point(220, 0)
-        Me.lbR.Name = "lbR"
-        Me.lbR.Size = New System.Drawing.Size(74, 29)
-        Me.lbR.TabIndex = 6
-        Me.lbR.Text = "0.00"
-        Me.lbR.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label12
-        '
-        Me.Label12.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label12.Font = New System.Drawing.Font("Century Gothic", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label12.Location = New System.Drawing.Point(190, 0)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(30, 29)
-        Me.Label12.TabIndex = 5
-        Me.Label12.Text = "- Rs."
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lbA
-        '
-        Me.lbA.Dock = System.Windows.Forms.DockStyle.Left
-        Me.lbA.Font = New System.Drawing.Font("Century Gothic", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbA.Location = New System.Drawing.Point(123, 0)
-        Me.lbA.Name = "lbA"
-        Me.lbA.Size = New System.Drawing.Size(67, 29)
-        Me.lbA.TabIndex = 4
-        Me.lbA.Text = "0.00"
-        Me.lbA.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label9
-        '
-        Me.Label9.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label9.Font = New System.Drawing.Font("Century Gothic", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label9.Location = New System.Drawing.Point(87, 0)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(36, 29)
-        Me.Label9.TabIndex = 3
-        Me.Label9.Text = "- Av."
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lbT
-        '
-        Me.lbT.Dock = System.Windows.Forms.DockStyle.Left
-        Me.lbT.Font = New System.Drawing.Font("Century Gothic", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbT.Location = New System.Drawing.Point(20, 0)
-        Me.lbT.Name = "lbT"
-        Me.lbT.Size = New System.Drawing.Size(67, 29)
-        Me.lbT.TabIndex = 2
-        Me.lbT.Text = "0.00"
-        Me.lbT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label7
-        '
-        Me.Label7.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label7.Font = New System.Drawing.Font("Century Gothic", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label7.Location = New System.Drawing.Point(0, 0)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(20, 29)
-        Me.Label7.TabIndex = 1
-        Me.Label7.Text = "T."
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Panel10
-        '
-        Me.Panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel10.Controls.Add(Me.txtBon)
-        Me.Panel10.Controls.Add(Me.Button6)
-        Me.Panel10.Controls.Add(Me.Label6)
-        Me.Panel10.Location = New System.Drawing.Point(36, 102)
-        Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(272, 31)
-        Me.Panel10.TabIndex = 3
-        '
-        'txtBon
-        '
-        Me.txtBon.BackColor = System.Drawing.Color.Transparent
-        Me.txtBon.BorderColor = System.Drawing.Color.Transparent
-        Me.txtBon.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtBon.IsNumiric = False
-        Me.txtBon.Location = New System.Drawing.Point(62, 0)
-        Me.txtBon.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtBon.Name = "txtBon"
-        Me.txtBon.ShowClearIcon = False
-        Me.txtBon.ShowSaveIcon = False
-        Me.txtBon.Size = New System.Drawing.Size(167, 30)
-        Me.txtBon.StartUp = 2
-        Me.txtBon.TabIndex = 3
-        Me.txtBon.TextSize = 8
-        Me.txtBon.TxtBackColor = True
-        Me.txtBon.TxtColor = System.Drawing.Color.White
-        Me.txtBon.txtReadOnly = False
-        Me.txtBon.TxtSelect = New Integer() {1, 0}
-        '
-        'Button6
-        '
-        Me.Button6.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.BTGROUP
-        Me.Button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Button6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button6.FlatAppearance.BorderSize = 0
-        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Location = New System.Drawing.Point(229, 0)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(41, 29)
-        Me.Button6.TabIndex = 8
-        Me.Button6.UseVisualStyleBackColor = True
-        '
-        'Label6
-        '
-        Me.Label6.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label6.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(0, 0)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(62, 29)
-        Me.Label6.TabIndex = 0
-        Me.Label6.Text = "Bon N°"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'plMsg
-        '
-        Me.plMsg.Controls.Add(Me.lbMsg)
-        Me.plMsg.Location = New System.Drawing.Point(36, 348)
-        Me.plMsg.Name = "plMsg"
-        Me.plMsg.Padding = New System.Windows.Forms.Padding(4)
-        Me.plMsg.Size = New System.Drawing.Size(297, 52)
-        Me.plMsg.TabIndex = 7
-        '
-        'lbMsg
-        '
-        Me.lbMsg.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lbMsg.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbMsg.Location = New System.Drawing.Point(4, 4)
-        Me.lbMsg.Name = "lbMsg"
-        Me.lbMsg.Size = New System.Drawing.Size(289, 44)
-        Me.lbMsg.TabIndex = 0
-        Me.lbMsg.Text = "."
-        Me.lbMsg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Panel9
-        '
-        Me.Panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel9.Controls.Add(Me.txtRef)
-        Me.Panel9.Controls.Add(Me.Label5)
-        Me.Panel9.Location = New System.Drawing.Point(35, 311)
-        Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(297, 31)
-        Me.Panel9.TabIndex = 7
-        '
-        'txtRef
-        '
-        Me.txtRef.BackColor = System.Drawing.Color.Transparent
-        Me.txtRef.BorderColor = System.Drawing.Color.Transparent
-        Me.txtRef.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtRef.IsNumiric = False
-        Me.txtRef.Location = New System.Drawing.Point(62, 0)
-        Me.txtRef.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtRef.Name = "txtRef"
-        Me.txtRef.ShowClearIcon = False
-        Me.txtRef.ShowSaveIcon = False
-        Me.txtRef.Size = New System.Drawing.Size(233, 30)
-        Me.txtRef.StartUp = 2
-        Me.txtRef.TabIndex = 7
-        Me.txtRef.TextSize = 8
-        Me.txtRef.TxtBackColor = True
-        Me.txtRef.TxtColor = System.Drawing.Color.White
-        Me.txtRef.txtReadOnly = False
-        Me.txtRef.TxtSelect = New Integer() {1, 0}
-        '
-        'Label5
-        '
-        Me.Label5.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label5.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(0, 0)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(62, 29)
-        Me.Label5.TabIndex = 0
-        Me.Label5.Text = "Ref/N°"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'plM
-        '
-        Me.plM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.plM.Controls.Add(Me.lbMontant)
-        Me.plM.Controls.Add(Me.txtMontant)
-        Me.plM.Controls.Add(Me.Label3)
-        Me.plM.Location = New System.Drawing.Point(36, 237)
-        Me.plM.Name = "plM"
-        Me.plM.Size = New System.Drawing.Size(297, 31)
-        Me.plM.TabIndex = 5
-        '
-        'lbMontant
-        '
-        Me.lbMontant.BackColor = System.Drawing.Color.Transparent
-        Me.lbMontant.Dock = System.Windows.Forms.DockStyle.Right
-        Me.lbMontant.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.lbMontant.Font = New System.Drawing.Font("Century Gothic", 13.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbMontant.ForeColor = System.Drawing.Color.Green
-        Me.lbMontant.Location = New System.Drawing.Point(140, 0)
-        Me.lbMontant.Name = "lbMontant"
-        Me.lbMontant.Size = New System.Drawing.Size(155, 29)
-        Me.lbMontant.TabIndex = 6
-        Me.lbMontant.Text = "0.00 dhs"
-        Me.lbMontant.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'txtMontant
-        '
-        Me.txtMontant.BackColor = System.Drawing.Color.Transparent
-        Me.txtMontant.BorderColor = System.Drawing.Color.Transparent
-        Me.txtMontant.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtMontant.IsNumiric = True
-        Me.txtMontant.Location = New System.Drawing.Point(62, 0)
-        Me.txtMontant.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtMontant.Name = "txtMontant"
-        Me.txtMontant.ShowClearIcon = False
-        Me.txtMontant.ShowSaveIcon = False
-        Me.txtMontant.Size = New System.Drawing.Size(233, 30)
-        Me.txtMontant.StartUp = 2
-        Me.txtMontant.TabIndex = 5
-        Me.txtMontant.TextSize = 8
-        Me.txtMontant.TxtBackColor = True
-        Me.txtMontant.TxtColor = System.Drawing.Color.White
-        Me.txtMontant.txtReadOnly = False
-        Me.txtMontant.TxtSelect = New Integer() {1, 0}
-        '
-        'Label3
-        '
-        Me.Label3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(0, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(62, 29)
-        Me.Label3.TabIndex = 0
-        Me.Label3.Text = "Montant"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Panel8
-        '
-        Me.Panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel8.Controls.Add(Me.txtEcheance)
-        Me.Panel8.Controls.Add(Me.Button14)
-        Me.Panel8.Controls.Add(Me.Label4)
-        Me.Panel8.Location = New System.Drawing.Point(35, 274)
-        Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(297, 31)
-        Me.Panel8.TabIndex = 6
-        '
-        'txtEcheance
-        '
-        Me.txtEcheance.BackColor = System.Drawing.Color.Transparent
-        Me.txtEcheance.BorderColor = System.Drawing.Color.Transparent
-        Me.txtEcheance.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtEcheance.IsNumiric = False
-        Me.txtEcheance.Location = New System.Drawing.Point(62, 0)
-        Me.txtEcheance.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtEcheance.Name = "txtEcheance"
-        Me.txtEcheance.ShowClearIcon = False
-        Me.txtEcheance.ShowSaveIcon = False
-        Me.txtEcheance.Size = New System.Drawing.Size(198, 30)
-        Me.txtEcheance.StartUp = 2
-        Me.txtEcheance.TabIndex = 6
-        Me.txtEcheance.TextSize = 8
-        Me.txtEcheance.TxtBackColor = True
-        Me.txtEcheance.TxtColor = System.Drawing.Color.White
-        Me.txtEcheance.txtReadOnly = False
-        Me.txtEcheance.TxtSelect = New Integer() {1, 0}
-        '
-        'Button14
-        '
-        Me.Button14.BackgroundImage = CType(resources.GetObject("Button14.BackgroundImage"), System.Drawing.Image)
-        Me.Button14.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button14.FlatAppearance.BorderSize = 0
-        Me.Button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button14.Location = New System.Drawing.Point(260, 0)
-        Me.Button14.Name = "Button14"
-        Me.Button14.Size = New System.Drawing.Size(35, 29)
-        Me.Button14.TabIndex = 7
-        Me.Button14.UseVisualStyleBackColor = True
-        '
-        'Label4
-        '
-        Me.Label4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(0, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(62, 29)
-        Me.Label4.TabIndex = 0
-        Me.Label4.Text = "Echeance"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Panel4
-        '
-        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel4.Location = New System.Drawing.Point(0, 564)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(1142, 18)
-        Me.Panel4.TabIndex = 1
-        '
-        'PrintDoc
-        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.Panel14)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel1.Location = New System.Drawing.Point(0, 148)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(321, 397)
+        Me.Panel1.TabIndex = 0
         '
         'ChequePanel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1142, 582)
-        Me.Controls.Add(Me.Panel3)
+        Me.Controls.Add(Me.pl)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel4)
@@ -1497,7 +1283,24 @@ Partial Class ChequePanel
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "    ImprimChèques  v1.5                                    *Version 2022         " & _
             "                           *CMC Pro ltd"
-        Me.Panel1.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel5.ResumeLayout(False)
+        Me.Panel11.ResumeLayout(False)
+        Me.Panel10.ResumeLayout(False)
+        Me.Panel6.ResumeLayout(False)
+        Me.Panel7.ResumeLayout(False)
+        Me.Panel8.ResumeLayout(False)
+        Me.Panel9.ResumeLayout(False)
+        Me.Panel12.ResumeLayout(False)
+        Me.Panel12.PerformLayout()
+        Me.plMainSearch.ResumeLayout(False)
+        Me.plMainSearch.PerformLayout()
+        Me.Panel24.ResumeLayout(False)
+        Me.Panel24.PerformLayout()
+        Me.Panel23.ResumeLayout(False)
+        Me.Panel23.PerformLayout()
+        Me.Panel4.ResumeLayout(False)
+        Me.PlFooter.ResumeLayout(False)
         Me.Panel14.ResumeLayout(False)
         Me.Panel15.ResumeLayout(False)
         Me.Panel16.ResumeLayout(False)
@@ -1506,67 +1309,65 @@ Partial Class ChequePanel
         Me.Panel19.ResumeLayout(False)
         Me.Panel17.ResumeLayout(False)
         Me.Panel21.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel24.ResumeLayout(False)
-        Me.Panel24.PerformLayout()
-        Me.Panel23.ResumeLayout(False)
-        Me.Panel23.PerformLayout()
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel25.ResumeLayout(False)
-        Me.Panel26.ResumeLayout(False)
-        CType(Me.dg, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel27.ResumeLayout(False)
-        Me.Panel29.ResumeLayout(False)
-        Me.Panel12.ResumeLayout(False)
-        Me.Panel11.ResumeLayout(False)
-        Me.Panel22.ResumeLayout(False)
-        Me.Panel5.ResumeLayout(False)
-        Me.Panel6.ResumeLayout(False)
-        Me.Panel13.ResumeLayout(False)
-        Me.Panel10.ResumeLayout(False)
-        Me.plMsg.ResumeLayout(False)
-        Me.Panel9.ResumeLayout(False)
-        Me.plM.ResumeLayout(False)
-        Me.Panel8.ResumeLayout(False)
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
-    Friend WithEvents Panel3 As System.Windows.Forms.Panel
+    Friend WithEvents pl As System.Windows.Forms.Panel
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
-    Friend WithEvents plM As System.Windows.Forms.Panel
-    Friend WithEvents txtMontant As Al_Mohasib.TxtBox
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Panel6 As System.Windows.Forms.Panel
-    Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents txtClient As Al_Mohasib.TxtBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label17 As System.Windows.Forms.Label
+    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents Label14 As System.Windows.Forms.Label
+    Friend WithEvents Button12 As System.Windows.Forms.Button
+    Friend WithEvents Button10 As System.Windows.Forms.Button
+    Friend WithEvents Button9 As System.Windows.Forms.Button
+    Friend WithEvents Panel24 As System.Windows.Forms.Panel
+    Friend WithEvents Panel23 As System.Windows.Forms.Panel
+    Friend WithEvents Label20 As System.Windows.Forms.Label
+    Friend WithEvents Button15 As System.Windows.Forms.Button
+    Friend WithEvents Label22 As System.Windows.Forms.Label
+    Friend WithEvents Button16 As System.Windows.Forms.Button
+    Friend WithEvents btSetting As System.Windows.Forms.Button
+    Friend WithEvents btTrial As System.Windows.Forms.Button
+    Friend WithEvents lbActive As System.Windows.Forms.Label
     Friend WithEvents Panel5 As System.Windows.Forms.Panel
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Panel8 As System.Windows.Forms.Panel
-    Friend WithEvents txtEcheance As Al_Mohasib.TxtBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Panel9 As System.Windows.Forms.Panel
-    Friend WithEvents txtRef As Al_Mohasib.TxtBox
-    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents Panel11 As System.Windows.Forms.Panel
+    Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Panel10 As System.Windows.Forms.Panel
     Friend WithEvents Button6 As System.Windows.Forms.Button
-    Friend WithEvents txtBon As Al_Mohasib.TxtBox
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents btcancel As System.Windows.Forms.Button
-    Friend WithEvents cbBanque As System.Windows.Forms.ComboBox
+    Friend WithEvents Panel6 As System.Windows.Forms.Panel
+    Friend WithEvents Button11 As System.Windows.Forms.Button
+    Friend WithEvents Button14 As System.Windows.Forms.Button
+    Friend WithEvents Button17 As System.Windows.Forms.Button
+    Friend WithEvents Panel7 As System.Windows.Forms.Panel
+    Friend WithEvents btBloc As System.Windows.Forms.Button
+    Friend WithEvents btList As System.Windows.Forms.Button
+    Friend WithEvents Panel8 As System.Windows.Forms.Panel
+    Friend WithEvents btMode As System.Windows.Forms.Button
+    Friend WithEvents Button19 As System.Windows.Forms.Button
+    Friend WithEvents Panel9 As System.Windows.Forms.Panel
     Friend WithEvents Panel12 As System.Windows.Forms.Panel
-    Friend WithEvents Panel11 As System.Windows.Forms.Panel
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents plMainSearch As System.Windows.Forms.Panel
+    Friend WithEvents TxtBox1 As Al_Mohasib.TxtBox
+    Friend WithEvents plBlocSearch As System.Windows.Forms.Panel
+    Friend WithEvents Button20 As System.Windows.Forms.Button
+    Friend WithEvents btSearchIcon As System.Windows.Forms.Button
     Friend WithEvents Panel13 As System.Windows.Forms.Panel
-    Friend WithEvents lbR As System.Windows.Forms.Label
-    Friend WithEvents Label12 As System.Windows.Forms.Label
-    Friend WithEvents lbA As System.Windows.Forms.Label
-    Friend WithEvents Label9 As System.Windows.Forms.Label
-    Friend WithEvents lbT As System.Windows.Forms.Label
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents Panel22 As System.Windows.Forms.Panel
+    Friend WithEvents PlFooter As System.Windows.Forms.Panel
+    Friend WithEvents lbTotal As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents lbNbr As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents Button21 As System.Windows.Forms.Button
+    Friend WithEvents btPage As System.Windows.Forms.Button
+    Friend WithEvents Button22 As System.Windows.Forms.Button
     Friend WithEvents Panel14 As System.Windows.Forms.Panel
+    Friend WithEvents Button18 As System.Windows.Forms.Button
     Friend WithEvents Panel15 As System.Windows.Forms.Panel
     Friend WithEvents cbB As System.Windows.Forms.ComboBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
@@ -1588,46 +1389,11 @@ Partial Class ChequePanel
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents Panel17 As System.Windows.Forms.Panel
     Friend WithEvents txtD2 As Al_Mohasib.TxtBox
+    Friend WithEvents Button13 As System.Windows.Forms.Button
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents Panel21 As System.Windows.Forms.Panel
     Friend WithEvents txtD1 As Al_Mohasib.TxtBox
-    Friend WithEvents Label21 As System.Windows.Forms.Label
-    Friend WithEvents Label17 As System.Windows.Forms.Label
-    Friend WithEvents Label15 As System.Windows.Forms.Label
-    Friend WithEvents Label14 As System.Windows.Forms.Label
-    Friend WithEvents Button12 As System.Windows.Forms.Button
-    Friend WithEvents Button10 As System.Windows.Forms.Button
-    Friend WithEvents Button9 As System.Windows.Forms.Button
-    Friend WithEvents Panel22 As System.Windows.Forms.Panel
-    Friend WithEvents CbWay As System.Windows.Forms.ComboBox
-    Friend WithEvents Label16 As System.Windows.Forms.Label
-    Friend WithEvents Button11 As System.Windows.Forms.Button
-    Friend WithEvents dg As System.Windows.Forms.DataGridView
-    Friend WithEvents Panel24 As System.Windows.Forms.Panel
-    Friend WithEvents Panel23 As System.Windows.Forms.Panel
-    Friend WithEvents Button13 As System.Windows.Forms.Button
     Friend WithEvents Button5 As System.Windows.Forms.Button
-    Friend WithEvents Button14 As System.Windows.Forms.Button
-    Friend WithEvents Label20 As System.Windows.Forms.Label
-    Friend WithEvents Button15 As System.Windows.Forms.Button
-    Friend WithEvents Label22 As System.Windows.Forms.Label
-    Friend WithEvents Button16 As System.Windows.Forms.Button
-    Friend WithEvents PrintDoc As System.Drawing.Printing.PrintDocument
-    Friend WithEvents Button17 As System.Windows.Forms.Button
-    Friend WithEvents plMsg As System.Windows.Forms.Panel
-    Friend WithEvents lbMsg As System.Windows.Forms.Label
-    Friend WithEvents Button18 As System.Windows.Forms.Button
-    Friend WithEvents Panel25 As System.Windows.Forms.Panel
-    Friend WithEvents Panel26 As System.Windows.Forms.Panel
-    Friend WithEvents Panel27 As System.Windows.Forms.Panel
-    Friend WithEvents btSetting As System.Windows.Forms.Button
-    Friend WithEvents btTrial As System.Windows.Forms.Button
-    Friend WithEvents lbActive As System.Windows.Forms.Label
-    Friend WithEvents lbQteIn As System.Windows.Forms.Label
-    Friend WithEvents Label24 As System.Windows.Forms.Label
-    Friend WithEvents lbLnbr As System.Windows.Forms.Label
-    Friend WithEvents Label25 As System.Windows.Forms.Label
-    Friend WithEvents Panel28 As System.Windows.Forms.Panel
-    Friend WithEvents Panel29 As System.Windows.Forms.Panel
-    Friend WithEvents lbMontant As System.Windows.Forms.Label
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
 End Class

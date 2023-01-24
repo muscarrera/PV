@@ -151,11 +151,9 @@ Public Class Client
 
         Dim tp As String = txtcrd.text & "|" & txttp.text
 
-
         If txtad.text = "" Then txtad.text = "-"
         If txtIce.text = "" Then txtIce.text = "-"
         If txtVille.text = "" Then txtVille.text = "-"
-
 
         Dim adresse As String = txtad.text & "*" & txtVille.text & "*" & txtIce.text
 
@@ -167,7 +165,7 @@ Public Class Client
             params.Add("Adress", adresse)
             params.Add("tel", txttel.text)
             params.Add("credit", "0")
-            params.Add("type", CInt(txtcrd.text))
+            params.Add("type", tp) 'CInt(txtcrd.text))
 
             If btcon.Tag = "1" Then
                 Dim where As New Dictionary(Of String, Object)
@@ -306,6 +304,45 @@ Public Class Client
         If pp.ShowDialog = Windows.Forms.DialogResult.OK Then
 
         End If
+
+    End Sub
+
+    Private Sub Button3_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+
+        Dim ss As New SelectClient
+        ss.isUpdatingMode = True
+
+        If ss.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            Dim dt As DataTable
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+                params.Add("code", ss.ref)
+
+                Try
+                    dt = c.SelectDataTable("Client", {"*"}, params)
+                    If dt.Rows.Count > 0 Then
+                        If dt.Rows(0).Item(0) <> txtname.Tag Then
+                            MsgBox("ce code est deja porter par un autre client")
+                        End If
+
+                    Else
+                        Dim where As New Dictionary(Of String, Object)
+
+                        where.Add("Clid", txtname.Tag)
+                        If c.UpdateRecord("Client", params, where) Then
+                            MsgBox("")
+                        End If
+                        where = Nothing
+                    End If
+                Catch ex As Exception
+                    dt = Nothing
+                End Try
+            End Using
+        End If
+
+
+
 
     End Sub
 End Class

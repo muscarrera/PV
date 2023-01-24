@@ -2,6 +2,8 @@
 
 Public Class PromosList
     Public localname As String = ""
+    Public TableName As String = "PROMO"
+
     Dim g As New Promos
 
     Private Sub btRelveClientArch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bt.Click
@@ -9,6 +11,7 @@ Public Class PromosList
         g.name = txtName.text
         g.desgn = txtName.text
         g.type = cbB.SelectedItem
+        g.isAuto = CbIsAuto.Checked
 
         If Not IsDate(txtEcheance.text) Then
             txtEcheance.text = Now.Date.ToString("dd/MM/yyyy")
@@ -21,15 +24,20 @@ Public Class PromosList
             g.dte = Now
             localname = txtName.text & ".dat"
             g.isActive = True
+            g.startList = New List(Of PromosArticle)
+            g.resultList = New List(Of PromosArticle)
+
             DataGridView1.Rows.Add(localname)
         End If
 
-        Dim dir1 As New DirectoryInfo(Form1.ImgPah & "\PROMO")
+        Dim dir1 As New DirectoryInfo(Form1.ImgPah & "\" & TableName)
         If dir1.Exists = False Then dir1.Create()
 
-        WriteToXmlFile(Of Promos)(Form1.ImgPah & "\PROMO\" & localname, g)
+        WriteToXmlFile(Of Promos)(Form1.ImgPah & "\" & TableName & "\" & localname, g)
 
         Dim ad As New AddEditPromos
+        ad.TableName = TableName
+        ad.localname = localname
         ad.promos = g
 
 
@@ -41,8 +49,11 @@ Public Class PromosList
     End Sub
 
     Private Sub PromosList_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim dir1 As New DirectoryInfo(Form1.ImgPah & "\PROMO")
+        Dim dir1 As New DirectoryInfo(Form1.ImgPah & "\" & TableName)
         If dir1.Exists = False Then dir1.Create()
+
+        lb.Text = TableName
+
 
         Dim aryFi As IO.FileInfo() = dir1.GetFiles("*.dat")
         Dim fi As IO.FileInfo
@@ -50,6 +61,13 @@ Public Class PromosList
         For Each fi In aryFi
             DataGridView1.Rows.Add(fi.Name)
         Next
+
+        If TableName <> "PROMO" Then
+            cbB.Items.Clear()
+            cbB.Items.Add("TA - Total Achat")
+            cbB.Items.Add("TB - Total Bon")
+        End If
+
     End Sub
 
     Private Sub DataGridView1_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
@@ -69,7 +87,7 @@ Public Class PromosList
     Public Sub LoadXml()
         Dim _g As New Promos
         Try
-            _g = ReadFromXmlFile(Of Promos)(Form1.ImgPah & "\PROMO\" & localname)
+            _g = ReadFromXmlFile(Of Promos)(Form1.ImgPah & "\" & TableName & "\" & localname)
             txtName.text = _g.name
             txtDesc.text = _g.desgn
             txtEcheance.text = _g.ech
@@ -91,7 +109,7 @@ Public Class PromosList
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         If MsgBox("Vous ete sure de supprimer cet item? ", MsgBoxStyle.YesNo, "Supression") = MsgBoxResult.Yes Then
             Try
-                Dim strpath As String = Form1.ImgPah & "\PROMO"
+                Dim strpath As String = Form1.ImgPah & "\" & TableName
                 localname = DataGridView1.SelectedRows(0).Cells(0).Value.ToString
                 Dim fullPath As String = Path.Combine(strpath, localname)
                 File.Delete(fullPath)
@@ -101,5 +119,9 @@ Public Class PromosList
 
             End Try
         End If
+    End Sub
+
+    Private Sub Button14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button14.Click
+        txtEcheance.text = Now.Date.ToShortDateString
     End Sub
 End Class

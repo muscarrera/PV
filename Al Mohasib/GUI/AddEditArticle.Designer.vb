@@ -199,7 +199,7 @@ Partial Class AddEditArticle
         '
         'btprdimg
         '
-        Me.btprdimg.Location = New System.Drawing.Point(481, 248)
+        Me.btprdimg.Location = New System.Drawing.Point(482, 245)
         Me.btprdimg.Name = "btprdimg"
         Me.btprdimg.Size = New System.Drawing.Size(189, 36)
         Me.btprdimg.TabIndex = 14

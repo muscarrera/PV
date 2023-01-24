@@ -63,7 +63,7 @@ Partial Class AddEditPromos
         Me.Button1 = New System.Windows.Forms.Button()
         Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.lbQ = New System.Windows.Forms.Label()
         Me.Designation = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel12 = New System.Windows.Forms.Panel()
@@ -512,7 +512,7 @@ Partial Class AddEditPromos
         Me.Panel2.Controls.Add(Me.LinkLabel1)
         Me.Panel2.Controls.Add(Me.Panel6)
         Me.Panel2.Controls.Add(Me.Label6)
-        Me.Panel2.Controls.Add(Me.Label7)
+        Me.Panel2.Controls.Add(Me.lbQ)
         Me.Panel2.Controls.Add(Me.Designation)
         Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Controls.Add(Me.Panel12)
@@ -562,16 +562,16 @@ Partial Class AddEditPromos
         Me.Label6.Text = "Point"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Label7
+        'lbQ
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(386, 61)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(49, 15)
-        Me.Label7.TabIndex = 9
-        Me.Label7.Text = "Qte Min"
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lbQ.AutoSize = True
+        Me.lbQ.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbQ.Location = New System.Drawing.Point(386, 61)
+        Me.lbQ.Name = "lbQ"
+        Me.lbQ.Size = New System.Drawing.Size(49, 15)
+        Me.lbQ.TabIndex = 9
+        Me.lbQ.Text = "Qte Min"
+        Me.lbQ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Designation
         '
@@ -725,7 +725,7 @@ Partial Class AddEditPromos
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents lbQ As System.Windows.Forms.Label
     Friend WithEvents Designation As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Panel12 As System.Windows.Forms.Panel

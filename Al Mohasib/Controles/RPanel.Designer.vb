@@ -24,15 +24,6 @@ Partial Class RPanel
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RPanel))
         Me.PlTop = New System.Windows.Forms.Panel()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.BtDel = New System.Windows.Forms.Button()
-        Me.BtSave = New System.Windows.Forms.Button()
-        Me.BtBlPrint = New System.Windows.Forms.Button()
-        Me.BtPrint = New System.Windows.Forms.Button()
-        Me.plDate = New System.Windows.Forms.Panel()
-        Me.lbDate = New System.Windows.Forms.Label()
-        Me.plPromo = New System.Windows.Forms.Panel()
-        Me.lbPoint = New System.Windows.Forms.Label()
         Me.PlBody = New System.Windows.Forms.Panel()
         Me.Pl = New System.Windows.Forms.Panel()
         Me.PlHeader = New System.Windows.Forms.Panel()
@@ -48,13 +39,32 @@ Partial Class RPanel
         Me.LbSum = New System.Windows.Forms.Label()
         Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
-        Me.CP = New Al_Mohasib.CPanel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.BtDel = New System.Windows.Forms.Button()
+        Me.BtSave = New System.Windows.Forms.Button()
+        Me.BtBlPrint = New System.Windows.Forms.Button()
+        Me.BtPrint = New System.Windows.Forms.Button()
+        Me.plDate = New System.Windows.Forms.Panel()
+        Me.lbDate = New System.Windows.Forms.Label()
+        Me.plPromo = New System.Windows.Forms.Panel()
+        Me.lbPointUtiliser = New System.Windows.Forms.Label()
+        Me.lbUsedPoint = New System.Windows.Forms.Label()
+        Me.lbTotalPoint = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.lbPoint = New System.Windows.Forms.Label()
         Me.BwPromos = New System.ComponentModel.BackgroundWorker()
+        Me.plAutoPromo = New System.Windows.Forms.Panel()
+        Me.CP = New Al_Mohasib.CPanel()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lbAutoPrNbr = New System.Windows.Forms.Label()
+        Me.lbSelectedAutoPoint = New System.Windows.Forms.Label()
+        Me.PlBody.SuspendLayout()
+        Me.PlHeader.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.plDate.SuspendLayout()
         Me.plPromo.SuspendLayout()
-        Me.PlBody.SuspendLayout()
-        Me.PlHeader.SuspendLayout()
+        Me.plAutoPromo.SuspendLayout()
         Me.SuspendLayout()
         '
         'PlTop
@@ -64,150 +74,6 @@ Partial Class RPanel
         Me.PlTop.Name = "PlTop"
         Me.PlTop.Size = New System.Drawing.Size(385, 10)
         Me.PlTop.TabIndex = 1
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.SystemColors.Control
-        Me.Panel1.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.bgbuy
-        Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Panel1.Controls.Add(Me.BtDel)
-        Me.Panel1.Controls.Add(Me.BtSave)
-        Me.Panel1.Controls.Add(Me.BtBlPrint)
-        Me.Panel1.Controls.Add(Me.BtPrint)
-        Me.Panel1.Controls.Add(Me.plDate)
-        Me.Panel1.Controls.Add(Me.plPromo)
-        Me.Panel1.Cursor = System.Windows.Forms.Cursors.Arrow
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 255)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(385, 60)
-        Me.Panel1.TabIndex = 2
-        '
-        'BtDel
-        '
-        Me.BtDel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtDel.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.gui_13
-        Me.BtDel.FlatAppearance.BorderColor = System.Drawing.Color.Red
-        Me.BtDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtDel.ForeColor = System.Drawing.Color.Red
-        Me.BtDel.Image = CType(resources.GetObject("BtDel.Image"), System.Drawing.Image)
-        Me.BtDel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtDel.Location = New System.Drawing.Point(298, 2)
-        Me.BtDel.MaximumSize = New System.Drawing.Size(94, 31)
-        Me.BtDel.MinimumSize = New System.Drawing.Size(4, 30)
-        Me.BtDel.Name = "BtDel"
-        Me.BtDel.Size = New System.Drawing.Size(73, 31)
-        Me.BtDel.TabIndex = 0
-        Me.BtDel.Text = "     Suppr"
-        Me.BtDel.UseVisualStyleBackColor = True
-        '
-        'BtSave
-        '
-        Me.BtSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtSave.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.gui_16
-        Me.BtSave.FlatAppearance.BorderColor = System.Drawing.Color.Blue
-        Me.BtSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtSave.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.BtSave.Image = CType(resources.GetObject("BtSave.Image"), System.Drawing.Image)
-        Me.BtSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtSave.Location = New System.Drawing.Point(200, 2)
-        Me.BtSave.MaximumSize = New System.Drawing.Size(94, 31)
-        Me.BtSave.MinimumSize = New System.Drawing.Size(4, 30)
-        Me.BtSave.Name = "BtSave"
-        Me.BtSave.Size = New System.Drawing.Size(86, 31)
-        Me.BtSave.TabIndex = 0
-        Me.BtSave.Text = "   Enreg"
-        Me.BtSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtSave.UseVisualStyleBackColor = True
-        '
-        'BtBlPrint
-        '
-        Me.BtBlPrint.BackgroundImage = CType(resources.GetObject("BtBlPrint.BackgroundImage"), System.Drawing.Image)
-        Me.BtBlPrint.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.BtBlPrint.FlatAppearance.BorderSize = 2
-        Me.BtBlPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtBlPrint.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtBlPrint.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.BtBlPrint.Image = CType(resources.GetObject("BtBlPrint.Image"), System.Drawing.Image)
-        Me.BtBlPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtBlPrint.Location = New System.Drawing.Point(78, 2)
-        Me.BtBlPrint.MaximumSize = New System.Drawing.Size(0, 31)
-        Me.BtBlPrint.MinimumSize = New System.Drawing.Size(3, 31)
-        Me.BtBlPrint.Name = "BtBlPrint"
-        Me.BtBlPrint.Size = New System.Drawing.Size(3, 31)
-        Me.BtBlPrint.TabIndex = 0
-        Me.BtBlPrint.Tag = "1"
-        Me.BtBlPrint.Text = "B. Liv"
-        Me.BtBlPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtBlPrint.UseVisualStyleBackColor = True
-        '
-        'BtPrint
-        '
-        Me.BtPrint.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.BtPrint.BackgroundImage = CType(resources.GetObject("BtPrint.BackgroundImage"), System.Drawing.Image)
-        Me.BtPrint.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.BtPrint.FlatAppearance.BorderSize = 2
-        Me.BtPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtPrint.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.BtPrint.Image = CType(resources.GetObject("BtPrint.Image"), System.Drawing.Image)
-        Me.BtPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtPrint.Location = New System.Drawing.Point(11, 2)
-        Me.BtPrint.MinimumSize = New System.Drawing.Size(3, 31)
-        Me.BtPrint.Name = "BtPrint"
-        Me.BtPrint.Size = New System.Drawing.Size(61, 31)
-        Me.BtPrint.TabIndex = 0
-        Me.BtPrint.Tag = "0"
-        Me.BtPrint.Text = "طـــبع"
-        Me.BtPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtPrint.UseVisualStyleBackColor = False
-        Me.BtPrint.Visible = False
-        '
-        'plDate
-        '
-        Me.plDate.BackColor = System.Drawing.Color.Transparent
-        Me.plDate.Controls.Add(Me.lbDate)
-        Me.plDate.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.plDate.Location = New System.Drawing.Point(0, 35)
-        Me.plDate.Name = "plDate"
-        Me.plDate.Size = New System.Drawing.Size(385, 20)
-        Me.plDate.TabIndex = 4
-        '
-        'lbDate
-        '
-        Me.lbDate.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lbDate.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbDate.ForeColor = System.Drawing.Color.Navy
-        Me.lbDate.Location = New System.Drawing.Point(0, 0)
-        Me.lbDate.Name = "lbDate"
-        Me.lbDate.Size = New System.Drawing.Size(385, 20)
-        Me.lbDate.TabIndex = 1
-        Me.lbDate.Text = "1/1"
-        Me.lbDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'plPromo
-        '
-        Me.plPromo.AutoScroll = True
-        Me.plPromo.BackColor = System.Drawing.Color.MediumBlue
-        Me.plPromo.Controls.Add(Me.lbPoint)
-        Me.plPromo.Cursor = System.Windows.Forms.Cursors.HSplit
-        Me.plPromo.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.plPromo.Location = New System.Drawing.Point(0, 55)
-        Me.plPromo.Name = "plPromo"
-        Me.plPromo.Size = New System.Drawing.Size(385, 5)
-        Me.plPromo.TabIndex = 3
-        '
-        'lbPoint
-        '
-        Me.lbPoint.BackColor = System.Drawing.Color.Transparent
-        Me.lbPoint.Dock = System.Windows.Forms.DockStyle.Left
-        Me.lbPoint.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbPoint.ForeColor = System.Drawing.Color.Green
-        Me.lbPoint.Location = New System.Drawing.Point(0, 0)
-        Me.lbPoint.Name = "lbPoint"
-        Me.lbPoint.Size = New System.Drawing.Size(69, 5)
-        Me.lbPoint.TabIndex = 2
-        Me.lbPoint.Text = "1/1"
-        Me.lbPoint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'PlBody
         '
@@ -387,6 +253,236 @@ Partial Class RPanel
         Me.LineShape1.Y1 = 6
         Me.LineShape1.Y2 = 6
         '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.Panel1.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.bgbuy
+        Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel1.Controls.Add(Me.BtDel)
+        Me.Panel1.Controls.Add(Me.BtSave)
+        Me.Panel1.Controls.Add(Me.BtBlPrint)
+        Me.Panel1.Controls.Add(Me.BtPrint)
+        Me.Panel1.Controls.Add(Me.plDate)
+        Me.Panel1.Controls.Add(Me.plPromo)
+        Me.Panel1.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel1.Location = New System.Drawing.Point(0, 255)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(385, 60)
+        Me.Panel1.TabIndex = 2
+        '
+        'BtDel
+        '
+        Me.BtDel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtDel.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.gui_13
+        Me.BtDel.FlatAppearance.BorderColor = System.Drawing.Color.Red
+        Me.BtDel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtDel.ForeColor = System.Drawing.Color.Red
+        Me.BtDel.Image = CType(resources.GetObject("BtDel.Image"), System.Drawing.Image)
+        Me.BtDel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtDel.Location = New System.Drawing.Point(298, 2)
+        Me.BtDel.MaximumSize = New System.Drawing.Size(94, 31)
+        Me.BtDel.MinimumSize = New System.Drawing.Size(4, 30)
+        Me.BtDel.Name = "BtDel"
+        Me.BtDel.Size = New System.Drawing.Size(73, 31)
+        Me.BtDel.TabIndex = 0
+        Me.BtDel.Text = "     Suppr"
+        Me.BtDel.UseVisualStyleBackColor = True
+        '
+        'BtSave
+        '
+        Me.BtSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtSave.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.gui_16
+        Me.BtSave.FlatAppearance.BorderColor = System.Drawing.Color.Blue
+        Me.BtSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtSave.ForeColor = System.Drawing.Color.MidnightBlue
+        Me.BtSave.Image = CType(resources.GetObject("BtSave.Image"), System.Drawing.Image)
+        Me.BtSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtSave.Location = New System.Drawing.Point(200, 2)
+        Me.BtSave.MaximumSize = New System.Drawing.Size(94, 31)
+        Me.BtSave.MinimumSize = New System.Drawing.Size(4, 30)
+        Me.BtSave.Name = "BtSave"
+        Me.BtSave.Size = New System.Drawing.Size(86, 31)
+        Me.BtSave.TabIndex = 0
+        Me.BtSave.Text = "   Enreg"
+        Me.BtSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtSave.UseVisualStyleBackColor = True
+        '
+        'BtBlPrint
+        '
+        Me.BtBlPrint.BackgroundImage = CType(resources.GetObject("BtBlPrint.BackgroundImage"), System.Drawing.Image)
+        Me.BtBlPrint.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BtBlPrint.FlatAppearance.BorderSize = 2
+        Me.BtBlPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtBlPrint.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtBlPrint.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BtBlPrint.Image = CType(resources.GetObject("BtBlPrint.Image"), System.Drawing.Image)
+        Me.BtBlPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtBlPrint.Location = New System.Drawing.Point(78, 2)
+        Me.BtBlPrint.MaximumSize = New System.Drawing.Size(0, 31)
+        Me.BtBlPrint.MinimumSize = New System.Drawing.Size(3, 31)
+        Me.BtBlPrint.Name = "BtBlPrint"
+        Me.BtBlPrint.Size = New System.Drawing.Size(3, 31)
+        Me.BtBlPrint.TabIndex = 0
+        Me.BtBlPrint.Tag = "1"
+        Me.BtBlPrint.Text = "B. Liv"
+        Me.BtBlPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtBlPrint.UseVisualStyleBackColor = True
+        '
+        'BtPrint
+        '
+        Me.BtPrint.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.BtPrint.BackgroundImage = CType(resources.GetObject("BtPrint.BackgroundImage"), System.Drawing.Image)
+        Me.BtPrint.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BtPrint.FlatAppearance.BorderSize = 2
+        Me.BtPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtPrint.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.BtPrint.Image = CType(resources.GetObject("BtPrint.Image"), System.Drawing.Image)
+        Me.BtPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtPrint.Location = New System.Drawing.Point(11, 2)
+        Me.BtPrint.MinimumSize = New System.Drawing.Size(3, 31)
+        Me.BtPrint.Name = "BtPrint"
+        Me.BtPrint.Size = New System.Drawing.Size(61, 31)
+        Me.BtPrint.TabIndex = 0
+        Me.BtPrint.Tag = "0"
+        Me.BtPrint.Text = "طـــبع"
+        Me.BtPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtPrint.UseVisualStyleBackColor = False
+        Me.BtPrint.Visible = False
+        '
+        'plDate
+        '
+        Me.plDate.BackColor = System.Drawing.Color.Transparent
+        Me.plDate.Controls.Add(Me.lbDate)
+        Me.plDate.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.plDate.Location = New System.Drawing.Point(0, 15)
+        Me.plDate.Name = "plDate"
+        Me.plDate.Size = New System.Drawing.Size(385, 20)
+        Me.plDate.TabIndex = 4
+        '
+        'lbDate
+        '
+        Me.lbDate.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lbDate.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbDate.ForeColor = System.Drawing.Color.Navy
+        Me.lbDate.Location = New System.Drawing.Point(0, 0)
+        Me.lbDate.Name = "lbDate"
+        Me.lbDate.Size = New System.Drawing.Size(385, 20)
+        Me.lbDate.TabIndex = 1
+        Me.lbDate.Text = "1/1"
+        Me.lbDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'plPromo
+        '
+        Me.plPromo.AutoScroll = True
+        Me.plPromo.BackColor = System.Drawing.Color.MediumBlue
+        Me.plPromo.Controls.Add(Me.lbPointUtiliser)
+        Me.plPromo.Controls.Add(Me.lbUsedPoint)
+        Me.plPromo.Controls.Add(Me.lbTotalPoint)
+        Me.plPromo.Controls.Add(Me.Label4)
+        Me.plPromo.Controls.Add(Me.Label3)
+        Me.plPromo.Controls.Add(Me.lbPoint)
+        Me.plPromo.Controls.Add(Me.plAutoPromo)
+        Me.plPromo.Cursor = System.Windows.Forms.Cursors.HSplit
+        Me.plPromo.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.plPromo.Location = New System.Drawing.Point(0, 35)
+        Me.plPromo.Name = "plPromo"
+        Me.plPromo.Size = New System.Drawing.Size(385, 25)
+        Me.plPromo.TabIndex = 3
+        '
+        'lbPointUtiliser
+        '
+        Me.lbPointUtiliser.BackColor = System.Drawing.Color.Transparent
+        Me.lbPointUtiliser.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lbPointUtiliser.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbPointUtiliser.ForeColor = System.Drawing.Color.Crimson
+        Me.lbPointUtiliser.Location = New System.Drawing.Point(224, 0)
+        Me.lbPointUtiliser.Name = "lbPointUtiliser"
+        Me.lbPointUtiliser.Size = New System.Drawing.Size(98, 25)
+        Me.lbPointUtiliser.TabIndex = 7
+        Me.lbPointUtiliser.Text = "Pt Utiliser"
+        Me.lbPointUtiliser.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lbUsedPoint
+        '
+        Me.lbUsedPoint.BackColor = System.Drawing.Color.Transparent
+        Me.lbUsedPoint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.lbUsedPoint.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbUsedPoint.ForeColor = System.Drawing.Color.Crimson
+        Me.lbUsedPoint.Location = New System.Drawing.Point(322, 0)
+        Me.lbUsedPoint.Name = "lbUsedPoint"
+        Me.lbUsedPoint.Size = New System.Drawing.Size(63, 25)
+        Me.lbUsedPoint.TabIndex = 8
+        Me.lbUsedPoint.Text = "0"
+        Me.lbUsedPoint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lbTotalPoint
+        '
+        Me.lbTotalPoint.BackColor = System.Drawing.Color.Transparent
+        Me.lbTotalPoint.Dock = System.Windows.Forms.DockStyle.Left
+        Me.lbTotalPoint.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbTotalPoint.ForeColor = System.Drawing.Color.DarkBlue
+        Me.lbTotalPoint.Location = New System.Drawing.Point(174, 0)
+        Me.lbTotalPoint.Name = "lbTotalPoint"
+        Me.lbTotalPoint.Size = New System.Drawing.Size(50, 25)
+        Me.lbTotalPoint.TabIndex = 5
+        Me.lbTotalPoint.Text = "0"
+        Me.lbTotalPoint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label4
+        '
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.DarkBlue
+        Me.Label4.Location = New System.Drawing.Point(120, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(54, 25)
+        Me.Label4.TabIndex = 4
+        Me.Label4.Text = "Tl Points"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label3
+        '
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Green
+        Me.Label3.Location = New System.Drawing.Point(105, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(15, 25)
+        Me.Label3.TabIndex = 3
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lbPoint
+        '
+        Me.lbPoint.BackColor = System.Drawing.Color.Transparent
+        Me.lbPoint.Dock = System.Windows.Forms.DockStyle.Left
+        Me.lbPoint.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbPoint.ForeColor = System.Drawing.Color.Green
+        Me.lbPoint.Location = New System.Drawing.Point(36, 0)
+        Me.lbPoint.Name = "lbPoint"
+        Me.lbPoint.Size = New System.Drawing.Size(69, 25)
+        Me.lbPoint.TabIndex = 2
+        Me.lbPoint.Text = "1/1"
+        Me.lbPoint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'BwPromos
+        '
+        '
+        'plAutoPromo
+        '
+        Me.plAutoPromo.BackColor = System.Drawing.Color.DarkMagenta
+        Me.plAutoPromo.Controls.Add(Me.lbSelectedAutoPoint)
+        Me.plAutoPromo.Controls.Add(Me.lbAutoPrNbr)
+        Me.plAutoPromo.Controls.Add(Me.Label5)
+        Me.plAutoPromo.Dock = System.Windows.Forms.DockStyle.Left
+        Me.plAutoPromo.Location = New System.Drawing.Point(0, 0)
+        Me.plAutoPromo.Name = "plAutoPromo"
+        Me.plAutoPromo.Size = New System.Drawing.Size(36, 25)
+        Me.plAutoPromo.TabIndex = 9
+        Me.plAutoPromo.Visible = False
+        '
         'CP
         '
         Me.CP.bl = "---"
@@ -403,8 +499,44 @@ Partial Class RPanel
         Me.CP.TabIndex = 0
         Me.CP.Value = 1.0R
         '
-        'BwPromos
+        'Label5
         '
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Label5.Font = New System.Drawing.Font("Century Gothic", 5.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.White
+        Me.Label5.Location = New System.Drawing.Point(0, 0)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(36, 10)
+        Me.Label5.TabIndex = 5
+        Me.Label5.Text = "Auto"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lbAutoPrNbr
+        '
+        Me.lbAutoPrNbr.BackColor = System.Drawing.Color.Transparent
+        Me.lbAutoPrNbr.Dock = System.Windows.Forms.DockStyle.Left
+        Me.lbAutoPrNbr.Font = New System.Drawing.Font("Century Gothic", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbAutoPrNbr.ForeColor = System.Drawing.Color.White
+        Me.lbAutoPrNbr.Location = New System.Drawing.Point(0, 10)
+        Me.lbAutoPrNbr.Name = "lbAutoPrNbr"
+        Me.lbAutoPrNbr.Size = New System.Drawing.Size(14, 15)
+        Me.lbAutoPrNbr.TabIndex = 6
+        Me.lbAutoPrNbr.Text = "2"
+        Me.lbAutoPrNbr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lbSelectedAutoPoint
+        '
+        Me.lbSelectedAutoPoint.BackColor = System.Drawing.Color.Transparent
+        Me.lbSelectedAutoPoint.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lbSelectedAutoPoint.Font = New System.Drawing.Font("Century Gothic", 5.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbSelectedAutoPoint.ForeColor = System.Drawing.Color.Yellow
+        Me.lbSelectedAutoPoint.Location = New System.Drawing.Point(14, 10)
+        Me.lbSelectedAutoPoint.Name = "lbSelectedAutoPoint"
+        Me.lbSelectedAutoPoint.Size = New System.Drawing.Size(22, 15)
+        Me.lbSelectedAutoPoint.TabIndex = 7
+        Me.lbSelectedAutoPoint.Text = "0000"
+        Me.lbSelectedAutoPoint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'RPanel
         '
@@ -414,12 +546,13 @@ Partial Class RPanel
         Me.Controls.Add(Me.PlTop)
         Me.Name = "RPanel"
         Me.Size = New System.Drawing.Size(385, 573)
-        Me.Panel1.ResumeLayout(False)
-        Me.plDate.ResumeLayout(False)
-        Me.plPromo.ResumeLayout(False)
         Me.PlBody.ResumeLayout(False)
         Me.PlHeader.ResumeLayout(False)
         Me.PlHeader.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.plDate.ResumeLayout(False)
+        Me.plPromo.ResumeLayout(False)
+        Me.plAutoPromo.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -427,7 +560,6 @@ Partial Class RPanel
     Friend WithEvents PlBody As System.Windows.Forms.Panel
     Friend WithEvents PlHeader As System.Windows.Forms.Panel
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents Pl As System.Windows.Forms.Panel
     Friend WithEvents LbVidal As System.Windows.Forms.Label
     Friend WithEvents LbSum As System.Windows.Forms.Label
     Friend WithEvents LbTva As System.Windows.Forms.Label
@@ -450,5 +582,15 @@ Partial Class RPanel
     Friend WithEvents lbDate As System.Windows.Forms.Label
     Friend WithEvents BwPromos As System.ComponentModel.BackgroundWorker
     Friend WithEvents lbPoint As System.Windows.Forms.Label
+    Friend WithEvents lbPointUtiliser As System.Windows.Forms.Label
+    Friend WithEvents lbUsedPoint As System.Windows.Forms.Label
+    Friend WithEvents lbTotalPoint As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Pl As System.Windows.Forms.Panel
+    Friend WithEvents plAutoPromo As System.Windows.Forms.Panel
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents lbSelectedAutoPoint As System.Windows.Forms.Label
+    Friend WithEvents lbAutoPrNbr As System.Windows.Forms.Label
 
 End Class

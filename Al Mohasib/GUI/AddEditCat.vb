@@ -111,14 +111,16 @@ Public Class AddEditCat
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         If dgvctg.SelectedRows.Count = 0 Then Exit Sub
         ImgPrd = Nothing
+        PBctg.Tag = ""
 
         TextBox1.Text = dgvctg.SelectedRows(0).Cells(1).Value
         TextBox1.Tag = dgvctg.SelectedRows(0).Cells(0).Value
         TextBox2.Text = dgvctg.SelectedRows(0).Cells(3).Value
+        PBctg.Tag = dgvctg.SelectedRows(0).Cells(2).Value
+
         If dgvctg.SelectedRows(0).Cells(2).Value.ToString <> "" And dgvctg.SelectedRows(0).Cells(2).Value.ToString <> "No Image" Then
             Try
                 Dim pmg3 As New Bitmap(Form1.BtImgPah.Tag.ToString & "\cat" & dgvctg.SelectedRows(0).Cells(2).Value.ToString)
-                PBctg.Tag = dgvctg.SelectedRows(0).Cells(2).Value
                 ImgPrd = pmg3
 
             Catch ex As Exception
@@ -145,15 +147,12 @@ Public Class AddEditCat
         End If
 
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            saveImage()
+
             Dim params As New Dictionary(Of String, Object)
             params.Add("name", TextBox1.Text)
             params.Add("img", PBctg.Tag)
             params.Add("pr", cp)
-
-
-            saveImage()
-
-
             If btcid.Tag = "0" Then
                 For i As Integer = 0 To dgvctg.Rows.Count - 1
                     If TextBox1.Text = dgvctg.Rows(i).Cells(1).Value Then
@@ -240,6 +239,7 @@ Public Class AddEditCat
     Private Sub saveImage()
         Dim dir1 As New DirectoryInfo(Form1.BtImgPah.Tag)
         If dir1.Exists = False Then dir1.Create()
+
         Try
             Dim str As String = TextBox1.Text
             str = str.Replace("/", "-")

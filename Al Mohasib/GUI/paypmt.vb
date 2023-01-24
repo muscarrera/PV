@@ -23,7 +23,7 @@
 
             Dim params As New Dictionary(Of String, Object)
             params.Add("fctid", 0)
-            params.Add("clid", id)
+            params.Add("cid", id)
 
             Dim dt = c.SelectDataTable(tableName, {"*"}, params)
             Try
@@ -63,7 +63,7 @@
             Dim where As New Dictionary(Of String, Object)
             Dim params As New Dictionary(Of String, Object)
             params.Add("fctid", 0)
-            params.Add("clid", id)
+            params.Add("cid", id)
 
             params.Add("name", "Facture")
             params.Add("montant", txtmontant.text)

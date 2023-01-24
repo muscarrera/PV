@@ -12,16 +12,14 @@
 
 
                 Dim tableName As String = "CompanyPayment"
-                Dim tName As String = "Bon"
-                Dim fld As String = "bonid"
-                Dim cl As String = "comid"
+                Dim fld As String = "fctid"
+                Dim cl As String = "cid"
                 Dim _pid As String = "PBid"
 
                 If isSell Then
                     tableName = "Payment"
-                    tName = "Facture"
                     fld = "fctid"
-                    cl = "clid"
+                    cl = "cid"
                     _pid = "Pid"
                 End If
 
@@ -48,16 +46,14 @@
         If Not IsNumeric(TextBox1.Text) Then Exit Sub
 
         Dim tableName As String = "CompanyPayment"
-        Dim tName As String = "Bon"
-        Dim fld As String = "bonid"
-        Dim cl As String = "comid"
+        Dim fld As String = "fctid"
+        Dim cl As String = "cid"
         Dim _pid As String = "PBid"
 
         If isSell Then
             tableName = "Payment"
-            tName = "Facture"
             fld = "fctid"
-            cl = "clid"
+            cl = "cid"
             _pid = "Pid"
         End If
 

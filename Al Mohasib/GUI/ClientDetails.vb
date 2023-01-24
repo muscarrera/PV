@@ -488,12 +488,22 @@
 
         str &= " " & Now.Date.ToString("dd-MM-yyyy")
 
-        str = str.Replace("/", " ")
+        Dim params2 As New Dictionary(Of String, String)
+        params2.Add("Nbr", dgv.Rows.Count)
+ 
+        Try
+            For Each I As Items In RPl.Pl.Controls
+                params2.Add(I.Name, I.Total_ttc)
+            Next
+        Catch ex As Exception
+        End Try
+
+
         str = str.Replace("|", " ")
+        str = str.Replace(":", " ")
+        str = str.Replace("/", " ")
 
-
-        SaveDataToHtml(dgv, str)
-
+        SaveDataToHtml_WithTotal(dgv, str, params2)
 
     End Sub
     Dim m = 0

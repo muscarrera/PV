@@ -52,10 +52,16 @@
                                 endIndex += 1
                                 Continue For
                             End If
+                        Else
+                            If cin.Contains("*") = True Or cin.Contains("/") = True Then
+                                endIndex += 1
+                                Continue For
+                            End If
                         End If
                     Catch ex As Exception
                     End Try
                 End If
+
 
                 Dim id As Integer = CInt(dt.Rows(i).Item(0))
                 Dim nm As String = dt.Rows(i).Item("name")

@@ -7,7 +7,7 @@
     Public ech As Date
     Public img As String  ' design to show
     Public isActive As Boolean
-
+    Public isAuto As Boolean
 
     Public resultList As List(Of PromosArticle)
     Public startList As List(Of PromosArticle)
@@ -22,6 +22,4 @@ Public Class PromosArticle
     Public arid As Integer
     Public qte As Double
     Public point As Integer
-
-
 End Class

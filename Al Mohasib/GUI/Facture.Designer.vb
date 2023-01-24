@@ -227,7 +227,7 @@ Partial Class Facture
         Me.cbway.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbway.Font = New System.Drawing.Font("Arial Narrow", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbway.FormattingEnabled = True
-        Me.cbway.Items.AddRange(New Object() {"Cache", "Cheque", "Effet (LC)", "Virement Bancaire", "Autre"})
+        Me.cbway.Items.AddRange(New Object() {"Cache", "Cheque", "Effet (LC)", "Virement Bancaire", "TPE", "Autre"})
         Me.cbway.Location = New System.Drawing.Point(287, 79)
         Me.cbway.Name = "cbway"
         Me.cbway.Size = New System.Drawing.Size(231, 28)
@@ -236,7 +236,7 @@ Partial Class Facture
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(285, 63)
+        Me.Label5.Location = New System.Drawing.Point(287, 63)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(99, 13)
         Me.Label5.TabIndex = 15
@@ -265,7 +265,7 @@ Partial Class Facture
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(286, 14)
+        Me.Label4.Location = New System.Drawing.Point(285, 14)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(84, 13)
         Me.Label4.TabIndex = 11

@@ -689,3 +689,7 @@ C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.exe
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.xml
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.pdb
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PromosList.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PopUpMenu.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PromoArticleBloc.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.SelectClient.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.EditAndPrintCheque.resources

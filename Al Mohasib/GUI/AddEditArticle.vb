@@ -42,7 +42,7 @@ Public Class AddEditArticle
 
         Try
             If txtMarge.text = "" Then txtMarge.text = 0
-            If txtMarge.text = 0 Then
+            If txtMarge.text = 0 Or True Then
                 Try
                     txtMarge.text = String.Format("{0:n}", CDec((txtsprice.text - txtbprice.text) * 100 / txtbprice.text))
                 Catch ex As Exception
@@ -224,7 +224,6 @@ Public Class AddEditArticle
         Dim params As New Dictionary(Of String, Object)
         params.Add("cid", cid)
         params.Add("name", txtprdname.text)
-        params.Add("img", imagePath)
         params.Add("bprice", bprice)
         params.Add("sprice", sprice)
         params.Add("unite", txtunit.text)
@@ -247,6 +246,7 @@ Public Class AddEditArticle
                 where.Add("arid", id)
                 x = a.UpdateRecord("Article", params, where)
             Else
+                params.Add("img", imagePath)
                 x = a.InsertRecord("Article", params)
 
                 If CheckBox1.Checked Then
@@ -265,7 +265,7 @@ Public Class AddEditArticle
                     PBprd.Tag = ""
                     PBprd.BackgroundImage = Nothing
                     x = 0
-              
+
                 End If
             End If
 
@@ -919,6 +919,11 @@ Public Class AddEditArticle
         'Catch ex As Exception
 
         'End Try
+        Try
+            txtMarge.text = String.Format("{0:n}", CDec((txtsprice.text - txtbprice.text) * 100 / txtbprice.text))
+        Catch ex As Exception
+
+        End Try
     End Sub
     Private Sub txtMarge_TxtChanged() Handles txtMarge.TxtChanged
         'Try
@@ -944,6 +949,11 @@ Public Class AddEditArticle
         'Catch ex As Exception
 
         'End Try
+        Try
+            txtMarge.text = String.Format("{0:n}", CDec((txtsprice.text - txtbprice.text) * 100 / txtbprice.text))
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
 

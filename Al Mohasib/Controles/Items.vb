@@ -26,6 +26,7 @@
 
     Public Unite As String
     Public Bprice As Double
+    Public rprice As Double = 0
     Public Poid As Double
     Public cid As Integer
     Private _depot As Integer
@@ -162,10 +163,24 @@
                 LbTotal.Text = String.Format("{0:n}", Total_ttc)
             End If
 
-            LbQte.Text = _qte & " " & CStr(Unite) '& " x "
-            'LbQte.Text &= String.Format("{0:n}", _price) & " Dhs  -  " '& "  (" & _addDesc & ")"
-            'If Depot > 0 Then LbQte.Text &= " [Rest : (" & Stock & ")]"
+            'Dim q As Decimal = _qte.ToString.TrimEnd(".0000")
+            'q = q.ToString.TrimEnd(",0000")
 
+            LbQte.Text = Val(_qte) & " " & CStr(Unite) '& " x "
+            
+            Try
+                If Form1.cbPromos.Checked Then
+                    If CDbl(LbTotal.Text) <= 0 Then
+                        LbTotal.BackColor = Color.Crimson
+                        LbTotal.ForeColor = Color.White
+                    Else
+                        LbTotal.BackColor = Color.Transparent
+                        LbTotal.ForeColor = Color.DarkCyan
+                    End If
+                End If
+
+            Catch ex As Exception
+            End Try
         End Set
     End Property
     Public Property Price() As Decimal
@@ -187,6 +202,20 @@
                 LbPrice.Text = String.Format("{0:n}", _price) & " Dhs"
             End If
 
+
+            Try
+                If Form1.cbPromos.Checked Then
+                    If CDbl(LbTotal.Text) <= 0 Then
+                        LbTotal.BackColor = Color.Crimson
+                        LbTotal.ForeColor = Color.White
+                    Else
+                        LbTotal.BackColor = Color.Transparent
+                        LbTotal.ForeColor = Color.DarkCyan
+                    End If
+                End If
+
+            Catch ex As Exception
+            End Try
         End Set
     End Property
     Public Property Depot() As Decimal

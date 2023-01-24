@@ -65,7 +65,9 @@
 
 
             If Double.Parse(prdSPrice) < Double.Parse(prdBPrice) And Form1.RPl.isSell = True Then
-                If Form1.txtAllowLowPrice.Text.Contains("*") Or Form1.txtAllowLowPrice.Text.Contains(cid) Then Return True
+                If Form1.txtAllowLowPrice_Cat.Text.Contains("*") Or
+                    Form1.txtAllowLowPrice_Cat.Text.Contains(cid) Or
+                   (Form1.txtAllowLowPrice_Client.Text.Contains(Form1.RPl.ClId) And Form1.RPl.ClId > 0) Then Return True
 
                 Dim str As String = "ثمن البيع يجب ان يكون أكبر من ثمن الشراء"
                 MsgBox(str, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
@@ -97,6 +99,8 @@
         'TODO: This line of code loads data into the 'ALMohassinDBDataSet.Depot' table. You can move, or remove it, as needed.
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             cbDepot.DataSource = a.SelectDataTableSymbols("Depot", {"*"})
+            cbDepot.DisplayMember = "name"
+            cbDepot.ValueMember = "dpid"
         End Using
 
         cbDepot.SelectedValue = _depot
@@ -124,7 +128,10 @@
             chNotDepot.Visible = False
         End If
 
+        Dim pr As Double = CDbl(txtsprice.text)
+        Dim qt As Double = CDbl(txtqte.text)
 
+        txtTotal.text = pr * qt
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
@@ -278,7 +285,7 @@
 
             If pr = 0 Then Exit Sub
 
-            txtqte.text = (tt / pr).ToString("n")
+            txtqte.text = (tt / pr)
         Catch ex As Exception
 
         End Try

@@ -1,5 +1,6 @@
 ﻿Public Class PWDPicker
     Private nn As Boolean = False
+    Public selectedOne As String = ""
 
     Private Sub PWDPicker_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'ALMohassinDBDataSet.admin' table. You can move, or remove it, as needed.
@@ -23,6 +24,16 @@
         Me.WindowState = FormWindowState.Maximized
 
         Panel6.Location = New Point((Me.Width - Panel6.Width) \ 2, (Me.Height - Panel6.Height) \ 2)
+
+        If selectedOne <> "" Then
+            For i As Integer = 0 To DGV1.Rows.Count - 1
+                If DGV1.Rows(i).Cells(1).Value = selectedOne Then
+                    DGV1.Rows(i).Selected = True
+                    Exit For
+                End If
+            Next
+        End If
+
     End Sub
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Me.DialogResult = Windows.Forms.DialogResult.Cancel

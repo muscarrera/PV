@@ -22,37 +22,38 @@
         Dim params As New Dictionary(Of String, Object)
 
         Try
-            If txt.text <> "" Then
-                If IsNumeric(txt.text) Then
-                    Using a As DataAccess = New DataAccess(conString)
+            Using a As DataAccess2 = New DataAccess2(conString)
+                If txt.text <> "" Then
+                    If IsNumeric(txt.text) Then
+
                         params.Add("fctid = ", txt.text)
                         dt = a.SelectDataTable(tName, {"*"}, params)
-                    End Using
 
-                ElseIf txt.text.Contains("|") Then
-                    Dim str As String = txt.text.Trim
-                    str = str.Split(CChar("|"))(1)
-                    Dim clid As Integer = CInt(str)
 
-                    Using a As DataAccess = New DataAccess(conString)
+                    ElseIf txt.text.Contains("|") Then
+                        Dim str As String = txt.text.Trim
+                        str = str.Split(CChar("|"))(1)
+                        Dim clid As Integer = CInt(str)
+
+
                         params.Add("clid = ", clid)
                         params.Add("[date] < ", dt1)
                         params.Add("[date] > ", dt2)
 
                         dt = a.SelectDataTableSymbols(tName, {"*"}, params)
-                    End Using
-                End If
-            Else
-                Using a As DataAccess = New DataAccess(conString)
+
+                    End If
+                Else
+
                     params.Add("[date] < ", dt1)
                     params.Add("[date] > ", dt2)
 
                     dt = a.SelectDataTableSymbols(tName, {"*"}, params)
-                End Using
-            End If
 
-            Me.DialogResult = Windows.Forms.DialogResult.OK
+                End If
 
+                Me.DialogResult = Windows.Forms.DialogResult.OK
+            End Using
         Catch ex As Exception
             Me.DialogResult = Windows.Forms.DialogResult.Cancel
         End Try

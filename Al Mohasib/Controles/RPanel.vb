@@ -288,13 +288,14 @@
             table.Columns.Add("remise", GetType(Double))
             table.Columns.Add("id", GetType(Double))
             table.Columns.Add("xOrder", GetType(Integer))
+            table.Columns.Add("rprice", GetType(Double))
             Dim a As Items
             Dim i = 0
             For Each a In Pl.Controls
                 ' Add  rows with those columns filled in the DataTable.
                 table.Rows.Add(a.arid, a.Name, a.Unite, a.Price, a.Bprice, a.Tva,
                                a.Qte, a.Unite, a.Total_ttc, a.cid, a.code,
-                               a.Depot, a.Poid, a.Total_ht, a.Total_tva, a.id, a.Remise, a.id, i)
+                               a.Depot, a.Poid, a.Total_ht, a.Total_tva, a.id, a.Remise, a.id, i, a.rprice)
                 i += 1
             Next
 
@@ -356,10 +357,12 @@
                 'CP.Visible = False
                 'PlButtom.Height = 45
                 BtSave.Text = "   Modifier"
+                plPromo.Visible = False
             Else
                 'If ShowClc Then CP.Visible = True
                 'If ShowClc Then PlButtom.Height = 242
                 BtSave.Text = "   Enreg"
+                plPromo.Visible = True
             End If
             CP.ActiveQte(False)
             'ShowClc = True
@@ -480,7 +483,6 @@
         End Set
     End Property
 
-   
 
     'Subs & functions
     Public Sub AddItems(ByVal R As DataRow)
@@ -494,6 +496,7 @@
             ap.Price = R("sprice")
 
             ap.Bprice = R("bprice")
+            ap.rprice = R("sp3")
             ap.BgColor = Color.White
             ap.SideColor = Color.Moccasin
             ap.id = CInt(R("arid") & "0" & Pl.Controls.Count) * -1
@@ -723,7 +726,65 @@
             MsgBox(ex.Message)
         End Try
     End Sub
+    Public Sub AddItemsCadeau(ByVal R As PromosArticle, ByVal c As String)
+        Try
 
+            Dim ap As New Items
+            ap.Dock = DockStyle.Top
+            ap.Index = Pl.Controls.Count
+            ap.Name = "*** " & R.name
+            ap.Unite = "[ " & R.point & "Pts ]"
+
+            If R.type = "Article" Then
+                ap.Price = 0
+                ap.Qte = R.qte
+            Else
+                ap.Price = R.qte * -1
+                ap.Qte = 1
+            End If
+
+
+            Dim rnd As New Random
+
+            ap.Bprice = R.point
+            ap.BgColor = Color.White
+            ap.SideColor = Color.Moccasin
+            ap.id = CInt(rnd.Next(111, 999)) * -1
+            ap.arid = R.arid
+            ap.Tva = 0
+            ap.cid = -500
+            ap.code = c
+            ap.Poid = 0
+            ap.Depot = 0
+            ap.Remise = 0
+
+
+            'ap.IsArabic = True
+
+            AddHandler ap.Click, AddressOf ClearPanel
+            AddHandler ap.ItemDoubleClick, AddressOf Item_Doubleclick
+            'AddHandler ap.Item_DoubleClick, AddressOf Item_ShowBlocModif
+            'AddHandler ap.RemiseChanged, AddressOf UpdateValue
+
+
+            Pl.Controls.Add(ap)
+            ap.BringToFront()
+
+            If Form1.CbBlocModArt.Checked Then
+                Item_ShowBlocModif(ap, Nothing)
+                CP.ActiveQte(False)
+            Else
+                ap.IsSelected = True
+                Item_Doubleclick(ap, Nothing)
+            End If
+
+            Pl.ScrollControlIntoView(ap)
+            UpdateValue()
+            CP.Value = 0
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
     Public Sub AddItemsRapport(ByVal D As DataTable)
         Try
             Dim ls As New List(Of String)
@@ -992,7 +1053,7 @@
         IIf(i.IsSelected, False, True)
 
     End Sub
-    Private Sub UpdateValue()
+    Public Sub UpdateValue()
         Try
 
             If Form1.isBaseOnRIYAL Then
@@ -1014,9 +1075,11 @@
             LbVidal.Text = Pl.Controls.Count & " - Articles"
 
             'lbHT.Text = "T. Ht : " & String.Format("{0:n}", CDec(Total_Ht - (Total_Ht * Remise / 100)))
+            If Form1.cbPromos.Checked Then
+                'test promos
+                If Not BwPromos.IsBusy Then BwPromos.RunWorkerAsync()
+            End If
 
-            'test promos
-            If Not BwPromos.IsBusy Then BwPromos.RunWorkerAsync()
 
             Try
                 If ShowProfit Then
@@ -1157,7 +1220,12 @@
 
             RaiseEvent EditFacture(FctId, ClId, ClientName, Total_TTC, Avance, DataSource)
         Else
-            RaiseEvent SaveFacture(FctId, Total_TTC, Avance, Tva, DataSource)
+            If Form1.cbCafeMode.Checked Then
+                RaiseEvent SaveAndPrint(FctId, Total_TTC, Avance, Tva, DataSource, isSell, False, False)
+            Else
+                RaiseEvent SaveFacture(FctId, Total_TTC, Avance, Tva, DataSource)
+            End If
+
 
             If Form1.cbTiroir.Checked Then
                 'Modify DrawerCode to your receipt printer open drawer code
@@ -1208,7 +1276,7 @@
         End If
 
 
-        If _hideClc Then
+        If Form1.CbBlocCalc.Checked = False Then
             CP_DeleteItems()
             Exit Sub
         End If
@@ -1359,19 +1427,39 @@
         RaiseEvent UpdateDate()
     End Sub
 
+    Public myPoint As Integer = 0
+    Public usedPoint As Integer = 0
+    Public TotalPoint As Integer = 0
+    Public FerstPointToWin As Integer = 1000000
+    Public SelectedAutoPromoPoint As Integer = 0
+    Public CadeauxAuto_ls As New List(Of PromosArticle)
+
+    Public paramsArts As New Dictionary(Of Integer, String)
+    Public paramsCats As New Dictionary(Of Integer, String)
+    Public RslArts As New Dictionary(Of Integer, Double)
+    Public RslCats As New Dictionary(Of Integer, Double)
+    Public has_auto_promos As Boolean = False
+
     Private Sub BwPromos_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BwPromos.DoWork
-        Dim paramsArts As New Dictionary(Of Integer, String)
-        Dim paramsCats As New Dictionary(Of Integer, String)
+
+        paramsArts.Clear()
+        paramsCats.Clear()
+        RslArts.Clear()
+        RslCats.Clear()
 
         Dim _montTotal As Double = 1
         Dim _pntTotal As Integer = 0
         Dim hasTotalPromo As Boolean = False
+        has_auto_promos = False
+        myPoint = 0
+        usedPoint = 0
+        SelectedAutoPromoPoint = 0
 
-
-        Dim myPoint As Integer = 0
         Dim remTotal As Double = 0
-
+        If Pl.Controls.Count = 0 Then System.Threading.Thread.Sleep(1500)
         For Each p As Promos In ListPromos
+            If p.dte > Dte Then Continue For
+
             For Each r As PromosArticle In p.startList
                 If r.type = "Article" Then
 
@@ -1395,11 +1483,22 @@
             Next
         Next
 
-        Dim RslArts As New Dictionary(Of Integer, Double)
-        Dim RslCats As New Dictionary(Of Integer, Double)
-
+   
         Dim a As Items
         For Each a In Pl.Controls
+
+            If a.cid = -500 Then 'Cadreau
+                Try
+                    remTotal += a.Total_ttc
+                    usedPoint += a.Bprice
+
+                    If a.code = "AUTO" Then has_auto_promos = True
+                Catch ex As Exception
+                End Try
+
+                Continue For
+            End If
+
 
             If paramsArts.ContainsKey(a.arid) Then
 
@@ -1414,9 +1513,9 @@
 
                 Try
                     remTotal += a.Total_ttc
-                    RslCats.Add(a.arid, a.Qte)
+                    RslCats.Add(a.cid, a.Qte)
                 Catch ex As Exception
-                    RslCats(a.arid) += a.Qte
+                    RslCats(a.cid) += a.Qte
                 End Try
             End If
         Next
@@ -1438,13 +1537,29 @@
 
         If hasTotalPromo Then
             remTotal = Total_TTC - remTotal
-            myPoint += CInt((Total_TTC / _montTotal) * _pntTotal)
+            myPoint += CInt((remTotal / _montTotal) * _pntTotal)
         End If
+
+        For Each ss In CadeauxAuto_ls
+            If ss.point <= (myPoint + TotalPoint - usedPoint) And
+                ss.point > SelectedAutoPromoPoint Then
+                SelectedAutoPromoPoint = ss.point
+            End If
+        Next
+
 
         lbPoint.Invoke(Sub()
                            lbPoint.Text = myPoint & "P"
+                           lbTotalPoint.Text = myPoint + TotalPoint & "P"
+                           lbUsedPoint.Text = usedPoint & "P"
+                           lbSelectedAutoPoint.Text = SelectedAutoPromoPoint
                        End Sub)
 
 
+    End Sub
+
+    Private Sub lbPoint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbPoint.Click
+        'test promos
+        If Not BwPromos.IsBusy Then BwPromos.RunWorkerAsync()
     End Sub
 End Class

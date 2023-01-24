@@ -5,6 +5,7 @@
 
 Public Class AddEditPromos
     Public localname As String = "Default.dat"
+    Public TableName As String = "PROMO"
     Dim _g As Promos
 
 
@@ -29,25 +30,40 @@ Public Class AddEditPromos
 
     Private Sub btRelveClientArch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btRelveClientArch.Click
          
-        Dim dir1 As New DirectoryInfo(Form1.ImgPah & "\PROMO")
+        Dim dir1 As New DirectoryInfo(Form1.ImgPah & "\" & TableName)
         If dir1.Exists = False Then dir1.Create()
 
-        WriteToXmlFile(Of Promos)(Form1.ImgPah & "\PROMO\" & localname, promos)
+        WriteToXmlFile(Of Promos)(Form1.ImgPah & "\" & TableName & "\" & localname, promos)
          
     End Sub
 
     Private Sub AddEditPromos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
+        If TableName <> "PROMO" Then
+            cbB.Items.Clear()
+            cbB.Items.Add("TA - Total Achat")
+            cbB.Items.Add("TB - Total Bon")
+
+            lbQ.Text = "Qte/Remise"
+
+            cbCond.Items.Clear()
+            cbCond.Items.Add("Article")
+            cbCond.Items.Add("Remise")
+        End If
     End Sub
 
     Private Sub cbCond_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbCond.SelectedIndexChanged
         txt.Enabled = True
-         
+        txt.text = ""
+
         Using a As SubClass = New SubClass(1)
             If cbCond.Text = "Article" Then
                 a.AutoCompleteArticlesWithRef(txt, "Article")
             ElseIf cbCond.Text = "Categorie" Then
                 a.AutoCompleteArticles(txt, "Category")
+            ElseIf cbCond.Text = "Remise" Then
+                txt.Enabled = False
+                txt.text = "Remise (Dhs)"
             Else
                 txt.Enabled = False
             End If
@@ -92,7 +108,7 @@ Public Class AddEditPromos
     Private Sub LinkLabel3_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel3.LinkClicked
         If MsgBox("Vous ete sure de supprimer cet item? ", MsgBoxStyle.YesNo, "Supression") = MsgBoxResult.Yes Then
             Try
-                If Dg1.SelectedRows.Count > 1 Then
+                If Dg1.SelectedRows.Count > 0 Then
                     For Each a As PromosArticle In _g.startList
                         If a.type = Dg1.SelectedRows(0).Cells(0).Value And
                             a.arid = Dg1.SelectedRows(0).Cells(1).Value And
@@ -104,8 +120,11 @@ Public Class AddEditPromos
                     Next
                 End If
             Catch ex As Exception
-
             End Try
         End If
+    End Sub
+
+    Private Sub Button14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button14.Click
+        txtEcheance.text = Now.Date.ToShortDateString
     End Sub
 End Class

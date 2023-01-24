@@ -81,6 +81,8 @@ Public Class Devis
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Try
+            saveChanges()
+
             Dim chs As New ChoseClient
             chs.isSell = True
             chs.editMode = False
@@ -164,6 +166,8 @@ Public Class Devis
         End Try
     End Sub
     Private Sub FactureSelected(ByVal sender As Object, ByVal e As EventArgs)
+        saveChanges()
+
         Dim bt As Button = sender
         Dim pl As Panel = plright
         Dim rnd As New Random
@@ -425,104 +429,246 @@ Public Class Devis
     Private Sub art_click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim bt As Button = sender
         Dim R As DataRow = bt.Tag
-
-        If My.Computer.Keyboard.CtrlKeyDown Then
-            Try
-                Dim cde As String = R("codebar")
-                If cde.Length > 12 Then cde = cde.Substring(0, 12)
-                If cde.Length < 12 Then cde = cde.Substring(0, 12)
-
-                Dim CD As New BarCode1
-                CD.Code = cde
-                CD.article = R("name")
-                CD.qte = R("unite")
-
-                If CD.ShowDialog = DialogResult.OK Then
-                End If
-            Catch ex As Exception
-            End Try
-
-            Exit Sub
+         
+        If Form1.isWorkingWithCatSelect Then
+            If Form1.ls_CatSelect.Contains(R("cid")) = False Then
+                Exit Sub
+            End If
         End If
 
-        'get the details
 
-        Dim pl As Panel = plright
-        Dim fid As Integer = RPl.FctId
-        Dim cid As String = 0
-        Dim clientname As String = Form1.txtcltcomptoir.Text
 
         Try
+            'add new bon
             If RPl.FctId = 0 Then
                 Exit Sub
             End If
 
-            '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-            If RPl.IsExiste(R("arid")) = False Then
-                Dim arid As Integer = 0
 
-                Using c As DataAccess2 = New DataAccess2(conString)
-                    Dim price As Double = CDbl(R("sprice"))
-                    If btswitsh.Tag = 0 Then price = CDbl(R("bprice"))
-                    Dim params As New Dictionary(Of String, Object)
-                    params.Add("fctid", CInt(RPl.FctId))
-                    params.Add("name", R("name"))
-                    params.Add("bprice", CDbl(R("bprice")))
-                    params.Add("price", price)
-                    params.Add("unit", R("unite"))
-                    params.Add("qte", CDbl(RPl.CP.Value))
-                    params.Add("tva", CDbl(R("tva")))
-                    params.Add("poid", CDbl(R("poid")))
-                    params.Add("arid", CInt(R("arid")))
-                    params.Add("depot", CInt(R("depot")))
-                    params.Add("code", CStr(R("codebar")))
-                    params.Add("cid", CStr(R("cid")))
+            Dim catsMerg = Form1.txtMergeCat.Text.Split("-")
 
-                    arid = c.InsertRecord(tName, params, True)
-                End Using
+            If RPl.IsExiste(R("arid"), R("depot")) = True And Form1.cbMergeArt.Checked = True And catsMerg.Contains(R("cid")) = False Then
+                Dim item As Items = RPl.SelectedItems(R("arid"), R("depot"))
+                Dim ID As Integer = item.id
+                Dim qte As Double = item.Qte + CDbl(RPl.CP.Value)
 
-                If arid > 0 Then
-                    '   RPl.AddItems(R, arid, CBool(btswitsh.Tag))
-                Else
-                    Exit Sub
-                End If
+                RPl.ChangedItemsQte(R("arid"), R("depot"), qte)
+                RPl.Pl.ScrollControlIntoView(item)
+
             Else
-                Using c As DataAccess2 = New DataAccess2(conString)
+                Dim ppp As Double = CDbl(R("sprice"))
 
-                    If R("cid") <> 0 Then
-                        Dim params As New Dictionary(Of String, Object)
-                        Dim qte As Double = CDbl(RPl.SelectedQte(R("arid"))) + CDbl(RPl.CP.Value)
-
-                        params.Add("qte", qte)
-
-                        Dim where As New Dictionary(Of String, Object)
-                        where.Add("fctid", fid)
-                        where.Add("arid", R("arid"))
-
-                        If c.UpdateRecord(tName, params, where) Then
-                            RPl.ChangedItemsQte(R("arid"))
-                        End If
+                If RPl.isSell Then
+                    If Form1.cbOptionJenani.Checked = False Then
+                        Select Case RPl.Num
+                            Case 2
+                                R("sprice") = R("sp3")
+                            Case 3
+                                R("sprice") = R("sp4")
+                            Case 4
+                                R("sprice") = R("sp5")
+                        End Select
                     End If
+                Else
+                    R("sprice") = R("bprice")
+                End If
 
-                End Using
+                If Form1.CBTVA.Checked = False Then R("tva") = 20
+
+                Try
+                    R("codebar") = R("codebar").Split("-")(0)
+                Catch ex As Exception
+                    R("codebar") = ""
+                End Try
+
+                Try
+
+                
+                'Last Price Option
+                If Form1.cbArtLastPrice.Text = "LastPrice" And RPl.isSell And RPl.ClId > 0 Then
+
+                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                        Dim params As New Dictionary(Of String, Object)
+                        Dim order As New Dictionary(Of String, String)
+
+                        order.Add("Facture.fctid", "DESC")
+
+                        Dim tb_A As String = "Facture"
+                        Dim tb_D_A As String = "DetailsFacture"
+
+                        params.Add(tb_A & ".clid  = ", Form1.RPl.ClId)
+                        params.Add(tb_D_A & ".arid  = ", R("arid"))
+
+                        Dim pDt As DataTable = c.SelectDataTableSymbols("(" & tb_D_A & " INNER JOIN " & tb_A & " ON " & tb_D_A & ".fctid = " & tb_A & ".fctid) ",
+                            {tb_D_A & ".price"}, params, order)
+
+                        If pDt.Rows.Count > 0 Then
+                            Dim prc As Double = pDt.Rows(0).Item("price")
+                            If IsNumeric(prc) Then
+                                If prc > R("bprice") Or Form1.RPl.ClientName.Contains("**") Then
+                                    R("sprice") = prc
+                                End If
+                            End If
+                        End If
+
+                    End Using
+
+                ElseIf Form1.cbArtLastPrice.Text = "LastMarge" And Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
+
+                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                        Dim params As New Dictionary(Of String, Object)
+                        Dim order As New Dictionary(Of String, String)
+
+                        order.Add("Facture.fctid", "DESC")
+                        Dim tb_A As String = "Facture"
+                        Dim tb_D_A As String = "DetailsFacture"
+
+                        params.Add(tb_A & ".clid  = ", Form1.RPl.ClId)
+                        params.Add(tb_D_A & ".arid  = ", R("arid"))
+
+                        Dim pDt As DataTable = c.SelectDataTableSymbols("(" & tb_D_A & " INNER JOIN " & tb_A & " ON " & tb_D_A & ".fctid = " & tb_A & ".fctid) ",
+                            {tb_D_A & ".price," & tb_D_A & ".bprice"}, params, order)
+                        If pDt.Rows.Count > 0 Then
+
+                            Dim bp As Double = pDt.Rows(0).Item("bprice")
+                            Dim sp As Double = pDt.Rows(0).Item("price")
+                            If bp > 0 Then
+                                Dim mrg As Double = sp - bp
+                                R("sprice") = R("bprice") + mrg
+                            End If
+
+                        End If
+                    End Using
+                End If
+                Catch ex As Exception
+                End Try
+
+                Dim qte As Double = CDbl(RPl.CP.Value)
+
+                RPl.AddItems(R)
+                R("sprice") = ppp
 
             End If
+
             txtSearch.Text = ""
             txtSearch.Focus()
-        Catch ex As Exception
 
+
+        Catch ex As Exception
         End Try
 
     End Sub
+
+    Public Sub saveChanges()
+        If RPl.FctId = 0 Then Exit Sub
+
+        Using c As DataAccess2 = New DataAccess2(conString, True)
+
+            Dim prId_str = "id"
+            If RPl.isSell = False Then prId_str = "bid"
+
+            Dim params As New Dictionary(Of String, Object)
+            Dim where As New Dictionary(Of String, Object)
+
+            Dim data = RPl.DataSource
+
+            For i As Integer = 0 To data.Rows.Count - 1
+
+                params.Clear()
+                params.Add("fctid", RPl.FctId)
+                params.Add("name", data.Rows(i).Item("name"))
+                params.Add("bprice", data.Rows(i).Item("bprice"))
+                params.Add("price", data.Rows(i).Item("price"))
+                params.Add("unit", data.Rows(i).Item("unit"))
+                params.Add("qte", data.Rows(i).Item("qte"))
+                params.Add("tva", data.Rows(i).Item("tva"))
+                params.Add("arid", data.Rows(i).Item("arid"))
+                params.Add("depot", data.Rows(i).Item("depot"))
+                params.Add("poid", CInt(data.Rows(i).Item("poid")))
+                params.Add("code", data.Rows(i).Item("code"))
+                params.Add("cid", data.Rows(i).Item("cid"))
+                Dim prId As Integer = data.Rows(i).Item("id")
+
+                Dim tableName As String = "DetailsFacture"
+                If btswitsh.Tag = 0 Then tableName = "DetailsBon"
+
+                If prId > 0 Then
+                    where.Clear()
+                    where.Add(prId_str, prId)
+                    c.UpdateRecord(tableName, params, where)
+                Else
+                    c.InsertRecord(tableName, params)
+                End If
+            Next
+        End Using
+    End Sub
+    Public Function saveChanges_fct() As Boolean
+        If RPl.FctId = 0 Then Return False
+        Using c As DataAccess2 = New DataAccess2(conString, True)
+
+            Dim prId_str = "id"
+            If RPl.isSell = False Then prId_str = "bid"
+
+            Dim params As New Dictionary(Of String, Object)
+            Dim where As New Dictionary(Of String, Object)
+
+            Dim data = RPl.DataSource
+
+
+            For i As Integer = 0 To data.Rows.Count - 1
+
+                params.Clear()
+                params.Add("fctid", RPl.FctId)
+                params.Add("name", data.Rows(i).Item("name"))
+                params.Add("bprice", data.Rows(i).Item("bprice"))
+                params.Add("price", data.Rows(i).Item("price"))
+                params.Add("unit", data.Rows(i).Item("unit"))
+                params.Add("qte", data.Rows(i).Item("qte"))
+                params.Add("tva", data.Rows(i).Item("tva"))
+                params.Add("arid", data.Rows(i).Item("arid"))
+                params.Add("depot", data.Rows(i).Item("depot"))
+                params.Add("poid", CInt(data.Rows(i).Item("poid")))
+                params.Add("code", data.Rows(i).Item("code"))
+                params.Add("cid", data.Rows(i).Item("cid"))
+                Dim prId As Integer = data.Rows(i).Item("id")
+
+
+                Dim tableName As String = "DetailsFacture"
+                If btswitsh.Tag = 0 Then tableName = "DetailsBon"
+
+                If prId > 0 Then
+                    where.Clear()
+                    where.Add(prId_str, prId)
+                    c.UpdateRecord(tableName, params, where)
+                Else
+                    Dim pid = c.InsertRecord(tableName, params, True)
+
+                    Dim a As Items
+                    For Each a In Form1.RPl.Pl.Controls()
+                        If prId = a.id Then
+                            a.id = pid
+                            Exit For
+                        End If
+                    Next
+
+                End If
+            Next
+            Return True
+        End Using
+
+    End Function
+
     Public Sub UpdateItem(ByVal t As String, ByVal i As Items, ByVal Field As String)
         Try
+            If saveChanges_fct() = False Then Exit Sub
+
             Dim clc As New Calc
             clc.title = t
             clc.desc = i.Qte & " " & i.Unite
             If Field <> "qte" Then
                 clc.desc = i.Price & " Dhs"
             End If
-          
+
             If clc.ShowDialog = DialogResult.OK Then
                 Dim qte As Double = CDbl(clc.CPanel1.Value)
 
@@ -553,27 +699,39 @@ Public Class Devis
     End Sub
     Public Sub DeleteItem(ByRef i As Al_Mohasib.Items, ByVal id As System.Int32)
 
-        Dim tableName As String = "DetailsFacture"
         Dim FC = "id"
+        Dim tableName As String = "DetailsFacture"
         Dim isS As Boolean = CBool(RPl.isSell)
+
         If isS = False Then
             tableName = "DetailsBon"
             FC = "bid"
         End If
 
-        Using c As DataAccess2 = New DataAccess2(conString, True)
-            Dim where As New Dictionary(Of String, Object)
-            where.Add(FC, i.id)
-            'where.Add("arid", i.id)
+        If i.id > 0 Then
+            Using c As DataAccess2 = New DataAccess2(conString, True)
+                Dim where As New Dictionary(Of String, Object)
+                where.Add(FC, i.id)
 
-            If c.DeleteRecords(tableName, where) Then
-                RPl.DeleteItems()
-            End If
-        End Using
+                If c.DeleteRecords(tableName, where) Then
+                    RPl.DeleteItems()
+                End If
+
+            End Using
+        Else
+
+            RPl.DeleteItems()
+
+        End If
+
+
+
 
     End Sub
     Public Sub SaveFacture(ByVal id As Integer, ByVal total As Double, ByVal avance As Double,
                            ByVal tva As Double, ByVal table As DataTable, ByVal Remise As String, ByVal BL As String)
+
+        If saveChanges_fct() = False Then Exit Sub
 
         Using c As DataAccess2 = New DataAccess2(conString, True)
             Dim isPayed As Boolean = False
@@ -770,6 +928,7 @@ Public Class Devis
 
     Private Sub RPl_SaveAndPrint(ByVal id As System.Int32, ByVal total As System.Double, ByVal avance As System.Double, ByVal tva As System.Double, ByVal table As System.Data.DataTable, ByVal isSell As System.Boolean, ByVal isBl As System.Boolean, ByVal isSecond As System.Boolean) Handles RPl.SaveAndPrint
         If RPl.FctId = 0 Then Exit Sub
+        If saveChanges_fct() = False Then Exit Sub
 
         Dim nbr As Integer = Form1.txtNbrCopie.Text
         Dim nm As String = Form1.txttimp.Text
@@ -904,6 +1063,8 @@ Public Class Devis
     Private Sub DataGridView1_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
         If DataGridView1.SelectedRows.Count = 0 Then Exit Sub
 
+        saveChanges()
+
         plright.Controls.Clear()
 
         Dim rnd As New Random
@@ -959,7 +1120,7 @@ Public Class Devis
             params.Add("name", clientname)
             params.Add("total", 0)
             params.Add("avance", 0)
-            params.Add("date", Format(dte, "dd-MM-yyyy"))
+            params.Add("date", Now)
             params.Add("admin", False)
             params.Add("writer", CStr(Form1.adminName))
             params.Add("tp", 1)

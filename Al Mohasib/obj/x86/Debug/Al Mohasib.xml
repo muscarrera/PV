@@ -44,6 +44,10 @@ Represents a strongly typed in-memory cache of data.
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources._172626_user_male_icon">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources._2">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -57,6 +61,18 @@ Represents a strongly typed in-memory cache of data.
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources._2298366_audio_doodle_fast_forward_forward_music_icon">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources._326569_nfc_icon">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources._3643768_info_information_letter_mark_sign_icon__1_">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources._3844437_hamburger_list_menu_more_navigation_icon">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -76,7 +92,15 @@ Represents a strongly typed in-memory cache of data.
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources._7787506_filter_funnel_sort_sorting_conversion_icon">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources._8872217_arrow_bold_forvard_icon">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources._9004741_calendar_date_schedule_event_icon">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -372,6 +396,10 @@ Represents a strongly typed in-memory cache of data.
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.EDIT_22X22">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.editmon">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -552,6 +580,10 @@ Represents a strongly typed in-memory cache of data.
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.NFC_Nasil_Kodlanir_1024x558">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.no">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -676,6 +708,10 @@ Represents a strongly typed in-memory cache of data.
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.SORTCOLOR20">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.staff">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -744,6 +780,10 @@ Represents a strongly typed in-memory cache of data.
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.using_glass_nfc_credit_card_via_luxury_smartphone_for_your_business_marketing_or_buy_what_is_you_want_background_style_illustration_eps10_vector">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.vector_cancel_icon_png_302651">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -770,9 +810,6 @@ Represents a strongly typed in-memory cache of data.
 </summary>
 </member><member name="M:Al_Mohasib.ChequePanel.Button15_Click(System.Object,System.EventArgs)">
  edit payement
-
-</member><member name="M:Al_Mohasib.ChequePanel.Button11_Click(System.Object,System.EventArgs)">
-ddddddddddddddd
 
 </member>
 </members>

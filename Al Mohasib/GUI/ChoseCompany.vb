@@ -12,6 +12,14 @@
             Return txt.text.Trim.Split("|")(1)
         End Get
     End Property
+    Public ReadOnly Property cid As Integer
+        Get
+            If txtClient.text.Contains("|") = False Then Return 0
+            If Not IsNumeric(txtClient.text.Trim.Split("|")(1)) Then Return 0
+
+            Return txtClient.text.Trim.Split("|")(1)
+        End Get
+    End Property
 
     Dim dt_ajustement As DataTable
 
@@ -36,11 +44,11 @@
 
         Using a As SubClass = New SubClass(1)
             a.AutoCompleteArticles(txt, "Article")
-            '  a.AutoCompleteArticles(txtAjustArt, "Article")
+            a.AutoCompleteArticles(txtR, "Client")
         End Using
     End Sub
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
-
+        ResetLabels()
 
         Trace_Search()
 
@@ -72,51 +80,39 @@
             Dim tb As String = "Bon"
             Dim tb_D As String = "DetailsBon"
 
-            If arid > 0 Then
-
-                params.Add(tb & ".date >", dt1)
-                params.Add(tb & ".date <", dt2)
-                params.Add(tb_D & ".arid =", arid)
 
 
-                dt_in = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".bonid) INNER JOIN Depot ON " & tb_D & ".depot = Depot.dpid)",
-                            {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
-                                  tb_D & ".price AS Prix, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_ENTREE"}, params)
+            params.Add(tb & ".date >", dt1)
+            params.Add(tb & ".date <", dt2)
 
-                params.Clear()
-
-                tb = "Facture"
-                tb_D = "DetailsFacture"
-                params.Add(tb & ".date >", dt1)
-                params.Add(tb & ".date <", dt2)
-                params.Add(tb_D & ".arid =", arid)
-
-                dt_Out = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".fctid) INNER JOIN Depot ON " & tb_D & ".depot = Depot.dpid)",
-                            {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
-                                  tb_D & ".price AS Prix, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_SORTIE"}, params)
-
-            Else
-                params.Clear()
-
-                params.Add(tb & ".date >", dt1)
-                params.Add(tb & ".date <", dt2)
-                dt_in = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".bonid) INNER JOIN Depot ON " & tb_D & ".depot = Depot.dpid)",
-                              {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
-                                  tb_D & ".price AS Prix, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_ENTREE"}, params)
-
-                params.Clear()
-
-                tb = "Facture"
-                tb_D = "DetailsFacture"
-                params.Add(tb & ".date >", dt1)
-                params.Add(tb & ".date <", dt2)
-
-                dt_Out = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".fctid) INNER JOIN Depot ON " & tb_D & ".depot = Depot.dpid)",
-                            {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
-                                  tb_D & ".price AS Prix, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_SORTIE"}, params)
-
-
+            If __trace__isSell__used = False Then
+                If cid > 0 Then params.Add(tb & ".clid = ", cid)
             End If
+
+            If arid > 0 Then params.Add(tb_D & ".arid =", arid)
+
+            dt_in = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".bonid) INNER JOIN Depot ON " & tb_D & ".depot = Depot.dpid)",
+                        {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
+                              tb_D & ".price AS Prix, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_ENTREE"}, params)
+
+            params.Clear()
+
+            tb = "Facture"
+            tb_D = "DetailsFacture"
+            params.Add(tb & ".date >", dt1)
+            params.Add(tb & ".date <", dt2)
+
+
+            If __trace__isSell__used Then
+                If cid > 0 Then params.Add(tb & ".clid = ", cid)
+            End If
+
+            If arid > 0 Then params.Add(tb_D & ".arid =", arid)
+            dt_Out = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".fctid) INNER JOIN Depot ON " & tb_D & ".depot = Depot.dpid)",
+                        {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
+                              tb_D & ".price AS Prix, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_SORTIE"}, params)
+
+
         End Using
 
     End Sub
@@ -201,14 +197,9 @@
 
         Dim dt As New DataTable
 
-        Dim d_i As DataTable = dt_in.Copy
-        Dim d_o As DataTable = dt_Out.Copy
-
-        Dim gg As DataTable = From rows In d_o.AsEnumerable()
-        Group rows By Key = New With {.price = rows("price"), .arid = rows("arid")} Into Group
-        Select Group.CopyToDataTable
-
-        d_o = gg
+        Dim d_i As DataTable = GroubDT(dt_in.Copy, False)
+        Dim d_o As DataTable = GroubDT(dt_Out.Copy, True)
+         
 
         If cbIn.Checked = True And cbOut.Checked = False Then
             If Not IsNothing(d_i) Then dt = d_i
@@ -223,108 +214,109 @@
             Exit Sub
         End If
 
-        If IsNothing(dt) Then Exit Sub
-        If dt.Columns.Count < 6 Then Exit Sub
+
+        dg_D.DataSource = dt
+
+    End Sub
+
+    Private Function GroubDT(ByRef inDt As DataTable, ByVal isS As Boolean) As DataTable
+        Dim dd_o As DataTable = inDt.Copy
+
+        If IsNothing(inDt) Then Return dd_o
+        If inDt.Columns.Count < 6 Then Return dd_o
 
         If txtDepot.text.Contains("|") Then
 
             Dim dp = txtDepot.text.Split("|")(1)
             If IsNumeric(dp) Then
-                Dim result = From myRow As DataRow In dt.Rows
+                Dim result = From myRow As DataRow In inDt.Rows
                                         Where myRow("depot") = dp Select myRow
                 If result.Count Then
-                    dt = result.CopyToDataTable
+                    inDt = result.CopyToDataTable
                 Else
-                    dt.Rows.Clear()
+                    inDt.Rows.Clear()
                 End If
 
             End If
         End If
 
 
-        dg_D.DataSource = dt
+        If isS Then
+            Dim query = From row In inDt
+                                        Group row By dateGroup = New With {Key .name = row.Field(Of String)("name"),
+                                                                           Key .unit = row.Field(Of String)("Unite"),
+                                                                           Key .Prix = row.Field(Of Decimal)("Prix")} Into Group
+                                        Select New With {Key .Dates = dateGroup,
+                                                        .total = Group.Sum(Function(x) x.Field(Of Decimal)("Qte_SORTIE")),
+                                                        .count = Group.Count(Function(x) x.Field(Of Integer)("fctid"))}
+
+            dd_o.Rows.Clear()
+            For Each item In query
+                dd_o.Rows.Add(Now, "Groupe", item.count, item.Dates.name, item.Dates.unit, item.Dates.Prix, 0, "", item.total)
+            Next
+
+        Else
+            Dim query = From row In inDt
+                            Group row By dateGroup = New With {Key .name = row.Field(Of String)("name"),
+                                                               Key .unit = row.Field(Of String)("Unite"),
+                                                               Key .Prix = row.Field(Of Decimal)("Prix")} Into Group
+                            Select New With {Key .Dates = dateGroup,
+                                            .total = Group.Sum(Function(x) x.Field(Of Decimal)("Qte_ENTREE")),
+                                            .count = Group.Count(Function(x) x.Field(Of Integer)("fctid"))}
+
+            dd_o.Rows.Clear()
+            For Each item In query
+                dd_o.Rows.Add(Now, "Groupe", item.count, item.Dates.name, item.Dates.unit, item.Dates.Prix, 0, "", item.total)
+            Next
+
+        End If
 
 
-        'dg_D.Columns(0).Visible = False
-        'dg_D.Columns(2).Visible = False
-        'dg_D.Columns(3).Visible = False
-        'dg_D.Columns(4).Visible = False
-        'dg_D.Columns(6).Visible = False
-        'dg_D.Columns(7).Visible = False
-        'dg_D.Columns(8).Visible = False
+        Return dd_o
+    End Function
 
+    Dim __trace__isSell As Boolean = True
+    Public __trace__isSell__used As Boolean = True
 
-        'dg_D.Columns(11).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
-        ' '' dg_D.Columns(14).DefaultCellStyle.ForeColor = Form1.Color_Default_Text
-        'dg_D.Columns(11).AutoSizeMode = DataGridViewAutoSizeColumnMode.None
-
-        'Try
-        '    dg_D.Columns(1).HeaderText = "ID"
-        '    dg_D.Columns(13).HeaderText = "Qte SORTIE"
-        '    dg_D.Columns(15).HeaderText = "Qte ENTREE"
-
-        '    dg_D.Columns(10).HeaderText = "Date"
-        '    dg_D.Columns(11).HeaderText = "Entrepote"
-        '    dg_D.Columns(9).HeaderText = "Libelle"
-        '    dg_D.Columns(12).HeaderText = "prix de vente"
-        '    dg_D.Columns(14).HeaderText = "prix d'achat"
-
-        'Catch ex As Exception
-
-        'End Try
-
-        'dg_D.Sort(dg_D.Columns(11), System.ComponentModel.ListSortDirection.Ascending)
-
-        'Try
-        '    '0 2345678 9CL 10 DT 11DP 12PO 13QO 14PI 15QI
-
-        '    dg_D.Columns(1).DisplayIndex = 1
-        '    dg_D.Columns(10).DisplayIndex = 2
-        '    dg_D.Columns(9).DisplayIndex = 3
-        '    dg_D.Columns(13).DisplayIndex = 4
-        '    dg_D.Columns(12).DisplayIndex = 5
-        '    dg_D.Columns(15).DisplayIndex = 6
-        '    dg_D.Columns(14).DisplayIndex = 7
-        'Catch ex As Exception
-        'End Try
-
-        'Dim sum As Double
-        'Try
-        '    sum = Convert.ToDouble(dt.Compute("SUM(qteIn)", String.Empty))
-        '    lbQteIn.Text = sum & " U"
-        'Catch ex As Exception
-        '    lbQteIn.Text = "... "
-        'End Try
-
-        'Try
-        '    sum = Convert.ToDouble(dt.Compute("SUM(qteOut)", String.Empty))
-        '    lbQteOut.Text = sum & " U"
-        'Catch ex As Exception
-        '    lbQteOut.Text = "... "
-        'End Try
-
-        'lbLnbr.Text = dg_D.Rows.Count & " Lines"
-        ''Me.Height = (dg_D.Rows.Count * 40) + 250
-
-        ''If Me.Height < 700 Then Me.Height = 700
-    End Sub
     Private Sub cbOut_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbOut.CheckedChanged, cbIn.CheckedChanged, cbComul.CheckedChanged
         'filtreTheData()
+        If cbOut.Checked = False And cbIn.Checked = True Then
+            __trace__isSell = False
+        Else
+            __trace__isSell = True
+        End If
+
     End Sub
 
-    Private Sub txtDepot_TxtChanged() Handles txtDepot.TxtChanged
+    Private Sub txtDepot_TxtChanged() Handles txtDepot.TxtChanged, txtClient.TxtChanged
         filtreTheData()
     End Sub
 
     Dim STR_TITLE As String = ""
+    Private Sub ResetLabels()
+        Label6.Text = "Entree"
+        Label7.Text = "Sortie"
+        t_tva = 0
+
+        lbQteIn.Text = "-"
+        lbQteOut.Text = "-"
+        lbLnbr.Text = "-"
+    End Sub
+
 
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
 
+        Dim params2 As New Dictionary(Of String, String)
+        params2.Add("Nbr", dg_D.Rows.Count)
+        params2.Add(Label6.Text, lbQteIn.Text)
+        params2.Add(Label7.Text, lbQteOut.Text)
+        If t_tva > 0 Then params2.Add("Tva", t_tva.ToString("N2"))
+         
         STR_TITLE = STR_TITLE.Replace("|", " ")
         STR_TITLE = STR_TITLE.Replace(":", " ")
         STR_TITLE = STR_TITLE.Replace("/", " ")
 
-        SaveDataToHtml(dg_D, STR_TITLE)
+        SaveDataToHtml_WithTotal(dg_D, STR_TITLE, params2)
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
@@ -351,6 +343,8 @@
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        ResetLabels()
+        Label7.Text = "TOTAL"
         Search_Search()
 
         Search_filtreTheData()
@@ -441,30 +435,30 @@
         Try
             sum = Convert.ToDouble(dt.Compute("SUM(Valeur)", String.Empty))
             lbQteIn.Text = sum.ToString("N2") & " Dhs"
+            lbQteOut.Text = sum.ToString("N2") & " Dhs"
         Catch ex As Exception
             lbQteIn.Text = "... "
         End Try
 
 
         Try
-            dt.Rows.Add(-1, -1, "", 0, "", "", 0, 0, 0)
-            dt.Rows(dt.Rows.Count - 1).Item(14) = "TOTAL"
-            dt.Rows(dt.Rows.Count - 1).Item(17) = 0
-            dt.Rows(dt.Rows.Count - 1).Item(20) = sum.ToString("N2")
+            dt.Rows.Add("TOTAL", -1, 0, 0, "", 0, 0, 0, 0)
+            dt.Rows(dt.Rows.Count - 1).Item(11) = sum.ToString("N2")
         Catch ex As Exception
         End Try
 
-
+        dg_D.DataSource = Nothing
         dg_D.DataSource = dt
 
         Try
             dg_D.Columns(3).Visible = False
-            dg_D.Columns(4).Visible = False '2 3 4
+            ' dg_D.Columns(4).Visible = False '2 3 4
             dg_D.Columns(5).Visible = False
             dg_D.Columns(8).Visible = False
-            dg_D.Columns(7).Visible = False ' 8
-            dg_D.Columns(9).Visible = False
+            'dg_D.Columns(7).Visible = False ' 8
+            ' dg_D.Columns(9).Visible = False
             dg_D.Columns(10).Visible = False
+
 
 
             dg_D.Columns(2).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
@@ -475,10 +469,24 @@
             dg_D.Columns(0).HeaderText = "Entrepote"
             dg_D.Columns(2).HeaderText = "prix d'achat"
 
-            dg_D.Columns(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-            dg_D.Columns(3).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            dg_D.Columns(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            dg_D.Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            'dg_D.Columns(4).AutoSizeMode = DataGridViewAutoSizeColumnMode.
             dg_D.Columns(6).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            dg_D.Columns(7).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            dg_D.Columns(9).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
             dg_D.Columns(11).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+
+            dg_D.Columns(9).DisplayIndex = 3
+            dg_D.Columns(7).DisplayIndex = 3
+            dg_D.Columns(4).DisplayIndex = 0
+            dg_D.Columns(2).DisplayIndex = 5
+            dg_D.Columns(0).DisplayIndex = 4
+
+         
+            dg_D.Columns(11).DefaultCellStyle.Format = "N2"
+            dg_D.Columns(2).DefaultCellStyle.Format = "N2"
+            dg_D.Columns(6).DefaultCellStyle.Format = "N2"
 
         Catch ex As Exception
         End Try
@@ -769,6 +777,7 @@
     
 
     Private Sub Button9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button9.Click
+        ResetLabels()
         Search_filtreAjustementData()
 
         STR_TITLE = "Ajustement de stock "
@@ -945,5 +954,157 @@
           
         lbLnbr.Text = dg_D.Rows.Count & " Lines"
       
+    End Sub
+    Dim t_tva As Double = 0
+    Private Sub Button12_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button12.Click
+
+        Label6.Text = "Total"
+        Label7.Text = "Regl."
+        t_tva = 0
+
+        Dim dt2 = New DateTime(dtR2.Value.Year, dtR2.Value.Month, dtR2.Value.Day, 23, 59, 0, 0)
+        Dim dt1 = New DateTime(dtR1.Value.Year, dtR1.Value.Month, dtR1.Value.Day, 0, 1, 0, 0)
+        Dim _dt As New DataTable
+
+        STR_TITLE = "Archive (Ventes) " & txtR.text & " - du " & dte1.Value.ToString("dd-MM-yy") & " Au " & dte2.Value.ToString("dd-MM-yy")
+
+
+
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+            Dim tb As String = "facture_liste"
+            Dim tb_F As String = "facture"
+            Dim t_av As Double = 0
+            t_tva = 0
+            Dim cid As Integer = 0
+
+            Try
+                If txtR.text.Contains("|") = True And
+                               IsNumeric(txtR.text.Trim.Split("|")(1)) Then
+                    cid = txtR.text.Trim.Split("|")(1)
+                End If
+            Catch ex As Exception
+            End Try
+
+            params.Add("date >", dt1)
+            params.Add("date <", dt2)
+            If cid > 0 Then params.Add("clid =", cid)
+
+            'dt_stk = a.SelectDataTableSymbols("((" & tb & " INNER JOIN " & tb_F & " ON " & tb & ".flid = " &
+            '                                  tb_F & ".beInFacture) INNER JOIN client ON facture_liste.clid = client.Clid)",
+            '            {tb & ".clid AS CodeClient, client.name, " & tb & ".date, " & tb & ".total, SUM(" & tb_F & ".avance) AS Regl, " &
+            '               " SUM(" & tb_F & ".tva) AS Tva, " & tb & ".mode"}, )
+            _dt = a.SelectDataTableSymbols(tb, {"*"}, params)
+
+
+            _dt.Columns.Add("Designation", GetType(String))
+            _dt.Columns.Add("Regl.", GetType(Double))
+            _dt.Columns.Add("Tva", GetType(String))
+            _dt.Columns.Add("ICE", GetType(String))
+
+
+            For i As Integer = 0 To _dt.Rows.Count - 1
+                Dim fid As Integer = _dt.Rows(i).Item(0)
+                params.Clear()
+                params.Add("Clid", _dt.Rows(i).Item("clid"))
+                Try
+                    _dt.Rows(i).Item("Designation") = a.SelectByScalar("Client", "name", params)
+                Catch ex As Exception
+                End Try
+                Dim ice As String = "-"
+                Try
+                    ice = a.SelectByScalar("Client", "Adress", params)
+                    ice = ice.ToString.Split("*")(2)
+                Catch ex As Exception
+                End Try
+                _dt.Rows(i).Item("ICE") = ice
+
+                params.Clear()
+                params.Add("beInFacture", fid)
+
+                If CBool(_dt.Rows(i).Item(5)) Then
+                    _dt.Rows(i).Item("Regl.") = _dt.Rows(i).Item(7)
+                    t_av += _dt.Rows(i).Item(7)
+                Else
+                    Try
+                        Dim avv As Double = a.SelectByScalar(tb_F, "SUM(avance)", params)
+                        _dt.Rows(i).Item("Regl.") = avv
+                        t_av += avv
+                    Catch ex As Exception
+                    End Try
+                End If
+
+                Try
+                    Dim avv As Double = a.SelectByScalar(tb_F, "SUM(Tva)", params)
+                    _dt.Rows(i).Item("Tva") = avv
+                    t_tva += avv
+                Catch ex As Exception
+                End Try
+            Next
+
+            _dt.Columns(0).ColumnName = "N°/ID"
+            _dt.Columns(2).ColumnName = "Code Client"
+            _dt.Columns(6).ColumnName = "Md Pmnt"
+
+            _dt.Columns(8).SetOrdinal(2)
+            _dt.Columns(11).SetOrdinal(3)
+
+            dg_D.DataSource = Nothing
+            dg_D.DataSource = _dt
+            dg_D.Columns(1).Visible = False
+            dg_D.Columns(4).Visible = False
+            dg_D.Columns(6).Visible = False
+            dg_D.Columns(7).Visible = False
+         
+
+            '  dg_D.Columns(8).DisplayIndex = 1
+
+            Try
+                Dim sum As Double = Convert.ToDouble(_dt.Compute("SUM(total)", String.Empty))
+                lbQteIn.Text = String.Format("{0:n}", CDec(sum))
+
+            Catch ex As Exception
+                Try
+                    Dim SM = _dt.AsEnumerable().Aggregate(0, Function(n, r) PriceField(r) + n)
+                    lbQteIn.Text = String.Format("{0:n}", CDec(SM))
+                Catch exe As Exception
+                End Try
+            End Try
+
+
+            Try
+                lbQteOut.Text = String.Format("{0:n}", CDec(t_av))
+
+            Catch ex As Exception
+            End Try
+
+            lbLnbr.Text = dg_D.Rows.Count & " Lines"
+
+        End Using
+    End Sub
+
+    Private Sub Button14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button14.Click
+        Try
+            Dim isSell As Boolean = True
+            Dim chs As New ChoseClient
+            chs.isSell = isSell
+            If chs.ShowDialog = Windows.Forms.DialogResult.OK Then
+                txtR.text = chs.clientName & "|" & chs.cid
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub Button13_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button13.Click
+        Dim clc As New ChoseClient
+        clc.isSell = __trace__isSell
+
+
+        If clc.ShowDialog = Windows.Forms.DialogResult.OK Then
+            txtClient.text = clc.clientName & "|" & clc.cid
+            __trace__isSell__used = __trace__isSell
+        End If
+
     End Sub
 End Class

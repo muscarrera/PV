@@ -22,12 +22,43 @@ Partial Class Client
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Client))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Client))
         Me.plup = New System.Windows.Forms.Panel()
+        Me.GB1 = New System.Windows.Forms.GroupBox()
+        Me.lbPouch = New System.Windows.Forms.Label()
+        Me.txttel = New Al_Mohasib.TxtBox()
+        Me.txtIce = New Al_Mohasib.TxtBox()
+        Me.txtVille = New Al_Mohasib.TxtBox()
+        Me.txtad = New Al_Mohasib.TxtBox()
+        Me.txtcin = New Al_Mohasib.TxtBox()
+        Me.txttp = New Al_Mohasib.TxtBox()
+        Me.txtcrd = New Al_Mohasib.TxtBox()
+        Me.txtname = New Al_Mohasib.TxtBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.lbTp = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.ClidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CINDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AdressDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CreditDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.type = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.btcon = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.btcancel = New System.Windows.Forms.Button()
         Me.Panel21 = New System.Windows.Forms.Panel()
         Me.btAllow = New System.Windows.Forms.Button()
         Me.btAllow2 = New System.Windows.Forms.Button()
@@ -56,37 +87,10 @@ Partial Class Client
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Panel13 = New System.Windows.Forms.Panel()
-        Me.GB1 = New System.Windows.Forms.GroupBox()
-        Me.lbPouch = New System.Windows.Forms.Label()
-        Me.txttel = New Al_Mohasib.TxtBox()
-        Me.txtIce = New Al_Mohasib.TxtBox()
-        Me.txtVille = New Al_Mohasib.TxtBox()
-        Me.txtad = New Al_Mohasib.TxtBox()
-        Me.txtcin = New Al_Mohasib.TxtBox()
-        Me.txttp = New Al_Mohasib.TxtBox()
-        Me.txtcrd = New Al_Mohasib.TxtBox()
-        Me.txtname = New Al_Mohasib.TxtBox()
-        Me.btcon = New System.Windows.Forms.Button()
-        Me.btcancel = New System.Windows.Forms.Button()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.lbTp = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.type = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.CreditDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AdressDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CINDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ClidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.plup.SuspendLayout()
+        Me.GB1.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
         Me.Panel21.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel25.SuspendLayout()
@@ -96,9 +100,6 @@ Partial Class Client
         Me.Panel16.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.Panel14.SuspendLayout()
-        Me.GB1.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'plup
@@ -113,6 +114,444 @@ Partial Class Client
         Me.plup.Name = "plup"
         Me.plup.Size = New System.Drawing.Size(984, 94)
         Me.plup.TabIndex = 2
+        '
+        'GB1
+        '
+        Me.GB1.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.GB1.Controls.Add(Me.lbPouch)
+        Me.GB1.Controls.Add(Me.txttel)
+        Me.GB1.Controls.Add(Me.txtIce)
+        Me.GB1.Controls.Add(Me.txtVille)
+        Me.GB1.Controls.Add(Me.txtad)
+        Me.GB1.Controls.Add(Me.txtcin)
+        Me.GB1.Controls.Add(Me.txttp)
+        Me.GB1.Controls.Add(Me.txtcrd)
+        Me.GB1.Controls.Add(Me.txtname)
+        Me.GB1.Controls.Add(Me.btcon)
+        Me.GB1.Controls.Add(Me.Button3)
+        Me.GB1.Controls.Add(Me.btcancel)
+        Me.GB1.Controls.Add(Me.Label4)
+        Me.GB1.Controls.Add(Me.lbTp)
+        Me.GB1.Controls.Add(Me.Label10)
+        Me.GB1.Controls.Add(Me.Label8)
+        Me.GB1.Controls.Add(Me.Label3)
+        Me.GB1.Controls.Add(Me.Label5)
+        Me.GB1.Controls.Add(Me.Label2)
+        Me.GB1.Controls.Add(Me.Label6)
+        Me.GB1.Controls.Add(Me.Label1)
+        Me.GB1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.GB1.Location = New System.Drawing.Point(0, 94)
+        Me.GB1.Name = "GB1"
+        Me.GB1.Size = New System.Drawing.Size(373, 449)
+        Me.GB1.TabIndex = 13
+        Me.GB1.TabStop = False
+        Me.GB1.Visible = False
+        '
+        'lbPouch
+        '
+        Me.lbPouch.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.lbPouch.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbPouch.ForeColor = System.Drawing.SystemColors.Highlight
+        Me.lbPouch.Location = New System.Drawing.Point(42, 339)
+        Me.lbPouch.Name = "lbPouch"
+        Me.lbPouch.Size = New System.Drawing.Size(219, 18)
+        Me.lbPouch.TabIndex = 8
+        Me.lbPouch.Text = "  Mon Pouchet   ...."
+        Me.lbPouch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lbPouch.Visible = False
+        '
+        'txttel
+        '
+        Me.txttel.BackColor = System.Drawing.Color.White
+        Me.txttel.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txttel.IsNumiric = False
+        Me.txttel.Location = New System.Drawing.Point(120, 285)
+        Me.txttel.MinimumSize = New System.Drawing.Size(0, 33)
+        Me.txttel.Name = "txttel"
+        Me.txttel.ShowClearIcon = False
+        Me.txttel.ShowSaveIcon = False
+        Me.txttel.Size = New System.Drawing.Size(218, 33)
+        Me.txttel.StartUp = 2
+        Me.txttel.TabIndex = 5
+        Me.txttel.TextSize = 8
+        Me.txttel.TxtBackColor = True
+        Me.txttel.TxtColor = System.Drawing.Color.White
+        Me.txttel.txtReadOnly = False
+        Me.txttel.TxtSelect = New Integer() {1, 0}
+        '
+        'txtIce
+        '
+        Me.txtIce.BackColor = System.Drawing.Color.White
+        Me.txtIce.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtIce.IsNumiric = False
+        Me.txtIce.Location = New System.Drawing.Point(121, 246)
+        Me.txtIce.MinimumSize = New System.Drawing.Size(0, 33)
+        Me.txtIce.Name = "txtIce"
+        Me.txtIce.ShowClearIcon = False
+        Me.txtIce.ShowSaveIcon = False
+        Me.txtIce.Size = New System.Drawing.Size(218, 33)
+        Me.txtIce.StartUp = 2
+        Me.txtIce.TabIndex = 4
+        Me.txtIce.TextSize = 8
+        Me.txtIce.TxtBackColor = True
+        Me.txtIce.TxtColor = System.Drawing.Color.White
+        Me.txtIce.txtReadOnly = False
+        Me.txtIce.TxtSelect = New Integer() {1, 0}
+        '
+        'txtVille
+        '
+        Me.txtVille.BackColor = System.Drawing.Color.White
+        Me.txtVille.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtVille.IsNumiric = False
+        Me.txtVille.Location = New System.Drawing.Point(120, 208)
+        Me.txtVille.MinimumSize = New System.Drawing.Size(0, 33)
+        Me.txtVille.Name = "txtVille"
+        Me.txtVille.ShowClearIcon = False
+        Me.txtVille.ShowSaveIcon = False
+        Me.txtVille.Size = New System.Drawing.Size(218, 33)
+        Me.txtVille.StartUp = 2
+        Me.txtVille.TabIndex = 4
+        Me.txtVille.TextSize = 8
+        Me.txtVille.TxtBackColor = True
+        Me.txtVille.TxtColor = System.Drawing.Color.White
+        Me.txtVille.txtReadOnly = False
+        Me.txtVille.TxtSelect = New Integer() {1, 0}
+        '
+        'txtad
+        '
+        Me.txtad.BackColor = System.Drawing.Color.White
+        Me.txtad.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtad.IsNumiric = False
+        Me.txtad.Location = New System.Drawing.Point(120, 169)
+        Me.txtad.MinimumSize = New System.Drawing.Size(0, 33)
+        Me.txtad.Name = "txtad"
+        Me.txtad.ShowClearIcon = False
+        Me.txtad.ShowSaveIcon = False
+        Me.txtad.Size = New System.Drawing.Size(218, 33)
+        Me.txtad.StartUp = 2
+        Me.txtad.TabIndex = 4
+        Me.txtad.TextSize = 8
+        Me.txtad.TxtBackColor = True
+        Me.txtad.TxtColor = System.Drawing.Color.White
+        Me.txtad.txtReadOnly = False
+        Me.txtad.TxtSelect = New Integer() {1, 0}
+        '
+        'txtcin
+        '
+        Me.txtcin.BackColor = System.Drawing.Color.White
+        Me.txtcin.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtcin.IsNumiric = False
+        Me.txtcin.Location = New System.Drawing.Point(121, 130)
+        Me.txtcin.MinimumSize = New System.Drawing.Size(0, 33)
+        Me.txtcin.Name = "txtcin"
+        Me.txtcin.ShowClearIcon = False
+        Me.txtcin.ShowSaveIcon = False
+        Me.txtcin.Size = New System.Drawing.Size(218, 33)
+        Me.txtcin.StartUp = 2
+        Me.txtcin.TabIndex = 3
+        Me.txtcin.TextSize = 8
+        Me.txtcin.TxtBackColor = True
+        Me.txtcin.TxtColor = System.Drawing.Color.White
+        Me.txtcin.txtReadOnly = False
+        Me.txtcin.TxtSelect = New Integer() {1, 0}
+        '
+        'txttp
+        '
+        Me.txttp.BackColor = System.Drawing.Color.White
+        Me.txttp.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txttp.IsNumiric = True
+        Me.txttp.Location = New System.Drawing.Point(204, 91)
+        Me.txttp.MinimumSize = New System.Drawing.Size(0, 33)
+        Me.txttp.Name = "txttp"
+        Me.txttp.ShowClearIcon = False
+        Me.txttp.ShowSaveIcon = False
+        Me.txttp.Size = New System.Drawing.Size(135, 33)
+        Me.txttp.StartUp = 2
+        Me.txttp.TabIndex = 2
+        Me.txttp.TextSize = 8
+        Me.txttp.TxtBackColor = True
+        Me.txttp.TxtColor = System.Drawing.Color.White
+        Me.txttp.txtReadOnly = False
+        Me.txttp.TxtSelect = New Integer() {1, 0}
+        '
+        'txtcrd
+        '
+        Me.txtcrd.BackColor = System.Drawing.Color.White
+        Me.txtcrd.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtcrd.IsNumiric = False
+        Me.txtcrd.Location = New System.Drawing.Point(30, 91)
+        Me.txtcrd.MinimumSize = New System.Drawing.Size(0, 33)
+        Me.txtcrd.Name = "txtcrd"
+        Me.txtcrd.ShowClearIcon = False
+        Me.txtcrd.ShowSaveIcon = False
+        Me.txtcrd.Size = New System.Drawing.Size(154, 33)
+        Me.txtcrd.StartUp = 2
+        Me.txtcrd.TabIndex = 2
+        Me.txtcrd.TextSize = 8
+        Me.txtcrd.TxtBackColor = True
+        Me.txtcrd.TxtColor = System.Drawing.Color.White
+        Me.txtcrd.txtReadOnly = False
+        Me.txtcrd.TxtSelect = New Integer() {1, 0}
+        '
+        'txtname
+        '
+        Me.txtname.BackColor = System.Drawing.Color.White
+        Me.txtname.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtname.IsNumiric = False
+        Me.txtname.Location = New System.Drawing.Point(30, 32)
+        Me.txtname.MinimumSize = New System.Drawing.Size(0, 40)
+        Me.txtname.Name = "txtname"
+        Me.txtname.ShowClearIcon = False
+        Me.txtname.ShowSaveIcon = False
+        Me.txtname.Size = New System.Drawing.Size(308, 40)
+        Me.txtname.StartUp = 2
+        Me.txtname.TabIndex = 1
+        Me.txtname.TextSize = 8
+        Me.txtname.TxtBackColor = True
+        Me.txtname.TxtColor = System.Drawing.Color.White
+        Me.txtname.txtReadOnly = False
+        Me.txtname.TxtSelect = New Integer() {1, 0}
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(39, 300)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(27, 13)
+        Me.Label4.TabIndex = 3
+        Me.Label4.Text = "TEL"
+        '
+        'lbTp
+        '
+        Me.lbTp.AutoSize = True
+        Me.lbTp.Enabled = False
+        Me.lbTp.Location = New System.Drawing.Point(201, 75)
+        Me.lbTp.Name = "lbTp"
+        Me.lbTp.Size = New System.Drawing.Size(31, 13)
+        Me.lbTp.TabIndex = 3
+        Me.lbTp.Text = "Type"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(39, 261)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(24, 13)
+        Me.Label10.TabIndex = 3
+        Me.Label10.Text = "ICE"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(39, 223)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(36, 13)
+        Me.Label8.TabIndex = 3
+        Me.Label8.Text = "VILLE"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(39, 184)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(58, 13)
+        Me.Label3.TabIndex = 3
+        Me.Label3.Text = "ADRESSE"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Enabled = False
+        Me.Label5.Location = New System.Drawing.Point(39, 74)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(72, 13)
+        Me.Label5.TabIndex = 3
+        Me.Label5.Text = "Le delai client"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(39, 145)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(25, 13)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "CIN"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(300, 16)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(39, 13)
+        Me.Label6.TabIndex = 3
+        Me.Label6.Text = "الاســـم"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(31, 16)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(32, 13)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "NOM"
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.Padding = New System.Windows.Forms.Padding(2)
+        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.Padding = New System.Windows.Forms.Padding(2)
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ClidDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.CINDataGridViewTextBoxColumn, Me.AdressDataGridViewTextBoxColumn, Me.TelDataGridViewTextBoxColumn, Me.CreditDataGridViewTextBoxColumn, Me.type})
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.Padding = New System.Windows.Forms.Padding(2, 6, 2, 6)
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
+        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridView1.GridColor = System.Drawing.SystemColors.Highlight
+        Me.DataGridView1.Location = New System.Drawing.Point(3, 16)
+        Me.DataGridView1.MultiSelect = False
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.RowHeadersVisible = False
+        DataGridViewCellStyle4.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
+        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle4
+        Me.DataGridView1.RowTemplate.Height = 33
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridView1.Size = New System.Drawing.Size(605, 430)
+        Me.DataGridView1.TabIndex = 0
+        '
+        'ClidDataGridViewTextBoxColumn
+        '
+        Me.ClidDataGridViewTextBoxColumn.DataPropertyName = "Clid"
+        Me.ClidDataGridViewTextBoxColumn.FillWeight = 15.39333!
+        Me.ClidDataGridViewTextBoxColumn.HeaderText = "ID"
+        Me.ClidDataGridViewTextBoxColumn.Name = "ClidDataGridViewTextBoxColumn"
+        Me.ClidDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'NameDataGridViewTextBoxColumn
+        '
+        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
+        Me.NameDataGridViewTextBoxColumn.FillWeight = 86.13122!
+        Me.NameDataGridViewTextBoxColumn.HeaderText = "NOM"
+        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
+        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'CINDataGridViewTextBoxColumn
+        '
+        Me.CINDataGridViewTextBoxColumn.DataPropertyName = "CIN"
+        Me.CINDataGridViewTextBoxColumn.FillWeight = 21.37225!
+        Me.CINDataGridViewTextBoxColumn.HeaderText = "CIN"
+        Me.CINDataGridViewTextBoxColumn.Name = "CINDataGridViewTextBoxColumn"
+        Me.CINDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'AdressDataGridViewTextBoxColumn
+        '
+        Me.AdressDataGridViewTextBoxColumn.DataPropertyName = "Adress"
+        Me.AdressDataGridViewTextBoxColumn.FillWeight = 20.35652!
+        Me.AdressDataGridViewTextBoxColumn.HeaderText = "ADRESSE/ICE"
+        Me.AdressDataGridViewTextBoxColumn.Name = "AdressDataGridViewTextBoxColumn"
+        Me.AdressDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'TelDataGridViewTextBoxColumn
+        '
+        Me.TelDataGridViewTextBoxColumn.DataPropertyName = "tel"
+        Me.TelDataGridViewTextBoxColumn.FillWeight = 30.36147!
+        Me.TelDataGridViewTextBoxColumn.HeaderText = "TEL"
+        Me.TelDataGridViewTextBoxColumn.Name = "TelDataGridViewTextBoxColumn"
+        Me.TelDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'CreditDataGridViewTextBoxColumn
+        '
+        Me.CreditDataGridViewTextBoxColumn.DataPropertyName = "credit"
+        Me.CreditDataGridViewTextBoxColumn.FillWeight = 78.89512!
+        Me.CreditDataGridViewTextBoxColumn.HeaderText = "CRD"
+        Me.CreditDataGridViewTextBoxColumn.Name = "CreditDataGridViewTextBoxColumn"
+        Me.CreditDataGridViewTextBoxColumn.ReadOnly = True
+        Me.CreditDataGridViewTextBoxColumn.Visible = False
+        '
+        'type
+        '
+        Me.type.DataPropertyName = "type"
+        Me.type.FillWeight = 38.48333!
+        Me.type.HeaderText = "TYPE"
+        Me.type.Name = "type"
+        Me.type.ReadOnly = True
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.DataGridView1)
+        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox2.Location = New System.Drawing.Point(373, 94)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(611, 449)
+        Me.GroupBox2.TabIndex = 14
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "LISTE DES CLIENTS"
+        '
+        'btcon
+        '
+        Me.btcon.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btcon.FlatAppearance.BorderSize = 2
+        Me.btcon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btcon.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btcon.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btcon.Image = CType(resources.GetObject("btcon.Image"), System.Drawing.Image)
+        Me.btcon.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btcon.Location = New System.Drawing.Point(150, 375)
+        Me.btcon.Name = "btcon"
+        Me.btcon.Size = New System.Drawing.Size(188, 50)
+        Me.btcon.TabIndex = 6
+        Me.btcon.Text = "VALIDER"
+        Me.btcon.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.ForeColor = System.Drawing.Color.Black
+        Me.Button3.Image = Global.Al_Mohasib.My.Resources.Resources._326569_nfc_icon
+        Me.Button3.Location = New System.Drawing.Point(267, 324)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(72, 35)
+        Me.Button3.TabIndex = 7
+        Me.Button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'btcancel
+        '
+        Me.btcancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btcancel.FlatAppearance.BorderSize = 2
+        Me.btcancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btcancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btcancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btcancel.Image = CType(resources.GetObject("btcancel.Image"), System.Drawing.Image)
+        Me.btcancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btcancel.Location = New System.Drawing.Point(20, 390)
+        Me.btcancel.Name = "btcancel"
+        Me.btcancel.Size = New System.Drawing.Size(111, 35)
+        Me.btcancel.TabIndex = 7
+        Me.btcancel.Text = "ANNULER"
+        Me.btcancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btcancel.UseVisualStyleBackColor = True
         '
         'Panel21
         '
@@ -465,429 +904,6 @@ Partial Class Client
         Me.Panel13.Size = New System.Drawing.Size(1, 94)
         Me.Panel13.TabIndex = 2
         '
-        'GB1
-        '
-        Me.GB1.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.GB1.Controls.Add(Me.lbPouch)
-        Me.GB1.Controls.Add(Me.txttel)
-        Me.GB1.Controls.Add(Me.txtIce)
-        Me.GB1.Controls.Add(Me.txtVille)
-        Me.GB1.Controls.Add(Me.txtad)
-        Me.GB1.Controls.Add(Me.txtcin)
-        Me.GB1.Controls.Add(Me.txttp)
-        Me.GB1.Controls.Add(Me.txtcrd)
-        Me.GB1.Controls.Add(Me.txtname)
-        Me.GB1.Controls.Add(Me.btcon)
-        Me.GB1.Controls.Add(Me.btcancel)
-        Me.GB1.Controls.Add(Me.Label4)
-        Me.GB1.Controls.Add(Me.lbTp)
-        Me.GB1.Controls.Add(Me.Label10)
-        Me.GB1.Controls.Add(Me.Label8)
-        Me.GB1.Controls.Add(Me.Label3)
-        Me.GB1.Controls.Add(Me.Label5)
-        Me.GB1.Controls.Add(Me.Label2)
-        Me.GB1.Controls.Add(Me.Label6)
-        Me.GB1.Controls.Add(Me.Label1)
-        Me.GB1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.GB1.Location = New System.Drawing.Point(0, 94)
-        Me.GB1.Name = "GB1"
-        Me.GB1.Size = New System.Drawing.Size(373, 449)
-        Me.GB1.TabIndex = 13
-        Me.GB1.TabStop = False
-        Me.GB1.Visible = False
-        '
-        'lbPouch
-        '
-        Me.lbPouch.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.lbPouch.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbPouch.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.lbPouch.Location = New System.Drawing.Point(42, 339)
-        Me.lbPouch.Name = "lbPouch"
-        Me.lbPouch.Size = New System.Drawing.Size(296, 18)
-        Me.lbPouch.TabIndex = 8
-        Me.lbPouch.Text = "  Mon Pouchet   ...."
-        Me.lbPouch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.lbPouch.Visible = False
-        '
-        'txttel
-        '
-        Me.txttel.BackColor = System.Drawing.Color.White
-        Me.txttel.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.txttel.IsNumiric = False
-        Me.txttel.Location = New System.Drawing.Point(120, 285)
-        Me.txttel.MinimumSize = New System.Drawing.Size(0, 33)
-        Me.txttel.Name = "txttel"
-        Me.txttel.ShowClearIcon = False
-        Me.txttel.ShowSaveIcon = False
-        Me.txttel.Size = New System.Drawing.Size(218, 33)
-        Me.txttel.StartUp = 2
-        Me.txttel.TabIndex = 5
-        Me.txttel.TextSize = 8
-        Me.txttel.TxtBackColor = True
-        Me.txttel.TxtColor = System.Drawing.Color.White
-        Me.txttel.txtReadOnly = False
-        Me.txttel.TxtSelect = New Integer() {1, 0}
-        '
-        'txtIce
-        '
-        Me.txtIce.BackColor = System.Drawing.Color.White
-        Me.txtIce.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.txtIce.IsNumiric = False
-        Me.txtIce.Location = New System.Drawing.Point(121, 246)
-        Me.txtIce.MinimumSize = New System.Drawing.Size(0, 33)
-        Me.txtIce.Name = "txtIce"
-        Me.txtIce.ShowClearIcon = False
-        Me.txtIce.ShowSaveIcon = False
-        Me.txtIce.Size = New System.Drawing.Size(218, 33)
-        Me.txtIce.StartUp = 2
-        Me.txtIce.TabIndex = 4
-        Me.txtIce.TextSize = 8
-        Me.txtIce.TxtBackColor = True
-        Me.txtIce.TxtColor = System.Drawing.Color.White
-        Me.txtIce.txtReadOnly = False
-        Me.txtIce.TxtSelect = New Integer() {1, 0}
-        '
-        'txtVille
-        '
-        Me.txtVille.BackColor = System.Drawing.Color.White
-        Me.txtVille.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.txtVille.IsNumiric = False
-        Me.txtVille.Location = New System.Drawing.Point(120, 208)
-        Me.txtVille.MinimumSize = New System.Drawing.Size(0, 33)
-        Me.txtVille.Name = "txtVille"
-        Me.txtVille.ShowClearIcon = False
-        Me.txtVille.ShowSaveIcon = False
-        Me.txtVille.Size = New System.Drawing.Size(218, 33)
-        Me.txtVille.StartUp = 2
-        Me.txtVille.TabIndex = 4
-        Me.txtVille.TextSize = 8
-        Me.txtVille.TxtBackColor = True
-        Me.txtVille.TxtColor = System.Drawing.Color.White
-        Me.txtVille.txtReadOnly = False
-        Me.txtVille.TxtSelect = New Integer() {1, 0}
-        '
-        'txtad
-        '
-        Me.txtad.BackColor = System.Drawing.Color.White
-        Me.txtad.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.txtad.IsNumiric = False
-        Me.txtad.Location = New System.Drawing.Point(120, 169)
-        Me.txtad.MinimumSize = New System.Drawing.Size(0, 33)
-        Me.txtad.Name = "txtad"
-        Me.txtad.ShowClearIcon = False
-        Me.txtad.ShowSaveIcon = False
-        Me.txtad.Size = New System.Drawing.Size(218, 33)
-        Me.txtad.StartUp = 2
-        Me.txtad.TabIndex = 4
-        Me.txtad.TextSize = 8
-        Me.txtad.TxtBackColor = True
-        Me.txtad.TxtColor = System.Drawing.Color.White
-        Me.txtad.txtReadOnly = False
-        Me.txtad.TxtSelect = New Integer() {1, 0}
-        '
-        'txtcin
-        '
-        Me.txtcin.BackColor = System.Drawing.Color.White
-        Me.txtcin.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.txtcin.IsNumiric = False
-        Me.txtcin.Location = New System.Drawing.Point(121, 130)
-        Me.txtcin.MinimumSize = New System.Drawing.Size(0, 33)
-        Me.txtcin.Name = "txtcin"
-        Me.txtcin.ShowClearIcon = False
-        Me.txtcin.ShowSaveIcon = False
-        Me.txtcin.Size = New System.Drawing.Size(218, 33)
-        Me.txtcin.StartUp = 2
-        Me.txtcin.TabIndex = 3
-        Me.txtcin.TextSize = 8
-        Me.txtcin.TxtBackColor = True
-        Me.txtcin.TxtColor = System.Drawing.Color.White
-        Me.txtcin.txtReadOnly = False
-        Me.txtcin.TxtSelect = New Integer() {1, 0}
-        '
-        'txttp
-        '
-        Me.txttp.BackColor = System.Drawing.Color.White
-        Me.txttp.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.txttp.IsNumiric = True
-        Me.txttp.Location = New System.Drawing.Point(204, 91)
-        Me.txttp.MinimumSize = New System.Drawing.Size(0, 33)
-        Me.txttp.Name = "txttp"
-        Me.txttp.ShowClearIcon = False
-        Me.txttp.ShowSaveIcon = False
-        Me.txttp.Size = New System.Drawing.Size(135, 33)
-        Me.txttp.StartUp = 2
-        Me.txttp.TabIndex = 2
-        Me.txttp.TextSize = 8
-        Me.txttp.TxtBackColor = True
-        Me.txttp.TxtColor = System.Drawing.Color.White
-        Me.txttp.txtReadOnly = False
-        Me.txttp.TxtSelect = New Integer() {1, 0}
-        '
-        'txtcrd
-        '
-        Me.txtcrd.BackColor = System.Drawing.Color.White
-        Me.txtcrd.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.txtcrd.IsNumiric = False
-        Me.txtcrd.Location = New System.Drawing.Point(30, 91)
-        Me.txtcrd.MinimumSize = New System.Drawing.Size(0, 33)
-        Me.txtcrd.Name = "txtcrd"
-        Me.txtcrd.ShowClearIcon = False
-        Me.txtcrd.ShowSaveIcon = False
-        Me.txtcrd.Size = New System.Drawing.Size(154, 33)
-        Me.txtcrd.StartUp = 2
-        Me.txtcrd.TabIndex = 2
-        Me.txtcrd.TextSize = 8
-        Me.txtcrd.TxtBackColor = True
-        Me.txtcrd.TxtColor = System.Drawing.Color.White
-        Me.txtcrd.txtReadOnly = False
-        Me.txtcrd.TxtSelect = New Integer() {1, 0}
-        '
-        'txtname
-        '
-        Me.txtname.BackColor = System.Drawing.Color.White
-        Me.txtname.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.txtname.IsNumiric = False
-        Me.txtname.Location = New System.Drawing.Point(30, 32)
-        Me.txtname.MinimumSize = New System.Drawing.Size(0, 40)
-        Me.txtname.Name = "txtname"
-        Me.txtname.ShowClearIcon = False
-        Me.txtname.ShowSaveIcon = False
-        Me.txtname.Size = New System.Drawing.Size(308, 40)
-        Me.txtname.StartUp = 2
-        Me.txtname.TabIndex = 1
-        Me.txtname.TextSize = 8
-        Me.txtname.TxtBackColor = True
-        Me.txtname.TxtColor = System.Drawing.Color.White
-        Me.txtname.txtReadOnly = False
-        Me.txtname.TxtSelect = New Integer() {1, 0}
-        '
-        'btcon
-        '
-        Me.btcon.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btcon.FlatAppearance.BorderSize = 2
-        Me.btcon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btcon.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btcon.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btcon.Image = CType(resources.GetObject("btcon.Image"), System.Drawing.Image)
-        Me.btcon.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btcon.Location = New System.Drawing.Point(150, 375)
-        Me.btcon.Name = "btcon"
-        Me.btcon.Size = New System.Drawing.Size(188, 50)
-        Me.btcon.TabIndex = 6
-        Me.btcon.Text = "VALIDER"
-        Me.btcon.UseVisualStyleBackColor = True
-        '
-        'btcancel
-        '
-        Me.btcancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btcancel.FlatAppearance.BorderSize = 2
-        Me.btcancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btcancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btcancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btcancel.Image = CType(resources.GetObject("btcancel.Image"), System.Drawing.Image)
-        Me.btcancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btcancel.Location = New System.Drawing.Point(20, 390)
-        Me.btcancel.Name = "btcancel"
-        Me.btcancel.Size = New System.Drawing.Size(111, 35)
-        Me.btcancel.TabIndex = 7
-        Me.btcancel.Text = "ANNULER"
-        Me.btcancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btcancel.UseVisualStyleBackColor = True
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(39, 300)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(27, 13)
-        Me.Label4.TabIndex = 3
-        Me.Label4.Text = "TEL"
-        '
-        'lbTp
-        '
-        Me.lbTp.AutoSize = True
-        Me.lbTp.Enabled = False
-        Me.lbTp.Location = New System.Drawing.Point(201, 75)
-        Me.lbTp.Name = "lbTp"
-        Me.lbTp.Size = New System.Drawing.Size(31, 13)
-        Me.lbTp.TabIndex = 3
-        Me.lbTp.Text = "Type"
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(39, 261)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(24, 13)
-        Me.Label10.TabIndex = 3
-        Me.Label10.Text = "ICE"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(39, 223)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(36, 13)
-        Me.Label8.TabIndex = 3
-        Me.Label8.Text = "VILLE"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(39, 184)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(58, 13)
-        Me.Label3.TabIndex = 3
-        Me.Label3.Text = "ADRESSE"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Enabled = False
-        Me.Label5.Location = New System.Drawing.Point(39, 74)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(72, 13)
-        Me.Label5.TabIndex = 3
-        Me.Label5.Text = "Le delai client"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(39, 145)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(25, 13)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "CIN"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(300, 16)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(39, 13)
-        Me.Label6.TabIndex = 3
-        Me.Label6.Text = "الاســـم"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(31, 16)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(32, 13)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "NOM"
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.Padding = New System.Windows.Forms.Padding(2)
-        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.Padding = New System.Windows.Forms.Padding(2)
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ClidDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.CINDataGridViewTextBoxColumn, Me.AdressDataGridViewTextBoxColumn, Me.TelDataGridViewTextBoxColumn, Me.CreditDataGridViewTextBoxColumn, Me.type})
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.Padding = New System.Windows.Forms.Padding(2, 6, 2, 6)
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.GridColor = System.Drawing.SystemColors.Highlight
-        Me.DataGridView1.Location = New System.Drawing.Point(3, 16)
-        Me.DataGridView1.MultiSelect = False
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.RowHeadersVisible = False
-        DataGridViewCellStyle4.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
-        Me.DataGridView1.RowsDefaultCellStyle = DataGridViewCellStyle4
-        Me.DataGridView1.RowTemplate.Height = 33
-        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(605, 430)
-        Me.DataGridView1.TabIndex = 0
-        '
-        'type
-        '
-        Me.type.DataPropertyName = "type"
-        Me.type.FillWeight = 38.48333!
-        Me.type.HeaderText = "TYPE"
-        Me.type.Name = "type"
-        Me.type.ReadOnly = True
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.DataGridView1)
-        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Location = New System.Drawing.Point(373, 94)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(611, 449)
-        Me.GroupBox2.TabIndex = 14
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "LISTE DES CLIENTS"
-        '
-        'CreditDataGridViewTextBoxColumn
-        '
-        Me.CreditDataGridViewTextBoxColumn.DataPropertyName = "credit"
-        Me.CreditDataGridViewTextBoxColumn.FillWeight = 78.89512!
-        Me.CreditDataGridViewTextBoxColumn.HeaderText = "CRD"
-        Me.CreditDataGridViewTextBoxColumn.Name = "CreditDataGridViewTextBoxColumn"
-        Me.CreditDataGridViewTextBoxColumn.ReadOnly = True
-        Me.CreditDataGridViewTextBoxColumn.Visible = False
-        '
-        'TelDataGridViewTextBoxColumn
-        '
-        Me.TelDataGridViewTextBoxColumn.DataPropertyName = "tel"
-        Me.TelDataGridViewTextBoxColumn.FillWeight = 30.36147!
-        Me.TelDataGridViewTextBoxColumn.HeaderText = "TEL"
-        Me.TelDataGridViewTextBoxColumn.Name = "TelDataGridViewTextBoxColumn"
-        Me.TelDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AdressDataGridViewTextBoxColumn
-        '
-        Me.AdressDataGridViewTextBoxColumn.DataPropertyName = "Adress"
-        Me.AdressDataGridViewTextBoxColumn.FillWeight = 20.35652!
-        Me.AdressDataGridViewTextBoxColumn.HeaderText = "ADRESSE/ICE"
-        Me.AdressDataGridViewTextBoxColumn.Name = "AdressDataGridViewTextBoxColumn"
-        Me.AdressDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'CINDataGridViewTextBoxColumn
-        '
-        Me.CINDataGridViewTextBoxColumn.DataPropertyName = "CIN"
-        Me.CINDataGridViewTextBoxColumn.FillWeight = 21.37225!
-        Me.CINDataGridViewTextBoxColumn.HeaderText = "CIN"
-        Me.CINDataGridViewTextBoxColumn.Name = "CINDataGridViewTextBoxColumn"
-        Me.CINDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'NameDataGridViewTextBoxColumn
-        '
-        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
-        Me.NameDataGridViewTextBoxColumn.FillWeight = 86.13122!
-        Me.NameDataGridViewTextBoxColumn.HeaderText = "NOM"
-        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
-        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'ClidDataGridViewTextBoxColumn
-        '
-        Me.ClidDataGridViewTextBoxColumn.DataPropertyName = "Clid"
-        Me.ClidDataGridViewTextBoxColumn.FillWeight = 15.39333!
-        Me.ClidDataGridViewTextBoxColumn.HeaderText = "ID"
-        Me.ClidDataGridViewTextBoxColumn.Name = "ClidDataGridViewTextBoxColumn"
-        Me.ClidDataGridViewTextBoxColumn.ReadOnly = True
-        '
         'Client
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -902,6 +918,10 @@ Partial Class Client
         Me.Name = "Client"
         Me.Text = "Clients ***"
         Me.plup.ResumeLayout(False)
+        Me.GB1.ResumeLayout(False)
+        Me.GB1.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox2.ResumeLayout(False)
         Me.Panel21.ResumeLayout(False)
         Me.Panel24.ResumeLayout(False)
         Me.Panel24.PerformLayout()
@@ -916,10 +936,6 @@ Partial Class Client
         Me.Panel12.ResumeLayout(False)
         Me.Panel14.ResumeLayout(False)
         Me.Panel14.PerformLayout()
-        Me.GB1.ResumeLayout(False)
-        Me.GB1.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -982,4 +998,5 @@ Partial Class Client
     Friend WithEvents AdressDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents TelDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CreditDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Button3 As System.Windows.Forms.Button
 End Class

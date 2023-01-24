@@ -80,14 +80,117 @@
     End Sub
 
 
-    Private Sub lb_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Click, lb.Click, PL.Click, plB.Click
+    Private Sub lb_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Click, lb.Click, PL.Click, plB.Click, lbP.Click, lbBP.Click
         Dim bt As New Button
         bt.Tag = DataSource
         RaiseEvent Choosed(bt, e)
     End Sub
+    Private Sub PL_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PL.DoubleClick
+        Dim bt As New Button
+        bt.Tag = DataSource
+        RaiseEvent Choosed(bt, e)
+        RaiseEvent Choosed(bt, e)
+    End Sub
 
+    Private Sub PL_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PL.MouseEnter, lb.MouseEnter
+        lbBP.Visible = True
 
+        If Form1.cbArtcleStockDetails.Checked = False Then Exit Sub
+        If CInt(_data("cid")) < 0 Then Exit Sub
 
+        btInfo.Visible = True
 
+    End Sub
+    Private Sub PL_MouseLeave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.MouseLeave
+        btInfo.Visible = False
+        lbBP.Visible = False
+    End Sub
+
+    Private Sub btInfo_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btInfo.Click
+        ALPHA = Not ALPHA
+        btInfo_MouseEnter(sender, e)
+    End Sub
+    Dim AlphaParams As New Dictionary(Of String, String)
+    Private Sub btInfo_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btInfo.MouseEnter
+
+        If bk.IsBusy = False Then bk.RunWorkerAsync()
+
+        System.Threading.Thread.Sleep(1000)
+
+        If AlphaParams.Count = 0 Then Exit Sub
+
+        btInfo.BackColor = Color.Green
+        'RaiseEvent UpdateRemise()
+        Dim op As New PopUpMenu   ' OptionAddElement
+        op.mode = "DT:Stock"
+        'params.Add("Date d'échéance", "1") '  la 
+        'params.Add("Date de création", "2") 'le mois dernier  la semaine dernière
+
+        op.dataSource = AlphaParams
+
+        Dim MPx As Point = MousePosition()
+        Dim y = 15 'MPx.Y - op.Height
+        Dim x = 2
+        op.Location = New Point(x, y)
+
+        AddHandler op.MenuLostFocus, AddressOf MenuLostFocus
+        AddHandler op.MenuElementSelected, AddressOf MenuElementSelected
+
+        op.BringToFront()
+
+        PL.Controls.Add(op)
+        op.BringToFront()
+        ' op.Focus()
+
+    End Sub
+    Dim ALPHA As Boolean = False
+    Private Sub MenuLostFocus(ByRef ds As PopUpMenu)
+        If ALPHA Then Exit Sub
+        PL.Controls.Remove(ds)
+        ds.Dispose()
+    End Sub
+    Private Sub MenuElementSelected(ByRef ds As PopUpMenu)
+        ALPHA = False
+
+        _data("depot") = ds.key
+
+          Dim bt As New Button
+        bt.Tag = DataSource
+        RaiseEvent Choosed(bt, Nothing)
+    End Sub
+    Private Sub btInfo_Mouseleave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btInfo.MouseLeave
+        btInfo.BackColor = Color.White
+    End Sub
+
+    Private Sub bk_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bk.DoWork
+        Try
+            Dim sdt As DataTable
+            AlphaParams.Clear()
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+
+                params.Add("arid", _data("arid"))
+ 
+                sdt = a.SelectDataTable("detailstock", {"*"}, params)
+
+            End Using
+            If sdt.Rows.Count > 0 Then
+                For i As Integer = 0 To sdt.Rows.Count - 1
+                    AlphaParams.Add(sdt.Rows(i).Item("dpid") & " : " & CInt(sdt.Rows(i).Item("qte")) & " (" & sdt.Rows(i).Item("unit") & ")", sdt.Rows(i).Item("dpid"))
+                Next
+            End If
+
+        Catch ex As Exception
+        End Try
+    End Sub
+ 
+    Private Sub PvArticle_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.MouseEnter
+        If Form1.admin = False And Form1.cbShowBp.Checked Then Exit Sub
+
+        lbBP.Text = CDbl(DataSource.Item("bprice")).ToString(Form1.frmDbl)
+        lbBP.Visible = True
+    End Sub
+
+   
 
 End Class

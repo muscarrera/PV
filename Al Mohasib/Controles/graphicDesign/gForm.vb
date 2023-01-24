@@ -142,10 +142,20 @@ Public Class gForm
             table.Columns.Add("Rest", GetType(String))
             table.Columns.Add("caisseAvance", GetType(String))
             table.Columns.Add("caisseRest", GetType(String))
+            table.Columns.Add("Points_NV", GetType(String))
+            table.Columns.Add("Points_ENC", GetType(String))
+            table.Columns.Add("Points_TL", GetType(String))
+            table.Columns.Add("Points_UT", GetType(String))
+            table.Columns.Add("Points_RS", GetType(String))
+            table.Columns.Add("PC_Nom", GetType(String))
+            table.Columns.Add("PC_Tel", GetType(String))
+            table.Columns.Add("PC_Adr", GetType(String))
+
+
             ' Add  rows with those columns filled in the DataTable.
             table.Rows.Add(1, Now.Date, 1, "Mohamed", String.Format("{0:n2}", 222),
                            String.Format("{0:n2}", 66), String.Format("{0:n2}", 288), "0",
-                              "0", "0", "CHEQUE", "ADMIN", "4 - Artciles", "Med", 0, 0, 0, 0, 0, 0, 0)
+                              "0", "0", "CHEQUE", "ADMIN", "4 - Artciles", "Med", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "nom", "tel", "adrs")
             Return table
         End Get
     End Property
@@ -1028,5 +1038,4 @@ Public Class gForm
         p_Kind = doc.DefaultPageSettings.PaperSize.Kind
     End Sub
 
-   
 End Class

@@ -4,7 +4,7 @@ Imports System.Text.RegularExpressions
 
 Module AdminModule
 
-    Dim VER As String = "ALMsbtrFirstRun_sql_6"
+    Dim VER As String = "ALMsbtrFirstRun_sql_9"
 
     Dim _strKey As String
     Dim strFirstUse = "AL Mohasib System de gestion - Premier utilisation .."
@@ -33,8 +33,6 @@ Module AdminModule
             Return r
         End Get
     End Property
-
-
 
     ' for master
     Private Function checktrialMaster() As Boolean
@@ -363,7 +361,14 @@ Module AdminModule
                     If resultkey = 1 Then
                         Return True
                     Else
-                        Return False
+                        Dim trial As New TrialVersion
+                        If trial.ShowDialog = Windows.Forms.DialogResult.Cancel Then
+                            Return False
+                            Exit Function
+                        Else
+                            Return True
+                            Exit Function
+                        End If
                     End If
 
 

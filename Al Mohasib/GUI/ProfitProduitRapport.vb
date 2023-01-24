@@ -3,10 +3,10 @@
 Public Class ProfitProduitRapport
 
 
-    Public dt_in As New DataTable
-    Public dt_OUT As New DataTable
-    Public dt_Art As New DataTable
-    Public dt_Pr As New DataTable
+    Public dt_in As DataTable
+    Public dt_OUT As DataTable
+    Public dt_Art As DataTable
+    Public dt_Pr As DataTable
     Public myRapport As New RpClass
 
 
@@ -129,9 +129,9 @@ Public Class ProfitProduitRapport
             T_P_C += dt_Pr.Rows(I).Item(3)
         Next
 
-        dt.Rows.Add(91, "Profits des ventes", "", "", "", "", "", "", (TT - TA).ToString("N2"))
+        dt.Rows.Add(91, "Profits des ventes", "", "", "", "", "", "", (T_TT_OUT - T_TA_OUT).ToString("N2"))
         dt.Rows.Add(92, "Total cadeaux", "", "", "", "", "", "", T_P_C.ToString("N2"))
-        dt.Rows.Add(93, "Resultat Final", "", "", "", "", "", "", (TT - TA + T_P_C).ToString("N2"))
+        dt.Rows.Add(93, "Resultat Final", "", "", "", "", "", "", (T_TT_OUT - T_TA_OUT + T_P_C).ToString("N2"))
 
 
 
@@ -185,26 +185,26 @@ Public Class ProfitProduitRapport
         dg_D.DataSource = dt_in
 
 
-        dg_D.Columns(0).Visible = False
-        dg_D.Columns(1).Visible = False
-        dg_D.Columns(2).Visible = False
-        dg_D.Columns(3).Visible = False
-        'dg_D.Columns(4).Visible = False
-        dg_D.Columns(5).Visible = False
-        dg_D.Columns(6).Visible = False
-        dg_D.Columns(7).Visible = False
-        dg_D.Columns(8).Visible = False
-        dg_D.Columns(9).Visible = False
-        dg_D.Columns(11).Visible = False
-        dg_D.Columns(12).Visible = False
-        dg_D.Columns(13).Visible = False
+        'dg_D.Columns(0).Visible = False
+        'dg_D.Columns(1).Visible = False
+        'dg_D.Columns(2).Visible = False
+        'dg_D.Columns(3).Visible = False
+        ''dg_D.Columns(4).Visible = False
+        'dg_D.Columns(5).Visible = False
+        'dg_D.Columns(6).Visible = False
+        'dg_D.Columns(7).Visible = False
+        'dg_D.Columns(8).Visible = False
+        'dg_D.Columns(9).Visible = False
+        'dg_D.Columns(11).Visible = False
+        'dg_D.Columns(12).Visible = False
+        'dg_D.Columns(13).Visible = False
 
-        dg_D.Columns(4).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        dg_D.Columns(10).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        ' dg_D.Columns(11).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        dg_D.Columns(16).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        dg_D.Columns(17).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        dg_D.Columns(18).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        'dg_D.Columns(4).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        'dg_D.Columns(10).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        '' dg_D.Columns(11).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        'dg_D.Columns(16).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        'dg_D.Columns(17).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        'dg_D.Columns(18).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
 
 
         dg_D.Columns(16).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
@@ -219,26 +219,26 @@ Public Class ProfitProduitRapport
         dg_D.DataSource = Nothing
         dg_D.DataSource = dt_OUT
 
-        dg_D.Columns(0).Visible = False
-        dg_D.Columns(1).Visible = False
-        dg_D.Columns(2).Visible = False
-        dg_D.Columns(3).Visible = False
-        'dg_D.Columns(4).Visible = False
-        dg_D.Columns(5).Visible = False
-        dg_D.Columns(6).Visible = False
-        dg_D.Columns(7).Visible = False
-        dg_D.Columns(8).Visible = False
-        dg_D.Columns(9).Visible = False
-        dg_D.Columns(11).Visible = False
-        dg_D.Columns(12).Visible = False
-        dg_D.Columns(13).Visible = False
+        'dg_D.Columns(0).Visible = False
+        'dg_D.Columns(1).Visible = False
+        'dg_D.Columns(2).Visible = False
+        'dg_D.Columns(3).Visible = False
+        ''dg_D.Columns(4).Visible = False
+        'dg_D.Columns(5).Visible = False
+        'dg_D.Columns(6).Visible = False
+        'dg_D.Columns(7).Visible = False
+        'dg_D.Columns(8).Visible = False
+        'dg_D.Columns(9).Visible = False
+        'dg_D.Columns(11).Visible = False
+        'dg_D.Columns(12).Visible = False
+        'dg_D.Columns(13).Visible = False
 
-        dg_D.Columns(4).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        dg_D.Columns(10).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        ' dg_D.Columns(11).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        dg_D.Columns(16).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        dg_D.Columns(17).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-        dg_D.Columns(18).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        'dg_D.Columns(4).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        'dg_D.Columns(10).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        '' dg_D.Columns(11).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        'dg_D.Columns(16).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        'dg_D.Columns(17).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+        'dg_D.Columns(18).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
 
 
 
@@ -279,11 +279,18 @@ Public Class ProfitProduitRapport
                             tb_D & ".unit, " & tb_D & ".price AS Prix, " & tb_D & ".qte AS Qte, " & tb_D & ".price * DetailsFacture.qte AS Total, " &
             tb_D & ".bprice * DetailsFacture.qte AS Total_Achat, " & tb_D & ".arid "}, params)
 
+
+            params.Clear()
+            params.Add("codebar LIKE ", "%" & str & "%")
+            dt_Art = a.SelectDataTableSymbols("Article", {"*"}, params)
+
+            params.Clear()
+            params.Add("fctid", 0)
+            dt_Pr = a.SelectDataTable("Facture", {"*"}, params)
+
+            dt_Pr.Rows.Clear()
+            dt_Pr.Rows.Add(0, 0, "Creation", 0, 0, Now.ToString(), True, Form1.adminName)
         End Using
-
-
-
-
 
 
         myRapport = New RpClass
@@ -307,6 +314,10 @@ Public Class ProfitProduitRapport
                 ' SaveChanges()
                 FileName = txtRP.text
 
+                dt_in.TableName = "tb_in"
+                dt_OUT.TableName = "tb_out"
+                dt_Pr.TableName = "dt_Pr"
+
                 myRapport.name = txtRP.text
                 myRapport.dt_in = dt_in
                 myRapport.dt_OUT = dt_OUT
@@ -322,10 +333,9 @@ Public Class ProfitProduitRapport
                     Dim params As New Dictionary(Of String, Object)
                     Dim where As New Dictionary(Of String, Object)
 
-
-                    where.Add("code LIKE", "%" & code_str & "%")
+                    where.Add("code LIKE ", "%" & code_str & "%")
                     where.Add("pid = ", 0)
-                    params.Add(" pid = ", myRapport.pid)
+                    params.Add(" pid", myRapport.pid)
                     c.UpdateRecordSymbols("DetailsFacture", params, where)
 
 
@@ -333,10 +343,11 @@ Public Class ProfitProduitRapport
                     params.Clear()
                     where.Clear()
 
-                    where.Add("code LIKE", "%" & myRapport.code_str & "%")
+                    where.Add("code LIKE ", "%" & myRapport.code_str & "%")
                     where.Add("pid = ", 0)
-                    params.Add(" pid = ", myRapport.pid)
+                    params.Add(" pid", myRapport.pid)
                     c.UpdateRecordSymbols("DetailsBon", params, where)
+
 
 
                     params = Nothing
@@ -361,6 +372,27 @@ Public Class ProfitProduitRapport
         Dim dir1 As New DirectoryInfo(Form1.ImgPah & "\RapportProduit")
         If dir1.Exists = False Then dir1.Create()
         ThePath = System.IO.Path.Combine(Form1.ImgPah, "RapportProduit").ToString
+
+        'dt_in.Columns.Add("date", GetType(String))
+        'dt_in.Columns.Add("Nom", GetType(String))
+        'dt_in.Columns.Add("ID", GetType(String))
+        'dt_in.Columns.Add("Designation", GetType(String))
+        'dt_in.Columns.Add("unit", GetType(String))
+        'dt_in.Columns.Add("Prix", GetType(String))
+        'dt_in.Columns.Add("Qte", GetType(String))
+        'dt_in.Columns.Add("Total", GetType(String))
+        'dt_in.Columns.Add("arid", GetType(String))
+
+        'dt_OUT.Columns.Add("date", GetType(String))
+        'dt_OUT.Columns.Add("Nom", GetType(String))
+        'dt_OUT.Columns.Add("ID", GetType(String))
+        'dt_OUT.Columns.Add("Designation", GetType(String))
+        'dt_OUT.Columns.Add("unit", GetType(String))
+        'dt_OUT.Columns.Add("Prix", GetType(String))
+        'dt_OUT.Columns.Add("Qte", GetType(String))
+        'dt_OUT.Columns.Add("Total", GetType(String))
+        'dt_OUT.Columns.Add("arid", GetType(String))
+
 
     End Sub
 
@@ -398,10 +430,10 @@ Public Class RpClass
     Public name As String
     Public code_str As String
     Public pid As Integer
+    Public isNew As Boolean = True
+    Public dt_Art As New DataTable
     Public dt_in As New DataTable
     Public dt_OUT As New DataTable
-    Public dt_Art As New DataTable
-    Public isNew As Boolean = True
     Public dt_Pr As New DataTable
 
 End Class

@@ -104,8 +104,8 @@
                     Dim params As New Dictionary(Of String, Object)
                     params.Add("clid = ", clid)
                     params.Add("beInFacture = ", CInt(0))
-                    params.Add("[date] >", dt1)
-                    params.Add("[date] <", dt2)
+                    params.Add("date >", dt1)
+                    params.Add("date <", dt2)
 
                     Dim dt = c.SelectDataTableSymbols("Facture", {"*"}, params)
 
@@ -178,7 +178,8 @@
             MsgBox(ex.Message)
         End Try
     End Sub
-    Public Sub AddToList(ByVal fid As Integer, ByVal cNAME As String, ByVal txt As String, ByVal mode As String, ByVal cid As Integer)
+    Public Sub AddToList(ByVal fid As Integer, ByVal cNAME As String, ByVal txt As String,
+                         ByVal mode As String, ByVal cid As Integer, ByVal d As Date)
         Try
             lst = txt
             Id = fid
@@ -186,7 +187,7 @@
             Button1.Text = cNAME
             ModePayement = mode
             clid = cid
-
+            DtFct.Value = d
             DataGridView1.Rows.Clear()
 
             If lst = "-" Then Exit Sub
@@ -226,24 +227,51 @@
                 params.Add("beInFacture <= ", CInt(0))
                 params.Add("date >", dt1)
                 params.Add("date <", dt2)
+                Dim __b As Boolean = False
+                Dim __ls As New List(Of Integer)
+
+
+                If Form1.adminName.Contains("*") Or Form1.adminName.Contains("/") Then
+                    params.Add("clid > ", 0)
+                    __b = True
+                End If
 
                 Dim dt = c.SelectDataTableSymbols("Facture", {"*"}, params)
+
+                Try
+                    If __b Then
+                        params.Clear()
+
+                        If Form1.adminName.Contains("*") Then
+                            params.Add("CIN LIKE", "%*%")
+                        ElseIf Form1.adminName.Contains("/") Then
+                            params.Add("CIN LIKE", "%/%")
+                        End If
+                        Dim __dt As DataTable = c.SelectDataTableSymbols("Client", {"Clid "}, params)
+
+                        For i As Integer = 0 To __dt.Rows.Count - 1
+                            __ls.Add(__dt.Rows(i).Item(0))
+                        Next
+
+
+                    End If
+                Catch ex As Exception
+                End Try
+
 
                 If b = False Then DataGridView1.Rows.Clear()
 
                 lst = ""
                 If dt.Rows.Count > 0 Then
                     For i As Integer = 0 To dt.Rows.Count - 1
-
-                        '     DataGridView1.Rows.Add(False, dt.Rows(i).Item(0).ToString,
-                        'CDate(dt.Rows(i).Item("date")).ToString("dd, MMM yy"),
-                        'String.Format("{0:F}", dt.Rows(i).Item("total").ToString),
-                        ' dt.Rows(i).Item("name").ToString)
+                        If __b Then
+                            If __ls.Contains(dt.Rows(i).Item("clid")) = False Then Continue For
+                        End If
 
                         DataGridView1.Rows.Add(False, dt.Rows(i).Item(0).ToString,
-                     CDate(dt.Rows(i).Item("date")).ToString("dd, MMMM yy"),
-                      dt.Rows(i).Item("total"), dt.Rows(i).Item("remise"),
-                       dt.Rows(i).Item("name").ToString)
+                        CDate(dt.Rows(i).Item("date")).ToString("dd, MMMM yy"),
+                        dt.Rows(i).Item("total"), dt.Rows(i).Item("remise"),
+                        dt.Rows(i).Item("name").ToString)
 
                     Next
                     ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''

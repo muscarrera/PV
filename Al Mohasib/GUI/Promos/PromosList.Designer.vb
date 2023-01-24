@@ -27,11 +27,15 @@ Partial Class PromosList
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.lb = New System.Windows.Forms.Label()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.bt = New System.Windows.Forms.Button()
         Me.Button45 = New System.Windows.Forms.Button()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.CbIsAuto = New System.Windows.Forms.CheckBox()
+        Me.Panel15 = New System.Windows.Forms.Panel()
+        Me.cbB = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.txtEcheance = New Al_Mohasib.TxtBox()
@@ -42,18 +46,16 @@ Partial Class PromosList
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.txtDesc = New Al_Mohasib.TxtBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Panel15 = New System.Windows.Forms.Panel()
-        Me.cbB = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel6.SuspendLayout()
         Me.Panel3.SuspendLayout()
+        Me.Panel15.SuspendLayout()
         Me.Panel8.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.Panel5.SuspendLayout()
-        Me.Panel15.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel2
@@ -92,6 +94,7 @@ Partial Class PromosList
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.lb)
         Me.Panel1.Controls.Add(Me.Panel6)
         Me.Panel1.Controls.Add(Me.Button45)
         Me.Panel1.Controls.Add(Me.Panel3)
@@ -100,6 +103,17 @@ Partial Class PromosList
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(371, 494)
         Me.Panel1.TabIndex = 2
+        '
+        'lb
+        '
+        Me.lb.Font = New System.Drawing.Font("Century Gothic", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb.ForeColor = System.Drawing.Color.Green
+        Me.lb.Location = New System.Drawing.Point(178, 21)
+        Me.lb.Name = "lb"
+        Me.lb.Size = New System.Drawing.Size(121, 29)
+        Me.lb.TabIndex = 9
+        Me.lb.Text = "Promos"
+        Me.lb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Panel6
         '
@@ -161,18 +175,52 @@ Partial Class PromosList
         '
         Me.Panel3.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_13_13_57__1_
         Me.Panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Panel3.Controls.Add(Me.CbIsAuto)
+        Me.Panel3.Controls.Add(Me.Panel15)
         Me.Panel3.Controls.Add(Me.Label5)
         Me.Panel3.Controls.Add(Me.Panel8)
         Me.Panel3.Controls.Add(Me.Panel4)
         Me.Panel3.Controls.Add(Me.Label3)
         Me.Panel3.Controls.Add(Me.Panel5)
         Me.Panel3.Controls.Add(Me.Label1)
-        Me.Panel3.Controls.Add(Me.Panel15)
         Me.Panel3.Controls.Add(Me.Label4)
         Me.Panel3.Location = New System.Drawing.Point(5, 77)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(360, 342)
         Me.Panel3.TabIndex = 14
+        '
+        'CbIsAuto
+        '
+        Me.CbIsAuto.AutoSize = True
+        Me.CbIsAuto.Location = New System.Drawing.Point(50, 286)
+        Me.CbIsAuto.Name = "CbIsAuto"
+        Me.CbIsAuto.Size = New System.Drawing.Size(48, 17)
+        Me.CbIsAuto.TabIndex = 10
+        Me.CbIsAuto.Text = "Auto"
+        Me.CbIsAuto.UseVisualStyleBackColor = True
+        Me.CbIsAuto.Visible = False
+        '
+        'Panel15
+        '
+        Me.Panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel15.Controls.Add(Me.cbB)
+        Me.Panel15.Location = New System.Drawing.Point(48, 181)
+        Me.Panel15.Name = "Panel15"
+        Me.Panel15.Size = New System.Drawing.Size(267, 31)
+        Me.Panel15.TabIndex = 8
+        '
+        'cbB
+        '
+        Me.cbB.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.cbB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbB.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.cbB.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbB.FormattingEnabled = True
+        Me.cbB.Items.AddRange(New Object() {"TA - Total Achat", "TB - Total Bon", "LA - List d'Articles "})
+        Me.cbB.Location = New System.Drawing.Point(0, 0)
+        Me.cbB.Name = "cbB"
+        Me.cbB.Size = New System.Drawing.Size(265, 24)
+        Me.cbB.TabIndex = 1
         '
         'Label5
         '
@@ -189,7 +237,7 @@ Partial Class PromosList
         Me.Panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel8.Controls.Add(Me.txtEcheance)
         Me.Panel8.Controls.Add(Me.Button14)
-        Me.Panel8.Location = New System.Drawing.Point(48, 134)
+        Me.Panel8.Location = New System.Drawing.Point(48, 124)
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(268, 31)
         Me.Panel8.TabIndex = 7
@@ -258,7 +306,7 @@ Partial Class PromosList
         'Label3
         '
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(48, 232)
+        Me.Label3.Location = New System.Drawing.Point(48, 213)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(62, 29)
         Me.Label3.TabIndex = 9
@@ -269,7 +317,7 @@ Partial Class PromosList
         '
         Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel5.Controls.Add(Me.txtDesc)
-        Me.Panel5.Location = New System.Drawing.Point(48, 264)
+        Me.Panel5.Location = New System.Drawing.Point(48, 242)
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(268, 31)
         Me.Panel5.TabIndex = 7
@@ -297,39 +345,17 @@ Partial Class PromosList
         'Label1
         '
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(48, 168)
+        Me.Label1.Location = New System.Drawing.Point(52, 155)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(62, 29)
         Me.Label1.TabIndex = 9
         Me.Label1.Text = "Type"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Panel15
-        '
-        Me.Panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel15.Controls.Add(Me.cbB)
-        Me.Panel15.Location = New System.Drawing.Point(48, 198)
-        Me.Panel15.Name = "Panel15"
-        Me.Panel15.Size = New System.Drawing.Size(267, 31)
-        Me.Panel15.TabIndex = 8
-        '
-        'cbB
-        '
-        Me.cbB.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.cbB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbB.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.cbB.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbB.FormattingEnabled = True
-        Me.cbB.Items.AddRange(New Object() {"TA - Total Achat", "TB - Total Bon", "LA - List d'Articles "})
-        Me.cbB.Location = New System.Drawing.Point(0, 0)
-        Me.cbB.Name = "cbB"
-        Me.cbB.Size = New System.Drawing.Size(265, 24)
-        Me.cbB.TabIndex = 1
-        '
         'Label4
         '
         Me.Label4.Font = New System.Drawing.Font("Century Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(48, 103)
+        Me.Label4.Location = New System.Drawing.Point(48, 98)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(62, 29)
         Me.Label4.TabIndex = 9
@@ -344,16 +370,17 @@ Partial Class PromosList
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel2)
         Me.Name = "PromosList"
-        Me.Text = "PromosList"
+        Me.Text = "Liste"
         Me.Panel2.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel6.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
+        Me.Panel15.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
-        Me.Panel15.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -379,4 +406,6 @@ Partial Class PromosList
     Friend WithEvents Column1 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Button45 As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents lb As System.Windows.Forms.Label
+    Friend WithEvents CbIsAuto As System.Windows.Forms.CheckBox
 End Class
