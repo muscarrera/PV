@@ -1,8 +1,5 @@
 ﻿Public Class RPanel
 
-
-
-
     'Events
     Public Event UpdateItem(ByVal sender As Object, ByVal e As EventArgs)
     Public Event UpdateQte(ByVal sender As Object, ByVal e As EventArgs)
@@ -32,10 +29,10 @@
 
 
     'Members
-    Public ClientName As String
-    Public ClientAdresse As String
-    Public FctId As Integer
-    Public ClId As Integer
+    Public ClientName As String = ""
+    Public ClientAdresse As String = ""
+    Public FctId As Integer = 0
+    Public _ClId As Integer = 0
     Public isSell As Boolean = True
     Public _bl As String
     Public isUniqTva As Boolean
@@ -63,6 +60,24 @@
     Public HasPromo As Boolean = False
 
     'properties
+    Public Property ClId As Integer
+        Get
+            Return _ClId
+        End Get
+        Set(ByVal value As Integer)
+            _ClId = value
+            is_in_PromoList = False
+
+            Try
+                If Form1.PromoListClient.Contains(value) Or Form1.PromoListClient.Contains("*") Then
+                    is_in_PromoList = True
+                End If
+            Catch ex As Exception
+
+            End Try
+
+        End Set
+    End Property
     Public ReadOnly Property Total_Ht As Decimal
         Get
 
@@ -88,7 +103,6 @@
             Return t
         End Get
     End Property
-
     Public ReadOnly Property Tva As Decimal
         Get
 
@@ -203,7 +217,18 @@
             End If
         End Set
     End Property
-
+    Public ReadOnly Property poid As Decimal
+        Get
+ 
+            Dim a As Items
+            Dim t As Decimal = 0
+            For Each a In Pl.Controls
+                t += a.Poid * a.Qte
+            Next
+            'If hasManyRemise = False Then t -= (t * Remise) / 100
+            Return t
+        End Get
+    End Property
     Public ReadOnly Property Total_TTC_Befor_Remise As Decimal
         Get
             Dim a As Items
@@ -483,7 +508,6 @@
         End Set
     End Property
 
-
     'Subs & functions
     Public Sub AddItems(ByVal R As DataRow)
         Try
@@ -650,7 +674,7 @@
                 ap.cid = D.Rows(i).Item("cid")
                 ap.Depot = D.Rows(i).Item("depot")
                 ap.code = D.Rows(i).Item("code")
-
+                ap.Poid = RM
                 ap.Remise = RM
 
                 If qte < 0 Then
@@ -990,11 +1014,20 @@
         lbHT.Text = "T. Ht : " & String.Format("{0:n}", Total_Ht)
         Avance = 0
         FctId = 0
+        ClId = 0
         Remise = 0
         bl = "---"
         lbProfit.Text = "[]"
         delivredDay = "-"
         Dte = Now
+        Num = 0
+        myPoint = 0
+        TotalPoint = 0
+        usedPoint = 0
+        lbPoint.Text = myPoint & "P"
+        lbTotalPoint.Text = myPoint + TotalPoint & "P"
+        lbUsedPoint.Text = usedPoint & "P"
+
     End Sub
     Public Function IsExiste(ByVal arid As Integer) As Boolean
         Dim a As Items
@@ -1439,6 +1472,7 @@
     Public RslArts As New Dictionary(Of Integer, Double)
     Public RslCats As New Dictionary(Of Integer, Double)
     Public has_auto_promos As Boolean = False
+    Public is_in_PromoList As Boolean = False
 
     Private Sub BwPromos_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BwPromos.DoWork
 
@@ -1446,6 +1480,8 @@
         paramsCats.Clear()
         RslArts.Clear()
         RslCats.Clear()
+
+        If is_in_PromoList = False Then Exit Sub
 
         Dim _montTotal As Double = 1
         Dim _pntTotal As Integer = 0

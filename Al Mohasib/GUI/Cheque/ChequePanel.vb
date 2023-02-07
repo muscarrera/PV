@@ -1,9 +1,10 @@
 ﻿Imports System.IO
 Imports System.Drawing.Printing
+Imports System.Text.RegularExpressions
 
 Public Class ChequePanel
 
-
+    Dim Total As Double
     Dim isRelatedApp As Boolean = False
     Dim nb_trial As Integer = 0
     Dim bonId As Integer = 0
@@ -11,6 +12,7 @@ Public Class ChequePanel
     Dim _montant As Double
     Dim _isSell As Boolean
     Public tb_F, tb_P, tb_C As String
+    Dim _ds As DataTable
 
     Public Property isActive As Boolean
         Get
@@ -47,161 +49,37 @@ Public Class ChequePanel
 
             If value Then
                 tb_F = "Facture"
-                tb_P = "Client_Payement"
+                tb_P = "Payment"
                 tb_C = "Client"
                 btMode.Text = "V : Vente"
             Else
                 tb_F = "Bon"
-                tb_P = "Company_Payement"
-                tb_C = "Fournisseur"
+                tb_P = "CompanyPayment"
+                tb_C = "company"
                 btMode.Text = "A : Achat"
             End If
 
             ModeChangedOnlyToday()
         End Set
     End Property
-
-    Private Sub getRegistryinfo(ByRef txt As String, ByVal str As String, ByVal v As String)
-        Try
-            Dim msg As String
-            msg = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\ALM_ImpCheq", str, Nothing)
-            If msg = Nothing Then
-                msg = v
-                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\ALM_ImpCheq", str, msg)
-                txt = msg
-            Else
-                txt = msg
-            End If
-        Catch ex As Exception
-
-        End Try
-    End Sub
-    Private Sub getRegistryinfo(ByRef b As Boolean, ByVal str As String, ByVal v As Boolean)
-        Try
-            Dim msg As Boolean
-            msg = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\ALM_ImpCheq", str, Nothing)
-            If msg = Nothing Then
-                msg = v
-                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\ALM_ImpCheq", str, msg)
-                b = msg
-            Else
-                b = msg
-            End If
-        Catch ex As Exception
-
-        End Try
-    End Sub
-    Private Sub getRegistryinfo(ByRef txt As Integer, ByVal str As String, ByVal v As Integer)
-        Try
-            Dim msg As Integer
-            msg = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\ALM_ImpCheq", str, Nothing)
-            If msg = Nothing Then
-                msg = v
-                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\ALM_ImpCheq", str, msg)
-                txt = msg
-            Else
-                txt = msg
-            End If
-        Catch ex As Exception
-
-        End Try
-    End Sub
-    Private Sub HandleRegistryinfo()
-        getRegistryinfo(isRelatedApp, "isRelatedApp", False)
-        getRegistryinfo(nb_trial, "nb_trial", 1)
-        getRegistryinfo(isActive, "ALM_ImpCheq_Ref", False)
-        getRegistryinfo(str_Path, "str_Path", "")
-    End Sub
+    Public Property dataSource As DataTable
+        Get
+            Return _ds
+        End Get
+        Set(ByVal value As DataTable)
+            _ds = value
 
 
-    Private Sub ChequePanel_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        HandleRegistryinfo()
+            pl.Visible = False
+            Total = 0
 
-    End Sub
+            FillRowsByGrid(value)
+            pl.Visible = True
 
-    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
-        txtC.text = ""
-        txtB.text = ""
-        txtD1.text = ""
-        txtD2.text = ""
-        txtR.text = ""
-        txtM.text = ""
-    End Sub
-    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Panel1.Width = 180
+        End Set
+    End Property
 
-        txtC.text = ""
-        txtB.text = ""
-        txtD1.text = ""
-        txtD2.text = ""
-        txtR.text = ""
-        txtM.text = ""
-    End Sub
-    Private Sub Label14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label14.Click, Button9.Click
-        Panel1.Width = 333
-    End Sub
-    Private Sub Label15_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label15.Click, Button10.Click
-       
-        Dim edt As New EditAndPrintCheque
-        edt.Pid = 0
-        If edt.ShowDialog = Windows.Forms.DialogResult.OK Then
-
-        End If
-    End Sub
-    ''' edit payement
-    Private Sub Button15_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button15.Click, Label20.Click
-        Try
-            Dim dg As DataGridView = pl.Controls(0)
-            If dg.SelectedRows.Count = 0 Then Exit Sub
-
-
-            Dim edt As New EditAndPrintCheque
-            edt.Pid = dg.SelectedRows(0).Cells(0).Value
-            If edt.ShowDialog = Windows.Forms.DialogResult.OK Then
-
-
-            End If
-        Catch ex As Exception
-
-        End Try
-
-
-    End Sub
-     
-    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
-        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-
-            Dim params As New Dictionary(Of String, Object)
-
-            If Not IsNothing(cbB.SelectedItem) Then If cbB.SelectedItem.ToString.Length > 2 Then params.Add("way = ", cbB.Text)
-            If txtC.text.Contains("|") Then params.Add("cid = ", txtC.text.Split("|")(1))
-            If IsNumeric(txtB.text) Then params.Add("fctid = ", txtB.text)
-
-            If IsDate(txtD1.text) Then
-                Dim d As Date = txtD1.text
-                Dim dt1 = New DateTime(d.Year, d.Month, d.Day, 0, 1, 0, 0)
-                params.Add("date > ", dt1)
-            End If
-            If IsDate(txtD2.text) Then
-                Dim d As Date = txtD2.text
-                Dim dt1 = New DateTime(d.Year, d.Month, d.Day, 23, 59, 0, 0)
-                params.Add("date < ", dt1)
-            End If
-
-            If txtR.text <> "" Then params.Add("Num LIKE ", txtR.text)
-            If txtM.text <> "" Then params.Add("montant = ", txtM.text)
-
-            Dim dt As DataTable
-            params.Add("name NOT  LIKE  ", "@%")
-
-            dt = a.SelectDataTableSymbols("CompanyPayment", {"*"}, params, , "LIMIT 50")
-
-            FillRowsByGrid(dt)
-
-           
-
-        End Using
-    End Sub
+    '///////////////////////////////////
     Private Sub FillRowsByGrid(ByVal _ds As DataTable)
         pl.Controls.Clear()
         Try
@@ -260,6 +138,7 @@ Public Class ChequePanel
         Catch ex As Exception
         End Try
     End Sub
+
     Private Sub StyleDatagrid(ByRef dg As DataGridView)
         dg.AutoGenerateColumns = True
         dg.BorderStyle = Windows.Forms.BorderStyle.None
@@ -290,6 +169,110 @@ Public Class ChequePanel
         dg.Dock = DockStyle.Fill
         dg.RowHeadersVisible = False
     End Sub
+    '//////////////////////////////////
+    Private Sub getRegistryinfo(ByRef txt As String, ByVal str As String, ByVal v As String)
+        Try
+            Dim msg As String
+            msg = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\ALM_ImpCheq", str, Nothing)
+            If msg = Nothing Then
+                msg = v
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\ALM_ImpCheq", str, msg)
+                txt = msg
+            Else
+                txt = msg
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub getRegistryinfo(ByRef b As Boolean, ByVal str As String, ByVal v As Boolean)
+        Try
+            Dim msg As Boolean
+            msg = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\ALM_ImpCheq", str, Nothing)
+            If msg = Nothing Then
+                msg = v
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\ALM_ImpCheq", str, msg)
+                b = msg
+            Else
+                b = msg
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub getRegistryinfo(ByRef txt As Integer, ByVal str As String, ByVal v As Integer)
+        Try
+            Dim msg As Integer
+            msg = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\ALM_ImpCheq", str, Nothing)
+            If msg = Nothing Then
+                msg = v
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\ALM_ImpCheq", str, msg)
+                txt = msg
+            Else
+                txt = msg
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub HandleRegistryinfo()
+        getRegistryinfo(isRelatedApp, "isRelatedApp", False)
+        getRegistryinfo(nb_trial, "nb_trial", 1)
+        getRegistryinfo(isActive, "ALM_ImpCheq_Ref", False)
+        getRegistryinfo(str_Path, "str_Path", "")
+    End Sub
+    '//////////////////////////////////
+
+    Private Sub ChequePanel_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        HandleRegistryinfo()
+        isSell = True
+    End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        txtC.text = ""
+        txtB.text = ""
+        txtD1.text = ""
+        txtD2.text = ""
+        txtR.text = ""
+        txtM.text = ""
+    End Sub
+
+
+    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+
+            Dim params As New Dictionary(Of String, Object)
+
+            If Not IsNothing(cbB.SelectedItem) Then If cbB.SelectedItem.ToString.Length > 2 Then params.Add("way = ", cbB.Text)
+            If txtC.text.Contains("|") Then params.Add("cid = ", txtC.text.Split("|")(1))
+            If IsNumeric(txtB.text) Then params.Add("fctid = ", txtB.text)
+
+            If IsDate(txtD1.text) Then
+                Dim d As Date = txtD1.text
+                Dim dt1 = New DateTime(d.Year, d.Month, d.Day, 0, 1, 0, 0)
+                params.Add("date > ", dt1)
+            End If
+            If IsDate(txtD2.text) Then
+                Dim d As Date = txtD2.text
+                Dim dt1 = New DateTime(d.Year, d.Month, d.Day, 23, 59, 0, 0)
+                params.Add("date < ", dt1)
+            End If
+
+            If txtR.text <> "" Then params.Add("Num LIKE ", txtR.text)
+            If txtM.text <> "" Then params.Add("montant = ", txtM.text)
+
+            Dim dt As DataTable
+            params.Add("name NOT  LIKE  ", "@%")
+
+            dt = a.SelectDataTableSymbols("CompanyPayment", {"*"}, params, , "LIMIT 50")
+
+            FillRowsByGrid(dt)
+
+
+
+        End Using
+    End Sub
+
     Private Sub Button5_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
         txtD1.text = Now.Date.ToString("dd/MM/yyyy")
     End Sub
@@ -302,27 +285,13 @@ Public Class ChequePanel
     End Sub
 
 
-    Private Sub Button16_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label22.Click, Button16.Click
-        Dim gch As New ChooseBanque
-        gch.str_Path = str_Path
-        If gch.ShowDialog = DialogResult.OK Then
-            Dim gf As New bForm
-            gf.str_Path = str_Path
-            gf.localname = gch.localName
-            gf.LoadXml()
 
 
-            If gf.ShowDialog = DialogResult.OK Then
-            End If
-
-        End If
-    End Sub
-  
     Private Sub Button18_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button18.Click
         Panel1.Width = 10
     End Sub
 
-    
+
     Private Sub btTrial_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btTrial.Click
         Dim trial As New bTrialVersion
         If trial.ShowDialog = Windows.Forms.DialogResult.OK Then
@@ -413,36 +382,32 @@ Public Class ChequePanel
 
         Dim MPx As Point = MousePosition()
         Dim y = 0 'MPx.Y - op.Height
-        Dim x = pl.Left + Button3.Right - op.Width ' MPx.X - 10
+        Dim x = Panel8.Left + Button19.Right - op.Width ' - 10
         op.Location = New Point(x, y)
 
         AddHandler op.MenuLostFocus, AddressOf MenuLostFocus
         AddHandler op.MenuElementSelected, AddressOf MenuElementSelected
 
 
-        Pl.Controls.Add(op)
+        pl.Controls.Add(op)
         op.BringToFront()
         ' op.Focus()
     End Sub
     Private Sub MenuElementSelected(ByRef ds As PopUpMenu)
 
-        'Dim ss As New SearchBloc
-        'ss.Mode = ds.mode
+        Dim ss As New SearchBloc
+        ss.Mode = ds.mode
 
-        'If ds.key = "A" Then
-        '    isSell = False
+        If ds.key = "A" Then
+            isSell = False
 
-        'ElseIf ds.key = "V" Then
-        '    isSell = True
-        'Else
-        '    Dim pr As New MoneySetting
-        '    If pr.ShowDialog = DialogResult.OK Then
-        '        isSell = isSell
-        '    End If
-        'End If
+        ElseIf ds.key = "V" Then
+            isSell = True
+
+        End If
     End Sub
     Private Sub MenuLostFocus(ByRef ds As PopUpMenu)
-        Pl.Controls.Remove(ds)
+        pl.Controls.Remove(ds)
         ds.Dispose()
     End Sub
 
@@ -466,8 +431,388 @@ Public Class ChequePanel
         End Try
     End Sub
 
-    Private Sub ModeChangedOnlyToday()
-        Throw New NotImplementedException
+    Private Sub Button11_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button11.Click
+        For Each sb As SearchBloc In plBlocSearch.Controls
+            If sb.Mode = "P:isPayed" Then
+                sb.Key = "desig:-;ech:" & Now.Date.ToString("yyyy-MM-dd") & ":>=;way:CACHE:<>"
+                sb.Value = sender.text
+
+                plBlocSearch_ControlAdded(Nothing, Nothing)
+                Exit Sub
+            End If
+        Next
+
+
+        Dim ss As New SearchBloc
+        ss.Mode = "P:isPayed"
+        ss.Key = "desig:-;ech:" & Now.Date.ToString("yyyy-MM-dd") & ":>=;way:CACHE:<>"
+        ss.Value = sender.text
+
+        AddHandler ss.ClearElemeent, AddressOf SearchBloc_ClearElemeent
+        ss.Dock = DockStyle.Left
+
+        plBlocSearch.Controls.Add(ss)
+    End Sub
+    Private Sub Button14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button14.Click
+        For Each sb As SearchBloc In plBlocSearch.Controls
+            If sb.Mode = "P:isPayed" Then
+                sb.Key = "desig:PAYE"
+                sb.Value = sender.text
+
+                plBlocSearch_ControlAdded(Nothing, Nothing)
+                Exit Sub
+            End If
+        Next
+
+
+        Dim ss As New SearchBloc
+        ss.Mode = "P:isPayed"
+        ss.Key = "desig:PAYE"
+        ss.Value = sender.text
+
+        AddHandler ss.ClearElemeent, AddressOf SearchBloc_ClearElemeent
+        ss.Dock = DockStyle.Left
+
+        plBlocSearch.Controls.Add(ss)
+    End Sub
+    Private Sub Button17_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button17.Click
+        For Each sb As SearchBloc In plBlocSearch.Controls
+            If sb.Mode = "P:isPayed" Then
+                sb.Key = "desig:IMPAYE"
+                sb.Value = sender.text
+
+                plBlocSearch_ControlAdded(Nothing, Nothing)
+                Exit Sub
+            End If
+        Next
+
+
+        Dim ss As New SearchBloc
+        ss.Mode = "P:isPayed"
+        ss.Key = "desig:IMPAYE"
+        ss.Value = sender.text
+
+        AddHandler ss.ClearElemeent, AddressOf SearchBloc_ClearElemeent
+        ss.Dock = DockStyle.Left
+
+        plBlocSearch.Controls.Add(ss)
     End Sub
 
+    Private Sub plBlocSearch_ControlAdded(ByVal sender As System.Object, ByVal e As System.Windows.Forms.ControlEventArgs) Handles plBlocSearch.ControlAdded, plBlocSearch.ControlRemoved
+        Dim W As Integer = plBlocSearch.Width + 150
+        If W < 650 Then W = 650
+        plMainSearch.Width = W
+
+        ModeChanged()
+    End Sub
+    Private Sub SearchBloc_ClearElemeent(ByVal ds As SearchBloc)
+        plBlocSearch.Controls.Remove(ds)
+    End Sub
+    '///////////////////////////////////////
+    Private Sub ModeChanged()
+
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+            Dim order As New Dictionary(Of String, String)
+            Dim dt As New DataTable
+            order.Add("Pid", "DESC")
+            params.Add("desig <> ", "@F")
+
+            If plBlocSearch.Controls.Count = 0 Then
+                '   dt = c.SelectDataTableWithSyntaxe(ds.tb_P, "", {"*"}, params, order, "LIMIT 50")
+                dt = c.SelectDataTableSymbols(tb_P, {"*"}, params, order, "LIMIT 50")
+
+                dataSource = dt
+
+            Else
+                SearchElementChanged()
+            End If
+
+
+        End Using
+
+    End Sub
+    Private Sub SearchElementChanged()
+
+
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+
+            For Each p As SearchBloc In plBlocSearch.Controls
+                If p.Mode.StartsWith("DT") Then
+                    dateElementSearch(p, params, "date")
+                    Continue For
+                ElseIf p.Mode.StartsWith("EC") Then
+                    dateElementSearch(p, params, "ech")
+                    Continue For
+                End If
+
+                Dim str = p.Key.Split(";")
+                For i As Integer = 0 To str.Length - 1
+                    Dim str2 = str(i).Split(":")
+                    If str2.Length = 2 Then
+                        params.Add(str2(0) & " = ", str2(1))
+                    Else
+                        params.Add(str2(0) & " " & str2(2) & " ", str2(1))
+                    End If
+                Next
+            Next
+
+            params.Add(" desig <> ", "@F")
+
+            Dim order As New Dictionary(Of String, String)
+            order.Add("Pid", "DESC")
+
+
+            Dim ls = c.SelectDataTableSymbols(tb_P, {"*"}, params, order)
+
+            dataSource = ls
+        End Using
+
+
+    End Sub
+    Private Sub dateElementSearch(ByVal p As SearchBloc, ByRef params As Dictionary(Of String, Object), ByVal f As String)
+        Dim str_dt As String = ""
+        If p.Key = "MO" Then
+            str_dt = Now.ToString("yyyy-MM") & "%"
+            params.Add(f & " LIKE ", str_dt)
+        ElseIf p.Key = "NM" Then '''''' next month
+            str_dt = Now.AddMonths(1).ToString("yyyy-MM") & "%"
+            params.Add(f & "  LIKE ", str_dt)
+        ElseIf p.Key = "NS" Then '''''next week
+            Dim fdw As DateTime = DateTime.Today.AddDays(15).AddDays(-Weekday(DateTime.Today.AddDays(15), FirstDayOfWeek.System) + 1)
+            params.Add(f & "  <= ", fdw)
+
+            fdw = DateTime.Today.AddDays(7).AddDays(-Weekday(DateTime.Today.AddDays(7), FirstDayOfWeek.System) + 1)
+            params.Add(f & "  >= ", fdw)
+        ElseIf p.Key = "DM" Then
+            str_dt = Now.AddDays(1).ToString("yyyy-MM-dd") & "%"
+            params.Add(f & "  LIKE ", str_dt)
+        ElseIf p.Key = "AD" Then
+            str_dt = Now.AddDays(2).ToString("yyyy-MM-dd") & "%"
+            params.Add(f & "  LIKE ", str_dt)
+        ElseIf p.Key.StartsWith("DS") Then '''''SpecialDate
+            Dim str As String = p.Key.Split(":")(1)
+            If str = "" Then Exit Sub
+
+            If IsDate(str) Then
+                str_dt = CDate(str).ToString("yyyy-MM-dd") & "%"
+                params.Add(f & "  LIKE ", str_dt)
+            Else
+                Dim cleanString As String = Regex.Replace(str, "[^0-9\-/]", "")
+                If IsDate(cleanString) Then Exit Sub
+
+                If str.ToUpper.StartsWith("S") Or str.ToUpper.StartsWith("SE") Or
+                    str.ToUpper.StartsWith("SEM") Or str.ToUpper.StartsWith("SM") Then
+                    Dim fdw As DateTime = CDate(cleanString).AddDays(-Weekday(CDate(cleanString), FirstDayOfWeek.System) + 1)
+                    params.Add(f & "  >= ", fdw)
+                    fdw = CDate(cleanString).AddDays(+7).AddDays(-Weekday(CDate(cleanString).AddDays(+7), FirstDayOfWeek.System) + 1)
+                    params.Add(f & "  <= ", fdw)
+                ElseIf str.ToUpper.StartsWith("M") Or str.ToUpper.StartsWith("MO") Or
+                                    str.ToUpper.StartsWith("MOIS") Then
+                    str_dt = CDate(cleanString).ToString("yyyy-MM") & "%"
+                    params.Add(f & " LIKE ", str_dt)
+                End If
+            End If
+        ElseIf p.Key = "LM" Then
+            str_dt = Now.AddMonths(-1).ToString("yyyy-MM") & "%"
+            params.Add(f & "  LIKE ", str_dt)
+        ElseIf p.Key = "SE" Then
+            Dim fdw As DateTime = DateTime.Today.AddDays(-Weekday(DateTime.Today, FirstDayOfWeek.System) + 1)
+            params.Add(f & "  >= ", fdw)
+            fdw = DateTime.Today.AddDays(+7).AddDays(-Weekday(DateTime.Today.AddDays(+7), FirstDayOfWeek.System) + 1)
+            params.Add(f & "  <= ", fdw)
+        ElseIf p.Key = "LS" Then
+            Dim fdw As DateTime = DateTime.Today.AddDays(-Weekday(DateTime.Today, FirstDayOfWeek.System) + 1)
+            params.Add(f & "  <= ", fdw)
+
+            fdw = DateTime.Today.AddDays(-7).AddDays(-Weekday(DateTime.Today.AddDays(-7), FirstDayOfWeek.System) + 1)
+            params.Add(f & "  >= ", fdw)
+
+        ElseIf p.Key = "HI" Then
+            str_dt = Now.AddDays(-1).ToString("yyyy-MM-dd") & "%"
+            params.Add(f & "  LIKE ", str_dt)
+        Else
+            str_dt = Now.ToString("yyyy-MM-dd") & "%"
+            params.Add(f & "  LIKE ", str_dt)
+        End If
+    End Sub
+    Private Sub ModeChangedOnlyToday()
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+
+
+            Dim str_dt = Now.ToString("yyyy-MM-dd") & "%"
+            params.Add("date LIKE ", str_dt)
+
+            params.Add(" desig <> ", "@F")
+            Dim order As New Dictionary(Of String, String)
+            order.Add("Pid", "DESC")
+            Dim ls = c.SelectDataTableSymbols(tb_P, {"*"}, params, order)
+
+            dataSource = ls
+        End Using
+
+    End Sub
+
+    Private Sub btMode_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btMode.Click
+        'RaiseEvent UpdateRemise()
+        Dim op As New PopUpMenu   ' OptionAddElement
+        op.mode = "DT:Date"
+        Dim params As New Dictionary(Of String, String)
+
+
+        params.Add("Date d'échéance", "BB") '  la 
+        params.Add("Date de création", "AA") 'le mois dernier  la semaine dernière
+
+        op.dataSource = params
+
+        Dim MPx As Point = MousePosition()
+        Dim y = 0 'MPx.Y - op.Height
+        Dim x = Panel8.Left + btMode.Right - op.Width ' MPx.X - 10
+        op.Location = New Point(x, y)
+
+        AddHandler op.MenuLostFocus, AddressOf MenuLostFocus
+        AddHandler op.MenuElementSelected, AddressOf MenuElementSelected_Date
+
+
+        pl.Controls.Add(op)
+        op.BringToFront()
+        ' op.Focus()
+    End Sub
+    Private Sub MenuElementSelected_Date(ByRef op As PopUpMenu)
+        'RaiseEvent UpdateRemise()
+        'Dim op As New PopUpMenu   ' OptionAddElement
+        Dim params As New Dictionary(Of String, String)
+
+        If op.key = "AA" Then
+            op.mode = "DT:Date"
+
+        ElseIf op.key = "BB" Then
+            op.mode = "EC:Date"
+            params.Add("Le mois prochain", "NM") '  la 
+            params.Add("Semaine prochaine", "NS")
+            params.Add("Après demain", "AD")
+            params.Add("Demain", "DM")
+        End If
+
+        params.Add("Le mois dernier", "LM") '  la 
+        params.Add("Ce mois-ci", "MO") 'le mois dernier  la semaine dernière
+        params.Add("Semaine dernière", "LS")
+        params.Add("Cette semaine", "SE")
+        params.Add("Hier", "HI")
+        params.Add("Aujourd'hui", "AU")
+        params.Add("Date sélectionnée", "DS")
+
+        op.dataSource = params
+
+        Dim MPx As Point = MousePosition()
+        Dim y = 0 'MPx.Y - op.Height
+        Dim x = Panel8.Left + btMode.Right - op.Width ' MPx.X - 10
+        op.Location = New Point(x, y)
+
+        RemoveHandler op.MenuElementSelected, AddressOf MenuElementSelected_Date
+        AddHandler op.MenuElementSelected, AddressOf MenuElementSelected2
+
+
+        'Pl.Controls.Add(op)
+        'op.BringToFront()
+        '' op.Focus()
+
+
+    End Sub
+    Private Sub MenuElementSelected2(ByRef ds As PopUpMenu)
+
+        If ds.key = "DS" Then ds.key = "DS:" & txtSearch.text
+
+        For Each sb As SearchBloc In plBlocSearch.Controls
+            If sb.Mode = ds.mode Then
+                sb.Key = ds.key
+                sb.Value = ds.value
+
+                Pl.Controls.Remove(ds)
+                ds.Dispose()
+
+                plBlocSearch_ControlAdded(Nothing, Nothing)
+                Exit Sub
+            End If
+        Next
+
+
+        Dim ss As New SearchBloc
+        ss.Mode = ds.mode
+        ss.Key = ds.key
+        ss.Value = ds.value
+
+        AddHandler ss.ClearElemeent, AddressOf SearchBloc_ClearElemeent
+        ss.Dock = DockStyle.Left
+
+        plBlocSearch.Controls.Add(ss)
+
+        Pl.Controls.Remove(ds)
+        ds.Dispose()
+    End Sub
+    Private Sub txtsearch_KeyDownOk() Handles txtSearch.KeyDownOk
+        Dim ss As New SearchBloc
+        Dim str = txtsearch.text
+        Dim _mode = ""
+        Dim _key = ""
+
+        If str.Contains(":") Then
+
+            If str.Trim.ToUpper.StartsWith("T") Then
+                _mode = "Tg:Tags"
+                _key = "ref:%" & str.Split(":")(1) & "%: LIKE "
+            ElseIf str.Trim.ToUpper.StartsWith("M") Then
+                _mode = "Mth:Methode"
+                _key = "way:%" & str.Split(":")(1) & "%: LIKE "
+            ElseIf str.Trim.ToUpper.StartsWith("V") Then
+                _mode = "Vl:Valeur"
+                _key = "montant:" & str.Split(":")(1)
+            Else
+                _mode = "Nm:Nom"
+                _key = "name:%" & str.Split(":")(1) & "%: LIKE "
+            End If
+        Else
+
+
+            If IsNumeric(str) Then
+                _mode = "Vl:Valeur"
+                _key = "montant:" & str
+            ElseIf IsDate(str) Then
+                _mode = "Vl:Valeur"
+                _key = "date:%" & txtSearch.text & "%: LIKE "
+            Else
+                _mode = "Nm:Nom"
+                _key = "name:%" & txtsearch.text & "%: LIKE "
+            End If
+
+
+
+        End If
+
+        For Each sb As SearchBloc In plBlocSearch.Controls
+            If sb.Mode = _mode Then
+                sb.Key = _key
+                sb.Value = txtsearch.text
+
+                plBlocSearch_ControlAdded(Nothing, Nothing)
+                Exit Sub
+            End If
+        Next
+
+        ss.Mode = _mode
+        ss.Key = _key
+        ss.Value = txtsearch.text
+
+        AddHandler ss.ClearElemeent, AddressOf SearchBloc_ClearElemeent
+        ss.Dock = DockStyle.Left
+
+        plBlocSearch.Controls.Add(ss)
+        txtsearch.text = ""
+    End Sub
+
+    Private Sub Button20_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button20.Click
+        ModeChanged()
+    End Sub
 End Class

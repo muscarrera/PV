@@ -42,10 +42,8 @@ Partial Class ChequePanel
         Me.btMode = New System.Windows.Forms.Button()
         Me.Button19 = New System.Windows.Forms.Button()
         Me.Panel9 = New System.Windows.Forms.Panel()
-        Me.Panel12 = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.plMainSearch = New System.Windows.Forms.Panel()
-        Me.TxtBox1 = New Al_Mohasib.TxtBox()
+        Me.txtSearch = New Al_Mohasib.TxtBox()
         Me.plBlocSearch = New System.Windows.Forms.Panel()
         Me.Button20 = New System.Windows.Forms.Button()
         Me.btSearchIcon = New System.Windows.Forms.Button()
@@ -55,15 +53,7 @@ Partial Class ChequePanel
         Me.btSetting = New System.Windows.Forms.Button()
         Me.btTrial = New System.Windows.Forms.Button()
         Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
         Me.Button12 = New System.Windows.Forms.Button()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Button9 = New System.Windows.Forms.Button()
-        Me.Button16 = New System.Windows.Forms.Button()
-        Me.Button15 = New System.Windows.Forms.Button()
-        Me.Button10 = New System.Windows.Forms.Button()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.lbActive = New System.Windows.Forms.Label()
         Me.pl = New System.Windows.Forms.Panel()
@@ -76,6 +66,7 @@ Partial Class ChequePanel
         Me.Button21 = New System.Windows.Forms.Button()
         Me.btPage = New System.Windows.Forms.Button()
         Me.Button22 = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel14 = New System.Windows.Forms.Panel()
         Me.Button18 = New System.Windows.Forms.Button()
         Me.Panel15 = New System.Windows.Forms.Panel()
@@ -105,7 +96,6 @@ Partial Class ChequePanel
         Me.txtD1 = New Al_Mohasib.TxtBox()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Label21 = New System.Windows.Forms.Label()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel11.SuspendLayout()
@@ -114,12 +104,12 @@ Partial Class ChequePanel
         Me.Panel7.SuspendLayout()
         Me.Panel8.SuspendLayout()
         Me.Panel9.SuspendLayout()
-        Me.Panel12.SuspendLayout()
         Me.plMainSearch.SuspendLayout()
         Me.Panel24.SuspendLayout()
         Me.Panel23.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.PlFooter.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.Panel14.SuspendLayout()
         Me.Panel15.SuspendLayout()
         Me.Panel16.SuspendLayout()
@@ -128,7 +118,6 @@ Partial Class ChequePanel
         Me.Panel19.SuspendLayout()
         Me.Panel17.SuspendLayout()
         Me.Panel21.SuspendLayout()
-        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel2
@@ -167,6 +156,7 @@ Partial Class ChequePanel
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Image = Global.Al_Mohasib.My.Resources.Resources.iconfinder_pdf_3745__1_1
         Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button1.Location = New System.Drawing.Point(332, 46)
         Me.Button1.Name = "Button1"
@@ -182,6 +172,7 @@ Partial Class ChequePanel
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Image = Global.Al_Mohasib.My.Resources.Resources._2993694_brand_brands_excel_logo_logos_icon
         Me.Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button2.Location = New System.Drawing.Point(369, 46)
         Me.Button2.Name = "Button2"
@@ -393,7 +384,6 @@ Partial Class ChequePanel
         '
         'Panel9
         '
-        Me.Panel9.Controls.Add(Me.Panel12)
         Me.Panel9.Controls.Add(Me.plMainSearch)
         Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel9.Location = New System.Drawing.Point(5, 5)
@@ -402,31 +392,10 @@ Partial Class ChequePanel
         Me.Panel9.Size = New System.Drawing.Size(1132, 41)
         Me.Panel9.TabIndex = 2
         '
-        'Panel12
-        '
-        Me.Panel12.Controls.Add(Me.Label1)
-        Me.Panel12.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel12.Location = New System.Drawing.Point(389, 5)
-        Me.Panel12.Name = "Panel12"
-        Me.Panel12.Padding = New System.Windows.Forms.Padding(2)
-        Me.Panel12.Size = New System.Drawing.Size(88, 31)
-        Me.Panel12.TabIndex = 8
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.SystemColors.ButtonShadow
-        Me.Label1.Location = New System.Drawing.Point(5, 9)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(77, 12)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "T:  M:   V:   N:"
-        '
         'plMainSearch
         '
         Me.plMainSearch.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.plMainSearch.Controls.Add(Me.TxtBox1)
+        Me.plMainSearch.Controls.Add(Me.txtSearch)
         Me.plMainSearch.Controls.Add(Me.plBlocSearch)
         Me.plMainSearch.Controls.Add(Me.Button20)
         Me.plMainSearch.Controls.Add(Me.btSearchIcon)
@@ -437,25 +406,25 @@ Partial Class ChequePanel
         Me.plMainSearch.Size = New System.Drawing.Size(650, 31)
         Me.plMainSearch.TabIndex = 7
         '
-        'TxtBox1
+        'txtSearch
         '
-        Me.TxtBox1.BackColor = System.Drawing.Color.Transparent
-        Me.TxtBox1.BorderColor = System.Drawing.Color.Transparent
-        Me.TxtBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TxtBox1.IsNumiric = False
-        Me.TxtBox1.Location = New System.Drawing.Point(33, 0)
-        Me.TxtBox1.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.TxtBox1.Name = "TxtBox1"
-        Me.TxtBox1.ShowClearIcon = False
-        Me.TxtBox1.ShowSaveIcon = False
-        Me.TxtBox1.Size = New System.Drawing.Size(567, 30)
-        Me.TxtBox1.StartUp = 2
-        Me.TxtBox1.TabIndex = 9
-        Me.TxtBox1.TextSize = 8
-        Me.TxtBox1.TxtBackColor = True
-        Me.TxtBox1.TxtColor = System.Drawing.Color.WhiteSmoke
-        Me.TxtBox1.txtReadOnly = False
-        Me.TxtBox1.TxtSelect = New Integer() {1, 0}
+        Me.txtSearch.BackColor = System.Drawing.Color.Transparent
+        Me.txtSearch.BorderColor = System.Drawing.Color.Transparent
+        Me.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtSearch.IsNumiric = False
+        Me.txtSearch.Location = New System.Drawing.Point(33, 0)
+        Me.txtSearch.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.ShowClearIcon = False
+        Me.txtSearch.ShowSaveIcon = False
+        Me.txtSearch.Size = New System.Drawing.Size(567, 30)
+        Me.txtSearch.StartUp = 2
+        Me.txtSearch.TabIndex = 9
+        Me.txtSearch.TextSize = 8
+        Me.txtSearch.TxtBackColor = True
+        Me.txtSearch.TxtColor = System.Drawing.Color.WhiteSmoke
+        Me.txtSearch.txtReadOnly = False
+        Me.txtSearch.TxtSelect = New Integer() {1, 0}
         '
         'plBlocSearch
         '
@@ -470,6 +439,7 @@ Partial Class ChequePanel
         'Button20
         '
         Me.Button20.BackColor = System.Drawing.Color.Transparent
+        Me.Button20.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources._3669253_ic_search_icon
         Me.Button20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.Button20.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button20.FlatAppearance.BorderSize = 0
@@ -519,15 +489,7 @@ Partial Class ChequePanel
         Me.Panel24.Controls.Add(Me.btSetting)
         Me.Panel24.Controls.Add(Me.btTrial)
         Me.Panel24.Controls.Add(Me.Label17)
-        Me.Panel24.Controls.Add(Me.Label14)
         Me.Panel24.Controls.Add(Me.Button12)
-        Me.Panel24.Controls.Add(Me.Label22)
-        Me.Panel24.Controls.Add(Me.Label20)
-        Me.Panel24.Controls.Add(Me.Label15)
-        Me.Panel24.Controls.Add(Me.Button9)
-        Me.Panel24.Controls.Add(Me.Button16)
-        Me.Panel24.Controls.Add(Me.Button15)
-        Me.Panel24.Controls.Add(Me.Button10)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel24.Location = New System.Drawing.Point(0, 18)
         Me.Panel24.Name = "Panel24"
@@ -576,17 +538,6 @@ Partial Class ChequePanel
         Me.Label17.TabIndex = 11
         Me.Label17.Text = "خـروج"
         '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.ForeColor = System.Drawing.Color.Navy
-        Me.Label14.Location = New System.Drawing.Point(123, 11)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(46, 19)
-        Me.Label14.TabIndex = 11
-        Me.Label14.Text = "بـحــــت"
-        '
         'Button12
         '
         Me.Button12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -604,107 +555,6 @@ Partial Class ChequePanel
         Me.Button12.Text = "       Deconecter"
         Me.Button12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button12.UseVisualStyleBackColor = True
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.ForeColor = System.Drawing.Color.Navy
-        Me.Label22.Location = New System.Drawing.Point(610, 11)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(43, 19)
-        Me.Label22.TabIndex = 11
-        Me.Label22.Text = "الـبـنـك"
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.ForeColor = System.Drawing.Color.Navy
-        Me.Label20.Location = New System.Drawing.Point(442, 11)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(53, 19)
-        Me.Label20.TabIndex = 11
-        Me.Label20.Text = "تــعــديــل"
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.ForeColor = System.Drawing.Color.Navy
-        Me.Label15.Location = New System.Drawing.Point(272, 11)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(49, 19)
-        Me.Label15.TabIndex = 11
-        Me.Label15.Text = "جــديــــد"
-        '
-        'Button9
-        '
-        Me.Button9.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Button9.FlatAppearance.BorderSize = 0
-        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button9.ForeColor = System.Drawing.Color.Navy
-        Me.Button9.Image = Global.Al_Mohasib.My.Resources.Resources.usersearch
-        Me.Button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button9.Location = New System.Drawing.Point(13, 3)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(156, 35)
-        Me.Button9.TabIndex = 10
-        Me.Button9.Text = "          Recherche"
-        Me.Button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button9.UseVisualStyleBackColor = True
-        '
-        'Button16
-        '
-        Me.Button16.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Button16.FlatAppearance.BorderSize = 0
-        Me.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button16.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button16.ForeColor = System.Drawing.Color.Navy
-        Me.Button16.Image = Global.Al_Mohasib.My.Resources.Resources.FACTURE_20
-        Me.Button16.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button16.Location = New System.Drawing.Point(509, 3)
-        Me.Button16.Name = "Button16"
-        Me.Button16.Size = New System.Drawing.Size(154, 35)
-        Me.Button16.TabIndex = 10
-        Me.Button16.Text = "        Banques"
-        Me.Button16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button16.UseVisualStyleBackColor = True
-        '
-        'Button15
-        '
-        Me.Button15.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Button15.FlatAppearance.BorderSize = 0
-        Me.Button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button15.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button15.ForeColor = System.Drawing.Color.Navy
-        Me.Button15.Image = Global.Al_Mohasib.My.Resources.Resources.FACTURE_20
-        Me.Button15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button15.Location = New System.Drawing.Point(341, 3)
-        Me.Button15.Name = "Button15"
-        Me.Button15.Size = New System.Drawing.Size(154, 35)
-        Me.Button15.TabIndex = 10
-        Me.Button15.Text = "           Modifier"
-        Me.Button15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button15.UseVisualStyleBackColor = True
-        '
-        'Button10
-        '
-        Me.Button10.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Button10.FlatAppearance.BorderSize = 0
-        Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button10.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button10.ForeColor = System.Drawing.Color.Navy
-        Me.Button10.Image = Global.Al_Mohasib.My.Resources.Resources.ADD14
-        Me.Button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button10.Location = New System.Drawing.Point(190, 3)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(142, 35)
-        Me.Button10.TabIndex = 10
-        Me.Button10.Text = "      Nouveau"
-        Me.Button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button10.UseVisualStyleBackColor = True
         '
         'Panel23
         '
@@ -733,9 +583,9 @@ Partial Class ChequePanel
         '
         Me.pl.BackColor = System.Drawing.Color.White
         Me.pl.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pl.Location = New System.Drawing.Point(321, 148)
+        Me.pl.Location = New System.Drawing.Point(10, 148)
         Me.pl.Name = "pl"
-        Me.pl.Size = New System.Drawing.Size(821, 397)
+        Me.pl.Size = New System.Drawing.Size(1132, 397)
         Me.pl.TabIndex = 0
         '
         'Panel4
@@ -855,6 +705,15 @@ Partial Class ChequePanel
         Me.Button22.Text = ">"
         Me.Button22.UseVisualStyleBackColor = True
         '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.Panel14)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel1.Location = New System.Drawing.Point(0, 148)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(10, 397)
+        Me.Panel1.TabIndex = 0
+        '
         'Panel14
         '
         Me.Panel14.BackColor = System.Drawing.Color.White
@@ -872,7 +731,7 @@ Partial Class ChequePanel
         Me.Panel14.Controls.Add(Me.Panel21)
         Me.Panel14.Location = New System.Drawing.Point(12, 0)
         Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(303, 469)
+        Me.Panel14.Size = New System.Drawing.Size(185, 469)
         Me.Panel14.TabIndex = 9
         '
         'Button18
@@ -885,7 +744,7 @@ Partial Class ChequePanel
         Me.Button18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Button18.Image = Global.Al_Mohasib.My.Resources.Resources.CANCEL_22
         Me.Button18.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button18.Location = New System.Drawing.Point(262, 16)
+        Me.Button18.Location = New System.Drawing.Point(144, 16)
         Me.Button18.Name = "Button18"
         Me.Button18.Size = New System.Drawing.Size(30, 30)
         Me.Button18.TabIndex = 7
@@ -1259,15 +1118,6 @@ Partial Class ChequePanel
         Me.Label21.Text = "Date 1"
         Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.Panel14)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel1.Location = New System.Drawing.Point(0, 148)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(321, 397)
-        Me.Panel1.TabIndex = 0
-        '
         'ChequePanel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1291,8 +1141,6 @@ Partial Class ChequePanel
         Me.Panel7.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
         Me.Panel9.ResumeLayout(False)
-        Me.Panel12.ResumeLayout(False)
-        Me.Panel12.PerformLayout()
         Me.plMainSearch.ResumeLayout(False)
         Me.plMainSearch.PerformLayout()
         Me.Panel24.ResumeLayout(False)
@@ -1301,6 +1149,7 @@ Partial Class ChequePanel
         Me.Panel23.PerformLayout()
         Me.Panel4.ResumeLayout(False)
         Me.PlFooter.ResumeLayout(False)
+        Me.Panel1.ResumeLayout(False)
         Me.Panel14.ResumeLayout(False)
         Me.Panel15.ResumeLayout(False)
         Me.Panel16.ResumeLayout(False)
@@ -1309,7 +1158,6 @@ Partial Class ChequePanel
         Me.Panel19.ResumeLayout(False)
         Me.Panel17.ResumeLayout(False)
         Me.Panel21.ResumeLayout(False)
-        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1317,17 +1165,9 @@ Partial Class ChequePanel
     Friend WithEvents pl As System.Windows.Forms.Panel
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
     Friend WithEvents Label17 As System.Windows.Forms.Label
-    Friend WithEvents Label15 As System.Windows.Forms.Label
-    Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents Button12 As System.Windows.Forms.Button
-    Friend WithEvents Button10 As System.Windows.Forms.Button
-    Friend WithEvents Button9 As System.Windows.Forms.Button
     Friend WithEvents Panel24 As System.Windows.Forms.Panel
     Friend WithEvents Panel23 As System.Windows.Forms.Panel
-    Friend WithEvents Label20 As System.Windows.Forms.Label
-    Friend WithEvents Button15 As System.Windows.Forms.Button
-    Friend WithEvents Label22 As System.Windows.Forms.Label
-    Friend WithEvents Button16 As System.Windows.Forms.Button
     Friend WithEvents btSetting As System.Windows.Forms.Button
     Friend WithEvents btTrial As System.Windows.Forms.Button
     Friend WithEvents lbActive As System.Windows.Forms.Label
@@ -1349,10 +1189,8 @@ Partial Class ChequePanel
     Friend WithEvents btMode As System.Windows.Forms.Button
     Friend WithEvents Button19 As System.Windows.Forms.Button
     Friend WithEvents Panel9 As System.Windows.Forms.Panel
-    Friend WithEvents Panel12 As System.Windows.Forms.Panel
-    Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents plMainSearch As System.Windows.Forms.Panel
-    Friend WithEvents TxtBox1 As Al_Mohasib.TxtBox
+    Friend WithEvents txtSearch As Al_Mohasib.TxtBox
     Friend WithEvents plBlocSearch As System.Windows.Forms.Panel
     Friend WithEvents Button20 As System.Windows.Forms.Button
     Friend WithEvents btSearchIcon As System.Windows.Forms.Button

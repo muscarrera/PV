@@ -24,11 +24,14 @@ Partial Class bSetting
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(bSetting))
         Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Button16 = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.btcancel = New System.Windows.Forms.Button()
         Me.btcon = New System.Windows.Forms.Button()
         Me.txtF1 = New Al_Mohasib.TxtBox()
         Me.btColor = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel11.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -37,21 +40,51 @@ Partial Class bSetting
         Me.Panel11.BackColor = System.Drawing.Color.White
         Me.Panel11.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_17_59_22__1_
         Me.Panel11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel11.Controls.Add(Me.Label22)
+        Me.Panel11.Controls.Add(Me.Button16)
         Me.Panel11.Controls.Add(Me.Label7)
         Me.Panel11.Controls.Add(Me.btcancel)
         Me.Panel11.Controls.Add(Me.btcon)
         Me.Panel11.Controls.Add(Me.txtF1)
+        Me.Panel11.Controls.Add(Me.Button1)
         Me.Panel11.Controls.Add(Me.btColor)
         Me.Panel11.Location = New System.Drawing.Point(40, 23)
         Me.Panel11.Name = "Panel11"
         Me.Panel11.Size = New System.Drawing.Size(346, 374)
         Me.Panel11.TabIndex = 45
         '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.ForeColor = System.Drawing.Color.Navy
+        Me.Label22.Location = New System.Drawing.Point(273, 128)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(43, 19)
+        Me.Label22.TabIndex = 57
+        Me.Label22.Text = "الـبـنـك"
+        '
+        'Button16
+        '
+        Me.Button16.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button16.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button16.ForeColor = System.Drawing.Color.Navy
+        Me.Button16.Image = Global.Al_Mohasib.My.Resources.Resources.FACTURE_20
+        Me.Button16.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button16.Location = New System.Drawing.Point(172, 120)
+        Me.Button16.Name = "Button16"
+        Me.Button16.Size = New System.Drawing.Size(154, 35)
+        Me.Button16.TabIndex = 56
+        Me.Button16.Text = "        Banques"
+        Me.Button16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button16.UseVisualStyleBackColor = True
+        '
         'Label7
         '
         Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(30, 48)
+        Me.Label7.Location = New System.Drawing.Point(30, 30)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(29, 13)
         Me.Label7.TabIndex = 55
@@ -96,7 +129,7 @@ Partial Class bSetting
         Me.txtF1.BackColor = System.Drawing.Color.Transparent
         Me.txtF1.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtF1.IsNumiric = False
-        Me.txtF1.Location = New System.Drawing.Point(33, 74)
+        Me.txtF1.Location = New System.Drawing.Point(33, 56)
         Me.txtF1.MinimumSize = New System.Drawing.Size(0, 30)
         Me.txtF1.Name = "txtF1"
         Me.txtF1.ShowClearIcon = False
@@ -115,13 +148,26 @@ Partial Class bSetting
         Me.btColor.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.btColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btColor.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btColor.Location = New System.Drawing.Point(286, 74)
+        Me.btColor.Location = New System.Drawing.Point(286, 56)
         Me.btColor.Name = "btColor"
         Me.btColor.Size = New System.Drawing.Size(40, 30)
         Me.btColor.TabIndex = 37
         Me.btColor.Text = "..."
         Me.btColor.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btColor.UseVisualStyleBackColor = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(230, 208)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(40, 30)
+        Me.Button1.TabIndex = 37
+        Me.Button1.Text = "..."
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'bSetting
         '
@@ -142,4 +188,7 @@ Partial Class bSetting
     Friend WithEvents btcon As System.Windows.Forms.Button
     Friend WithEvents txtF1 As Al_Mohasib.TxtBox
     Friend WithEvents btColor As System.Windows.Forms.Button
+    Friend WithEvents Label22 As System.Windows.Forms.Label
+    Friend WithEvents Button16 As System.Windows.Forms.Button
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

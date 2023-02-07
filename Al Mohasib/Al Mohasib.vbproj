@@ -381,6 +381,12 @@
     <Compile Include="GUI\Cheque\EditAndPrintCheque.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\Cheque\SearchBloc.Designer.vb">
+      <DependentUpon>SearchBloc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Cheque\SearchBloc.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="GUI\Cheque\SelectBanque.Designer.vb">
       <DependentUpon>SelectBanque.vb</DependentUpon>
     </Compile>
@@ -569,6 +575,12 @@
       <DependentUpon>ProfitProduitRapport.vb</DependentUpon>
     </Compile>
     <Compile Include="GUI\ProfitProduitRapport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\PromoListClientIdForm.Designer.vb">
+      <DependentUpon>PromoListClientIdForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PromoListClientIdForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\Promos\AddEditPromos.Designer.vb">
@@ -913,6 +925,9 @@
     <EmbeddedResource Include="GUI\Cheque\EditAndPrintCheque.resx">
       <DependentUpon>EditAndPrintCheque.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Cheque\SearchBloc.resx">
+      <DependentUpon>SearchBloc.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Cheque\SelectBanque.resx">
       <DependentUpon>SelectBanque.vb</DependentUpon>
     </EmbeddedResource>
@@ -1005,6 +1020,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ProfitProduitRapport.resx">
       <DependentUpon>ProfitProduitRapport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PromoListClientIdForm.resx">
+      <DependentUpon>PromoListClientIdForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Promos\AddEditPromos.resx">
       <DependentUpon>AddEditPromos.vb</DependentUpon>
@@ -1238,6 +1256,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MyBarcode.dll" />
+    <None Include="Resources\iconfinder_pdf_3745 %281%291.png" />
+    <None Include="Resources\2993694_brand_brands_excel_logo_logos_icon.png" />
+    <None Include="Resources\3669253_ic_search_icon.png" />
+    <None Include="Resources\30632_close_cross_x_icon.png" />
+    <None Include="Resources\CANCEL 221.png" />
     <None Include="Resources\EDIT 22X22.png" />
     <None Include="Resources\9004741_calendar_date_schedule_event_icon.png" />
     <None Include="Resources\172626_user_male_icon.png" />

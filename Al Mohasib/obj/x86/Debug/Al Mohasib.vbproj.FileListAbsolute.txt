@@ -693,3 +693,5 @@ C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PopUpM
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PromoArticleBloc.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.SelectClient.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.EditAndPrintCheque.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PromoListClientIdForm.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.SearchBloc.resources

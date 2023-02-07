@@ -2,6 +2,28 @@
 
     Public qte As Double
     Public ii As Integer = 0
+    Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message,
+                                               ByVal keyData As System.Windows.Forms.Keys) As Boolean
+        Dim k As System.Windows.Forms.Keys = keyData
+        Select Case keyData
+
+        
+            Case Keys.Space
+             Button15_Click(Nothing, Nothing)
+            Case Keys.Enter
+                Button15_Click(Nothing, Nothing)
+
+
+            Case Keys.Escape
+                Me.DialogResult = Windows.Forms.DialogResult.Cancel
+           
+            Case Else
+                Return MyBase.ProcessCmdKey(msg, keyData)
+        End Select
+         
+        Return True
+    End Function
+
     Private Sub byname_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         txt.TXT.Focus()
 

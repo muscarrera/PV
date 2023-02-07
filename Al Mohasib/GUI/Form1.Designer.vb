@@ -49,7 +49,6 @@ Partial Class Form1
         Me.Button44 = New System.Windows.Forms.Button()
         Me.Button32 = New System.Windows.Forms.Button()
         Me.Button31 = New System.Windows.Forms.Button()
-        Me.btTarif = New System.Windows.Forms.Button()
         Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
         Me.PrintDlg = New System.Windows.Forms.PrintDialog()
         Me.GB1 = New System.Windows.Forms.GroupBox()
@@ -67,16 +66,9 @@ Partial Class Form1
         Me.BtBoundDbPath = New System.Windows.Forms.Button()
         Me.BtImgPah = New System.Windows.Forms.Button()
         Me.Panel31 = New System.Windows.Forms.Panel()
-        Me.Panel32 = New System.Windows.Forms.Panel()
         Me.Button26 = New System.Windows.Forms.Button()
         Me.Button25 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button21 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.cbPaper = New System.Windows.Forms.ComboBox()
         Me.txtLogo = New System.Windows.Forms.TextBox()
         Me.gbreceipt = New System.Windows.Forms.GroupBox()
@@ -101,7 +93,6 @@ Partial Class Form1
         Me.Label55 = New System.Windows.Forms.Label()
         Me.Label54 = New System.Windows.Forms.Label()
         Me.txtfntsize = New System.Windows.Forms.TextBox()
-        Me.Panel33 = New System.Windows.Forms.Panel()
         Me.GB4 = New System.Windows.Forms.GroupBox()
         Me.Button40 = New System.Windows.Forms.Button()
         Me.cbNormalImp = New System.Windows.Forms.CheckBox()
@@ -187,6 +178,7 @@ Partial Class Form1
         Me.btPanelAdd = New System.Windows.Forms.Button()
         Me.Panel11 = New System.Windows.Forms.Panel()
         Me.plTarif = New System.Windows.Forms.Panel()
+        Me.btTarif = New System.Windows.Forms.Button()
         Me.ShapeContainer6 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.RectangleShape11 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.plDepot = New System.Windows.Forms.Panel()
@@ -361,6 +353,7 @@ Partial Class Form1
         Me.Label47 = New System.Windows.Forms.Label()
         Me.Panel36 = New System.Windows.Forms.Panel()
         Me.Label46 = New System.Windows.Forms.Label()
+        Me.Button59 = New System.Windows.Forms.Button()
         Me.Button66 = New System.Windows.Forms.Button()
         Me.Button65 = New System.Windows.Forms.Button()
         Me.Button37 = New System.Windows.Forms.Button()
@@ -432,6 +425,7 @@ Partial Class Form1
         Me.cbBaseOnStartedRemise = New System.Windows.Forms.CheckBox()
         Me.cbTsImg = New System.Windows.Forms.CheckBox()
         Me.GB3 = New System.Windows.Forms.GroupBox()
+        Me.Panel33 = New System.Windows.Forms.Panel()
         Me.txtPiedMarge = New System.Windows.Forms.TextBox()
         Me.txtEnteteMarge = New System.Windows.Forms.TextBox()
         Me.txtNbrCopie = New System.Windows.Forms.TextBox()
@@ -455,6 +449,13 @@ Partial Class Form1
         Me.Label56 = New System.Windows.Forms.Label()
         Me.Label49 = New System.Windows.Forms.Label()
         Me.GB2 = New System.Windows.Forms.GroupBox()
+        Me.Panel32 = New System.Windows.Forms.Panel()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button21 = New System.Windows.Forms.Button()
+        Me.Button7 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.Panel44 = New System.Windows.Forms.Panel()
         Me.Button58 = New System.Windows.Forms.Button()
         Me.Label20 = New System.Windows.Forms.Label()
@@ -575,6 +576,7 @@ Partial Class Form1
         Me.RPl.Avance = New Decimal(New Integer() {0, 0, 0, 0})
         Me.RPl.bl = "---"
         Me.RPl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.RPl.ClId = 0
         Me.RPl.delivredDay = Nothing
         Me.RPl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.RPl.Dte = New Date(2021, 1, 1, 0, 0, 0, 0)
@@ -762,22 +764,6 @@ Partial Class Form1
         Me.Button31.TabIndex = 6
         Me.Button31.Text = "x"
         Me.Button31.UseVisualStyleBackColor = False
-        '
-        'btTarif
-        '
-        Me.btTarif.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btTarif.BackColor = System.Drawing.Color.Crimson
-        Me.btTarif.FlatAppearance.BorderSize = 0
-        Me.btTarif.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btTarif.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btTarif.ForeColor = System.Drawing.Color.White
-        Me.btTarif.Location = New System.Drawing.Point(-155, 4)
-        Me.btTarif.Name = "btTarif"
-        Me.btTarif.Size = New System.Drawing.Size(132, 29)
-        Me.btTarif.TabIndex = 8
-        Me.btTarif.Tag = "1"
-        Me.btTarif.Text = "Tarif"
-        Me.btTarif.UseVisualStyleBackColor = False
         '
         'PrintDoc
         '
@@ -974,17 +960,6 @@ Partial Class Form1
         Me.Panel31.Size = New System.Drawing.Size(20, 579)
         Me.Panel31.TabIndex = 4
         '
-        'Panel32
-        '
-        Me.Panel32.BackColor = System.Drawing.Color.MediumTurquoise
-        Me.Panel32.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.GB2
-        Me.Panel32.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Panel32.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel32.Location = New System.Drawing.Point(3, 16)
-        Me.Panel32.Name = "Panel32"
-        Me.Panel32.Size = New System.Drawing.Size(23, 579)
-        Me.Panel32.TabIndex = 5
-        '
         'Button26
         '
         Me.Button26.BackColor = System.Drawing.Color.MidnightBlue
@@ -1025,80 +1000,6 @@ Partial Class Form1
         Me.Button4.TabIndex = 1
         Me.Button4.Text = "Articles"
         Me.Button4.UseVisualStyleBackColor = False
-        '
-        'Button7
-        '
-        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button7.Image = CType(resources.GetObject("Button7.Image"), System.Drawing.Image)
-        Me.Button7.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button7.Location = New System.Drawing.Point(36, 540)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(184, 41)
-        Me.Button7.TabIndex = 1
-        Me.Button7.Text = "التعاملات مع الموردون"
-        Me.Button7.UseVisualStyleBackColor = True
-        Me.Button7.Visible = False
-        '
-        'Button6
-        '
-        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Image = CType(resources.GetObject("Button6.Image"), System.Drawing.Image)
-        Me.Button6.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button6.Location = New System.Drawing.Point(36, 491)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(184, 43)
-        Me.Button6.TabIndex = 1
-        Me.Button6.Text = "التعاملات مع الزبائن"
-        Me.Button6.UseVisualStyleBackColor = True
-        Me.Button6.Visible = False
-        '
-        'Button5
-        '
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
-        Me.Button5.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button5.Location = New System.Drawing.Point(36, 318)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(184, 48)
-        Me.Button5.TabIndex = 1
-        Me.Button5.Text = "Depot"
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'Button21
-        '
-        Me.Button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button21.Image = CType(resources.GetObject("Button21.Image"), System.Drawing.Image)
-        Me.Button21.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button21.Location = New System.Drawing.Point(88, 190)
-        Me.Button21.Name = "Button21"
-        Me.Button21.Size = New System.Drawing.Size(137, 48)
-        Me.Button21.TabIndex = 1
-        Me.Button21.Text = "Livreur"
-        Me.Button21.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
-        Me.Button3.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button3.Location = New System.Drawing.Point(89, 136)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(135, 48)
-        Me.Button3.TabIndex = 1
-        Me.Button3.Text = "Fournisseurs"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
-        Me.Button2.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button2.Location = New System.Drawing.Point(89, 81)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(135, 48)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Clients"
-        Me.Button2.UseVisualStyleBackColor = True
         '
         'cbPaper
         '
@@ -1336,17 +1237,6 @@ Partial Class Form1
         Me.txtfntsize.Size = New System.Drawing.Size(31, 20)
         Me.txtfntsize.TabIndex = 3
         Me.txtfntsize.Text = "11"
-        '
-        'Panel33
-        '
-        Me.Panel33.BackColor = System.Drawing.Color.Crimson
-        Me.Panel33.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.GB3
-        Me.Panel33.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Panel33.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel33.Location = New System.Drawing.Point(3, 16)
-        Me.Panel33.Name = "Panel33"
-        Me.Panel33.Size = New System.Drawing.Size(20, 579)
-        Me.Panel33.TabIndex = 7
         '
         'GB4
         '
@@ -1717,7 +1607,7 @@ Partial Class Form1
         '
         Me.cbsearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbsearch.FormattingEnabled = True
-        Me.cbsearch.Items.AddRange(New Object() {"الاسم", "الرمز", "التصنيف", "الاسم (أو) الرمز", "DirectR"})
+        Me.cbsearch.Items.AddRange(New Object() {"الاسم", "الرمز", "التصنيف", "الاسم (أو) الرمز", "DirectR", "CodeStart"})
         Me.cbsearch.Location = New System.Drawing.Point(36, 500)
         Me.cbsearch.Name = "cbsearch"
         Me.cbsearch.Size = New System.Drawing.Size(90, 21)
@@ -2293,6 +2183,22 @@ Partial Class Form1
         Me.plTarif.Name = "plTarif"
         Me.plTarif.Size = New System.Drawing.Size(10, 40)
         Me.plTarif.TabIndex = 13
+        '
+        'btTarif
+        '
+        Me.btTarif.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btTarif.BackColor = System.Drawing.Color.Crimson
+        Me.btTarif.FlatAppearance.BorderSize = 0
+        Me.btTarif.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btTarif.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btTarif.ForeColor = System.Drawing.Color.White
+        Me.btTarif.Location = New System.Drawing.Point(-155, 4)
+        Me.btTarif.Name = "btTarif"
+        Me.btTarif.Size = New System.Drawing.Size(132, 29)
+        Me.btTarif.TabIndex = 8
+        Me.btTarif.Tag = "1"
+        Me.btTarif.Text = "Tarif"
+        Me.btTarif.UseVisualStyleBackColor = False
         '
         'ShapeContainer6
         '
@@ -4229,6 +4135,7 @@ Partial Class Form1
         Me.GB7.Controls.Add(Me.Label47)
         Me.GB7.Controls.Add(Me.Panel36)
         Me.GB7.Controls.Add(Me.Label46)
+        Me.GB7.Controls.Add(Me.Button59)
         Me.GB7.Controls.Add(Me.Button66)
         Me.GB7.Controls.Add(Me.Button65)
         Me.GB7.Controls.Add(Me.Button37)
@@ -4249,7 +4156,7 @@ Partial Class Form1
         Me.GB7.Controls.Add(Me.cbPvArticle)
         Me.GB7.Controls.Add(Me.Button56)
         Me.GB7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB7.Location = New System.Drawing.Point(-143, 3)
+        Me.GB7.Location = New System.Drawing.Point(-156, 3)
         Me.GB7.Name = "GB7"
         Me.GB7.Size = New System.Drawing.Size(281, 598)
         Me.GB7.TabIndex = 10
@@ -4267,7 +4174,7 @@ Partial Class Form1
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(246, 253)
+        Me.TextBox1.Location = New System.Drawing.Point(246, 290)
         Me.TextBox1.Multiline = True
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(55, 34)
@@ -4286,7 +4193,7 @@ Partial Class Form1
         '
         'Button54
         '
-        Me.Button54.Location = New System.Drawing.Point(246, 288)
+        Me.Button54.Location = New System.Drawing.Point(246, 325)
         Me.Button54.Name = "Button54"
         Me.Button54.Size = New System.Drawing.Size(75, 23)
         Me.Button54.TabIndex = 6
@@ -4324,16 +4231,31 @@ Partial Class Form1
         Me.Label46.TabIndex = 14
         Me.Label46.Text = "Bloc NV Cr :"
         '
+        'Button59
+        '
+        Me.Button59.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Button59.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources._326569_nfc_icon
+        Me.Button59.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button59.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button59.Font = New System.Drawing.Font("Century Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button59.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Button59.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button59.Location = New System.Drawing.Point(226, 164)
+        Me.Button59.Name = "Button59"
+        Me.Button59.Size = New System.Drawing.Size(35, 48)
+        Me.Button59.TabIndex = 1
+        Me.Button59.UseVisualStyleBackColor = False
+        '
         'Button66
         '
         Me.Button66.BackColor = System.Drawing.Color.WhiteSmoke
         Me.Button66.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button66.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button66.Font = New System.Drawing.Font("Century Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button66.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Button66.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button66.Location = New System.Drawing.Point(143, 148)
+        Me.Button66.Location = New System.Drawing.Point(143, 163)
         Me.Button66.Name = "Button66"
-        Me.Button66.Size = New System.Drawing.Size(98, 48)
+        Me.Button66.Size = New System.Drawing.Size(78, 48)
         Me.Button66.TabIndex = 1
         Me.Button66.Text = "Cadreau"
         Me.Button66.UseVisualStyleBackColor = False
@@ -4342,12 +4264,12 @@ Partial Class Form1
         '
         Me.Button65.BackColor = System.Drawing.Color.WhiteSmoke
         Me.Button65.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button65.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button65.Font = New System.Drawing.Font("Century Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button65.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Button65.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button65.Location = New System.Drawing.Point(58, 148)
+        Me.Button65.Location = New System.Drawing.Point(58, 163)
         Me.Button65.Name = "Button65"
-        Me.Button65.Size = New System.Drawing.Size(80, 48)
+        Me.Button65.Size = New System.Drawing.Size(79, 48)
         Me.Button65.TabIndex = 1
         Me.Button65.Text = "Promos"
         Me.Button65.UseVisualStyleBackColor = False
@@ -4379,7 +4301,7 @@ Partial Class Form1
         Me.Button29.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button29.Location = New System.Drawing.Point(57, 89)
         Me.Button29.Name = "Button29"
-        Me.Button29.Size = New System.Drawing.Size(184, 48)
+        Me.Button29.Size = New System.Drawing.Size(204, 48)
         Me.Button29.TabIndex = 1
         Me.Button29.Text = "Commule Ventes"
         Me.Button29.UseVisualStyleBackColor = False
@@ -4393,7 +4315,7 @@ Partial Class Form1
         Me.Button49.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button49.Location = New System.Drawing.Point(57, 35)
         Me.Button49.Name = "Button49"
-        Me.Button49.Size = New System.Drawing.Size(184, 48)
+        Me.Button49.Size = New System.Drawing.Size(204, 48)
         Me.Button49.TabIndex = 1
         Me.Button49.Text = "Traçabilité"
         Me.Button49.UseVisualStyleBackColor = False
@@ -4414,7 +4336,7 @@ Partial Class Form1
         Me.Button48.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button48.ForeColor = System.Drawing.Color.Red
         Me.Button48.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button48.Location = New System.Drawing.Point(58, 219)
+        Me.Button48.Location = New System.Drawing.Point(58, 256)
         Me.Button48.Name = "Button48"
         Me.Button48.Size = New System.Drawing.Size(86, 48)
         Me.Button48.TabIndex = 1
@@ -4436,7 +4358,7 @@ Partial Class Form1
         Me.Button50.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button50.Image = CType(resources.GetObject("Button50.Image"), System.Drawing.Image)
         Me.Button50.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button50.Location = New System.Drawing.Point(150, 219)
+        Me.Button50.Location = New System.Drawing.Point(150, 256)
         Me.Button50.Name = "Button50"
         Me.Button50.Size = New System.Drawing.Size(92, 48)
         Me.Button50.TabIndex = 1
@@ -4458,7 +4380,7 @@ Partial Class Form1
         Me.Button57.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button57.Image = CType(resources.GetObject("Button57.Image"), System.Drawing.Image)
         Me.Button57.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button57.Location = New System.Drawing.Point(58, 270)
+        Me.Button57.Location = New System.Drawing.Point(58, 307)
         Me.Button57.Name = "Button57"
         Me.Button57.Size = New System.Drawing.Size(184, 48)
         Me.Button57.TabIndex = 1
@@ -4580,9 +4502,9 @@ Partial Class Form1
         Me.GB6.Controls.Add(Me.Label61)
         Me.GB6.Controls.Add(Me.Label63)
         Me.GB6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB6.Location = New System.Drawing.Point(138, 3)
+        Me.GB6.Location = New System.Drawing.Point(125, 3)
         Me.GB6.Name = "GB6"
-        Me.GB6.Size = New System.Drawing.Size(389, 598)
+        Me.GB6.Size = New System.Drawing.Size(402, 598)
         Me.GB6.TabIndex = 9
         Me.GB6.TabStop = False
         '
@@ -4799,7 +4721,7 @@ Partial Class Form1
         '
         Me.cbArtLastPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbArtLastPrice.FormattingEnabled = True
-        Me.cbArtLastPrice.Items.AddRange(New Object() {"None", "LastPrice", "LastMarge_PA", "LastMarge_PV"})
+        Me.cbArtLastPrice.Items.AddRange(New Object() {"None", "LastPrice", "LastMarge_PA", "LastMarge_PV", "LastMarge_PAX", "LastMarge_PVX"})
         Me.cbArtLastPrice.Location = New System.Drawing.Point(131, 499)
         Me.cbArtLastPrice.Name = "cbArtLastPrice"
         Me.cbArtLastPrice.Size = New System.Drawing.Size(90, 21)
@@ -5147,6 +5069,17 @@ Partial Class Form1
         Me.GB3.TabIndex = 7
         Me.GB3.TabStop = False
         '
+        'Panel33
+        '
+        Me.Panel33.BackColor = System.Drawing.Color.Crimson
+        Me.Panel33.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.GB3
+        Me.Panel33.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Panel33.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel33.Location = New System.Drawing.Point(3, 16)
+        Me.Panel33.Name = "Panel33"
+        Me.Panel33.Size = New System.Drawing.Size(20, 579)
+        Me.Panel33.TabIndex = 7
+        '
         'txtPiedMarge
         '
         Me.txtPiedMarge.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -5361,6 +5294,91 @@ Partial Class Form1
         Me.GB2.Size = New System.Drawing.Size(37, 598)
         Me.GB2.TabIndex = 7
         Me.GB2.TabStop = False
+        '
+        'Panel32
+        '
+        Me.Panel32.BackColor = System.Drawing.Color.MediumTurquoise
+        Me.Panel32.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.GB2
+        Me.Panel32.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Panel32.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel32.Location = New System.Drawing.Point(3, 16)
+        Me.Panel32.Name = "Panel32"
+        Me.Panel32.Size = New System.Drawing.Size(23, 579)
+        Me.Panel32.TabIndex = 5
+        '
+        'Button2
+        '
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
+        Me.Button2.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button2.Location = New System.Drawing.Point(89, 81)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(135, 48)
+        Me.Button2.TabIndex = 1
+        Me.Button2.Text = "Clients"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
+        Me.Button3.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button3.Location = New System.Drawing.Point(89, 136)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(135, 48)
+        Me.Button3.TabIndex = 1
+        Me.Button3.Text = "Fournisseurs"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Button21
+        '
+        Me.Button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button21.Image = CType(resources.GetObject("Button21.Image"), System.Drawing.Image)
+        Me.Button21.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button21.Location = New System.Drawing.Point(88, 190)
+        Me.Button21.Name = "Button21"
+        Me.Button21.Size = New System.Drawing.Size(137, 48)
+        Me.Button21.TabIndex = 1
+        Me.Button21.Text = "Livreur"
+        Me.Button21.UseVisualStyleBackColor = True
+        '
+        'Button7
+        '
+        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button7.Image = CType(resources.GetObject("Button7.Image"), System.Drawing.Image)
+        Me.Button7.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button7.Location = New System.Drawing.Point(36, 540)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(184, 41)
+        Me.Button7.TabIndex = 1
+        Me.Button7.Text = "التعاملات مع الموردون"
+        Me.Button7.UseVisualStyleBackColor = True
+        Me.Button7.Visible = False
+        '
+        'Button5
+        '
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
+        Me.Button5.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button5.Location = New System.Drawing.Point(36, 318)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(184, 48)
+        Me.Button5.TabIndex = 1
+        Me.Button5.Text = "Depot"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
+        'Button6
+        '
+        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button6.Image = CType(resources.GetObject("Button6.Image"), System.Drawing.Image)
+        Me.Button6.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button6.Location = New System.Drawing.Point(36, 491)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(184, 43)
+        Me.Button6.TabIndex = 1
+        Me.Button6.Text = "التعاملات مع الزبائن"
+        Me.Button6.UseVisualStyleBackColor = True
+        Me.Button6.Visible = False
         '
         'Panel44
         '
@@ -6169,5 +6187,6 @@ Partial Class Form1
     Friend WithEvents Button56 As System.Windows.Forms.Button
     Friend WithEvents txtAllowLowPrice_Client As System.Windows.Forms.TextBox
     Friend WithEvents Label68 As System.Windows.Forms.Label
+    Friend WithEvents Button59 As System.Windows.Forms.Button
 
 End Class

@@ -487,7 +487,6 @@
         Dim str As String = _str
 
         str &= " " & Now.Date.ToString("dd-MM-yyyy")
-
         Dim params2 As New Dictionary(Of String, String)
         params2.Add("Nbr", dgv.Rows.Count)
  

@@ -150,12 +150,13 @@ Public Class gForm
             table.Columns.Add("PC_Nom", GetType(String))
             table.Columns.Add("PC_Tel", GetType(String))
             table.Columns.Add("PC_Adr", GetType(String))
+            table.Columns.Add("poid", GetType(String))
 
 
             ' Add  rows with those columns filled in the DataTable.
             table.Rows.Add(1, Now.Date, 1, "Mohamed", String.Format("{0:n2}", 222),
                            String.Format("{0:n2}", 66), String.Format("{0:n2}", 288), "0",
-                              "0", "0", "CHEQUE", "ADMIN", "4 - Artciles", "Med", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "nom", "tel", "adrs")
+                              "0", "0", "CHEQUE", "ADMIN", "4 - Artciles", "Med", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "nom", "tel", "adrs", 12)
             Return table
         End Get
     End Property

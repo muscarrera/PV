@@ -17,18 +17,17 @@
 
             'Me.Controls.Clear()
 
-            For Each c As KeyValuePair(Of String, String) In value
-                Dim bt As New Label
-
+             For Each c As KeyValuePair(Of String, String) In value
+                Dim bt As New Button
                 bt.Text = c.Key
                 bt.Tag = c.Value
                 bt.FlatStyle = FlatStyle.Flat
                 bt.BackColor = Color.WhiteSmoke
                 bt.Font = ft
                 bt.Dock = DockStyle.Top
-                bt.Height = 14
-
-                '  bt.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224)
+                bt.Height = 35
+                bt.Image = My.Resources.FACTURE_20
+                bt.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224)
                 bt.ImageAlign = ContentAlignment.MiddleRight
                 bt.TextAlign = ContentAlignment.MiddleLeft
 
@@ -59,7 +58,7 @@
     End Sub
 
     Private Sub Button4_LostFocus(ByVal sender As Object, ByVal e As EventArgs)
-        For Each b As Label In Me.Controls
+        For Each b As Button In Me.Controls
             If b.Focused Then Exit Sub
         Next
 

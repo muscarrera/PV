@@ -64,11 +64,23 @@ Represents a strongly typed in-memory cache of data.
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources._2993694_brand_brands_excel_logo_logos_icon">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources._30632_close_cross_x_icon">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources._326569_nfc_icon">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources._3643768_info_information_letter_mark_sign_icon__1_">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources._3669253_ic_search_icon">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -332,6 +344,10 @@ Represents a strongly typed in-memory cache of data.
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.CANCEL_221">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.carre">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -501,6 +517,10 @@ Represents a strongly typed in-memory cache of data.
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.iconfinder_pdf_3745__1_">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.iconfinder_pdf_3745__1_1">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -808,9 +828,6 @@ Represents a strongly typed in-memory cache of data.
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
-</member><member name="M:Al_Mohasib.ChequePanel.Button15_Click(System.Object,System.EventArgs)">
- edit payement
-
 </member>
 </members>
 </doc>

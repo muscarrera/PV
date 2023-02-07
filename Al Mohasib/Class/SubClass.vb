@@ -354,6 +354,9 @@ Public Class SubClass
                     params.Add("codebar LIKE ", "%" & txt.Text & "%")
                     artdt = a.SelectDataTableSymbols("article", {"*"}, params)
 
+                ElseIf Form1.cbsearch.Text = "CodeStart" Then
+                    params.Add("codebar LIKE ", txt.Text & "%")
+                    artdt = a.SelectDataTableSymbols("article", {"*"}, params)
 
                 ElseIf Form1.cbsearch.Text = "DirectR" Then
                     params.Add("codebar = ", txt.Text)
@@ -722,10 +725,21 @@ Public Class SubClass
             MsgBox(ex.Message)
         End Try
     End Sub
-    
+
+    Dim _isRightMouseClick As Boolean = False
+    Private Sub art_click_Mouse_Down(ByVal sender As Object, ByVal e As MouseEventArgs)
+        If e.Button = MouseButtons.Right Then
+            _isRightMouseClick = True
+            art_click(sender, Nothing)
+        Else
+            _isRightMouseClick = False
+        End If
+    End Sub
+
     Public Sub art_click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim bt As Button = sender
         Dim R As DataRow = bt.Tag
+
 
         If My.Computer.Keyboard.CtrlKeyDown Then
             Try
@@ -799,84 +813,93 @@ Public Class SubClass
                 End Try
 
 
-                'Last Price Option
-                If Form1.cbArtLastPrice.Text = "LastPrice" And Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
+                If Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
+                    'Last Price Option
+                    If Form1.cbArtLastPrice.Text = "LastPrice" Then
 
-                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-                        Dim params As New Dictionary(Of String, Object)
-                        Dim order As New Dictionary(Of String, String)
+                        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                            Dim params As New Dictionary(Of String, Object)
+                            Dim order As New Dictionary(Of String, String)
 
-                        order.Add("Facture.fctid", "DESC")
+                            order.Add("Facture.fctid", "DESC")
 
-                        Dim tb_A As String = "Facture"
-                        Dim tb_D_A As String = "DetailsFacture"
+                            Dim tb_A As String = "Facture"
+                            Dim tb_D_A As String = "DetailsFacture"
 
-                        params.Add(tb_A & ".clid  = ", Form1.RPl.ClId)
-                        params.Add(tb_D_A & ".arid  = ", R("arid"))
+                            params.Add(tb_A & ".clid  = ", Form1.RPl.ClId)
+                            params.Add(tb_D_A & ".arid  = ", R("arid"))
 
-                        Dim pDt As DataTable = c.SelectDataTableSymbols("(" & tb_D_A & " INNER JOIN " & tb_A & " ON " & tb_D_A & ".fctid = " & tb_A & ".fctid) ",
-                            {tb_D_A & ".price"}, params, order)
+                            Dim pDt As DataTable = c.SelectDataTableSymbols("(" & tb_D_A & " INNER JOIN " & tb_A & " ON " & tb_D_A & ".fctid = " & tb_A & ".fctid) ",
+                                {tb_D_A & ".price"}, params, order)
 
-                        If pDt.Rows.Count > 0 Then
-                            Dim prc As Double = pDt.Rows(0).Item("price")
-                            If IsNumeric(prc) Then
-                                If prc > R("bprice") Or Form1.RPl.ClientName.Contains("**") Then
-                                    R("sprice") = prc
+                            If pDt.Rows.Count > 0 Then
+                                Dim prc As Double = pDt.Rows(0).Item("price")
+                                If IsNumeric(prc) Then
+                                    If prc > R("bprice") Or Form1.RPl.ClientName.Contains("**") Then
+                                        R("sprice") = prc
+                                    End If
                                 End If
                             End If
-                        End If
 
-                    End Using
+                        End Using
 
-                ElseIf Form1.cbArtLastPrice.Text.StartsWith("LastMarge") And Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
+                    ElseIf Form1.cbArtLastPrice.Text.StartsWith("LastMarge") Then
 
-                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-                        Dim params As New Dictionary(Of String, Object)
-                        Dim order As New Dictionary(Of String, String)
+                        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                            Dim params As New Dictionary(Of String, Object)
+                            Dim order As New Dictionary(Of String, String)
 
-                        order.Add("Facture.fctid", "DESC")
-                        Dim tb_A As String = "Facture"
-                        Dim tb_D_A As String = "DetailsFacture"
+                            order.Add("Facture.fctid", "DESC")
+                            Dim tb_A As String = "Facture"
+                            Dim tb_D_A As String = "DetailsFacture"
 
-                        params.Add(tb_A & ".clid  = ", Form1.RPl.ClId)
-                        params.Add(tb_D_A & ".arid  = ", R("arid"))
+                            params.Add(tb_A & ".clid  = ", Form1.RPl.ClId)
+                            params.Add(tb_D_A & ".arid  = ", R("arid"))
 
-                        Dim pDt As DataTable = c.SelectDataTableSymbols("(" & tb_D_A & " INNER JOIN " & tb_A & " ON " & tb_D_A & ".fctid = " & tb_A & ".fctid) ",
-                            {tb_D_A & ".price," & tb_D_A & ".bprice, " & tb_D_A & ".rprice"}, params, order)
-                        If pDt.Rows.Count > 0 Then
+                            Dim pDt As DataTable = c.SelectDataTableSymbols("(" & tb_D_A & " INNER JOIN " & tb_A & " ON " & tb_D_A & ".fctid = " & tb_A & ".fctid) ",
+                                {tb_D_A & ".price," & tb_D_A & ".bprice, " & tb_D_A & ".rprice"}, params, order)
+                            If pDt.Rows.Count > 0 Then
 
-                            Dim bp As Double = pDt.Rows(0).Item("bprice")
+                                Dim bp As Double = pDt.Rows(0).Item("bprice")
+                                Dim sp As Double = pDt.Rows(0).Item("price")
 
-                            Dim sp As Double = pDt.Rows(0).Item("price")
 
-                            If Form1.cbArtLastPrice.Text.EndsWith("PV") Then
-                                bp = pDt.Rows(0).Item("rprice")
+                                If Form1.cbArtLastPrice.Text.EndsWith("PV") Then
+                                    bp = pDt.Rows(0).Item("rprice")
 
-                                If bp > 0 Then
-                                    Dim mrg As Double = sp - bp
-                                    R("sprice") += mrg
-                                Else
-                                    bp = pDt.Rows(0).Item("bprice")
+                                    If bp > 0 Then
+                                        Dim mrg As Double = sp - bp
+                                        R("sprice") += mrg
+                                    Else
+                                        bp = pDt.Rows(0).Item("bprice")
+                                        If bp > 0 Then
+                                            Dim mrg As Double = sp - bp
+                                            R("sprice") = R("bprice") + mrg
+                                        End If
+                                    End If
+                                ElseIf Form1.cbArtLastPrice.Text.EndsWith("PA") Then
                                     If bp > 0 Then
                                         Dim mrg As Double = sp - bp
                                         R("sprice") = R("bprice") + mrg
                                     End If
-                                End If
-                            Else
-                                If bp > 0 Then
-                                    Dim mrg As Double = sp - bp
-                                    R("sprice") = R("bprice") + mrg
+
+                                ElseIf Form1.cbArtLastPrice.Text.EndsWith("PAX") Then
+                                    If bp = R("bprice") Then
+                                        R("sprice") = sp
+                                    End If
+                                ElseIf Form1.cbArtLastPrice.Text.EndsWith("PVX") Then
+                                    bp = pDt.Rows(0).Item("rprice")
+                                    If bp = R("sprice") Then
+                                        R("sprice") = sp
+                                    End If
                                 End If
                             End If
-
-
-                        End If
-                    End Using
+                        End Using
+                    End If
                 End If
 
-
                 'Qte and Price Directly
-                If Form1.cbQteCat.Checked Or Form1.cbPrixCat.Checked Then
+                If Form1.cbQteCat.Checked Or Form1.cbPrixCat.Checked Or _isRightMouseClick Then
                     If setPriceOrQte(R) = False Then
                         Exit Sub
                     End If
@@ -886,20 +909,20 @@ Public Class SubClass
 
                 'tva
 
-                R("sp3") = ppp
+                ' R("sp3") = ppp
                 Form1.RPl.AddItems(R)
                 R("sprice") = ppp
 
-            End If
+                End If
 
-            Form1.txtSearch.Text = ""
-            Form1.txtSearchCode.Text = ""
+                Form1.txtSearch.Text = ""
+                Form1.txtSearchCode.Text = ""
 
-            If Form1.chbcb.Checked Then
-                Form1.txtSearchCode.Focus()
-            Else
-                Form1.txtSearch.Focus()
-            End If
+                If Form1.chbcb.Checked Then
+                    Form1.txtSearchCode.Focus()
+                Else
+                    Form1.txtSearch.Focus()
+                End If
         Catch ex As Exception
 
         End Try
@@ -938,7 +961,7 @@ Public Class SubClass
 
     Private Function setPriceOrQte(ByRef R As DataRow)
         Dim ii As Integer = 0
-        If Form1.cbQteCat.Checked Then
+        If Form1.cbQteCat.Checked Or _isRightMouseClick Then
             Try
                 Dim cats = Form1.txtQteCat.Text.Split("-")
                 If cats.Contains(R("cid").ToString) Or cats.Contains("*") Then
@@ -1068,6 +1091,8 @@ Public Class SubClass
                 pv.fnt = fn
                 Form1.FlowLayoutPanel1.Controls.Add(pv)
                 AddHandler pv.Choosed, AddressOf art_click
+                AddHandler pv.MousseDown, AddressOf art_click_Mouse_Down
+
             Else
 
 
@@ -1120,6 +1145,8 @@ Public Class SubClass
                 bt.Height = Form1.txtlargebt.Text
                 Form1.FlowLayoutPanel1.Controls.Add(bt)
                 AddHandler bt.Click, AddressOf art_click
+                AddHandler bt.MouseDown, AddressOf art_click_Mouse_Down
+
                 ''''''''''''''''''''''''''''''''''''''''''''''''''' list suivant
             End If
           
@@ -1895,6 +1922,7 @@ Public Class SubClass
 
                 Form1.RPl.FctId = fid
                 Form1.RPl.ClientName = clientname
+                Form1.RPl.ClientAdresse = ""
                 Form1.RPl.Dte = Now
                 Return True
 
@@ -4366,8 +4394,6 @@ Public Class SubClass
         Dispose(True)
         GC.SuppressFinalize(Me)
     End Sub
-#End Region
-
-
+#End Region 
 
 End Class

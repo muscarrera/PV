@@ -269,6 +269,9 @@ Public Class gDrawClass
 
         While m < details.Rows.Count
 
+            If _Ttype.ToUpper.StartsWith("XX") = True Then Exit While
+
+
             Dim plus_h As Integer = F_D.Height
 
             If y + plus_h > tc.y + tc.TabHeight And _Ttype.ToUpper.StartsWith("LIS") = False Then

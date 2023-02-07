@@ -19,7 +19,7 @@
         Me.DialogResult = Windows.Forms.DialogResult.OK
     End Sub
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btCancel.Click
         Button1.Tag = 2
         Me.DialogResult = Windows.Forms.DialogResult.OK
     End Sub

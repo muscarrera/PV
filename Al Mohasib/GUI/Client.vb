@@ -317,11 +317,31 @@ Public Class Client
             Dim dt As DataTable
             Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                 Dim params As New Dictionary(Of String, Object)
-                params.Add("code", ss.ref)
+
+
+                Dim rf As String = ss.ref
+                If rf.ToUpper.StartsWith("SUP") Then
+                    rf = "-"
+                    Form1.PromoListClient.Remove(txtname.Tag)
+                    Dim str As String = String.Join("|", Form1.PromoListClient)
+
+                    My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "PromoListClient", str)
+
+                Else
+                    If Form1.PromoListClient.Contains(txtname.Tag) = False Then
+                        Form1.PromoListClient.Add(txtname.Tag)
+                    End If
+                    Dim str As String = String.Join("|", Form1.PromoListClient)
+
+                    My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "PromoListClient", str)
+                End If
+
+
+                params.Add("code", rf)
 
                 Try
                     dt = c.SelectDataTable("Client", {"*"}, params)
-                    If dt.Rows.Count > 0 Then
+                    If dt.Rows.Count > 0 And rf.ToUpper.StartsWith("SUP") Then
                         If dt.Rows(0).Item(0) <> txtname.Tag Then
                             MsgBox("ce code est deja porter par un autre client")
                         End If

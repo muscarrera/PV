@@ -202,6 +202,10 @@ Public Class Articles
                     params.Add("codebar LIKE ", "%" & txt.Text & "%")
                     artdt = a.SelectDataTableSymbols("article", {"*"}, params)
 
+                ElseIf Form1.cbsearch.Text = "CodeStart" Then
+                    params.Add("codebar LIKE ", txt.Text & "%")
+                    artdt = a.SelectDataTableSymbols("article", {"*"}, params)
+
 
                 ElseIf Form1.cbsearch.Text = "DirectR" Then
                     params.Add("codebar = ", txt.Text)

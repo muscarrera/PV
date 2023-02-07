@@ -80,7 +80,7 @@ Partial Class gTable
         Me.cbType.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbType.FormattingEnabled = True
-        Me.cbType.Items.AddRange(New Object() {"None", "Table_1", "Table_2", "Table_3", "Table_4", "Liste_1", "Liste_2"})
+        Me.cbType.Items.AddRange(New Object() {"None", "Table_1", "Table_2", "Table_3", "Table_4", "Liste_1", "Liste_2", "XXX"})
         Me.cbType.Location = New System.Drawing.Point(440, 10)
         Me.cbType.Name = "cbType"
         Me.cbType.Size = New System.Drawing.Size(130, 21)

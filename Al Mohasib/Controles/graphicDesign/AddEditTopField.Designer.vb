@@ -100,7 +100,7 @@ Partial Class AddEditTopField
         Me.CB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CB.FormattingEnabled = True
         Me.CB.ItemHeight = 13
-        Me.CB.Items.AddRange(New Object() {"*", "-Titre", "id", "date", "cid", "name", "CLT_ice", "CLT_adresse", "CLT_tel", "CLT_ville", "CLT_ref", "CLT_NvCredit", "CLT_EncCredit", "CLT_RealEncCredit", "total_ht", "total_tva", "total_ttc", "x_total_ttc_sn_remise", "total_remise", "total_droitTimbre", "image", "total_avance", "rest_ht", "rest_ttc", "Editeur", "livreur", "vidal", "//En_Chiffre", "MPayement", "tableau_tva", "DPT_ID", "DPT_Nom", "RYL-total_ht", "RYL-total_ttc", "RealAvance", "RealRest", "Rest", "caisseAvance", "caisseRest", "Points_NV", "Points_ENC", "Points_TL", "Points_UT", "Points_RS", "PC_Nom", "PC_Tel", "PC_Adr"})
+        Me.CB.Items.AddRange(New Object() {"*", "-Titre", "id", "date", "cid", "name", "CLT_ice", "CLT_adresse", "CLT_tel", "CLT_ville", "CLT_ref", "CLT_NvCredit", "CLT_EncCredit", "CLT_RealEncCredit", "total_ht", "total_tva", "total_ttc", "x_total_ttc_sn_remise", "total_remise", "total_droitTimbre", "image", "total_avance", "rest_ht", "rest_ttc", "Editeur", "livreur", "vidal", "poid", "//En_Chiffre", "MPayement", "tableau_tva", "DPT_ID", "DPT_Nom", "RYL-total_ht", "RYL-total_ttc", "RealAvance", "RealRest", "Rest", "caisseAvance", "caisseRest", "Points_NV", "Points_ENC", "Points_TL", "Points_UT", "Points_RS", "PC_Nom", "PC_Tel", "PC_Adr"})
         Me.CB.Location = New System.Drawing.Point(82, 106)
         Me.CB.Name = "CB"
         Me.CB.Size = New System.Drawing.Size(327, 21)

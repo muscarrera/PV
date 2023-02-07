@@ -2,7 +2,7 @@
 
     Public str_Path As String = ""
 
-    Private Sub btColor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btColor.Click
+    Private Sub btColor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btColor.Click, Button1.Click
         Try
             Dim OPF As New OpenFileDialog
             If OPF.ShowDialog = Windows.Forms.DialogResult.OK Then
@@ -21,5 +21,20 @@
 
     Private Sub btcancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btcancel.Click
         Me.DialogResult = Windows.Forms.DialogResult.Cancel
+    End Sub
+    Private Sub Button16_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label22.Click, Button16.Click
+        Dim gch As New ChooseBanque
+        gch.str_Path = str_Path
+        If gch.ShowDialog = DialogResult.OK Then
+            Dim gf As New bForm
+            gf.str_Path = str_Path
+            gf.localname = gch.localName
+            gf.LoadXml()
+
+
+            If gf.ShowDialog = DialogResult.OK Then
+            End If
+
+        End If
     End Sub
 End Class

@@ -31,9 +31,9 @@ Partial Class PopUpMenu
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.MinimumSize = New System.Drawing.Size(100, 10)
+        Me.MinimumSize = New System.Drawing.Size(270, 10)
         Me.Name = "PopUpMenu"
-        Me.Size = New System.Drawing.Size(100, 10)
+        Me.Size = New System.Drawing.Size(270, 10)
         Me.ResumeLayout(False)
 
     End Sub

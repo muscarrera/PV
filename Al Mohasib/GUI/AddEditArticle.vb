@@ -567,6 +567,40 @@ Public Class AddEditArticle
             End If
 
 
+            If Form1._prx_article_order = "1" Then
+                If Decimal.Parse(txtprice2.text) > Decimal.Parse(txtsprice.text) Then
+                    MsgBox("عذرا لا يمكن اتمام طلبكم.. ", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
+                    txtprice2.Focus()
+                    Return False
+                End If
+                If Decimal.Parse(txtprice3.text) > Decimal.Parse(txtprice2.text) Then
+                    txtprice3.text = txtprice2.text
+
+                End If
+                If Decimal.Parse(txtPrice4.text) > Decimal.Parse(txtprice3.text) Then
+                    txtPrice4.text = txtprice3.text
+                End If
+
+
+            ElseIf Form1._prx_article_order = "2" Then
+                If Decimal.Parse(txtprice2.text) < Decimal.Parse(txtsprice.text) Then
+                    MsgBox("عذرا لا يمكن اتمام طلبكم.. ", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
+                    txtprice2.Focus()
+                    Return False
+                End If
+                If Decimal.Parse(txtprice3.text) < Decimal.Parse(txtprice2.text) Then
+                    txtprice3.text = txtprice2.text
+
+                End If
+                If Decimal.Parse(txtPrice4.text) < Decimal.Parse(txtprice3.text) Then
+                    txtPrice4.text = txtprice3.text
+                End If
+            End If
+
+             
+
+
+
             If Form1.cbCodeDouble.Checked Then
                 ''''''''''''''''''''''''''''''''''''
                 Dim ls = txtcb.text.Trim.Split("-")

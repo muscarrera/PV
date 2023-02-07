@@ -32,6 +32,7 @@ Public Class Form1
     Public itm_fn_gr, itm_fn_p, itm_fn_p_g, itm_fn_p_i As Font
     Public PromosPah As String = "c:"
 
+    Public PromoListClient As New List(Of String)
 
     Public Def_Oper_Sell = "BL"
     Public Def_Oper_Buy = "BA"
@@ -42,6 +43,7 @@ Public Class Form1
     Public TB_Payement As String = "payment"
     Public isWorkingWithCatSelect As Boolean = False
     Public ls_CatSelect As New List(Of Integer)
+    Public _prx_article_order As String = "0"
 
 
     Public Property Operation As String
@@ -226,7 +228,7 @@ Public Class Form1
     End Property
 
     Private is_true_to_end As Boolean = False
-    Dim _isF, _isCh, _isMastr As Boolean
+    Dim _isF, _isCh, _isMastr, _isStk As Boolean
 
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'If isThTrueFileExist() = 0 Then End
@@ -303,12 +305,12 @@ Public Class Form1
 
         '' '' '' '' '' banque test
 
-        'Dim CDA As New ChequePanel
-        ' ''
-        'If CDA.ShowDialog = Windows.Forms.DialogResult.Cancel Then
-        '    End
-        'End If
-        'If is_true_to_end Then End
+        Dim CDA As New ChequePanel
+        ''
+        If CDA.ShowDialog = Windows.Forms.DialogResult.Cancel Then
+            End
+        End If
+        If is_true_to_end Then End
 
         'If cbServerDriver.Checked Then
         '    initWatcher()
@@ -316,9 +318,9 @@ Public Class Form1
 
 
         Try
-            TabControl1.Controls.Remove(TabPageStk)
-            If _isF Then TabControl1.Controls.Remove(TabPageFac)
-            If _isCh Then TabControl1.Controls.Remove(TabPageChar)
+            If _isStk = False Then TabControl1.Controls.Remove(TabPageStk)
+            If _isF = False Then TabControl1.Controls.Remove(TabPageFac)
+            If _isCh = False Then TabControl1.Controls.Remove(TabPageChar)
         Catch ex As Exception
         End Try
 
@@ -337,7 +339,6 @@ Public Class Form1
             TxtSignature.Text = CStr(a.SelectValues("Signature", 1))
             txtfname.Text = CStr(a.SelectValues("Font", "arial"))
             txtfntsize.Text = CStr(a.SelectValues("FontSize", 9))
-            cbsearch.Text = CStr(a.SelectValues("searchway", "Code"))
 
             a.FillGroupes(True)
             a.fillFactures(1)
@@ -1274,7 +1275,17 @@ Public Class Form1
         getRegistryinfo(_isMastr, "_is_master", True)
         getRegistryinfo(_isF, "_is_facture", False)
         getRegistryinfo(_isCh, "_is_charge", False)
+        getRegistryinfo(_isStk, "_is_stock", False)
+        getRegistryinfo(_prx_article_order, "_prx_article_order", "0")
 
+        '////////////////
+        Dim _ss As String = ""
+        getRegistryinfo(_ss, "PromoListClient", "")
+        Dim __ls = _ss.Split("|")
+        PromoListClient.Clear()
+        For Each __s In __ls
+            PromoListClient.Add(__s)
+        Next
 
 
         getRegistryinfo(txtCatSelect, "txtCatSelect", "*")
@@ -1551,20 +1562,7 @@ Public Class Form1
             MsgBox(ex.Message)
         End Try
     End Sub
-    Private Sub cbsearch_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbsearch.SelectedIndexChanged
-        Try
-            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-                Dim pr As New Dictionary(Of String, Object)
-                pr.Add("val", "searchway")
-                Dim wh As New Dictionary(Of String, Object)
-                wh.Add("vkey", cbsearch.Text)
-                a.UpdateRecord("value", pr, wh)
-            End Using
 
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "Error")
-        End Try
-    End Sub
     Private Sub chbprint_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chbprint.CheckedChanged
         gbprint.Enabled = chbprint.Checked
         Try
@@ -2131,7 +2129,8 @@ Public Class Form1
 
 
 
-
+                    _selectedPrintableDepot.Clear()
+                    _selectedPrintableDepot.Add(-111)
 
                     Dim dt As DataTable = RPl.DataSource
 
@@ -2264,6 +2263,12 @@ Public Class Form1
     End Sub
     Private Sub RPl_UpdateClient() Handles RPl.UpdateClient
         Using a As SubClass = New SubClass()
+            If RPl.EditMode = False Then
+                If RPl.FctId < 0 Then a.NewFacture__0(True)
+                a.saveChanges_fct()
+            End If
+
+            
             a.UpdateClient(RPl.FctId, RPl.isSell, RPl.EditMode)
         End Using
 
@@ -2494,8 +2499,10 @@ Public Class Form1
         End If
         DGVARFA.Rows.Clear()
     End Sub
+    Dim _selectedPrintableDepot As New List(Of Integer)
     Private Sub Button13_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button13.Click
         If DGVARFA.Rows.Count = 0 Then Exit Sub
+        _selectedPrintableDepot.Clear()
 
         If My.Computer.Keyboard.CtrlKeyDown Then
             Try
@@ -2532,13 +2539,28 @@ Public Class Form1
             End Try
         End If
 
-
-
-
-
-
         If RPl.FctId > 0 Then
             'print depot
+
+            Dim chb As New ChoseDepot
+            chb.btCancel.Text = " الكــل "
+
+            If chb.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If chb.Button1.Tag = 2 Then
+
+                    _selectedPrintableDepot.Add(-111)
+
+                Else
+                    For i As Integer = 0 To chb.DataGridView1.SelectedRows.Count - 1
+                        _selectedPrintableDepot.Add(chb.DataGridView1.SelectedRows(i).Cells(0).Value)
+                    Next
+                End If
+            Else
+                Exit Sub
+            End If
+
+            If _selectedPrintableDepot.Count = 0 Then Exit Sub
+
 
             Dim dt As DataTable = RPl.DataSource
 
@@ -3631,13 +3653,27 @@ Public Class Form1
                 data.Columns.Add("Editeur", GetType(String))
                 data.Columns.Add("vidal", GetType(String))
                 data.Columns.Add("livreur", GetType(String))
+                data.Columns.Add("poid", GetType(String))
+
+                Dim poid As Double = 0
+                Try
+                    Dim pid As Integer = dt_filtreDataSource.Rows(0).Item("depot")
+                    If pid > 0 Then
+                        Dim a As Items
+
+                        For Each a In RPl.Pl.Controls
+                            If a.Depot = pid Then poid += a.Poid * a.Qte
+                        Next
+                    End If
+
+                Catch ex As Exception
+                End Try
 
                 data.Rows.Add(RPl.FctId, dte, RPl.ClId, RPl.ClientName,
                               String.Format("{0:0.00}", RPl.Total_Ht), String.Format("{0:0.00}", RPl.Tva),
                               String.Format("{0:0.00}", RPl.Total_TTC), String.Format("{0:0.00}", RPl.Remise),
                               String.Format("{0:0.00}", RPl.Avance), String.Format("{0:0.00}", 0),
-                              "Cache", adminName, dt_filtreDataSource.Rows.Count, RPl.bl)
-
+                              "Cache", adminName, dt_filtreDataSource.Rows.Count, RPl.bl, poid)
 
                 Dim dt_Client As New DataTable
                 ' Create four typed columns in the DataTable.
@@ -3706,6 +3742,10 @@ Public Class Form1
         Dim a As Items
         For Each a In RPl.Pl.Controls
             If Not lst.ContainsKey(a.Depot) And a.Depot <> 0 Then
+
+                If _selectedPrintableDepot.Contains(a.Depot) = False And _selectedPrintableDepot.Contains(-111) = False Then Continue For
+
+
                 Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                     params.Add("dpid", a.Depot)
                     name = c.SelectByScalar("Depot", "name", params)
@@ -4614,6 +4654,7 @@ Public Class Form1
             data.Columns.Add("PC_Nom", GetType(String))
             data.Columns.Add("PC_Tel", GetType(String))
             data.Columns.Add("PC_Adr", GetType(String))
+            data.Columns.Add("poid", GetType(String))
 
             Dim realAvc As Double = RPl.Avance
             Dim __rest As Double = RPl.Total_TTC - RPl.Avance
@@ -4658,7 +4699,7 @@ Public Class Form1
                            __RRest.ToString(frmDbl), __rest.ToString(frmDbl), payedCache.ToString(frmDbl),
                            caisseRest.ToString(frmDbl),
                            RPl.myPoint, RPl.TotalPoint, RPl.myPoint + RPl.TotalPoint, RPl.usedPoint,
-                           RPl.myPoint + RPl.TotalPoint - RPl.usedPoint, txttitle.Text, txttel.Text, txtAdrs.Text)
+                           RPl.myPoint + RPl.TotalPoint - RPl.usedPoint, txttitle.Text, txttel.Text, txtAdrs.Text, RPl.poid)
 
             Dim dt_Client As New DataTable
             ' Create four typed columns in the DataTable.
@@ -6438,7 +6479,7 @@ Public Class Form1
 
     Private Sub Button68_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button68.Click
         Dim txt = InputBox("Script =  ")
-        If txt.Length >= 3 Or txt.Contains("-") = False Then Exit Sub
+        If txt.Length <= 3 Or txt.Contains("-") = False Then Exit Sub
 
         Dim s As String = txt.Split("-")(1)
 
@@ -6460,10 +6501,37 @@ Public Class Form1
             Else
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "_is_charge", False)
             End If
+        ElseIf txt.ToUpper.StartsWith("STOCK-") Then
+            If s = "1" Then
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "_is_stock", True)
+            Else
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "_is_stock", False)
+            End If
+        ElseIf txt.ToUpper.StartsWith("PRIXARTICLE-") Then
+            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "_prx_article_order", s)
+            _prx_article_order = s
         End If
 
 
 
     End Sub
 
+    Private Sub Button59_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button59.Click
+
+        Dim sl As New PromoListClientIdForm
+        If sl.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            Dim _ss As String = ""
+            getRegistryinfo(_ss, "PromoListClient", "")
+            Dim __ls = _ss.Split("|")
+            PromoListClient.Clear()
+            For Each __s In __ls
+                PromoListClient.Add(__s)
+            Next
+
+        End If
+
+    End Sub
+
+    
 End Class

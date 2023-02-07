@@ -1,7 +1,7 @@
 ﻿Public Class PvArticle
 
     Public Event Choosed(ByVal sender As Object, ByVal e As EventArgs)
-
+    Public Event MousseDown(ByVal sender As Button, ByVal e As MouseEventArgs)
 
     Public Sub New()
 
@@ -15,6 +15,9 @@
 
     End Sub
     Private _data As DataRow
+
+
+
     Public Property DataSource() As DataRow
         Get
             Return _data
@@ -84,6 +87,11 @@
         Dim bt As New Button
         bt.Tag = DataSource
         RaiseEvent Choosed(bt, e)
+    End Sub
+    Private Sub lb_MousseDown(ByVal sender As System.Object, ByVal e As MouseEventArgs) Handles MyBase.MouseDown, lb.MouseDown, PL.MouseDown, plB.MouseDown, lbP.MouseDown, lbBP.MouseDown
+        Dim bt As New Button
+        bt.Tag = DataSource
+        RaiseEvent MousseDown(bt, e)
     End Sub
     Private Sub PL_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PL.DoubleClick
         Dim bt As New Button
