@@ -37,6 +37,7 @@ Partial Class ChequePanel
         Me.Button17 = New System.Windows.Forms.Button()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.btBloc = New System.Windows.Forms.Button()
+        Me.Button9 = New System.Windows.Forms.Button()
         Me.btList = New System.Windows.Forms.Button()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.btMode = New System.Windows.Forms.Button()
@@ -158,7 +159,7 @@ Partial Class ChequePanel
         Me.Button1.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.Image = Global.Al_Mohasib.My.Resources.Resources.iconfinder_pdf_3745__1_1
         Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.Location = New System.Drawing.Point(332, 46)
+        Me.Button1.Location = New System.Drawing.Point(289, 46)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(37, 37)
         Me.Button1.TabIndex = 22
@@ -174,7 +175,7 @@ Partial Class ChequePanel
         Me.Button2.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.Image = Global.Al_Mohasib.My.Resources.Resources._2993694_brand_brands_excel_logo_logos_icon
         Me.Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button2.Location = New System.Drawing.Point(369, 46)
+        Me.Button2.Location = New System.Drawing.Point(326, 46)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(33, 37)
         Me.Button2.TabIndex = 21
@@ -237,7 +238,7 @@ Partial Class ChequePanel
         Me.Panel6.Controls.Add(Me.Button14)
         Me.Panel6.Controls.Add(Me.Button17)
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel6.Location = New System.Drawing.Point(402, 46)
+        Me.Panel6.Location = New System.Drawing.Point(359, 46)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Padding = New System.Windows.Forms.Padding(2)
         Me.Panel6.Size = New System.Drawing.Size(317, 37)
@@ -301,12 +302,13 @@ Partial Class ChequePanel
         'Panel7
         '
         Me.Panel7.Controls.Add(Me.btBloc)
+        Me.Panel7.Controls.Add(Me.Button9)
         Me.Panel7.Controls.Add(Me.btList)
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel7.Location = New System.Drawing.Point(719, 46)
+        Me.Panel7.Location = New System.Drawing.Point(676, 46)
         Me.Panel7.Name = "Panel7"
         Me.Panel7.Padding = New System.Windows.Forms.Padding(7)
-        Me.Panel7.Size = New System.Drawing.Size(129, 37)
+        Me.Panel7.Size = New System.Drawing.Size(172, 37)
         Me.Panel7.TabIndex = 4
         '
         'btBloc
@@ -317,11 +319,24 @@ Partial Class ChequePanel
         Me.btBloc.FlatAppearance.BorderSize = 0
         Me.btBloc.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btBloc.Image = Global.Al_Mohasib.My.Resources.Resources._172626_user_male_icon
-        Me.btBloc.Location = New System.Drawing.Point(22, 7)
+        Me.btBloc.Location = New System.Drawing.Point(21, 7)
         Me.btBloc.Name = "btBloc"
         Me.btBloc.Size = New System.Drawing.Size(50, 23)
         Me.btBloc.TabIndex = 3
         Me.btBloc.UseVisualStyleBackColor = False
+        '
+        'Button9
+        '
+        Me.Button9.BackColor = System.Drawing.Color.Transparent
+        Me.Button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button9.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button9.FlatAppearance.BorderSize = 0
+        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button9.Location = New System.Drawing.Point(71, 7)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(44, 23)
+        Me.Button9.TabIndex = 4
+        Me.Button9.UseVisualStyleBackColor = False
         '
         'btList
         '
@@ -331,7 +346,7 @@ Partial Class ChequePanel
         Me.btList.FlatAppearance.BorderSize = 0
         Me.btList.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btList.Image = Global.Al_Mohasib.My.Resources.Resources._3844437_hamburger_list_menu_more_navigation_icon
-        Me.btList.Location = New System.Drawing.Point(72, 7)
+        Me.btList.Location = New System.Drawing.Point(115, 7)
         Me.btList.Name = "btList"
         Me.btList.Size = New System.Drawing.Size(50, 23)
         Me.btList.TabIndex = 2
@@ -618,10 +633,10 @@ Partial Class ChequePanel
         Me.lbTotal.BackColor = System.Drawing.Color.LightGray
         Me.lbTotal.Dock = System.Windows.Forms.DockStyle.Left
         Me.lbTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbTotal.Location = New System.Drawing.Point(238, 0)
+        Me.lbTotal.Location = New System.Drawing.Point(408, 0)
         Me.lbTotal.Name = "lbTotal"
         Me.lbTotal.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
-        Me.lbTotal.Size = New System.Drawing.Size(153, 32)
+        Me.lbTotal.Size = New System.Drawing.Size(213, 32)
         Me.lbTotal.TabIndex = 12
         Me.lbTotal.Text = "0"
         Me.lbTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -631,23 +646,23 @@ Partial Class ChequePanel
         Me.Label2.BackColor = System.Drawing.Color.Gainsboro
         Me.Label2.Dock = System.Windows.Forms.DockStyle.Left
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(161, 0)
+        Me.Label2.Location = New System.Drawing.Point(272, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
-        Me.Label2.Size = New System.Drawing.Size(77, 32)
+        Me.Label2.Size = New System.Drawing.Size(136, 32)
         Me.Label2.TabIndex = 7
         Me.Label2.Text = "Total :"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'lbNbr
         '
         Me.lbNbr.BackColor = System.Drawing.Color.LightGray
         Me.lbNbr.Dock = System.Windows.Forms.DockStyle.Left
         Me.lbNbr.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbNbr.Location = New System.Drawing.Point(71, 0)
+        Me.lbNbr.Location = New System.Drawing.Point(134, 0)
         Me.lbNbr.Name = "lbNbr"
         Me.lbNbr.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
-        Me.lbNbr.Size = New System.Drawing.Size(90, 32)
+        Me.lbNbr.Size = New System.Drawing.Size(138, 32)
         Me.lbNbr.TabIndex = 8
         Me.lbNbr.Text = "0"
         Me.lbNbr.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -660,10 +675,10 @@ Partial Class ChequePanel
         Me.Label4.Location = New System.Drawing.Point(0, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
-        Me.Label4.Size = New System.Drawing.Size(71, 32)
+        Me.Label4.Size = New System.Drawing.Size(134, 32)
         Me.Label4.TabIndex = 9
         Me.Label4.Text = "Nbre :"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Button21
         '
@@ -1234,4 +1249,5 @@ Partial Class ChequePanel
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents Label21 As System.Windows.Forms.Label
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents Button9 As System.Windows.Forms.Button
 End Class

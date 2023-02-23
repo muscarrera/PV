@@ -3,19 +3,29 @@ Imports System.Drawing.Printing
 
 Public Class EditAndPrintCheque
 
-    Dim _pid As Integer
+    Dim _p As Integer
     Dim isRelatedApp As Boolean = False
     Dim nb_trial As Integer = 0
     Dim bonId As Integer = 0
     Dim str_Path As String = ""
     Dim _montant As Double
+    Dim tb_P As String = "CompanyPayment"
+    Dim tb_F As String = "Bon"
+    Dim Tb_C As String = "company"
+    Dim _fld As String = "bonid"
+    Dim _cl As String = "cid"
+    Dim _pid As String = "PBid"
+    Dim _bnk As String = ""
+
+    Public _isSell As Boolean = False
+    Dim _obs As String
 
     Public Property Pid As Integer
         Get
-            Return _pid
+            Return _p
         End Get
         Set(ByVal value As Integer)
-            _pid = value
+            _p = value
 
             If value = 0 Then
                 ClearForm()
@@ -56,35 +66,73 @@ Public Class EditAndPrintCheque
             txtClient.text = value & "|" & clid
         End Set
     End Property
+    Public Property isSell As Boolean
+        Get
+            Return _isSell
+        End Get
+        Set(ByVal value As Boolean)
+            _isSell = value
+
+            If value Then
+                tb_F = "Facture"
+                tb_P = "Payment"
+                tb_C = "Client"
+                _pid = "Pid"
+            Else
+                tb_F = "Bon"
+                tb_P = "CompanyPayment"
+                Tb_C = "company"
+                _pid = "PBid"
+            End If
+
+        End Set
+    End Property
+    Private Property obs As String
+        Get
+            If Pid = 0 Then
+                Return "Nv:D" & Now.ToString("ddMMyy") & "P:" & Form1.adminName
+            Else
+                If _obs.EndsWith("D" & Now.ToString("ddMMyy") & "P:" & Form1.adminName) Then Return _obs
+                Dim t = _obs
+                t &= "Md:D" & Now.ToString("ddMMyy") & "P:" & Form1.adminName
+                If t.Length >= 255 Then t = t.Substring(t.Length - 255)
+                _obs = t
+                Return t
+            End If
+        End Get
+        Set(ByVal value As String)
+            _obs = value
+        End Set
+    End Property
 
     Private Sub FillForm()
-        Dim tableName As String = "CompanyPayment"
-        Dim tName As String = "Bon"
-        Dim fld As String = "bonid"
-        Dim cl As String = "comid"
-        Dim _pid As String = "PBid"
 
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
             Dim params As New Dictionary(Of String, Object)
 
-            params.Add("PBid", Pid)
-            Dim dt = c.SelectDataTable(tableName, {"*"}, params)
+            params.Add(_pid, Pid)
+            Dim dt = c.SelectDataTable(tb_P, {"*"}, params)
 
             If dt.Rows.Count > 0 Then
-                Dim cid = IntValue(dt, cl, 0)
-                Dim bid = IntValue(dt, fld, 0)
+                Dim cid = IntValue(dt, _cl, 0)
+                Dim bid = IntValue(dt, _fld, 0)
 
                 CbWay.SelectedItem = StrValue(dt, "way", 0)
                 montant = DblValue(dt, "montant", 0).ToString("N2")
-                txtEcheance.text = DteValue(dt, "paydate", 0).ToString("dd/MM/yyyy")
+                txtEcheance.text = DteValue(dt, "ech", 0).ToString("dd/MM/yyyy")
                 txtRef.text = StrValue(dt, "Num", 0)
+                _bnk = StrValue(dt, "bank", 0)
+                obs = StrValue(dt, "obs", 0)
+
+
+
                 params.Clear()
 
                 If cid > 0 Then
                     txtClient.text = cid
 
-                    params.Add("compid", cid)
-                    Dim nm = c.SelectByScalar("company", "name", params)
+                    params.Add(_cl, cid)
+                    Dim nm = c.SelectByScalar(Tb_C, "name", params)
                     txtClient.text = nm & "|" & cid
 
                 End If
@@ -93,8 +141,8 @@ Public Class EditAndPrintCheque
                 If bid > 0 Then
                     txtBon.text = bid
 
-                    params.Add("bonid", bid)
-                    Dim dtb As DataTable = c.SelectDataTable("Bon", {"*"}, params)
+                    params.Add(_fld, bid)
+                    Dim dtb As DataTable = c.SelectDataTable(tb_F, {"*"}, params)
 
                     If dtb.Rows.Count > 0 Then
                         lbT.Text = DblValue(dtb, "total", 0).ToString("N2")
@@ -109,20 +157,6 @@ Public Class EditAndPrintCheque
 
             params = Nothing
         End Using
-        'Try
-        '    If vid > 0 Then
-        '        Dim query = From d In dt_Cats.AsEnumerable()
-        '                    Where d.Field(Of Integer)(0) = vid
-        '                    Select d
-
-        '        Dim r As DataTable = query.CopyToDataTable()
-
-        '        _dt.Rows(i).Item(3) = r.Rows(0).Item("name")
-        '        _dt.Rows(i).Item(7) = 0
-        '    End If
-        'Catch ex As Exception
-
-        'End Try
     End Sub
     Private Sub FillBanques()
         Dim dir1 As New DirectoryInfo(str_Path & "\bqu")
@@ -143,9 +177,6 @@ Public Class EditAndPrintCheque
 
         ' If Not IsNumeric(lbMontant.Text) Then Return False
 
-        Dim _dte As Date = Date.Now
-        If IsDate(txtEcheance.text) Then _dte = CDate(txtEcheance.text)
-
 
         Dim dt As DataTable = Nothing
 
@@ -161,27 +192,29 @@ Public Class EditAndPrintCheque
     End Function
     Public Function AddPayement() As Boolean
 
-        Dim tableName As String = "CompanyPayment"
-        Dim tName As String = "Bon"
-        Dim fld As String = "fctid"
-        Dim cl As String = "cid"
-        Dim _pid As String = "PBid"
         Dim nPid As Integer = 0
+        Dim _dte As Date = Date.Now
+        If IsDate(txtEcheance.text) Then _dte = CDate(txtEcheance.text)
 
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
             Dim params As New Dictionary(Of String, Object)
             Dim where As New Dictionary(Of String, Object)
 
             params.Add("name", clientName)
-            params.Add(cl, clid)
+            params.Add(_cl, clid)
             params.Add("montant", montant)
             params.Add("way", CbWay.Text)
             params.Add("date", Now)
             params.Add("Num", txtRef.text)
-            params.Add(fld, txtBon.text)
+            params.Add(_fld, txtBon.text)
             params.Add("writer", CStr(Form1.adminName))
 
-            nPid = c.InsertRecord(tableName, params, True)
+            params.Add("ech", _dte)
+            params.Add("desig", "-")
+            If cbBanque.Text.Contains("*") = False Then params.Add("bank", cbBanque.Text)
+            params.Add("obs", obs)
+
+            nPid = c.InsertRecord(tb_P, params, True)
 
             If isRelatedApp Then
                 If bonId > 0 Then
@@ -189,12 +222,12 @@ Public Class EditAndPrintCheque
                     Dim isp As Boolean = av >= CDbl(lbT.Text)
 
                     params.Clear()
-                    where.Add(fld, bonId)
+                    where.Add(_fld, bonId)
 
                     params.Add("avance", av)
                     params.Add("payed", isp)
 
-                    c.UpdateRecord(tName, params, where)
+                    c.UpdateRecord(tb_F, params, where)
                     params.Clear()
                     where.Clear()
                 End If
@@ -208,12 +241,8 @@ Public Class EditAndPrintCheque
         Return False
     End Function
     Public Function EditPayement() As Boolean
-
-        Dim tableName As String = "CompanyPayment"
-        Dim tName As String = "Bon"
-        Dim fld As String = "fctid"
-        Dim cl As String = "cid"
-        Dim _pid As String = "PBid"
+        Dim _dte As Date = Date.Now
+        If IsDate(txtEcheance.text) Then _dte = CDate(txtEcheance.text)
         Dim nPid As Integer = 0
 
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
@@ -221,40 +250,55 @@ Public Class EditAndPrintCheque
             Dim where As New Dictionary(Of String, Object)
 
             params.Add("name", clientName)
-            params.Add(cl, clid)
+            params.Add(_cl, clid)
             params.Add("montant", montant)
             params.Add("way", CbWay.Text)
             params.Add("Num", txtRef.text)
-            params.Add(fld, txtBon.text)
+            params.Add(_fld, txtBon.text)
             params.Add("writer", CStr(Form1.adminName))
 
+            params.Add("ech", _dte)
+            params.Add("desig", "-")
+            If cbBanque.Text.Contains("*") = False Then params.Add("bank", cbBanque.Text)
+            params.Add("obs", obs)
+
+
+
+
             where.Add(_pid, Pid)
-            nPid = c.UpdateRecord(tableName, params, where)
-
-
-
-            If isRelatedApp Then
-                If bonId > 0 Then
-                    'Dim av As Double = CDbl(lbA.Text) + CDbl(txtMontant.text)
-                    'Dim isp As Boolean = av >= CDbl(lbT.Text)
-
-                    'params.Clear()
-                    'where.Add(fld, bonId)
-
-                    'params.Add("avance", av)
-                    'params.Add("payed", isp)
-
-                    'c.UpdateRecord(tName, params, where)
-                    'params.Clear()
-                    'where.Clear()
-                End If
-            End If
-
+            nPid = c.UpdateRecord(tb_P, params, where)
             where = Nothing
             params = Nothing
         End Using
 
-        If nPid > 0 Then Return True
+        If nPid > 0 Then
+            If isRelatedApp Then
+                If bonId > 0 Then
+                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                        Dim params As New Dictionary(Of String, Object)
+                        Dim where As New Dictionary(Of String, Object)
+
+                        params.Add(_fld, txtBon.text)
+                        Dim av = c.SelectByScalar(tb_P, "SUM(montant)", params)
+
+                        Dim isp As Boolean = av >= CDbl(lbT.Text)
+
+                        params.Clear()
+                        where.Add(_fld, bonId)
+
+                        params.Add("avance", av)
+                        params.Add("payed", isp)
+
+                        c.UpdateRecord(tb_F, params, where)
+                        params.Clear()
+                        where.Clear()
+                    End Using
+                End If
+            End If
+
+            Return True
+        End If
+
         Return False
     End Function
     Private Sub ClearForm()
@@ -271,7 +315,6 @@ Public Class EditAndPrintCheque
         lbMsg.Text = ""
         plMsg.Visible = False
     End Sub
-
 
     Private Sub btcancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btcancel.Click
         Pid = 0
@@ -500,6 +543,16 @@ Public Class EditAndPrintCheque
     Private Sub EditAndPrintCheque_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         FillBanques()
         getRegistryinfo(isRelatedApp, "isRelatedApp", False)
+
+        If isSell Then
+            tb_P = "Payment"
+            tb_F = "Facture"
+            _fld = "fctid"
+            Tb_C = "Client"
+            _cl = "cid"
+            _pid = "Pid"
+            Me.Width = 455
+        End If
     End Sub
     
     Private Sub getRegistryinfo(ByRef b As Boolean, ByVal str As String, ByVal v As Boolean)
@@ -524,7 +577,7 @@ Public Class EditAndPrintCheque
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Dim chs As New ChoseClient
-        chs.isSell = False
+        chs.isSell = isSell
         chs.editMode = True 'Form1.RPl.EditMode
 
         If chs.ShowDialog = Windows.Forms.DialogResult.OK Then
@@ -534,6 +587,7 @@ Public Class EditAndPrintCheque
 
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
         Dim chs As New SelectBon
+        chs.isSell = isSell
         chs.dte1.Value = chs.dte1.Value.AddMonths(-2)
         chs.cbSearchRegler.SelectedItem = "Non Reglé"
 

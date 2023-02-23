@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports System.Drawing.Printing
 Imports System.Text.RegularExpressions
+Imports System.Net
 
 Public Class ChequePanel
 
@@ -40,6 +41,7 @@ Public Class ChequePanel
 
         End Set
     End Property
+    Public _pid As String = "Pid"
     Public Property isSell As Boolean
         Get
             Return _isSell
@@ -51,11 +53,13 @@ Public Class ChequePanel
                 tb_F = "Facture"
                 tb_P = "Payment"
                 tb_C = "Client"
+                _pid = "Pid"
                 btMode.Text = "V : Vente"
             Else
                 tb_F = "Bon"
                 tb_P = "CompanyPayment"
                 tb_C = "company"
+                _pid = "PBid"
                 btMode.Text = "A : Achat"
             End If
 
@@ -226,8 +230,24 @@ Public Class ChequePanel
     Private Sub ChequePanel_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         HandleRegistryinfo()
         isSell = True
-    End Sub
 
+        'Dim hostName As String = Net.Dns.GetHostName()
+        'Dim IPAddress As String = Net.Dns.GetHostByName(hostName).AddressList(0).ToString()
+        'Me.Text = "Host Name: " & hostName & "  IP: " & IPAddress
+        'Dim MyIP As IPAddress = GetExternalIP()
+        'Me.Text = MyIP.ToString
+    End Sub
+    Function GetExternalIP() As IPAddress
+        Dim lol As WebClient = New WebClient()
+        Dim str As String = lol.DownloadString("http://www.ip-adress.com/")
+        Dim pattern As String = "<h2>My IPv4 Address"
+        Dim matches1 As MatchCollection = Regex.Matches(str, pattern)
+        Dim ip As String = matches1(0).ToString
+        ip = ip.Remove(0, 21)
+        ip = ip.Replace("</h2>", "")
+        ip = ip.Replace(" ", "")
+        Return IPAddress.Parse(ip)
+    End Function
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
         txtC.text = ""
         txtB.text = ""
@@ -342,7 +362,9 @@ Public Class ChequePanel
 
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
         Dim edt As New EditAndPrintCheque
+        edt.isSell = isSell
         edt.Pid = 0
+
         If edt.ShowDialog = Windows.Forms.DialogResult.OK Then
 
         End If
@@ -356,7 +378,9 @@ Public Class ChequePanel
             If dg.SelectedRows.Count = 0 Then Exit Sub
 
             Dim edt As New EditAndPrintCheque
+            edt.isSell = isSell
             edt.Pid = dg.SelectedRows(0).Cells(0).Value
+
             If edt.ShowDialog = Windows.Forms.DialogResult.OK Then
 
 
@@ -413,28 +437,46 @@ Public Class ChequePanel
 
     Private Sub Dg_MouseDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellMouseEventArgs)
         Try
-
-
             Dim dg As DataGridView = pl.Controls(0)
             If dg.SelectedRows.Count = 0 Then Exit Sub
             If dg.SelectedRows.Count = 0 Then Exit Sub
 
             Dim edt As New EditAndPrintCheque
+            edt.isSell = isSell
             edt.Pid = dg.SelectedRows(0).Cells(0).Value
             If edt.ShowDialog = Windows.Forms.DialogResult.OK Then
 
-
             End If
-
         Catch ex As Exception
-
         End Try
     End Sub
+    Private Sub MenuElementSelectedWay(ByRef ds As PopUpMenu)
 
+        For Each sb As SearchBloc In plBlocSearch.Controls
+            If sb.Mode = "Mth:Methode" Then
+                sb.Key = "way:" & ds.value
+                sb.Value = ds.value
+
+                plBlocSearch_ControlAdded(Nothing, Nothing)
+                Exit Sub
+            End If
+        Next
+
+        Dim ss As New SearchBloc
+        ss.Mode = "Mth:Methode"
+        ss.Key = "way:" & ds.value
+        ss.Value = ds.value
+
+        AddHandler ss.ClearElemeent, AddressOf SearchBloc_ClearElemeent
+        ss.Dock = DockStyle.Left
+
+        plBlocSearch.Controls.Add(ss)
+         
+    End Sub
     Private Sub Button11_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button11.Click
         For Each sb As SearchBloc In plBlocSearch.Controls
             If sb.Mode = "P:isPayed" Then
-                sb.Key = "desig:-;ech:" & Now.Date.ToString("yyyy-MM-dd") & ":>=;way:CACHE:<>"
+                sb.Key = "desig:-;ech:" & Now.Date.ToString("yyyy-MM-dd") & ":>=;way:Cache:<>"
                 sb.Value = sender.text
 
                 plBlocSearch_ControlAdded(Nothing, Nothing)
@@ -442,10 +484,9 @@ Public Class ChequePanel
             End If
         Next
 
-
         Dim ss As New SearchBloc
         ss.Mode = "P:isPayed"
-        ss.Key = "desig:-;ech:" & Now.Date.ToString("yyyy-MM-dd") & ":>=;way:CACHE:<>"
+        ss.Key = "desig:-;ech:" & Now.Date.ToString("yyyy-MM-dd") & ":>=;way:Cache:<>"
         ss.Value = sender.text
 
         AddHandler ss.ClearElemeent, AddressOf SearchBloc_ClearElemeent
@@ -456,7 +497,7 @@ Public Class ChequePanel
     Private Sub Button14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button14.Click
         For Each sb As SearchBloc In plBlocSearch.Controls
             If sb.Mode = "P:isPayed" Then
-                sb.Key = "desig:PAYE"
+                sb.Key = "desig:IMPAYE:<>;ech:" & Now.Date.ToString("yyyy-MM-dd") & ":<;way:Cache%:NOT LIKE; way :%[%:NOT LIKE" '"desig:PAYE"
                 sb.Value = sender.text
 
                 plBlocSearch_ControlAdded(Nothing, Nothing)
@@ -464,10 +505,9 @@ Public Class ChequePanel
             End If
         Next
 
-
         Dim ss As New SearchBloc
         ss.Mode = "P:isPayed"
-        ss.Key = "desig:PAYE"
+        ss.Key = "desig:IMPAYE:<>;ech:" & Now.Date.ToString("yyyy-MM-dd") & ":<;way:Cache%:NOT LIKE; way :%[%:NOT LIKE" '"desig:PAYE"
         ss.Value = sender.text
 
         AddHandler ss.ClearElemeent, AddressOf SearchBloc_ClearElemeent
@@ -485,7 +525,6 @@ Public Class ChequePanel
                 Exit Sub
             End If
         Next
-
 
         Dim ss As New SearchBloc
         ss.Mode = "P:isPayed"
@@ -515,7 +554,7 @@ Public Class ChequePanel
             Dim params As New Dictionary(Of String, Object)
             Dim order As New Dictionary(Of String, String)
             Dim dt As New DataTable
-            order.Add("Pid", "DESC")
+            order.Add(_pid, "DESC")
             params.Add("desig <> ", "@F")
 
             If plBlocSearch.Controls.Count = 0 Then
@@ -533,7 +572,6 @@ Public Class ChequePanel
 
     End Sub
     Private Sub SearchElementChanged()
-
 
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             Dim params As New Dictionary(Of String, Object)
@@ -561,7 +599,7 @@ Public Class ChequePanel
             params.Add(" desig <> ", "@F")
 
             Dim order As New Dictionary(Of String, String)
-            order.Add("Pid", "DESC")
+            order.Add(_pid, "DESC")
 
 
             Dim ls = c.SelectDataTableSymbols(tb_P, {"*"}, params, order)
@@ -647,7 +685,7 @@ Public Class ChequePanel
 
             params.Add(" desig <> ", "@F")
             Dim order As New Dictionary(Of String, String)
-            order.Add("Pid", "DESC")
+            order.Add(_pid, "DESC")
             Dim ls = c.SelectDataTableSymbols(tb_P, {"*"}, params, order)
 
             dataSource = ls
@@ -721,6 +759,7 @@ Public Class ChequePanel
 
 
     End Sub
+
     Private Sub MenuElementSelected2(ByRef ds As PopUpMenu)
 
         If ds.key = "DS" Then ds.key = "DS:" & txtSearch.text
@@ -730,14 +769,13 @@ Public Class ChequePanel
                 sb.Key = ds.key
                 sb.Value = ds.value
 
-                Pl.Controls.Remove(ds)
+                pl.Controls.Remove(ds)
                 ds.Dispose()
 
                 plBlocSearch_ControlAdded(Nothing, Nothing)
                 Exit Sub
             End If
         Next
-
 
         Dim ss As New SearchBloc
         ss.Mode = ds.mode
@@ -749,17 +787,17 @@ Public Class ChequePanel
 
         plBlocSearch.Controls.Add(ss)
 
-        Pl.Controls.Remove(ds)
+        pl.Controls.Remove(ds)
         ds.Dispose()
     End Sub
+    
     Private Sub txtsearch_KeyDownOk() Handles txtSearch.KeyDownOk
         Dim ss As New SearchBloc
-        Dim str = txtsearch.text
+        Dim str = txtSearch.text
         Dim _mode = ""
         Dim _key = ""
 
         If str.Contains(":") Then
-
             If str.Trim.ToUpper.StartsWith("T") Then
                 _mode = "Tg:Tags"
                 _key = "ref:%" & str.Split(":")(1) & "%: LIKE "
@@ -784,17 +822,15 @@ Public Class ChequePanel
                 _key = "date:%" & txtSearch.text & "%: LIKE "
             Else
                 _mode = "Nm:Nom"
-                _key = "name:%" & txtsearch.text & "%: LIKE "
+                _key = "name:%" & txtSearch.text & "%: LIKE "
             End If
-
-
 
         End If
 
         For Each sb As SearchBloc In plBlocSearch.Controls
             If sb.Mode = _mode Then
                 sb.Key = _key
-                sb.Value = txtsearch.text
+                sb.Value = txtSearch.text
 
                 plBlocSearch_ControlAdded(Nothing, Nothing)
                 Exit Sub
@@ -803,16 +839,93 @@ Public Class ChequePanel
 
         ss.Mode = _mode
         ss.Key = _key
-        ss.Value = txtsearch.text
+        ss.Value = txtSearch.text
 
         AddHandler ss.ClearElemeent, AddressOf SearchBloc_ClearElemeent
         ss.Dock = DockStyle.Left
 
         plBlocSearch.Controls.Add(ss)
-        txtsearch.text = ""
+        txtSearch.text = ""
     End Sub
 
     Private Sub Button20_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button20.Click
         ModeChanged()
+    End Sub
+
+    Private Sub btBloc_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btBloc.Click
+        Dim CC As New ChoseClient
+        CC.isSell = isSell
+
+        If CC.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            For Each sb As SearchBloc In plBlocSearch.Controls
+                If sb.Mode = "C:CLT" Then
+                    sb.Key = "cid:" & CC.cid
+                    sb.Value = CC.clientName
+                    plBlocSearch_ControlAdded(Nothing, Nothing)
+                    Exit Sub
+                End If
+            Next
+
+            Dim ss As New SearchBloc
+            ss.Mode = "C:CLT"
+            ss.Key = "cid:" & CC.cid
+            ss.Value = CC.clientName
+
+            AddHandler ss.ClearElemeent, AddressOf SearchBloc_ClearElemeent
+            ss.Dock = DockStyle.Left
+
+            plBlocSearch.Controls.Add(ss)
+        End If
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        If TypeOf pl.Controls(0) Is DataGridView Then
+            Dim params As New Dictionary(Of String, String)
+            params.Add("CAISSE", Now.Date)
+            params.Add("Filtre Par", plBlocSearch.Controls.Count & " element(s)")
+
+            For Each p As SearchBloc In plBlocSearch.Controls
+                params.Add(p.Mode, p.Value)
+            Next
+
+            Dim TL = "Caisse"
+            SaveDataToHtml_WithTITLE(pl.Controls(0), TL, params)
+        End If
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        If TypeOf pl.Controls(0) Is DataGridView Then
+            SaveExcel(pl.Controls(0), "Caisse", "Caisse", "")
+        End If
+    End Sub
+
+    Private Sub btList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btList.Click
+        'RaiseEvent UpdateRemise()
+        Dim op As New PopUpMenu   ' OptionAddElement
+        op.mode = "Mth:Methode"
+        Dim params As New Dictionary(Of String, String)
+ 
+        params.Add("Autre", "aut")
+        params.Add("BON DE RETOUR", "bon")
+        params.Add("Virement(Bancaire)", "vir")
+        params.Add("TPE", "tpe")
+        params.Add("Effet(LC)", "eff")
+        params.Add("Cheque", "che")
+        params.Add("Cache", "cha")
+   
+        op.dataSource = params
+
+        Dim MPx As Point = MousePosition()
+        Dim y = 0 'MPx.Y - op.Height
+        Dim x = Panel7.Left + btList.Right - op.Width ' - 10
+        op.Location = New Point(x, y)
+
+        AddHandler op.MenuLostFocus, AddressOf MenuLostFocus
+        AddHandler op.MenuElementSelected, AddressOf MenuElementSelectedWay
+
+
+        pl.Controls.Add(op)
+        op.BringToFront()
     End Sub
 End Class

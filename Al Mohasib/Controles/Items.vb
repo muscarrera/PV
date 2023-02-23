@@ -225,12 +225,25 @@
         Set(ByVal value As Decimal)
             '''''''
             _depot = value
-
-            'LbQte.Text = _qte & " " & CStr(Unite) & " x "
-            'LbQte.Text &= String.Format("{0:n}", _price) & " Dhs  -  "
             LbStk.Text = ""
-            If Depot > 0 Then LbStk.Text = " [" & Depot & "] Rest : (" & Stock & ")"
 
+            If value > 0 Then
+                LbStk.BackColor = Color.Transparent
+
+                If Form1.ShowDepotName_Item Then
+                    Try
+                        Dim results = From myRow As DataRow In Form1.dt_Depot.Rows Where myRow(0) = value Select myRow
+                        LbStk.Text = " [" & Depot & " : " & results(0).Item("name") & "] Rest : (" & Stock & ")"
+                    Catch ex As Exception
+                        LbStk.Text = " [" & Depot & "] Rest : (" & Stock & ")"
+                    End Try
+                Else
+                    LbStk.Text = " [" & Depot & "] Rest : (" & Stock & ")"
+                End If
+            Else
+                LbStk.BackColor = Color.Red
+            End If
+           
         End Set
     End Property
     Public Property Tva() As Double
@@ -366,8 +379,19 @@
             'LbQte.Text = String.Format("{0:n}", _qte) & " " & CStr(Unite) & " x "
             'LbQte.Text &= String.Format("{0:n}", _price) & " Dhs  -  "
             LbStk.Text = ""
-            If Depot > 0 Then LbStk.Text = " [" & Depot & "] Rest : (" & Stock & ")"
+            If Depot > 0 Then
+                If Form1.ShowDepotName_Item Then
+                    Try
+                        Dim results = From myRow As DataRow In Form1.dt_Depot.Rows Where myRow(0) = value Select myRow
+                        LbStk.Text = " [" & Depot & " : " & results(0).Item("name") & "] Rest : (" & Stock & ")"
+                    Catch ex As Exception
+                        LbStk.Text = " [" & Depot & "] Rest : (" & Stock & ")"
+                    End Try
+                Else
+                    LbStk.Text = " [" & Depot & "] Rest : (" & Stock & ")"
+                End If
 
+            End If 
         End Set
     End Property
 

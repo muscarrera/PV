@@ -26,7 +26,7 @@ Public Class SubClass
 
         Dim cl As String() = Form1.txtEnsGrp.Text.Split("-")
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-            Dim ctgdt = a.SelectDataTableSymbols("category", {"*"})
+            Dim ctgdt = a.SelectDataTable("category", {"*"})
 
             Form1.FlowLayoutPanel1.Controls.Clear()
             Dim rnd As New Random
@@ -64,7 +64,7 @@ Public Class SubClass
 
                 Dim params As New Dictionary(Of String, Object)
                 params.Add("cid", cid)
-                Dim artdt = a.SelectDataTableSymbols("Article", {"*"}, params)
+                Dim artdt = a.SelectDataTable("Article", {"*"}, params)
 
                 If artdt.Rows.Count = 0 Then
                     Dim lb As New Label
@@ -735,7 +735,6 @@ Public Class SubClass
             _isRightMouseClick = False
         End If
     End Sub
-
     Public Sub art_click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim bt As Button = sender
         Dim R As DataRow = bt.Tag
@@ -762,12 +761,15 @@ Public Class SubClass
             ''add new bon
             If Form1.RPl.FctId = 0 Then
                 If Form1.RPl.isSell Then
-                    '        Dim clientname As String = Form1.txtcltcomptoir.Text.Split("/")(0)
-                    '        Dim cid As String = 0
+                    If Form1.NouveauBon_Creation Then
+                        Dim clientname As String = Form1.txtcltcomptoir.Text.Split("/")(0)
+                        Dim cid As String = 0
 
-                    'NewFacture(cid, clientname, "", 0)
+                        NewFacture(cid, clientname, "", 0)
 
-                    Form1.RPl.FctId = -198722
+                    Else
+                        Form1.RPl.FctId = -198722
+                    End If
                 Else
                     Exit Sub
                 End If
@@ -913,16 +915,16 @@ Public Class SubClass
                 Form1.RPl.AddItems(R)
                 R("sprice") = ppp
 
-                End If
+            End If
 
-                Form1.txtSearch.Text = ""
-                Form1.txtSearchCode.Text = ""
+            Form1.txtSearch.Text = ""
+            Form1.txtSearchCode.Text = ""
 
-                If Form1.chbcb.Checked Then
-                    Form1.txtSearchCode.Focus()
-                Else
-                    Form1.txtSearch.Focus()
-                End If
+            If Form1.chbcb.Checked Then
+                Form1.txtSearchCode.Focus()
+            Else
+                Form1.txtSearch.Focus()
+            End If
         Catch ex As Exception
 
         End Try
@@ -3331,12 +3333,20 @@ Public Class SubClass
 
 
         If clc.ShowDialog = DialogResult.OK Then
+            Dim dpt As Integer = CInt(clc.DataGridView1.SelectedRows(0).Cells(0).Value)
+            If clc.Button1.Tag = 2 Then dpt = 0
+
+            If Form1.RPl.FctId > 0 Then
+                Form1.RPl.ChangedItemsDepot(i.id, dpt)
+                Exit Sub
+            End If
+
+
             Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
                 Dim params As New Dictionary(Of String, Object)
                 Dim where As New Dictionary(Of String, Object)
 
-                Dim dpt As Integer = CInt(clc.DataGridView1.SelectedRows(0).Cells(0).Value)
-                If clc.Button1.Tag = 2 Then dpt = 0
+              
 
                 If isS = True Then
                     where.Add("id", CInt(i.id))
@@ -3346,7 +3356,7 @@ Public Class SubClass
 
                 params.Add("depot", dpt)
 
-               
+
 
                 Try
                     Dim h As Integer = c.UpdateRecord(Form1.TB_Details, params, where)

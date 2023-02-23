@@ -45,7 +45,10 @@ Public Class Form1
     Public ls_CatSelect As New List(Of Integer)
     Public _prx_article_order As String = "0"
 
+    Public ShowDepotName_Item As Boolean = True
+    Public NouveauBon_Creation As Boolean = True
 
+     
     Public Property Operation As String
         Get
             Return ""
@@ -305,12 +308,12 @@ Public Class Form1
 
         '' '' '' '' '' banque test
 
-        Dim CDA As New ChequePanel
-        ''
-        If CDA.ShowDialog = Windows.Forms.DialogResult.Cancel Then
-            End
-        End If
-        If is_true_to_end Then End
+        'Dim CDA As New ChequePanel
+        ' ''
+        'If CDA.ShowDialog = Windows.Forms.DialogResult.Cancel Then
+        '    End
+        'End If
+        'If is_true_to_end Then End
 
         'If cbServerDriver.Checked Then
         '    initWatcher()
@@ -323,6 +326,28 @@ Public Class Form1
             If _isCh = False Then TabControl1.Controls.Remove(TabPageChar)
         Catch ex As Exception
         End Try
+
+
+
+
+        'depot
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Try
+                dt_Depot = a.SelectDataTableSymbols("Depot", {"*"})
+                cbdepot.DataSource = dt_Depot
+                cbdepot.DisplayMember = "name"
+                cbdepot.ValueMember = "dpid"
+
+
+
+                If dt_Depot.Rows.Count > 0 Then
+                    RPl.CP.Depot = dt_Depot.Rows(0).Item(0)
+                    Button36.Text = "[" & dt_Depot.Rows(0).Item("name") & "]"
+                End If
+            Catch ex As Exception
+            End Try
+        End Using
+
 
         'fill the main page settings
 
@@ -352,24 +377,7 @@ Public Class Form1
 
         End Using
 
-        'depot
-        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-            Try
-                dt_Depot = a.SelectDataTableSymbols("Depot", {"*"})
-                cbdepot.DataSource = dt_Depot
-                cbdepot.DisplayMember = "name"
-                cbdepot.ValueMember = "dpid"
-
-
-
-                If dt_Depot.Rows.Count > 0 Then
-                    RPl.CP.Depot = dt_Depot.Rows(0).Item(0)
-                    Button36.Text = "[" & dt_Depot.Rows(0).Item("name") & "]"
-                End If
-            Catch ex As Exception
-            End Try
-        End Using
-
+   
         'charges
         Using a As ChargesClass = New ChargesClass
             dtChargeFrom.Value = DateSerial(Date.Now.Year, Date.Now.Month, 0)
@@ -1277,6 +1285,8 @@ Public Class Form1
         getRegistryinfo(_isCh, "_is_charge", False)
         getRegistryinfo(_isStk, "_is_stock", False)
         getRegistryinfo(_prx_article_order, "_prx_article_order", "0")
+        getRegistryinfo(NouveauBon_Creation, "NouveauBon_Creation", True)
+        getRegistryinfo(ShowDepotName_Item, "ShowDepotName_Item", True)
 
         '////////////////
         Dim _ss As String = ""
@@ -2160,7 +2170,7 @@ Public Class Form1
 
                             Try '''''''''''''''''''''''''''''''''''''''''''''
                                 Dim result = From myRow As DataRow In dt.Rows
-                                                                                  Where myRow("depot") = _kvp.Key Select myRow
+                                                                                  Where myRow("depot") = _kvp.Key And myRow("qte") > 0 Select myRow
                                 If result.Count Then dt_filtreDataSource = result.CopyToDataTable
 
 
@@ -3754,6 +3764,8 @@ Public Class Form1
                 lst.Add(a.Depot, name)
             End If
         Next
+        lst = lst.OrderBy(Function(x) x.Key).ToDictionary(Function(x) x.Key, Function(x) x.Value)
+
         Return lst
     End Function
 
@@ -6510,6 +6522,13 @@ Public Class Form1
         ElseIf txt.ToUpper.StartsWith("PRIXARTICLE-") Then
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "_prx_article_order", s)
             _prx_article_order = s
+        Else
+            Dim b As Boolean = False
+            If s = "1" Then b = True
+
+            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", txt.Split("-")(0), b)
+
+
         End If
 
 

@@ -2,7 +2,7 @@
 
     Public str_Path As String = ""
 
-    Private Sub btColor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btColor.Click, Button1.Click
+    Private Sub btColor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btColor.Click
         Try
             Dim OPF As New OpenFileDialog
             If OPF.ShowDialog = Windows.Forms.DialogResult.OK Then

@@ -36,7 +36,6 @@ Partial Class EditAndPrintCheque
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Button17 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.lbR = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -61,7 +60,10 @@ Partial Class EditAndPrintCheque
         Me.txtEcheance = New Al_Mohasib.TxtBox()
         Me.Button14 = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.pb = New System.Windows.Forms.PictureBox()
         Me.Panel11.SuspendLayout()
         Me.Panel22.SuspendLayout()
         Me.Panel5.SuspendLayout()
@@ -72,6 +74,8 @@ Partial Class EditAndPrintCheque
         Me.Panel9.SuspendLayout()
         Me.plM.SuspendLayout()
         Me.Panel8.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        CType(Me.pb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel11
@@ -84,7 +88,6 @@ Partial Class EditAndPrintCheque
         Me.Panel11.Controls.Add(Me.btcancel)
         Me.Panel11.Controls.Add(Me.Panel6)
         Me.Panel11.Controls.Add(Me.Button17)
-        Me.Panel11.Controls.Add(Me.Button1)
         Me.Panel11.Controls.Add(Me.Panel13)
         Me.Panel11.Controls.Add(Me.Panel10)
         Me.Panel11.Controls.Add(Me.plMsg)
@@ -101,7 +104,7 @@ Partial Class EditAndPrintCheque
         Me.Panel22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel22.Controls.Add(Me.CbWay)
         Me.Panel22.Controls.Add(Me.Label16)
-        Me.Panel22.Location = New System.Drawing.Point(35, 200)
+        Me.Panel22.Location = New System.Drawing.Point(42, 200)
         Me.Panel22.Name = "Panel22"
         Me.Panel22.Size = New System.Drawing.Size(297, 31)
         Me.Panel22.TabIndex = 4
@@ -134,7 +137,7 @@ Partial Class EditAndPrintCheque
         Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel5.Controls.Add(Me.cbBanque)
         Me.Panel5.Controls.Add(Me.Label1)
-        Me.Panel5.Location = New System.Drawing.Point(37, 28)
+        Me.Panel5.Location = New System.Drawing.Point(44, 28)
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(294, 31)
         Me.Panel5.TabIndex = 0
@@ -169,7 +172,7 @@ Partial Class EditAndPrintCheque
         Me.btcancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btcancel.Image = Global.Al_Mohasib.My.Resources.Resources.vector_cancel_icon_png_302651
         Me.btcancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btcancel.Location = New System.Drawing.Point(35, 406)
+        Me.btcancel.Location = New System.Drawing.Point(42, 406)
         Me.btcancel.Name = "btcancel"
         Me.btcancel.Size = New System.Drawing.Size(63, 35)
         Me.btcancel.TabIndex = 7
@@ -183,7 +186,7 @@ Partial Class EditAndPrintCheque
         Me.Panel6.Controls.Add(Me.txtClient)
         Me.Panel6.Controls.Add(Me.Button2)
         Me.Panel6.Controls.Add(Me.Label2)
-        Me.Panel6.Location = New System.Drawing.Point(37, 65)
+        Me.Panel6.Location = New System.Drawing.Point(44, 65)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(294, 31)
         Me.Panel6.TabIndex = 2
@@ -242,33 +245,14 @@ Partial Class EditAndPrintCheque
         Me.Button17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Button17.Image = Global.Al_Mohasib.My.Resources.Resources.SAVE_20
         Me.Button17.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button17.Location = New System.Drawing.Point(111, 406)
+        Me.Button17.Location = New System.Drawing.Point(194, 406)
         Me.Button17.Name = "Button17"
-        Me.Button17.Size = New System.Drawing.Size(116, 36)
+        Me.Button17.Size = New System.Drawing.Size(146, 36)
         Me.Button17.TabIndex = 6
         Me.Button17.Tag = "0"
         Me.Button17.Text = "Enregistrer"
         Me.Button17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button17.UseVisualStyleBackColor = False
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.Black
-        Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Century Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Button1.Image = Global.Al_Mohasib.My.Resources.Resources.Print_22X22
-        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button1.Location = New System.Drawing.Point(231, 406)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(100, 36)
-        Me.Button1.TabIndex = 6
-        Me.Button1.Tag = "0"
-        Me.Button1.Text = "Imprimer"
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.UseVisualStyleBackColor = False
         '
         'Panel13
         '
@@ -280,7 +264,7 @@ Partial Class EditAndPrintCheque
         Me.Panel13.Controls.Add(Me.Label9)
         Me.Panel13.Controls.Add(Me.lbT)
         Me.Panel13.Controls.Add(Me.Label7)
-        Me.Panel13.Location = New System.Drawing.Point(37, 139)
+        Me.Panel13.Location = New System.Drawing.Point(44, 139)
         Me.Panel13.Name = "Panel13"
         Me.Panel13.Size = New System.Drawing.Size(296, 31)
         Me.Panel13.TabIndex = 3
@@ -360,7 +344,7 @@ Partial Class EditAndPrintCheque
         Me.Panel10.Controls.Add(Me.txtBon)
         Me.Panel10.Controls.Add(Me.Button6)
         Me.Panel10.Controls.Add(Me.Label6)
-        Me.Panel10.Location = New System.Drawing.Point(36, 102)
+        Me.Panel10.Location = New System.Drawing.Point(43, 102)
         Me.Panel10.Name = "Panel10"
         Me.Panel10.Size = New System.Drawing.Size(294, 31)
         Me.Panel10.TabIndex = 3
@@ -412,7 +396,7 @@ Partial Class EditAndPrintCheque
         'plMsg
         '
         Me.plMsg.Controls.Add(Me.lbMsg)
-        Me.plMsg.Location = New System.Drawing.Point(36, 348)
+        Me.plMsg.Location = New System.Drawing.Point(43, 348)
         Me.plMsg.Name = "plMsg"
         Me.plMsg.Padding = New System.Windows.Forms.Padding(4)
         Me.plMsg.Size = New System.Drawing.Size(297, 52)
@@ -434,7 +418,7 @@ Partial Class EditAndPrintCheque
         Me.Panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel9.Controls.Add(Me.txtRef)
         Me.Panel9.Controls.Add(Me.Label5)
-        Me.Panel9.Location = New System.Drawing.Point(35, 311)
+        Me.Panel9.Location = New System.Drawing.Point(42, 311)
         Me.Panel9.Name = "Panel9"
         Me.Panel9.Size = New System.Drawing.Size(297, 31)
         Me.Panel9.TabIndex = 7
@@ -476,7 +460,7 @@ Partial Class EditAndPrintCheque
         Me.plM.Controls.Add(Me.lbMontant)
         Me.plM.Controls.Add(Me.txtMontant)
         Me.plM.Controls.Add(Me.Label3)
-        Me.plM.Location = New System.Drawing.Point(36, 237)
+        Me.plM.Location = New System.Drawing.Point(43, 237)
         Me.plM.Name = "plM"
         Me.plM.Size = New System.Drawing.Size(297, 31)
         Me.plM.TabIndex = 5
@@ -532,7 +516,7 @@ Partial Class EditAndPrintCheque
         Me.Panel8.Controls.Add(Me.txtEcheance)
         Me.Panel8.Controls.Add(Me.Button14)
         Me.Panel8.Controls.Add(Me.Label4)
-        Me.Panel8.Location = New System.Drawing.Point(35, 274)
+        Me.Panel8.Location = New System.Drawing.Point(42, 274)
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(297, 31)
         Me.Panel8.TabIndex = 6
@@ -580,15 +564,56 @@ Partial Class EditAndPrintCheque
         Me.Label4.Text = "Echeance"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.Black
+        Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Century Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Button1.Image = Global.Al_Mohasib.My.Resources.Resources.Print_22X22
+        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button1.Location = New System.Drawing.Point(746, 347)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(133, 36)
+        Me.Button1.TabIndex = 6
+        Me.Button1.Tag = "0"
+        Me.Button1.Text = "Imprimer"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'PrintDoc
         '
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_17_59_22__1_
+        Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel1.Controls.Add(Me.pb)
+        Me.Panel1.Location = New System.Drawing.Point(461, 24)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Padding = New System.Windows.Forms.Padding(18, 14, 18, 14)
+        Me.Panel1.Size = New System.Drawing.Size(436, 305)
+        Me.Panel1.TabIndex = 9
+        '
+        'pb
+        '
+        Me.pb.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pb.Location = New System.Drawing.Point(18, 14)
+        Me.pb.Name = "pb"
+        Me.pb.Size = New System.Drawing.Size(400, 277)
+        Me.pb.TabIndex = 0
+        Me.pb.TabStop = False
         '
         'EditAndPrintCheque
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(446, 517)
+        Me.ClientSize = New System.Drawing.Size(904, 517)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel11)
+        Me.Controls.Add(Me.Button1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "EditAndPrintCheque"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -603,6 +628,8 @@ Partial Class EditAndPrintCheque
         Me.Panel9.ResumeLayout(False)
         Me.plM.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
+        Me.Panel1.ResumeLayout(False)
+        CType(Me.pb, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -645,4 +672,6 @@ Partial Class EditAndPrintCheque
     Friend WithEvents Button14 As System.Windows.Forms.Button
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents PrintDoc As System.Drawing.Printing.PrintDocument
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents pb As System.Windows.Forms.PictureBox
 End Class

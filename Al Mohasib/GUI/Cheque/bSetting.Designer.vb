@@ -29,9 +29,8 @@ Partial Class bSetting
         Me.Label7 = New System.Windows.Forms.Label()
         Me.btcancel = New System.Windows.Forms.Button()
         Me.btcon = New System.Windows.Forms.Button()
-        Me.txtF1 = New Al_Mohasib.TxtBox()
         Me.btColor = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.txtF1 = New Al_Mohasib.TxtBox()
         Me.Panel11.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -46,7 +45,6 @@ Partial Class bSetting
         Me.Panel11.Controls.Add(Me.btcancel)
         Me.Panel11.Controls.Add(Me.btcon)
         Me.Panel11.Controls.Add(Me.txtF1)
-        Me.Panel11.Controls.Add(Me.Button1)
         Me.Panel11.Controls.Add(Me.btColor)
         Me.Panel11.Location = New System.Drawing.Point(40, 23)
         Me.Panel11.Name = "Panel11"
@@ -124,6 +122,19 @@ Partial Class bSetting
         Me.btcon.Text = "Valider  "
         Me.btcon.UseVisualStyleBackColor = True
         '
+        'btColor
+        '
+        Me.btColor.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btColor.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btColor.Location = New System.Drawing.Point(286, 56)
+        Me.btColor.Name = "btColor"
+        Me.btColor.Size = New System.Drawing.Size(40, 30)
+        Me.btColor.TabIndex = 37
+        Me.btColor.Text = "..."
+        Me.btColor.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.btColor.UseVisualStyleBackColor = False
+        '
         'txtF1
         '
         Me.txtF1.BackColor = System.Drawing.Color.Transparent
@@ -142,32 +153,6 @@ Partial Class bSetting
         Me.txtF1.TxtColor = System.Drawing.Color.White
         Me.txtF1.txtReadOnly = False
         Me.txtF1.TxtSelect = New Integer() {1, 0}
-        '
-        'btColor
-        '
-        Me.btColor.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btColor.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btColor.Location = New System.Drawing.Point(286, 56)
-        Me.btColor.Name = "btColor"
-        Me.btColor.Size = New System.Drawing.Size(40, 30)
-        Me.btColor.TabIndex = 37
-        Me.btColor.Text = "..."
-        Me.btColor.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btColor.UseVisualStyleBackColor = False
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(230, 208)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(40, 30)
-        Me.Button1.TabIndex = 37
-        Me.Button1.Text = "..."
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.Button1.UseVisualStyleBackColor = False
         '
         'bSetting
         '
@@ -190,5 +175,4 @@ Partial Class bSetting
     Friend WithEvents btColor As System.Windows.Forms.Button
     Friend WithEvents Label22 As System.Windows.Forms.Label
     Friend WithEvents Button16 As System.Windows.Forms.Button
-    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

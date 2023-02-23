@@ -1,4 +1,35 @@
 ﻿Public Class SelectBon
+    Dim tb_P As String = "CompanyPayment"
+    Dim tb_F As String = "Bon"
+    Dim Tb_C As String = "company"
+    Dim _fld As String = "bonid"
+    Dim _cl As String = "cid"
+    Dim _pid As String = "PBid"
+    Dim _isSell As Boolean
+
+    Public Property isSell As Boolean
+        Get
+            Return _isSell
+        End Get
+        Set(ByVal value As Boolean)
+            _isSell = value
+            If value Then
+                tb_F = "Facture"
+                tb_P = "Payment"
+                Tb_C = "Client"
+                _pid = "Pid"
+                _fld = "fctid"
+            Else
+                tb_F = "Bon"
+                tb_P = "CompanyPayment"
+                Tb_C = "company"
+                _pid = "PBid"
+                _fld = "bonid"
+            End If
+
+        End Set
+    End Property
+
     Public ReadOnly Property fctId As Integer
         Get
             If DG.SelectedRows.Count = 0 Then Return 0
@@ -32,7 +63,7 @@
         Dim dt1 = New DateTime(dte2.Value.Year, dte2.Value.Month, dte2.Value.Day, 23, 59, 0, 0)
         Dim dt2 = New DateTime(dte1.Value.Year, dte1.Value.Month, dte1.Value.Day, 0, 1, 0, 0)
 
-        Dim tName As String = "Bon"
+
 
         Dim params As New Dictionary(Of String, Object)
         Dim dt As DataTable = Nothing
@@ -43,9 +74,9 @@
             If txtArSearch.text <> "" Then
                 If IsNumeric(txtArSearch.text) Then
                     Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-                        params.Add("bonid LIKE ", "%" & txtArSearch.text & "%")
+                        params.Add(_fld & " LIKE ", "%" & txtArSearch.text & "%")
                         params.Add("admin = ", True)
-                        dt = a.SelectDataTableSymbols(tName, {"*"}, params)
+                        dt = a.SelectDataTableSymbols(tb_F, {"*"}, params)
                     End Using
 
                 ElseIf txtArSearch.text.Contains("|") Then
@@ -62,7 +93,7 @@
 
                         If cbSearchRegler.Text = "Reglé" Then params.Add("payed = ", True)
                         If cbSearchRegler.Text = "Non Reglé" Then params.Add("payed = ", False)
-                        dt = a.SelectDataTableSymbols(tName, {"*"}, params)
+                        dt = a.SelectDataTableSymbols(tb_F, {"*"}, params)
                     End Using
                 End If
             Else
@@ -74,7 +105,7 @@
                     If cbSearchRegler.Text = "Reglé" Then params.Add("payed = ", True)
                     If cbSearchRegler.Text = "Non Reglé" Then params.Add("payed = ", False)
 
-                    dt = a.SelectDataTableSymbols(tName, {"*"}, params)
+                    dt = a.SelectDataTableSymbols(tb_F, {"*"}, params)
                 End Using
             End If
 
@@ -106,7 +137,7 @@
         Try
 
             Dim chs As New ChoseClient
-            chs.isSell = False
+            chs.isSell = isSell
             If chs.ShowDialog = Windows.Forms.DialogResult.OK Then
                 txtArSearch.text = chs.clientName & "|" & chs.cid
             End If

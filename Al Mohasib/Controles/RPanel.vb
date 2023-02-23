@@ -518,6 +518,7 @@
             ap.Name = R("name")
             ap.Unite = R("unite")
             ap.Price = R("sprice")
+            ap.Depot = R("depot")
 
             ap.Bprice = R("bprice")
             ap.rprice = R("sp3")
@@ -529,7 +530,7 @@
             ap.cid = R("cid")
             ap.code = R("codebar")
             ap.Poid = R("poid")
-            ap.Depot = R("depot")
+
             ap.Remise = 0
 
             ap.LbTva.Visible = Form1.CbArticleRemise.Visible
@@ -667,12 +668,14 @@
                 ap.Unite = D.Rows(i).Item("unit")
                 ap.Price = D.Rows(i).Item("price")
                 ap.Qte = D.Rows(i).Item("qte")
+                ap.Depot = D.Rows(i).Item("depot")
+
                 ap.Bprice = D.Rows(i).Item("bprice")
                 ap.id = D.Rows(i).Item(0)
                 ap.arid = D.Rows(i).Item("arid")
                 ap.Tva = D.Rows(i).Item("tva")
                 ap.cid = D.Rows(i).Item("cid")
-                ap.Depot = D.Rows(i).Item("depot")
+
                 ap.code = D.Rows(i).Item("code")
                 ap.Poid = RM
                 ap.Remise = RM
@@ -843,12 +846,14 @@
         ap.Unite = d.Rows(i).Item("unit")
         ap.Price = d.Rows(i).Item("price")
         ap.Qte = d.Rows(i).Item("qte")
+        ap.Depot = d.Rows(i).Item("depot")
+
         ap.Bprice = d.Rows(i).Item("bprice")
         ap.id = d.Rows(i).Item(0)
         ap.arid = d.Rows(i).Item("arid")
         ap.Tva = d.Rows(i).Item("tva")
         ap.cid = d.Rows(i).Item("cid")
-        ap.Depot = d.Rows(i).Item("depot")
+
         ap.code = d.Rows(i).Item("code")
 
         ap.Remise = rm
@@ -951,11 +956,12 @@
         Dim a As Items
         For Each a In Pl.Controls
             If a.id = id Then
-                a.Name = prdname
-                a.Bprice = bprice
+                a.Depot = dpt
                 a.Price = price
                 a.Qte = qte
-                a.Depot = dpt
+                a.Name = prdname
+                a.Bprice = bprice
+
 
                 UpdateValue()
                 CP.Value = 0
