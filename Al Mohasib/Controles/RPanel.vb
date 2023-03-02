@@ -521,7 +521,7 @@
             ap.Depot = R("depot")
 
             ap.Bprice = R("bprice")
-            ap.rprice = R("sp3")
+            ap.rprice = R("sp5")
             ap.BgColor = Color.White
             ap.SideColor = Color.Moccasin
             ap.id = CInt(R("arid") & "0" & Pl.Controls.Count) * -1
@@ -677,6 +677,13 @@
                 ap.cid = D.Rows(i).Item("cid")
 
                 ap.code = D.Rows(i).Item("code")
+
+                Try
+                    ap.rprice = D.Rows(i).Item("rprice")
+                Catch ex As Exception
+                End Try
+
+
                 ap.Poid = RM
                 ap.Remise = RM
 

@@ -2709,9 +2709,6 @@
         l = 250
         m = 0
     End Sub
-
-
-
     Public Sub DrawRelve(ByRef e As System.Drawing.Printing.PrintPageEventArgs,
                            ByVal daTa As DataGridView,
                            ByVal title As String, ByVal entete As Boolean,
@@ -2834,6 +2831,269 @@
         m = 0
     End Sub
 
+
+    Public Sub RepportFactureRecept(ByRef e As System.Drawing.Printing.PrintPageEventArgs, ByVal _dt1 As Date, ByVal _dt2 As Date)
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+
+            Dim pen As New Pen(Brushes.Black, 1.0F)
+            Dim pn As New Pen(Brushes.Black, 0.5F)
+
+            Dim fnt As New Font("Arial", 9)
+            Dim fntTitle As New Font("Arial", 14, FontStyle.Bold)
+            Dim fntH2 As New Font("Arial", 11, FontStyle.Bold)
+
+            Dim sf As New StringFormat()
+            sf.Alignment = StringAlignment.Near
+            Dim sf1 As New StringFormat()
+            sf1.Alignment = StringAlignment.Far
+            Dim sf2 As New StringFormat()
+            sf2.Alignment = StringAlignment.Center
+
+
+            Dim dte As Date = Now.Date
+
+            e.Graphics.DrawString(Form1.txttitle.Text, fntTitle, Brushes.Black, New RectangleF(10, 20, 300, 55), sf2)
+            e.Graphics.DrawString(Form1.txtAdrs.Text, fnt, Brushes.Black, New RectangleF(10, 80, 300, 30), sf2)
+            e.Graphics.DrawString(Form1.txttel.Text, fnt, Brushes.Black, New RectangleF(10, 100, 300, 30), sf2)
+
+            Try
+                e.Graphics.DrawImage(Image.FromFile(Form1.txtLogo.Text), 10, 10, 300, 120)
+            Catch ex As Exception
+
+            End Try
+
+            Dim myPoints() As Point = New Point() {New Point(10, 150), New Point(270, 150),
+                                                   New Point(282, 165), New Point(270, 180),
+                                                   New Point(10, 180)}
+            '  e.Graphics.FillPolygon(Brushes.WhiteSmoke, myPoints)
+            e.Graphics.DrawPolygon(New Pen(Brushes.Black, 0.5F), myPoints)
+
+            'print date 
+            e.Graphics.DrawString(dte, fnt, Brushes.Black, 15, 130)
+
+            e.Graphics.DrawString("Rapport  ", fntTitle, Brushes.Black, 15, 155)
+
+
+            'print Client 
+            e.Graphics.DrawString("De " & _dt1.ToString("dd / MM / yyyy"), fnt, Brushes.Black, New RectangleF(15, 195, 275, 35), sf)
+            e.Graphics.DrawString("Au " & _dt2.ToString("dd / MM / yyyy"), fnt, Brushes.Black, New RectangleF(15, 220, 275, 35), sf)
+            e.Graphics.DrawString("Imprimé par : " & Form1.adminName, fnt, Brushes.Black, New RectangleF(15, 240, 275, 35), sf)
+
+            l = 265
+            'Dim dt1 As Date = Date.Parse(Form1.dte2.Text).AddDays(1)
+            'Dim dt2 As Date = Date.Parse(Form1.dte1.Text).AddDays(-1)
+
+            Dim dt1 = New DateTime(_dt2.Year, _dt2.Month, _dt2.Day, 23, 59, 0, 0)
+            Dim dt2 = New DateTime(_dt1.Year, _dt1.Month, _dt1.Day, 0, 1, 0, 0)
+
+            'Dim dt1 As Date = Date.Parse(Form1.dte2.Text).AddDays(1)
+            'Dim dt2 As Date = Date.Parse(Form1.dte1.Text)
+            Dim params As New Dictionary(Of String, Object)
+            Dim dt As DataTable = Nothing
+            Dim TT As Decimal = 0
+
+            Dim ttall As Double = 0
+            Dim ttBoy As Double = 0
+            Dim ttGirl As Double = 0
+            Dim tttrk As Double = 0
+            Dim ttmsg As Double = 0
+
+
+            Dim WHERE As New Dictionary(Of String, Object)
+            Dim tb As String = "Facture"
+            Dim tb_D As String = "DetailsFacture"
+
+
+            l += 30
+
+            Dim STR As String() = {"NONE", "حــمام بــلدي", "الحلاقة", "التركي"}
+
+            Dim totalProduct As Double = 0
+            Dim totalSell As Double = 0
+
+            If Form1.txtGroupe.Text.Contains("4") = True Then
+                Try
+                    'totalProduct = dFTA.ScalarQuerySumProduct(dt1, dt2, True, 4)
+                    params.Clear()
+                    params.Add(tb & ".date >", dt2)
+                    params.Add(tb & ".date <", dt1)
+                    params.Add(tb & ".admin = ", True)
+                    params.Add(tb_D & ".cid =", 4)
+                    params.Add(tb & ".writer = ", Form1.adminName)
+
+                    totalProduct = c.SelectByScalar("(DetailsFacture INNER JOIN Facture ON DetailsFacture.fctid = Facture.fctid)",
+                                "SUM(DetailsFacture.qte * DetailsFacture.price) AS Expr1", params)
+                     
+                Catch ex As Exception
+                    totalProduct = 0
+                End Try
+
+            End If
+
+            For z As Integer = 1 To 3
+                Try
+                    If Form1.txtGroupe.Text.Contains(z) = True Then
+                        Dim a, b
+                        Try
+                            ' SELECT        
+                            'FROM    
+                            'WHERE   (Facture.[date] < ?) AND (Facture.[date] > ?) AND (Facture.admin = ?) AND (DetailsFacture.cid = ?)
+
+
+
+                            params.Clear()
+                            params.Add(tb & ".date >", dt2)
+                            params.Add(tb & ".date <", dt1)
+                            params.Add(tb & ".admin = ", True)
+                            params.Add(tb_D & ".cid =", z)
+                            params.Add(tb & ".writer = ", Form1.adminName)
+
+                            a = c.SelectByScalar("(DetailsFacture INNER JOIN Facture ON DetailsFacture.fctid = Facture.fctid)",
+                               "SUM(DetailsFacture.qte) AS Expr1", params)
+
+                            b = c.SelectByScalar("(DetailsFacture INNER JOIN Facture ON DetailsFacture.fctid = Facture.fctid)",
+                              "SUM(DetailsFacture.qte * DetailsFacture.price) AS Expr1", params)
+
+                            'a = dFTA.ScalarQuerycount(dt1, dt2, True, z)
+                            'b = dFTA.ScalarQuerySum(dt1, dt2, True, z)
+                        Catch ex As Exception
+                            a = 0
+                            b = 0
+                        End Try
+
+                        If z = 1 Then b += totalProduct
+
+                        e.Graphics.FillRectangle(Brushes.WhiteSmoke, 5, l - 3, 280, 25)
+                        e.Graphics.DrawString(a & "  --  " & b & " Dhs   ||  " & STR(z), fntH2, Brushes.Black, New RectangleF(15, l, 275, 20), sf2)
+
+                        totalSell += b
+
+                        l += 30
+                        Dim msg = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "Cat_Ham_" & z, Nothing)
+                        If Not IsNothing(msg) Then
+                            Dim cat As String() = msg.ToString.Split("-")
+                            For r As Integer = 0 To cat.Length - 1
+                                Dim lll = l + 8
+                                Dim ttt As Double = 0
+
+                                l += 33
+
+                                ' ORDER BY sprice DESC
+                                'Dim dta = dA.GetDataByCidHammam(z, cat(r))
+                                params.Clear()
+                                params.Add("cid", z)
+                                params.Add("codebar", cat(r))
+
+                                Dim dta = c.SelectDataTable("Article", {"*"}, params)
+
+
+                                If dta.Rows.Count > 0 Then
+                                    For i As Integer = 0 To dta.Rows.Count - 1
+                                        Dim aa
+                                        Dim ba
+                                        Try
+
+                                            params.Clear()
+                                            params.Add(tb & ".date >", dt2)
+                                            params.Add(tb & ".date <", dt1)
+                                            params.Add(tb & ".admin = ", True)
+                                            params.Add(tb_D & ".arid =", dta.Rows(i).Item(0))
+
+                                            aa = c.SelectByScalar("(DetailsFacture INNER JOIN Facture ON DetailsFacture.fctid = Facture.fctid)",
+                                               "SUM(DetailsFacture.qte) AS Expr1", params)
+                                            ba = c.SelectByScalar("(DetailsFacture INNER JOIN Facture ON DetailsFacture.fctid = Facture.fctid)",
+                                            "SUM(DetailsFacture.qte * DetailsFacture.price) AS Expr1", params)
+
+
+                                            '    aa = dFTA.ScalarQueryArid(dt1, dt2, True, )
+                                            '    ba = dFTA.ScalarQuerySumArid(dt1, dt2, True, dta.Rows(i).Item(0))
+                                        Catch ex As Exception
+                                            aa = 0
+                                            ba = 0
+                                        End Try
+                                        ttt += ba
+
+                                        'check if article start with * to print it s details 
+                                        If cat(r).StartsWith("*") = False Then Continue For
+                                        If aa = 0 Then Continue For
+                                        Try
+                                            e.Graphics.DrawString(aa & "  -  " & String.Format("{0:n}", CDec(ba)) & " Dhs", fnt, Brushes.Black, New RectangleF(15, l, 275, 20), sf)
+                                            e.Graphics.DrawString(dta.Rows(i).Item("name"), fnt, Brushes.Black, New RectangleF(15, l, 275, 20), sf1)
+                                            l += 20
+                                        Catch ex As Exception
+                                        End Try
+                                    Next
+                                End If
+
+                                e.Graphics.DrawString(cat(r), fntH2, Brushes.Black, New RectangleF(15, lll, 165, 20), sf)
+                                e.Graphics.DrawString("|", fnt, Brushes.Black, 185, lll)
+                                e.Graphics.DrawString(String.Format("{0:n}", CDec(ttt)), fntH2, Brushes.Black, New RectangleF(190, lll, 85, 20), sf1)
+
+                                dta = Nothing
+                            Next
+
+                            If z = 1 And totalProduct > 0 Then
+                                e.Graphics.DrawRectangle(Pens.Black, 5, l - 3, 280, 25)
+                                e.Graphics.DrawString("المواد", fnt, Brushes.Black, New RectangleF(15, l + 2, 265, 20), sf1)
+
+                                e.Graphics.DrawString(String.Format("{0:n}", CDec(totalProduct)) & " Dhs", fnt, Brushes.Black, New RectangleF(15, l + 2, 111, 20), sf1)
+                                l += 30
+                            End If
+
+                        End If
+                    End If
+                Catch ex As Exception
+                    MsgBox(ex.Message)
+                End Try
+
+                l += 33
+            Next
+
+            e.Graphics.DrawString("----------------------------------------", fnt, Brushes.Black, New RectangleF(15, l + 3, 275, 20), sf)
+            e.Graphics.DrawString("Total       ||     " & totalSell & " Dhs       ||     المجموع", fnt, Brushes.Black, New RectangleF(15, l + 10 + 3, 275, 20), sf)
+            e.Graphics.DrawString("----------------------------------------", fnt, Brushes.Black, New RectangleF(15, l + 30 + 3, 275, 20), sf)
+
+
+
+
+            ' ''''''''''''''''''''''''''''''''''''''''''''''''
+            'l += 60
+            'Dim BTA As New ALMohassinDBDataSetTableAdapters.BonTableAdapter
+            'Try
+            '    Dim a = BTA.ScalarQuery(dt1, dt2)
+            '    Dim b = BTA.ScalarQuerytotal(dt1, dt2)
+            '    Dim c = BTA.ScalarQueryAvc(dt1, dt2)
+
+            '    e.Graphics.FillRectangle(Brushes.WhiteSmoke, 5, l - 3, 280, 25)
+            '    e.Graphics.DrawRectangle(Pens.Black, 5, l - 3, 280, 25)
+
+            '    e.Graphics.DrawString(a & "    |     Achates       |    ايصالات المشتريات", fnt, Brushes.Black, New RectangleF(15, l, 275, 20), sf2)
+            '    l += 10
+            '    e.Graphics.DrawString("Total       ||     " & b & " Dhs       ||     المجموع", fnt, Brushes.Black, New RectangleF(15, l + 20 + 3, 275, 20), sf)
+            '    e.Graphics.DrawString("Avance       ||     " & c & " Dhs       ||     الدفــع", fnt, Brushes.Black, New RectangleF(15, l + 40 + 3, 275, 20), sf)
+
+            'Catch ex As Exception
+            'End Try
+
+            'l += 80
+
+            'Dim CTA As New ALMohassinDBDataSetTableAdapters.ChargeTableAdapter
+            'Try
+            '    Dim a = CTA.ScalarQueryCount(dt1, dt2)
+            '    Dim b = CTA.ScalarQueryTotal(dt1, dt2)
+
+            '    e.Graphics.FillRectangle(Brushes.WhiteSmoke, 5, l - 3, 280, 25)
+            '    e.Graphics.DrawRectangle(Pens.Black, 5, l - 3, 280, 25)
+
+            '    e.Graphics.DrawString(a & "    |     Charges       |    ايصالات المصرفات", fnt, Brushes.Black, New RectangleF(15, l, 275, 20), sf2)
+            '    l += 10
+            '    e.Graphics.DrawString("Total       ||     " & b & " Dhs       ||     المجموع", fnt, Brushes.Black, New RectangleF(15, l + 20 + 3, 275, 20), sf)
+            'Catch ex As Exception
+            'End Try
+
+        End Using
+
+    End Sub
 
 
 #Region "IDisposable Support"

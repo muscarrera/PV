@@ -283,40 +283,42 @@ Public Class SubClass
         Form1.RPl.CP.Value = 0
     End Sub
 
-    Public Sub FillGrStock(ByVal ctgdt As DataTable)
+    Public Sub FillGrStock(ByVal _ctgdt As DataTable)
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim ctgdt = a.SelectDataTable("category", {"*"})
+             
+            For i As Integer = 0 To ctgdt.Rows.Count - 1
+                Dim bt As New Button
 
-
-        For i As Integer = 0 To ctgdt.Rows.Count - 1
-            Dim bt As New Button
-
-            bt.BackColor = Color.LightGoldenrodYellow
-            bt.Text = ctgdt.Rows(i).Item("name").ToString
-            bt.Name = "ctg" & i
-            bt.Tag = ctgdt.Rows(i).Item("cid")
-
-            bt.TextAlign = ContentAlignment.BottomCenter
-            Try
-                If ctgdt.Rows(i).Item("img").ToString = "No Image" Or ctgdt.Rows(i).Item("img").ToString = "" Then
-                    bt.BackColor = Color.Moccasin
-                Else
-                    Dim str As String = Form1.BtImgPah.Tag & "\cat" & ctgdt.Rows(i).Item("img").ToString
-                    If Form1.cbImgPrice.Checked Then
-                        str = Form1.BtImgPah.Tag & "\P-cat" & ctgdt.Rows(i).Item("img").ToString
-                        bt.Text = ""
-                    End If
-
-                    bt.BackgroundImage = Image.FromFile(str)
-                End If
-                bt.BackgroundImageLayout = ImageLayout.Stretch
-            Catch ex As Exception
+                bt.BackColor = Color.LightGoldenrodYellow
                 bt.Text = ctgdt.Rows(i).Item("name").ToString
-            End Try
-            bt.Width = 125
-            bt.Height = 90
+                bt.Name = "ctg" & i
+                bt.Tag = ctgdt.Rows(i).Item("cid")
 
-            AddHandler bt.Click, AddressOf ctg_stock_click
-            Form1.FLPStock.Controls.Add(bt)
-        Next
+                bt.TextAlign = ContentAlignment.BottomCenter
+                Try
+                    If ctgdt.Rows(i).Item("img").ToString = "No Image" Or ctgdt.Rows(i).Item("img").ToString = "" Then
+                        bt.BackColor = Color.Moccasin
+                    Else
+                        Dim str As String = Form1.BtImgPah.Tag & "\cat" & ctgdt.Rows(i).Item("img").ToString
+                        If Form1.cbImgPrice.Checked Then
+                            str = Form1.BtImgPah.Tag & "\P-cat" & ctgdt.Rows(i).Item("img").ToString
+                            bt.Text = ""
+                        End If
+
+                        bt.BackgroundImage = Image.FromFile(str)
+                    End If
+                    bt.BackgroundImageLayout = ImageLayout.Stretch
+                Catch ex As Exception
+                    bt.Text = ctgdt.Rows(i).Item("name").ToString
+                End Try
+                bt.Width = 125
+                bt.Height = 90
+
+                AddHandler bt.Click, AddressOf ctg_stock_click
+                Form1.FLPStock.Controls.Add(bt)
+            Next
+        End Using
     End Sub
     Public Sub SearchForArticles(ByRef txt As TextBox, ByVal cid As Integer)
 
@@ -761,6 +763,15 @@ Public Class SubClass
             ''add new bon
             If Form1.RPl.FctId = 0 Then
                 If Form1.RPl.isSell Then
+                    Try
+                        If Form1.isPortOn = False Then
+                            Form1.isPortOn = Form1.OpenPort
+                            Form1.RPl.CP.Value = Form1.txtQte.Text
+                        End If
+
+                    Catch ex As Exception
+                    End Try
+
                     If Form1.NouveauBon_Creation Then
                         Dim clientname As String = Form1.txtcltcomptoir.Text.Split("/")(0)
                         Dim cid As String = 0
@@ -817,7 +828,8 @@ Public Class SubClass
 
                 If Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
                     'Last Price Option
-                    If Form1.cbArtLastPrice.Text = "LastPrice" Then
+                    If Form1.cbArtLastPrice.Text.StartsWith("LastPrice") Then
+                         
 
                         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                             Dim params As New Dictionary(Of String, Object)
@@ -832,17 +844,30 @@ Public Class SubClass
                             params.Add(tb_D_A & ".arid  = ", R("arid"))
 
                             Dim pDt As DataTable = c.SelectDataTableSymbols("(" & tb_D_A & " INNER JOIN " & tb_A & " ON " & tb_D_A & ".fctid = " & tb_A & ".fctid) ",
-                                {tb_D_A & ".price"}, params, order)
+                                {tb_D_A & ".price," & tb_D_A & ".bprice, " & tb_D_A & ".rprice"}, params, order)
 
                             If pDt.Rows.Count > 0 Then
+
                                 Dim prc As Double = pDt.Rows(0).Item("price")
-                                If IsNumeric(prc) Then
-                                    If prc > R("bprice") Or Form1.RPl.ClientName.Contains("**") Then
+                                Dim bp As Double = pDt.Rows(0).Item("bprice")
+                                Dim rp As Double = pDt.Rows(0).Item("rprice")
+
+                                If Form1.cbArtLastPrice.Text.EndsWith("PAX") Then
+                                    If bp = R("bprice") Then
                                         R("sprice") = prc
+                                    End If
+                                ElseIf Form1.cbArtLastPrice.Text.EndsWith("PVX") Then
+                                    If rp = R("sprice") Then
+                                        R("sprice") = prc
+                                    End If
+                                Else
+                                    If IsNumeric(prc) Then
+                                        If prc > R("bprice") Or Form1.RPl.ClientName.Contains("**") Then
+                                            R("sprice") = prc
+                                        End If
                                     End If
                                 End If
                             End If
-
                         End Using
 
                     ElseIf Form1.cbArtLastPrice.Text.StartsWith("LastMarge") Then
@@ -890,7 +915,7 @@ Public Class SubClass
                                         R("sprice") = sp
                                     End If
                                 ElseIf Form1.cbArtLastPrice.Text.EndsWith("PVX") Then
-                                    bp = pDt.Rows(0).Item("rprice")
+                                    sp = pDt.Rows(0).Item("rprice")
                                     If bp = R("sprice") Then
                                         R("sprice") = sp
                                     End If
@@ -911,7 +936,7 @@ Public Class SubClass
 
                 'tva
 
-                ' R("sp3") = ppp
+                R("sp5") = ppp
                 Form1.RPl.AddItems(R)
                 R("sprice") = ppp
 
@@ -1037,6 +1062,11 @@ Public Class SubClass
 
         If dt.Rows.Count > 0 Then
             FillDataSource_Bon(dt, p)
+        Else
+            If Form1.isPortOn Then
+                Form1.isPortOn = Form1.ClosePort
+                Form1.RPl.CP.Value = 0
+            End If
         End If
 
         Form1.txtSearch.Text = ""
@@ -1709,6 +1739,14 @@ Public Class SubClass
         Try
             Try
                 saveChanges()
+            Catch ex As Exception
+            End Try
+
+            Try
+                If Form1.isPortOn = False Then
+                    Form1.isPortOn = Form1.OpenPort
+                End If
+
             Catch ex As Exception
             End Try
 

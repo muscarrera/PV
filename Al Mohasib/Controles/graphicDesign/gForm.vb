@@ -281,6 +281,12 @@ Public Class gForm
                         If a.field.StartsWith("CLT") Then
                             Dim s = a.field.Split("_")(1)
                             str &= dt_Client.Rows(0).Item(s)
+
+                        ElseIf a.field.StartsWith("RYL-") Then
+                            Dim s = a.field.Split("-")(1)
+                            str = CStr(a.designation)
+                            str &= CInt(data.Rows(0).Item(s) * 20).ToString("N0")
+
                         ElseIf a.field.StartsWith("*") Then
 
                         ElseIf a.field.StartsWith("image") Then
@@ -297,9 +303,9 @@ Public Class gForm
                             Dim s = a.field.Split("_")(1)
 
                             If s = "ID" Then
-                                str &= Form1._kvp.Key
+                                str &= Form1._printedDepotID
                             Else
-                                str &= Form1._kvp.Value
+                                str &= Form1._printedDepotName
                             End If
 
                         Else
@@ -712,9 +718,9 @@ Public Class gForm
                             Dim str As String = CStr(a.designation)
 
                             If s = "ID" Then
-                                str &= Form1._kvp.Key
+                                str &= Form1._printedDepotID
                             Else
-                                str &= Form1._kvp.Value
+                                str &= Form1._printedDepotName
                             End If
 
                             Try

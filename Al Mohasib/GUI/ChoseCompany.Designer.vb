@@ -50,12 +50,15 @@ Partial Class ChoseCompany
         Me.Button6 = New System.Windows.Forms.Button()
         Me.cbIn = New System.Windows.Forms.CheckBox()
         Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.txt = New Al_Mohasib.TxtBox()
         Me.btInfo = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel20 = New System.Windows.Forms.Panel()
+        Me.txtClient = New Al_Mohasib.TxtBox()
         Me.Button13 = New System.Windows.Forms.Button()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.txtDepot = New Al_Mohasib.TxtBox()
         Me.btDepot = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -63,21 +66,26 @@ Partial Class ChoseCompany
         Me.cbGCat = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel12 = New System.Windows.Forms.Panel()
+        Me.txtCat = New Al_Mohasib.TxtBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.txtdp2 = New Al_Mohasib.TxtBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Panel16 = New System.Windows.Forms.Panel()
+        Me.txtAjustArt = New Al_Mohasib.TxtBox()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Panel14 = New System.Windows.Forms.Panel()
+        Me.txtAjustCat = New Al_Mohasib.TxtBox()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Panel15 = New System.Windows.Forms.Panel()
+        Me.txtAjustDp = New Al_Mohasib.TxtBox()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
@@ -85,6 +93,7 @@ Partial Class ChoseCompany
         Me.TabPage5 = New System.Windows.Forms.TabPage()
         Me.Button12 = New System.Windows.Forms.Button()
         Me.Panel17 = New System.Windows.Forms.Panel()
+        Me.txtR = New Al_Mohasib.TxtBox()
         Me.Button14 = New System.Windows.Forms.Button()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Panel18 = New System.Windows.Forms.Panel()
@@ -99,15 +108,8 @@ Partial Class ChoseCompany
         Me.dte2 = New System.Windows.Forms.DateTimePicker()
         Me.dte1 = New System.Windows.Forms.DateTimePicker()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
-        Me.txt = New Al_Mohasib.TxtBox()
-        Me.txtClient = New Al_Mohasib.TxtBox()
-        Me.txtDepot = New Al_Mohasib.TxtBox()
-        Me.txtCat = New Al_Mohasib.TxtBox()
-        Me.txtdp2 = New Al_Mohasib.TxtBox()
-        Me.txtAjustArt = New Al_Mohasib.TxtBox()
-        Me.txtAjustCat = New Al_Mohasib.TxtBox()
-        Me.txtAjustDp = New Al_Mohasib.TxtBox()
-        Me.txtR = New Al_Mohasib.TxtBox()
+        Me.Button15 = New System.Windows.Forms.Button()
+        Me.PrintDoc2 = New System.Drawing.Printing.PrintDocument()
         Me.Panel2.SuspendLayout()
         Me.pl.SuspendLayout()
         CType(Me.dg_D, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -476,6 +478,26 @@ Partial Class ChoseCompany
         Me.Panel10.Size = New System.Drawing.Size(684, 32)
         Me.Panel10.TabIndex = 0
         '
+        'txt
+        '
+        Me.txt.BackColor = System.Drawing.Color.Transparent
+        Me.txt.BorderColor = System.Drawing.Color.Transparent
+        Me.txt.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt.IsNumiric = False
+        Me.txt.Location = New System.Drawing.Point(66, 0)
+        Me.txt.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txt.Name = "txt"
+        Me.txt.ShowClearIcon = False
+        Me.txt.ShowSaveIcon = False
+        Me.txt.Size = New System.Drawing.Size(585, 30)
+        Me.txt.StartUp = 2
+        Me.txt.TabIndex = 11
+        Me.txt.TextSize = 8
+        Me.txt.TxtBackColor = True
+        Me.txt.TxtColor = System.Drawing.Color.White
+        Me.txt.txtReadOnly = False
+        Me.txt.TxtSelect = New Integer() {1, 0}
+        '
         'btInfo
         '
         Me.btInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
@@ -511,6 +533,26 @@ Partial Class ChoseCompany
         Me.Panel20.Name = "Panel20"
         Me.Panel20.Size = New System.Drawing.Size(194, 32)
         Me.Panel20.TabIndex = 0
+        '
+        'txtClient
+        '
+        Me.txtClient.BackColor = System.Drawing.Color.Transparent
+        Me.txtClient.BorderColor = System.Drawing.Color.Transparent
+        Me.txtClient.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtClient.IsNumiric = False
+        Me.txtClient.Location = New System.Drawing.Point(46, 0)
+        Me.txtClient.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtClient.Name = "txtClient"
+        Me.txtClient.ShowClearIcon = False
+        Me.txtClient.ShowSaveIcon = False
+        Me.txtClient.Size = New System.Drawing.Size(115, 30)
+        Me.txtClient.StartUp = 2
+        Me.txtClient.TabIndex = 12
+        Me.txtClient.TextSize = 8
+        Me.txtClient.TxtBackColor = True
+        Me.txtClient.TxtColor = System.Drawing.Color.White
+        Me.txtClient.txtReadOnly = False
+        Me.txtClient.TxtSelect = New Integer() {1, 0}
         '
         'Button13
         '
@@ -550,6 +592,26 @@ Partial Class ChoseCompany
         Me.Panel9.Name = "Panel9"
         Me.Panel9.Size = New System.Drawing.Size(139, 32)
         Me.Panel9.TabIndex = 0
+        '
+        'txtDepot
+        '
+        Me.txtDepot.BackColor = System.Drawing.Color.Transparent
+        Me.txtDepot.BorderColor = System.Drawing.Color.Transparent
+        Me.txtDepot.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtDepot.IsNumiric = False
+        Me.txtDepot.Location = New System.Drawing.Point(46, 0)
+        Me.txtDepot.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtDepot.Name = "txtDepot"
+        Me.txtDepot.ShowClearIcon = False
+        Me.txtDepot.ShowSaveIcon = False
+        Me.txtDepot.Size = New System.Drawing.Size(60, 30)
+        Me.txtDepot.StartUp = 2
+        Me.txtDepot.TabIndex = 12
+        Me.txtDepot.TextSize = 8
+        Me.txtDepot.TxtBackColor = True
+        Me.txtDepot.TxtColor = System.Drawing.Color.White
+        Me.txtDepot.txtReadOnly = False
+        Me.txtDepot.TxtSelect = New Integer() {1, 0}
         '
         'btDepot
         '
@@ -644,6 +706,26 @@ Partial Class ChoseCompany
         Me.Panel12.Size = New System.Drawing.Size(263, 32)
         Me.Panel12.TabIndex = 3
         '
+        'txtCat
+        '
+        Me.txtCat.BackColor = System.Drawing.Color.Transparent
+        Me.txtCat.BorderColor = System.Drawing.Color.Transparent
+        Me.txtCat.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtCat.IsNumiric = False
+        Me.txtCat.Location = New System.Drawing.Point(71, 0)
+        Me.txtCat.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtCat.Name = "txtCat"
+        Me.txtCat.ShowClearIcon = False
+        Me.txtCat.ShowSaveIcon = False
+        Me.txtCat.Size = New System.Drawing.Size(153, 30)
+        Me.txtCat.StartUp = 2
+        Me.txtCat.TabIndex = 12
+        Me.txtCat.TextSize = 8
+        Me.txtCat.TxtBackColor = True
+        Me.txtCat.TxtColor = System.Drawing.Color.White
+        Me.txtCat.txtReadOnly = False
+        Me.txtCat.TxtSelect = New Integer() {1, 0}
+        '
         'Button3
         '
         Me.Button3.BackColor = System.Drawing.Color.Transparent
@@ -682,6 +764,26 @@ Partial Class ChoseCompany
         Me.Panel11.Name = "Panel11"
         Me.Panel11.Size = New System.Drawing.Size(263, 32)
         Me.Panel11.TabIndex = 3
+        '
+        'txtdp2
+        '
+        Me.txtdp2.BackColor = System.Drawing.Color.Transparent
+        Me.txtdp2.BorderColor = System.Drawing.Color.Transparent
+        Me.txtdp2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtdp2.IsNumiric = False
+        Me.txtdp2.Location = New System.Drawing.Point(71, 0)
+        Me.txtdp2.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtdp2.Name = "txtdp2"
+        Me.txtdp2.ShowClearIcon = False
+        Me.txtdp2.ShowSaveIcon = False
+        Me.txtdp2.Size = New System.Drawing.Size(153, 30)
+        Me.txtdp2.StartUp = 2
+        Me.txtdp2.TabIndex = 12
+        Me.txtdp2.TextSize = 8
+        Me.txtdp2.TxtBackColor = True
+        Me.txtdp2.TxtColor = System.Drawing.Color.White
+        Me.txtdp2.txtReadOnly = False
+        Me.txtdp2.TxtSelect = New Integer() {1, 0}
         '
         'Button2
         '
@@ -766,6 +868,26 @@ Partial Class ChoseCompany
         Me.Panel16.Size = New System.Drawing.Size(434, 32)
         Me.Panel16.TabIndex = 6
         '
+        'txtAjustArt
+        '
+        Me.txtAjustArt.BackColor = System.Drawing.Color.Transparent
+        Me.txtAjustArt.BorderColor = System.Drawing.Color.Transparent
+        Me.txtAjustArt.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtAjustArt.IsNumiric = False
+        Me.txtAjustArt.Location = New System.Drawing.Point(66, 0)
+        Me.txtAjustArt.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtAjustArt.Name = "txtAjustArt"
+        Me.txtAjustArt.ShowClearIcon = False
+        Me.txtAjustArt.ShowSaveIcon = False
+        Me.txtAjustArt.Size = New System.Drawing.Size(335, 30)
+        Me.txtAjustArt.StartUp = 2
+        Me.txtAjustArt.TabIndex = 11
+        Me.txtAjustArt.TextSize = 8
+        Me.txtAjustArt.TxtBackColor = True
+        Me.txtAjustArt.TxtColor = System.Drawing.Color.White
+        Me.txtAjustArt.txtReadOnly = False
+        Me.txtAjustArt.TxtSelect = New Integer() {1, 0}
+        '
         'Button8
         '
         Me.Button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
@@ -801,6 +923,26 @@ Partial Class ChoseCompany
         Me.Panel14.Name = "Panel14"
         Me.Panel14.Size = New System.Drawing.Size(222, 32)
         Me.Panel14.TabIndex = 5
+        '
+        'txtAjustCat
+        '
+        Me.txtAjustCat.BackColor = System.Drawing.Color.Transparent
+        Me.txtAjustCat.BorderColor = System.Drawing.Color.Transparent
+        Me.txtAjustCat.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtAjustCat.IsNumiric = False
+        Me.txtAjustCat.Location = New System.Drawing.Point(71, 0)
+        Me.txtAjustCat.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtAjustCat.Name = "txtAjustCat"
+        Me.txtAjustCat.ShowClearIcon = False
+        Me.txtAjustCat.ShowSaveIcon = False
+        Me.txtAjustCat.Size = New System.Drawing.Size(112, 30)
+        Me.txtAjustCat.StartUp = 2
+        Me.txtAjustCat.TabIndex = 12
+        Me.txtAjustCat.TextSize = 8
+        Me.txtAjustCat.TxtBackColor = True
+        Me.txtAjustCat.TxtColor = System.Drawing.Color.White
+        Me.txtAjustCat.txtReadOnly = False
+        Me.txtAjustCat.TxtSelect = New Integer() {1, 0}
         '
         'Button5
         '
@@ -841,6 +983,26 @@ Partial Class ChoseCompany
         Me.Panel15.Size = New System.Drawing.Size(205, 32)
         Me.Panel15.TabIndex = 4
         '
+        'txtAjustDp
+        '
+        Me.txtAjustDp.BackColor = System.Drawing.Color.Transparent
+        Me.txtAjustDp.BorderColor = System.Drawing.Color.Transparent
+        Me.txtAjustDp.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtAjustDp.IsNumiric = False
+        Me.txtAjustDp.Location = New System.Drawing.Point(71, 0)
+        Me.txtAjustDp.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtAjustDp.Name = "txtAjustDp"
+        Me.txtAjustDp.ShowClearIcon = False
+        Me.txtAjustDp.ShowSaveIcon = False
+        Me.txtAjustDp.Size = New System.Drawing.Size(95, 30)
+        Me.txtAjustDp.StartUp = 2
+        Me.txtAjustDp.TabIndex = 12
+        Me.txtAjustDp.TextSize = 8
+        Me.txtAjustDp.TxtBackColor = True
+        Me.txtAjustDp.TxtColor = System.Drawing.Color.White
+        Me.txtAjustDp.txtReadOnly = False
+        Me.txtAjustDp.TxtSelect = New Integer() {1, 0}
+        '
         'Button7
         '
         Me.Button7.BackColor = System.Drawing.Color.Transparent
@@ -870,6 +1032,7 @@ Partial Class ChoseCompany
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.Button15)
         Me.TabPage4.Controls.Add(Me.Button11)
         Me.TabPage4.Location = New System.Drawing.Point(4, 29)
         Me.TabPage4.Name = "TabPage4"
@@ -885,7 +1048,7 @@ Partial Class ChoseCompany
         Me.Button11.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button11.Image = CType(resources.GetObject("Button11.Image"), System.Drawing.Image)
         Me.Button11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button11.Location = New System.Drawing.Point(235, 26)
+        Me.Button11.Location = New System.Drawing.Point(27, 26)
         Me.Button11.Name = "Button11"
         Me.Button11.Padding = New System.Windows.Forms.Padding(6, 0, 0, 0)
         Me.Button11.Size = New System.Drawing.Size(212, 33)
@@ -933,6 +1096,26 @@ Partial Class ChoseCompany
         Me.Panel17.Name = "Panel17"
         Me.Panel17.Size = New System.Drawing.Size(434, 32)
         Me.Panel17.TabIndex = 10
+        '
+        'txtR
+        '
+        Me.txtR.BackColor = System.Drawing.Color.Transparent
+        Me.txtR.BorderColor = System.Drawing.Color.Transparent
+        Me.txtR.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtR.IsNumiric = False
+        Me.txtR.Location = New System.Drawing.Point(66, 0)
+        Me.txtR.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtR.Name = "txtR"
+        Me.txtR.ShowClearIcon = False
+        Me.txtR.ShowSaveIcon = False
+        Me.txtR.Size = New System.Drawing.Size(335, 30)
+        Me.txtR.StartUp = 2
+        Me.txtR.TabIndex = 11
+        Me.txtR.TextSize = 8
+        Me.txtR.TxtBackColor = True
+        Me.txtR.TxtColor = System.Drawing.Color.White
+        Me.txtR.txtReadOnly = False
+        Me.txtR.TxtSelect = New Integer() {1, 0}
         '
         'Button14
         '
@@ -1073,185 +1256,22 @@ Partial Class ChoseCompany
         'BackgroundWorker1
         '
         '
-        'txt
+        'Button15
         '
-        Me.txt.BackColor = System.Drawing.Color.Transparent
-        Me.txt.BorderColor = System.Drawing.Color.Transparent
-        Me.txt.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txt.IsNumiric = False
-        Me.txt.Location = New System.Drawing.Point(66, 0)
-        Me.txt.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txt.Name = "txt"
-        Me.txt.ShowClearIcon = False
-        Me.txt.ShowSaveIcon = False
-        Me.txt.Size = New System.Drawing.Size(585, 30)
-        Me.txt.StartUp = 2
-        Me.txt.TabIndex = 11
-        Me.txt.TextSize = 8
-        Me.txt.TxtBackColor = True
-        Me.txt.TxtColor = System.Drawing.Color.White
-        Me.txt.txtReadOnly = False
-        Me.txt.TxtSelect = New Integer() {1, 0}
+        Me.Button15.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button15.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button15.Image = CType(resources.GetObject("Button15.Image"), System.Drawing.Image)
+        Me.Button15.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button15.Location = New System.Drawing.Point(266, 26)
+        Me.Button15.Name = "Button15"
+        Me.Button15.Padding = New System.Windows.Forms.Padding(6, 0, 0, 0)
+        Me.Button15.Size = New System.Drawing.Size(212, 33)
+        Me.Button15.TabIndex = 8
+        Me.Button15.Text = "Rapport Hm Details"
+        Me.Button15.UseVisualStyleBackColor = True
         '
-        'txtClient
+        'PrintDoc2
         '
-        Me.txtClient.BackColor = System.Drawing.Color.Transparent
-        Me.txtClient.BorderColor = System.Drawing.Color.Transparent
-        Me.txtClient.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtClient.IsNumiric = False
-        Me.txtClient.Location = New System.Drawing.Point(46, 0)
-        Me.txtClient.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtClient.Name = "txtClient"
-        Me.txtClient.ShowClearIcon = False
-        Me.txtClient.ShowSaveIcon = False
-        Me.txtClient.Size = New System.Drawing.Size(115, 30)
-        Me.txtClient.StartUp = 2
-        Me.txtClient.TabIndex = 12
-        Me.txtClient.TextSize = 8
-        Me.txtClient.TxtBackColor = True
-        Me.txtClient.TxtColor = System.Drawing.Color.White
-        Me.txtClient.txtReadOnly = False
-        Me.txtClient.TxtSelect = New Integer() {1, 0}
-        '
-        'txtDepot
-        '
-        Me.txtDepot.BackColor = System.Drawing.Color.Transparent
-        Me.txtDepot.BorderColor = System.Drawing.Color.Transparent
-        Me.txtDepot.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtDepot.IsNumiric = False
-        Me.txtDepot.Location = New System.Drawing.Point(46, 0)
-        Me.txtDepot.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtDepot.Name = "txtDepot"
-        Me.txtDepot.ShowClearIcon = False
-        Me.txtDepot.ShowSaveIcon = False
-        Me.txtDepot.Size = New System.Drawing.Size(60, 30)
-        Me.txtDepot.StartUp = 2
-        Me.txtDepot.TabIndex = 12
-        Me.txtDepot.TextSize = 8
-        Me.txtDepot.TxtBackColor = True
-        Me.txtDepot.TxtColor = System.Drawing.Color.White
-        Me.txtDepot.txtReadOnly = False
-        Me.txtDepot.TxtSelect = New Integer() {1, 0}
-        '
-        'txtCat
-        '
-        Me.txtCat.BackColor = System.Drawing.Color.Transparent
-        Me.txtCat.BorderColor = System.Drawing.Color.Transparent
-        Me.txtCat.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtCat.IsNumiric = False
-        Me.txtCat.Location = New System.Drawing.Point(71, 0)
-        Me.txtCat.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtCat.Name = "txtCat"
-        Me.txtCat.ShowClearIcon = False
-        Me.txtCat.ShowSaveIcon = False
-        Me.txtCat.Size = New System.Drawing.Size(153, 30)
-        Me.txtCat.StartUp = 2
-        Me.txtCat.TabIndex = 12
-        Me.txtCat.TextSize = 8
-        Me.txtCat.TxtBackColor = True
-        Me.txtCat.TxtColor = System.Drawing.Color.White
-        Me.txtCat.txtReadOnly = False
-        Me.txtCat.TxtSelect = New Integer() {1, 0}
-        '
-        'txtdp2
-        '
-        Me.txtdp2.BackColor = System.Drawing.Color.Transparent
-        Me.txtdp2.BorderColor = System.Drawing.Color.Transparent
-        Me.txtdp2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtdp2.IsNumiric = False
-        Me.txtdp2.Location = New System.Drawing.Point(71, 0)
-        Me.txtdp2.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtdp2.Name = "txtdp2"
-        Me.txtdp2.ShowClearIcon = False
-        Me.txtdp2.ShowSaveIcon = False
-        Me.txtdp2.Size = New System.Drawing.Size(153, 30)
-        Me.txtdp2.StartUp = 2
-        Me.txtdp2.TabIndex = 12
-        Me.txtdp2.TextSize = 8
-        Me.txtdp2.TxtBackColor = True
-        Me.txtdp2.TxtColor = System.Drawing.Color.White
-        Me.txtdp2.txtReadOnly = False
-        Me.txtdp2.TxtSelect = New Integer() {1, 0}
-        '
-        'txtAjustArt
-        '
-        Me.txtAjustArt.BackColor = System.Drawing.Color.Transparent
-        Me.txtAjustArt.BorderColor = System.Drawing.Color.Transparent
-        Me.txtAjustArt.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtAjustArt.IsNumiric = False
-        Me.txtAjustArt.Location = New System.Drawing.Point(66, 0)
-        Me.txtAjustArt.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtAjustArt.Name = "txtAjustArt"
-        Me.txtAjustArt.ShowClearIcon = False
-        Me.txtAjustArt.ShowSaveIcon = False
-        Me.txtAjustArt.Size = New System.Drawing.Size(335, 30)
-        Me.txtAjustArt.StartUp = 2
-        Me.txtAjustArt.TabIndex = 11
-        Me.txtAjustArt.TextSize = 8
-        Me.txtAjustArt.TxtBackColor = True
-        Me.txtAjustArt.TxtColor = System.Drawing.Color.White
-        Me.txtAjustArt.txtReadOnly = False
-        Me.txtAjustArt.TxtSelect = New Integer() {1, 0}
-        '
-        'txtAjustCat
-        '
-        Me.txtAjustCat.BackColor = System.Drawing.Color.Transparent
-        Me.txtAjustCat.BorderColor = System.Drawing.Color.Transparent
-        Me.txtAjustCat.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtAjustCat.IsNumiric = False
-        Me.txtAjustCat.Location = New System.Drawing.Point(71, 0)
-        Me.txtAjustCat.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtAjustCat.Name = "txtAjustCat"
-        Me.txtAjustCat.ShowClearIcon = False
-        Me.txtAjustCat.ShowSaveIcon = False
-        Me.txtAjustCat.Size = New System.Drawing.Size(112, 30)
-        Me.txtAjustCat.StartUp = 2
-        Me.txtAjustCat.TabIndex = 12
-        Me.txtAjustCat.TextSize = 8
-        Me.txtAjustCat.TxtBackColor = True
-        Me.txtAjustCat.TxtColor = System.Drawing.Color.White
-        Me.txtAjustCat.txtReadOnly = False
-        Me.txtAjustCat.TxtSelect = New Integer() {1, 0}
-        '
-        'txtAjustDp
-        '
-        Me.txtAjustDp.BackColor = System.Drawing.Color.Transparent
-        Me.txtAjustDp.BorderColor = System.Drawing.Color.Transparent
-        Me.txtAjustDp.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtAjustDp.IsNumiric = False
-        Me.txtAjustDp.Location = New System.Drawing.Point(71, 0)
-        Me.txtAjustDp.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtAjustDp.Name = "txtAjustDp"
-        Me.txtAjustDp.ShowClearIcon = False
-        Me.txtAjustDp.ShowSaveIcon = False
-        Me.txtAjustDp.Size = New System.Drawing.Size(95, 30)
-        Me.txtAjustDp.StartUp = 2
-        Me.txtAjustDp.TabIndex = 12
-        Me.txtAjustDp.TextSize = 8
-        Me.txtAjustDp.TxtBackColor = True
-        Me.txtAjustDp.TxtColor = System.Drawing.Color.White
-        Me.txtAjustDp.txtReadOnly = False
-        Me.txtAjustDp.TxtSelect = New Integer() {1, 0}
-        '
-        'txtR
-        '
-        Me.txtR.BackColor = System.Drawing.Color.Transparent
-        Me.txtR.BorderColor = System.Drawing.Color.Transparent
-        Me.txtR.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtR.IsNumiric = False
-        Me.txtR.Location = New System.Drawing.Point(66, 0)
-        Me.txtR.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtR.Name = "txtR"
-        Me.txtR.ShowClearIcon = False
-        Me.txtR.ShowSaveIcon = False
-        Me.txtR.Size = New System.Drawing.Size(335, 30)
-        Me.txtR.StartUp = 2
-        Me.txtR.TabIndex = 11
-        Me.txtR.TextSize = 8
-        Me.txtR.TxtBackColor = True
-        Me.txtR.TxtColor = System.Drawing.Color.White
-        Me.txtR.txtReadOnly = False
-        Me.txtR.TxtSelect = New Integer() {1, 0}
         '
         'ChoseCompany
         '
@@ -1383,4 +1403,6 @@ Partial Class ChoseCompany
     Friend WithEvents txtClient As Al_Mohasib.TxtBox
     Friend WithEvents Button13 As System.Windows.Forms.Button
     Friend WithEvents Label16 As System.Windows.Forms.Label
+    Friend WithEvents Button15 As System.Windows.Forms.Button
+    Friend WithEvents PrintDoc2 As System.Drawing.Printing.PrintDocument
 End Class

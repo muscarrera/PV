@@ -4,7 +4,7 @@ Imports System.Text.RegularExpressions
 
 Module AdminModule
 
-    Dim VER As String = "ALMsbtrFirstRun_sql_9"
+    Dim VER As String = "ALMsbtrFirstRun_sql_10"
 
     Dim _strKey As String
     Dim strFirstUse = "AL Mohasib System de gestion - Premier utilisation .."

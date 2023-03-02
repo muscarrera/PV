@@ -59,7 +59,7 @@ Module ExcelModule
         Next
 
 
-        For i = 0 To DataGridView1.RowCount - 1
+        For i = 0 To DataGridView1.Rows.Count - 1
 
             j = 0
             Dim cl = -1
@@ -88,7 +88,7 @@ Module ExcelModule
 
         MsgBox("Fichier excel est bien enregistré ...")
     End Sub
-
+    
     Private Sub releaseObject(ByVal obj As Object)
         Try
             System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)

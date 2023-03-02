@@ -679,12 +679,11 @@
                 params.Add("name", "facture")
                 params.Add("cid", clid)
                 params.Add("montant", rest)
-                params.Add("way", "CACHE")
+                params.Add("way", "Cache")
                 params.Add("date", Now)
-                params.Add("Num", "0")
                 params.Add("fctid", fctid)
-                params.Add("writer", Form1.admin)
-                params.Add("paydate", Now.Date)
+                params.Add("writer", Form1.adminName)
+                params.Add("paydate", Now)
 
                 c.InsertRecord(tb, params, True)
             End Using

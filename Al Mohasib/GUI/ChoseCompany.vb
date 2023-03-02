@@ -1107,4 +1107,29 @@
         End If
 
     End Sub
+
+    Private Sub Button15_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button15.Click
+        Try
+            PrintDoc2.PrinterSettings.PrinterName = Form1.txttimp.Text
+            PrintDoc2.Print()
+
+        Catch ex As Exception
+             
+        End Try
+    End Sub
+
+    Private Sub PrintDoc2_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDoc2.PrintPage
+        Try
+            Using a As DrawClass = New DrawClass
+                a.RepportFactureRecept(e, dte1.Value, dte2.Value)
+            End Using
+            myTva.Clear()
+        Catch ex As Exception
+            M = 0
+            myTva.Clear()
+        End Try
+    End Sub
+    Dim M As Integer = 0
+    Dim numPage As Integer = 1
+    Dim myTva As New Dictionary(Of String, Double)
 End Class

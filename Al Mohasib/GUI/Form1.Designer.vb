@@ -94,6 +94,8 @@ Partial Class Form1
         Me.Label54 = New System.Windows.Forms.Label()
         Me.txtfntsize = New System.Windows.Forms.TextBox()
         Me.GB4 = New System.Windows.Forms.GroupBox()
+        Me.Label71 = New System.Windows.Forms.Label()
+        Me.txtGroupe = New System.Windows.Forms.TextBox()
         Me.Button40 = New System.Windows.Forms.Button()
         Me.cbNormalImp = New System.Windows.Forms.CheckBox()
         Me.Button39 = New System.Windows.Forms.Button()
@@ -345,6 +347,16 @@ Partial Class Form1
         Me.Label17 = New System.Windows.Forms.Label()
         Me.txtchtotal = New System.Windows.Forms.TextBox()
         Me.TabPageParm = New System.Windows.Forms.TabPage()
+        Me.GB8 = New System.Windows.Forms.GroupBox()
+        Me.txtBLCFormat = New System.Windows.Forms.TextBox()
+        Me.Label73 = New System.Windows.Forms.Label()
+        Me.btCon = New System.Windows.Forms.Button()
+        Me.txtComBalance = New System.Windows.Forms.TextBox()
+        Me.Label70 = New System.Windows.Forms.Label()
+        Me.Panel27 = New System.Windows.Forms.Panel()
+        Me.txtQte = New System.Windows.Forms.TextBox()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.Button87 = New System.Windows.Forms.Button()
         Me.GB7 = New System.Windows.Forms.GroupBox()
         Me.cbServerDriver = New System.Windows.Forms.CheckBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -450,6 +462,7 @@ Partial Class Form1
         Me.Label49 = New System.Windows.Forms.Label()
         Me.GB2 = New System.Windows.Forms.GroupBox()
         Me.Panel32 = New System.Windows.Forms.Panel()
+        Me.Button69 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button21 = New System.Windows.Forms.Button()
@@ -551,6 +564,8 @@ Partial Class Form1
         Me.Panel22.SuspendLayout()
         Me.Panel18.SuspendLayout()
         Me.TabPageParm.SuspendLayout()
+        Me.GB8.SuspendLayout()
+        Me.Panel27.SuspendLayout()
         Me.GB7.SuspendLayout()
         Me.GB6.SuspendLayout()
         Me.GB5.SuspendLayout()
@@ -777,9 +792,9 @@ Partial Class Form1
         Me.GB1.Controls.Add(Me.Panel34)
         Me.GB1.Controls.Add(Me.Panel31)
         Me.GB1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB1.Location = New System.Drawing.Point(729, 3)
+        Me.GB1.Location = New System.Drawing.Point(755, 3)
         Me.GB1.Name = "GB1"
-        Me.GB1.Size = New System.Drawing.Size(132, 598)
+        Me.GB1.Size = New System.Drawing.Size(106, 598)
         Me.GB1.TabIndex = 5
         Me.GB1.TabStop = False
         '
@@ -801,7 +816,7 @@ Partial Class Form1
         Me.Panel34.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel34.Location = New System.Drawing.Point(23, 16)
         Me.Panel34.Name = "Panel34"
-        Me.Panel34.Size = New System.Drawing.Size(106, 579)
+        Me.Panel34.Size = New System.Drawing.Size(80, 579)
         Me.Panel34.TabIndex = 5
         '
         'Button46
@@ -994,7 +1009,7 @@ Partial Class Form1
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.ForeColor = System.Drawing.Color.Red
         Me.Button4.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button4.Location = New System.Drawing.Point(89, 27)
+        Me.Button4.Location = New System.Drawing.Point(90, 27)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(135, 48)
         Me.Button4.TabIndex = 1
@@ -1056,7 +1071,7 @@ Partial Class Form1
         Me.Label69.AutoSize = True
         Me.Label69.Location = New System.Drawing.Point(112, 21)
         Me.Label69.Name = "Label69"
-        Me.Label69.Size = New System.Drawing.Size(96, 13)
+        Me.Label69.Size = New System.Drawing.Size(101, 13)
         Me.Label69.TabIndex = 3
         Me.Label69.Text = "اسم طابعة الايصالات"
         '
@@ -1096,7 +1111,7 @@ Partial Class Form1
         Me.Label66.AutoSize = True
         Me.Label66.Location = New System.Drawing.Point(139, 18)
         Me.Label66.Name = "Label66"
-        Me.Label66.Size = New System.Drawing.Size(68, 13)
+        Me.Label66.Size = New System.Drawing.Size(73, 13)
         Me.Label66.TabIndex = 3
         Me.Label66.Text = "اسم الطابعة 2"
         '
@@ -1124,7 +1139,7 @@ Partial Class Form1
         Me.Label53.AutoSize = True
         Me.Label53.Location = New System.Drawing.Point(157, 24)
         Me.Label53.Name = "Label53"
-        Me.Label53.Size = New System.Drawing.Size(99, 13)
+        Me.Label53.Size = New System.Drawing.Size(107, 13)
         Me.Label53.TabIndex = 3
         Me.Label53.Text = "اسم الطابعة الرئيسية"
         '
@@ -1134,7 +1149,7 @@ Partial Class Form1
         Me.chbreceipt.Location = New System.Drawing.Point(81, 165)
         Me.chbreceipt.Name = "chbreceipt"
         Me.chbreceipt.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.chbreceipt.Size = New System.Drawing.Size(175, 17)
+        Me.chbreceipt.Size = New System.Drawing.Size(177, 17)
         Me.chbreceipt.TabIndex = 5
         Me.chbreceipt.Text = "استعمال طابعة الايصالات الصغيرة"
         Me.chbreceipt.UseVisualStyleBackColor = True
@@ -1146,7 +1161,7 @@ Partial Class Form1
         Me.chbprint.Location = New System.Drawing.Point(167, 76)
         Me.chbprint.Name = "chbprint"
         Me.chbprint.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.chbprint.Size = New System.Drawing.Size(89, 17)
+        Me.chbprint.Size = New System.Drawing.Size(82, 17)
         Me.chbprint.TabIndex = 5
         Me.chbprint.Text = "طابعة كود بار"
         Me.chbprint.UseVisualStyleBackColor = True
@@ -1199,7 +1214,7 @@ Partial Class Form1
         Me.Label21.AutoSize = True
         Me.Label21.Location = New System.Drawing.Point(48, 542)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(42, 13)
+        Me.Label21.Size = New System.Drawing.Size(44, 13)
         Me.Label21.TabIndex = 3
         Me.Label21.Text = "Format "
         '
@@ -1216,7 +1231,7 @@ Partial Class Form1
         Me.Label55.AutoSize = True
         Me.Label55.Location = New System.Drawing.Point(166, 319)
         Me.Label55.Name = "Label55"
-        Me.Label55.Size = New System.Drawing.Size(30, 13)
+        Me.Label55.Size = New System.Drawing.Size(29, 13)
         Me.Label55.TabIndex = 3
         Me.Label55.Text = "Taile"
         '
@@ -1225,7 +1240,7 @@ Partial Class Form1
         Me.Label54.AutoSize = True
         Me.Label54.Location = New System.Drawing.Point(42, 318)
         Me.Label54.Name = "Label54"
-        Me.Label54.Size = New System.Drawing.Size(95, 13)
+        Me.Label54.Size = New System.Drawing.Size(98, 13)
         Me.Label54.TabIndex = 3
         Me.Label54.Text = "Font Grand Format"
         '
@@ -1240,6 +1255,8 @@ Partial Class Form1
         '
         'GB4
         '
+        Me.GB4.Controls.Add(Me.Label71)
+        Me.GB4.Controls.Add(Me.txtGroupe)
         Me.GB4.Controls.Add(Me.Button40)
         Me.GB4.Controls.Add(Me.cbNormalImp)
         Me.GB4.Controls.Add(Me.Button39)
@@ -1279,11 +1296,28 @@ Partial Class Form1
         Me.GB4.Controls.Add(Me.txtNbrArt)
         Me.GB4.Controls.Add(Me.txtlargebt)
         Me.GB4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB4.Location = New System.Drawing.Point(561, 3)
+        Me.GB4.Location = New System.Drawing.Point(551, 3)
         Me.GB4.Name = "GB4"
-        Me.GB4.Size = New System.Drawing.Size(87, 598)
+        Me.GB4.Size = New System.Drawing.Size(42, 598)
         Me.GB4.TabIndex = 0
         Me.GB4.TabStop = False
+        '
+        'Label71
+        '
+        Me.Label71.AutoSize = True
+        Me.Label71.Location = New System.Drawing.Point(41, 466)
+        Me.Label71.Name = "Label71"
+        Me.Label71.Size = New System.Drawing.Size(47, 13)
+        Me.Label71.TabIndex = 27
+        Me.Label71.Text = "Groupes"
+        '
+        'txtGroupe
+        '
+        Me.txtGroupe.Location = New System.Drawing.Point(129, 461)
+        Me.txtGroupe.Name = "txtGroupe"
+        Me.txtGroupe.Size = New System.Drawing.Size(186, 20)
+        Me.txtGroupe.TabIndex = 26
+        Me.txtGroupe.Text = "1-2-3-4"
         '
         'Button40
         '
@@ -1299,7 +1333,7 @@ Partial Class Form1
         Me.cbNormalImp.AutoSize = True
         Me.cbNormalImp.Location = New System.Drawing.Point(41, 366)
         Me.cbNormalImp.Name = "cbNormalImp"
-        Me.cbNormalImp.Size = New System.Drawing.Size(172, 17)
+        Me.cbNormalImp.Size = New System.Drawing.Size(175, 17)
         Me.cbNormalImp.TabIndex = 24
         Me.cbNormalImp.Text = "Design d'impression par default"
         Me.cbNormalImp.UseVisualStyleBackColor = True
@@ -1327,9 +1361,9 @@ Partial Class Form1
         '
         'dtFacture
         '
-        Me.dtFacture.Location = New System.Drawing.Point(118, 477)
+        Me.dtFacture.Location = New System.Drawing.Point(113, 488)
         Me.dtFacture.Name = "dtFacture"
-        Me.dtFacture.Size = New System.Drawing.Size(203, 20)
+        Me.dtFacture.Size = New System.Drawing.Size(201, 20)
         Me.dtFacture.TabIndex = 8
         '
         'txttitlestart
@@ -1352,7 +1386,7 @@ Partial Class Form1
         'TxtSignature
         '
         Me.TxtSignature.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtSignature.Location = New System.Drawing.Point(112, 508)
+        Me.TxtSignature.Location = New System.Drawing.Point(113, 512)
         Me.TxtSignature.Name = "TxtSignature"
         Me.TxtSignature.Size = New System.Drawing.Size(201, 20)
         Me.TxtSignature.TabIndex = 4
@@ -1426,18 +1460,18 @@ Partial Class Form1
         'Label59
         '
         Me.Label59.AutoSize = True
-        Me.Label59.Location = New System.Drawing.Point(45, 399)
+        Me.Label59.Location = New System.Drawing.Point(45, 392)
         Me.Label59.Name = "Label59"
-        Me.Label59.Size = New System.Drawing.Size(146, 13)
+        Me.Label59.Size = New System.Drawing.Size(149, 13)
         Me.Label59.TabIndex = 3
         Me.Label59.Text = "Nom d'utilisateur client normal"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(47, 480)
+        Me.Label9.Location = New System.Drawing.Point(41, 491)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(60, 13)
+        Me.Label9.Size = New System.Drawing.Size(56, 13)
         Me.Label9.TabIndex = 3
         Me.Label9.Text = "Date Bl/Bc"
         '
@@ -1446,16 +1480,16 @@ Partial Class Form1
         Me.Label34.AutoSize = True
         Me.Label34.Location = New System.Drawing.Point(41, 88)
         Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(22, 13)
+        Me.Label34.Size = New System.Drawing.Size(21, 13)
         Me.Label34.TabIndex = 3
         Me.Label34.Text = "Tel"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(39, 510)
+        Me.Label7.Location = New System.Drawing.Point(41, 514)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(68, 13)
+        Me.Label7.Size = New System.Drawing.Size(67, 13)
         Me.Label7.TabIndex = 3
         Me.Label7.Text = "Signature BL"
         '
@@ -1464,23 +1498,23 @@ Partial Class Form1
         Me.Adrs.AutoSize = True
         Me.Adrs.Location = New System.Drawing.Point(41, 63)
         Me.Adrs.Name = "Adrs"
-        Me.Adrs.Size = New System.Drawing.Size(28, 13)
+        Me.Adrs.Size = New System.Drawing.Size(29, 13)
         Me.Adrs.TabIndex = 3
         Me.Adrs.Text = "Adrs"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(248, 452)
+        Me.Label1.Location = New System.Drawing.Point(248, 440)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(26, 13)
+        Me.Label1.Size = New System.Drawing.Size(24, 13)
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "Ech"
         '
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(177, 451)
+        Me.Label23.Location = New System.Drawing.Point(177, 439)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(24, 13)
         Me.Label23.TabIndex = 3
@@ -1489,9 +1523,9 @@ Partial Class Form1
         'Label58
         '
         Me.Label58.AutoSize = True
-        Me.Label58.Location = New System.Drawing.Point(115, 452)
+        Me.Label58.Location = New System.Drawing.Point(115, 440)
         Me.Label58.Name = "Label58"
-        Me.Label58.Size = New System.Drawing.Size(15, 13)
+        Me.Label58.Size = New System.Drawing.Size(14, 13)
         Me.Label58.TabIndex = 3
         Me.Label58.Text = "H"
         '
@@ -1500,7 +1534,7 @@ Partial Class Form1
         Me.Label65.AutoSize = True
         Me.Label65.Location = New System.Drawing.Point(41, 20)
         Me.Label65.Name = "Label65"
-        Me.Label65.Size = New System.Drawing.Size(14, 13)
+        Me.Label65.Size = New System.Drawing.Size(13, 13)
         Me.Label65.TabIndex = 3
         Me.Label65.Text = "X"
         '
@@ -1509,16 +1543,16 @@ Partial Class Form1
         Me.Label60.AutoSize = True
         Me.Label60.Location = New System.Drawing.Point(74, 20)
         Me.Label60.Name = "Label60"
-        Me.Label60.Size = New System.Drawing.Size(28, 13)
+        Me.Label60.Size = New System.Drawing.Size(29, 13)
         Me.Label60.TabIndex = 3
         Me.Label60.Text = "Titre"
         '
         'Label57
         '
         Me.Label57.AutoSize = True
-        Me.Label57.Location = New System.Drawing.Point(49, 452)
+        Me.Label57.Location = New System.Drawing.Point(49, 440)
         Me.Label57.Name = "Label57"
-        Me.Label57.Size = New System.Drawing.Size(18, 13)
+        Me.Label57.Size = New System.Drawing.Size(17, 13)
         Me.Label57.TabIndex = 3
         Me.Label57.Text = "W"
         '
@@ -1527,7 +1561,7 @@ Partial Class Form1
         Me.cbShowGloblCredit.AutoSize = True
         Me.cbShowGloblCredit.Location = New System.Drawing.Point(41, 343)
         Me.cbShowGloblCredit.Name = "cbShowGloblCredit"
-        Me.cbShowGloblCredit.Size = New System.Drawing.Size(170, 17)
+        Me.cbShowGloblCredit.Size = New System.Drawing.Size(174, 17)
         Me.cbShowGloblCredit.TabIndex = 5
         Me.cbShowGloblCredit.Text = "Afficher le TotalCredit de client"
         Me.cbShowGloblCredit.UseVisualStyleBackColor = True
@@ -1537,7 +1571,7 @@ Partial Class Form1
         Me.cbShowRef.AutoSize = True
         Me.cbShowRef.Location = New System.Drawing.Point(41, 323)
         Me.cbShowRef.Name = "cbShowRef"
-        Me.cbShowRef.Size = New System.Drawing.Size(93, 17)
+        Me.cbShowRef.Size = New System.Drawing.Size(95, 17)
         Me.cbShowRef.TabIndex = 5
         Me.cbShowRef.Text = "Afficher le Réf"
         Me.cbShowRef.UseVisualStyleBackColor = True
@@ -1557,14 +1591,14 @@ Partial Class Form1
         Me.cbMsgOc.AutoSize = True
         Me.cbMsgOc.Location = New System.Drawing.Point(42, 199)
         Me.cbMsgOc.Name = "cbMsgOc"
-        Me.cbMsgOc.Size = New System.Drawing.Size(129, 17)
+        Me.cbMsgOc.Size = New System.Drawing.Size(126, 17)
         Me.cbMsgOc.TabIndex = 5
         Me.cbMsgOc.Text = "Message occasionnel"
         Me.cbMsgOc.UseVisualStyleBackColor = True
         '
         'txtcltcomptoir
         '
-        Me.txtcltcomptoir.Location = New System.Drawing.Point(50, 416)
+        Me.txtcltcomptoir.Location = New System.Drawing.Point(50, 409)
         Me.txtcltcomptoir.Name = "txtcltcomptoir"
         Me.txtcltcomptoir.Size = New System.Drawing.Size(269, 20)
         Me.txtcltcomptoir.TabIndex = 2
@@ -1573,7 +1607,7 @@ Partial Class Form1
         '
         'txtlongerbt
         '
-        Me.txtlongerbt.Location = New System.Drawing.Point(67, 448)
+        Me.txtlongerbt.Location = New System.Drawing.Point(67, 436)
         Me.txtlongerbt.Name = "txtlongerbt"
         Me.txtlongerbt.Size = New System.Drawing.Size(40, 20)
         Me.txtlongerbt.TabIndex = 2
@@ -1581,7 +1615,7 @@ Partial Class Form1
         '
         'txtScale
         '
-        Me.txtScale.Location = New System.Drawing.Point(276, 449)
+        Me.txtScale.Location = New System.Drawing.Point(276, 437)
         Me.txtScale.Name = "txtScale"
         Me.txtScale.Size = New System.Drawing.Size(43, 20)
         Me.txtScale.TabIndex = 1
@@ -1589,7 +1623,7 @@ Partial Class Form1
         '
         'txtNbrArt
         '
-        Me.txtNbrArt.Location = New System.Drawing.Point(206, 448)
+        Me.txtNbrArt.Location = New System.Drawing.Point(206, 436)
         Me.txtNbrArt.Name = "txtNbrArt"
         Me.txtNbrArt.Size = New System.Drawing.Size(33, 20)
         Me.txtNbrArt.TabIndex = 1
@@ -1597,7 +1631,7 @@ Partial Class Form1
         '
         'txtlargebt
         '
-        Me.txtlargebt.Location = New System.Drawing.Point(133, 448)
+        Me.txtlargebt.Location = New System.Drawing.Point(133, 436)
         Me.txtlargebt.Name = "txtlargebt"
         Me.txtlargebt.Size = New System.Drawing.Size(36, 20)
         Me.txtlargebt.TabIndex = 1
@@ -1628,7 +1662,7 @@ Partial Class Form1
         Me.Label63.AutoSize = True
         Me.Label63.Location = New System.Drawing.Point(37, 484)
         Me.Label63.Name = "Label63"
-        Me.Label63.Size = New System.Drawing.Size(75, 13)
+        Me.Label63.Size = New System.Drawing.Size(73, 13)
         Me.Label63.TabIndex = 3
         Me.Label63.Text = "M. Recherche"
         '
@@ -1637,7 +1671,7 @@ Partial Class Form1
         Me.cbMultiPayemnt.AutoSize = True
         Me.cbMultiPayemnt.Location = New System.Drawing.Point(51, 115)
         Me.cbMultiPayemnt.Name = "cbMultiPayemnt"
-        Me.cbMultiPayemnt.Size = New System.Drawing.Size(125, 17)
+        Me.cbMultiPayemnt.Size = New System.Drawing.Size(127, 17)
         Me.cbMultiPayemnt.TabIndex = 5
         Me.cbMultiPayemnt.Text = "Fractionné paiement "
         Me.cbMultiPayemnt.UseVisualStyleBackColor = True
@@ -1647,7 +1681,7 @@ Partial Class Form1
         Me.cbImgPrice.AutoSize = True
         Me.cbImgPrice.Location = New System.Drawing.Point(51, 267)
         Me.cbImgPrice.Name = "cbImgPrice"
-        Me.cbImgPrice.Size = New System.Drawing.Size(107, 17)
+        Me.cbImgPrice.Size = New System.Drawing.Size(108, 17)
         Me.cbImgPrice.TabIndex = 5
         Me.cbImgPrice.Text = "Fusionner l'image"
         Me.cbImgPrice.UseVisualStyleBackColor = True
@@ -1657,7 +1691,7 @@ Partial Class Form1
         Me.cbheader.AutoSize = True
         Me.cbheader.Location = New System.Drawing.Point(51, 343)
         Me.cbheader.Name = "cbheader"
-        Me.cbheader.Size = New System.Drawing.Size(108, 17)
+        Me.cbheader.Size = New System.Drawing.Size(109, 17)
         Me.cbheader.TabIndex = 5
         Me.cbheader.Text = "Imp avec l'Entete"
         Me.cbheader.UseVisualStyleBackColor = True
@@ -1667,7 +1701,7 @@ Partial Class Form1
         Me.cbUnite.AutoSize = True
         Me.cbUnite.Location = New System.Drawing.Point(51, 324)
         Me.cbUnite.Name = "cbUnite"
-        Me.cbUnite.Size = New System.Drawing.Size(97, 17)
+        Me.cbUnite.Size = New System.Drawing.Size(98, 17)
         Me.cbUnite.TabIndex = 5
         Me.cbUnite.Text = "Masquer l'unité"
         Me.cbUnite.UseVisualStyleBackColor = True
@@ -1677,7 +1711,7 @@ Partial Class Form1
         Me.cbProfit.AutoSize = True
         Me.cbProfit.Location = New System.Drawing.Point(51, 305)
         Me.cbProfit.Name = "cbProfit"
-        Me.cbProfit.Size = New System.Drawing.Size(117, 17)
+        Me.cbProfit.Size = New System.Drawing.Size(119, 17)
         Me.cbProfit.TabIndex = 5
         Me.cbProfit.Text = "Montrer le bénéfice"
         Me.cbProfit.UseVisualStyleBackColor = True
@@ -1687,7 +1721,7 @@ Partial Class Form1
         Me.CbDisArch.AutoSize = True
         Me.CbDisArch.Location = New System.Drawing.Point(51, 229)
         Me.CbDisArch.Name = "CbDisArch"
-        Me.CbDisArch.Size = New System.Drawing.Size(178, 17)
+        Me.CbDisArch.Size = New System.Drawing.Size(179, 17)
         Me.CbDisArch.TabIndex = 5
         Me.CbDisArch.Text = "Désactiver l'édition des archives"
         Me.CbDisArch.UseVisualStyleBackColor = True
@@ -1697,7 +1731,7 @@ Partial Class Form1
         Me.cbPrintDepot.AutoSize = True
         Me.cbPrintDepot.Location = New System.Drawing.Point(51, 248)
         Me.cbPrintDepot.Name = "cbPrintDepot"
-        Me.cbPrintDepot.Size = New System.Drawing.Size(133, 17)
+        Me.cbPrintDepot.Size = New System.Drawing.Size(136, 17)
         Me.cbPrintDepot.TabIndex = 5
         Me.cbPrintDepot.Text = "Impression  bon dépôt "
         Me.cbPrintDepot.UseVisualStyleBackColor = True
@@ -1707,7 +1741,7 @@ Partial Class Form1
         Me.CbQteStk.AutoSize = True
         Me.CbQteStk.Location = New System.Drawing.Point(51, 210)
         Me.CbQteStk.Name = "CbQteStk"
-        Me.CbQteStk.Size = New System.Drawing.Size(176, 17)
+        Me.CbQteStk.Size = New System.Drawing.Size(177, 17)
         Me.CbQteStk.TabIndex = 5
         Me.CbQteStk.Text = "A ne pas dépasser qté de stock"
         Me.CbQteStk.UseVisualStyleBackColor = True
@@ -1717,7 +1751,7 @@ Partial Class Form1
         Me.CbBlocModArt.AutoSize = True
         Me.CbBlocModArt.Location = New System.Drawing.Point(51, 77)
         Me.CbBlocModArt.Name = "CbBlocModArt"
-        Me.CbBlocModArt.Size = New System.Drawing.Size(204, 17)
+        Me.CbBlocModArt.Size = New System.Drawing.Size(207, 17)
         Me.CbBlocModArt.TabIndex = 5
         Me.CbBlocModArt.Text = "Rassembler les modification sur article"
         Me.CbBlocModArt.UseVisualStyleBackColor = True
@@ -1727,7 +1761,7 @@ Partial Class Form1
         Me.CbBlocCalc.AutoSize = True
         Me.CbBlocCalc.Location = New System.Drawing.Point(51, 172)
         Me.CbBlocCalc.Name = "CbBlocCalc"
-        Me.CbBlocCalc.Size = New System.Drawing.Size(156, 17)
+        Me.CbBlocCalc.Size = New System.Drawing.Size(155, 17)
         Me.CbBlocCalc.TabIndex = 5
         Me.CbBlocCalc.Text = "Apparaître bloc calculatrice"
         Me.CbBlocCalc.UseVisualStyleBackColor = True
@@ -1737,7 +1771,7 @@ Partial Class Form1
         Me.cbQte.AutoSize = True
         Me.cbQte.Location = New System.Drawing.Point(51, 153)
         Me.cbQte.Name = "cbQte"
-        Me.cbQte.Size = New System.Drawing.Size(161, 17)
+        Me.cbQte.Size = New System.Drawing.Size(165, 17)
         Me.cbQte.TabIndex = 5
         Me.cbQte.Text = "Saisir la quantité directement"
         Me.cbQte.UseVisualStyleBackColor = True
@@ -1757,7 +1791,7 @@ Partial Class Form1
         Me.cbTiroir.AutoSize = True
         Me.cbTiroir.Location = New System.Drawing.Point(190, 307)
         Me.cbTiroir.Name = "cbTiroir"
-        Me.cbTiroir.Size = New System.Drawing.Size(82, 17)
+        Me.cbTiroir.Size = New System.Drawing.Size(83, 17)
         Me.cbTiroir.TabIndex = 5
         Me.cbTiroir.Text = "Tiroir-caisse"
         Me.cbTiroir.UseVisualStyleBackColor = True
@@ -1767,7 +1801,7 @@ Partial Class Form1
         Me.cbDual.AutoSize = True
         Me.cbDual.Location = New System.Drawing.Point(190, 287)
         Me.cbDual.Name = "cbDual"
-        Me.cbDual.Size = New System.Drawing.Size(88, 17)
+        Me.cbDual.Size = New System.Drawing.Size(86, 17)
         Me.cbDual.TabIndex = 5
         Me.cbDual.Text = " Dual Screen"
         Me.cbDual.UseVisualStyleBackColor = True
@@ -1777,7 +1811,7 @@ Partial Class Form1
         Me.CbDepotOrigine.AutoSize = True
         Me.CbDepotOrigine.Location = New System.Drawing.Point(190, 247)
         Me.CbDepotOrigine.Name = "CbDepotOrigine"
-        Me.CbDepotOrigine.Size = New System.Drawing.Size(123, 17)
+        Me.CbDepotOrigine.Size = New System.Drawing.Size(125, 17)
         Me.CbDepotOrigine.TabIndex = 5
         Me.CbDepotOrigine.Text = "Basé sur dépôt initial"
         Me.CbDepotOrigine.UseVisualStyleBackColor = True
@@ -1787,7 +1821,7 @@ Partial Class Form1
         Me.CbArticleRemise.AutoSize = True
         Me.CbArticleRemise.Location = New System.Drawing.Point(190, 267)
         Me.CbArticleRemise.Name = "CbArticleRemise"
-        Me.CbArticleRemise.Size = New System.Drawing.Size(114, 17)
+        Me.CbArticleRemise.Size = New System.Drawing.Size(115, 17)
         Me.CbArticleRemise.TabIndex = 5
         Me.CbArticleRemise.Text = "Remise sur articles"
         Me.CbArticleRemise.UseVisualStyleBackColor = True
@@ -1797,7 +1831,7 @@ Partial Class Form1
         Me.chMasar.AutoSize = True
         Me.chMasar.Location = New System.Drawing.Point(51, 286)
         Me.chMasar.Name = "chMasar"
-        Me.chMasar.Size = New System.Drawing.Size(116, 17)
+        Me.chMasar.Size = New System.Drawing.Size(117, 17)
         Me.chMasar.TabIndex = 5
         Me.chMasar.Text = "Suivi de l'historique"
         Me.chMasar.UseVisualStyleBackColor = True
@@ -1807,7 +1841,7 @@ Partial Class Form1
         Me.cbBonToFact.AutoSize = True
         Me.cbBonToFact.Location = New System.Drawing.Point(51, 39)
         Me.cbBonToFact.Name = "cbBonToFact"
-        Me.cbBonToFact.Size = New System.Drawing.Size(186, 17)
+        Me.cbBonToFact.Size = New System.Drawing.Size(190, 17)
         Me.cbBonToFact.TabIndex = 5
         Me.cbBonToFact.Text = "Chaque Bon de livraison = facture"
         Me.cbBonToFact.UseVisualStyleBackColor = True
@@ -1817,7 +1851,7 @@ Partial Class Form1
         Me.CBTVA.AutoSize = True
         Me.CBTVA.Location = New System.Drawing.Point(51, 191)
         Me.CBTVA.Name = "CBTVA"
-        Me.CBTVA.Size = New System.Drawing.Size(159, 17)
+        Me.CBTVA.Size = New System.Drawing.Size(162, 17)
         Me.CBTVA.TabIndex = 5
         Me.CBTVA.Text = "Adoption de différentes TVA"
         Me.CBTVA.UseVisualStyleBackColor = True
@@ -1827,7 +1861,7 @@ Partial Class Form1
         Me.CbDelaiFct.AutoSize = True
         Me.CbDelaiFct.Location = New System.Drawing.Point(51, 58)
         Me.CbDelaiFct.Name = "CbDelaiFct"
-        Me.CbDelaiFct.Size = New System.Drawing.Size(208, 17)
+        Me.CbDelaiFct.Size = New System.Drawing.Size(212, 17)
         Me.CbDelaiFct.TabIndex = 5
         Me.CbDelaiFct.Text = "Détermination de la durée de paiement"
         Me.CbDelaiFct.UseVisualStyleBackColor = True
@@ -1837,7 +1871,7 @@ Partial Class Form1
         Me.chbcb.AutoSize = True
         Me.chbcb.Location = New System.Drawing.Point(51, 96)
         Me.chbcb.Name = "chbcb"
-        Me.chbcb.Size = New System.Drawing.Size(155, 17)
+        Me.chbcb.Size = New System.Drawing.Size(156, 17)
         Me.chbcb.TabIndex = 5
         Me.chbcb.Text = "Utiliser scanner de barcode"
         Me.chbcb.UseVisualStyleBackColor = True
@@ -1847,7 +1881,7 @@ Partial Class Form1
         Me.chbsell.AutoSize = True
         Me.chbsell.Location = New System.Drawing.Point(51, 20)
         Me.chbsell.Name = "chbsell"
-        Me.chbsell.Size = New System.Drawing.Size(218, 17)
+        Me.chbsell.Size = New System.Drawing.Size(225, 17)
         Me.chbsell.TabIndex = 5
         Me.chbsell.Text = "Adoption du tarif de vente par catégories"
         Me.chbsell.UseVisualStyleBackColor = True
@@ -2060,7 +2094,7 @@ Partial Class Form1
         Me.Label5.ForeColor = System.Drawing.Color.White
         Me.Label5.Location = New System.Drawing.Point(5, 14)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(42, 13)
+        Me.Label5.Size = New System.Drawing.Size(43, 13)
         Me.Label5.TabIndex = 1
         Me.Label5.Text = "Depot :"
         '
@@ -2925,7 +2959,7 @@ Partial Class Form1
         Me.Label28.AutoSize = True
         Me.Label28.Location = New System.Drawing.Point(16, 183)
         Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(61, 13)
+        Me.Label28.Size = New System.Drawing.Size(63, 13)
         Me.Label28.TabIndex = 6
         Me.Label28.Text = "Date 2 (Au)"
         '
@@ -2934,7 +2968,7 @@ Partial Class Form1
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(165, 183)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(41, 13)
+        Me.Label4.Size = New System.Drawing.Size(37, 13)
         Me.Label4.TabIndex = 7
         Me.Label4.Text = "تاريخ 2"
         '
@@ -2943,7 +2977,7 @@ Partial Class Form1
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(168, 54)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(36, 13)
+        Me.Label6.Size = New System.Drawing.Size(42, 13)
         Me.Label6.TabIndex = 7
         Me.Label6.Text = "الاســم"
         '
@@ -2952,7 +2986,7 @@ Partial Class Form1
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(165, 126)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(41, 13)
+        Me.Label3.Size = New System.Drawing.Size(37, 13)
         Me.Label3.TabIndex = 7
         Me.Label3.Text = "تاريخ 1"
         '
@@ -2961,7 +2995,7 @@ Partial Class Form1
         Me.Label31.AutoSize = True
         Me.Label31.Location = New System.Drawing.Point(13, 126)
         Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(62, 13)
+        Me.Label31.Size = New System.Drawing.Size(63, 13)
         Me.Label31.TabIndex = 7
         Me.Label31.Text = "Date 1 (Du)"
         '
@@ -2970,7 +3004,7 @@ Partial Class Form1
         Me.Label32.AutoSize = True
         Me.Label32.Location = New System.Drawing.Point(17, 54)
         Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(117, 13)
+        Me.Label32.Size = New System.Drawing.Size(115, 13)
         Me.Label32.TabIndex = 8
         Me.Label32.Text = "Id BL/BC  -  Nom Client"
         '
@@ -3035,7 +3069,7 @@ Partial Class Form1
         Me.Button27.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button27.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button27.ForeColor = System.Drawing.Color.White
-        Me.Button27.Location = New System.Drawing.Point(206, 5)
+        Me.Button27.Location = New System.Drawing.Point(216, 5)
         Me.Button27.Name = "Button27"
         Me.Button27.Size = New System.Drawing.Size(101, 33)
         Me.Button27.TabIndex = 17
@@ -3117,7 +3151,7 @@ Partial Class Form1
         'Panel7
         '
         Me.Panel7.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel7.Location = New System.Drawing.Point(187, 5)
+        Me.Panel7.Location = New System.Drawing.Point(197, 5)
         Me.Panel7.Name = "Panel7"
         Me.Panel7.Size = New System.Drawing.Size(19, 33)
         Me.Panel7.TabIndex = 7
@@ -3129,7 +3163,7 @@ Partial Class Form1
         Me.Button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button17.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button17.ForeColor = System.Drawing.Color.White
-        Me.Button17.Location = New System.Drawing.Point(86, 5)
+        Me.Button17.Location = New System.Drawing.Point(96, 5)
         Me.Button17.Name = "Button17"
         Me.Button17.Size = New System.Drawing.Size(101, 33)
         Me.Button17.TabIndex = 6
@@ -3149,7 +3183,7 @@ Partial Class Form1
         Me.Button13.ForeColor = System.Drawing.Color.White
         Me.Button13.Location = New System.Drawing.Point(5, 5)
         Me.Button13.Name = "Button13"
-        Me.Button13.Size = New System.Drawing.Size(81, 33)
+        Me.Button13.Size = New System.Drawing.Size(91, 33)
         Me.Button13.TabIndex = 5
         Me.Button13.Tag = "1"
         Me.Button13.Text = "طــبع"
@@ -4111,6 +4145,7 @@ Partial Class Form1
         '
         'TabPageParm
         '
+        Me.TabPageParm.Controls.Add(Me.GB8)
         Me.TabPageParm.Controls.Add(Me.GB7)
         Me.TabPageParm.Controls.Add(Me.GB6)
         Me.TabPageParm.Controls.Add(Me.GB5)
@@ -4125,6 +4160,123 @@ Partial Class Form1
         Me.TabPageParm.TabIndex = 4
         Me.TabPageParm.Text = "      Paramettre          "
         Me.TabPageParm.UseVisualStyleBackColor = True
+        '
+        'GB8
+        '
+        Me.GB8.Controls.Add(Me.txtBLCFormat)
+        Me.GB8.Controls.Add(Me.Label73)
+        Me.GB8.Controls.Add(Me.btCon)
+        Me.GB8.Controls.Add(Me.txtComBalance)
+        Me.GB8.Controls.Add(Me.Label70)
+        Me.GB8.Controls.Add(Me.Panel27)
+        Me.GB8.Controls.Add(Me.Panel5)
+        Me.GB8.Controls.Add(Me.Button87)
+        Me.GB8.Dock = System.Windows.Forms.DockStyle.Right
+        Me.GB8.Location = New System.Drawing.Point(96, 3)
+        Me.GB8.Name = "GB8"
+        Me.GB8.Size = New System.Drawing.Size(334, 598)
+        Me.GB8.TabIndex = 11
+        Me.GB8.TabStop = False
+        Me.GB8.Visible = False
+        '
+        'txtBLCFormat
+        '
+        Me.txtBLCFormat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtBLCFormat.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtBLCFormat.ForeColor = System.Drawing.Color.Maroon
+        Me.txtBLCFormat.Location = New System.Drawing.Point(121, 215)
+        Me.txtBLCFormat.Name = "txtBLCFormat"
+        Me.txtBLCFormat.Size = New System.Drawing.Size(82, 20)
+        Me.txtBLCFormat.TabIndex = 14
+        Me.txtBLCFormat.Tag = "0"
+        '
+        'Label73
+        '
+        Me.Label73.AutoSize = True
+        Me.Label73.Location = New System.Drawing.Point(43, 217)
+        Me.Label73.Name = "Label73"
+        Me.Label73.Size = New System.Drawing.Size(62, 13)
+        Me.Label73.TabIndex = 15
+        Me.Label73.Text = "BLC Format"
+        '
+        'btCon
+        '
+        Me.btCon.BackColor = System.Drawing.Color.Pink
+        Me.btCon.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btCon.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btCon.ForeColor = System.Drawing.Color.White
+        Me.btCon.Location = New System.Drawing.Point(243, 205)
+        Me.btCon.Name = "btCon"
+        Me.btCon.Size = New System.Drawing.Size(76, 30)
+        Me.btCon.TabIndex = 13
+        Me.btCon.Tag = "1"
+        Me.btCon.Text = "on"
+        Me.btCon.UseVisualStyleBackColor = False
+        '
+        'txtComBalance
+        '
+        Me.txtComBalance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.txtComBalance.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtComBalance.ForeColor = System.Drawing.Color.Maroon
+        Me.txtComBalance.Location = New System.Drawing.Point(121, 176)
+        Me.txtComBalance.Name = "txtComBalance"
+        Me.txtComBalance.Size = New System.Drawing.Size(198, 20)
+        Me.txtComBalance.TabIndex = 7
+        Me.txtComBalance.Tag = "0"
+        '
+        'Label70
+        '
+        Me.Label70.AutoSize = True
+        Me.Label70.Location = New System.Drawing.Point(43, 179)
+        Me.Label70.Name = "Label70"
+        Me.Label70.Size = New System.Drawing.Size(76, 13)
+        Me.Label70.TabIndex = 8
+        Me.Label70.Text = "Balance Port 2"
+        '
+        'Panel27
+        '
+        Me.Panel27.BackColor = System.Drawing.Color.Black
+        Me.Panel27.Controls.Add(Me.txtQte)
+        Me.Panel27.Location = New System.Drawing.Point(40, 32)
+        Me.Panel27.Name = "Panel27"
+        Me.Panel27.Padding = New System.Windows.Forms.Padding(0, 35, 0, 0)
+        Me.Panel27.Size = New System.Drawing.Size(281, 122)
+        Me.Panel27.TabIndex = 6
+        '
+        'txtQte
+        '
+        Me.txtQte.BackColor = System.Drawing.Color.Black
+        Me.txtQte.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtQte.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtQte.Font = New System.Drawing.Font("DS-Digital", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtQte.ForeColor = System.Drawing.Color.Chartreuse
+        Me.txtQte.Location = New System.Drawing.Point(0, 35)
+        Me.txtQte.Name = "txtQte"
+        Me.txtQte.ReadOnly = True
+        Me.txtQte.Size = New System.Drawing.Size(281, 48)
+        Me.txtQte.TabIndex = 2
+        Me.txtQte.Text = "00"
+        Me.txtQte.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Panel5
+        '
+        Me.Panel5.BackColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Panel5.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel5.Location = New System.Drawing.Point(3, 16)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(23, 579)
+        Me.Panel5.TabIndex = 5
+        '
+        'Button87
+        '
+        Me.Button87.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button87.Location = New System.Drawing.Point(40, 528)
+        Me.Button87.Name = "Button87"
+        Me.Button87.Size = New System.Drawing.Size(281, 41)
+        Me.Button87.TabIndex = 2
+        Me.Button87.Text = "Confirmer"
+        Me.Button87.UseVisualStyleBackColor = True
         '
         'GB7
         '
@@ -4156,9 +4308,9 @@ Partial Class Form1
         Me.GB7.Controls.Add(Me.cbPvArticle)
         Me.GB7.Controls.Add(Me.Button56)
         Me.GB7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB7.Location = New System.Drawing.Point(-156, 3)
+        Me.GB7.Location = New System.Drawing.Point(430, 3)
         Me.GB7.Name = "GB7"
-        Me.GB7.Size = New System.Drawing.Size(281, 598)
+        Me.GB7.Size = New System.Drawing.Size(35, 598)
         Me.GB7.TabIndex = 10
         Me.GB7.TabStop = False
         '
@@ -4167,7 +4319,7 @@ Partial Class Form1
         Me.cbServerDriver.AutoSize = True
         Me.cbServerDriver.Location = New System.Drawing.Point(115, 473)
         Me.cbServerDriver.Name = "cbServerDriver"
-        Me.cbServerDriver.Size = New System.Drawing.Size(59, 17)
+        Me.cbServerDriver.Size = New System.Drawing.Size(60, 17)
         Me.cbServerDriver.TabIndex = 15
         Me.cbServerDriver.Text = "Activer"
         Me.cbServerDriver.UseVisualStyleBackColor = True
@@ -4186,7 +4338,7 @@ Partial Class Form1
         Me.cbWatchfolder.AutoSize = True
         Me.cbWatchfolder.Location = New System.Drawing.Point(116, 447)
         Me.cbWatchfolder.Name = "cbWatchfolder"
-        Me.cbWatchfolder.Size = New System.Drawing.Size(59, 17)
+        Me.cbWatchfolder.Size = New System.Drawing.Size(60, 17)
         Me.cbWatchfolder.TabIndex = 15
         Me.cbWatchfolder.Text = "Activer"
         Me.cbWatchfolder.UseVisualStyleBackColor = True
@@ -4325,7 +4477,7 @@ Partial Class Form1
         Me.cbPvClient.AutoSize = True
         Me.cbPvClient.Location = New System.Drawing.Point(243, 422)
         Me.cbPvClient.Name = "cbPvClient"
-        Me.cbPvClient.Size = New System.Drawing.Size(57, 17)
+        Me.cbPvClient.Size = New System.Drawing.Size(58, 17)
         Me.cbPvClient.TabIndex = 12
         Me.cbPvClient.Text = "Clients"
         Me.cbPvClient.UseVisualStyleBackColor = True
@@ -4348,7 +4500,7 @@ Partial Class Form1
         Me.cbPvCats.AutoSize = True
         Me.cbPvCats.Location = New System.Drawing.Point(185, 422)
         Me.cbPvCats.Name = "cbPvCats"
-        Me.cbPvCats.Size = New System.Drawing.Size(47, 17)
+        Me.cbPvCats.Size = New System.Drawing.Size(48, 17)
         Me.cbPvCats.TabIndex = 12
         Me.cbPvCats.Text = "Cats"
         Me.cbPvCats.UseVisualStyleBackColor = True
@@ -4370,7 +4522,7 @@ Partial Class Form1
         Me.cbBadgeMA.AutoSize = True
         Me.cbBadgeMA.Location = New System.Drawing.Point(207, 403)
         Me.cbBadgeMA.Name = "cbBadgeMA"
-        Me.cbBadgeMA.Size = New System.Drawing.Size(54, 17)
+        Me.cbBadgeMA.Size = New System.Drawing.Size(56, 17)
         Me.cbBadgeMA.TabIndex = 12
         Me.cbBadgeMA.Text = "M. Art"
         Me.cbBadgeMA.UseVisualStyleBackColor = True
@@ -4392,7 +4544,7 @@ Partial Class Form1
         Me.cbBadgeSA.AutoSize = True
         Me.cbBadgeSA.Location = New System.Drawing.Point(157, 403)
         Me.cbBadgeSA.Name = "cbBadgeSA"
-        Me.cbBadgeSA.Size = New System.Drawing.Size(52, 17)
+        Me.cbBadgeSA.Size = New System.Drawing.Size(54, 17)
         Me.cbBadgeSA.TabIndex = 12
         Me.cbBadgeSA.Text = "S. Art"
         Me.cbBadgeSA.UseVisualStyleBackColor = True
@@ -4412,7 +4564,7 @@ Partial Class Form1
         Me.cbBadgeMB.AutoSize = True
         Me.cbBadgeMB.Location = New System.Drawing.Point(96, 403)
         Me.cbBadgeMB.Name = "cbBadgeMB"
-        Me.cbBadgeMB.Size = New System.Drawing.Size(60, 17)
+        Me.cbBadgeMB.Size = New System.Drawing.Size(59, 17)
         Me.cbBadgeMB.TabIndex = 12
         Me.cbBadgeMB.Text = "M. Bon"
         Me.cbBadgeMB.UseVisualStyleBackColor = True
@@ -4432,7 +4584,7 @@ Partial Class Form1
         Me.cbBadgeSB.AutoSize = True
         Me.cbBadgeSB.Location = New System.Drawing.Point(44, 403)
         Me.cbBadgeSB.Name = "cbBadgeSB"
-        Me.cbBadgeSB.Size = New System.Drawing.Size(58, 17)
+        Me.cbBadgeSB.Size = New System.Drawing.Size(57, 17)
         Me.cbBadgeSB.TabIndex = 12
         Me.cbBadgeSB.Text = "S. Bon"
         Me.cbBadgeSB.UseVisualStyleBackColor = True
@@ -4442,7 +4594,7 @@ Partial Class Form1
         Me.cbPvArticle.AutoSize = True
         Me.cbPvArticle.Location = New System.Drawing.Point(113, 423)
         Me.cbPvArticle.Name = "cbPvArticle"
-        Me.cbPvArticle.Size = New System.Drawing.Size(60, 17)
+        Me.cbPvArticle.Size = New System.Drawing.Size(61, 17)
         Me.cbPvArticle.TabIndex = 12
         Me.cbPvArticle.Text = "Articles"
         Me.cbPvArticle.UseVisualStyleBackColor = True
@@ -4502,9 +4654,9 @@ Partial Class Form1
         Me.GB6.Controls.Add(Me.Label61)
         Me.GB6.Controls.Add(Me.Label63)
         Me.GB6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB6.Location = New System.Drawing.Point(125, 3)
+        Me.GB6.Location = New System.Drawing.Point(465, 3)
         Me.GB6.Name = "GB6"
-        Me.GB6.Size = New System.Drawing.Size(402, 598)
+        Me.GB6.Size = New System.Drawing.Size(50, 598)
         Me.GB6.TabIndex = 9
         Me.GB6.TabStop = False
         '
@@ -4513,7 +4665,7 @@ Partial Class Form1
         Me.cbItemCheckBox.AutoSize = True
         Me.cbItemCheckBox.Location = New System.Drawing.Point(170, 357)
         Me.cbItemCheckBox.Name = "cbItemCheckBox"
-        Me.cbItemCheckBox.Size = New System.Drawing.Size(143, 17)
+        Me.cbItemCheckBox.Size = New System.Drawing.Size(144, 17)
         Me.cbItemCheckBox.TabIndex = 13
         Me.cbItemCheckBox.Text = "Affichage ItemCheckBox"
         Me.cbItemCheckBox.UseVisualStyleBackColor = True
@@ -4541,7 +4693,7 @@ Partial Class Form1
         Me.cbShowFixedPanel.AutoSize = True
         Me.cbShowFixedPanel.Location = New System.Drawing.Point(41, 339)
         Me.cbShowFixedPanel.Name = "cbShowFixedPanel"
-        Me.cbShowFixedPanel.Size = New System.Drawing.Size(119, 17)
+        Me.cbShowFixedPanel.Size = New System.Drawing.Size(124, 17)
         Me.cbShowFixedPanel.TabIndex = 12
         Me.cbShowFixedPanel.Text = "Affichage palette fix"
         Me.cbShowFixedPanel.UseVisualStyleBackColor = True
@@ -4561,7 +4713,7 @@ Partial Class Form1
         Me.cbArticleClient.AutoSize = True
         Me.cbArticleClient.Location = New System.Drawing.Point(132, 435)
         Me.cbArticleClient.Name = "cbArticleClient"
-        Me.cbArticleClient.Size = New System.Drawing.Size(87, 17)
+        Me.cbArticleClient.Size = New System.Drawing.Size(91, 17)
         Me.cbArticleClient.TabIndex = 12
         Me.cbArticleClient.Text = "Ctg Art Client"
         Me.cbArticleClient.UseVisualStyleBackColor = True
@@ -4571,7 +4723,7 @@ Partial Class Form1
         Me.cbCafeMode.AutoSize = True
         Me.cbCafeMode.Location = New System.Drawing.Point(41, 454)
         Me.cbCafeMode.Name = "cbCafeMode"
-        Me.cbCafeMode.Size = New System.Drawing.Size(77, 17)
+        Me.cbCafeMode.Size = New System.Drawing.Size(76, 17)
         Me.cbCafeMode.TabIndex = 12
         Me.cbCafeMode.Text = "Mode café"
         Me.cbCafeMode.UseVisualStyleBackColor = True
@@ -4581,7 +4733,7 @@ Partial Class Form1
         Me.cbArtcleStockDetails.AutoSize = True
         Me.cbArtcleStockDetails.Location = New System.Drawing.Point(41, 435)
         Me.cbArtcleStockDetails.Name = "cbArtcleStockDetails"
-        Me.cbArtcleStockDetails.Size = New System.Drawing.Size(90, 17)
+        Me.cbArtcleStockDetails.Size = New System.Drawing.Size(89, 17)
         Me.cbArtcleStockDetails.TabIndex = 12
         Me.cbArtcleStockDetails.Text = "Bc Art Stk Dtl"
         Me.cbArtcleStockDetails.UseVisualStyleBackColor = True
@@ -4591,7 +4743,7 @@ Partial Class Form1
         Me.cbUseStar.AutoSize = True
         Me.cbUseStar.Location = New System.Drawing.Point(41, 417)
         Me.cbUseStar.Name = "cbUseStar"
-        Me.cbUseStar.Size = New System.Drawing.Size(179, 17)
+        Me.cbUseStar.Size = New System.Drawing.Size(187, 17)
         Me.cbUseStar.TabIndex = 12
         Me.cbUseStar.Text = "Separation * entre gros et details"
         Me.cbUseStar.UseVisualStyleBackColor = True
@@ -4601,7 +4753,7 @@ Partial Class Form1
         Me.cbSuperAdmin.AutoSize = True
         Me.cbSuperAdmin.Location = New System.Drawing.Point(170, 377)
         Me.cbSuperAdmin.Name = "cbSuperAdmin"
-        Me.cbSuperAdmin.Size = New System.Drawing.Size(101, 17)
+        Me.cbSuperAdmin.Size = New System.Drawing.Size(105, 17)
         Me.cbSuperAdmin.TabIndex = 12
         Me.cbSuperAdmin.Text = "Super Admin (+)"
         Me.cbSuperAdmin.UseVisualStyleBackColor = True
@@ -4611,7 +4763,7 @@ Partial Class Form1
         Me.cbStarFacture.AutoSize = True
         Me.cbStarFacture.Location = New System.Drawing.Point(41, 377)
         Me.cbStarFacture.Name = "cbStarFacture"
-        Me.cbStarFacture.Size = New System.Drawing.Size(123, 17)
+        Me.cbStarFacture.Size = New System.Drawing.Size(128, 17)
         Me.cbStarFacture.TabIndex = 12
         Me.cbStarFacture.Text = "Facturer seulement *"
         Me.cbStarFacture.UseVisualStyleBackColor = True
@@ -4621,7 +4773,7 @@ Partial Class Form1
         Me.cbRYL.AutoSize = True
         Me.cbRYL.Location = New System.Drawing.Point(41, 357)
         Me.cbRYL.Name = "cbRYL"
-        Me.cbRYL.Size = New System.Drawing.Size(94, 17)
+        Me.cbRYL.Size = New System.Drawing.Size(92, 17)
         Me.cbRYL.TabIndex = 12
         Me.cbRYL.Text = "Baser sur RYL"
         Me.cbRYL.UseVisualStyleBackColor = True
@@ -4631,7 +4783,7 @@ Partial Class Form1
         Me.cbShowDialogPrint.AutoSize = True
         Me.cbShowDialogPrint.Location = New System.Drawing.Point(41, 303)
         Me.cbShowDialogPrint.Name = "cbShowDialogPrint"
-        Me.cbShowDialogPrint.Size = New System.Drawing.Size(153, 17)
+        Me.cbShowDialogPrint.Size = New System.Drawing.Size(158, 17)
         Me.cbShowDialogPrint.TabIndex = 12
         Me.cbShowDialogPrint.Text = "Affiche Forme d'Imprimante"
         Me.cbShowDialogPrint.UseVisualStyleBackColor = True
@@ -4641,7 +4793,7 @@ Partial Class Form1
         Me.cbArticleItemDirection.AutoSize = True
         Me.cbArticleItemDirection.Location = New System.Drawing.Point(41, 267)
         Me.cbArticleItemDirection.Name = "cbArticleItemDirection"
-        Me.cbArticleItemDirection.Size = New System.Drawing.Size(257, 17)
+        Me.cbArticleItemDirection.Size = New System.Drawing.Size(263, 17)
         Me.cbArticleItemDirection.TabIndex = 11
         Me.cbArticleItemDirection.Text = "Déplacer la direction de  list-receipt  vers la droite"
         Me.cbArticleItemDirection.UseVisualStyleBackColor = True
@@ -4651,7 +4803,7 @@ Partial Class Form1
         Me.cbListToRight.AutoSize = True
         Me.cbListToRight.Location = New System.Drawing.Point(41, 285)
         Me.cbListToRight.Name = "cbListToRight"
-        Me.cbListToRight.Size = New System.Drawing.Size(185, 17)
+        Me.cbListToRight.Size = New System.Drawing.Size(190, 17)
         Me.cbListToRight.TabIndex = 11
         Me.cbListToRight.Text = "Déplacer list-receipt  vers la droite"
         Me.cbListToRight.UseVisualStyleBackColor = True
@@ -4661,7 +4813,7 @@ Partial Class Form1
         Me.cbJnReduireQte.AutoSize = True
         Me.cbJnReduireQte.Location = New System.Drawing.Point(170, 339)
         Me.cbJnReduireQte.Name = "cbJnReduireQte"
-        Me.cbJnReduireQte.Size = New System.Drawing.Size(143, 17)
+        Me.cbJnReduireQte.Size = New System.Drawing.Size(145, 17)
         Me.cbJnReduireQte.TabIndex = 11
         Me.cbJnReduireQte.Text = "Option Jn-Reduire Pl Qte"
         Me.cbJnReduireQte.UseVisualStyleBackColor = True
@@ -4671,7 +4823,7 @@ Partial Class Form1
         Me.cbJnImgDb.AutoSize = True
         Me.cbJnImgDb.Location = New System.Drawing.Point(170, 321)
         Me.cbJnImgDb.Name = "cbJnImgDb"
-        Me.cbJnImgDb.Size = New System.Drawing.Size(108, 17)
+        Me.cbJnImgDb.Size = New System.Drawing.Size(111, 17)
         Me.cbJnImgDb.TabIndex = 11
         Me.cbJnImgDb.Text = "Option Jn-Img-Db"
         Me.cbJnImgDb.UseVisualStyleBackColor = True
@@ -4681,7 +4833,7 @@ Partial Class Form1
         Me.cbOptionJenani.AutoSize = True
         Me.cbOptionJenani.Location = New System.Drawing.Point(41, 321)
         Me.cbOptionJenani.Name = "cbOptionJenani"
-        Me.cbOptionJenani.Size = New System.Drawing.Size(115, 17)
+        Me.cbOptionJenani.Size = New System.Drawing.Size(120, 17)
         Me.cbOptionJenani.TabIndex = 11
         Me.cbOptionJenani.Text = "Option Jn-Multi-prix"
         Me.cbOptionJenani.UseVisualStyleBackColor = True
@@ -4721,7 +4873,7 @@ Partial Class Form1
         '
         Me.cbArtLastPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbArtLastPrice.FormattingEnabled = True
-        Me.cbArtLastPrice.Items.AddRange(New Object() {"None", "LastPrice", "LastMarge_PA", "LastMarge_PV", "LastMarge_PAX", "LastMarge_PVX"})
+        Me.cbArtLastPrice.Items.AddRange(New Object() {"None", "LastPrice", "LastMarge_02_PA", "LastMarge_03_PV", "LastPrice_04_PAX", "LastPrice_05_PVX", "LastMarge_06_PAX", "LastMarge_07_PVX"})
         Me.cbArtLastPrice.Location = New System.Drawing.Point(131, 499)
         Me.cbArtLastPrice.Name = "cbArtLastPrice"
         Me.cbArtLastPrice.Size = New System.Drawing.Size(90, 21)
@@ -4823,7 +4975,7 @@ Partial Class Form1
         Me.Label48.AutoSize = True
         Me.Label48.Location = New System.Drawing.Point(181, 37)
         Me.Label48.Name = "Label48"
-        Me.Label48.Size = New System.Drawing.Size(116, 13)
+        Me.Label48.Size = New System.Drawing.Size(120, 13)
         Me.Label48.TabIndex = 3
         Me.Label48.Text = "Catgrs a ne pas merger"
         '
@@ -4832,7 +4984,7 @@ Partial Class Form1
         Me.Label68.AutoSize = True
         Me.Label68.Location = New System.Drawing.Point(37, 167)
         Me.Label68.Name = "Label68"
-        Me.Label68.Size = New System.Drawing.Size(94, 13)
+        Me.Label68.Size = New System.Drawing.Size(95, 13)
         Me.Label68.TabIndex = 3
         Me.Label68.Text = "Clients / Prx achat"
         '
@@ -4841,7 +4993,7 @@ Partial Class Form1
         Me.Label62.AutoSize = True
         Me.Label62.Location = New System.Drawing.Point(38, 125)
         Me.Label62.Name = "Label62"
-        Me.Label62.Size = New System.Drawing.Size(84, 13)
+        Me.Label62.Size = New System.Drawing.Size(85, 13)
         Me.Label62.TabIndex = 3
         Me.Label62.Text = "Ctgs / Prx achat"
         '
@@ -4859,7 +5011,7 @@ Partial Class Form1
         Me.Label39.AutoSize = True
         Me.Label39.Location = New System.Drawing.Point(137, 125)
         Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(77, 13)
+        Me.Label39.Size = New System.Drawing.Size(75, 13)
         Me.Label39.TabIndex = 3
         Me.Label39.Text = "Lst Dpt Skiped"
         '
@@ -4868,7 +5020,7 @@ Partial Class Form1
         Me.Label64.AutoSize = True
         Me.Label64.Location = New System.Drawing.Point(228, 484)
         Me.Label64.Name = "Label64"
-        Me.Label64.Size = New System.Drawing.Size(84, 13)
+        Me.Label64.Size = New System.Drawing.Size(85, 13)
         Me.Label64.TabIndex = 3
         Me.Label64.Text = "Chg Prix d'achat"
         '
@@ -4877,7 +5029,7 @@ Partial Class Form1
         Me.Label61.AutoSize = True
         Me.Label61.Location = New System.Drawing.Point(132, 483)
         Me.Label61.Name = "Label61"
-        Me.Label61.Size = New System.Drawing.Size(64, 13)
+        Me.Label61.Size = New System.Drawing.Size(65, 13)
         Me.Label61.TabIndex = 3
         Me.Label61.Text = "ArtLastPrice"
         '
@@ -4918,9 +5070,9 @@ Partial Class Form1
         Me.GB5.Controls.Add(Me.cbProfit)
         Me.GB5.Controls.Add(Me.cbUnite)
         Me.GB5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB5.Location = New System.Drawing.Point(527, 3)
+        Me.GB5.Location = New System.Drawing.Point(515, 3)
         Me.GB5.Name = "GB5"
-        Me.GB5.Size = New System.Drawing.Size(34, 598)
+        Me.GB5.Size = New System.Drawing.Size(36, 598)
         Me.GB5.TabIndex = 8
         Me.GB5.TabStop = False
         '
@@ -4937,7 +5089,7 @@ Partial Class Form1
         Me.Label67.AutoSize = True
         Me.Label67.Location = New System.Drawing.Point(51, 451)
         Me.Label67.Name = "Label67"
-        Me.Label67.Size = New System.Drawing.Size(191, 13)
+        Me.Label67.Size = New System.Drawing.Size(193, 13)
         Me.Label67.TabIndex = 12
         Me.Label67.Text = "les catégories sélectionnée pr ce poste"
         '
@@ -4957,7 +5109,7 @@ Partial Class Form1
         Me.cbMergeArt.AutoSize = True
         Me.cbMergeArt.Location = New System.Drawing.Point(51, 134)
         Me.cbMergeArt.Name = "cbMergeArt"
-        Me.cbMergeArt.Size = New System.Drawing.Size(165, 17)
+        Me.cbMergeArt.Size = New System.Drawing.Size(164, 17)
         Me.cbMergeArt.TabIndex = 5
         Me.cbMergeArt.Text = "Merge même articles dans BL"
         Me.cbMergeArt.UseVisualStyleBackColor = True
@@ -4967,7 +5119,7 @@ Partial Class Form1
         Me.cbAffichageLimite.AutoSize = True
         Me.cbAffichageLimite.Location = New System.Drawing.Point(190, 367)
         Me.cbAffichageLimite.Name = "cbAffichageLimite"
-        Me.cbAffichageLimite.Size = New System.Drawing.Size(101, 17)
+        Me.cbAffichageLimite.Size = New System.Drawing.Size(102, 17)
         Me.cbAffichageLimite.TabIndex = 5
         Me.cbAffichageLimite.Text = "Affichage Limité"
         Me.cbAffichageLimite.UseVisualStyleBackColor = True
@@ -4987,7 +5139,7 @@ Partial Class Form1
         Me.cbSuppression.AutoSize = True
         Me.cbSuppression.Location = New System.Drawing.Point(51, 362)
         Me.cbSuppression.Name = "cbSuppression"
-        Me.cbSuppression.Size = New System.Drawing.Size(131, 17)
+        Me.cbSuppression.Size = New System.Drawing.Size(133, 17)
         Me.cbSuppression.TabIndex = 5
         Me.cbSuppression.Text = "bloquer la suppression"
         Me.cbSuppression.UseVisualStyleBackColor = True
@@ -4997,7 +5149,7 @@ Partial Class Form1
         Me.cbShowBp.AutoSize = True
         Me.cbShowBp.Location = New System.Drawing.Point(51, 419)
         Me.cbShowBp.Name = "cbShowBp"
-        Me.cbShowBp.Size = New System.Drawing.Size(157, 17)
+        Me.cbShowBp.Size = New System.Drawing.Size(156, 17)
         Me.cbShowBp.TabIndex = 5
         Me.cbShowBp.Text = "Masque BP pour non-admin"
         Me.cbShowBp.UseVisualStyleBackColor = True
@@ -5007,7 +5159,7 @@ Partial Class Form1
         Me.cbBaseOnStartedRemise.AutoSize = True
         Me.cbBaseOnStartedRemise.Location = New System.Drawing.Point(51, 381)
         Me.cbBaseOnStartedRemise.Name = "cbBaseOnStartedRemise"
-        Me.cbBaseOnStartedRemise.Size = New System.Drawing.Size(114, 17)
+        Me.cbBaseOnStartedRemise.Size = New System.Drawing.Size(116, 17)
         Me.cbBaseOnStartedRemise.TabIndex = 5
         Me.cbBaseOnStartedRemise.Text = "Active Remise Init."
         Me.cbBaseOnStartedRemise.UseVisualStyleBackColor = True
@@ -5017,7 +5169,7 @@ Partial Class Form1
         Me.cbTsImg.AutoSize = True
         Me.cbTsImg.Location = New System.Drawing.Point(51, 400)
         Me.cbTsImg.Name = "cbTsImg"
-        Me.cbTsImg.Size = New System.Drawing.Size(182, 17)
+        Me.cbTsImg.Size = New System.Drawing.Size(180, 17)
         Me.cbTsImg.TabIndex = 5
         Me.cbTsImg.Text = "Active Grp Tous avec les images"
         Me.cbTsImg.UseVisualStyleBackColor = True
@@ -5063,7 +5215,7 @@ Partial Class Form1
         Me.GB3.Controls.Add(Me.Label49)
         Me.GB3.Controls.Add(Me.Label54)
         Me.GB3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB3.Location = New System.Drawing.Point(648, 3)
+        Me.GB3.Location = New System.Drawing.Point(593, 3)
         Me.GB3.Name = "GB3"
         Me.GB3.Size = New System.Drawing.Size(44, 598)
         Me.GB3.TabIndex = 7
@@ -5139,7 +5291,7 @@ Partial Class Form1
         Me.Label37.AutoSize = True
         Me.Label37.Location = New System.Drawing.Point(103, 262)
         Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(28, 13)
+        Me.Label37.Size = New System.Drawing.Size(27, 13)
         Me.Label37.TabIndex = 3
         Me.Label37.Text = "Pied"
         '
@@ -5148,7 +5300,7 @@ Partial Class Form1
         Me.Label36.AutoSize = True
         Me.Label36.Location = New System.Drawing.Point(42, 262)
         Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(38, 13)
+        Me.Label36.Size = New System.Drawing.Size(39, 13)
         Me.Label36.TabIndex = 3
         Me.Label36.Text = "Entete"
         '
@@ -5181,7 +5333,7 @@ Partial Class Form1
         Me.Label52.AutoSize = True
         Me.Label52.Location = New System.Drawing.Point(163, 484)
         Me.Label52.Name = "Label52"
-        Me.Label52.Size = New System.Drawing.Size(30, 13)
+        Me.Label52.Size = New System.Drawing.Size(29, 13)
         Me.Label52.TabIndex = 3
         Me.Label52.Text = "Taile"
         '
@@ -5190,7 +5342,7 @@ Partial Class Form1
         Me.Label41.AutoSize = True
         Me.Label41.Location = New System.Drawing.Point(166, 366)
         Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(30, 13)
+        Me.Label41.Size = New System.Drawing.Size(29, 13)
         Me.Label41.TabIndex = 3
         Me.Label41.Text = "Taile"
         '
@@ -5199,7 +5351,7 @@ Partial Class Form1
         Me.Label35.AutoSize = True
         Me.Label35.Location = New System.Drawing.Point(170, 260)
         Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(98, 13)
+        Me.Label35.Size = New System.Drawing.Size(97, 13)
         Me.Label35.TabIndex = 3
         Me.Label35.Text = "Nombre des copies"
         '
@@ -5226,7 +5378,7 @@ Partial Class Form1
         Me.Label51.AutoSize = True
         Me.Label51.Location = New System.Drawing.Point(163, 437)
         Me.Label51.Name = "Label51"
-        Me.Label51.Size = New System.Drawing.Size(30, 13)
+        Me.Label51.Size = New System.Drawing.Size(29, 13)
         Me.Label51.TabIndex = 3
         Me.Label51.Text = "Taile"
         '
@@ -5235,7 +5387,7 @@ Partial Class Form1
         Me.Label50.AutoSize = True
         Me.Label50.Location = New System.Drawing.Point(39, 483)
         Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(93, 13)
+        Me.Label50.Size = New System.Drawing.Size(97, 13)
         Me.Label50.TabIndex = 3
         Me.Label50.Text = "Font Petite Format"
         '
@@ -5244,7 +5396,7 @@ Partial Class Form1
         Me.Label40.AutoSize = True
         Me.Label40.Location = New System.Drawing.Point(42, 365)
         Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(93, 13)
+        Me.Label40.Size = New System.Drawing.Size(97, 13)
         Me.Label40.TabIndex = 3
         Me.Label40.Text = "Font Petite Format"
         '
@@ -5272,13 +5424,14 @@ Partial Class Form1
         Me.Label49.AutoSize = True
         Me.Label49.Location = New System.Drawing.Point(39, 436)
         Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(95, 13)
+        Me.Label49.Size = New System.Drawing.Size(98, 13)
         Me.Label49.TabIndex = 3
         Me.Label49.Text = "Font Grand Format"
         '
         'GB2
         '
         Me.GB2.Controls.Add(Me.Panel32)
+        Me.GB2.Controls.Add(Me.Button69)
         Me.GB2.Controls.Add(Me.Button4)
         Me.GB2.Controls.Add(Me.Button26)
         Me.GB2.Controls.Add(Me.Button2)
@@ -5289,9 +5442,9 @@ Partial Class Form1
         Me.GB2.Controls.Add(Me.Button5)
         Me.GB2.Controls.Add(Me.Button6)
         Me.GB2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB2.Location = New System.Drawing.Point(692, 3)
+        Me.GB2.Location = New System.Drawing.Point(637, 3)
         Me.GB2.Name = "GB2"
-        Me.GB2.Size = New System.Drawing.Size(37, 598)
+        Me.GB2.Size = New System.Drawing.Size(118, 598)
         Me.GB2.TabIndex = 7
         Me.GB2.TabStop = False
         '
@@ -5306,12 +5459,25 @@ Partial Class Form1
         Me.Panel32.Size = New System.Drawing.Size(23, 579)
         Me.Panel32.TabIndex = 5
         '
+        'Button69
+        '
+        Me.Button69.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Button69.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button69.ForeColor = System.Drawing.Color.Red
+        Me.Button69.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button69.Location = New System.Drawing.Point(91, 440)
+        Me.Button69.Name = "Button69"
+        Me.Button69.Size = New System.Drawing.Size(133, 48)
+        Me.Button69.TabIndex = 1
+        Me.Button69.Text = "Articles (Balance)"
+        Me.Button69.UseVisualStyleBackColor = False
+        '
         'Button2
         '
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
         Me.Button2.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button2.Location = New System.Drawing.Point(89, 81)
+        Me.Button2.Location = New System.Drawing.Point(90, 81)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(135, 48)
         Me.Button2.TabIndex = 1
@@ -5323,7 +5489,7 @@ Partial Class Form1
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
         Me.Button3.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button3.Location = New System.Drawing.Point(89, 136)
+        Me.Button3.Location = New System.Drawing.Point(90, 136)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(135, 48)
         Me.Button3.TabIndex = 1
@@ -5335,7 +5501,7 @@ Partial Class Form1
         Me.Button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button21.Image = CType(resources.GetObject("Button21.Image"), System.Drawing.Image)
         Me.Button21.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button21.Location = New System.Drawing.Point(88, 190)
+        Me.Button21.Location = New System.Drawing.Point(89, 190)
         Me.Button21.Name = "Button21"
         Me.Button21.Size = New System.Drawing.Size(137, 48)
         Me.Button21.TabIndex = 1
@@ -5347,9 +5513,9 @@ Partial Class Form1
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button7.Image = CType(resources.GetObject("Button7.Image"), System.Drawing.Image)
         Me.Button7.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button7.Location = New System.Drawing.Point(36, 540)
+        Me.Button7.Location = New System.Drawing.Point(274, 547)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(184, 41)
+        Me.Button7.Size = New System.Drawing.Size(55, 41)
         Me.Button7.TabIndex = 1
         Me.Button7.Text = "التعاملات مع الموردون"
         Me.Button7.UseVisualStyleBackColor = True
@@ -5360,9 +5526,9 @@ Partial Class Form1
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
         Me.Button5.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button5.Location = New System.Drawing.Point(36, 318)
+        Me.Button5.Location = New System.Drawing.Point(91, 308)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(184, 48)
+        Me.Button5.Size = New System.Drawing.Size(133, 48)
         Me.Button5.TabIndex = 1
         Me.Button5.Text = "Depot"
         Me.Button5.UseVisualStyleBackColor = True
@@ -5372,9 +5538,9 @@ Partial Class Form1
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.Image = CType(resources.GetObject("Button6.Image"), System.Drawing.Image)
         Me.Button6.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button6.Location = New System.Drawing.Point(36, 491)
+        Me.Button6.Location = New System.Drawing.Point(274, 498)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(184, 43)
+        Me.Button6.Size = New System.Drawing.Size(55, 43)
         Me.Button6.TabIndex = 1
         Me.Button6.Text = "التعاملات مع الزبائن"
         Me.Button6.UseVisualStyleBackColor = True
@@ -5715,6 +5881,10 @@ Partial Class Form1
         Me.Panel18.ResumeLayout(False)
         Me.Panel18.PerformLayout()
         Me.TabPageParm.ResumeLayout(False)
+        Me.GB8.ResumeLayout(False)
+        Me.GB8.PerformLayout()
+        Me.Panel27.ResumeLayout(False)
+        Me.Panel27.PerformLayout()
         Me.GB7.ResumeLayout(False)
         Me.GB7.PerformLayout()
         Me.GB6.ResumeLayout(False)
@@ -6188,5 +6358,18 @@ Partial Class Form1
     Friend WithEvents txtAllowLowPrice_Client As System.Windows.Forms.TextBox
     Friend WithEvents Label68 As System.Windows.Forms.Label
     Friend WithEvents Button59 As System.Windows.Forms.Button
+    Friend WithEvents GB8 As System.Windows.Forms.GroupBox
+    Friend WithEvents Panel27 As System.Windows.Forms.Panel
+    Friend WithEvents Panel5 As System.Windows.Forms.Panel
+    Friend WithEvents Button87 As System.Windows.Forms.Button
+    Friend WithEvents btCon As System.Windows.Forms.Button
+    Friend WithEvents txtComBalance As System.Windows.Forms.TextBox
+    Friend WithEvents Label70 As System.Windows.Forms.Label
+    Friend WithEvents txtQte As System.Windows.Forms.TextBox
+    Friend WithEvents txtBLCFormat As System.Windows.Forms.TextBox
+    Friend WithEvents Label73 As System.Windows.Forms.Label
+    Friend WithEvents Label71 As System.Windows.Forms.Label
+    Friend WithEvents txtGroupe As System.Windows.Forms.TextBox
+    Friend WithEvents Button69 As System.Windows.Forms.Button
 
 End Class
