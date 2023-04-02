@@ -517,13 +517,16 @@
             Next
 
             'If editMode Then LaodUnPaidFactures()
-            LaodUnPaidFactures()
+            If clid > 0 Then LaodUnPaidFactures()
             allowSelection = Form1.cbMultiPayemnt.Checked
         Catch x As Exception
         End Try
 
         'Pochet''''''''''''''''''''''''''
         If clid = 0 Then Exit Sub
+        plPoch.Visible = True
+
+
         Try
             Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
 
@@ -810,14 +813,13 @@
 
             Dim tableName As String = "CompanyPayment"
             Dim tName As String = "Bon"
-            Dim fld As String = "bonid"
+
             Dim cl As String = "cid"
             Dim _pid As String = "PBid"
 
             If isSell Then
                 tableName = "Payment"
                 tName = "Facture"
-                fld = "fctid"
                 cl = "cid"
                 _pid = "Pid"
             End If
@@ -859,7 +861,7 @@
 
             params.Clear()
             where.Clear()
-            where.Add(fld, fctid)
+            where.Add("fctid", fctid)
             Dim dt = c.SelectDataTable(tableName, {"*"}, where)
 
             'fill payment

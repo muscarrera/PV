@@ -23,7 +23,16 @@ Partial Class EditAndPrintCheque
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(EditAndPrintCheque))
+        Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.pb = New System.Windows.Forms.PictureBox()
         Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.Panel17 = New System.Windows.Forms.Panel()
+        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
+        Me.lbpj = New System.Windows.Forms.LinkLabel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
+        Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel22 = New System.Windows.Forms.Panel()
         Me.CbWay = New System.Windows.Forms.ComboBox()
         Me.Label16 = New System.Windows.Forms.Label()
@@ -61,10 +70,12 @@ Partial Class EditAndPrintCheque
         Me.Button14 = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.pb = New System.Windows.Forms.PictureBox()
+        Me.Panel1.SuspendLayout()
+        CType(Me.pb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel11.SuspendLayout()
+        Me.Panel17.SuspendLayout()
+        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel22.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel6.SuspendLayout()
@@ -74,15 +85,39 @@ Partial Class EditAndPrintCheque
         Me.Panel9.SuspendLayout()
         Me.plM.SuspendLayout()
         Me.Panel8.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        CType(Me.pb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'PrintDoc
+        '
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_17_59_22__1_
+        Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel1.Controls.Add(Me.pb)
+        Me.Panel1.Location = New System.Drawing.Point(436, 24)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Padding = New System.Windows.Forms.Padding(18, 14, 18, 14)
+        Me.Panel1.Size = New System.Drawing.Size(615, 486)
+        Me.Panel1.TabIndex = 9
+        '
+        'pb
+        '
+        Me.pb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.pb.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pb.Location = New System.Drawing.Point(18, 14)
+        Me.pb.Name = "pb"
+        Me.pb.Size = New System.Drawing.Size(579, 458)
+        Me.pb.TabIndex = 0
+        Me.pb.TabStop = False
         '
         'Panel11
         '
         Me.Panel11.BackColor = System.Drawing.Color.White
         Me.Panel11.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_17_59_22__1_
         Me.Panel11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel11.Controls.Add(Me.Panel17)
         Me.Panel11.Controls.Add(Me.Panel22)
         Me.Panel11.Controls.Add(Me.Panel5)
         Me.Panel11.Controls.Add(Me.btcancel)
@@ -96,8 +131,76 @@ Partial Class EditAndPrintCheque
         Me.Panel11.Controls.Add(Me.Panel8)
         Me.Panel11.Location = New System.Drawing.Point(31, 24)
         Me.Panel11.Name = "Panel11"
-        Me.Panel11.Size = New System.Drawing.Size(384, 469)
+        Me.Panel11.Size = New System.Drawing.Size(384, 565)
         Me.Panel11.TabIndex = 9
+        '
+        'Panel17
+        '
+        Me.Panel17.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel17.BackColor = System.Drawing.Color.FromArgb(CType(CType(254, Byte), Integer), CType(CType(254, Byte), Integer), CType(CType(254, Byte), Integer))
+        Me.Panel17.Controls.Add(Me.PictureBox6)
+        Me.Panel17.Controls.Add(Me.lbpj)
+        Me.Panel17.Controls.Add(Me.Panel2)
+        Me.Panel17.Controls.Add(Me.PictureBox7)
+        Me.Panel17.Controls.Add(Me.Panel23)
+        Me.Panel17.Location = New System.Drawing.Point(44, 432)
+        Me.Panel17.MaximumSize = New System.Drawing.Size(500, 44)
+        Me.Panel17.Name = "Panel17"
+        Me.Panel17.Size = New System.Drawing.Size(295, 38)
+        Me.Panel17.TabIndex = 11
+        '
+        'PictureBox6
+        '
+        Me.PictureBox6.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.téléchargement__1_
+        Me.PictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureBox6.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PictureBox6.Location = New System.Drawing.Point(263, 0)
+        Me.PictureBox6.Name = "PictureBox6"
+        Me.PictureBox6.Size = New System.Drawing.Size(31, 36)
+        Me.PictureBox6.TabIndex = 5
+        Me.PictureBox6.TabStop = False
+        '
+        'lbpj
+        '
+        Me.lbpj.Dock = System.Windows.Forms.DockStyle.Left
+        Me.lbpj.Location = New System.Drawing.Point(31, 0)
+        Me.lbpj.Name = "lbpj"
+        Me.lbpj.Size = New System.Drawing.Size(228, 36)
+        Me.lbpj.TabIndex = 10
+        Me.lbpj.TabStop = True
+        Me.lbpj.Text = "Joindre des fichiers"
+        Me.lbpj.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.LightGray
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel2.Location = New System.Drawing.Point(294, 0)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(1, 36)
+        Me.Panel2.TabIndex = 2
+        '
+        'PictureBox7
+        '
+        Me.PictureBox7.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.PictureBox7.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.JOINDRE_20
+        Me.PictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureBox7.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PictureBox7.Location = New System.Drawing.Point(0, 0)
+        Me.PictureBox7.Name = "PictureBox7"
+        Me.PictureBox7.Size = New System.Drawing.Size(31, 36)
+        Me.PictureBox7.TabIndex = 4
+        Me.PictureBox7.TabStop = False
+        '
+        'Panel23
+        '
+        Me.Panel23.BackColor = System.Drawing.Color.Gainsboro
+        Me.Panel23.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel23.Location = New System.Drawing.Point(0, 36)
+        Me.Panel23.Name = "Panel23"
+        Me.Panel23.Size = New System.Drawing.Size(295, 2)
+        Me.Panel23.TabIndex = 2
         '
         'Panel22
         '
@@ -172,7 +275,7 @@ Partial Class EditAndPrintCheque
         Me.btcancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btcancel.Image = Global.Al_Mohasib.My.Resources.Resources.vector_cancel_icon_png_302651
         Me.btcancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btcancel.Location = New System.Drawing.Point(42, 406)
+        Me.btcancel.Location = New System.Drawing.Point(42, 493)
         Me.btcancel.Name = "btcancel"
         Me.btcancel.Size = New System.Drawing.Size(63, 35)
         Me.btcancel.TabIndex = 7
@@ -245,7 +348,7 @@ Partial Class EditAndPrintCheque
         Me.Button17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Button17.Image = Global.Al_Mohasib.My.Resources.Resources.SAVE_20
         Me.Button17.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button17.Location = New System.Drawing.Point(194, 406)
+        Me.Button17.Location = New System.Drawing.Point(194, 493)
         Me.Button17.Name = "Button17"
         Me.Button17.Size = New System.Drawing.Size(146, 36)
         Me.Button17.TabIndex = 6
@@ -574,7 +677,7 @@ Partial Class EditAndPrintCheque
         Me.Button1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Button1.Image = Global.Al_Mohasib.My.Resources.Resources.Print_22X22
         Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button1.Location = New System.Drawing.Point(746, 347)
+        Me.Button1.Location = New System.Drawing.Point(454, 526)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(133, 36)
         Me.Button1.TabIndex = 6
@@ -582,35 +685,11 @@ Partial Class EditAndPrintCheque
         Me.Button1.Text = "Imprimer"
         Me.Button1.UseVisualStyleBackColor = False
         '
-        'PrintDoc
-        '
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_17_59_22__1_
-        Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Panel1.Controls.Add(Me.pb)
-        Me.Panel1.Location = New System.Drawing.Point(461, 24)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Padding = New System.Windows.Forms.Padding(18, 14, 18, 14)
-        Me.Panel1.Size = New System.Drawing.Size(436, 305)
-        Me.Panel1.TabIndex = 9
-        '
-        'pb
-        '
-        Me.pb.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pb.Location = New System.Drawing.Point(18, 14)
-        Me.pb.Name = "pb"
-        Me.pb.Size = New System.Drawing.Size(400, 277)
-        Me.pb.TabIndex = 0
-        Me.pb.TabStop = False
-        '
         'EditAndPrintCheque
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(904, 517)
+        Me.ClientSize = New System.Drawing.Size(1074, 601)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel11)
         Me.Controls.Add(Me.Button1)
@@ -618,7 +697,12 @@ Partial Class EditAndPrintCheque
         Me.Name = "EditAndPrintCheque"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "  Form :"
+        Me.Panel1.ResumeLayout(False)
+        CType(Me.pb, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel11.ResumeLayout(False)
+        Me.Panel17.ResumeLayout(False)
+        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel22.ResumeLayout(False)
         Me.Panel5.ResumeLayout(False)
         Me.Panel6.ResumeLayout(False)
@@ -628,8 +712,6 @@ Partial Class EditAndPrintCheque
         Me.Panel9.ResumeLayout(False)
         Me.plM.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
-        Me.Panel1.ResumeLayout(False)
-        CType(Me.pb, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -674,4 +756,10 @@ Partial Class EditAndPrintCheque
     Friend WithEvents PrintDoc As System.Drawing.Printing.PrintDocument
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents pb As System.Windows.Forms.PictureBox
+    Friend WithEvents lbpj As System.Windows.Forms.LinkLabel
+    Friend WithEvents Panel17 As System.Windows.Forms.Panel
+    Friend WithEvents PictureBox6 As System.Windows.Forms.PictureBox
+    Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents PictureBox7 As System.Windows.Forms.PictureBox
+    Friend WithEvents Panel23 As System.Windows.Forms.Panel
 End Class

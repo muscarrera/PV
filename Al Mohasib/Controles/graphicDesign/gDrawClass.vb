@@ -43,7 +43,7 @@ Public Class gDrawClass
                               ByVal dt_Client As DataTable,
                               ByVal title As String,
                               ByVal HD As Boolean,
-                              ByRef m As Integer)
+                              ByRef m As Integer, ByRef params_tva As Dictionary(Of Double, Double))
 
 
         Dim g = e.Graphics
@@ -72,9 +72,6 @@ Public Class gDrawClass
         sfc.Alignment = StringAlignment.Center
         Dim sfl As New StringFormat()
         sfl.Alignment = StringAlignment.Far
-
-
-        Dim params_tva As New Dictionary(Of Double, Double)
 
         If m = 0 Or has_stopEntete = False Then
 
@@ -114,8 +111,8 @@ Public Class gDrawClass
                         ElseIf a.field.StartsWith("RYL-") Then
                             Dim s = a.field.Split("-")(1)
                             str = CStr(a.designation)
-                            Str &= CInt(data.Rows(0).Item(s) * 20).ToString("N0")
-                             
+                            str &= CInt(data.Rows(0).Item(s) * 20).ToString("N0")
+
                         ElseIf a.field.StartsWith("*") Then
 
                         ElseIf a.field.StartsWith("image") Then
@@ -617,6 +614,7 @@ Public Class gDrawClass
         If _Ttype.ToUpper.StartsWith("LIS") = False Then g.DrawString("P-" & Form1.page_Number & "/" & Form1.page_Number, F_D, Brushes.Black, x_Page, y_Page)
         Form1.page_Number = 0
         m = 0
+        params_tva.Clear()
         'Return _Bmp
     End Sub
 

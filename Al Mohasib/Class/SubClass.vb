@@ -763,14 +763,14 @@ Public Class SubClass
             ''add new bon
             If Form1.RPl.FctId = 0 Then
                 If Form1.RPl.isSell Then
-                    Try
-                        If Form1.isPortOn = False Then
-                            Form1.isPortOn = Form1.OpenPort
-                            Form1.RPl.CP.Value = Form1.txtQte.Text
-                        End If
+                    'Try
+                    '    If Form1.isPortOn = False Then
+                    '        Form1.isPortOn = Form1.OpenPort
+                    '        Form1.RPl.CP.Value = Form1.txtQte.Text
+                    '    End If
 
-                    Catch ex As Exception
-                    End Try
+                    'Catch ex As Exception
+                    'End Try
 
                     If Form1.NouveauBon_Creation Then
                         Dim clientname As String = Form1.txtcltcomptoir.Text.Split("/")(0)
@@ -790,8 +790,8 @@ Public Class SubClass
             If Form1.CbDepotOrigine.Checked = False Then R("depot") = Form1.RPl.CP.Depot
             Dim catsMerg = Form1.txtMergeCat.Text.Split("-")
 
-            If Form1.RPl.IsExiste(R("arid"), R("depot")) = True And Form1.cbMergeArt.Checked = True And catsMerg.Contains(R("cid")) = False Then
-                Dim item As Items = Form1.RPl.SelectedItems(R("arid"), R("depot"))
+            If Form1.RPl.IsExiste(R("arid"), R("depot"), R("name")) = True And Form1.cbMergeArt.Checked = True And catsMerg.Contains(R("cid")) = False Then
+                Dim item As Items = Form1.RPl.SelectedItems(R("arid"), R("depot"), R("name"))
                 Dim ID As Integer = item.id
                 Dim qte As Double = item.Qte + CDbl(Form1.RPl.CP.Value)
 
@@ -829,7 +829,7 @@ Public Class SubClass
                 If Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
                     'Last Price Option
                     If Form1.cbArtLastPrice.Text.StartsWith("LastPrice") Then
-                         
+
 
                         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                             Dim params As New Dictionary(Of String, Object)
@@ -1349,11 +1349,6 @@ Public Class SubClass
                 AddHandler pv.Choosed, AddressOf FactureSelected
                 AddHandler pv.Delete, AddressOf PvClient_DeleteBon
                 p.Controls.Add(pv)
-
-                If i = 0 Then
-                    b.Tag = dt.Rows(i).Item(0)
-                    b.Text = dt.Rows(i).Item("name")
-                End If
             Else
                 Dim rnd As New Random
                 Dim bt As New Button
@@ -1376,13 +1371,20 @@ Public Class SubClass
                 p.Controls.Add(bt)
                 'clear the recept liste
 
-                If i = 0 Then
-                    b.Tag = dt.Rows(i).Item(0)
-                    b.Text = dt.Rows(i).Item("name")
-                End If
+            
                 bt = Nothing
                 rnd = Nothing
+            End If
 
+            If i = 0 Then
+                b.Tag = dt.Rows(i).Item(0)
+                b.Text = dt.Rows(i).Item("name")
+            End If
+
+
+            If Form1.lbListBon.Tag = dt.Rows(i).Item(0) Then
+                b.Tag = dt.Rows(i).Item(0)
+                b.Text = dt.Rows(i).Item("name")
             End If
         Next
         Form1.lbListBon.Text = "[" & dt.Rows.Count & "] Recept(s)"
@@ -1718,6 +1720,55 @@ Public Class SubClass
             Dim p As Panel = Form1.plright
 
             If chs.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+                If Form1._isMohssineMode Then
+                    If chs.cid > 0 Then
+
+                        If Form1.cbPvClient.Checked Then
+                            For Each b As CBlock In Form1.plright.Controls
+                                If CStr(b.lb.Text) = chs.clientName Then
+                                    MsgBox("هذا الزبون لديه ايصال مفتوح", MsgBoxStyle.OkOnly, "Bons")
+                                    Dim bt As New Button
+                                    bt.Tag = b.ID
+                                    bt.Text = chs.clientName
+                                    FactureSelected(bt, Nothing)
+
+                                    If Form1.chbcb.Checked Then
+                                        Form1.txtSearchCode.Text = ""
+                                        Form1.txtSearchCode.Focus()
+                                    Else
+                                        Form1.txtSearch.Text = ""
+                                        Form1.txtSearch.Focus()
+                                    End If
+
+                                    Exit Sub
+                                End If
+                            Next
+                        Else
+                            For Each b As Button In Form1.plright.Controls
+                                If CStr(b.Text) = chs.clientName Then
+                                    MsgBox("هذا الزبون لديه ايصال مفتوح", MsgBoxStyle.OkOnly, "Bons")
+
+                                    FactureSelected(b, Nothing)
+
+                                    If Form1.chbcb.Checked Then
+                                        Form1.txtSearchCode.Text = ""
+                                        Form1.txtSearchCode.Focus()
+                                    Else
+                                        Form1.txtSearch.Text = ""
+                                        Form1.txtSearch.Focus()
+                                    End If
+
+                                    Exit Sub
+                                End If
+                            Next
+                        End If
+
+                    End If
+                End If
+
+
+
                 NewFacture(chs.cid, chs.clientName, chs.clientadresse, chs.num)
             End If
 
@@ -2790,7 +2841,8 @@ Public Class SubClass
         End If
          
         Form1.lbListBon.Text = Form1.lbListBon.Text.Split("|")(0) & "  |  " & clientName
-         
+        Form1.lbListBon.Tag = fctid
+
         'clear the recept liste
         Form1.RPl.ClearItems()
         Form1.RPl.FctId = fctid

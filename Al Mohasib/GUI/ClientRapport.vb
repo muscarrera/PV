@@ -435,14 +435,14 @@ Public Class ClientRapport
             Using g As gDrawClass = New gDrawClass(Form1.MP_Localname)
                 g.rtl = Form1.cbRTL.Checked
 
-                g.DrawBl(e, data, table, dt_Client, Form1.Facture_Title, False, M)
+                g.DrawBl(e, data, table, dt_Client, Form1.Facture_Title, False, M, params_tva)
             End Using
 
         Catch ex As Exception
-
+            params_tva.Clear()
         End Try
     End Sub
-
+    Dim params_tva As New Dictionary(Of Double, Double)
     Private Sub btInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btInfo.Click
         Dim chs As New ChoseClient
         chs.isSell = True

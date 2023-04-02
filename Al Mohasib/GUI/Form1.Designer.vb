@@ -58,6 +58,7 @@ Partial Class Form1
         Me.Button55 = New System.Windows.Forms.Button()
         Me.Button70 = New System.Windows.Forms.Button()
         Me.bttrial = New System.Windows.Forms.Button()
+        Me.Button75 = New System.Windows.Forms.Button()
         Me.Button68 = New System.Windows.Forms.Button()
         Me.Button63 = New System.Windows.Forms.Button()
         Me.Button67 = New System.Windows.Forms.Button()
@@ -376,6 +377,7 @@ Partial Class Form1
         Me.Button48 = New System.Windows.Forms.Button()
         Me.cbPvCats = New System.Windows.Forms.CheckBox()
         Me.Button50 = New System.Windows.Forms.Button()
+        Me.cbBadgeCs = New System.Windows.Forms.CheckBox()
         Me.cbBadgeMA = New System.Windows.Forms.CheckBox()
         Me.Button57 = New System.Windows.Forms.Button()
         Me.cbBadgeSA = New System.Windows.Forms.CheckBox()
@@ -465,6 +467,7 @@ Partial Class Form1
         Me.Button69 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button76 = New System.Windows.Forms.Button()
         Me.Button21 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
@@ -792,9 +795,9 @@ Partial Class Form1
         Me.GB1.Controls.Add(Me.Panel34)
         Me.GB1.Controls.Add(Me.Panel31)
         Me.GB1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB1.Location = New System.Drawing.Point(755, 3)
+        Me.GB1.Location = New System.Drawing.Point(804, 3)
         Me.GB1.Name = "GB1"
-        Me.GB1.Size = New System.Drawing.Size(106, 598)
+        Me.GB1.Size = New System.Drawing.Size(57, 598)
         Me.GB1.TabIndex = 5
         Me.GB1.TabStop = False
         '
@@ -806,6 +809,7 @@ Partial Class Form1
         Me.Panel34.Controls.Add(Me.Button55)
         Me.Panel34.Controls.Add(Me.Button70)
         Me.Panel34.Controls.Add(Me.bttrial)
+        Me.Panel34.Controls.Add(Me.Button75)
         Me.Panel34.Controls.Add(Me.Button68)
         Me.Panel34.Controls.Add(Me.Button63)
         Me.Panel34.Controls.Add(Me.Button67)
@@ -816,7 +820,7 @@ Partial Class Form1
         Me.Panel34.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel34.Location = New System.Drawing.Point(23, 16)
         Me.Panel34.Name = "Panel34"
-        Me.Panel34.Size = New System.Drawing.Size(80, 579)
+        Me.Panel34.Size = New System.Drawing.Size(31, 579)
         Me.Panel34.TabIndex = 5
         '
         'Button46
@@ -879,6 +883,18 @@ Partial Class Form1
         Me.bttrial.TabIndex = 3
         Me.bttrial.Text = "Activation"
         Me.bttrial.UseVisualStyleBackColor = True
+        '
+        'Button75
+        '
+        Me.Button75.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button75.Image = CType(resources.GetObject("Button75.Image"), System.Drawing.Image)
+        Me.Button75.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button75.Location = New System.Drawing.Point(22, 197)
+        Me.Button75.Name = "Button75"
+        Me.Button75.Size = New System.Drawing.Size(199, 48)
+        Me.Button75.TabIndex = 1
+        Me.Button75.Text = "Inventaire"
+        Me.Button75.UseVisualStyleBackColor = True
         '
         'Button68
         '
@@ -982,7 +998,7 @@ Partial Class Form1
         Me.Button26.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button26.ForeColor = System.Drawing.Color.White
         Me.Button26.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button26.Location = New System.Drawing.Point(41, 81)
+        Me.Button26.Location = New System.Drawing.Point(43, 81)
         Me.Button26.Name = "Button26"
         Me.Button26.Size = New System.Drawing.Size(43, 48)
         Me.Button26.TabIndex = 1
@@ -996,7 +1012,7 @@ Partial Class Form1
         Me.Button25.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold)
         Me.Button25.ForeColor = System.Drawing.Color.White
         Me.Button25.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button25.Location = New System.Drawing.Point(41, 27)
+        Me.Button25.Location = New System.Drawing.Point(43, 27)
         Me.Button25.Name = "Button25"
         Me.Button25.Size = New System.Drawing.Size(43, 48)
         Me.Button25.TabIndex = 1
@@ -1296,7 +1312,7 @@ Partial Class Form1
         Me.GB4.Controls.Add(Me.txtNbrArt)
         Me.GB4.Controls.Add(Me.txtlargebt)
         Me.GB4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB4.Location = New System.Drawing.Point(551, 3)
+        Me.GB4.Location = New System.Drawing.Point(577, 3)
         Me.GB4.Name = "GB4"
         Me.GB4.Size = New System.Drawing.Size(42, 598)
         Me.GB4.TabIndex = 0
@@ -2803,7 +2819,7 @@ Partial Class Form1
         Me.CbSearchFacture.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CbSearchFacture.ForeColor = System.Drawing.Color.White
         Me.CbSearchFacture.FormattingEnabled = True
-        Me.CbSearchFacture.Items.AddRange(New Object() {"Rapide", "Sans Info", "Avec Info", "----------", "Tous", "Facturé", "Non Facturé"})
+        Me.CbSearchFacture.Items.AddRange(New Object() {"Rapide", "Sans Info", "Avec Info", "Rapport jr", "----------", "Tous", "Facturé", "Non Facturé"})
         Me.CbSearchFacture.Location = New System.Drawing.Point(0, 20)
         Me.CbSearchFacture.Name = "CbSearchFacture"
         Me.CbSearchFacture.Size = New System.Drawing.Size(93, 21)
@@ -4172,7 +4188,7 @@ Partial Class Form1
         Me.GB8.Controls.Add(Me.Panel5)
         Me.GB8.Controls.Add(Me.Button87)
         Me.GB8.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB8.Location = New System.Drawing.Point(96, 3)
+        Me.GB8.Location = New System.Drawing.Point(-261, 3)
         Me.GB8.Name = "GB8"
         Me.GB8.Size = New System.Drawing.Size(334, 598)
         Me.GB8.TabIndex = 11
@@ -4298,6 +4314,7 @@ Partial Class Form1
         Me.GB7.Controls.Add(Me.Button48)
         Me.GB7.Controls.Add(Me.cbPvCats)
         Me.GB7.Controls.Add(Me.Button50)
+        Me.GB7.Controls.Add(Me.cbBadgeCs)
         Me.GB7.Controls.Add(Me.cbBadgeMA)
         Me.GB7.Controls.Add(Me.Button57)
         Me.GB7.Controls.Add(Me.cbBadgeSA)
@@ -4308,9 +4325,9 @@ Partial Class Form1
         Me.GB7.Controls.Add(Me.cbPvArticle)
         Me.GB7.Controls.Add(Me.Button56)
         Me.GB7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB7.Location = New System.Drawing.Point(430, 3)
+        Me.GB7.Location = New System.Drawing.Point(73, 3)
         Me.GB7.Name = "GB7"
-        Me.GB7.Size = New System.Drawing.Size(35, 598)
+        Me.GB7.Size = New System.Drawing.Size(381, 598)
         Me.GB7.TabIndex = 10
         Me.GB7.TabStop = False
         '
@@ -4517,6 +4534,16 @@ Partial Class Form1
         Me.Button50.Text = "Clients"
         Me.Button50.UseVisualStyleBackColor = True
         '
+        'cbBadgeCs
+        '
+        Me.cbBadgeCs.AutoSize = True
+        Me.cbBadgeCs.Location = New System.Drawing.Point(265, 402)
+        Me.cbBadgeCs.Name = "cbBadgeCs"
+        Me.cbBadgeCs.Size = New System.Drawing.Size(56, 17)
+        Me.cbBadgeCs.TabIndex = 12
+        Me.cbBadgeCs.Text = "M. Art"
+        Me.cbBadgeCs.UseVisualStyleBackColor = True
+        '
         'cbBadgeMA
         '
         Me.cbBadgeMA.AutoSize = True
@@ -4654,9 +4681,9 @@ Partial Class Form1
         Me.GB6.Controls.Add(Me.Label61)
         Me.GB6.Controls.Add(Me.Label63)
         Me.GB6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB6.Location = New System.Drawing.Point(465, 3)
+        Me.GB6.Location = New System.Drawing.Point(454, 3)
         Me.GB6.Name = "GB6"
-        Me.GB6.Size = New System.Drawing.Size(50, 598)
+        Me.GB6.Size = New System.Drawing.Size(87, 598)
         Me.GB6.TabIndex = 9
         Me.GB6.TabStop = False
         '
@@ -5070,7 +5097,7 @@ Partial Class Form1
         Me.GB5.Controls.Add(Me.cbProfit)
         Me.GB5.Controls.Add(Me.cbUnite)
         Me.GB5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB5.Location = New System.Drawing.Point(515, 3)
+        Me.GB5.Location = New System.Drawing.Point(541, 3)
         Me.GB5.Name = "GB5"
         Me.GB5.Size = New System.Drawing.Size(36, 598)
         Me.GB5.TabIndex = 8
@@ -5215,7 +5242,7 @@ Partial Class Form1
         Me.GB3.Controls.Add(Me.Label49)
         Me.GB3.Controls.Add(Me.Label54)
         Me.GB3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB3.Location = New System.Drawing.Point(593, 3)
+        Me.GB3.Location = New System.Drawing.Point(619, 3)
         Me.GB3.Name = "GB3"
         Me.GB3.Size = New System.Drawing.Size(44, 598)
         Me.GB3.TabIndex = 7
@@ -5437,14 +5464,15 @@ Partial Class Form1
         Me.GB2.Controls.Add(Me.Button2)
         Me.GB2.Controls.Add(Me.Button25)
         Me.GB2.Controls.Add(Me.Button3)
+        Me.GB2.Controls.Add(Me.Button76)
         Me.GB2.Controls.Add(Me.Button21)
         Me.GB2.Controls.Add(Me.Button7)
         Me.GB2.Controls.Add(Me.Button5)
         Me.GB2.Controls.Add(Me.Button6)
         Me.GB2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB2.Location = New System.Drawing.Point(637, 3)
+        Me.GB2.Location = New System.Drawing.Point(663, 3)
         Me.GB2.Name = "GB2"
-        Me.GB2.Size = New System.Drawing.Size(118, 598)
+        Me.GB2.Size = New System.Drawing.Size(141, 598)
         Me.GB2.TabIndex = 7
         Me.GB2.TabStop = False
         '
@@ -5495,6 +5523,21 @@ Partial Class Form1
         Me.Button3.TabIndex = 1
         Me.Button3.Text = "Fournisseurs"
         Me.Button3.UseVisualStyleBackColor = True
+        '
+        'Button76
+        '
+        Me.Button76.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Button76.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources._326569_nfc_icon
+        Me.Button76.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button76.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button76.Font = New System.Drawing.Font("Century Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button76.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Button76.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.Button76.Location = New System.Drawing.Point(43, 440)
+        Me.Button76.Name = "Button76"
+        Me.Button76.Size = New System.Drawing.Size(35, 48)
+        Me.Button76.TabIndex = 1
+        Me.Button76.UseVisualStyleBackColor = False
         '
         'Button21
         '
@@ -6371,5 +6414,8 @@ Partial Class Form1
     Friend WithEvents Label71 As System.Windows.Forms.Label
     Friend WithEvents txtGroupe As System.Windows.Forms.TextBox
     Friend WithEvents Button69 As System.Windows.Forms.Button
+    Friend WithEvents Button75 As System.Windows.Forms.Button
+    Friend WithEvents Button76 As System.Windows.Forms.Button
+    Friend WithEvents cbBadgeCs As System.Windows.Forms.CheckBox
 
 End Class

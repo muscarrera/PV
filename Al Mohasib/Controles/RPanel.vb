@@ -516,10 +516,26 @@
             ap.Dock = DockStyle.Top
             ap.Index = Pl.Controls.Count
             ap.Name = R("name")
-            ap.Unite = R("unite")
             ap.Price = R("sprice")
-            ap.Depot = R("depot")
 
+
+            'Try
+            '    If R("depot") = 0 Then
+
+            '        Dim clc As New ChoseDepot
+
+            '        If clc.ShowDialog = DialogResult.OK Then
+            '            Dim dpt As Integer = CInt(clc.DataGridView1.SelectedRows(0).Cells(0).Value)
+            '            If clc.Button1.Tag = 2 Then dpt = 0
+            '            R("depot") = dpt
+            '        End If
+            '    End If
+            'Catch ex As Exception
+            'End Try
+
+
+            ap.Depot = R("depot")
+            ap.Unite = R("unite")
             ap.Bprice = R("bprice")
             ap.rprice = R("sp5")
             ap.BgColor = Color.White
@@ -627,7 +643,7 @@
             For i As Integer = 0 To D.Rows.Count - 1
                 Dim RM As Double = CDbl(D.Rows(i).Item("poid"))
 
-                If IsExiste(D.Rows(i).Item("arid"), D.Rows(i).Item("depot")) And Form1.cbMergeArt.Checked = True Then
+                If IsExiste(D.Rows(i).Item("arid"), D.Rows(i).Item("depot"), D.Rows(i).Item("name")) And Form1.cbMergeArt.Checked = True Then
                     Dim a As Items
                     Dim aaa_isExit = False
 
@@ -725,6 +741,73 @@
             MsgBox(ex.Message)
         End Try
     End Sub
+
+    Public Sub AddItems(ByVal D As DataTable)
+        Try
+            Dim ls As New List(Of Integer)
+             
+
+            For i As Integer = 0 To D.Rows.Count - 1
+                Dim __i As String = D.Rows(i).Item("arid") & D.Rows(i).Item("price").ToString
+
+                Try
+                    If ls.Contains(__i) Then
+                        ChangedItemsQtebyPrice(D.Rows(i).Item("arid"), D.Rows(i).Item("price"), D.Rows(i).Item("qte"))
+                        Continue For
+                    Else
+                        ls.Add(__i)
+                    End If
+                Catch ex As Exception
+
+                End Try
+                Dim RM As Double = CDbl(D.Rows(i).Item("poid"))
+                Dim ap As New Items
+                Dim qte = D.Rows(i).Item("qte")
+
+                ap.Dock = DockStyle.Top
+                ap.Index = Pl.Controls.Count
+                ap.Name = D.Rows(i).Item("name")
+                ap.Unite = D.Rows(i).Item("unit")
+                ap.Price = D.Rows(i).Item("price")
+                ap.Qte = D.Rows(i).Item("qte")
+                ap.Depot = D.Rows(i).Item("depot")
+
+                ap.Bprice = D.Rows(i).Item("bprice")
+                ap.id = D.Rows(i).Item(0)
+                ap.arid = D.Rows(i).Item("arid")
+                ap.Tva = D.Rows(i).Item("tva")
+                ap.cid = D.Rows(i).Item("cid")
+
+                ap.code = D.Rows(i).Item("code")
+
+                Try
+                    ap.rprice = D.Rows(i).Item("rprice")
+                Catch ex As Exception
+                End Try
+
+
+                ap.Poid = RM
+                ap.Remise = RM
+                 
+                    ap.Qte = qte
+                 
+                ap.BgColor = Color.White
+                ap.SideColor = Color.Moccasin
+                 
+                Pl.Controls.Add(ap)
+
+                ap.BringToFront()
+                ap = Nothing
+            Next
+            UpdateValue()
+            CP.Value = 0
+            CP.ActiveQte(False)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+
     Public Sub AddItemsBouch(ByVal D As DataTable, ByVal isSell As Boolean)
         Try
             For i As Integer = 0 To D.Rows.Count - 1
@@ -732,7 +815,7 @@
 
                 Dim RM As Double = CDbl(D.Rows(i).Item("poid"))
 
-                If IsExiste(D.Rows(i).Item("arid"), D.Rows(i).Item("depot")) And Form1.cbMergeArt.Checked = True Then
+                If IsExiste(D.Rows(i).Item("arid"), D.Rows(i).Item("depot"), D.Rows(i).Item("name")) And Form1.cbMergeArt.Checked = True Then
                     Dim a As Items
                     Dim aaa_isExit = False
 
@@ -958,6 +1041,16 @@
             End If
         Next
     End Sub
+    Public Sub ChangedItemsQtebyPrice(ByRef arid As Integer, ByVal pr As Double, ByVal qte As Double)
+
+        Dim a As Items
+        For Each a In Pl.Controls
+            If a.arid = arid And a.Price = pr Then
+                a.Qte += qte  '+= CP.Value
+                Exit For
+            End If
+        Next
+    End Sub
     Public Sub ChangedItems(ByRef id As Integer, ByVal prdname As String, ByVal bprice As Double, ByVal price As Double, ByVal qte As Double, ByVal dpt As Integer)
 
         Dim a As Items
@@ -1055,26 +1148,26 @@
         Next
         Return False
     End Function
-    Public Function IsExiste(ByVal arid As Integer, ByVal dpid As Integer) As Boolean
+    Public Function IsExiste(ByVal arid As Integer, ByVal dpid As Integer, ByVal nm As String) As Boolean
         Dim a As Items
         If Pl.Controls.Count = 0 Then
             Return False
         End If
         For Each a In Pl.Controls
-            If a.arid = arid And a.Depot = dpid And a.isRetour = False Then
+            If a.arid = arid And a.Depot = dpid And a.FullName = nm And a.isRetour = False Then
                 Return True
                 Exit Function
             End If
         Next
         Return False
     End Function
-    Public Function SelectedItems(ByVal arid As Integer, ByVal dpid As Integer) As Items
+    Public Function SelectedItems(ByVal arid As Integer, ByVal dpid As Integer, ByVal nm As String) As Items
         Dim a As Items
         If Pl.Controls.Count = 0 Then
             Return Nothing
         End If
         For Each a In Pl.Controls
-            If a.arid = arid And a.Depot = dpid And a.isRetour = False Then
+            If a.arid = arid And a.Depot = dpid And a.FullName = nm And a.isRetour = False Then
                 Return a
                 Exit Function
             End If

@@ -15,7 +15,7 @@ Public Class Form1
     Public adminName As String = "TestUser"
     Public isMaster As Boolean
     Public isBaseOnRIYAL As Boolean = False
-    Public frmDbl As String = "N3"
+    Public frmDbl As String = "N2"
 
     Public dualScrean As New Screen2
 
@@ -47,6 +47,7 @@ Public Class Form1
 
     Public ShowDepotName_Item As Boolean = True
     Public NouveauBon_Creation As Boolean = True
+    Friend Shared _isMohssineMode As Boolean = False
 
      
     Public Property Operation As String
@@ -135,7 +136,6 @@ Public Class Form1
 
                 Button33.Visible = False
                 RPl.isSell = False
-
             End If
 
 
@@ -346,6 +346,26 @@ Public Class Form1
                 End If
             Catch ex As Exception
             End Try
+
+
+            Try '///////////////////////////////////////////////////////  INVO  /////////////////
+                Dim params As New Dictionary(Of String, Object)
+                params.Add("admin", False)
+                Dim _dt = a.SelectDataTable("invo", {"*"}, params)
+
+                If _dt.Rows.Count > 0 Then
+                    If DteValue(_dt, "date_start", 0).AddDays(15) < Now Then
+                        params.Clear()
+                        params.Add("date_end", Now)
+                        params.Add("admin", True)
+                        Dim where As New Dictionary(Of String, Object)
+                        where.Add("id", _dt.Rows(0).Item(0))
+                        a.UpdateRecord("invo", params, where)
+                    End If
+                End If
+            Catch ex As Exception
+            End Try '///////////////////////////////////////////////////////  INVO  /////////////////
+
         End Using
 
 
@@ -819,274 +839,272 @@ Public Class Form1
         End Try
     End Sub
 
-    'keys '''///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    '"//
 
-    ' function keys
-    'Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message,
-    '                                           ByVal keyData As System.Windows.Forms.Keys) As Boolean
-    '    Dim k As System.Windows.Forms.Keys = keyData
-    '    Select Case keyData
+    Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message,
+                                               ByVal keyData As System.Windows.Forms.Keys) As Boolean
+        Dim k As System.Windows.Forms.Keys = keyData
+        Select Case keyData
 
-    '        Case Keys.F1
-    '            If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
-    '            Dim qte = 0.01
-    '            If RPl.SelectedItem.Unite = "g" Or RPl.SelectedItem.Unite = "ج" Then qte = 10
-    '            Using a As SubClass = New SubClass
-    '                a.UpdateItem(RPl.SelectedItem, RPl.SelectedItem.Qte + qte, RPl.isSell, "qte")
-    '            End Using
-    '        Case Keys.F2
-    '            If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
-    '            Dim qte = 0.05
-    '            If RPl.SelectedItem.Unite = "g" Or RPl.SelectedItem.Unite = "ج" Then qte = 50
-    '            Using a As SubClass = New SubClass
-    '                a.UpdateItem(RPl.SelectedItem, RPl.SelectedItem.Qte + qte, RPl.isSell, "qte")
-    '            End Using
-    '        Case Keys.F3
-    '            If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
-    '            Dim qte = 0.1
-    '            If RPl.SelectedItem.Unite = "g" Or RPl.SelectedItem.Unite = "ج" Then qte = 100
-    '            Using a As SubClass = New SubClass
-    '                a.UpdateItem(RPl.SelectedItem, RPl.SelectedItem.Qte + qte, RPl.isSell, "qte")
-    '            End Using
-    '        Case Keys.F4
-    '            If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
-    '            Dim qte = 0.25
-    '            If RPl.SelectedItem.Unite = "g" Or RPl.SelectedItem.Unite = "ج" Then qte = 250
-    '            Using a As SubClass = New SubClass
-    '                a.UpdateItem(RPl.SelectedItem, RPl.SelectedItem.Qte + qte, RPl.isSell, "qte")
-    '            End Using
-    '        Case Keys.F5
-    '            If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
-    '            Dim qte = 0.5
-    '            If RPl.SelectedItem.Unite = "g" Or RPl.SelectedItem.Unite = "ج" Then qte = 500
-    '            Using a As SubClass = New SubClass
-    '                a.UpdateItem(RPl.SelectedItem, RPl.SelectedItem.Qte + qte, RPl.isSell, "qte")
-    '            End Using
+            Case keys.F1
+                If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
+                Dim qte = 0.01
+                If RPl.SelectedItem.Unite = "g" Or RPl.SelectedItem.Unite = "ج" Then qte = 10
+                Using a As SubClass = New SubClass
+                    a.UpdateItem(RPl.SelectedItem, RPl.SelectedItem.Qte + qte, RPl.isSell, "qte")
+                End Using
+            Case keys.F2
+                If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
+                Dim qte = 0.05
+                If RPl.SelectedItem.Unite = "g" Or RPl.SelectedItem.Unite = "ج" Then qte = 50
+                Using a As SubClass = New SubClass
+                    a.UpdateItem(RPl.SelectedItem, RPl.SelectedItem.Qte + qte, RPl.isSell, "qte")
+                End Using
+            Case keys.F3
+                If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
+                Dim qte = 0.1
+                If RPl.SelectedItem.Unite = "g" Or RPl.SelectedItem.Unite = "ج" Then qte = 100
+                Using a As SubClass = New SubClass
+                    a.UpdateItem(RPl.SelectedItem, RPl.SelectedItem.Qte + qte, RPl.isSell, "qte")
+                End Using
+            Case keys.F4
+                If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
+                Dim qte = 0.25
+                If RPl.SelectedItem.Unite = "g" Or RPl.SelectedItem.Unite = "ج" Then qte = 250
+                Using a As SubClass = New SubClass
+                    a.UpdateItem(RPl.SelectedItem, RPl.SelectedItem.Qte + qte, RPl.isSell, "qte")
+                End Using
+            Case keys.F5
+                If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
+                Dim qte = 0.5
+                If RPl.SelectedItem.Unite = "g" Or RPl.SelectedItem.Unite = "ج" Then qte = 500
+                Using a As SubClass = New SubClass
+                    a.UpdateItem(RPl.SelectedItem, RPl.SelectedItem.Qte + qte, RPl.isSell, "qte")
+                End Using
 
-    '        Case Keys.Escape 'qte of 0 the an article
-
-
-    '            If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
-    '            Using a As SubClass = New SubClass
-    '                a.UpdateItem(RPl.SelectedItem, 0, RPl.isSell, "qte")
-    '            End Using
-
-    '            'Case Keys.Back 'delete item
-    '            '    If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
-    '            '    Using a As SubClass = New SubClass(btswitsh.Tag)
-    '            '        a.DeleteItem(RPl.SelectedItem, RPl.FctId)
-    '            '    End Using
-    '        Case Keys.Add ' add one
-    '            If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
-    '            Using a As SubClass = New SubClass
-    '                a.UpdateItem(RPl.SelectedItem, RPl.SelectedItem.Qte + 1, RPl.isSell, "qte")
-    '            End Using
-    '        Case Keys.Subtract  ' sub one
-    '            If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
-    '            Using a As SubClass = New SubClass
-    '                Dim qte = RPl.SelectedItem.Qte - 1
-    '                If qte < 0 Then qte = 0
-    '                a.UpdateItem(RPl.SelectedItem, qte, RPl.isSell, "qte")
-    '            End Using
-    '            ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''End qte
-    '        Case Keys.F6
-    '            If RPl.FctId = 0 Or RPl.EditMode = True Then Return False
-    '            Dim bp As New byPrice
-    '            If bp.ShowDialog = Windows.Forms.DialogResult.OK Then
-    '                Dim tableName = "DetailsFacture"
-    '                If btswitsh.Tag = 0 Then tableName = "DetailsBon"
-    '                Dim arid As Integer = 0
-    '                'qte
-    '                Dim qte As Double = 1
-
-    '                'Price
-    '                Dim price As Double = CDbl(bp.txt.Text)
-    '                'tva
-    '                Dim tva As Double = 20
-
-    '                Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-    '                    Dim params As New Dictionary(Of String, Object)
-    '                    params.Add("fctid", CInt(RPl.FctId))
-    '                    params.Add("name", "Article")
-    '                    params.Add("bprice", price)
-    '                    params.Add("price", price)
-    '                    params.Add("unit", "u")
-    '                    params.Add("qte", qte)
-    '                    params.Add("tva", tva)
-    '                    params.Add("poid", 1)
-    '                    params.Add("arid", 0)
-    '                    params.Add("depot", 0)
-    '                    params.Add("code", "")
-    '                    params.Add("cid", 0)
-
-    '                    arid = c.InsertRecord(tableName, params, True)
-    '                End Using
-
-    '                If arid > 0 Then
-    '                    Dim bt As New Button
-    '                    bt.Text = RPl.ClientName
-    '                    bt.Tag = RPl.FctId
-    '                    Using a As SubClass = New SubClass
-    '                        a.FactureSelected(bt, Nothing)
-    '                    End Using
-    '                End If
-    '            End If
-    '        Case Keys.F8 ' add NOUVEAU FACTURE
-    '            If plright.Controls.Count > 10 Then Return False
-    '            Using a As SubClass = New SubClass
-    '                Try
-    '                    Dim cid As String = 0
-    '                    Dim clientname As String = txtcltcomptoir.Text.Split("/")(0)
-    '                    If RPl.isSell Then a.NewFacture(cid, clientname, "", 0)
-    '                Catch ex As Exception
-    '                End Try
-    '            End Using
-
-    '        Case Keys.F9 ' add NOUVEAU FACTURE
-    '            If plright.Controls.Count > 10 Then Return False
-    '            Using a As SubClass = New SubClass()
-    '                a.NewFacture(CInt(btswitsh.Tag))
-    '            End Using
-
-    '        Case Keys.F10
-    '            Using c As SubClass = New SubClass
-    '                If cbPromos.Checked Then c.FillMesCadeaux()
-    '            End Using
-
-    '            '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    '            'cash drawer
-    '        Case Keys.F12
-    '            'Modify DrawerCode to your receipt printer open drawer code
-    '            Dim DrawerCode As String = Chr(27) & Chr(112) & Chr(48) & Chr(64) & Chr(64)
-    '            'Modify PrinterName to your receipt printer name
-    '            Dim PrinterName As String = txtreceipt.Text
-
-    '            RawPrinter.PrintRaw(PrinterName, DrawerCode)
-    '            'change Mode de recherche
-
-    '        Case Keys.F11
-
-    '            If RPl.isSell Then
-
-    '                Dim pt As New PriceType
-
-    '                If pt.ShowDialog = Windows.Forms.DialogResult.OK Then
-
-    '                    If pt.value = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
-
-    '                    Using a As SubClass = New SubClass()
-
-    '                        a.ChangeAllPrices(pt.value)
-    '                        Dim bt As New Button
-    '                        bt.Text = RPl.ClientName
-    '                        bt.Tag = RPl.FctId
-
-    '                        a.FactureSelected(bt, Nothing)
-    '                    End Using
-    '                End If
-    '            End If
-    '        Case Keys.Tab
-    '            If txtSearch.Focused = False And txtSearchCode.Focused = False Then
-    '                Return MyBase.ProcessCmdKey(msg, keyData)
-    '            Else
-    '                chbcb.Checked = Not chbcb.Checked
-    '                txtArSearch.text = ""
-    '                txtSearch.Text = ""
-
-    '                If chbcb.Checked Then
-    '                    txtSearchCode.Text = ""
-    '                Else
-    '                    txtSearch.Focus()
-    '                End If
-    '            End If
-
-    '        Case Keys.Up
-
-    '            If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
-    '            If TabControl1.SelectedIndex <> 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
-    '            RplFocusedArrow(1)
-
-
-    '        Case Keys.Down
-    '            If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
-    '            If TabControl1.SelectedIndex <> 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
-    '            RplFocusedArrow(-1)
+            Case keys.Escape 'qte of 0 the an article
 
 
 
-    '        Case Keys.Space  ' save and print
+                If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
+                Using a As SubClass = New SubClass
+                    a.UpdateItem(RPl.SelectedItem, 0, RPl.isSell, "qte")
+                End Using
 
-    '            If RPl.EditMode = True Then Return False
+                'Case Keys.Back 'delete item
+                '    If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
+                '    Using a As SubClass = New SubClass(btswitsh.Tag)
+                '        a.DeleteItem(RPl.SelectedItem, RPl.FctId)
+                '    End Using
 
-    '            Dim a As Integer = 0
+            Case keys.Add ' add one
+                If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
+                Using a As SubClass = New SubClass
+                    a.UpdateItem(RPl.SelectedItem, RPl.SelectedItem.Qte + 1, RPl.isSell, "qte")
+                End Using
+            Case keys.Subtract  ' sub one
+                If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
+                Using a As SubClass = New SubClass
+                    Dim qte = RPl.SelectedItem.Qte - 1
+                    If qte < 0 Then qte = 0
+                    a.UpdateItem(RPl.SelectedItem, qte, RPl.isSell, "qte")
+                End Using
+                ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''End qte
+            Case keys.F6
+                If RPl.FctId = 0 Or RPl.EditMode = True Then Return False
+                Dim bp As New byPrice
+                If bp.ShowDialog = Windows.Forms.DialogResult.OK Then
+                    Dim tableName = "DetailsFacture"
+                    If btswitsh.Tag = 0 Then tableName = "DetailsBon"
+                    Dim arid As Integer = 0
+                    'qte
+                    Dim qte As Double = 1
 
-    '            If txtSearch.Focused Then a = 1
-    '            If txtSearchCode.Focused Then a = 1
+                    'Price
+                    Dim price As Double = CDbl(bp.txt.Text)
+                    'tva
+                    Dim tva As Double = 20
 
-    '            'cancel espace
-    '            ' a = 0
+                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                        Dim params As New Dictionary(Of String, Object)
+                        params.Add("fctid", CInt(RPl.FctId))
+                        params.Add("name", "Article")
+                        params.Add("bprice", price)
+                        params.Add("price", price)
+                        params.Add("unit", "u")
+                        params.Add("qte", qte)
+                        params.Add("tva", tva)
+                        params.Add("poid", 1)
+                        params.Add("arid", 0)
+                        params.Add("depot", 0)
+                        params.Add("code", "")
+                        params.Add("cid", 0)
 
-    '            If a = 1 Then
-    '                If RPl.Total_TTC = 0 Then
-    '                    Return MyBase.ProcessCmdKey(msg, keyData)
-    '                End If
+                        arid = c.InsertRecord(tableName, params, True)
+                    End Using
 
-    '                If txtSearch.Text.Trim <> "" Or txtSearchCode.Text.Trim <> "" Then
-    '                    Return MyBase.ProcessCmdKey(msg, keyData)
-    '                End If
+                    If arid > 0 Then
+                        Dim bt As New Button
+                        bt.Text = RPl.ClientName
+                        bt.Tag = RPl.FctId
+                        Using a As SubClass = New SubClass
+                            a.FactureSelected(bt, Nothing)
+                        End Using
+                    End If
+                End If
+            Case keys.F8 ' add NOUVEAU FACTURE
+                If plright.Controls.Count > 10 Then Return False
+                Using a As SubClass = New SubClass
+                    Try
+                        Dim cid As String = 0
+                        Dim clientname As String = txtcltcomptoir.Text.Split("/")(0)
+                        If RPl.isSell Then a.NewFacture(cid, clientname, "", 0)
+                    Catch ex As Exception
+                    End Try
+                End Using
+
+            Case keys.F9 ' add NOUVEAU FACTURE
+                If plright.Controls.Count > 10 Then Return False
+                Using a As SubClass = New SubClass()
+                    a.NewFacture(CInt(btswitsh.Tag))
+                End Using
+
+            Case keys.F10
+                Using c As SubClass = New SubClass
+                    If cbPromos.Checked Then c.FillMesCadeaux()
+                End Using
+
+                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                'cash drawer
+            Case keys.F12
+                'Modify DrawerCode to your receipt printer open drawer code
+                Dim DrawerCode As String = Chr(27) & Chr(112) & Chr(48) & Chr(64) & Chr(64)
+                'Modify PrinterName to your receipt printer name
+                Dim PrinterName As String = txtreceipt.Text
+
+                RawPrinter.PrintRaw(PrinterName, DrawerCode)
+                'change Mode de recherche
+
+            Case keys.F11
+
+                If RPl.isSell Then
+
+                    Dim pt As New PriceType
+
+                    If pt.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+                        If pt.value = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+
+                        Using a As SubClass = New SubClass()
+
+                            a.ChangeAllPrices(pt.value)
+                            Dim bt As New Button
+                            bt.Text = RPl.ClientName
+                            bt.Tag = RPl.FctId
+
+                            a.FactureSelected(bt, Nothing)
+                        End Using
+                    End If
+                End If
+            Case keys.Tab
+                If txtSearch.Focused = False And txtSearchCode.Focused = False Then
+                    Return MyBase.ProcessCmdKey(msg, keyData)
+                Else
+                    chbcb.Checked = Not chbcb.Checked
+                    txtArSearch.text = ""
+                    txtSearch.Text = ""
+
+                    If chbcb.Checked Then
+                        txtSearchCode.Text = ""
+                    Else
+                        txtSearch.Focus()
+                    End If
+                End If
+
+            Case keys.Up
+
+                If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                If TabControl1.SelectedIndex <> 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                RplFocusedArrow(1)
+
+
+            Case keys.Down
+                If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                If TabControl1.SelectedIndex <> 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                RplFocusedArrow(-1)
 
 
 
-    '                If cbPaper.Text = "Receipt" Then
-    '                    RPl_SaveAndPrint(RPl.FctId, RPl.Total_TTC, RPl.Avance, RPl.Tva, RPl.DataSource, RPl.isSell, False, False)
-    '                ElseIf cbPaper.Text = "Normal" Then
-    '                    RPl_SaveAndPrint(RPl.FctId, RPl.Total_TTC, RPl.Avance, RPl.Tva, RPl.DataSource, RPl.isSell, True, False)
-    '                ElseIf cbPaper.Text = "Normal&A4" Then
-    '                    RPl_SaveAndPrint(RPl.FctId, RPl.Total_TTC, RPl.Avance, RPl.Tva, RPl.DataSource, RPl.isSell, True, False)
-    '                Else
-    '                    RPl_SaveAndPrint(RPl.FctId, RPl.Total_TTC, RPl.Avance, RPl.Tva, RPl.DataSource, RPl.isSell, False, False)
-    '                End If
-    '            Else
-    '                Return MyBase.ProcessCmdKey(msg, keyData)
-    '            End If
+            Case keys.Space  ' save and print
 
-    '        Case Keys.Delete ' delete facture
-    '            If RPl.FctId = 0 Then Return False
-    '            Dim str As String = " عند قيامكم على الضغط على 'موافق' سيتم حذف فاتورة "
-    '            str = str + vbNewLine
-    '            str = str & RPl.ClientName & " ( " & RPl.FctId & ")"
-    '            str = str + vbNewLine
-    '            str = str + " و جميع المواد الدفعات المسجلة في القائمة ..    "
-    '            str = str + vbNewLine
-    '            str = str + "  .. إضغط  'لا'  لالغاء الحذف   "
+                If RPl.EditMode = True Then Return False
 
-    '            If MsgBox(str, MsgBoxStyle.YesNo Or MessageBoxIcon.Exclamation, "الغاء الفاتورة") = MsgBoxResult.No Then
-    '                Return False
-    '            End If
-    '            RPl_DeleteFacture(RPl.FctId, RPl.isSell, RPl.EditMode, RPl.DataSource)
+                Dim a As Integer = 0
 
-    '            'Case Keys.CapsLock  '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    '            '    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    '            '    Try
-    '            '        Dim sp As SerialPort = New SerialPort("COM2", 9600, Parity.None, 8, StopBits.One)
+                If txtSearch.Focused Then a = 1
+                If txtSearchCode.Focused Then a = 1
 
-    '            '        sp.Open()
-    '            '        sp.Write(Convert.ToString(ChrW(12)))
-    '            '        sp.WriteLine("Total : 1234 DH")
-    '            '        sp.WriteLine(ChrW(13) & "Tendered EZFZEEZFEZF RM")
-    '            '        sp.Close()
-    '            '        sp.Dispose()
-    '            '        sp = Nothing
-    '            '        MsgBox("Total : 1234 DH")
-    '            '    Catch ex As Exception
-    '            '        MsgBox(ex.Message)
-    '            '    End Try
+                'cancel espace
+                ' a = 0
 
-    '        Case Else
-    '            Return MyBase.ProcessCmdKey(msg, keyData)
-    '    End Select
+                If a = 1 Then
+                    If RPl.Total_TTC = 0 Then
+                        Return MyBase.ProcessCmdKey(msg, keyData)
+                    End If
 
+                    If txtSearch.Text.Trim <> "" Or txtSearchCode.Text.Trim <> "" Then
+                        Return MyBase.ProcessCmdKey(msg, keyData)
+                    End If
+
+
+
+                    If cbPaper.Text = "Receipt" Then
+                        RPl_SaveAndPrint(RPl.FctId, RPl.Total_TTC, RPl.Avance, RPl.Tva, RPl.DataSource, RPl.isSell, False, False)
+                    ElseIf cbPaper.Text = "Normal" Then
+                        RPl_SaveAndPrint(RPl.FctId, RPl.Total_TTC, RPl.Avance, RPl.Tva, RPl.DataSource, RPl.isSell, True, False)
+                    ElseIf cbPaper.Text = "Normal&A4" Then
+                        RPl_SaveAndPrint(RPl.FctId, RPl.Total_TTC, RPl.Avance, RPl.Tva, RPl.DataSource, RPl.isSell, True, False)
+                    Else
+                        RPl_SaveAndPrint(RPl.FctId, RPl.Total_TTC, RPl.Avance, RPl.Tva, RPl.DataSource, RPl.isSell, False, False)
+                    End If
+                Else
+                    Return MyBase.ProcessCmdKey(msg, keyData)
+                End If
+
+            Case keys.Delete ' delete facture
+                If RPl.FctId = 0 Then Return False
+                Dim str As String = " عند قيامكم على الضغط على 'موافق' سيتم حذف فاتورة "
+                str = str + vbNewLine
+                str = str & RPl.ClientName & " ( " & RPl.FctId & ")"
+                str = str + vbNewLine
+                str = str + " و جميع المواد الدفعات المسجلة في القائمة ..    "
+                str = str + vbNewLine
+                str = str + "  .. إضغط  'لا'  لالغاء الحذف   "
+
+                If MsgBox(str, MsgBoxStyle.YesNo Or MessageBoxIcon.Exclamation, "الغاء الفاتورة") = MsgBoxResult.No Then
+                    Return False
+                End If
+                RPl_DeleteFacture(RPl.FctId, RPl.isSell, RPl.EditMode, RPl.DataSource)
+
+                'Case Keys.CapsLock  '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                '    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                '    Try
+                '        Dim sp As SerialPort = New SerialPort("COM2", 9600, Parity.None, 8, StopBits.One)
+
+                '        sp.Open()
+                '        sp.Write(Convert.ToString(ChrW(12)))
+                '        sp.WriteLine("Total : 1234 DH")
+                '        sp.WriteLine(ChrW(13) & "Tendered EZFZEEZFEZF RM")
+                '        sp.Close()
+                '        sp.Dispose()
+                '        sp = Nothing
+                '        MsgBox("Total : 1234 DH")
+                '    Catch ex As Exception
+                '        MsgBox(ex.Message)
+                '    End Try
+
+            Case Else
+                Return MyBase.ProcessCmdKey(msg, keyData)
+        End Select
 
 
 
@@ -1094,20 +1112,21 @@ Public Class Form1
 
 
 
-    '    If RPl.EditMode = False Then
-    '        'Select Search txtbox
-    '        If chbcb.Checked Then
-    '            txtSearchCode.Text = ""
-    '            txtSearchCode.Focus()
-    '        Else
-    '            txtSearch.Text = ""
-    '            txtSearch.Focus()
-    '        End If
-    '    End If
+
+        If RPl.EditMode = False Then
+            'Select Search txtbox
+            If chbcb.Checked Then
+                txtSearchCode.Text = ""
+                txtSearchCode.Focus()
+            Else
+                txtSearch.Text = ""
+                txtSearch.Focus()
+            End If
+        End If
 
 
-    '    Return True
-    'End Function
+        Return True
+    End Function
 
     Public RplFocusedIndex As Integer = -1
     Private Sub RplFocusedArrow(ByVal aA As Integer)
@@ -1356,6 +1375,7 @@ Public Class Form1
         getRegistryinfo(cbBadgeSA, "cbBadgeSA", False)
         getRegistryinfo(cbBadgeMB, "cbBadgeMB", False)
         getRegistryinfo(cbBadgeSB, "cbBadgeSB", False)
+        getRegistryinfo(cbBadgeCs, "cbBadgeCs", False)
         getRegistryinfo(cbSuperAdmin, "cbSuperAdmin", False)
         getRegistryinfo(cbArtcleStockDetails, "cbArtcleStockDetails", False)
         getRegistryinfo(cbArticleClient, "cbArticleClient", False)
@@ -1400,6 +1420,7 @@ Public Class Form1
         getRegistryinfo(_prx_article_order, "_prx_article_order", "0")
         getRegistryinfo(NouveauBon_Creation, "NouveauBon_Creation", True)
         getRegistryinfo(ShowDepotName_Item, "ShowDepotName_Item", True)
+        getRegistryinfo(_isMohssineMode, "_isMohssineMode", False)
 
         '////////////////
         getRegistryinfo(txtComBalance, "txtComBalance", "COM1")
@@ -1578,6 +1599,7 @@ Public Class Form1
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbBadgeSA", cbBadgeSA.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbBadgeMB", cbBadgeMB.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbBadgeMA", cbBadgeMA.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbBadgeCs", cbBadgeCs.Checked)
 
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbArtcleStockDetails", cbArtcleStockDetails.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbArticleClient", cbArticleClient.Checked)
@@ -2272,12 +2294,14 @@ Public Class Form1
                         PrintDocDepot.DefaultPageSettings.Landscape = g.is_Landscape
                     End If
 
+                    __i_kvp = 0
                     __lst.Clear()
                     __lst = GetListDepots()
 
+
                     PrintDocDepot.PrinterSettings.PrinterName = nm
                     PrintDocDepot.Print()
-                    __i_kvp = 0
+
 
                 End If
 
@@ -2687,6 +2711,7 @@ Public Class Form1
 
 
             __lst.Clear()
+            __i_kvp = 0
             __lst = GetListDepots()
             'Dim lst = GetListDepots()
             'For Each kvp As KeyValuePair(Of Integer, String) In lst
@@ -3452,7 +3477,12 @@ Public Class Form1
             If txtArSearch.text <> "" Then
                 If IsNumeric(txtArSearch.text) Then
                     Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-                        params.Add("fctid Like ", "%" & txtArSearch.text & "%")
+                        If isSell Then
+                            params.Add("fctid = ", txtArSearch.text)
+                        Else
+                            params.Add("bonid = ", txtArSearch.text)
+                        End If
+
                         params.Add("admin = ", True)
                         dt = a.SelectDataTableSymbols(tName, {"*"}, params)
                     End Using
@@ -3523,6 +3553,21 @@ Public Class Form1
                 Next
                 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' color payed
 
+                If CbSearchFacture.Text = "Rapport jr" Then
+                  
+                    If BackgroundWorker1.IsBusy = False Then
+
+                        BackgroundWorker1.RunWorkerAsync()
+
+                    End If
+
+                    Exit Sub
+                End If
+
+
+
+
+
                 If CbSearchFacture.Text = "" Or CbSearchFacture.Text = "Rapide" Or CbSearchFacture.Text = "----------" Then Exit Sub
 
                 If admin = False Then Exit Sub
@@ -3544,6 +3589,19 @@ Public Class Form1
             End If
 
             If CbSearchFacture.Text = "Sans Info" Then Exit Sub
+
+            If cbBadgeCs.Checked Then
+                Try
+                    Dim sc As New UserParmissionCheck
+                    sc.bName.Text = "Caisse"
+                    sc.lbNum.Text = adminName
+                    If sc.ShowDialog <> DialogResult.OK Then Exit Sub
+
+                Catch ex As Exception
+                End Try
+            End If
+
+
 
             Using z As SubClass = New SubClass(isSell)
                 If admin Then
@@ -3744,9 +3802,14 @@ Public Class Form1
         data.Columns.Add("poid", GetType(String))
 
 
+        Try
+            ' For Each kvp As KeyValuePair(Of Integer, String) In lst
+            _printedDepotID = __lst(__i_kvp)
+        Catch ex As Exception
+            Exit Sub
 
-        ' For Each kvp As KeyValuePair(Of Integer, String) In lst
-        _printedDepotID = __lst(__i_kvp)
+        End Try
+
 
         Dim dt As DataTable = RPl.DataSource
  
@@ -3793,24 +3856,22 @@ Public Class Form1
             Using g As gDrawClass = New gDrawClass(MP_Localname)
                 g.rtl = cbRTL.Checked
 
-                g.DrawBl(e, data, dt_filtreDataSource, Nothing, Facture_Title, False, M)
+                g.DrawBl(e, data, dt_filtreDataSource, Nothing, Facture_Title, False, M, params_tva)
             End Using
 
         Catch ex As Exception
+            params_tva.Clear()
         End Try
 
-        __i_kvp += 1
 
         If __i_kvp < __lst.Count And M = 0 Then
 
+            If __i_kvp = __lst.Count - 1 Then Exit Sub
+            __i_kvp += 1
             e.HasMorePages = True
             Return
 
         End If
-
-
-        __i_kvp = 0
-        '  MsgBox(__lst.Count & " Page(s)")
     End Sub
     Public Function GetListDepots() As List(Of Integer) '  Dictionary(Of Integer, String)
 
@@ -3877,204 +3938,25 @@ Public Class Form1
 
 
     Private Sub Button30_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btCaisseArch.Click
-        ' Dim isSell As Boolean = CBool(btSwitch2.Tag)
-        'Dim dt1 As Date = Date.Parse(dte2.Text).AddDays(1)
-        'Dim dt2 As Date = Date.Parse(dte1.Text).AddHours(addHours)
+
+        If cbBadgeCs.Checked Then
+            Try
+                Dim sc As New UserParmissionCheck
+                sc.bName.Text = "Caisse"
+                sc.lbNum.Text = adminName
+                If sc.ShowDialog = DialogResult.OK Then
+                    If BackgroundWorkerCaisse.IsBusy = False Then BackgroundWorkerCaisse.RunWorkerAsync()
+                End If
+            Catch ex As Exception
+            End Try
+
+            Exit Sub
+        End If
+
+
         If BackgroundWorkerCaisse.IsBusy = False Then BackgroundWorkerCaisse.RunWorkerAsync()
-
-        'Dim dt1 = New DateTime(dte2.Value.Year, dte2.Value.Month, dte2.Value.Day, 23, 59, 0, 0)
-        'Dim dt2 = New DateTime(dte1.Value.AddDays(-1).Year, dte1.Value.AddDays(-1).Month, dte1.Value.AddDays(-1).Day, 23, 59, 0, 0)
-
-        'Dim tName As String = "Payment"
-        'If isSell = False Then tName = "CompanyPayment"
-        'Dim params As New Dictionary(Of String, Object)
-        'Dim dt As DataTable = Nothing
-        'Dim TT As Decimal = 0
-
-        'Dim T_CA As Double = 0
-        'Dim T_TP As Double = 0
-        'Dim T_CH As Double = 0
-        'Dim T_VR As Double = 0
-
-
-        'Dim R_TT As Decimal = 0
-
-        'Dim R_CA As Double = 0
-        'Dim R_TP As Double = 0
-        'Dim R_CH As Double = 0
-        'Dim R_VR As Double = 0
-
-        'Dim credit As Double = 0
-
-
-        'DGVARFA.Rows.Clear()
-        'ProgressBar1.Value = 0
-
-        'Try
-        '    Dim FerstBon As Integer = 0
-        '    Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-        '        params.Add("[date] < ", dt1)
-        '        params.Add("[date] > ", dt2)
-
-        '        Try
-        '            If isSell Then
-
-        '                Dim data = a.SelectDataTableSymbols("Facture", {"TOP 1 fctid"}, params)
-        '                FerstBon = data.Rows(0).Item(0)
-        '            End If
-
-        '        Catch ex As Exception
-        '            FerstBon = 0
-        '        End Try
-
-        '        If cbAffichageLimite.Checked And admin = False Then params.Add("writer = ", adminName)
-
-        '        dt = a.SelectDataTableSymbols(tName, {"*"}, params)
-
-        '        params.Add("payed = ", False)
-
-
-        '        tName = "Facture"
-        '        If isSell = False Then tName = "Bon"
-        '        Dim dt_cr = a.SelectDataTableSymbols(tName, {"SUM(total)", "SUM(avance)"}, params)
-
-        '        If dt_cr.Rows.Count > 0 Then
-        '            Dim t_cr As Double = 0
-        '            Dim a_cr As Double = 0
-
-        '            Try
-        '                t_cr = dt_cr.Rows(0).Item(0)
-        '            Catch ex As Exception
-        '                t_cr = 0
-        '            End Try
-
-        '            Try
-        '                a_cr = dt_cr.Rows(0).Item(1)
-        '            Catch ex As Exception
-        '                a_cr = 0
-        '            End Try
-
-
-        '            credit = t_cr - a_cr
-        '        End If
-        '    End Using
-
-        '    If dt.Rows.Count > 0 Then
-
-        '        For i As Integer = 0 To dt.Rows.Count - 1
-
-        '            DGVARFA.Rows.Add(0,
-        '             dt.Rows(i).Item(7).ToString, dt.Rows(i).Item("name").ToString,
-        '           String.Format("{0:n}", CDec(dt.Rows(i).Item("montant").ToString)),
-        '             dt.Rows(i).Item("way").ToString,
-        '          "", CDate(dt.Rows(i).Item("date")).ToString("dd, MMM yy [hh:mm]"),
-        '             "", dt.Rows(i).Item("writer").ToString, "", "", "", dt.Rows(i).Item(7).ToString)
-
-        '            TT += CDec(dt.Rows(i).Item("montant").ToString)
-
-        '            If dt.Rows(i).Item("Num").ToString.StartsWith("@/") Then
-
-        '                R_TT += CDec(dt.Rows(i).Item("montant").ToString)
-        '                If dt.Rows(i).Item("way").ToString.ToUpper.StartsWith("CHEQ") Then
-        '                    R_CH += CDec(dt.Rows(i).Item("montant").ToString)
-
-        '                ElseIf dt.Rows(i).Item("way").ToString.ToUpper.StartsWith("TPE") Then
-        '                    R_TP += CDec(dt.Rows(i).Item("montant").ToString)
-
-        '                ElseIf dt.Rows(i).Item("way").ToString.ToUpper.StartsWith("VIR") Then
-        '                    R_VR += CDec(dt.Rows(i).Item("montant").ToString)
-
-        '                Else
-        '                    R_CA += CDec(dt.Rows(i).Item("montant").ToString)
-        '                End If
-
-
-        '            End If
-
-        '            If dt.Rows(i).Item("way").ToString.ToUpper.StartsWith("CHEQ") Then
-        '                T_CH += CDec(dt.Rows(i).Item("montant").ToString)
-
-        '            ElseIf dt.Rows(i).Item("way").ToString.ToUpper.StartsWith("TPE") Then
-        '                T_TP += CDec(dt.Rows(i).Item("montant").ToString)
-
-        '            ElseIf dt.Rows(i).Item("way").ToString.ToUpper.StartsWith("VIR") Then
-        '                T_VR += CDec(dt.Rows(i).Item("montant").ToString)
-
-        '            Else
-        '                T_CA += CDec(dt.Rows(i).Item("montant").ToString)
-        '            End If
-        '            ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' color payed
-
-        '            If CInt(dt.Rows(i).Item(7)) < FerstBon Then
-        '                DGVARFA.Rows(i).DefaultCellStyle.BackColor = Color.BurlyWood
-        '            End If
-        '            ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-        '        Next
-        '        DGVARFA.Columns(4).HeaderText = "---"
-
-        '    Else
-        '        MsgBox("aucun résultat")
-        '    End If
-
-        '    Dim table As New DataTable
-
-        '    ' Create four typed columns in the DataTable.
-        '    table.Columns.Add("id", GetType(Integer))
-        '    table.Columns.Add("arid", GetType(Integer))
-        '    table.Columns.Add("qte", GetType(Double))
-        '    table.Columns.Add("name", GetType(String))
-        '    table.Columns.Add("unit", GetType(String))
-        '    table.Columns.Add("price", GetType(Double))
-        '    table.Columns.Add("bprice", GetType(Double))
-        '    table.Columns.Add("tva", GetType(Double))
-        '    table.Columns.Add("poid", GetType(Integer))
-        '    table.Columns.Add("cid", GetType(Integer))
-        '    table.Columns.Add("depot", GetType(Integer))
-        '    table.Columns.Add("code", GetType(String))
-
-        '    'table.Rows.Add(0, -111, 1, "TOTAL", "U", TT, TT, 0, 0, -110, 0, 0)
-
-        '    table.Rows.Add(0, -112, 1, "VIREMENT", "U", T_VR, T_VR, 0, 0, -110, 0, 0)
-        '    table.Rows.Add(0, -113, 1, "CHEQUE", "U", T_CH, T_CH, 0, 0, -110, 0, 0)
-        '    table.Rows.Add(0, -114, 1, "TPE", "U", T_TP, T_TP, 0, 0, -110, 0, 0)
-        '    table.Rows.Add(0, -115, 1, "CACHE", "U", T_CA, T_CA, 0, 0, -110, 0, 0)
-
-        '    table.Rows.Add(0, -116, 1, "RECOUVREMENT TOTAL", "U", R_TT, R_TT, 0, 100, -110, 0, 0)
-
-        '    table.Rows.Add(0, -117, 1, "REC. VIREMENT", "U", R_VR, R_VR, 0, 100, -110, 0, 0)
-        '    table.Rows.Add(0, -118, 1, "REC. CHEQUE", "U", R_CH, R_CH, 0, 100, -110, 0, 0)
-        '    table.Rows.Add(0, -119, 1, "REC. TPE", "U", R_TP, R_TP, 0, 100, -110, 0, 0)
-        '    table.Rows.Add(0, -120, 1, "REC. CACHE", "U", R_CA, R_CA, 0, 100, -110, 0, 0)
-
-        '    table.Rows.Add(0, -121, 1, "Credit", "U", credit, credit, 0, 100, -110, 0, 0)
-
-        '    table.Rows.Add(0, -122, 1, "Nombre", "U", DGVARFA.Rows.Count, DGVARFA.Rows.Count, 0, 100, -110, 0, 0)
-
-        '    RPl.ClearItems()
-
-
-        '    RPl.FctId = 0
-        '    RPl.ClientName = "RECETTES du" & dt2.ToString("dd/MM") & " au " & dt1.ToString("dd/MM")
-        '    RPl.ClientAdresse = "RECETTES "
-        '    If isSell = False Then
-        '        RPl.ClientName = "DEPENSES du" & dt2.ToString("dd/MM") & " au " & dt1.ToString("dd/MM")
-        '        RPl.ClientAdresse = "DEPENSES "
-        '    End If
-
-        '    RPl.ClId = -111
-        '    RPl.Avance = 0
-
-
-        '    RPl.AddItems(table, isSell)
-
-
-        '    Dim r = ((RPl.Total_TTC - TT) * 100) / RPl.Total_TTC
-        '    RPl.Remise = r
-
-
-
-        'Catch ex As Exception
-        'End Try
+       
+ 
     End Sub
 
     Private Sub Button31_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button31.Click
@@ -4283,6 +4165,20 @@ Public Class Form1
                     Dim str As String = txtSearchCode.Text.Remove(0, 4)
                     str = str.Remove(str.Length - 1)
 
+                    If RPl.FctId = 0 Then
+                        If RPl.isSell Then
+                            If NouveauBon_Creation Then
+                                Dim clientname As String = txtcltcomptoir.Text.Split("/")(0)
+                                Dim cid As String = 0
+                                a.NewFacture(cid, clientname, "", 0)
+                            Else
+                                RPl.FctId = -198722
+                            End If
+                        Else
+                            Exit Sub
+                        End If
+                    End If
+
                     Dim ref As String = ""
                     Dim qt As Double = 0
                     Try
@@ -4291,7 +4187,6 @@ Public Class Form1
 
                         a.getBalancebyRef(ref, qt)
                     Catch ex As Exception
-
                     End Try
 
                     txtSearchCode.Text = ""
@@ -4301,7 +4196,6 @@ Public Class Form1
                 End If
             End Using
         End If
-
     End Sub
 
     Private Sub RPl_SetDetailFacture() Handles RPl.SetDetailFacture
@@ -4927,13 +4821,15 @@ Public Class Form1
             Using g As gDrawClass = New gDrawClass(MP_Localname)
                 g.rtl = cbRTL.Checked
 
-                g.DrawBl(e, data, ds.DataSource, dt_Client, Facture_Title, False, M)
+
+           g.DrawBl(e, data, ds.DataSource, dt_Client, Facture_Title, False, M, params_tva)
             End Using
 
         Catch ex As Exception
-
+            params_tva.Clear()
         End Try
     End Sub
+    Dim params_tva As New Dictionary(Of Double, Double)
     Public MP_Localname As String
     Public Facture_Title As String
 
@@ -5014,10 +4910,10 @@ Public Class Form1
 
             Using g As gDrawClass = New gDrawClass(MP_Localname)
                 '   g.rtl = cbRTL.Checked
-                g.DrawBl(e, data, ds.DataSource, dt_Client, Facture_Title, False, M)
+                g.DrawBl(e, data, ds.DataSource, dt_Client, Facture_Title, False, M, params_tva)
             End Using
         Catch ex As Exception
-
+            params_tva.Clear()
         End Try
     End Sub
 
@@ -5392,11 +5288,11 @@ Public Class Form1
             Using g As gDrawClass = New gDrawClass(MP_Localname)
                 g.rtl = cbRTL.Checked
 
-                g.DrawBl(e, data, table, dt_Client, Facture_Title, False, M)
+                g.DrawBl(e, data, table, dt_Client, Facture_Title, False, M, params_tva)
             End Using
 
         Catch ex As Exception
-
+            params_tva.Clear()
         End Try
     End Sub
 
@@ -5694,9 +5590,10 @@ Public Class Form1
                     dt_Client.Rows.Add(DGVARFA.Rows(m_i_for).Cells(1).Value, DGVARFA.Rows(m_i_for).Cells(2).Value)
 
 
-                    g.DrawBl(e, data, table, dt_Client, Facture_Title, False, M)
+                    g.DrawBl(e, data, table, dt_Client, Facture_Title, False, M, params_tva)
 
                 Catch ex As Exception
+                    params_tva.Clear()
                 End Try
 
                 M = 0
@@ -5709,6 +5606,9 @@ Public Class Form1
     Private Sub Button11_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button11.Click
 
         If RPl.FctId = 0 Or RPl.EditMode = True Then Exit Sub
+
+
+
         Dim bp As New byPrice
         If bp.ShowDialog = Windows.Forms.DialogResult.OK Then
             RPl.AddItems_F6_Product(CDbl(bp.txt.Text))
@@ -6036,6 +5936,13 @@ Public Class Form1
                 End Try
 
 
+                Try
+                    dt.DefaultView.Sort = "cid ASC"
+                    dt = dt.DefaultView.ToTable
+                Catch ex As Exception
+                End Try
+
+
                 RPl.Invoke(Sub()
 
                                RPl.ClId = DGVARFA.Rows(0).Cells(1).Value
@@ -6046,7 +5953,7 @@ Public Class Form1
                                RPl.EditMode = True
 
                                RPl.ClearItems()
-                               RPl.AddItems(dt, True)
+                               RPl.AddItems(dt)
                                RPl.Remise = 0
                                RPl.Avance = avance
 
@@ -6543,11 +6450,11 @@ Public Class Form1
 
             Using g As gDrawClass = New gDrawClass(MP_Localname)
                 g.rtl = cbRTL.Checked
-                g.DrawBl(e, data, Details, dt_Client, Facture_Title, False, M)
+                g.DrawBl(e, data, Details, dt_Client, Facture_Title, False, M, params_tva)
             End Using
 
         Catch ex As Exception
-
+            params_tva.Clear()
         End Try
     End Sub
 
@@ -6594,10 +6501,10 @@ Public Class Form1
 
             Using g As gDrawClass = New gDrawClass(MP_Localname)
                 '   g.rtl = cbRTL.Checked
-                g.DrawBl(e, data, New DataTable, dt_Client, Facture_Title, False, M)
+                g.DrawBl(e, data, New DataTable, dt_Client, Facture_Title, False, M, params_tva)
             End Using
         Catch ex As Exception
-
+            params_tva.Clear()
         End Try
     End Sub
 
@@ -6643,9 +6550,17 @@ Public Class Form1
                 _useBalance = True
             Else
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "_useBalance", False)
-                _useBalance = True
+                _useBalance = False
             End If
             GB8.Visible = _useBalance
+        ElseIf txt.ToUpper.StartsWith("MOHSSINE-") Then
+            If s = "1" Then
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "_isMohssineMode", True)
+                _isMohssineMode = True
+            Else
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "_isMohssineMode", False)
+                _isMohssineMode = False
+            End If
 
         ElseIf txt.ToUpper.StartsWith("PRIXARTICLE-") Then
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "_prx_article_order", s)
@@ -6706,7 +6621,6 @@ Public Class Form1
             End If
         Catch ex As Exception
         End Try
-
     End Sub
     Private Sub txtQte_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtQte.TextChanged
         Try
@@ -6718,9 +6632,18 @@ Public Class Form1
 
     Private Sub Button69_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button69.Click
 
-        Dim strPath As String = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "balanceFileName", "c:\testDF.TXP")
 
-        Dim s As New SaveFileDialog
+        If My.Computer.Keyboard.CtrlKeyDown Then
+            Dim txt = InputBox("Script =  ")
+            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "balanceAppName", txt)
+            Exit Sub
+        End If
+
+
+
+
+        Dim strPath As String = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "balanceFileName", "c:\testDF.TXP")
+       Dim s As New SaveFileDialog
         s.DefaultExt = strPath
         If s.ShowDialog = Windows.Forms.DialogResult.OK Then
             strPath = s.FileName
@@ -6734,34 +6657,115 @@ Public Class Form1
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             Dim params As New Dictionary(Of String, Object)
             params.Add("mixte", True)
-            Dim dt = a.SelectDataTable("article", {"*"}, params)
+            Dim order As New Dictionary(Of String, String)
+            order.Add("codebar", "ASC")
+            Dim dt = a.SelectDataTable("article", {"*"}, params, order)
              
+
+            System.IO.File.WriteAllText(strPath, "")
 
             Dim file As System.IO.StreamWriter
             Dim fileEncoding As System.Text.Encoding = System.Text.Encoding.GetEncoding(1253)
             file = My.Computer.FileSystem.OpenTextFileWriter(strPath, True)
+            Dim decimalSeparator As String = Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator
             Dim str As String
+
+
             For i As Integer = 0 To dt.Rows.Count - 1
                 str = ""
+                Dim pr As String = StrValue(dt, "sprice", i).Replace(decimalSeparator, "")
+                pr = pr.Remove(pr.Length - 2)
+
                 str = i + 1 & vbTab & StrValue(dt, "name", i) & vbTab & StrValue(dt, "codebar", i) & vbTab & "99" & StrValue(dt, "codebar", i) &
-                    vbTab & "7" & vbTab & StrValue(dt, "sprice", i) & vbTab & "4" & vbTab & "99" & vbTab & " 0,000" & vbTab & "0" & vbTab &
+                    vbTab & "7" & vbTab & pr & vbTab & "4" & vbTab & "99" & vbTab & " 0,000" & vbTab & "0" & vbTab &
                 "0" & vbTab & " 0,000" & vbTab & "5" & vbTab & "1" & vbTab & "0" & vbTab & "0" & vbTab & "0" & vbTab & "0" & vbTab & "0" & vbTab & "0" & vbTab & "0" & vbTab & "0" & vbTab & "0" & vbTab & "0,0"
-                file.WriteLine(str)
+
+                
+                    file.WriteLine(str)
+               
             Next
+
+            'Dim sTarget As New DirectoryInfo(Form1.SvgdPah & str & "\" & tb_F & "\" & id)
+            'If sTarget.Exists = False Then sTarget.Create()
+            Process.Start(strPath)
+
             file.Close()
 
             'SaveExcel(dt, "balance", "data", "")
-
-            Try
-                Dim proc As New System.Diagnostics.Process()
-                proc = Process.Start("C:\Program Files (x86)\RLS1000en\RTPLU.exe", "")
-            Catch ex As Exception
-            End Try
-
-
-
+             
         End Using
     End Sub
-
+    Private Sub Button76_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button76.Click
+        Dim appPath As String = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "balanceAppName", "c:\")
+        Try
+            Dim proc As New System.Diagnostics.Process()
+            proc = Process.Start(appPath, "")
+        Catch ex As Exception
+        End Try
+    End Sub
      
+    Private Sub Button75_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button75.Click
+        Dim isTrue As Boolean = False
+        If My.Computer.Keyboard.CtrlKeyDown = False Then Exit Sub
+
+        Try
+
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+
+                Dim params As New Dictionary(Of String, Object)
+                params.Add("admin", False)
+                Dim _dt = a.SelectDataTable("invo", {"*"}, params)
+
+                If _dt.Rows.Count > 0 Then
+                    Button75.Text = _dt.Rows(0).Item("name") & " [" & DteValue(_dt, "date_start", 0).ToString("dd/MM/yy") & "]"
+                    Button75.Enabled = False
+                    Exit Sub
+                End If
+
+            End Using
+        Catch ex As Exception
+        End Try
+
+        Try
+
+            Dim txt As String = InputBox("Code de l'inventaire =  ")
+            If txt.Length <= 3 Or txt.Contains("-") = False Then Exit Sub
+
+
+            Dim _a As Integer = txt.Split("-")(0)
+            Dim _b As Integer = txt.Split("-")(1)
+            Dim _c As Integer = txt.Split("-")(2)
+            Dim _d As Integer = txt.Split("-")(3)
+
+
+            If _a = Now.Date.Day + 11 And
+                _c = Now.Day + Now.Month Then
+                isTrue = True
+            End If
+             
+            If isTrue Then
+
+                Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+
+
+                    Dim params As New Dictionary(Of String, Object)
+                    params.Add("name", txt)
+                    params.Add("val", _b * _d)
+
+                    If a.InsertRecord("invo", params) Then
+                        MsgBox("Invo", " تمت العملية بنجاح")
+                        Button75.Enabled = False
+                    End If
+
+                End Using
+            End If
+        Catch ex As Exception
+            MsgBox("error", "فشل العملية")
+            Exit Sub
+        End Try
+
+
+    End Sub
+
+
 End Class

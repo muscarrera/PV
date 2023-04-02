@@ -344,6 +344,12 @@
     <Compile Include="GUI\Cheque\AddEditBanqueField.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\Cheque\AddFiles.Designer.vb">
+      <DependentUpon>AddFiles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Cheque\AddFiles.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\Cheque\bForm.Designer.vb">
       <DependentUpon>bForm.vb</DependentUpon>
     </Compile>
@@ -381,6 +387,12 @@
     </Compile>
     <Compile Include="GUI\Cheque\EditAndPrintCheque.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Cheque\FileLine.Designer.vb">
+      <DependentUpon>FileLine.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Cheque\FileLine.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GUI\Cheque\SearchBloc.Designer.vb">
       <DependentUpon>SearchBloc.vb</DependentUpon>
@@ -908,6 +920,9 @@
     <EmbeddedResource Include="GUI\Cheque\AddEditBanqueField.resx">
       <DependentUpon>AddEditBanqueField.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Cheque\AddFiles.resx">
+      <DependentUpon>AddFiles.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Cheque\bForm.resx">
       <DependentUpon>bForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -925,6 +940,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Cheque\EditAndPrintCheque.resx">
       <DependentUpon>EditAndPrintCheque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Cheque\FileLine.resx">
+      <DependentUpon>FileLine.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Cheque\SearchBloc.resx">
       <DependentUpon>SearchBloc.vb</DependentUpon>
@@ -1257,6 +1275,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MyBarcode.dll" />
+    <None Include="Resources\téléchargement %281%29.png" />
+    <None Include="Resources\JOINDRE 20.png" />
+    <None Include="Resources\WORD  22.png" />
+    <None Include="Resources\IMAGE 22.png" />
+    <None Include="Resources\PDF 22.png" />
+    <None Include="Resources\FILE 22.png" />
+    <None Include="Resources\iconfinder_Gnome-Edit-Delete-22.png" />
+    <None Include="Resources\iconfinder_document-preview_23216 %281%29.png" />
+    <None Include="Resources\ICON 22.png" />
+    <None Include="Resources\iconfinder_Aqua Stripped Folder Documents_50968.png" />
     <None Include="Resources\iconfinder_pdf_3745 %281%291.png" />
     <None Include="Resources\2993694_brand_brands_excel_logo_logos_icon.png" />
     <None Include="Resources\3669253_ic_search_icon.png" />

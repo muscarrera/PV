@@ -169,15 +169,15 @@
             LbQte.Text = Val(_qte) & " " & CStr(Unite) '& " x "
             
             Try
-                If Form1.cbPromos.Checked Then
-                    If CDbl(LbTotal.Text) <= 0 Then
-                        LbTotal.BackColor = Color.Crimson
-                        LbTotal.ForeColor = Color.White
-                    Else
-                        LbTotal.BackColor = Color.Transparent
-                        LbTotal.ForeColor = Color.DarkCyan
-                    End If
+                '    If Form1.cbPromos.Checked Then
+                If CDbl(LbTotal.Text) <= 0 Then
+                    LbTotal.BackColor = Color.Crimson
+                    LbTotal.ForeColor = Color.White
+                Else
+                    LbTotal.BackColor = Color.Transparent
+                    LbTotal.ForeColor = Color.DarkCyan
                 End If
+                '    End If
 
             Catch ex As Exception
             End Try
@@ -204,15 +204,15 @@
 
 
             Try
-                If Form1.cbPromos.Checked Then
-                    If CDbl(LbTotal.Text) <= 0 Then
-                        LbTotal.BackColor = Color.Crimson
-                        LbTotal.ForeColor = Color.White
-                    Else
-                        LbTotal.BackColor = Color.Transparent
-                        LbTotal.ForeColor = Color.DarkCyan
-                    End If
+                'If Form1.cbPromos.Checked Then
+                If CDbl(LbTotal.Text) <= 0 Then
+                    LbTotal.BackColor = Color.Crimson
+                    LbTotal.ForeColor = Color.White
+                Else
+                    LbTotal.BackColor = Color.Transparent
+                    LbTotal.ForeColor = Color.DarkCyan
                 End If
+                'End If
 
             Catch ex As Exception
             End Try
@@ -225,7 +225,7 @@
         Set(ByVal value As Decimal)
             '''''''
             _depot = value
-            LbStk.Text = ""
+            LbStk.Text = " -- "
 
             If value > 0 Then
                 LbStk.BackColor = Color.Transparent
@@ -242,6 +242,7 @@
                 End If
             Else
                 LbStk.BackColor = Color.Red
+                LbStk.Text = " -- "
             End If
            
         End Set

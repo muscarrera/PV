@@ -2,7 +2,7 @@
     Private clid As Integer
     Private ClientName As String
     Private lst As String
-    Private _modePayement As String
+    Private _modePayement As String = "Cache"
     Private _iscache As Boolean
    
     Public Id As Integer
@@ -70,6 +70,8 @@
     Public ReadOnly Property remise As Double
         Get
             Dim t As Double = (total + remiseValue)
+            If t = 0 Then Return 0
+
             Dim r As Double = remiseValue * 100 / t
             Return r
             'Dim t As Double = 0
@@ -305,8 +307,8 @@
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Dim b As Boolean
-        If DataGridView1.Rows.Count = 0 Then Exit Sub
-        If lst = "" Then Exit Sub
+        'If DataGridView1.Rows.Count = 0 Then Exit Sub
+        'If lst = "" Then Exit Sub
 
         'selection le nom de porteur de facture
         If UnpayedMode Then

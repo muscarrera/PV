@@ -62,9 +62,13 @@
         Dim clc As New ChoseDepot
         If clc.ShowDialog = DialogResult.OK Then
             If clc.Button1.Tag = 1 Then
+                _dpid = clc.DataGridView1.SelectedRows(0).Cells(0).Value
                 txtDepot.text = clc.DataGridView1.SelectedRows(0).Cells(1).Value & "|" & clc.DataGridView1.SelectedRows(0).Cells(0).Value
+
             Else
+                _dpid = -1
                 txtDepot.text = ""
+
             End If
         End If
     End Sub
@@ -92,7 +96,7 @@
             If arid > 0 Then params.Add(tb_D & ".arid =", arid)
 
             dt_in = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".bonid) INNER JOIN Depot ON " & tb_D & ".depot = Depot.dpid)",
-                        {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
+                        {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".cid, " & "(" & tb_D & ".qte * " & tb_D & ".price * -1) AS VLR, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
                               tb_D & ".price AS Prix, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_ENTREE"}, params)
 
             params.Clear()
@@ -109,13 +113,17 @@
 
             If arid > 0 Then params.Add(tb_D & ".arid =", arid)
             dt_Out = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".fctid) INNER JOIN Depot ON " & tb_D & ".depot = Depot.dpid)",
-                        {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
+                        {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".cid, " & "(" & tb_D & ".qte * " & tb_D & ".price) AS VLR, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
                               tb_D & ".price AS Prix, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_SORTIE"}, params)
 
 
         End Using
 
     End Sub
+
+    Dim _dpid As Integer = -1
+    Dim _cid As Integer = 0
+
     Private Sub filtreTheData()
         If cbComul.Checked Then
 
@@ -149,30 +157,52 @@
         If IsNothing(dt) Then Exit Sub
         If dt.Columns.Count < 6 Then Exit Sub
 
-        If txtDepot.text.Contains("|") Then
+        
+        If _cid > 0 And _dpid >= 0 Then
+            Dim result = From myRow As DataRow In dt.Rows
+                                    Where myRow("depot") = _dpid And myRow("cid") = _cid Select myRow
+            If result.Count Then
+                dt = result.CopyToDataTable
+            Else
+                dt.Rows.Clear()
+            End If
 
-            Dim dp = txtDepot.text.Split("|")(1)
-            If IsNumeric(dp) Then
+
+        ElseIf _cid = 0 And _dpid >= 0 Then
+ 
                 Dim result = From myRow As DataRow In dt.Rows
-                                        Where myRow("depot") = dp Select myRow
+                                        Where myRow("depot") = _dpid Select myRow
                 If result.Count Then
                     dt = result.CopyToDataTable
                 Else
                     dt.Rows.Clear()
                 End If
+ 
 
-            End If
+        ElseIf _cid > 0 And _dpid < 0 Then 
+                Dim result = From myRow As DataRow In dt.Rows
+                                        Where myRow("cid") = _cid Select myRow
+                If result.Count Then
+                    dt = result.CopyToDataTable
+                Else
+                    dt.Rows.Clear()
+                End If 
         End If
+
+
 
 
         dg_D.DataSource = dt
 
-      
+
+
+        dg_D.Columns(3).Visible = False
+        dg_D.Columns(4).Visible = False
 
         dg_D.Sort(dg_D.Columns(0), System.ComponentModel.ListSortDirection.Ascending)
 
 
-        Dim sum As Double
+        Dim sum As Double = 0
         Try
             sum = Convert.ToDouble(dt.Compute("SUM(Qte_ENTREE)", String.Empty))
             lbQteIn.Text = sum & " U"
@@ -180,9 +210,21 @@
             lbQteIn.Text = "... "
         End Try
 
+
+
+
         Try
             sum = Convert.ToDouble(dt.Compute("SUM(Qte_SORTIE)", String.Empty))
             lbQteOut.Text = sum & " U"
+        Catch ex As Exception
+            lbQteOut.Text = "... "
+        End Try
+
+        Try
+            sum = Convert.ToDouble(dt.Compute("SUM(VLR)", String.Empty))
+            lbV1.Text = sum.ToString("n2") & " dhs"
+            lbV1.Visible = True
+            lbT1.Visible = True
         Catch ex As Exception
             lbQteOut.Text = "... "
         End Try
@@ -288,7 +330,9 @@
 
     End Sub
 
-    Private Sub txtDepot_TxtChanged() Handles txtDepot.TxtChanged, txtClient.TxtChanged
+    Private Sub txtDepot_TxtChanged() Handles txtDepot.TxtChanged, txtClient.TxtChanged, txtTrCat.TxtChanged
+        If txtDepot.text = "0-0" Then _dpid = 0
+
         filtreTheData()
     End Sub
 
@@ -301,6 +345,9 @@
         lbQteIn.Text = "-"
         lbQteOut.Text = "-"
         lbLnbr.Text = "-"
+
+        lbT1.Visible = False
+        lbV1.Visible = False
     End Sub
 
 
@@ -311,7 +358,10 @@
         params2.Add(Label6.Text, lbQteIn.Text)
         params2.Add(Label7.Text, lbQteOut.Text)
         If t_tva > 0 Then params2.Add("Tva", t_tva.ToString("N2"))
-         
+
+        If lbV1.Visible Then params2.Add(lbT1.Text, lbV1.Text)
+
+
         STR_TITLE = STR_TITLE.Replace("|", " ")
         STR_TITLE = STR_TITLE.Replace(":", " ")
         STR_TITLE = STR_TITLE.Replace("/", " ")
@@ -1132,4 +1182,19 @@
     Dim M As Integer = 0
     Dim numPage As Integer = 1
     Dim myTva As New Dictionary(Of String, Double)
+
+    Private Sub Button16_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button16.Click
+        Dim clc As New ChooseCat
+
+        If clc.ShowDialog = DialogResult.OK Then
+            If clc.Button1.Tag = 1 Then
+                _cid = clc.DataGridView1.SelectedRows(0).Cells(0).Value
+                txtTrCat.text = clc.DataGridView1.SelectedRows(0).Cells(1).Value & "|" & clc.DataGridView1.SelectedRows(0).Cells(0).Value
+
+            Else
+                _cid = 0
+                txtTrCat.text = ""
+            End If
+        End If
+    End Sub
 End Class

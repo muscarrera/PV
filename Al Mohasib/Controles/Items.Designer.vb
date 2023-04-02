@@ -107,6 +107,7 @@ Partial Class Items
         'LbStk
         '
         Me.LbStk.AutoSize = True
+        Me.LbStk.BackColor = System.Drawing.Color.MistyRose
         Me.LbStk.Dock = System.Windows.Forms.DockStyle.Left
         Me.LbStk.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbStk.Location = New System.Drawing.Point(150, 0)

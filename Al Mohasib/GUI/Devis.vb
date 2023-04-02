@@ -447,8 +447,8 @@ Public Class Devis
 
             Dim catsMerg = Form1.txtMergeCat.Text.Split("-")
 
-            If RPl.IsExiste(R("arid"), R("depot")) = True And Form1.cbMergeArt.Checked = True And catsMerg.Contains(R("cid")) = False Then
-                Dim item As Items = RPl.SelectedItems(R("arid"), R("depot"))
+            If RPl.IsExiste(R("arid"), R("depot"), R("name")) = True And Form1.cbMergeArt.Checked = True And catsMerg.Contains(R("cid")) = False Then
+                Dim item As Items = RPl.SelectedItems(R("arid"), R("depot"), R("name"))
                 Dim ID As Integer = item.id
                 Dim qte As Double = item.Qte + CDbl(RPl.CP.Value)
 
@@ -483,63 +483,63 @@ Public Class Devis
 
                 Try
 
-                
-                'Last Price Option
-                If Form1.cbArtLastPrice.Text = "LastPrice" And RPl.isSell And RPl.ClId > 0 Then
 
-                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-                        Dim params As New Dictionary(Of String, Object)
-                        Dim order As New Dictionary(Of String, String)
+                    'Last Price Option
+                    If Form1.cbArtLastPrice.Text = "LastPrice" And RPl.isSell And RPl.ClId > 0 Then
 
-                        order.Add("Facture.fctid", "DESC")
+                        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                            Dim params As New Dictionary(Of String, Object)
+                            Dim order As New Dictionary(Of String, String)
 
-                        Dim tb_A As String = "Facture"
-                        Dim tb_D_A As String = "DetailsFacture"
+                            order.Add("Facture.fctid", "DESC")
 
-                        params.Add(tb_A & ".clid  = ", Form1.RPl.ClId)
-                        params.Add(tb_D_A & ".arid  = ", R("arid"))
+                            Dim tb_A As String = "Facture"
+                            Dim tb_D_A As String = "DetailsFacture"
 
-                        Dim pDt As DataTable = c.SelectDataTableSymbols("(" & tb_D_A & " INNER JOIN " & tb_A & " ON " & tb_D_A & ".fctid = " & tb_A & ".fctid) ",
-                            {tb_D_A & ".price"}, params, order)
+                            params.Add(tb_A & ".clid  = ", Form1.RPl.ClId)
+                            params.Add(tb_D_A & ".arid  = ", R("arid"))
 
-                        If pDt.Rows.Count > 0 Then
-                            Dim prc As Double = pDt.Rows(0).Item("price")
-                            If IsNumeric(prc) Then
-                                If prc > R("bprice") Or Form1.RPl.ClientName.Contains("**") Then
-                                    R("sprice") = prc
+                            Dim pDt As DataTable = c.SelectDataTableSymbols("(" & tb_D_A & " INNER JOIN " & tb_A & " ON " & tb_D_A & ".fctid = " & tb_A & ".fctid) ",
+                                {tb_D_A & ".price"}, params, order)
+
+                            If pDt.Rows.Count > 0 Then
+                                Dim prc As Double = pDt.Rows(0).Item("price")
+                                If IsNumeric(prc) Then
+                                    If prc > R("bprice") Or Form1.RPl.ClientName.Contains("**") Then
+                                        R("sprice") = prc
+                                    End If
                                 End If
                             End If
-                        End If
 
-                    End Using
+                        End Using
 
-                ElseIf Form1.cbArtLastPrice.Text = "LastMarge" And Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
+                    ElseIf Form1.cbArtLastPrice.Text = "LastMarge" And Form1.RPl.isSell And Form1.RPl.ClId > 0 Then
 
-                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-                        Dim params As New Dictionary(Of String, Object)
-                        Dim order As New Dictionary(Of String, String)
+                        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                            Dim params As New Dictionary(Of String, Object)
+                            Dim order As New Dictionary(Of String, String)
 
-                        order.Add("Facture.fctid", "DESC")
-                        Dim tb_A As String = "Facture"
-                        Dim tb_D_A As String = "DetailsFacture"
+                            order.Add("Facture.fctid", "DESC")
+                            Dim tb_A As String = "Facture"
+                            Dim tb_D_A As String = "DetailsFacture"
 
-                        params.Add(tb_A & ".clid  = ", Form1.RPl.ClId)
-                        params.Add(tb_D_A & ".arid  = ", R("arid"))
+                            params.Add(tb_A & ".clid  = ", Form1.RPl.ClId)
+                            params.Add(tb_D_A & ".arid  = ", R("arid"))
 
-                        Dim pDt As DataTable = c.SelectDataTableSymbols("(" & tb_D_A & " INNER JOIN " & tb_A & " ON " & tb_D_A & ".fctid = " & tb_A & ".fctid) ",
-                            {tb_D_A & ".price," & tb_D_A & ".bprice"}, params, order)
-                        If pDt.Rows.Count > 0 Then
+                            Dim pDt As DataTable = c.SelectDataTableSymbols("(" & tb_D_A & " INNER JOIN " & tb_A & " ON " & tb_D_A & ".fctid = " & tb_A & ".fctid) ",
+                                {tb_D_A & ".price," & tb_D_A & ".bprice"}, params, order)
+                            If pDt.Rows.Count > 0 Then
 
-                            Dim bp As Double = pDt.Rows(0).Item("bprice")
-                            Dim sp As Double = pDt.Rows(0).Item("price")
-                            If bp > 0 Then
-                                Dim mrg As Double = sp - bp
-                                R("sprice") = R("bprice") + mrg
+                                Dim bp As Double = pDt.Rows(0).Item("bprice")
+                                Dim sp As Double = pDt.Rows(0).Item("price")
+                                If bp > 0 Then
+                                    Dim mrg As Double = sp - bp
+                                    R("sprice") = R("bprice") + mrg
+                                End If
+
                             End If
-
-                        End If
-                    End Using
-                End If
+                        End Using
+                    End If
                 Catch ex As Exception
                 End Try
 
@@ -1286,11 +1286,12 @@ Public Class Devis
             Using g As gDrawClass = New gDrawClass(Form1.MP_Localname)
                 g.rtl = Form1.cbRTL.Checked
 
-                g.DrawBl(e, data, ds.DataSource, dt_Client, Form1.Facture_Title, False, M)
+                g.DrawBl(e, data, ds.DataSource, dt_Client, Form1.Facture_Title, False, M, params_tva)
             End Using
 
         Catch ex As Exception
-
+            params_tva.clear()
         End Try
     End Sub
+    Dim params_tva As New Dictionary(Of Double, Double)
 End Class

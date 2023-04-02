@@ -9,11 +9,14 @@ Public Class ChequePanel
     Dim isRelatedApp As Boolean = False
     Dim nb_trial As Integer = 0
     Dim bonId As Integer = 0
-    Dim str_Path As String = ""
+    Public str_Path As String = ""
     Dim _montant As Double
     Dim _isSell As Boolean
     Public tb_F, tb_P, tb_C As String
     Dim _ds As DataTable
+    Public admin As Boolean
+    Public adminId As Object
+    Public adminName As Object
 
     Public Property isActive As Boolean
         Get
@@ -220,7 +223,7 @@ Public Class ChequePanel
         End Try
     End Sub
     Private Sub HandleRegistryinfo()
-        getRegistryinfo(isRelatedApp, "isRelatedApp", False)
+        getRegistryinfo(isRelatedApp, "isRelatedApp", True)
         getRegistryinfo(nb_trial, "nb_trial", 1)
         getRegistryinfo(isActive, "ALM_ImpCheq_Ref", False)
         getRegistryinfo(str_Path, "str_Path", "")
@@ -236,6 +239,24 @@ Public Class ChequePanel
         'Me.Text = "Host Name: " & hostName & "  IP: " & IPAddress
         'Dim MyIP As IPAddress = GetExternalIP()
         'Me.Text = MyIP.ToString
+
+        Dim pwdwin As New PWDPicker
+
+        If pwdwin.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+            If pwdwin.DGV1.SelectedRows(0).Cells(2).Value = "admin" Then
+                admin = True
+                adminId = pwdwin.DGV1.SelectedRows(0).Cells(0).Value
+                adminName = pwdwin.DGV1.SelectedRows(0).Cells(1).Value
+            Else
+                admin = False
+                adminId = pwdwin.DGV1.SelectedRows(0).Cells(0).Value
+                adminName = pwdwin.DGV1.SelectedRows(0).Cells(1).Value
+
+            End If
+        Else
+            End
+        End If
     End Sub
     Function GetExternalIP() As IPAddress
         Dim lol As WebClient = New WebClient()
