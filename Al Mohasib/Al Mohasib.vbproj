@@ -95,6 +95,7 @@
     <Compile Include="Class\AutoModule.vb" />
     <Compile Include="Class\BackUpRestaure.vb" />
     <Compile Include="Class\BoundClass.vb" />
+    <Compile Include="Class\CaisseModule.vb" />
     <Compile Include="Class\ChargesClass.vb" />
     <Compile Include="Class\DataAccess2.vb" />
     <Compile Include="Class\ExcelModule.vb" />
@@ -723,6 +724,12 @@
     <Compile Include="GUI\SavePrint.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\SelectCaisse.Designer.vb">
+      <DependentUpon>SelectCaisse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\SelectCaisse.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\SelectClient.Designer.vb">
       <DependentUpon>SelectClient.vb</DependentUpon>
     </Compile>
@@ -1105,6 +1112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\SavePrint.resx">
       <DependentUpon>SavePrint.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\SelectCaisse.resx">
+      <DependentUpon>SelectCaisse.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\SelectClient.resx">
       <DependentUpon>SelectClient.vb</DependentUpon>

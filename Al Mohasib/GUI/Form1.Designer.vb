@@ -36,17 +36,16 @@ Partial Class Form1
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.PlRcpt = New System.Windows.Forms.Panel()
-        Me.RPl = New Al_Mohasib.RPanel()
         Me.Panel12 = New System.Windows.Forms.Panel()
         Me.lbLastBon = New System.Windows.Forms.Label()
         Me.btPrint_Top = New System.Windows.Forms.Button()
         Me.plup = New System.Windows.Forms.Panel()
-        Me.btUpCadeau = New System.Windows.Forms.Button()
+        Me.btTPf10 = New System.Windows.Forms.Button()
         Me.lbListBon = New System.Windows.Forms.Label()
-        Me.Button52 = New System.Windows.Forms.Button()
-        Me.Button51 = New System.Windows.Forms.Button()
-        Me.Button11 = New System.Windows.Forms.Button()
-        Me.Button44 = New System.Windows.Forms.Button()
+        Me.btTPf12 = New System.Windows.Forms.Button()
+        Me.btTpf8 = New System.Windows.Forms.Button()
+        Me.btTPf6 = New System.Windows.Forms.Button()
+        Me.btTPtrf = New System.Windows.Forms.Button()
         Me.Button32 = New System.Windows.Forms.Button()
         Me.Button31 = New System.Windows.Forms.Button()
         Me.PrintDoc = New System.Drawing.Printing.PrintDocument()
@@ -164,7 +163,6 @@ Partial Class Form1
         Me.FLPStock = New System.Windows.Forms.FlowLayoutPanel()
         Me.Panel16 = New System.Windows.Forms.Panel()
         Me.Panel29 = New System.Windows.Forms.Panel()
-        Me.txtnameStock = New Al_Mohasib.TxtBox()
         Me.btTransfert = New System.Windows.Forms.Button()
         Me.Button19 = New System.Windows.Forms.Button()
         Me.Button12 = New System.Windows.Forms.Button()
@@ -175,6 +173,7 @@ Partial Class Form1
         Me.TabPageAcu = New System.Windows.Forms.TabPage()
         Me.Panel30 = New System.Windows.Forms.Panel()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.plFocused = New System.Windows.Forms.Panel()
         Me.PL = New System.Windows.Forms.Panel()
         Me.p1 = New System.Windows.Forms.Panel()
         Me.btPanelHide = New System.Windows.Forms.Button()
@@ -188,15 +187,15 @@ Partial Class Form1
         Me.Button36 = New System.Windows.Forms.Button()
         Me.ShapeContainer5 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.RectangleShape10 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
-        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.plLoad = New System.Windows.Forms.Panel()
         Me.Button34 = New System.Windows.Forms.Button()
         Me.ShapeContainer4 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.RectangleShape9 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.txtSearchCode = New System.Windows.Forms.TextBox()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.plGroupe = New System.Windows.Forms.Panel()
         Me.btGoBack = New System.Windows.Forms.Button()
-        Me.Button10 = New System.Windows.Forms.Button()
+        Me.btGroupe = New System.Windows.Forms.Button()
         Me.ShapeContainer2 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.RectangleShape8 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.Panel8 = New System.Windows.Forms.Panel()
@@ -229,6 +228,19 @@ Partial Class Form1
         Me.Column23 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column41 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel43 = New System.Windows.Forms.Panel()
+        Me.Panel39 = New System.Windows.Forms.Panel()
+        Me.btCaisseHistorique = New System.Windows.Forms.Button()
+        Me.Button78 = New System.Windows.Forms.Button()
+        Me.lbCaisse = New System.Windows.Forms.Label()
+        Me.Button79 = New System.Windows.Forms.Button()
+        Me.Panel37 = New System.Windows.Forms.Panel()
+        Me.Panel28 = New System.Windows.Forms.Panel()
+        Me.btSearchArch = New System.Windows.Forms.Button()
+        Me.btCaisseArch = New System.Windows.Forms.Button()
+        Me.btEtatClientArch = New System.Windows.Forms.Button()
+        Me.btRelveClientArch = New System.Windows.Forms.Button()
+        Me.Panel40 = New System.Windows.Forms.Panel()
+        Me.Panel41 = New System.Windows.Forms.Panel()
         Me.plArchFact = New System.Windows.Forms.Panel()
         Me.Label42 = New System.Windows.Forms.Label()
         Me.CbSearchFacture = New System.Windows.Forms.ComboBox()
@@ -236,19 +248,14 @@ Partial Class Form1
         Me.cbSearchRegler = New System.Windows.Forms.ComboBox()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Button9 = New System.Windows.Forms.Button()
-        Me.txtArSearch = New Al_Mohasib.TxtBox()
-        Me.btCaisseArch = New System.Windows.Forms.Button()
-        Me.btRelveClientArch = New System.Windows.Forms.Button()
-        Me.btEtatClientArch = New System.Windows.Forms.Button()
-        Me.btSearchArch = New System.Windows.Forms.Button()
-        Me.dte2 = New System.Windows.Forms.DateTimePicker()
-        Me.dte1 = New System.Windows.Forms.DateTimePicker()
-        Me.Label28 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label31 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label72 = New System.Windows.Forms.Label()
+        Me.Label74 = New System.Windows.Forms.Label()
+        Me.dte1 = New System.Windows.Forms.DateTimePicker()
+        Me.dte2 = New System.Windows.Forms.DateTimePicker()
         Me.Panel9 = New System.Windows.Forms.Panel()
         Me.btSwitch2 = New System.Windows.Forms.Button()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
@@ -377,6 +384,7 @@ Partial Class Form1
         Me.Button48 = New System.Windows.Forms.Button()
         Me.cbPvCats = New System.Windows.Forms.CheckBox()
         Me.Button50 = New System.Windows.Forms.Button()
+        Me.cbBadgeRt = New System.Windows.Forms.CheckBox()
         Me.cbBadgeCs = New System.Windows.Forms.CheckBox()
         Me.cbBadgeMA = New System.Windows.Forms.CheckBox()
         Me.Button57 = New System.Windows.Forms.Button()
@@ -512,6 +520,10 @@ Partial Class Form1
         Me.BackgroundWorkerCaisse = New System.ComponentModel.BackgroundWorker()
         Me.PrintDocAutoPromo = New System.Drawing.Printing.PrintDocument()
         Me.PrintDocCafeTop = New System.Drawing.Printing.PrintDocument()
+        Me.BackgroundWorkerCaisseUser = New System.ComponentModel.BackgroundWorker()
+        Me.txtArSearch = New Al_Mohasib.TxtBox()
+        Me.txtnameStock = New Al_Mohasib.TxtBox()
+        Me.RPl = New Al_Mohasib.RPanel()
         Me.PlRcpt.SuspendLayout()
         Me.Panel12.SuspendLayout()
         Me.plup.SuspendLayout()
@@ -535,15 +547,18 @@ Partial Class Form1
         Me.Panel11.SuspendLayout()
         Me.plTarif.SuspendLayout()
         Me.plDepot.SuspendLayout()
-        Me.Panel3.SuspendLayout()
+        Me.plLoad.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        Me.Panel1.SuspendLayout()
+        Me.plGroupe.SuspendLayout()
         Me.Panel8.SuspendLayout()
         Me.plrightA.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPageArch.SuspendLayout()
         CType(Me.DGVARFA, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel43.SuspendLayout()
+        Me.Panel39.SuspendLayout()
+        Me.Panel28.SuspendLayout()
+        Me.Panel41.SuspendLayout()
         Me.plArchFact.SuspendLayout()
         Me.plArchReg.SuspendLayout()
         Me.Panel9.SuspendLayout()
@@ -589,28 +604,6 @@ Partial Class Form1
         Me.PlRcpt.Size = New System.Drawing.Size(404, 677)
         Me.PlRcpt.TabIndex = 3
         '
-        'RPl
-        '
-        Me.RPl.Avance = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.RPl.bl = "---"
-        Me.RPl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.RPl.ClId = 0
-        Me.RPl.delivredDay = Nothing
-        Me.RPl.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RPl.Dte = New Date(2021, 1, 1, 0, 0, 0, 0)
-        Me.RPl.EditMode = False
-        Me.RPl.hasManyRemise = False
-        Me.RPl.hideClc = True
-        Me.RPl.Location = New System.Drawing.Point(10, 30)
-        Me.RPl.Name = "RPl"
-        Me.RPl.Num = 0
-        Me.RPl.Remise = "0"
-        Me.RPl.ShowClc = True
-        Me.RPl.ShowProfit = False
-        Me.RPl.Size = New System.Drawing.Size(384, 642)
-        Me.RPl.TabIndex = 0
-        Me.RPl.TypePrinter = "&"
-        '
         'Panel12
         '
         Me.Panel12.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
@@ -652,12 +645,12 @@ Partial Class Form1
         'plup
         '
         Me.plup.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.plup.Controls.Add(Me.btUpCadeau)
+        Me.plup.Controls.Add(Me.btTPf10)
         Me.plup.Controls.Add(Me.lbListBon)
-        Me.plup.Controls.Add(Me.Button52)
-        Me.plup.Controls.Add(Me.Button51)
-        Me.plup.Controls.Add(Me.Button11)
-        Me.plup.Controls.Add(Me.Button44)
+        Me.plup.Controls.Add(Me.btTPf12)
+        Me.plup.Controls.Add(Me.btTpf8)
+        Me.plup.Controls.Add(Me.btTPf6)
+        Me.plup.Controls.Add(Me.btTPtrf)
         Me.plup.Controls.Add(Me.Button32)
         Me.plup.Controls.Add(Me.Button31)
         Me.plup.Dock = System.Windows.Forms.DockStyle.Top
@@ -666,20 +659,20 @@ Partial Class Form1
         Me.plup.Size = New System.Drawing.Size(872, 30)
         Me.plup.TabIndex = 5
         '
-        'btUpCadeau
+        'btTPf10
         '
-        Me.btUpCadeau.BackColor = System.Drawing.Color.Teal
-        Me.btUpCadeau.Dock = System.Windows.Forms.DockStyle.Left
-        Me.btUpCadeau.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btUpCadeau.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btUpCadeau.ForeColor = System.Drawing.Color.White
-        Me.btUpCadeau.Location = New System.Drawing.Point(284, 0)
-        Me.btUpCadeau.Name = "btUpCadeau"
-        Me.btUpCadeau.Size = New System.Drawing.Size(93, 30)
-        Me.btUpCadeau.TabIndex = 13
-        Me.btUpCadeau.Tag = "1"
-        Me.btUpCadeau.Text = "F10  Cdx"
-        Me.btUpCadeau.UseVisualStyleBackColor = False
+        Me.btTPf10.BackColor = System.Drawing.Color.Teal
+        Me.btTPf10.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btTPf10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btTPf10.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btTPf10.ForeColor = System.Drawing.Color.White
+        Me.btTPf10.Location = New System.Drawing.Point(284, 0)
+        Me.btTPf10.Name = "btTPf10"
+        Me.btTPf10.Size = New System.Drawing.Size(93, 30)
+        Me.btTPf10.TabIndex = 13
+        Me.btTPf10.Tag = "1"
+        Me.btTPf10.Text = "F10  Cdx"
+        Me.btTPf10.UseVisualStyleBackColor = False
         '
         'lbListBon
         '
@@ -694,65 +687,65 @@ Partial Class Form1
         Me.lbListBon.Text = "_"
         Me.lbListBon.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Button52
+        'btTPf12
         '
-        Me.Button52.BackColor = System.Drawing.Color.Blue
-        Me.Button52.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button52.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button52.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button52.ForeColor = System.Drawing.Color.White
-        Me.Button52.Location = New System.Drawing.Point(213, 0)
-        Me.Button52.Name = "Button52"
-        Me.Button52.Size = New System.Drawing.Size(71, 30)
-        Me.Button52.TabIndex = 12
-        Me.Button52.Tag = "1"
-        Me.Button52.Text = "F12  Tr"
-        Me.Button52.UseVisualStyleBackColor = False
+        Me.btTPf12.BackColor = System.Drawing.Color.Blue
+        Me.btTPf12.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btTPf12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btTPf12.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btTPf12.ForeColor = System.Drawing.Color.White
+        Me.btTPf12.Location = New System.Drawing.Point(213, 0)
+        Me.btTPf12.Name = "btTPf12"
+        Me.btTPf12.Size = New System.Drawing.Size(71, 30)
+        Me.btTPf12.TabIndex = 12
+        Me.btTPf12.Tag = "1"
+        Me.btTPf12.Text = "F12  Tr"
+        Me.btTPf12.UseVisualStyleBackColor = False
         '
-        'Button51
+        'btTpf8
         '
-        Me.Button51.BackColor = System.Drawing.Color.Teal
-        Me.Button51.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button51.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button51.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button51.ForeColor = System.Drawing.Color.White
-        Me.Button51.Location = New System.Drawing.Point(142, 0)
-        Me.Button51.Name = "Button51"
-        Me.Button51.Size = New System.Drawing.Size(71, 30)
-        Me.Button51.TabIndex = 11
-        Me.Button51.Tag = "1"
-        Me.Button51.Text = "F8  Bn"
-        Me.Button51.UseVisualStyleBackColor = False
+        Me.btTpf8.BackColor = System.Drawing.Color.Teal
+        Me.btTpf8.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btTpf8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btTpf8.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btTpf8.ForeColor = System.Drawing.Color.White
+        Me.btTpf8.Location = New System.Drawing.Point(142, 0)
+        Me.btTpf8.Name = "btTpf8"
+        Me.btTpf8.Size = New System.Drawing.Size(71, 30)
+        Me.btTpf8.TabIndex = 11
+        Me.btTpf8.Tag = "1"
+        Me.btTpf8.Text = "F8  Bn"
+        Me.btTpf8.UseVisualStyleBackColor = False
         '
-        'Button11
+        'btTPf6
         '
-        Me.Button11.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Button11.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button11.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button11.ForeColor = System.Drawing.Color.White
-        Me.Button11.Location = New System.Drawing.Point(77, 0)
-        Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(65, 30)
-        Me.Button11.TabIndex = 10
-        Me.Button11.Tag = "1"
-        Me.Button11.Text = "F6  Pr"
-        Me.Button11.UseVisualStyleBackColor = False
+        Me.btTPf6.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btTPf6.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btTPf6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btTPf6.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btTPf6.ForeColor = System.Drawing.Color.White
+        Me.btTPf6.Location = New System.Drawing.Point(77, 0)
+        Me.btTPf6.Name = "btTPf6"
+        Me.btTPf6.Size = New System.Drawing.Size(65, 30)
+        Me.btTPf6.TabIndex = 10
+        Me.btTPf6.Tag = "1"
+        Me.btTPf6.Text = "F6  Pr"
+        Me.btTPf6.UseVisualStyleBackColor = False
         '
-        'Button44
+        'btTPtrf
         '
-        Me.Button44.BackColor = System.Drawing.Color.Teal
-        Me.Button44.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button44.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button44.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button44.ForeColor = System.Drawing.Color.White
-        Me.Button44.Location = New System.Drawing.Point(0, 0)
-        Me.Button44.Name = "Button44"
-        Me.Button44.Size = New System.Drawing.Size(77, 30)
-        Me.Button44.TabIndex = 8
-        Me.Button44.Tag = "1"
-        Me.Button44.Text = "TRF"
-        Me.Button44.UseVisualStyleBackColor = False
+        Me.btTPtrf.BackColor = System.Drawing.Color.Teal
+        Me.btTPtrf.Dock = System.Windows.Forms.DockStyle.Left
+        Me.btTPtrf.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btTPtrf.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btTPtrf.ForeColor = System.Drawing.Color.White
+        Me.btTPtrf.Location = New System.Drawing.Point(0, 0)
+        Me.btTPtrf.Name = "btTPtrf"
+        Me.btTPtrf.Size = New System.Drawing.Size(77, 30)
+        Me.btTPtrf.TabIndex = 8
+        Me.btTPtrf.Tag = "1"
+        Me.btTPtrf.Text = "TRF"
+        Me.btTPtrf.UseVisualStyleBackColor = False
         '
         'Button32
         '
@@ -2010,26 +2003,6 @@ Partial Class Form1
         Me.Panel29.Size = New System.Drawing.Size(237, 38)
         Me.Panel29.TabIndex = 9
         '
-        'txtnameStock
-        '
-        Me.txtnameStock.BackColor = System.Drawing.Color.White
-        Me.txtnameStock.BorderColor = System.Drawing.Color.Maroon
-        Me.txtnameStock.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtnameStock.IsNumiric = False
-        Me.txtnameStock.Location = New System.Drawing.Point(4, 4)
-        Me.txtnameStock.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtnameStock.Name = "txtnameStock"
-        Me.txtnameStock.ShowClearIcon = False
-        Me.txtnameStock.ShowSaveIcon = False
-        Me.txtnameStock.Size = New System.Drawing.Size(229, 30)
-        Me.txtnameStock.StartUp = 2
-        Me.txtnameStock.TabIndex = 8
-        Me.txtnameStock.TextSize = 8
-        Me.txtnameStock.TxtBackColor = True
-        Me.txtnameStock.TxtColor = System.Drawing.Color.White
-        Me.txtnameStock.txtReadOnly = False
-        Me.txtnameStock.TxtSelect = New Integer() {1, 0}
-        '
         'btTransfert
         '
         Me.btTransfert.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
@@ -2135,6 +2108,7 @@ Partial Class Form1
         'Panel30
         '
         Me.Panel30.Controls.Add(Me.FlowLayoutPanel1)
+        Me.Panel30.Controls.Add(Me.plFocused)
         Me.Panel30.Controls.Add(Me.PL)
         Me.Panel30.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel30.Location = New System.Drawing.Point(3, 86)
@@ -2149,10 +2123,19 @@ Partial Class Form1
         Me.FlowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel1.Font = New System.Drawing.Font("Arial", 12.0!)
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 3)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(828, 515)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(828, 512)
         Me.FlowLayoutPanel1.TabIndex = 3
+        '
+        'plFocused
+        '
+        Me.plFocused.BackColor = System.Drawing.Color.Gainsboro
+        Me.plFocused.Dock = System.Windows.Forms.DockStyle.Top
+        Me.plFocused.Location = New System.Drawing.Point(0, 0)
+        Me.plFocused.Name = "plFocused"
+        Me.plFocused.Size = New System.Drawing.Size(828, 3)
+        Me.plFocused.TabIndex = 23
         '
         'PL
         '
@@ -2209,9 +2192,9 @@ Partial Class Form1
         Me.Panel11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel11.Controls.Add(Me.plTarif)
         Me.Panel11.Controls.Add(Me.plDepot)
-        Me.Panel11.Controls.Add(Me.Panel3)
+        Me.Panel11.Controls.Add(Me.plLoad)
         Me.Panel11.Controls.Add(Me.Panel2)
-        Me.Panel11.Controls.Add(Me.Panel1)
+        Me.Panel11.Controls.Add(Me.plGroupe)
         Me.Panel11.Controls.Add(Me.Panel8)
         Me.Panel11.Controls.Add(Me.Label2)
         Me.Panel11.Controls.Add(Me.Button42)
@@ -2324,16 +2307,17 @@ Partial Class Form1
         Me.RectangleShape10.Name = "RectangleShape1"
         Me.RectangleShape10.Size = New System.Drawing.Size(162, 31)
         '
-        'Panel3
+        'plLoad
         '
-        Me.Panel3.BackColor = System.Drawing.Color.Transparent
-        Me.Panel3.Controls.Add(Me.Button34)
-        Me.Panel3.Controls.Add(Me.ShapeContainer4)
-        Me.Panel3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel3.Location = New System.Drawing.Point(252, 0)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(165, 40)
-        Me.Panel3.TabIndex = 11
+        Me.plLoad.BackColor = System.Drawing.Color.Transparent
+        Me.plLoad.Controls.Add(Me.Button34)
+        Me.plLoad.Controls.Add(Me.ShapeContainer4)
+        Me.plLoad.Dock = System.Windows.Forms.DockStyle.Left
+        Me.plLoad.Location = New System.Drawing.Point(252, 0)
+        Me.plLoad.Name = "plLoad"
+        Me.plLoad.Size = New System.Drawing.Size(165, 40)
+        Me.plLoad.TabIndex = 11
+        Me.plLoad.Visible = False
         '
         'Button34
         '
@@ -2394,17 +2378,17 @@ Partial Class Form1
         Me.txtSearchCode.TabIndex = 5
         Me.txtSearchCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'Panel1
+        'plGroupe
         '
-        Me.Panel1.BackColor = System.Drawing.Color.PaleGreen
-        Me.Panel1.Controls.Add(Me.btGoBack)
-        Me.Panel1.Controls.Add(Me.Button10)
-        Me.Panel1.Controls.Add(Me.ShapeContainer2)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(252, 40)
-        Me.Panel1.TabIndex = 8
+        Me.plGroupe.BackColor = System.Drawing.Color.PaleGreen
+        Me.plGroupe.Controls.Add(Me.btGoBack)
+        Me.plGroupe.Controls.Add(Me.btGroupe)
+        Me.plGroupe.Controls.Add(Me.ShapeContainer2)
+        Me.plGroupe.Dock = System.Windows.Forms.DockStyle.Left
+        Me.plGroupe.Location = New System.Drawing.Point(0, 0)
+        Me.plGroupe.Name = "plGroupe"
+        Me.plGroupe.Size = New System.Drawing.Size(252, 40)
+        Me.plGroupe.TabIndex = 8
         '
         'btGoBack
         '
@@ -2421,23 +2405,23 @@ Partial Class Form1
         Me.btGoBack.Tag = "0"
         Me.btGoBack.UseVisualStyleBackColor = False
         '
-        'Button10
+        'btGroupe
         '
-        Me.Button10.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button10.BackColor = System.Drawing.Color.LightSeaGreen
-        Me.Button10.FlatAppearance.BorderSize = 0
-        Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button10.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button10.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Button10.Image = Global.Al_Mohasib.My.Resources.Resources.BTGROUP
-        Me.Button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button10.Location = New System.Drawing.Point(90, 4)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(142, 28)
-        Me.Button10.TabIndex = 2
-        Me.Button10.Tag = "-1"
-        Me.Button10.Text = "    GROUPES"
-        Me.Button10.UseVisualStyleBackColor = False
+        Me.btGroupe.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btGroupe.BackColor = System.Drawing.Color.LightSeaGreen
+        Me.btGroupe.FlatAppearance.BorderSize = 0
+        Me.btGroupe.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btGroupe.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btGroupe.ForeColor = System.Drawing.Color.DarkSlateGray
+        Me.btGroupe.Image = Global.Al_Mohasib.My.Resources.Resources.BTGROUP
+        Me.btGroupe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btGroupe.Location = New System.Drawing.Point(90, 4)
+        Me.btGroupe.Name = "btGroupe"
+        Me.btGroupe.Size = New System.Drawing.Size(142, 28)
+        Me.btGroupe.TabIndex = 2
+        Me.btGroupe.Tag = "-1"
+        Me.btGroupe.Text = "    GROUPES"
+        Me.btGroupe.UseVisualStyleBackColor = False
         '
         'ShapeContainer2
         '
@@ -2664,7 +2648,7 @@ Partial Class Form1
         Me.DGVARFA.RowHeadersVisible = False
         Me.DGVARFA.RowTemplate.Height = 30
         Me.DGVARFA.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGVARFA.Size = New System.Drawing.Size(639, 545)
+        Me.DGVARFA.Size = New System.Drawing.Size(600, 545)
         Me.DGVARFA.TabIndex = 3
         '
         'DataGridViewTextBoxColumn2
@@ -2767,37 +2751,207 @@ Partial Class Form1
         'Panel43
         '
         Me.Panel43.BackColor = System.Drawing.SystemColors.Control
-        Me.Panel43.Controls.Add(Me.plArchFact)
-        Me.Panel43.Controls.Add(Me.plArchReg)
-        Me.Panel43.Controls.Add(Me.Button9)
-        Me.Panel43.Controls.Add(Me.txtArSearch)
-        Me.Panel43.Controls.Add(Me.btCaisseArch)
-        Me.Panel43.Controls.Add(Me.btRelveClientArch)
-        Me.Panel43.Controls.Add(Me.btEtatClientArch)
-        Me.Panel43.Controls.Add(Me.btSearchArch)
-        Me.Panel43.Controls.Add(Me.dte2)
-        Me.Panel43.Controls.Add(Me.dte1)
-        Me.Panel43.Controls.Add(Me.Label28)
-        Me.Panel43.Controls.Add(Me.Label4)
-        Me.Panel43.Controls.Add(Me.Label6)
-        Me.Panel43.Controls.Add(Me.Label3)
-        Me.Panel43.Controls.Add(Me.Label31)
-        Me.Panel43.Controls.Add(Me.Label32)
+        Me.Panel43.Controls.Add(Me.Panel39)
+        Me.Panel43.Controls.Add(Me.Panel37)
+        Me.Panel43.Controls.Add(Me.Panel28)
+        Me.Panel43.Controls.Add(Me.Panel40)
+        Me.Panel43.Controls.Add(Me.Panel41)
         Me.Panel43.Controls.Add(Me.Panel9)
         Me.Panel43.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel43.Location = New System.Drawing.Point(642, 56)
+        Me.Panel43.Location = New System.Drawing.Point(603, 56)
         Me.Panel43.Name = "Panel43"
-        Me.Panel43.Size = New System.Drawing.Size(219, 545)
+        Me.Panel43.Size = New System.Drawing.Size(258, 545)
         Me.Panel43.TabIndex = 1
+        '
+        'Panel39
+        '
+        Me.Panel39.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_13_13_57__1_
+        Me.Panel39.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel39.Controls.Add(Me.btCaisseHistorique)
+        Me.Panel39.Controls.Add(Me.Button78)
+        Me.Panel39.Controls.Add(Me.lbCaisse)
+        Me.Panel39.Controls.Add(Me.Button79)
+        Me.Panel39.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel39.Location = New System.Drawing.Point(0, 414)
+        Me.Panel39.Name = "Panel39"
+        Me.Panel39.Size = New System.Drawing.Size(258, 131)
+        Me.Panel39.TabIndex = 25
+        '
+        'btCaisseHistorique
+        '
+        Me.btCaisseHistorique.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btCaisseHistorique.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.btCaisseHistorique.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btCaisseHistorique.Location = New System.Drawing.Point(98, 56)
+        Me.btCaisseHistorique.Name = "btCaisseHistorique"
+        Me.btCaisseHistorique.Size = New System.Drawing.Size(74, 45)
+        Me.btCaisseHistorique.TabIndex = 17
+        Me.btCaisseHistorique.Text = "Archive Caisse"
+        Me.btCaisseHistorique.UseVisualStyleBackColor = True
+        '
+        'Button78
+        '
+        Me.Button78.BackColor = System.Drawing.Color.DodgerBlue
+        Me.Button78.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button78.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button78.ForeColor = System.Drawing.Color.DarkSlateGray
+        Me.Button78.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button78.Location = New System.Drawing.Point(178, 56)
+        Me.Button78.Name = "Button78"
+        Me.Button78.Size = New System.Drawing.Size(68, 45)
+        Me.Button78.TabIndex = 12
+        Me.Button78.Text = "Caisse Rapport"
+        Me.Button78.UseVisualStyleBackColor = False
+        '
+        'lbCaisse
+        '
+        Me.lbCaisse.BackColor = System.Drawing.Color.Black
+        Me.lbCaisse.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbCaisse.ForeColor = System.Drawing.Color.White
+        Me.lbCaisse.Location = New System.Drawing.Point(18, 9)
+        Me.lbCaisse.Name = "lbCaisse"
+        Me.lbCaisse.Size = New System.Drawing.Size(223, 30)
+        Me.lbCaisse.TabIndex = 7
+        Me.lbCaisse.Text = "-"
+        Me.lbCaisse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Button79
+        '
+        Me.Button79.BackColor = System.Drawing.Color.Transparent
+        Me.Button79.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.bbuy
+        Me.Button79.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Button79.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button79.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Button79.ForeColor = System.Drawing.Color.White
+        Me.Button79.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button79.Location = New System.Drawing.Point(18, 56)
+        Me.Button79.Name = "Button79"
+        Me.Button79.Size = New System.Drawing.Size(74, 45)
+        Me.Button79.TabIndex = 6
+        Me.Button79.Text = "Cloture de caisse"
+        Me.Button79.UseVisualStyleBackColor = False
+        '
+        'Panel37
+        '
+        Me.Panel37.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Panel37.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel37.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel37.Location = New System.Drawing.Point(0, 400)
+        Me.Panel37.Name = "Panel37"
+        Me.Panel37.Size = New System.Drawing.Size(258, 14)
+        Me.Panel37.TabIndex = 24
+        '
+        'Panel28
+        '
+        Me.Panel28.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_13_13_57__1_
+        Me.Panel28.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel28.Controls.Add(Me.btSearchArch)
+        Me.Panel28.Controls.Add(Me.btCaisseArch)
+        Me.Panel28.Controls.Add(Me.btEtatClientArch)
+        Me.Panel28.Controls.Add(Me.btRelveClientArch)
+        Me.Panel28.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel28.Location = New System.Drawing.Point(0, 251)
+        Me.Panel28.Name = "Panel28"
+        Me.Panel28.Size = New System.Drawing.Size(258, 149)
+        Me.Panel28.TabIndex = 23
+        '
+        'btSearchArch
+        '
+        Me.btSearchArch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btSearchArch.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btSearchArch.ForeColor = System.Drawing.Color.MidnightBlue
+        Me.btSearchArch.Image = Global.Al_Mohasib.My.Resources.Resources.SEARCH_24X24
+        Me.btSearchArch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btSearchArch.Location = New System.Drawing.Point(21, 17)
+        Me.btSearchArch.Name = "btSearchArch"
+        Me.btSearchArch.Padding = New System.Windows.Forms.Padding(11, 0, 0, 0)
+        Me.btSearchArch.Size = New System.Drawing.Size(222, 45)
+        Me.btSearchArch.TabIndex = 12
+        Me.btSearchArch.Text = "  Recherche"
+        Me.btSearchArch.UseVisualStyleBackColor = True
+        '
+        'btCaisseArch
+        '
+        Me.btCaisseArch.BackColor = System.Drawing.Color.MediumSpringGreen
+        Me.btCaisseArch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btCaisseArch.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btCaisseArch.ForeColor = System.Drawing.Color.ForestGreen
+        Me.btCaisseArch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btCaisseArch.Location = New System.Drawing.Point(21, 83)
+        Me.btCaisseArch.Name = "btCaisseArch"
+        Me.btCaisseArch.Size = New System.Drawing.Size(68, 45)
+        Me.btCaisseArch.TabIndex = 12
+        Me.btCaisseArch.Text = "Caisse"
+        Me.btCaisseArch.UseVisualStyleBackColor = False
+        '
+        'btEtatClientArch
+        '
+        Me.btEtatClientArch.BackColor = System.Drawing.Color.DarkOrange
+        Me.btEtatClientArch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btEtatClientArch.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btEtatClientArch.ForeColor = System.Drawing.Color.Brown
+        Me.btEtatClientArch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btEtatClientArch.Location = New System.Drawing.Point(98, 83)
+        Me.btEtatClientArch.Name = "btEtatClientArch"
+        Me.btEtatClientArch.Size = New System.Drawing.Size(68, 43)
+        Me.btEtatClientArch.TabIndex = 12
+        Me.btEtatClientArch.Text = "Etat Client"
+        Me.btEtatClientArch.UseVisualStyleBackColor = False
+        '
+        'btRelveClientArch
+        '
+        Me.btRelveClientArch.BackColor = System.Drawing.Color.Salmon
+        Me.btRelveClientArch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btRelveClientArch.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btRelveClientArch.ForeColor = System.Drawing.Color.Maroon
+        Me.btRelveClientArch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btRelveClientArch.Location = New System.Drawing.Point(175, 83)
+        Me.btRelveClientArch.Name = "btRelveClientArch"
+        Me.btRelveClientArch.Size = New System.Drawing.Size(68, 43)
+        Me.btRelveClientArch.TabIndex = 12
+        Me.btRelveClientArch.Text = "Relve Client"
+        Me.btRelveClientArch.UseVisualStyleBackColor = False
+        '
+        'Panel40
+        '
+        Me.Panel40.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Panel40.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel40.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel40.Location = New System.Drawing.Point(0, 237)
+        Me.Panel40.Name = "Panel40"
+        Me.Panel40.Size = New System.Drawing.Size(258, 14)
+        Me.Panel40.TabIndex = 22
+        '
+        'Panel41
+        '
+        Me.Panel41.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_13_13_57__1_
+        Me.Panel41.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel41.Controls.Add(Me.plArchFact)
+        Me.Panel41.Controls.Add(Me.plArchReg)
+        Me.Panel41.Controls.Add(Me.Button9)
+        Me.Panel41.Controls.Add(Me.Label32)
+        Me.Panel41.Controls.Add(Me.Label31)
+        Me.Panel41.Controls.Add(Me.Label6)
+        Me.Panel41.Controls.Add(Me.Label28)
+        Me.Panel41.Controls.Add(Me.txtArSearch)
+        Me.Panel41.Controls.Add(Me.Label72)
+        Me.Panel41.Controls.Add(Me.Label74)
+        Me.Panel41.Controls.Add(Me.dte1)
+        Me.Panel41.Controls.Add(Me.dte2)
+        Me.Panel41.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel41.Location = New System.Drawing.Point(0, 43)
+        Me.Panel41.Name = "Panel41"
+        Me.Panel41.Size = New System.Drawing.Size(258, 194)
+        Me.Panel41.TabIndex = 21
         '
         'plArchFact
         '
         Me.plArchFact.BackColor = System.Drawing.Color.Firebrick
         Me.plArchFact.Controls.Add(Me.Label42)
         Me.plArchFact.Controls.Add(Me.CbSearchFacture)
-        Me.plArchFact.Location = New System.Drawing.Point(113, 254)
+        Me.plArchFact.Location = New System.Drawing.Point(143, 139)
         Me.plArchFact.Name = "plArchFact"
-        Me.plArchFact.Size = New System.Drawing.Size(93, 41)
+        Me.plArchFact.Size = New System.Drawing.Size(104, 41)
         Me.plArchFact.TabIndex = 15
         '
         'Label42
@@ -2822,7 +2976,7 @@ Partial Class Form1
         Me.CbSearchFacture.Items.AddRange(New Object() {"Rapide", "Sans Info", "Avec Info", "Rapport jr", "----------", "Tous", "Facturé", "Non Facturé"})
         Me.CbSearchFacture.Location = New System.Drawing.Point(0, 20)
         Me.CbSearchFacture.Name = "CbSearchFacture"
-        Me.CbSearchFacture.Size = New System.Drawing.Size(93, 21)
+        Me.CbSearchFacture.Size = New System.Drawing.Size(104, 21)
         Me.CbSearchFacture.TabIndex = 14
         '
         'plArchReg
@@ -2830,9 +2984,9 @@ Partial Class Form1
         Me.plArchReg.BackColor = System.Drawing.SystemColors.HotTrack
         Me.plArchReg.Controls.Add(Me.cbSearchRegler)
         Me.plArchReg.Controls.Add(Me.Label38)
-        Me.plArchReg.Location = New System.Drawing.Point(13, 254)
+        Me.plArchReg.Location = New System.Drawing.Point(17, 139)
         Me.plArchReg.Name = "plArchReg"
-        Me.plArchReg.Size = New System.Drawing.Size(94, 41)
+        Me.plArchReg.Size = New System.Drawing.Size(105, 41)
         Me.plArchReg.TabIndex = 15
         '
         'cbSearchRegler
@@ -2846,7 +3000,7 @@ Partial Class Form1
         Me.cbSearchRegler.Items.AddRange(New Object() {"Tous", "Reglé", "Non Reglé"})
         Me.cbSearchRegler.Location = New System.Drawing.Point(0, 20)
         Me.cbSearchRegler.Name = "cbSearchRegler"
-        Me.cbSearchRegler.Size = New System.Drawing.Size(94, 21)
+        Me.cbSearchRegler.Size = New System.Drawing.Size(105, 21)
         Me.cbSearchRegler.TabIndex = 14
         '
         'Label38
@@ -2866,163 +3020,92 @@ Partial Class Form1
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button9.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button9.ForeColor = System.Drawing.Color.Maroon
-        Me.Button9.Location = New System.Drawing.Point(171, 72)
+        Me.Button9.Location = New System.Drawing.Point(206, 34)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(35, 30)
         Me.Button9.TabIndex = 13
         Me.Button9.Text = "..."
         Me.Button9.UseVisualStyleBackColor = False
         '
-        'txtArSearch
+        'Label32
         '
-        Me.txtArSearch.BackColor = System.Drawing.Color.Transparent
-        Me.txtArSearch.BorderColor = System.Drawing.SystemColors.ControlText
-        Me.txtArSearch.IsNumiric = False
-        Me.txtArSearch.Location = New System.Drawing.Point(13, 72)
-        Me.txtArSearch.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtArSearch.Name = "txtArSearch"
-        Me.txtArSearch.ShowClearIcon = False
-        Me.txtArSearch.ShowSaveIcon = False
-        Me.txtArSearch.Size = New System.Drawing.Size(156, 30)
-        Me.txtArSearch.StartUp = 2
-        Me.txtArSearch.TabIndex = 9
-        Me.txtArSearch.TextSize = 8
-        Me.txtArSearch.TxtBackColor = True
-        Me.txtArSearch.TxtColor = System.Drawing.Color.White
-        Me.txtArSearch.txtReadOnly = False
-        Me.txtArSearch.TxtSelect = New Integer() {1, 0}
-        '
-        'btCaisseArch
-        '
-        Me.btCaisseArch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btCaisseArch.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btCaisseArch.ForeColor = System.Drawing.Color.ForestGreen
-        Me.btCaisseArch.Image = Global.Al_Mohasib.My.Resources.Resources.money1
-        Me.btCaisseArch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btCaisseArch.Location = New System.Drawing.Point(14, 386)
-        Me.btCaisseArch.Name = "btCaisseArch"
-        Me.btCaisseArch.Padding = New System.Windows.Forms.Padding(11, 0, 0, 0)
-        Me.btCaisseArch.Size = New System.Drawing.Size(193, 45)
-        Me.btCaisseArch.TabIndex = 12
-        Me.btCaisseArch.Text = "Caisse"
-        Me.btCaisseArch.UseVisualStyleBackColor = True
-        '
-        'btRelveClientArch
-        '
-        Me.btRelveClientArch.BackColor = System.Drawing.Color.Maroon
-        Me.btRelveClientArch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btRelveClientArch.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btRelveClientArch.ForeColor = System.Drawing.Color.White
-        Me.btRelveClientArch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btRelveClientArch.Location = New System.Drawing.Point(14, 484)
-        Me.btRelveClientArch.Name = "btRelveClientArch"
-        Me.btRelveClientArch.Padding = New System.Windows.Forms.Padding(11, 0, 0, 0)
-        Me.btRelveClientArch.Size = New System.Drawing.Size(193, 43)
-        Me.btRelveClientArch.TabIndex = 12
-        Me.btRelveClientArch.Text = "Relve Client"
-        Me.btRelveClientArch.UseVisualStyleBackColor = False
-        '
-        'btEtatClientArch
-        '
-        Me.btEtatClientArch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btEtatClientArch.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btEtatClientArch.ForeColor = System.Drawing.Color.Brown
-        Me.btEtatClientArch.Image = Global.Al_Mohasib.My.Resources.Resources.lmoney
-        Me.btEtatClientArch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btEtatClientArch.Location = New System.Drawing.Point(14, 437)
-        Me.btEtatClientArch.Name = "btEtatClientArch"
-        Me.btEtatClientArch.Padding = New System.Windows.Forms.Padding(11, 0, 0, 0)
-        Me.btEtatClientArch.Size = New System.Drawing.Size(193, 43)
-        Me.btEtatClientArch.TabIndex = 12
-        Me.btEtatClientArch.Text = "Etat Client"
-        Me.btEtatClientArch.UseVisualStyleBackColor = True
-        '
-        'btSearchArch
-        '
-        Me.btSearchArch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btSearchArch.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btSearchArch.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.btSearchArch.Image = Global.Al_Mohasib.My.Resources.Resources.SEARCH_24X24
-        Me.btSearchArch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btSearchArch.Location = New System.Drawing.Point(13, 311)
-        Me.btSearchArch.Name = "btSearchArch"
-        Me.btSearchArch.Padding = New System.Windows.Forms.Padding(11, 0, 0, 0)
-        Me.btSearchArch.Size = New System.Drawing.Size(193, 45)
-        Me.btSearchArch.TabIndex = 12
-        Me.btSearchArch.Text = "  Recherche"
-        Me.btSearchArch.UseVisualStyleBackColor = True
-        '
-        'dte2
-        '
-        Me.dte2.CustomFormat = ""
-        Me.dte2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dte2.Location = New System.Drawing.Point(12, 199)
-        Me.dte2.Name = "dte2"
-        Me.dte2.Size = New System.Drawing.Size(197, 22)
-        Me.dte2.TabIndex = 10
-        '
-        'dte1
-        '
-        Me.dte1.CustomFormat = ""
-        Me.dte1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dte1.Location = New System.Drawing.Point(12, 142)
-        Me.dte1.Name = "dte1"
-        Me.dte1.Size = New System.Drawing.Size(197, 22)
-        Me.dte1.TabIndex = 11
-        '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(16, 183)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(63, 13)
-        Me.Label28.TabIndex = 6
-        Me.Label28.Text = "Date 2 (Au)"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(165, 183)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(37, 13)
-        Me.Label4.TabIndex = 7
-        Me.Label4.Text = "تاريخ 2"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(168, 54)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(42, 13)
-        Me.Label6.TabIndex = 7
-        Me.Label6.Text = "الاســم"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(165, 126)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(37, 13)
-        Me.Label3.TabIndex = 7
-        Me.Label3.Text = "تاريخ 1"
+        Me.Label32.AutoSize = True
+        Me.Label32.BackColor = System.Drawing.Color.Transparent
+        Me.Label32.Location = New System.Drawing.Point(15, 16)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(115, 13)
+        Me.Label32.TabIndex = 8
+        Me.Label32.Text = "Id BL/BC  -  Nom Client"
         '
         'Label31
         '
         Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(13, 126)
+        Me.Label31.BackColor = System.Drawing.Color.Transparent
+        Me.Label31.Location = New System.Drawing.Point(18, 89)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(63, 13)
         Me.Label31.TabIndex = 7
         Me.Label31.Text = "Date 1 (Du)"
         '
-        'Label32
+        'Label6
         '
-        Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(17, 54)
-        Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(115, 13)
-        Me.Label32.TabIndex = 8
-        Me.Label32.Text = "Id BL/BC  -  Nom Client"
+        Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
+        Me.Label6.Location = New System.Drawing.Point(86, 89)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(37, 13)
+        Me.Label6.TabIndex = 7
+        Me.Label6.Text = "تاريخ 1"
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.BackColor = System.Drawing.Color.Transparent
+        Me.Label28.Location = New System.Drawing.Point(205, 16)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(42, 13)
+        Me.Label28.TabIndex = 7
+        Me.Label28.Text = "الاســم"
+        '
+        'Label72
+        '
+        Me.Label72.AutoSize = True
+        Me.Label72.BackColor = System.Drawing.Color.Transparent
+        Me.Label72.Location = New System.Drawing.Point(212, 89)
+        Me.Label72.Name = "Label72"
+        Me.Label72.Size = New System.Drawing.Size(37, 13)
+        Me.Label72.TabIndex = 7
+        Me.Label72.Text = "تاريخ 2"
+        '
+        'Label74
+        '
+        Me.Label74.AutoSize = True
+        Me.Label74.BackColor = System.Drawing.Color.Transparent
+        Me.Label74.Location = New System.Drawing.Point(147, 89)
+        Me.Label74.Name = "Label74"
+        Me.Label74.Size = New System.Drawing.Size(63, 13)
+        Me.Label74.TabIndex = 6
+        Me.Label74.Text = "Date 2 (Au)"
+        '
+        'dte1
+        '
+        Me.dte1.CustomFormat = ""
+        Me.dte1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dte1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dte1.Location = New System.Drawing.Point(17, 105)
+        Me.dte1.Name = "dte1"
+        Me.dte1.Size = New System.Drawing.Size(110, 22)
+        Me.dte1.TabIndex = 11
+        '
+        'dte2
+        '
+        Me.dte2.CustomFormat = ""
+        Me.dte2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dte2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dte2.Location = New System.Drawing.Point(143, 105)
+        Me.dte2.Name = "dte2"
+        Me.dte2.Size = New System.Drawing.Size(110, 22)
+        Me.dte2.TabIndex = 10
         '
         'Panel9
         '
@@ -3032,7 +3115,7 @@ Partial Class Form1
         Me.Panel9.Location = New System.Drawing.Point(0, 0)
         Me.Panel9.Name = "Panel9"
         Me.Panel9.Padding = New System.Windows.Forms.Padding(5)
-        Me.Panel9.Size = New System.Drawing.Size(219, 43)
+        Me.Panel9.Size = New System.Drawing.Size(258, 43)
         Me.Panel9.TabIndex = 5
         '
         'btSwitch2
@@ -3044,7 +3127,7 @@ Partial Class Form1
         Me.btSwitch2.ForeColor = System.Drawing.Color.White
         Me.btSwitch2.Location = New System.Drawing.Point(5, 5)
         Me.btSwitch2.Name = "btSwitch2"
-        Me.btSwitch2.Size = New System.Drawing.Size(209, 32)
+        Me.btSwitch2.Size = New System.Drawing.Size(248, 32)
         Me.btSwitch2.TabIndex = 4
         Me.btSwitch2.Tag = "1"
         Me.btSwitch2.Text = "الخروج"
@@ -4188,7 +4271,7 @@ Partial Class Form1
         Me.GB8.Controls.Add(Me.Panel5)
         Me.GB8.Controls.Add(Me.Button87)
         Me.GB8.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB8.Location = New System.Drawing.Point(-261, 3)
+        Me.GB8.Location = New System.Drawing.Point(-530, 3)
         Me.GB8.Name = "GB8"
         Me.GB8.Size = New System.Drawing.Size(334, 598)
         Me.GB8.TabIndex = 11
@@ -4314,6 +4397,7 @@ Partial Class Form1
         Me.GB7.Controls.Add(Me.Button48)
         Me.GB7.Controls.Add(Me.cbPvCats)
         Me.GB7.Controls.Add(Me.Button50)
+        Me.GB7.Controls.Add(Me.cbBadgeRt)
         Me.GB7.Controls.Add(Me.cbBadgeCs)
         Me.GB7.Controls.Add(Me.cbBadgeMA)
         Me.GB7.Controls.Add(Me.Button57)
@@ -4325,7 +4409,7 @@ Partial Class Form1
         Me.GB7.Controls.Add(Me.cbPvArticle)
         Me.GB7.Controls.Add(Me.Button56)
         Me.GB7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB7.Location = New System.Drawing.Point(73, 3)
+        Me.GB7.Location = New System.Drawing.Point(-196, 3)
         Me.GB7.Name = "GB7"
         Me.GB7.Size = New System.Drawing.Size(381, 598)
         Me.GB7.TabIndex = 10
@@ -4334,7 +4418,7 @@ Partial Class Form1
         'cbServerDriver
         '
         Me.cbServerDriver.AutoSize = True
-        Me.cbServerDriver.Location = New System.Drawing.Point(115, 473)
+        Me.cbServerDriver.Location = New System.Drawing.Point(123, 473)
         Me.cbServerDriver.Name = "cbServerDriver"
         Me.cbServerDriver.Size = New System.Drawing.Size(60, 17)
         Me.cbServerDriver.TabIndex = 15
@@ -4353,7 +4437,7 @@ Partial Class Form1
         'cbWatchfolder
         '
         Me.cbWatchfolder.AutoSize = True
-        Me.cbWatchfolder.Location = New System.Drawing.Point(116, 447)
+        Me.cbWatchfolder.Location = New System.Drawing.Point(123, 447)
         Me.cbWatchfolder.Name = "cbWatchfolder"
         Me.cbWatchfolder.Size = New System.Drawing.Size(60, 17)
         Me.cbWatchfolder.TabIndex = 15
@@ -4492,7 +4576,7 @@ Partial Class Form1
         'cbPvClient
         '
         Me.cbPvClient.AutoSize = True
-        Me.cbPvClient.Location = New System.Drawing.Point(243, 422)
+        Me.cbPvClient.Location = New System.Drawing.Point(251, 422)
         Me.cbPvClient.Name = "cbPvClient"
         Me.cbPvClient.Size = New System.Drawing.Size(58, 17)
         Me.cbPvClient.TabIndex = 12
@@ -4515,7 +4599,7 @@ Partial Class Form1
         'cbPvCats
         '
         Me.cbPvCats.AutoSize = True
-        Me.cbPvCats.Location = New System.Drawing.Point(185, 422)
+        Me.cbPvCats.Location = New System.Drawing.Point(186, 422)
         Me.cbPvCats.Name = "cbPvCats"
         Me.cbPvCats.Size = New System.Drawing.Size(48, 17)
         Me.cbPvCats.TabIndex = 12
@@ -4534,20 +4618,30 @@ Partial Class Form1
         Me.Button50.Text = "Clients"
         Me.Button50.UseVisualStyleBackColor = True
         '
+        'cbBadgeRt
+        '
+        Me.cbBadgeRt.AutoSize = True
+        Me.cbBadgeRt.Location = New System.Drawing.Point(251, 397)
+        Me.cbBadgeRt.Name = "cbBadgeRt"
+        Me.cbBadgeRt.Size = New System.Drawing.Size(55, 17)
+        Me.cbBadgeRt.TabIndex = 12
+        Me.cbBadgeRt.Text = "R. Art"
+        Me.cbBadgeRt.UseVisualStyleBackColor = True
+        '
         'cbBadgeCs
         '
         Me.cbBadgeCs.AutoSize = True
-        Me.cbBadgeCs.Location = New System.Drawing.Point(265, 402)
+        Me.cbBadgeCs.Location = New System.Drawing.Point(186, 397)
         Me.cbBadgeCs.Name = "cbBadgeCs"
-        Me.cbBadgeCs.Size = New System.Drawing.Size(56, 17)
+        Me.cbBadgeCs.Size = New System.Drawing.Size(57, 17)
         Me.cbBadgeCs.TabIndex = 12
-        Me.cbBadgeCs.Text = "M. Art"
+        Me.cbBadgeCs.Text = "Cs Arc"
         Me.cbBadgeCs.UseVisualStyleBackColor = True
         '
         'cbBadgeMA
         '
         Me.cbBadgeMA.AutoSize = True
-        Me.cbBadgeMA.Location = New System.Drawing.Point(207, 403)
+        Me.cbBadgeMA.Location = New System.Drawing.Point(123, 398)
         Me.cbBadgeMA.Name = "cbBadgeMA"
         Me.cbBadgeMA.Size = New System.Drawing.Size(56, 17)
         Me.cbBadgeMA.TabIndex = 12
@@ -4569,7 +4663,7 @@ Partial Class Form1
         'cbBadgeSA
         '
         Me.cbBadgeSA.AutoSize = True
-        Me.cbBadgeSA.Location = New System.Drawing.Point(157, 403)
+        Me.cbBadgeSA.Location = New System.Drawing.Point(251, 378)
         Me.cbBadgeSA.Name = "cbBadgeSA"
         Me.cbBadgeSA.Size = New System.Drawing.Size(54, 17)
         Me.cbBadgeSA.TabIndex = 12
@@ -4589,7 +4683,7 @@ Partial Class Form1
         'cbBadgeMB
         '
         Me.cbBadgeMB.AutoSize = True
-        Me.cbBadgeMB.Location = New System.Drawing.Point(96, 403)
+        Me.cbBadgeMB.Location = New System.Drawing.Point(186, 378)
         Me.cbBadgeMB.Name = "cbBadgeMB"
         Me.cbBadgeMB.Size = New System.Drawing.Size(59, 17)
         Me.cbBadgeMB.TabIndex = 12
@@ -4600,7 +4694,7 @@ Partial Class Form1
         '
         Me.Label45.AutoSize = True
         Me.Label45.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label45.Location = New System.Drawing.Point(40, 385)
+        Me.Label45.Location = New System.Drawing.Point(40, 380)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(80, 13)
         Me.Label45.TabIndex = 3
@@ -4609,7 +4703,7 @@ Partial Class Form1
         'cbBadgeSB
         '
         Me.cbBadgeSB.AutoSize = True
-        Me.cbBadgeSB.Location = New System.Drawing.Point(44, 403)
+        Me.cbBadgeSB.Location = New System.Drawing.Point(123, 378)
         Me.cbBadgeSB.Name = "cbBadgeSB"
         Me.cbBadgeSB.Size = New System.Drawing.Size(57, 17)
         Me.cbBadgeSB.TabIndex = 12
@@ -4619,7 +4713,7 @@ Partial Class Form1
         'cbPvArticle
         '
         Me.cbPvArticle.AutoSize = True
-        Me.cbPvArticle.Location = New System.Drawing.Point(113, 423)
+        Me.cbPvArticle.Location = New System.Drawing.Point(123, 423)
         Me.cbPvArticle.Name = "cbPvArticle"
         Me.cbPvArticle.Size = New System.Drawing.Size(61, 17)
         Me.cbPvArticle.TabIndex = 12
@@ -4681,9 +4775,9 @@ Partial Class Form1
         Me.GB6.Controls.Add(Me.Label61)
         Me.GB6.Controls.Add(Me.Label63)
         Me.GB6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB6.Location = New System.Drawing.Point(454, 3)
+        Me.GB6.Location = New System.Drawing.Point(185, 3)
         Me.GB6.Name = "GB6"
-        Me.GB6.Size = New System.Drawing.Size(87, 598)
+        Me.GB6.Size = New System.Drawing.Size(356, 598)
         Me.GB6.TabIndex = 9
         Me.GB6.TabStop = False
         '
@@ -5839,6 +5933,70 @@ Partial Class Form1
         'PrintDocCafeTop
         '
         '
+        'BackgroundWorkerCaisseUser
+        '
+        '
+        'txtArSearch
+        '
+        Me.txtArSearch.BackColor = System.Drawing.Color.Transparent
+        Me.txtArSearch.BorderColor = System.Drawing.SystemColors.ControlText
+        Me.txtArSearch.IsNumiric = False
+        Me.txtArSearch.Location = New System.Drawing.Point(11, 34)
+        Me.txtArSearch.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtArSearch.Name = "txtArSearch"
+        Me.txtArSearch.ShowClearIcon = False
+        Me.txtArSearch.ShowSaveIcon = False
+        Me.txtArSearch.Size = New System.Drawing.Size(186, 30)
+        Me.txtArSearch.StartUp = 2
+        Me.txtArSearch.TabIndex = 9
+        Me.txtArSearch.TextSize = 8
+        Me.txtArSearch.TxtBackColor = True
+        Me.txtArSearch.TxtColor = System.Drawing.Color.White
+        Me.txtArSearch.txtReadOnly = False
+        Me.txtArSearch.TxtSelect = New Integer() {1, 0}
+        '
+        'txtnameStock
+        '
+        Me.txtnameStock.BackColor = System.Drawing.Color.White
+        Me.txtnameStock.BorderColor = System.Drawing.Color.Maroon
+        Me.txtnameStock.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtnameStock.IsNumiric = False
+        Me.txtnameStock.Location = New System.Drawing.Point(4, 4)
+        Me.txtnameStock.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtnameStock.Name = "txtnameStock"
+        Me.txtnameStock.ShowClearIcon = False
+        Me.txtnameStock.ShowSaveIcon = False
+        Me.txtnameStock.Size = New System.Drawing.Size(229, 30)
+        Me.txtnameStock.StartUp = 2
+        Me.txtnameStock.TabIndex = 8
+        Me.txtnameStock.TextSize = 8
+        Me.txtnameStock.TxtBackColor = True
+        Me.txtnameStock.TxtColor = System.Drawing.Color.White
+        Me.txtnameStock.txtReadOnly = False
+        Me.txtnameStock.TxtSelect = New Integer() {1, 0}
+        '
+        'RPl
+        '
+        Me.RPl.Avance = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.RPl.bl = "---"
+        Me.RPl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.RPl.ClId = 0
+        Me.RPl.delivredDay = Nothing
+        Me.RPl.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RPl.Dte = New Date(2021, 1, 1, 0, 0, 0, 0)
+        Me.RPl.EditMode = False
+        Me.RPl.hasManyRemise = False
+        Me.RPl.hideClc = True
+        Me.RPl.Location = New System.Drawing.Point(10, 30)
+        Me.RPl.Name = "RPl"
+        Me.RPl.Num = 0
+        Me.RPl.Remise = "0"
+        Me.RPl.ShowClc = True
+        Me.RPl.ShowProfit = False
+        Me.RPl.Size = New System.Drawing.Size(384, 642)
+        Me.RPl.TabIndex = 0
+        Me.RPl.TypePrinter = "&"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -5879,10 +6037,10 @@ Partial Class Form1
         Me.Panel11.PerformLayout()
         Me.plTarif.ResumeLayout(False)
         Me.plDepot.ResumeLayout(False)
-        Me.Panel3.ResumeLayout(False)
+        Me.plLoad.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
+        Me.plGroupe.ResumeLayout(False)
         Me.Panel8.ResumeLayout(False)
         Me.Panel8.PerformLayout()
         Me.plrightA.ResumeLayout(False)
@@ -5890,7 +6048,10 @@ Partial Class Form1
         Me.TabPageArch.ResumeLayout(False)
         CType(Me.DGVARFA, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel43.ResumeLayout(False)
-        Me.Panel43.PerformLayout()
+        Me.Panel39.ResumeLayout(False)
+        Me.Panel28.ResumeLayout(False)
+        Me.Panel41.ResumeLayout(False)
+        Me.Panel41.PerformLayout()
         Me.plArchFact.ResumeLayout(False)
         Me.plArchFact.PerformLayout()
         Me.plArchReg.ResumeLayout(False)
@@ -6175,20 +6336,11 @@ Partial Class Form1
     Friend WithEvents Label24 As System.Windows.Forms.Label
     Friend WithEvents dtChargeTo As System.Windows.Forms.DateTimePicker
     Friend WithEvents dtChargeFrom As System.Windows.Forms.DateTimePicker
-    Friend WithEvents txtArSearch As Al_Mohasib.TxtBox
-    Friend WithEvents btSearchArch As System.Windows.Forms.Button
-    Friend WithEvents dte2 As System.Windows.Forms.DateTimePicker
-    Friend WithEvents dte1 As System.Windows.Forms.DateTimePicker
-    Friend WithEvents Label28 As System.Windows.Forms.Label
-    Friend WithEvents Label31 As System.Windows.Forms.Label
-    Friend WithEvents Label32 As System.Windows.Forms.Label
     Friend WithEvents Button8 As System.Windows.Forms.Button
     Friend WithEvents cbQte As System.Windows.Forms.CheckBox
     Friend WithEvents txtScale As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents cbProfit As System.Windows.Forms.CheckBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents CbBlocModArt As System.Windows.Forms.CheckBox
     Friend WithEvents CbBlocCalc As System.Windows.Forms.CheckBox
     Friend WithEvents cbUnite As System.Windows.Forms.CheckBox
@@ -6197,14 +6349,12 @@ Partial Class Form1
     Friend WithEvents cbPrintDepot As System.Windows.Forms.CheckBox
     Friend WithEvents CbDepotOrigine As System.Windows.Forms.CheckBox
     Friend WithEvents FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
-    Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents CbQteStk As System.Windows.Forms.CheckBox
     Friend WithEvents Button9 As System.Windows.Forms.Button
-    Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents Button10 As System.Windows.Forms.Button
+    Friend WithEvents plGroupe As System.Windows.Forms.Panel
+    Friend WithEvents btGroupe As System.Windows.Forms.Button
     Friend WithEvents ShapeContainer2 As Microsoft.VisualBasic.PowerPacks.ShapeContainer
     Friend WithEvents RectangleShape8 As Microsoft.VisualBasic.PowerPacks.RectangleShape
-    Friend WithEvents btCaisseArch As System.Windows.Forms.Button
     Friend WithEvents cbDual As System.Windows.Forms.CheckBox
     Friend WithEvents Button31 As System.Windows.Forms.Button
     Friend WithEvents Button32 As System.Windows.Forms.Button
@@ -6227,7 +6377,7 @@ Partial Class Form1
     Friend WithEvents Column41 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents cbTiroir As System.Windows.Forms.CheckBox
     Friend WithEvents cbCaisse As System.Windows.Forms.CheckBox
-    Friend WithEvents Panel3 As System.Windows.Forms.Panel
+    Friend WithEvents plLoad As System.Windows.Forms.Panel
     Friend WithEvents Button34 As System.Windows.Forms.Button
     Friend WithEvents ShapeContainer4 As Microsoft.VisualBasic.PowerPacks.ShapeContainer
     Friend WithEvents RectangleShape9 As Microsoft.VisualBasic.PowerPacks.RectangleShape
@@ -6250,8 +6400,6 @@ Partial Class Form1
     Friend WithEvents RectangleShape10 As Microsoft.VisualBasic.PowerPacks.RectangleShape
     Friend WithEvents cbShowRef As System.Windows.Forms.CheckBox
     Friend WithEvents cbSuppression As System.Windows.Forms.CheckBox
-    Friend WithEvents btEtatClientArch As System.Windows.Forms.Button
-    Friend WithEvents btRelveClientArch As System.Windows.Forms.Button
     Friend WithEvents txtPiedMarge As System.Windows.Forms.TextBox
     Friend WithEvents txtEnteteMarge As System.Windows.Forms.TextBox
     Friend WithEvents Label37 As System.Windows.Forms.Label
@@ -6301,7 +6449,7 @@ Partial Class Form1
     Friend WithEvents cbJnImgDb As System.Windows.Forms.CheckBox
     Friend WithEvents cbArticleItemDirection As System.Windows.Forms.CheckBox
     Friend WithEvents cbJnReduireQte As System.Windows.Forms.CheckBox
-    Friend WithEvents Button44 As System.Windows.Forms.Button
+    Friend WithEvents btTPtrf As System.Windows.Forms.Button
     Friend WithEvents btPrint_Top As System.Windows.Forms.Button
     Friend WithEvents PrintDocDesign2 As System.Drawing.Printing.PrintDocument
     Friend WithEvents Button46 As System.Windows.Forms.Button
@@ -6337,9 +6485,9 @@ Partial Class Form1
     Friend WithEvents lbLastBon As System.Windows.Forms.Label
     Friend WithEvents lbListBon As System.Windows.Forms.Label
     Friend WithEvents PrintDocDesign_ListArch As System.Drawing.Printing.PrintDocument
-    Friend WithEvents Button52 As System.Windows.Forms.Button
-    Friend WithEvents Button51 As System.Windows.Forms.Button
-    Friend WithEvents Button11 As System.Windows.Forms.Button
+    Friend WithEvents btTPf12 As System.Windows.Forms.Button
+    Friend WithEvents btTpf8 As System.Windows.Forms.Button
+    Friend WithEvents btTPf6 As System.Windows.Forms.Button
     Friend WithEvents cbItemCheckBox As System.Windows.Forms.CheckBox
     Friend WithEvents Button54 As System.Windows.Forms.Button
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
@@ -6395,7 +6543,7 @@ Partial Class Form1
     Friend WithEvents PrintDocAutoPromo As System.Drawing.Printing.PrintDocument
     Friend WithEvents cbCafeMode As System.Windows.Forms.CheckBox
     Friend WithEvents PrintDocCafeTop As System.Drawing.Printing.PrintDocument
-    Friend WithEvents btUpCadeau As System.Windows.Forms.Button
+    Friend WithEvents btTPf10 As System.Windows.Forms.Button
     Friend WithEvents Button68 As System.Windows.Forms.Button
     Friend WithEvents Button56 As System.Windows.Forms.Button
     Friend WithEvents txtAllowLowPrice_Client As System.Windows.Forms.TextBox
@@ -6417,5 +6565,30 @@ Partial Class Form1
     Friend WithEvents Button75 As System.Windows.Forms.Button
     Friend WithEvents Button76 As System.Windows.Forms.Button
     Friend WithEvents cbBadgeCs As System.Windows.Forms.CheckBox
+    Friend WithEvents Panel39 As System.Windows.Forms.Panel
+    Friend WithEvents btCaisseHistorique As System.Windows.Forms.Button
+    Friend WithEvents Button78 As System.Windows.Forms.Button
+    Friend WithEvents lbCaisse As System.Windows.Forms.Label
+    Friend WithEvents Button79 As System.Windows.Forms.Button
+    Friend WithEvents Panel37 As System.Windows.Forms.Panel
+    Friend WithEvents Panel28 As System.Windows.Forms.Panel
+    Friend WithEvents btSearchArch As System.Windows.Forms.Button
+    Friend WithEvents btCaisseArch As System.Windows.Forms.Button
+    Friend WithEvents btEtatClientArch As System.Windows.Forms.Button
+    Friend WithEvents btRelveClientArch As System.Windows.Forms.Button
+    Friend WithEvents Panel40 As System.Windows.Forms.Panel
+    Friend WithEvents Panel41 As System.Windows.Forms.Panel
+    Friend WithEvents Label32 As System.Windows.Forms.Label
+    Friend WithEvents Label31 As System.Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents Label28 As System.Windows.Forms.Label
+    Friend WithEvents txtArSearch As Al_Mohasib.TxtBox
+    Friend WithEvents Label72 As System.Windows.Forms.Label
+    Friend WithEvents Label74 As System.Windows.Forms.Label
+    Friend WithEvents dte1 As System.Windows.Forms.DateTimePicker
+    Friend WithEvents dte2 As System.Windows.Forms.DateTimePicker
+    Friend WithEvents BackgroundWorkerCaisseUser As System.ComponentModel.BackgroundWorker
+    Friend WithEvents cbBadgeRt As System.Windows.Forms.CheckBox
+    Friend WithEvents plFocused As System.Windows.Forms.Panel
 
 End Class

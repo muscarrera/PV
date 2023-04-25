@@ -7,7 +7,27 @@
     Public Event Choosed(ByVal sender As Object, ByVal e As EventArgs)
     Public CID As Integer = 0
 
-
+    Dim _isFocused As Boolean = False
+    Public Property isFocused As Boolean
+        Get
+            Return _isFocused
+        End Get
+        Set(ByVal value As Boolean)
+            _isFocused = value
+            If value Then
+                lb.ForeColor = Color.Red
+                lb.BackColor = Color.PeachPuff
+            Else
+                lb.ForeColor = Color.Blue
+                lb.BackColor = Color.Transparent
+            End If
+        End Set
+    End Property
+    Shadows Function Focus()
+        'RaiseEvent UnFocusedAll()
+        isFocused = True
+        Return True
+    End Function
     Public Sub New()
 
         ' This call is required by the designer.

@@ -698,3 +698,4 @@ C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Search
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.vbproj.ResolveComReference.cache
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddFiles.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.FileLine.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.SelectCaisse.resources

@@ -162,6 +162,7 @@
             params.Add("Num", num)
             params.Add("fctid", fctid)
             params.Add("writer", CStr(Form1.adminName))
+            params.Add("caisse", Form1.caisseId)
 
             Dim Pid = c.InsertRecord(tableName, params, True)
 
@@ -267,6 +268,7 @@
 
 
             End If
+            where.Clear()
             where.Add("fctid", fctid)
             dt = c.SelectDataTable(tableName, {"*"}, where)
             where = Nothing
@@ -687,7 +689,7 @@
                 params.Add("fctid", fctid)
                 params.Add("writer", Form1.adminName)
                 params.Add("paydate", Now)
-
+                params.Add("caisse", Form1.caisseId)
                 c.InsertRecord(tb, params, True)
             End Using
 
@@ -848,7 +850,7 @@
             params.Add("Num", "@POCHET")
             params.Add("fctid", fctid)
             params.Add("writer", CStr(Form1.adminName))
-
+            params.Add("caisse", Form1.caisseId)
             c.InsertRecord(tableName, params)
 
             params.Clear()

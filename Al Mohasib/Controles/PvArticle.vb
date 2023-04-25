@@ -16,7 +16,27 @@
     End Sub
     Private _data As DataRow
 
-
+    Dim _isFocused As Boolean = False
+    Public Property isFocused As Boolean
+        Get
+            Return _isFocused
+        End Get
+        Set(ByVal value As Boolean)
+            _isFocused = value
+            If value Then
+                lb.ForeColor = Color.Red
+                lbP.BackColor = Color.MediumVioletRed
+            Else
+                lb.ForeColor = Color.Black
+                lbP.BackColor = Color.MidnightBlue
+            End If
+        End Set
+    End Property
+    Shadows Function Focus()
+        'RaiseEvent UnFocusedAll()
+        isFocused = True
+        Return True
+    End Function
 
     Public Property DataSource() As DataRow
         Get

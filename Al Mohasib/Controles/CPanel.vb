@@ -212,6 +212,21 @@
     End Sub
     Private Sub Button15_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btPlus.Click
         If isActive Then
+
+            If Form1.cbBadgeSA.Checked Then
+                Try
+                    Dim sc As New UserParmissionCheck
+                    sc.bName.Text = "Caisse"
+                    sc.lbNum.Text = Form1.adminName
+                    If sc.ShowDialog = DialogResult.OK Then RaiseEvent ReturnItem()
+                Catch
+                End Try
+                Exit Sub
+            End If
+
+
+
+
             RaiseEvent ReturnItem()
         Else
             RaiseEvent ValueChange()

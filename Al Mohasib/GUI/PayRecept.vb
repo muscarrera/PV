@@ -124,6 +124,7 @@
             params.Add("Num", str)
             params.Add("fctid", fctid)
             params.Add("writer", CStr(Form1.adminName))
+            params.Add("caisse", Form1.caisseId)
 
             Dim Pid = c.InsertRecord(tableName, params, True)
 

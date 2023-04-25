@@ -642,7 +642,7 @@ Public Class SubClass
             MsgBox(ex.Message)
         End Try
     End Sub
-    Private Sub ctg_NEXT(ByVal sender As System.Object, ByVal e As EventArgs)
+    Public Sub ctg_NEXT(ByVal sender As System.Object, ByVal e As EventArgs)
         Try
             Dim fn As Font = New Font(Form1.txtfname.Text, CInt(Form1.txtfntsize.Text), FontStyle.Bold)
 
@@ -682,7 +682,7 @@ Public Class SubClass
             MsgBox(ex.Message)
         End Try
     End Sub
-    Private Sub ctg_BACK(ByVal sender As System.Object, ByVal e As EventArgs)
+    Public Sub ctg_BACK(ByVal sender As System.Object, ByVal e As EventArgs)
         Try
             Dim fn As Font = New Font(Form1.txtfname.Text, CInt(Form1.txtfntsize.Text), FontStyle.Bold)
 
@@ -1834,6 +1834,7 @@ Public Class SubClass
                 params.Add("bl", "---")
                 params.Add("remise", 0)
                 params.Add("beInFacture", 0)
+                params.Add("caisse", Form1.caisseId)
                 'params.Add("delivredDay", Now.Date.AddDays(2))
 
                 fid = c.InsertRecord(Form1.TB_Bon, params, True)
@@ -1931,6 +1932,7 @@ Public Class SubClass
                 params.Add("code", data.Rows(i).Item("code"))
                 params.Add("cid", data.Rows(i).Item("cid"))
                 params.Add("rprice", data.Rows(i).Item("rprice"))
+                params.Add("caisse", Form1.caisseId)
                 Dim prId As Integer = data.Rows(i).Item("id")
 
                 If prId > 0 Then
@@ -1972,6 +1974,7 @@ Public Class SubClass
                 params.Add("bl", "---")
                 params.Add("remise", 0)
                 params.Add("beInFacture", 0)
+                params.Add("caisse", Form1.caisseId)
                 'params.Add("delivredDay", Now.Date.AddDays(2))
 
                 fid = c.InsertRecord(Form1.TB_Bon, params, True)
@@ -2055,6 +2058,7 @@ Public Class SubClass
                 params.Add("code", data.Rows(i).Item("code"))
                 params.Add("cid", data.Rows(i).Item("cid"))
                 params.Add("rprice", data.Rows(i).Item("rprice"))
+                params.Add("caisse", Form1.caisseId)
                 Dim prId As Integer = data.Rows(i).Item("id")
 
                 If prId > 0 Then
@@ -2108,6 +2112,7 @@ Public Class SubClass
                 params.Add("bl", g.bl)
                 params.Add("remise", 0)
                 params.Add("beInFacture", 0)
+                params.Add("caisse", Form1.caisseId)
                 'params.Add("delivredDay", Now.Date.AddDays(2))
 
                 fid = c.InsertRecord(tableName, params, True)
@@ -2231,7 +2236,7 @@ Public Class SubClass
                 params.Add("bl", g.fctId)
                 params.Add("remise", 0)
                 params.Add("beInFacture", 0)
-              
+                params.Add("caisse", Form1.caisseId)
                 fid = c.InsertRecord(tableName, params, True)
 
                 tableName = "DetailsBon"
@@ -2443,7 +2448,7 @@ Public Class SubClass
                     params.Add("fctid", id)
                     params.Add("date", dte)
                     params.Add("writer", Form1.adminName)
-
+                    params.Add("caisse", Form1.caisseId)
                     c.InsertRecord(Form1.TB_Payement, params)
                     isPayed = True
                     avance = total

@@ -44,9 +44,10 @@ Partial Class PvCat
         '
         'lb
         '
+        Me.lb.BackColor = System.Drawing.Color.Transparent
         Me.lb.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lb.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.lb.ForeColor = System.Drawing.Color.Blue
         Me.lb.Location = New System.Drawing.Point(2, 2)
         Me.lb.Name = "lb"
         Me.lb.Size = New System.Drawing.Size(163, 38)

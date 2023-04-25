@@ -59,6 +59,8 @@
     Public ListPromos As New List(Of Promos)
     Public HasPromo As Boolean = False
 
+    Event printRapportJr()
+
     'properties
     Public Property ClId As Integer
         Get
@@ -1390,6 +1392,12 @@
                 RaiseEvent printCaisse()
                 Exit Sub
             End If
+
+            If ClId = -222 Then
+                RaiseEvent printRapportJr()
+                Exit Sub
+            End If
+
 
             Try
                 If DataSource.Rows.Count > 0 And EditMode Then

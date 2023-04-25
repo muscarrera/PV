@@ -327,7 +327,29 @@ Public Class Form1
         Catch ex As Exception
         End Try
 
+        'Balance Legume **
+        If _useBalance = True Then
+            btTPf10.Visible = False
+            btTPf12.Visible = False
+            btTpf8.Visible = False
+            btTPf6.Visible = False
+            btTPtrf.Text = "---"
 
+
+
+
+            '    RPl.CP.txt.Font = New Font("DS-Digital", 36)
+            '    RPl.CP.txt.BackColor = Color.Black
+            '    RPl.CP.Panel8.BackColor = Color.Black
+            '    RPl.CP.btPlus.Height = 60
+
+
+        End If
+
+        'caisse*
+        If GetOpenCaisse(adminName) = False Then
+            NewCaisse(adminName & "-" & Format(Now.Date, "dd-MM"))
+        End If
 
 
         'depot
@@ -397,7 +419,7 @@ Public Class Form1
 
         End Using
 
-   
+
         'charges
         Using a As ChargesClass = New ChargesClass
             dtChargeFrom.Value = DateSerial(Date.Now.Year, Date.Now.Month, 0)
@@ -556,12 +578,21 @@ Public Class Form1
 
             If value Then
                 btCon.Text = "Conneté"
+                btTPtrf.Text = "Conneté"
+
+                btTPtrf.ForeColor = Color.DarkGreen
+                btTPtrf.BackColor = Color.PaleGreen
                 btCon.ForeColor = Color.DarkGreen
                 btCon.BackColor = Color.PaleGreen
             Else
                 btCon.Text = "déconnecté"
                 btCon.ForeColor = Color.DarkRed
                 btCon.BackColor = Color.Salmon
+
+
+                btTPtrf.Text = "déconnecté"
+                btTPtrf.ForeColor = Color.DarkRed
+                btTPtrf.BackColor = Color.Salmon
             End If
 
         End Set
@@ -840,6 +871,179 @@ Public Class Form1
     End Sub
 
 
+    '------------------------------ Arrow Focused
+    Dim _FocusedPanel As Boolean = 0
+    Public Property FocusedPanel As Boolean
+        Get
+            Return _FocusedPanel
+        End Get
+        Set(ByVal value As Boolean)
+            _FocusedPanel = value
+
+            If value = False Then
+                FocusedControle = Nothing
+                FocusedIndex = -1
+                plFocused.BackColor = Color.Orange
+                RPL.PlTop.BackColor = Color.WhiteSmoke
+            Else
+                plFocused.BackColor = Color.WhiteSmoke
+                RPL.PlTop.BackColor = Color.Orange
+                Try
+                    RplFocusedIndex = RPL.SelectedItem.Index
+                    FocusedControle = RPL.SelectedItem
+                Catch ex As Exception
+                    RplFocusedIndex = -1
+                    FocusedControle = Nothing
+                End Try
+
+            End If
+
+        End Set
+    End Property
+    Public FocusedControle As Control = Nothing
+    Public FocusedIndex As Integer = -1
+    Public RplFocusedIndex As Integer = -1
+    Dim nbrPvArticle As Integer = 5
+    Dim nbrPvGroupe As Integer = 8
+    Private Sub ChooseArticle()
+        If IsNothing(FocusedControle) Then Exit Sub
+
+        If FocusedIndex = -2 Then
+            btGroupe.PerformClick()
+            FocusedIndex = 0
+            FocuseArrow(0, 0, 0)
+            Exit Sub
+        End If
+
+        If TypeOf FlowLayoutPanel1.Controls(FocusedIndex) Is Button Then
+            Dim bt As Button = FocusedControle
+            bt.PerformClick()
+
+        ElseIf TypeOf FlowLayoutPanel1.Controls(FocusedIndex) Is PvArticle Then
+            Dim pv As PvArticle = FlowLayoutPanel1.Controls(FocusedIndex)
+            Dim bt As New Button
+            bt.Tag = pv.DataSource
+            Using c As SubClass = New SubClass
+                c.art_click(bt, Nothing)
+            End Using
+        ElseIf TypeOf FlowLayoutPanel1.Controls(FocusedIndex) Is PvCat Then
+            Dim pv As PvCat = FlowLayoutPanel1.Controls(FocusedIndex)
+            Dim bt As New Button
+            Using c As SubClass = New SubClass
+                If pv.isNext = True Then
+                    bt.Tag = pv.DataSource
+                    c.ctg_next(bt, Nothing)
+                    FocusedIndex = 1
+                    FocuseArrow(0, 0, 0)
+                ElseIf pv.isPrev = True Then
+                    bt.Tag = pv.DataSource
+                    c.ctg_BACK(bt, Nothing)
+                    FocuseArrow(0, 0, 0)
+                Else
+                    bt.Tag = pv.CID
+                    c.ctg_click(bt, Nothing)
+                    FocusedIndex = 0
+                    FocuseArrow(0, 0, 0)
+                End If
+
+            End Using
+            End If
+
+    End Sub
+    Private Sub RplFocusedArrow(ByVal aA As Integer)
+        Try
+            Dim pv As Items = RPl.Pl.Controls(RplFocusedIndex)
+            pv.IsSelected = False
+            RplFocusedIndex += aA
+        Catch ex As Exception
+
+        End Try
+
+
+
+        If RplFocusedIndex < 0 Then RplFocusedIndex = 0
+        If RplFocusedIndex > RPl.Pl.Controls.Count - 1 Then RplFocusedIndex = RPl.Pl.Controls.Count - 1
+
+        Dim it As Items = RPl.Pl.Controls(RplFocusedIndex)
+        it.IsSelected = True
+        RPl.Pl.ScrollControlIntoView(it)
+        FocusedControle = it
+    End Sub
+    Private Sub FocuseArrow(ByVal s As Integer, ByVal aA As Integer, ByVal aG As Integer)
+
+        If FocusedIndex > FlowLayoutPanel1.Controls.Count - 1 Then FocusedIndex = FlowLayoutPanel1.Controls.Count - 1
+        Dim old_i As Integer = FocusedIndex
+
+        If FocusedIndex = -2 Then
+            btGroupe.ForeColor = Color.DarkSlateGray
+            If aA > 0 Then FocusedIndex = -1
+        End If
+
+        If FocusedIndex = -2 And aA < 0 Then
+            FocusedPanel = Not FocusedPanel
+            FocusedIndex = 0
+            Exit Sub
+        End If
+
+
+        If FocusedIndex = -1 Then
+            plFocused.BackColor = Color.Orange
+            FocusedIndex = s
+            plGroupe.BackColor = Color.PaleGreen
+        Else
+
+            If TypeOf FlowLayoutPanel1.Controls(FocusedIndex) Is Button Then
+                Dim bt As Button = FlowLayoutPanel1.Controls(FocusedIndex)
+                bt.BackColor = Color.LightGoldenrodYellow
+                bt.ForeColor = Color.Black
+                FocusedIndex += aG
+            ElseIf TypeOf FlowLayoutPanel1.Controls(FocusedIndex) Is PvArticle Then
+                Dim pv As PvArticle = FlowLayoutPanel1.Controls(FocusedIndex)
+                pv.isFocused = False
+                FocusedIndex += aA
+            ElseIf TypeOf FlowLayoutPanel1.Controls(FocusedIndex) Is PvCat Then
+                Dim pv As PvCat = FlowLayoutPanel1.Controls(FocusedIndex)
+                pv.isFocused = False
+                FocusedIndex += aA
+            End If
+
+            If FocusedIndex < 0 And old_i >= 0 Then
+                btGroupe.ForeColor = Color.Orange
+                FocusedIndex = -2
+                Exit Sub
+            ElseIf old_i <= -2 Then
+                FocusedPanel = Not FocusedPanel
+                FocusedIndex = 0
+                Exit Sub
+            End If
+
+            If FocusedIndex < 0 Then FocusedIndex = 0
+            If FocusedIndex > FlowLayoutPanel1.Controls.Count - 1 Then FocusedIndex = FlowLayoutPanel1.Controls.Count - 1
+        End If
+
+
+        If TypeOf FlowLayoutPanel1.Controls(FocusedIndex) Is Button Then
+            Dim bt As Button = FlowLayoutPanel1.Controls(FocusedIndex)
+            bt.BackColor = Color.LightGreen
+            bt.ForeColor = Color.Red
+            FocusedControle = bt
+            FlowLayoutPanel1.ScrollControlIntoView(bt)
+        ElseIf TypeOf FlowLayoutPanel1.Controls(FocusedIndex) Is PvArticle Then
+
+            Dim pv As PvArticle = FlowLayoutPanel1.Controls(FocusedIndex)
+            pv.Focus()
+            FocusedControle = pv
+            FlowLayoutPanel1.ScrollControlIntoView(pv)
+        ElseIf TypeOf FlowLayoutPanel1.Controls(FocusedIndex) Is PvCat Then
+
+            Dim pv As PvCat = FlowLayoutPanel1.Controls(FocusedIndex)
+            pv.Focus()
+            FocusedControle = pv
+            FlowLayoutPanel1.ScrollControlIntoView(pv)
+        End If
+
+    End Sub
+    '------------------------------End Arrow Focused
     Protected Overrides Function ProcessCmdKey(ByRef msg As System.Windows.Forms.Message,
                                                ByVal keyData As System.Windows.Forms.Keys) As Boolean
         Dim k As System.Windows.Forms.Keys = keyData
@@ -882,8 +1086,6 @@ Public Class Form1
                 End Using
 
             Case keys.Escape 'qte of 0 the an article
-
-
 
                 If RPl.FctId = 0 Or RPl.EditMode = True Or RPl.CP.isActive = False Then Return False
                 Using a As SubClass = New SubClass
@@ -1020,19 +1222,62 @@ Public Class Form1
                     End If
                 End If
 
-            Case keys.Up
-
-                If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
-                If TabControl1.SelectedIndex <> 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
-                RplFocusedArrow(1)
-
-
-            Case keys.Down
-                If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
-                If TabControl1.SelectedIndex <> 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
-                RplFocusedArrow(-1)
+                'Case Keys.Up
+                '    If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                '    If TabControl1.SelectedIndex <> 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                '    RplFocusedArrow(1)
+                'Case keys.Down
+                '    If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                '    If TabControl1.SelectedIndex <> 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                '    RplFocusedArrow(-1)
 
 
+                'Case Keys.Enter
+                '    If FocusedPanel Then
+                '        If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                '        RPl_UpdateItem(FocusedControle, Nothing)
+                '    Else
+                '        If FlowLayoutPanel1.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                '        ChooseArticle()
+                '    End If
+                'Case Keys.Up
+                '    If FocusedPanel Then
+                '        If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                '        RplFocusedArrow(1)
+                '    Else
+                '        If FlowLayoutPanel1.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                '        FocuseArrow(0, nbrPvArticle * -1, nbrPvGroupe * -1)
+                '    End If
+                'Case Keys.Down
+                '    If FocusedPanel Then
+                '        If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                '        RplFocusedArrow(-1)
+                '    Else
+                '        If FlowLayoutPanel1.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                '        FocuseArrow(0, nbrPvArticle, nbrPvGroupe)
+                '    End If
+                'Case Keys.Left
+                '    If FocusedPanel Then
+                '        If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                '        RPl_UpdateItem(FocusedControle, Nothing)
+                '    Else
+                '        If FlowLayoutPanel1.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                '        Dim a = nbrPvArticle
+                '        If a > FlowLayoutPanel1.Controls.Count - 1 Then a = FlowLayoutPanel1.Controls.Count - 1
+                '        FocuseArrow(a, -1, -1)
+                '    End If
+                'Case Keys.Right
+                '    If FocusedPanel Then
+                '        'If RPl.Pl.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                '        'RPl_UpdateItem(FocusedControle, Nothing)
+                '        FocusedPanel = Not FocusedPanel
+                '        FocuseArrow(0, 0, 0)
+                '    Else
+                '        If FlowLayoutPanel1.Controls.Count = 0 Then Return MyBase.ProcessCmdKey(msg, keyData)
+                '        Dim a = nbrPvArticle
+                '        If a > FlowLayoutPanel1.Controls.Count - 1 Then a = FlowLayoutPanel1.Controls.Count - 1
+                '        FocuseArrow(0, 1, 1)
+                '    End If
 
             Case keys.Space  ' save and print
 
@@ -1127,26 +1372,6 @@ Public Class Form1
 
         Return True
     End Function
-
-    Public RplFocusedIndex As Integer = -1
-    Private Sub RplFocusedArrow(ByVal aA As Integer)
-        Try
-            Dim pv As Items = RPl.Pl.Controls(RplFocusedIndex)
-            pv.IsSelected = False
-            RplFocusedIndex += aA
-        Catch ex As Exception
-
-        End Try
-
-
-
-        If RplFocusedIndex < 0 Then RplFocusedIndex = 0
-        If RplFocusedIndex > RPl.Pl.Controls.Count - 1 Then RplFocusedIndex = RPl.Pl.Controls.Count - 1
-
-        Dim it As Items = RPl.Pl.Controls(RplFocusedIndex)
-        it.IsSelected = True
-        RPl.Pl.ScrollControlIntoView(it)
-    End Sub
 
     Private Sub getRegistryinfo(ByRef txt As TextBox, ByVal str As String, ByVal v As String)
         Try
@@ -1376,6 +1601,8 @@ Public Class Form1
         getRegistryinfo(cbBadgeMB, "cbBadgeMB", False)
         getRegistryinfo(cbBadgeSB, "cbBadgeSB", False)
         getRegistryinfo(cbBadgeCs, "cbBadgeCs", False)
+        getRegistryinfo(cbBadgeRt, "cbBadgeRt", False)
+
         getRegistryinfo(cbSuperAdmin, "cbSuperAdmin", False)
         getRegistryinfo(cbArtcleStockDetails, "cbArtcleStockDetails", False)
         getRegistryinfo(cbArticleClient, "cbArticleClient", False)
@@ -1600,6 +1827,7 @@ Public Class Form1
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbBadgeMB", cbBadgeMB.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbBadgeMA", cbBadgeMA.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbBadgeCs", cbBadgeCs.Checked)
+                My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbBadgeRt", cbBadgeRt.Checked)
 
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbArtcleStockDetails", cbArtcleStockDetails.Checked)
                 My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "cbArticleClient", cbArticleClient.Checked)
@@ -1876,7 +2104,47 @@ Public Class Form1
 
 
     End Sub
+    Private Sub RPl_printRapportJR() Handles RPl.printRapportJr
 
+
+        Dim nbr As Integer = txtNbrCopie.Text
+        Dim nm As String = txttimp.Text
+
+        Dim dl As New PrintDialog
+        If dl.ShowDialog = Windows.Forms.DialogResult.OK Then
+            nm = dl.PrinterSettings.PrinterName
+            nbr = dl.PrinterSettings.Copies
+        Else
+            Exit Sub
+        End If
+        Try
+            MP_Localname = "RapportJr.dat"
+            Dim g As New gGlobClass
+            Try
+
+                g = ReadFromXmlFile(Of gGlobClass)(ImgPah & "\Prt_Dsn\" & MP_Localname)
+                If g.TabProp.Type.ToUpper.StartsWith("TAB") Then
+
+
+                    Dim ps As New PaperSize(g.P_name, g.W_Page, g.h_Page)
+                    ps.PaperName = g.p_Kind
+                    PrintDocDesign.DefaultPageSettings.PaperSize = ps
+                    PrintDocDesign.DefaultPageSettings.Landscape = g.is_Landscape
+                End If
+                PrintDocDesign.PrinterSettings.PrinterName = nm
+
+            Catch ex As Exception
+            End Try
+
+            PrintDocDesign.Print()
+
+
+        Catch ex As Exception
+
+        End Try
+
+
+    End Sub
     Private Sub RPl_ReturnItem(ByVal sender As Object, ByVal e As System.EventArgs) Handles RPl.ReturnItem
         Using a As SubClass = New SubClass(btswitsh.Tag)
             Dim i As Items = sender
@@ -2261,27 +2529,31 @@ Public Class Form1
 
             Using a As SubClass = New SubClass(btswitsh.Tag)
 
+                Dim printDepot As Boolean = False
                 'print depot
                 If cbPrintDepot.Checked Then
-
+                    printDepot = True
                     Try
                         If cbShowDialogPrint.Checked Then
                             Dim dl As New PrintDialog
                             If dl.ShowDialog = Windows.Forms.DialogResult.OK Then
                                 nm = dl.PrinterSettings.PrinterName
                                 nbr = dl.PrinterSettings.Copies
+
                             Else
-                                Exit Sub
+                                printDepot = False
                             End If
                         End If
                     Catch ex As Exception
-                        Exit Sub
+                        printDepot = False
                     End Try
 
+                End If
 
+                If printDepot Then
 
                     _selectedPrintableDepot.Clear()
-                    _selectedPrintableDepot.Add(-111) 
+                    _selectedPrintableDepot.Add(-111)
 
                     MP_Localname = "Depot-Default.dat"
                     Dim g As New gGlobClass
@@ -2300,9 +2572,7 @@ Public Class Form1
 
 
                     PrintDocDepot.PrinterSettings.PrinterName = nm
-                    PrintDocDepot.Print()
-
-
+                    If __lst.Count Then PrintDocDepot.Print()
                 End If
 
                 a.SaveFacture(RPl.FctId, RPl.Total_TTC, RPl.Avance, tva, table, RPl.Remise, RPl.bl, RPl.isSell)
@@ -3554,13 +3824,12 @@ Public Class Form1
                 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' color payed
 
                 If CbSearchFacture.Text = "Rapport jr" Then
-                  
+
                     If BackgroundWorker1.IsBusy = False Then
 
                         BackgroundWorker1.RunWorkerAsync()
 
                     End If
-
                     Exit Sub
                 End If
 
@@ -3623,7 +3892,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub txtArSearch_SaveText() Handles txtArSearch.SaveText
+    Private Sub txtArSearch_SaveText()
         Try
             Dim isSell As Boolean = CBool(btSwitch2.Tag)
             Dim chs As New ChoseClient
@@ -3636,7 +3905,7 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub txtArSearch_TxtChanged() Handles txtArSearch.TxtChanged
+    Private Sub txtArSearch_TxtChanged()
         If txtArSearch.text = "" Then
             txtArSearch.ShowClearIcon = False
             txtArSearch.ShowSaveIcon = True
@@ -3902,25 +4171,30 @@ Public Class Form1
 
 
     Private Sub txtSearch_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtSearch.TextChanged
-        If isPortOn = False And RPl.FctId = 0 Then
-            If txtSearchCode.Text.Trim <> "" Then
-                Dim _str = txtSearchCode.Text
-                If plright.Controls.Count = 0 Then
-                    Using a As SubClass = New SubClass
-                        Try
-                            Dim cid As String = 0
-                            Dim clientname As String = txtcltcomptoir.Text.Split("/")(0)
-                            If RPl.isSell Then a.NewFacture(cid, clientname, "", 0)
-                        Catch ex As Exception
-                        End Try
-                    End Using
+
+        If _useBalance = True Then
+            If isPortOn = False And RPl.FctId = 0 Then
+                If txtSearch.Text.Trim <> "" Then
+                    Dim _str = txtSearch.Text
+                    If plright.Controls.Count = 0 Then
+                        Using a As SubClass = New SubClass
+                            Try
+                                Dim cid As String = 0
+                                Dim clientname As String = txtcltcomptoir.Text.Split("/")(0)
+                                If RPl.isSell Then a.NewFacture(cid, clientname, "", 0)
+                            Catch ex As Exception
+                            End Try
+                        End Using
+                    End If
+
+                    txtSearch.Focus()
+
+                    txtSearch.Text = _str
+                    txtSearch.SelectionStart = txtSearch.Text.Length
                 End If
-
-                txtSearchCode.Focus()
-
-                txtSearchCode.Text = _str
-                txtSearchCode.SelectionStart = txtSearchCode.Text.Length
             End If
+
+            ' Exit Sub
         End If
 
 
@@ -3930,7 +4204,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Button10_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button10.Click
+    Private Sub Button10_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btGroupe.Click
         Using a As SubClass = New SubClass()
             a.FillGroupes(False)
         End Using
@@ -3955,8 +4229,8 @@ Public Class Form1
 
 
         If BackgroundWorkerCaisse.IsBusy = False Then BackgroundWorkerCaisse.RunWorkerAsync()
-       
- 
+
+
     End Sub
 
     Private Sub Button31_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button31.Click
@@ -4042,6 +4316,12 @@ Public Class Form1
  
             End If
 
+
+
+            'caisse*
+            If GetOpenCaisse(adminName) = False Then
+                NewCaisse(adminName & "-" & Format(Now.Date, "dd-MM"))
+            End If
         Else
             End
         End If
@@ -4935,7 +5215,27 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub Button44_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btTarif.Click, Button44.Click
+    Private Sub Button44_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btTarif.Click, btTPtrf.Click
+
+
+
+        Try
+            If _useBalance Then
+                If isPortOn Then
+                    isPortOn = ClosePort()
+                Else
+                    isPortOn = OpenPort()
+                End If
+                Exit Sub
+            End If
+
+
+        Catch ex As Exception
+            Exit Sub
+        End Try
+
+
+
 
         If RPl.isSell Then
 
@@ -5603,7 +5903,7 @@ Public Class Form1
     End Sub
 
 
-    Private Sub Button11_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button11.Click
+    Private Sub Button11_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btTPf6.Click
 
         If RPl.FctId = 0 Or RPl.EditMode = True Then Exit Sub
 
@@ -5662,7 +5962,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Button51_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button51.Click
+    Private Sub Button51_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btTpf8.Click
 
         'System.Media.SystemSounds.Exclamation.Play()
 
@@ -5677,7 +5977,7 @@ Public Class Form1
         End Using
     End Sub
 
-    Private Sub Button52_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button52.Click
+    Private Sub Button52_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btTPf12.Click
 
 
         'System.Media.SystemSounds.Hand.Play()
@@ -5935,7 +6235,6 @@ Public Class Form1
                 Catch ex As Exception
                 End Try
 
-
                 Try
                     dt.DefaultView.Sort = "cid ASC"
                     dt = dt.DefaultView.ToTable
@@ -5944,15 +6243,15 @@ Public Class Form1
 
 
                 RPl.Invoke(Sub()
-
-                               RPl.ClId = DGVARFA.Rows(0).Cells(1).Value
+                               RPl.ClearItems()
+                               RPl.ClId = -222 'DGVARFA.Rows(0).Cells(1).Value
                                RPl.ClientAdresse = ""
                                RPl.ClientName = "Cumul " & DGVARFA.Rows(0).Cells(2).Value
-                               RPl.FctId = 1
+                               RPl.FctId = 0
                                RPl.isSell = CBool(btSwitch2.Tag)
                                RPl.EditMode = True
 
-                               RPl.ClearItems()
+
                                RPl.AddItems(dt)
                                RPl.Remise = 0
                                RPl.Avance = avance
@@ -6508,7 +6807,7 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Sub btUpCadeau_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btUpCadeau.Click
+    Private Sub btUpCadeau_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btTPf10.Click
         Using c As SubClass = New SubClass
             If cbPromos.Checked Then c.FillMesCadeaux()
         End Using
@@ -6764,6 +7063,372 @@ Public Class Form1
             Exit Sub
         End Try
 
+
+    End Sub
+    Public caisseId As Integer
+    Public _caisseDate As String
+    Public Property caisseDate As String
+        Get
+            Return _caisseDate
+        End Get
+        Set(ByVal value As String)
+            _caisseDate = value
+            lbCaisse.Text = value & "   [" & caisseId & "]"
+        End Set
+    End Property
+
+    Private Sub Button79_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button79.Click
+
+        Dim b As Boolean = True
+        If cbBadgeCs.Checked Then
+            Try
+                Dim sc As New UserParmissionCheck
+                sc.bName.Text = "Caisse"
+                sc.lbNum.Text = adminName
+                If sc.ShowDialog = DialogResult.OK Then
+                    b = True
+                Else
+                    b = False
+                End If
+            Catch ex As Exception
+                b = False
+            End Try
+        End If
+        If b = False Then Exit Sub
+
+
+        If RPl.ClId = -222 Then
+
+            Dim pwdwin As New PWDPicker
+            If pwdwin.ShowDialog = Windows.Forms.DialogResult.OK Then
+                If adminName.ToUpper = pwdwin.DGV1.SelectedRows(0).Cells(1).Value.ToString.ToUpper Then
+                    If CloseCaisse(caisseId) Then
+                        Dim str As String = lbCaisse.Text & vbNewLine
+                        str &= Get_CaisseTotal(caisseId)
+
+                        MsgBox(str, MsgBoxStyle.Information, vbOK)
+                        Button32_Click(Nothing, Nothing)
+                    End If
+
+
+                End If
+            End If
+        Else
+            Try
+                RPl.ClearItems()
+                RPl.FctId = 0
+                RPl.ClId = -222
+                RPl.ClientName = lbCaisse.Text
+                RPl.AddItems(Get_CaisseDetails(caisseId), True)
+            Catch ex As Exception
+
+            End Try
+        End If
+    End Sub
+
+    Private Sub btCaisseHistorique_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btCaisseHistorique.Click
+
+        Dim b As Boolean = True
+        If cbBadgeCs.Checked Then
+            Try
+                Dim sc As New UserParmissionCheck
+                sc.bName.Text = "Caisse"
+                sc.lbNum.Text = adminName
+                If sc.ShowDialog = DialogResult.OK Then
+                    b = True
+                Else
+                    b = False
+                End If
+            Catch ex As Exception
+                b = False
+            End Try
+        End If
+        If b = False Then Exit Sub
+        Try
+            Dim se As New SelectCaisse
+            If se.ShowDialog = Windows.Forms.DialogResult.OK Then
+                Dim id As Integer = se.DataGridView1.SelectedRows(0).Cells(0).Value
+                Dim nm As String = se.DataGridView1.SelectedRows(0).Cells(1).Value
+
+                RPl.ClearItems()
+                RPl.FctId = 0
+                RPl.ClId = -222
+                RPl.ClientName = nm
+                RPl.AddItems(Get_CaisseDetails(id), True)
+                RPl.Avance = Get_CaissePayement(id)
+            End If
+
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub Button78_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button78.Click
+        Dim b As Boolean = True
+
+        If cbBadgeCs.Checked Then
+            Try
+                Dim sc As New UserParmissionCheck
+                sc.bName.Text = "Caisse"
+                sc.lbNum.Text = adminName
+                If sc.ShowDialog = DialogResult.OK Then
+                    b = True
+                Else
+                    b = False
+                End If
+            Catch ex As Exception
+                b = False
+            End Try
+        End If
+        If b = False Then Exit Sub
+
+
+        If Not BackgroundWorkerCaisseUser.IsBusy Then
+            Dim se As New SelectCaisse
+
+            If se.ShowDialog = Windows.Forms.DialogResult.OK Then
+                caisseSelectedId = se.DataGridView1.SelectedRows(0).Cells(0).Value
+                caisseSelectedName = se.DataGridView1.SelectedRows(0).Cells(1).Value
+
+                BackgroundWorkerCaisseUser.RunWorkerAsync()
+            End If
+        End If
+    End Sub
+    Dim caisseSelectedId As Integer = 0
+    Dim caisseSelectedName As String = ""
+    Private Sub BackgroundWorkerCaisseUser_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerCaisseUser.DoWork
+
+        Dim C_id As Integer = caisseSelectedId
+        Dim C_nm As String = caisseSelectedName
+
+
+        Dim tName As String = "Payment"
+
+        Dim params As New Dictionary(Of String, Object)
+        Dim dt As DataTable = Nothing
+        Dim TT As Decimal = 0
+
+        Dim T_CA As Double = 0
+        Dim T_TP As Double = 0
+        Dim T_CH As Double = 0
+        Dim T_VR As Double = 0
+
+
+        Dim R_TT As Decimal = 0
+
+        Dim R_CA As Double = 0
+        Dim R_TP As Double = 0
+        Dim R_CH As Double = 0
+        Dim R_VR As Double = 0
+
+        Dim credit As Double = 0
+
+
+
+        '  ProgressBar1.Value = 0
+        Dim Cats As New Dictionary(Of Integer, Double)
+        Dim table As New DataTable
+
+        Try
+            Dim FerstBon As Integer = 0
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                params.Add("caisse = ", C_id)
+
+                Try
+                    Dim data = a.SelectDataTableSymbols("Facture", {"fctid"}, params, , "LIMIT 1")
+                    'Dim data = a.SelectDataTable("Facture", {"TOP 1 fctid"}, params)
+                    FerstBon = data.Rows(0).Item(0)
+                Catch ex As Exception
+                    FerstBon = 0
+                End Try
+
+                params.Clear()
+                params.Add("caisse", C_id)
+                dt = a.SelectDataTable(tName, {"*"}, params)
+
+                params.Add("payed", False)
+                tName = "Facture"
+                Dim dt_cr = a.SelectDataTable(tName, {"SUM(total)", "SUM(avance)"}, params)
+
+                If dt_cr.Rows.Count > 0 Then
+                    Dim t_cr As Double = 0
+                    Dim a_cr As Double = 0
+
+                    Try
+                        t_cr = dt_cr.Rows(0).Item(0)
+                    Catch ex As Exception
+                        t_cr = 0
+                    End Try
+
+                    Try
+                        a_cr = dt_cr.Rows(0).Item(1)
+                    Catch ex As Exception
+                        a_cr = 0
+                    End Try
+
+
+                    credit = t_cr - a_cr
+
+                End If
+
+                If dt.Rows.Count > 0 Then
+
+                    DGVARFA.Invoke(Sub()
+                                       DGVARFA.Rows.Clear()
+                                       For i As Integer = 0 To dt.Rows.Count - 1
+
+                                           DGVARFA.Rows.Add(0,
+                                            dt.Rows(i).Item(7).ToString, dt.Rows(i).Item("name").ToString,
+                                          String.Format("{0:n}", CDec(dt.Rows(i).Item("montant").ToString)),
+                                            dt.Rows(i).Item("way").ToString,
+                                         "", CDate(dt.Rows(i).Item("date")).ToString("dd, MMM yy [hh:mm]"),
+                                            "", dt.Rows(i).Item("writer").ToString, "", "", "", dt.Rows(i).Item(7).ToString)
+
+                                           TT += CDec(dt.Rows(i).Item("montant").ToString)
+
+                                           If dt.Rows(i).Item("Num").ToString.StartsWith("@/") Then
+
+                                               R_TT += CDec(dt.Rows(i).Item("montant").ToString)
+                                               If dt.Rows(i).Item("way").ToString.ToUpper.StartsWith("CHEQ") Then
+                                                   R_CH += CDec(dt.Rows(i).Item("montant").ToString)
+
+                                               ElseIf dt.Rows(i).Item("way").ToString.ToUpper.StartsWith("TPE") Then
+                                                   R_TP += CDec(dt.Rows(i).Item("montant").ToString)
+
+                                               ElseIf dt.Rows(i).Item("way").ToString.ToUpper.StartsWith("VIR") Then
+                                                   R_VR += CDec(dt.Rows(i).Item("montant").ToString)
+
+                                               Else
+                                                   R_CA += CDec(dt.Rows(i).Item("montant").ToString)
+                                               End If
+
+
+                                           End If
+
+                                           If dt.Rows(i).Item("way").ToString.ToUpper.StartsWith("CHEQ") Then
+                                               T_CH += CDec(dt.Rows(i).Item("montant").ToString)
+
+                                           ElseIf dt.Rows(i).Item("way").ToString.ToUpper.StartsWith("TPE") Then
+                                               T_TP += CDec(dt.Rows(i).Item("montant").ToString)
+
+                                           ElseIf dt.Rows(i).Item("way").ToString.ToUpper.StartsWith("VIR") Then
+                                               T_VR += CDec(dt.Rows(i).Item("montant").ToString)
+
+                                           Else
+                                               T_CA += CDec(dt.Rows(i).Item("montant").ToString)
+                                           End If
+                                           ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' color payed
+
+                                           If CInt(dt.Rows(i).Item(7)) < FerstBon Then
+                                               DGVARFA.Rows(i).DefaultCellStyle.BackColor = Color.BurlyWood
+                                           End If
+                                           ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                       Next
+                                       DGVARFA.Columns(4).HeaderText = "---"
+
+                                   End Sub)
+
+                Else
+                    MsgBox("aucun résultat")
+                End If
+
+                Dim total_Facture As Double = 0
+
+                If admin = True Then
+                    params.Clear()
+                    params.Add("caisse", C_id)
+                    params.Add("admin", True)
+
+                    Dim dt3 = a.SelectDataTable(tName, {"*"}, params)
+
+                    tName = "DetailsFacture"
+
+                    For i As Integer = 0 To dt3.Rows.Count - 1
+                        Dim fctid As Integer = dt3.Rows(i).Item(0)
+                        total_Facture += dt3.Rows(i).Item("total")
+                        params.Clear()
+                        params.Add("fctid", fctid)
+                        Dim dt4 = a.SelectDataTable(tName, {"qte", "price", "cid"}, params)
+
+                        For t As Integer = 0 To dt4.Rows.Count - 1
+
+                            Try
+                                Cats.Add(CInt(dt4.Rows(t).Item("cid")), CDbl(dt4.Rows(t).Item("qte") * dt4.Rows(t).Item("price")))
+                            Catch ex As Exception
+                                Cats(CInt(dt4.Rows(t).Item("cid"))) += CDbl(dt4.Rows(t).Item("qte") * dt4.Rows(t).Item("price"))
+                            End Try
+
+                        Next
+                    Next
+                End If
+
+                ' Create four typed columns in the DataTable.
+                table.Columns.Add("id", GetType(Integer))
+                table.Columns.Add("arid", GetType(Integer))
+                table.Columns.Add("qte", GetType(Double))
+                table.Columns.Add("name", GetType(String))
+                table.Columns.Add("unit", GetType(String))
+                table.Columns.Add("price", GetType(Double))
+                table.Columns.Add("bprice", GetType(Double))
+                table.Columns.Add("tva", GetType(Double))
+                table.Columns.Add("poid", GetType(Integer))
+                table.Columns.Add("cid", GetType(Integer))
+                table.Columns.Add("depot", GetType(Integer))
+                table.Columns.Add("code", GetType(String))
+
+                'table.Rows.Add(0, -111, 1, "TOTAL", "U", TT, TT, 0, 0, -110, 0, 0)
+                params.Clear()
+                params.Add("name", C_nm)
+                Dim dtOpen = a.SelectDataTable("Stock", {"*"}, params)
+                table.Rows.Add(0, -222, 1, "Ouvertures de tiroire de caisse", "Par Bt F12", dtOpen.Rows.Count, dtOpen.Rows.Count, 0, 0, -110, 0, 0)
+
+                For Each kv As KeyValuePair(Of Integer, Double) In Cats
+                    params.Clear()
+                    params.Add("cid", kv.Key)
+                    Dim nm = a.SelectByScalar("Category", "name", params)
+
+                    Try
+                        Dim tx As Double = kv.Value * 100 / total_Facture
+
+                        table.Rows.Add(0, -112 + kv.Key, 1, nm & " [ Tx : " & tx.ToString("N2") & " ]", "Grp", kv.Value, kv.Value, 0, 0, kv.Key, 0, 0)
+                    Catch ex As Exception
+                    End Try
+                Next
+
+                table.Rows.Add(0, -112, 1, "VIREMENT", "U", T_VR, T_VR, 0, 0, -110, 0, 0)
+                table.Rows.Add(0, -113, 1, "CHEQUE", "U", T_CH, T_CH, 0, 0, -110, 0, 0)
+                table.Rows.Add(0, -114, 1, "TPE", "U", T_TP, T_TP, 0, 0, -110, 0, 0)
+                table.Rows.Add(0, -115, 1, "CACHE", "U", T_CA, T_CA, 0, 0, -110, 0, 0)
+                table.Rows.Add(0, -116, 1, "RECOUVREMENT TOTAL", "U", R_TT, R_TT, 0, 100, -110, 0, 0)
+                table.Rows.Add(0, -117, 1, "REC. VIREMENT", "U", R_VR, R_VR, 0, 100, -110, 0, 0)
+                table.Rows.Add(0, -118, 1, "REC. CHEQUE", "U", R_CH, R_CH, 0, 100, -110, 0, 0)
+                table.Rows.Add(0, -119, 1, "REC. TPE", "U", R_TP, R_TP, 0, 100, -110, 0, 0)
+                table.Rows.Add(0, -120, 1, "REC. CACHE", "U", R_CA, R_CA, 0, 100, -110, 0, 0)
+                table.Rows.Add(0, -121, 1, "Credit", "U", credit, credit, 0, 100, -110, 0, 0)
+                table.Rows.Add(0, -122, 1, "Nombre", "U", DGVARFA.Rows.Count, DGVARFA.Rows.Count, 0, 100, -110, 0, 0)
+            End Using
+
+            RPl.Invoke(Sub()
+                           RPl.ClearItems()
+
+                           RPl.FctId = 0
+                           RPl.ClientName = "Caisse : " & C_nm
+                           RPl.ClientAdresse = "RECETTES CAISSE"
+
+                           RPl.ClId = -222
+                           RPl.Avance = 0
+
+                           RPl.AddItems(table, True)
+
+                           Try
+                               Dim r = ((RPl.Total_TTC - TT) * 100) / RPl.Total_TTC
+                               RPl.Remise = r
+                           Catch ex As Exception
+                               RPl.Remise = 0
+                           End Try
+
+                       End Sub)
+        Catch ex As Exception
+        End Try
 
     End Sub
 
