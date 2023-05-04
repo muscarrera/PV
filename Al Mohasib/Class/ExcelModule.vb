@@ -65,8 +65,17 @@ Module ExcelModule
             Dim cl = -1
             For Each column As DataGridViewColumn In DataGridView1.Columns
                 cl += 1
-                If column.Visible = False Then Continue For
-                xlWorkSheet.Cells(i + 7, j + 1) = DataGridView1(cl, i).Value
+                If column.Visible = False Then
+
+                    Continue For
+                End If
+
+
+                Try
+                    xlWorkSheet.Cells(i + 7, j + 1) = DataGridView1(cl, i).Value
+                Catch
+                End Try
+
 
                 Dim formatRange As Excel.Range = xlWorkSheet.UsedRange
                 Dim cell As Excel.Range = formatRange.Cells(i + 7, j + 1)
@@ -78,7 +87,20 @@ Module ExcelModule
             Next
         Next
 
-        xlWorkSheet.SaveAs(Path)
+        Dim __p = Path
+        Try
+            Dim SV As New SaveFileDialog
+            SV.InitialDirectory = Form1.btSvPath.Tag & "\" & _path
+            SV.FileName = Now.ToString("dd-MM-yyyy - HH-mm")
+            If SV.ShowDialog = DialogResult.OK Then
+                __p = SV.FileName
+            End If
+        Catch ex As Exception
+
+        End Try
+
+
+        xlWorkSheet.SaveAs(__p)
         xlWorkBook.Close()
         xlApp.Quit()
 

@@ -723,8 +723,8 @@ Public Class AddEditArticle
         Try
 
             Dim st = "\EtqDsn\Etq-Article.dat"
-            If cbM.Text = 2 Then st = "\EtqDsn\Etq-Article2.dat"
-            If cbM.Text = 3 Then st = "\EtqDsn\Etq-Article3.dat"
+            If cbM.Text = "2" Then st = "\EtqDsn\Etq-Article2.dat"
+            If cbM.Text = "3" Then st = "\EtqDsn\Etq-Article3.dat"
 
             gl = ReadFromXmlFile(Of LbGlobalElement)(Form1.ImgPah & st)
 

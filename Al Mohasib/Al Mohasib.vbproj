@@ -419,6 +419,12 @@
     <Compile Include="GUI\ChooseCat.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\ChooseUsers.Designer.vb">
+      <DependentUpon>ChooseUsers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ChooseUsers.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\ChoseClient.Designer.vb">
       <DependentUpon>ChoseClient.vb</DependentUpon>
     </Compile>
@@ -483,6 +489,12 @@
       <DependentUpon>EtatClient.vb</DependentUpon>
     </Compile>
     <Compile Include="GUI\EtatClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\InvoForm.Designer.vb">
+      <DependentUpon>InvoForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\InvoForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\Labeling\AddEditElement.Designer.vb">
@@ -963,6 +975,9 @@
     <EmbeddedResource Include="GUI\ChooseCat.resx">
       <DependentUpon>ChooseCat.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ChooseUsers.resx">
+      <DependentUpon>ChooseUsers.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\ChoseClient.resx">
       <DependentUpon>ChoseClient.vb</DependentUpon>
     </EmbeddedResource>
@@ -995,6 +1010,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\EtatClient.resx">
       <DependentUpon>EtatClient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\InvoForm.resx">
+      <DependentUpon>InvoForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Labeling\AddEditElement.resx">
       <DependentUpon>AddEditElement.vb</DependentUpon>

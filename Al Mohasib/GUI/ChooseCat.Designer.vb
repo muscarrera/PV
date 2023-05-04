@@ -22,16 +22,16 @@ Partial Class ChooseCat
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.CidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ImgDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.PrDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ImgDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -50,26 +50,26 @@ Partial Class ChooseCat
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.Padding = New System.Windows.Forms.Padding(5)
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.Padding = New System.Windows.Forms.Padding(5)
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CidDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.ImgDataGridViewTextBoxColumn, Me.PrDataGridViewTextBoxColumn})
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.Padding = New System.Windows.Forms.Padding(5)
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.Padding = New System.Windows.Forms.Padding(5)
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.GridColor = System.Drawing.SystemColors.Info
         Me.DataGridView1.Location = New System.Drawing.Point(3, 16)
@@ -79,6 +79,37 @@ Partial Class ChooseCat
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridView1.Size = New System.Drawing.Size(416, 309)
         Me.DataGridView1.TabIndex = 0
+        '
+        'CidDataGridViewTextBoxColumn
+        '
+        Me.CidDataGridViewTextBoxColumn.DataPropertyName = "cid"
+        Me.CidDataGridViewTextBoxColumn.FillWeight = 44.0!
+        Me.CidDataGridViewTextBoxColumn.HeaderText = "Id"
+        Me.CidDataGridViewTextBoxColumn.Name = "CidDataGridViewTextBoxColumn"
+        Me.CidDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'NameDataGridViewTextBoxColumn
+        '
+        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
+        Me.NameDataGridViewTextBoxColumn.HeaderText = "Designation"
+        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
+        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'ImgDataGridViewTextBoxColumn
+        '
+        Me.ImgDataGridViewTextBoxColumn.DataPropertyName = "img"
+        Me.ImgDataGridViewTextBoxColumn.HeaderText = "img"
+        Me.ImgDataGridViewTextBoxColumn.Name = "ImgDataGridViewTextBoxColumn"
+        Me.ImgDataGridViewTextBoxColumn.ReadOnly = True
+        Me.ImgDataGridViewTextBoxColumn.Visible = False
+        '
+        'PrDataGridViewTextBoxColumn
+        '
+        Me.PrDataGridViewTextBoxColumn.DataPropertyName = "pr"
+        Me.PrDataGridViewTextBoxColumn.HeaderText = "pr"
+        Me.PrDataGridViewTextBoxColumn.Name = "PrDataGridViewTextBoxColumn"
+        Me.PrDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PrDataGridViewTextBoxColumn.Visible = False
         '
         'Button2
         '
@@ -104,37 +135,6 @@ Partial Class ChooseCat
         Me.Button1.Text = "تأكيد"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'PrDataGridViewTextBoxColumn
-        '
-        Me.PrDataGridViewTextBoxColumn.DataPropertyName = "pr"
-        Me.PrDataGridViewTextBoxColumn.HeaderText = "pr"
-        Me.PrDataGridViewTextBoxColumn.Name = "PrDataGridViewTextBoxColumn"
-        Me.PrDataGridViewTextBoxColumn.ReadOnly = True
-        Me.PrDataGridViewTextBoxColumn.Visible = False
-        '
-        'ImgDataGridViewTextBoxColumn
-        '
-        Me.ImgDataGridViewTextBoxColumn.DataPropertyName = "img"
-        Me.ImgDataGridViewTextBoxColumn.HeaderText = "img"
-        Me.ImgDataGridViewTextBoxColumn.Name = "ImgDataGridViewTextBoxColumn"
-        Me.ImgDataGridViewTextBoxColumn.ReadOnly = True
-        Me.ImgDataGridViewTextBoxColumn.Visible = False
-        '
-        'NameDataGridViewTextBoxColumn
-        '
-        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
-        Me.NameDataGridViewTextBoxColumn.HeaderText = "Designation"
-        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
-        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'CidDataGridViewTextBoxColumn
-        '
-        Me.CidDataGridViewTextBoxColumn.DataPropertyName = "cid"
-        Me.CidDataGridViewTextBoxColumn.FillWeight = 44.0!
-        Me.CidDataGridViewTextBoxColumn.HeaderText = "Id"
-        Me.CidDataGridViewTextBoxColumn.Name = "CidDataGridViewTextBoxColumn"
-        Me.CidDataGridViewTextBoxColumn.ReadOnly = True
-        '
         'ChooseCat
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -143,8 +143,10 @@ Partial Class ChooseCat
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button2)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "ChooseCat"
-        Me.Text = "ChooseCat"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Groupes ..."
         Me.GroupBox1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

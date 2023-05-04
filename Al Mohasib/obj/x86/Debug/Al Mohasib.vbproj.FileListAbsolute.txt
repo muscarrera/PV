@@ -699,3 +699,5 @@ C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.vbproj
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddFiles.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.FileLine.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.SelectCaisse.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChooseUsers.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.InvoForm.resources

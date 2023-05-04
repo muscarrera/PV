@@ -30,6 +30,8 @@ Partial Class ChoseCompany
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.lbV1 = New System.Windows.Forms.Label()
+        Me.lbT1 = New System.Windows.Forms.Label()
         Me.lbQteOut = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.lbQteIn = New System.Windows.Forms.Label()
@@ -45,18 +47,22 @@ Partial Class ChoseCompany
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Panel21 = New System.Windows.Forms.Panel()
+        Me.txtTrCat = New Al_Mohasib.TxtBox()
+        Me.Button16 = New System.Windows.Forms.Button()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.cbComul = New System.Windows.Forms.CheckBox()
-        Me.cbOut = New System.Windows.Forms.CheckBox()
         Me.Button6 = New System.Windows.Forms.Button()
-        Me.cbIn = New System.Windows.Forms.CheckBox()
         Me.Panel10 = New System.Windows.Forms.Panel()
         Me.txt = New Al_Mohasib.TxtBox()
         Me.btInfo = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.cbOut = New System.Windows.Forms.CheckBox()
         Me.Panel20 = New System.Windows.Forms.Panel()
         Me.txtClient = New Al_Mohasib.TxtBox()
         Me.Button13 = New System.Windows.Forms.Button()
         Me.Label16 = New System.Windows.Forms.Label()
+        Me.cbIn = New System.Windows.Forms.CheckBox()
         Me.Panel9 = New System.Windows.Forms.Panel()
         Me.txtDepot = New Al_Mohasib.TxtBox()
         Me.btDepot = New System.Windows.Forms.Button()
@@ -92,6 +98,9 @@ Partial Class ChoseCompany
         Me.Button15 = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.cbTvaDtls = New System.Windows.Forms.CheckBox()
+        Me.Button18 = New System.Windows.Forms.Button()
+        Me.Button17 = New System.Windows.Forms.Button()
         Me.Button12 = New System.Windows.Forms.Button()
         Me.Panel17 = New System.Windows.Forms.Panel()
         Me.txtR = New Al_Mohasib.TxtBox()
@@ -110,12 +119,6 @@ Partial Class ChoseCompany
         Me.dte1 = New System.Windows.Forms.DateTimePicker()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.PrintDoc2 = New System.Drawing.Printing.PrintDocument()
-        Me.Panel21 = New System.Windows.Forms.Panel()
-        Me.txtTrCat = New Al_Mohasib.TxtBox()
-        Me.Button16 = New System.Windows.Forms.Button()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.lbV1 = New System.Windows.Forms.Label()
-        Me.lbT1 = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
         Me.pl.SuspendLayout()
         CType(Me.dg_D, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,6 +130,7 @@ Partial Class ChoseCompany
         Me.Panel8.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        Me.Panel21.SuspendLayout()
         Me.Panel10.SuspendLayout()
         Me.Panel20.SuspendLayout()
         Me.Panel9.SuspendLayout()
@@ -143,7 +147,6 @@ Partial Class ChoseCompany
         Me.Panel18.SuspendLayout()
         Me.Panel19.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        Me.Panel21.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel2
@@ -179,9 +182,13 @@ Partial Class ChoseCompany
         Me.dg_D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dg_D.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dg_D.Location = New System.Drawing.Point(5, 5)
+        Me.dg_D.MultiSelect = False
         Me.dg_D.Name = "dg_D"
         Me.dg_D.ReadOnly = True
         Me.dg_D.RowHeadersVisible = False
+        Me.dg_D.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dg_D.RowTemplate.Height = 30
+        Me.dg_D.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dg_D.Size = New System.Drawing.Size(1174, 398)
         Me.dg_D.TabIndex = 16
         '
@@ -235,6 +242,32 @@ Partial Class ChoseCompany
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(1184, 37)
         Me.Panel4.TabIndex = 14
+        '
+        'lbV1
+        '
+        Me.lbV1.BackColor = System.Drawing.Color.LightGray
+        Me.lbV1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.lbV1.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbV1.Location = New System.Drawing.Point(760, 2)
+        Me.lbV1.Name = "lbV1"
+        Me.lbV1.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
+        Me.lbV1.Size = New System.Drawing.Size(150, 35)
+        Me.lbV1.TabIndex = 20
+        Me.lbV1.Text = "0"
+        Me.lbV1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lbT1
+        '
+        Me.lbT1.BackColor = System.Drawing.Color.Gainsboro
+        Me.lbT1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.lbT1.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbT1.Location = New System.Drawing.Point(670, 2)
+        Me.lbT1.Name = "lbT1"
+        Me.lbT1.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
+        Me.lbT1.Size = New System.Drawing.Size(90, 35)
+        Me.lbT1.TabIndex = 21
+        Me.lbT1.Text = "Resultat"
+        Me.lbT1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lbQteOut
         '
@@ -427,6 +460,65 @@ Partial Class ChoseCompany
         Me.TabPage1.Text = "Tracabilite"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'Panel21
+        '
+        Me.Panel21.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel21.Controls.Add(Me.txtTrCat)
+        Me.Panel21.Controls.Add(Me.Button16)
+        Me.Panel21.Controls.Add(Me.Label17)
+        Me.Panel21.Location = New System.Drawing.Point(682, 11)
+        Me.Panel21.Name = "Panel21"
+        Me.Panel21.Size = New System.Drawing.Size(202, 32)
+        Me.Panel21.TabIndex = 4
+        '
+        'txtTrCat
+        '
+        Me.txtTrCat.BackColor = System.Drawing.Color.Transparent
+        Me.txtTrCat.BorderColor = System.Drawing.Color.Transparent
+        Me.txtTrCat.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtTrCat.IsNumiric = False
+        Me.txtTrCat.Location = New System.Drawing.Point(47, 0)
+        Me.txtTrCat.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtTrCat.Name = "txtTrCat"
+        Me.txtTrCat.ShowClearIcon = False
+        Me.txtTrCat.ShowSaveIcon = False
+        Me.txtTrCat.Size = New System.Drawing.Size(116, 30)
+        Me.txtTrCat.StartUp = 2
+        Me.txtTrCat.TabIndex = 12
+        Me.txtTrCat.TextSize = 8
+        Me.txtTrCat.TxtBackColor = True
+        Me.txtTrCat.TxtColor = System.Drawing.Color.White
+        Me.txtTrCat.txtReadOnly = False
+        Me.txtTrCat.TxtSelect = New Integer() {1, 0}
+        '
+        'Button16
+        '
+        Me.Button16.BackColor = System.Drawing.Color.Transparent
+        Me.Button16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button16.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button16.FlatAppearance.BorderSize = 0
+        Me.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button16.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button16.ForeColor = System.Drawing.Color.Teal
+        Me.Button16.Image = Global.Al_Mohasib.My.Resources.Resources.stock_icon_png_14
+        Me.Button16.Location = New System.Drawing.Point(163, 0)
+        Me.Button16.Name = "Button16"
+        Me.Button16.Size = New System.Drawing.Size(37, 30)
+        Me.Button16.TabIndex = 10
+        Me.Button16.UseVisualStyleBackColor = False
+        '
+        'Label17
+        '
+        Me.Label17.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label17.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.Location = New System.Drawing.Point(0, 0)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(47, 30)
+        Me.Label17.TabIndex = 1
+        Me.Label17.Text = "Cat."
+        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'cbComul
         '
         Me.cbComul.AutoSize = True
@@ -437,17 +529,6 @@ Partial Class ChoseCompany
         Me.cbComul.TabIndex = 2
         Me.cbComul.Text = "Comul"
         Me.cbComul.UseVisualStyleBackColor = True
-        '
-        'cbOut
-        '
-        Me.cbOut.AutoSize = True
-        Me.cbOut.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbOut.Location = New System.Drawing.Point(351, 61)
-        Me.cbOut.Name = "cbOut"
-        Me.cbOut.Size = New System.Drawing.Size(60, 18)
-        Me.cbOut.TabIndex = 2
-        Me.cbOut.Text = "Sortie"
-        Me.cbOut.UseVisualStyleBackColor = True
         '
         'Button6
         '
@@ -463,17 +544,6 @@ Partial Class ChoseCompany
         Me.Button6.Text = "Recherche"
         Me.Button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Button6.UseVisualStyleBackColor = True
-        '
-        'cbIn
-        '
-        Me.cbIn.AutoSize = True
-        Me.cbIn.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbIn.Location = New System.Drawing.Point(417, 61)
-        Me.cbIn.Name = "cbIn"
-        Me.cbIn.Size = New System.Drawing.Size(64, 18)
-        Me.cbIn.TabIndex = 2
-        Me.cbIn.Text = "Entree"
-        Me.cbIn.UseVisualStyleBackColor = True
         '
         'Panel10
         '
@@ -532,6 +602,17 @@ Partial Class ChoseCompany
         Me.Label3.Text = "Libelle"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'cbOut
+        '
+        Me.cbOut.AutoSize = True
+        Me.cbOut.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbOut.Location = New System.Drawing.Point(351, 61)
+        Me.cbOut.Name = "cbOut"
+        Me.cbOut.Size = New System.Drawing.Size(60, 18)
+        Me.cbOut.TabIndex = 2
+        Me.cbOut.Text = "Sortie"
+        Me.cbOut.UseVisualStyleBackColor = True
+        '
         'Panel20
         '
         Me.Panel20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -589,6 +670,17 @@ Partial Class ChoseCompany
         Me.Label16.TabIndex = 1
         Me.Label16.Text = "Client :"
         Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'cbIn
+        '
+        Me.cbIn.AutoSize = True
+        Me.cbIn.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbIn.Location = New System.Drawing.Point(417, 61)
+        Me.cbIn.Name = "cbIn"
+        Me.cbIn.Size = New System.Drawing.Size(64, 18)
+        Me.cbIn.TabIndex = 2
+        Me.cbIn.Text = "Entree"
+        Me.cbIn.UseVisualStyleBackColor = True
         '
         'Panel9
         '
@@ -830,7 +922,7 @@ Partial Class ChoseCompany
         Me.TabPage3.Location = New System.Drawing.Point(4, 29)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(699, 93)
+        Me.TabPage3.Size = New System.Drawing.Size(892, 93)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Ajustement"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -1045,7 +1137,7 @@ Partial Class ChoseCompany
         Me.TabPage4.Location = New System.Drawing.Point(4, 29)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage4.Size = New System.Drawing.Size(699, 93)
+        Me.TabPage4.Size = New System.Drawing.Size(892, 93)
         Me.TabPage4.TabIndex = 3
         Me.TabPage4.Text = "Profit Produit"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -1080,6 +1172,9 @@ Partial Class ChoseCompany
         '
         'TabPage5
         '
+        Me.TabPage5.Controls.Add(Me.cbTvaDtls)
+        Me.TabPage5.Controls.Add(Me.Button18)
+        Me.TabPage5.Controls.Add(Me.Button17)
         Me.TabPage5.Controls.Add(Me.Button12)
         Me.TabPage5.Controls.Add(Me.Panel17)
         Me.TabPage5.Controls.Add(Me.Panel18)
@@ -1087,23 +1182,61 @@ Partial Class ChoseCompany
         Me.TabPage5.Location = New System.Drawing.Point(4, 29)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage5.Size = New System.Drawing.Size(699, 93)
+        Me.TabPage5.Size = New System.Drawing.Size(892, 93)
         Me.TabPage5.TabIndex = 4
         Me.TabPage5.Text = "Facturation"
         Me.TabPage5.UseVisualStyleBackColor = True
         '
+        'cbTvaDtls
+        '
+        Me.cbTvaDtls.AutoSize = True
+        Me.cbTvaDtls.Font = New System.Drawing.Font("Arial Rounded MT Bold", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbTvaDtls.Location = New System.Drawing.Point(479, 61)
+        Me.cbTvaDtls.Name = "cbTvaDtls"
+        Me.cbTvaDtls.Size = New System.Drawing.Size(85, 16)
+        Me.cbTvaDtls.TabIndex = 23
+        Me.cbTvaDtls.Text = "Tva Details"
+        Me.cbTvaDtls.UseVisualStyleBackColor = True
+        '
+        'Button18
+        '
+        Me.Button18.BackColor = System.Drawing.Color.Transparent
+        Me.Button18.FlatAppearance.BorderSize = 0
+        Me.Button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button18.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button18.Image = Global.Al_Mohasib.My.Resources.Resources._2993694_brand_brands_excel_logo_logos_icon
+        Me.Button18.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button18.Location = New System.Drawing.Point(734, 49)
+        Me.Button18.Name = "Button18"
+        Me.Button18.Size = New System.Drawing.Size(33, 37)
+        Me.Button18.TabIndex = 22
+        Me.Button18.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button18.UseVisualStyleBackColor = False
+        '
+        'Button17
+        '
+        Me.Button17.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button17.Image = Global.Al_Mohasib.My.Resources.Resources.SAVE_20
+        Me.Button17.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button17.Location = New System.Drawing.Point(576, 51)
+        Me.Button17.Name = "Button17"
+        Me.Button17.Padding = New System.Windows.Forms.Padding(6, 0, 0, 0)
+        Me.Button17.Size = New System.Drawing.Size(152, 33)
+        Me.Button17.TabIndex = 11
+        Me.Button17.Text = "Rpt Tva"
+        Me.Button17.UseVisualStyleBackColor = True
+        '
         'Button12
         '
-        Me.Button12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button12.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button12.Image = Global.Al_Mohasib.My.Resources.Resources.SAVE_20
         Me.Button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button12.Location = New System.Drawing.Point(537, 51)
+        Me.Button12.Location = New System.Drawing.Point(576, 12)
         Me.Button12.Name = "Button12"
         Me.Button12.Padding = New System.Windows.Forms.Padding(6, 0, 0, 0)
-        Me.Button12.Size = New System.Drawing.Size(135, 33)
+        Me.Button12.Size = New System.Drawing.Size(152, 33)
         Me.Button12.TabIndex = 11
-        Me.Button12.Text = "Rapport"
+        Me.Button12.Text = "Rapport facture"
         Me.Button12.UseVisualStyleBackColor = True
         '
         'Panel17
@@ -1165,7 +1298,6 @@ Partial Class ChoseCompany
         '
         'Panel18
         '
-        Me.Panel18.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel18.Controls.Add(Me.dtR1)
         Me.Panel18.Controls.Add(Me.Label13)
@@ -1195,7 +1327,6 @@ Partial Class ChoseCompany
         '
         'Panel19
         '
-        Me.Panel19.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel19.Controls.Add(Me.dtR2)
         Me.Panel19.Controls.Add(Me.Label15)
@@ -1241,7 +1372,7 @@ Partial Class ChoseCompany
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(7, 65)
+        Me.Label2.Location = New System.Drawing.Point(14, 67)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(75, 14)
         Me.Label2.TabIndex = 1
@@ -1251,7 +1382,7 @@ Partial Class ChoseCompany
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(7, 15)
+        Me.Label1.Location = New System.Drawing.Point(14, 17)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(76, 14)
         Me.Label1.TabIndex = 1
@@ -1261,7 +1392,7 @@ Partial Class ChoseCompany
         '
         Me.dte2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dte2.Location = New System.Drawing.Point(6, 83)
+        Me.dte2.Location = New System.Drawing.Point(13, 85)
         Me.dte2.Name = "dte2"
         Me.dte2.Size = New System.Drawing.Size(243, 20)
         Me.dte2.TabIndex = 0
@@ -1270,7 +1401,7 @@ Partial Class ChoseCompany
         '
         Me.dte1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dte1.Location = New System.Drawing.Point(6, 34)
+        Me.dte1.Location = New System.Drawing.Point(13, 36)
         Me.dte1.Name = "dte1"
         Me.dte1.Size = New System.Drawing.Size(243, 20)
         Me.dte1.TabIndex = 0
@@ -1280,91 +1411,6 @@ Partial Class ChoseCompany
         '
         'PrintDoc2
         '
-        '
-        'Panel21
-        '
-        Me.Panel21.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel21.Controls.Add(Me.txtTrCat)
-        Me.Panel21.Controls.Add(Me.Button16)
-        Me.Panel21.Controls.Add(Me.Label17)
-        Me.Panel21.Location = New System.Drawing.Point(682, 11)
-        Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(202, 32)
-        Me.Panel21.TabIndex = 4
-        '
-        'txtTrCat
-        '
-        Me.txtTrCat.BackColor = System.Drawing.Color.Transparent
-        Me.txtTrCat.BorderColor = System.Drawing.Color.Transparent
-        Me.txtTrCat.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtTrCat.IsNumiric = False
-        Me.txtTrCat.Location = New System.Drawing.Point(47, 0)
-        Me.txtTrCat.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtTrCat.Name = "txtTrCat"
-        Me.txtTrCat.ShowClearIcon = False
-        Me.txtTrCat.ShowSaveIcon = False
-        Me.txtTrCat.Size = New System.Drawing.Size(116, 30)
-        Me.txtTrCat.StartUp = 2
-        Me.txtTrCat.TabIndex = 12
-        Me.txtTrCat.TextSize = 8
-        Me.txtTrCat.TxtBackColor = True
-        Me.txtTrCat.TxtColor = System.Drawing.Color.White
-        Me.txtTrCat.txtReadOnly = False
-        Me.txtTrCat.TxtSelect = New Integer() {1, 0}
-        '
-        'Button16
-        '
-        Me.Button16.BackColor = System.Drawing.Color.Transparent
-        Me.Button16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Button16.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button16.FlatAppearance.BorderSize = 0
-        Me.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button16.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button16.ForeColor = System.Drawing.Color.Teal
-        Me.Button16.Image = Global.Al_Mohasib.My.Resources.Resources.stock_icon_png_14
-        Me.Button16.Location = New System.Drawing.Point(163, 0)
-        Me.Button16.Name = "Button16"
-        Me.Button16.Size = New System.Drawing.Size(37, 30)
-        Me.Button16.TabIndex = 10
-        Me.Button16.UseVisualStyleBackColor = False
-        '
-        'Label17
-        '
-        Me.Label17.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Label17.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(0, 0)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(47, 30)
-        Me.Label17.TabIndex = 1
-        Me.Label17.Text = "Cat."
-        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lbV1
-        '
-        Me.lbV1.BackColor = System.Drawing.Color.LightGray
-        Me.lbV1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.lbV1.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbV1.Location = New System.Drawing.Point(760, 2)
-        Me.lbV1.Name = "lbV1"
-        Me.lbV1.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
-        Me.lbV1.Size = New System.Drawing.Size(150, 35)
-        Me.lbV1.TabIndex = 20
-        Me.lbV1.Text = "0"
-        Me.lbV1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lbT1
-        '
-        Me.lbT1.BackColor = System.Drawing.Color.Gainsboro
-        Me.lbT1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.lbT1.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbT1.Location = New System.Drawing.Point(670, 2)
-        Me.lbT1.Name = "lbT1"
-        Me.lbT1.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
-        Me.lbT1.Size = New System.Drawing.Size(90, 35)
-        Me.lbT1.TabIndex = 21
-        Me.lbT1.Text = "Resultat"
-        Me.lbT1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'ChoseCompany
         '
@@ -1390,6 +1436,7 @@ Partial Class ChoseCompany
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
+        Me.Panel21.ResumeLayout(False)
         Me.Panel10.ResumeLayout(False)
         Me.Panel20.ResumeLayout(False)
         Me.Panel9.ResumeLayout(False)
@@ -1403,12 +1450,12 @@ Partial Class ChoseCompany
         Me.Panel15.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage5.ResumeLayout(False)
+        Me.TabPage5.PerformLayout()
         Me.Panel17.ResumeLayout(False)
         Me.Panel18.ResumeLayout(False)
         Me.Panel19.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        Me.Panel21.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1505,4 +1552,7 @@ Partial Class ChoseCompany
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents lbV1 As System.Windows.Forms.Label
     Friend WithEvents lbT1 As System.Windows.Forms.Label
+    Friend WithEvents Button17 As System.Windows.Forms.Button
+    Friend WithEvents Button18 As System.Windows.Forms.Button
+    Friend WithEvents cbTvaDtls As System.Windows.Forms.CheckBox
 End Class

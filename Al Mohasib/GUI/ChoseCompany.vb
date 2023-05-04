@@ -96,8 +96,8 @@
             If arid > 0 Then params.Add(tb_D & ".arid =", arid)
 
             dt_in = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".bonid) INNER JOIN Depot ON " & tb_D & ".depot = Depot.dpid)",
-                        {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".cid, " & "(" & tb_D & ".qte * " & tb_D & ".price * -1) AS VLR, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
-                              tb_D & ".price AS Prix, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_ENTREE"}, params)
+                        {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".cid, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
+                              tb_D & ".price AS Prix, " & "( 0 *  (" & tb_D & ".price - " & tb_D & ".bprice)) AS Prft, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_ENTREE"}, params)
 
             params.Clear()
 
@@ -113,8 +113,8 @@
 
             If arid > 0 Then params.Add(tb_D & ".arid =", arid)
             dt_Out = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".fctid = " & tb & ".fctid) INNER JOIN Depot ON " & tb_D & ".depot = Depot.dpid)",
-                        {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".cid, " & "(" & tb_D & ".qte * " & tb_D & ".price) AS VLR, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
-                              tb_D & ".price AS Prix, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_SORTIE"}, params)
+                        {tb & ".date," & tb & ".name AS Client, " & tb_D & ".fctid, " & tb_D & ".cid, " & tb_D & ".name, " & tb_D & ".unit AS Unite, " &
+                              tb_D & ".price AS Prix, " & "(" & tb_D & ".qte * (" & tb_D & ".price - " & tb_D & ".bprice)) AS Prft, " & tb_D & ".depot, Depot.name AS Entrepot," & tb_D & ".qte AS Qte_SORTIE"}, params)
 
 
         End Using
@@ -197,7 +197,7 @@
 
 
         dg_D.Columns(3).Visible = False
-        dg_D.Columns(4).Visible = False
+        ' dg_D.Columns(4).Visible = False
 
         dg_D.Sort(dg_D.Columns(0), System.ComponentModel.ListSortDirection.Ascending)
 
@@ -221,7 +221,7 @@
         End Try
 
         Try
-            sum = Convert.ToDouble(dt.Compute("SUM(VLR)", String.Empty))
+            sum = Convert.ToDouble(dt.Compute("SUM(Prft)", String.Empty))
             lbV1.Text = sum.ToString("n2") & " dhs"
             lbV1.Visible = True
             lbT1.Visible = True
@@ -1013,12 +1013,10 @@
         t_tva = 0
 
         Dim dt2 = New DateTime(dtR2.Value.Year, dtR2.Value.Month, dtR2.Value.Day, 23, 59, 0, 0)
-        Dim dt1 = New DateTime(dtR1.Value.Year, dtR1.Value.Month, dtR1.Value.Day, 0, 1, 0, 0)
+        Dim dt1 = New DateTime(dtR1.Value.AddDays(-1).Year, dtR1.Value.AddDays(-1).Month, dtR1.Value.AddDays(-1).Day, 23, 59, 0, 0)
         Dim _dt As New DataTable
 
         STR_TITLE = "Archive (Ventes) " & txtR.text & " - du " & dte1.Value.ToString("dd-MM-yy") & " Au " & dte2.Value.ToString("dd-MM-yy")
-
-
 
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             Dim params As New Dictionary(Of String, Object)
@@ -1045,7 +1043,6 @@
             '            {tb & ".clid AS CodeClient, client.name, " & tb & ".date, " & tb & ".total, SUM(" & tb_F & ".avance) AS Regl, " &
             '               " SUM(" & tb_F & ".tva) AS Tva, " & tb & ".mode"}, )
             _dt = a.SelectDataTableSymbols(tb, {"*"}, params)
-
 
             _dt.Columns.Add("Designation", GetType(String))
             _dt.Columns.Add("Regl.", GetType(Double))
@@ -1196,5 +1193,221 @@
                 txtTrCat.text = ""
             End If
         End If
+    End Sub
+
+    Private Sub Button17_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button17.Click
+
+        Label6.Text = "Total"
+        Label7.Text = "Regl."
+        t_tva = 0
+
+        Dim dt2 = New DateTime(dtR2.Value.Year, dtR2.Value.Month, dtR2.Value.Day, 23, 59, 0, 0)
+        Dim dt1 = New DateTime(dtR1.Value.AddDays(-1).Year, dtR1.Value.AddDays(-1).Month, dtR1.Value.AddDays(-1).Day, 23, 59, 0, 0)
+        Dim _dt As New DataTable
+
+        STR_TITLE = "Archive (Ventes) " & txtR.text & " - du " & dte1.Value.ToString("dd-MM-yy") & " Au " & dte2.Value.ToString("dd-MM-yy")
+
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+            Dim tb As String = "facture_liste"
+            Dim tb_F As String = "facture"
+            Dim t_av As Double = 0
+            t_tva = 0
+            Dim cid As Integer = 0
+
+            Try
+                If txtR.text.Contains("|") = True And
+                               IsNumeric(txtR.text.Trim.Split("|")(1)) Then
+                    cid = txtR.text.Trim.Split("|")(1)
+                End If
+            Catch ex As Exception
+            End Try
+
+            params.Add("date >", dt1)
+            params.Add("date <", dt2)
+            If cid > 0 Then params.Add("clid =", cid)
+
+            _dt = a.SelectDataTableSymbols(tb, {"*"}, params)
+
+            _dt.Columns.Add("Designation", GetType(String))
+            _dt.Columns.Add("Regl.", GetType(Double))
+            _dt.Columns.Add("ICE", GetType(String))
+            _dt.Columns.Add("Tva_20", GetType(String))
+            _dt.Columns.Add("Tva_14", GetType(String))
+            _dt.Columns.Add("Tva_10", GetType(String))
+            _dt.Columns.Add("Tva_7", GetType(String))
+            _dt.Columns.Add("EXO", GetType(String))
+
+            Try
+                Dim T20 As Double = 0
+                Dim T14 As Double = 0
+                Dim T10 As Double = 0
+                Dim T7 As Double = 0
+                Dim EXO As Double = 0
+
+                For i As Integer = 0 To _dt.Rows.Count - 1
+                    Dim fid As Integer = _dt.Rows(i).Item(0)
+                    params.Clear()
+                    params.Add("Clid", _dt.Rows(i).Item("clid"))
+                    Try
+                        _dt.Rows(i).Item("Designation") = a.SelectByScalar("Client", "name", params)
+                    Catch ex As Exception
+                    End Try
+                    Dim ice As String = "-"
+                    Try
+                        ice = a.SelectByScalar("Client", "Adress", params)
+                        ice = ice.ToString.Split("*")(2)
+                    Catch ex As Exception
+                    End Try
+                    _dt.Rows(i).Item("ICE") = ice
+
+                    params.Clear()
+                    params.Add("beInFacture", fid)
+
+                    If CBool(_dt.Rows(i).Item(5)) Then
+                        _dt.Rows(i).Item("Regl.") = _dt.Rows(i).Item(7)
+                        t_av += _dt.Rows(i).Item(7)
+                    Else
+                        Try
+                            Dim avv As Double = a.SelectByScalar(tb_F, "SUM(avance)", params)
+                            _dt.Rows(i).Item("Regl.") = avv
+                            t_av += avv
+                        Catch ex As Exception
+                        End Try
+                    End If
+                    '///////////////////////////////////////////////////////////////////////////////
+                    'TVA'
+                    '/////////////////////////////////////////////////////////////////////////////////////
+                    params.Clear()
+
+                    tb = "facture_liste"
+                    tb_F = "facture"
+                    Dim tb_D As String = "detailsfacture"
+
+                    params.Add(tb_F & ".beInFacture = ", fid)
+
+                    Dim ddt = a.SelectDataTableSymbols("(" & tb_F & " INNER JOIN " & tb_D & " ON " & tb_F & ".fctid = " & tb_D & ".fctid)",
+                                {tb_D & ".qte, " & tb_D & ".price, " & tb_D & ".tva "}, params)
+                    params.Clear()
+
+                    If ddt.Rows.Count > 0 Then
+
+                        Dim _t20 As Double = 0
+                        Dim _t14 As Double = 0
+                        Dim _t10 As Double = 0
+                        Dim _t7 As Double = 0
+                        Dim _exo As Double = 0
+
+                        For t As Integer = 0 To ddt.Rows.Count - 1
+                            Dim tv = DblValue(ddt, "tva", t)
+
+                            If tv = 20 Then
+                                _t20 += DblValue(ddt, "price", t) * DblValue(ddt, "qte", t)
+                            ElseIf tv = 14 Then
+                                _t14 += DblValue(ddt, "price", t) * DblValue(ddt, "qte", t)
+                            ElseIf tv = 10 Then
+                                _t10 += DblValue(ddt, "price", t) * DblValue(ddt, "qte", t)
+                            ElseIf tv = 7 Then
+                                _t7 += DblValue(ddt, "price", t) * DblValue(ddt, "qte", t)
+                            ElseIf tv = 0 Then
+                                _exo += DblValue(ddt, "price", t) * DblValue(ddt, "qte", t)
+                            End If
+                        Next
+
+                        If cbTvaDtls.Checked = False Then
+                            _dt.Rows(i).Item("Tva_20") = _t20
+                            _dt.Rows(i).Item("Tva_14") = _t14
+                            _dt.Rows(i).Item("Tva_10") = _t10
+                            _dt.Rows(i).Item("Tva_7") = _t7
+                            _dt.Rows(i).Item("EXO") = _exo
+                        Else
+
+                            _dt.Rows(i).Item("Tva_20") = _t20 & "[" & (_t20 * 20 / 120).ToString("N2") & "]"
+                            _dt.Rows(i).Item("Tva_14") = _t14 & "[" & (_t14 * 14 / 114).ToString("N2") & "]"
+                            _dt.Rows(i).Item("Tva_10") = _t10 & "[" & (_t10 * 10 / 110).ToString("N2") & "]"
+                            _dt.Rows(i).Item("Tva_7") = _t7 & "[" & (_t7 * 7 / 107).ToString("N2") & "]"
+                            _dt.Rows(i).Item("EXO") = _exo & "[0]"
+                        End If
+
+
+                        T20 += _t20
+                        T14 += _t14
+                        T10 += _t10
+                        T7 += _t7
+                        EXO += _exo
+                    End If
+
+                    'Try
+                    '    Dim avv As Double = a.SelectByScalar(tb_F, "SUM(Tva)", params)
+                    '    _dt.Rows(i).Item("Tva") = avv
+                    '    t_tva += avv
+                    'Catch ex As Exception
+                    'End Try
+                Next
+
+                Try
+                    Dim sum As Double = Convert.ToDouble(_dt.Compute("SUM(total)", String.Empty))
+                    lbQteIn.Text = String.Format("{0:n}", CDec(sum))
+
+                Catch ex As Exception
+                    Try
+                        Dim SM = _dt.AsEnumerable().Aggregate(0, Function(n, r) PriceField(r) + n)
+                        lbQteIn.Text = String.Format("{0:n}", CDec(SM))
+                    Catch exe As Exception
+                    End Try
+                End Try
+
+
+                _dt.Rows.Add(0, 0, 0, Now.Date, 0, 0, "=====", 0, "=====", 0, "=====")
+                _dt.Rows.Add(-1, 0, 0, Now.Date, 0, 0, "Total : ", lbQteIn.Text, " Total : ", 0, "=====",
+                                 T20.ToString("N2"), T14.ToString("N2"), T10.ToString("N2"),
+                                   T7.ToString("N2"), EXO.ToString("N2"))
+                _dt.Rows.Add(-2, 0, 0, Now.Date, 0, 0, "=====", 0, "=====", 0, "=====")
+                _dt.Rows.Add(-3, 0, 0, Now.Date, 0, 0, "TVA : ", 0, " TVA : ", 0, "=====",
+                                 (T20 * 20 / 120).ToString("N2"), (T14 * 14 / 114).ToString("N2"), (T10 * 10 / 110).ToString("N2"),
+                                   (T7 * 7 / 107).ToString("N2"), 0)
+
+                lbT1.Visible = True
+                lbV1.Visible = True
+                lbT1.Text = "T. Tva :"
+                lbV1.Text = (((T20 * 20) / 120 + (T14 * 14) / 114 + (T10 * 10) / 110 + (T7 * 7) / 107)).ToString("N2")
+            Catch ex As Exception
+            End Try
+
+
+            _dt.Columns(0).ColumnName = "N°/ID"
+            _dt.Columns(2).ColumnName = "Code Client"
+            _dt.Columns(6).ColumnName = "Md Pmnt"
+
+            _dt.Columns(3).SetOrdinal(1)
+            _dt.Columns(8).SetOrdinal(4)
+            _dt.Columns(10).SetOrdinal(5)
+
+            dg_D.DataSource = Nothing
+            dg_D.DataSource = _dt
+            ' dg_D.Columns(1).Visible = False
+            dg_D.Columns(2).Visible = False
+            dg_D.Columns(7).Visible = False
+            dg_D.Columns(6).Visible = False
+
+            dg_D.Rows(dg_D.Rows.Count - 3).DefaultCellStyle.BackColor = Color.Bisque
+            dg_D.Rows(dg_D.Rows.Count - 1).DefaultCellStyle.BackColor = Color.LightGreen
+            '  dg_D.Columns(8).DisplayIndex = 1
+
+          
+
+
+            Try
+                lbQteOut.Text = String.Format("{0:n}", CDec(t_av))
+            Catch ex As Exception
+            End Try
+
+            lbLnbr.Text = dg_D.Rows.Count & " Lines"
+
+        End Using
+    End Sub
+
+    Private Sub Button18_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button18.Click
+        SaveExcel(dg_D, "Factures", "Rapport Factures", dte1.Value.ToString("dd/MM/yyyy") & " au " & dte2.Value.ToString("dd/MM/yyyy"))
     End Sub
 End Class
