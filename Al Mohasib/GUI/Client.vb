@@ -7,6 +7,13 @@ Public Class Client
             DataGridView1.DataSource = a.SelectDataTable("Client", {"*"})
         End Using
 
+        If Form1.cbCafeTable.Checked Then
+            lbTp.Text = "Zone"
+            GroupBox2.Text = "LISTE DES TABLES"
+        End If
+
+
+
         If Form1.admin = False Then
             DataGridView1.Columns(6).Visible = False
             btAllow.Visible = False
@@ -150,6 +157,9 @@ Public Class Client
         If txttp.text.Trim = "" Or Not IsNumeric(txttp.text) Then txttp.text = 0
 
         Dim tp As String = txtcrd.text & "|" & txttp.text
+
+        If Form1.cbCafeTable.Checked Then tp = txttp.text
+
 
         If txtad.text = "" Then txtad.text = "-"
         If txtIce.text = "" Then txtIce.text = "-"

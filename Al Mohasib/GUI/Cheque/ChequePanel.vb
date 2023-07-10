@@ -577,6 +577,8 @@ Public Class ChequePanel
             Dim dt As New DataTable
             order.Add(_pid, "DESC")
             params.Add("desig <> ", "@F")
+            params.Add("way NOT LIKE ", "%CACHE%")
+            params.Add("name NOT LIKE ", "@%")
 
             If plBlocSearch.Controls.Count = 0 Then
                 '   dt = c.SelectDataTableWithSyntaxe(ds.tb_P, "", {"*"}, params, order, "LIMIT 50")
@@ -618,6 +620,7 @@ Public Class ChequePanel
             Next
 
             params.Add(" desig <> ", "@F")
+            params.Add("name NOT LIKE ", "@%")
 
             Dim order As New Dictionary(Of String, String)
             order.Add(_pid, "DESC")

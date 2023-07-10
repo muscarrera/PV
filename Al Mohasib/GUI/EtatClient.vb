@@ -100,10 +100,10 @@
             If Not IsNothing(dt) Then
                 If dt.Rows.Count > 0 Then
                     Dim fctid_str = "fctid"
-                    '  If isSell = False Then fctid_str = "bonid"
+                    If isSell = False Then fctid_str = "bonid"
 
                     For i As Integer = 0 To dt.Rows.Count - 1
-                        Dim fctId As Integer = IntValue(dt, fctid_str, i)
+                        Dim fctId As Integer = IntValue(dt, "fctid", i)
                         If ls.Contains(fctId) = False Then
                             params.Clear()
                             params.Add(fctid_str, fctId)

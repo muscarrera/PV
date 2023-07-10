@@ -28,7 +28,7 @@ Public Class SubClass
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             Dim ctgdt = a.SelectDataTable("category", {"*"})
 
-            Form1.FlowLayoutPanel1.Controls.Clear()
+            Form1.FL.Controls.Clear()
             Dim rnd As New Random
 
             For t As Integer = 0 To ctgdt.Rows.Count - 1
@@ -59,7 +59,7 @@ Public Class SubClass
                 P.Visible = True
                 'P.Dock = DockStyle.Right
                 'P.BringToFront()
-                Form1.FlowLayoutPanel1.Controls.Add(P)
+                Form1.FL.Controls.Add(P)
 
 
                 Dim params As New Dictionary(Of String, Object)
@@ -154,13 +154,15 @@ Public Class SubClass
 
     Public Sub FillGroupes(ByVal F As Boolean)
 
+        Form1.PanelBody.Visible = False
+
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-             
+
             Dim params As New Dictionary(Of String, Object)
             params.Add("pr", 0)
             Dim ctgdt = a.SelectDataTable("category", {"*"}, params)
 
-            Form1.FlowLayoutPanel1.Controls.Clear()
+            Form1.FL.Controls.Clear()
 
             If F Then Form1.FLPStock.Controls.Clear()
 
@@ -219,13 +221,13 @@ Public Class SubClass
 
                 lb.ForeColor = Color.DarkGray
                 lb.Text = "لا يوجد اي سجل"
-                Form1.FlowLayoutPanel1.Controls.Add(lb)
+                Form1.FL.Controls.Add(lb)
             Else
                 Dim myLast = Form1.indexLastArticle
                 'Fill Articles
                 FillDataSource_Articles(artdt, 0, artdt.Rows.Count - 1, myLast)
             End If
-        
+
         End Using
 
         If Form1.chbcb.Checked Then
@@ -242,7 +244,7 @@ Public Class SubClass
 
             If Form1.ListCadeau.Count = 0 Then Exit Sub
 
-            Form1.FlowLayoutPanel1.Controls.Clear()
+            Form1.FL.Controls.Clear()
 
             For Each __g In Form1.ListCadeau
                 For Each cd In __g.startList
@@ -259,7 +261,7 @@ Public Class SubClass
                     bt.Width = 220 'Form1.txtlongerbt.Text
                     bt.Height = 120 'Form1.txtlargebt.Text
                     AddHandler bt.Choosed, AddressOf art_Cadeaux_click
-                    Form1.FlowLayoutPanel1.Controls.Add(bt)
+                    Form1.FL.Controls.Add(bt)
 
                     Try
                         If Form1.RPl.FerstPointToWin >= cd.point Then Form1.RPl.FerstPointToWin = cd.point
@@ -269,7 +271,7 @@ Public Class SubClass
 
                 Next
             Next
-            Form1.FlowLayoutPanel1.Visible = True
+            Form1.FL.Visible = True
 
         End Using
 
@@ -286,7 +288,7 @@ Public Class SubClass
     Public Sub FillGrStock(ByVal _ctgdt As DataTable)
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             Dim ctgdt = a.SelectDataTable("category", {"*"})
-             
+
             For i As Integer = 0 To ctgdt.Rows.Count - 1
                 Dim bt As New Button
 
@@ -335,7 +337,7 @@ Public Class SubClass
             Exit Sub
         End If
 
-        Form1.FlowLayoutPanel1.Controls.Clear()
+        Form1.FL.Controls.Clear()
         Try
 
 
@@ -389,7 +391,7 @@ Public Class SubClass
 
                     lb.ForeColor = Color.DarkGray
                     lb.Text = "لا يوجد اي سجل"
-                    Form1.FlowLayoutPanel1.Controls.Add(lb)
+                    Form1.FL.Controls.Add(lb)
 
                 Else
                     Dim myLast = Form1.indexLastArticle
@@ -412,11 +414,11 @@ Public Class SubClass
 
             If Form1.cbPvArticle.Checked Then
                 Dim pv As New PvArticle
-                pv = Form1.FlowLayoutPanel1.Controls(0)
+                pv = Form1.FL.Controls(0)
                 bt.Tag = pv.DataSource
 
             Else
-                bt = Form1.FlowLayoutPanel1.Controls(0)
+                bt = Form1.FL.Controls(0)
             End If
 
 
@@ -463,12 +465,13 @@ Public Class SubClass
                     bt.Tag = artdt.Rows(0)
 
                     art_click(bt, Nothing)
+                    Form1.FocusedControle = Nothing '''''''Arrows
                 ElseIf artdt.Rows.Count > 1 Then
-                    Form1.FlowLayoutPanel1.Controls.Clear()
+                    Form1.FL.Controls.Clear()
                     Dim myLast = Form1.indexLastArticle
                     FillDataSource_Articles(artdt, 0, artdt.Rows.Count - 1, myLast)
                 Else
-                    Form1.FlowLayoutPanel1.Controls.Clear()
+                    Form1.FL.Controls.Clear()
                     Dim lb As New Label
 
                     Console.Beep()
@@ -481,7 +484,8 @@ Public Class SubClass
                     lb.Font = New Font("Arial", 14, FontStyle.Bold)
                     lb.ForeColor = Color.Red
                     lb.AutoSize = True
-                    Form1.FlowLayoutPanel1.Controls.Add(lb)
+                    Form1.FL.Controls.Add(lb)
+                    Form1.FocusedControle = Nothing '''''''Arrows
                 End If
             End Using
         Catch ex As Exception
@@ -521,7 +525,7 @@ Public Class SubClass
                     ' sell function
                     art_click(bt, Nothing)
                 ElseIf artdt.Rows.Count > 1 Then
-                    Form1.FlowLayoutPanel1.Controls.Clear()
+                    Form1.FL.Controls.Clear()
                     Form1.RPl.CP.Value = qte
 
                     For i As Integer = 0 To artdt.Rows.Count - 1
@@ -552,14 +556,14 @@ Public Class SubClass
                         End Try
                         bt.Width = Form1.txtlongerbt.Text
                         bt.Height = Form1.txtlargebt.Text
-                        Form1.FlowLayoutPanel1.Controls.Add(bt)
+                        Form1.FL.Controls.Add(bt)
                         'AddHandler bt.Click, AddressOf art_click
                         AddHandler bt.Click, AddressOf art_click
 
                         If i = 9 Then Exit For
                     Next
                 Else
-                    Form1.FlowLayoutPanel1.Controls.Clear()
+                    Form1.FL.Controls.Clear()
                     Dim lb As New Label
 
 
@@ -572,7 +576,7 @@ Public Class SubClass
                     lb.Font = New Font("Arial", 14, FontStyle.Bold)
                     lb.ForeColor = Color.Red
                     lb.AutoSize = True
-                    Form1.FlowLayoutPanel1.Controls.Add(lb)
+                    Form1.FL.Controls.Add(lb)
                 End If
             End Using
         Catch ex As Exception
@@ -592,7 +596,7 @@ Public Class SubClass
     Public Sub ctg_click(ByVal sender As System.Object, ByVal e As EventArgs)
 
         Dim bt2 As Button = sender
-        Form1.FlowLayoutPanel1.Controls.Clear()
+        Form1.FL.Controls.Clear()
 
         If bt2.Tag = -300 Then
             If Form1.RPl.ClId > 0 Then FillMonGroupe(Form1.RPl.ClId)
@@ -608,14 +612,14 @@ Public Class SubClass
 
         Form1.btGoBack.Tag = bt2.Tag
         Try
-                Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                 Dim params As New Dictionary(Of String, Object)
                 Dim artdt As DataTable
 
                 '''''''''''''''''''
                 params.Add("cid = ", bt2.Tag)
                 artdt = a.SelectDataTableSymbols("article", {"*"}, params)
-                Form1.FlowLayoutPanel1.Tag = bt2.Tag
+                Form1.FL.Tag = bt2.Tag
 
 
                 If artdt.Rows.Count = 0 Then
@@ -623,7 +627,7 @@ Public Class SubClass
 
                     lb.ForeColor = Color.DarkGray
                     lb.Text = "لا يوجد اي سجل"
-                    Form1.FlowLayoutPanel1.Controls.Add(lb)
+                    Form1.FL.Controls.Add(lb)
                 Else
                     Dim myLast = Form1.indexLastArticle
                     'Fill Articles
@@ -647,7 +651,7 @@ Public Class SubClass
             Dim fn As Font = New Font(Form1.txtfname.Text, CInt(Form1.txtfntsize.Text), FontStyle.Bold)
 
             Dim bt2 As Button = sender
-            Form1.FlowLayoutPanel1.Controls.Clear()
+            Form1.FL.Controls.Clear()
             Dim artdt = bt2.Tag
 
             '''''''''''''''''''''''''''''''''''' go back
@@ -660,7 +664,7 @@ Public Class SubClass
                 pv.Width = Form1.txtlongerbt.Text
                 pv.Height = Form1.txtlargebt.Text
                 pv.fnt = fn
-                Form1.FlowLayoutPanel1.Controls.Add(pv)
+                Form1.FL.Controls.Add(pv)
                 AddHandler pv.Choosed, AddressOf ctg_BACK
             End If
 
@@ -687,7 +691,7 @@ Public Class SubClass
             Dim fn As Font = New Font(Form1.txtfname.Text, CInt(Form1.txtfntsize.Text), FontStyle.Bold)
 
             Dim bt2 As Button = sender
-            Form1.FlowLayoutPanel1.Controls.Clear()
+            Form1.FL.Controls.Clear()
             Dim artdt = bt2.Tag
 
             Dim s As Integer = Form1.indexStartArticle
@@ -702,7 +706,7 @@ Public Class SubClass
                 pv.Width = Form1.txtlongerbt.Text
                 pv.Height = Form1.txtlargebt.Text
                 pv.fnt = fn
-                Form1.FlowLayoutPanel1.Controls.Add(pv)
+                Form1.FL.Controls.Add(pv)
                 AddHandler pv.Choosed, AddressOf ctg_BACK
             End If
 
@@ -1050,7 +1054,7 @@ Public Class SubClass
         Form1.RPl.isUniqTva = Form1.CBTVA.Checked
 
         Dim tableName As String = Form1.TB_Bon
-     
+
 
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             Dim params As New Dictionary(Of String, Object)
@@ -1082,7 +1086,7 @@ Public Class SubClass
     Private Sub FillDataSource_Articles(ByVal artdt As DataTable, ByVal iStart As Integer, ByVal iEnd As Integer, ByVal myLast As Integer)
         Dim fn As Font = New Font(Form1.txtfname.Text, CInt(Form1.txtfntsize.Text), FontStyle.Bold)
         ' Form1.FlowLayoutPanel1.Visible = False
-        Form1.FlowLayoutPanel1.SuspendLayout()
+        Form1.FL.SuspendLayout()
 
         For i As Integer = iStart To iEnd
             If i = artdt.Rows.Count Then
@@ -1112,7 +1116,7 @@ Public Class SubClass
             End If
 
 
-
+            Form1.FocusedControle = Nothing
             ''''''''''''''''''''''''''''''''''''
             If Form1.cbPvArticle.Checked Then
                 Dim pv As New PvArticle
@@ -1121,7 +1125,7 @@ Public Class SubClass
                 pv.Width = Form1.txtlongerbt.Text
                 pv.Height = Form1.txtlargebt.Text
                 pv.fnt = fn
-                Form1.FlowLayoutPanel1.Controls.Add(pv)
+                Form1.FL.Controls.Add(pv)
                 AddHandler pv.Choosed, AddressOf art_click
                 AddHandler pv.MousseDown, AddressOf art_click_Mouse_Down
 
@@ -1175,13 +1179,13 @@ Public Class SubClass
 
                 bt.Width = Form1.txtlongerbt.Text
                 bt.Height = Form1.txtlargebt.Text
-                Form1.FlowLayoutPanel1.Controls.Add(bt)
+                Form1.FL.Controls.Add(bt)
                 AddHandler bt.Click, AddressOf art_click
                 AddHandler bt.MouseDown, AddressOf art_click_Mouse_Down
 
                 ''''''''''''''''''''''''''''''''''''''''''''''''''' list suivant
             End If
-          
+
             If i = myLast Then
                 Dim pv As New PvCat
                 pv.DataSource = artdt
@@ -1191,7 +1195,7 @@ Public Class SubClass
                 pv.Width = Form1.txtlongerbt.Text
                 pv.Height = Form1.txtlargebt.Text
                 pv.fnt = fn
-                Form1.FlowLayoutPanel1.Controls.Add(pv)
+                Form1.FL.Controls.Add(pv)
                 AddHandler pv.Choosed, AddressOf ctg_NEXT
 
                 Form1.indexStartArticle = myLast
@@ -1199,12 +1203,12 @@ Public Class SubClass
             End If
         Next
         ' Form1.FlowLayoutPanel1.Visible = True
-        Form1.FlowLayoutPanel1.ResumeLayout()
+        Form1.FL.ResumeLayout()
     End Sub
     Private Sub FillDataSource_Cats(ByVal ctgdt As DataTable, ByVal b As Boolean)
         Dim fn As Font = New Font(Form1.txtfname.Text, CInt(Form1.txtfntsize.Text), FontStyle.Bold)
 
-        Form1.FlowLayoutPanel1.Visible = False
+        Form1.FL.Visible = False
 
         'article pour client
         If Form1.cbArticleClient.Checked And b Then
@@ -1217,7 +1221,7 @@ Public Class SubClass
                 pv.fnt = fn
                 'Form1.FlowLayoutPanel1.Controls.Add(pv)
                 AddHandler pv.Choosed, AddressOf ctg_click
-                Form1.FlowLayoutPanel1.Controls.Add(pv)
+                Form1.FL.Controls.Add(pv)
 
                 Dim pv2 As New PvCat
                 pv2.CID = -500
@@ -1227,7 +1231,7 @@ Public Class SubClass
                 pv2.fnt = fn
                 'Form1.FlowLayoutPanel1.Controls.Add(pv)
                 AddHandler pv2.Choosed, AddressOf ctg_click
-                Form1.FlowLayoutPanel1.Controls.Add(pv2)
+                Form1.FL.Controls.Add(pv2)
             Else
                 Dim btM As New Button
                 btM.BackColor = Color.LightGoldenrodYellow
@@ -1237,7 +1241,7 @@ Public Class SubClass
                 btM.Width = Form1.txtlongerbt.Text
                 btM.Height = Form1.txtlargebt.Text
                 AddHandler btM.Click, AddressOf ctg_click
-                Form1.FlowLayoutPanel1.Controls.Add(btM)
+                Form1.FL.Controls.Add(btM)
 
                 Dim btc As New Button
                 btc.BackColor = Color.LightGoldenrodYellow
@@ -1247,7 +1251,7 @@ Public Class SubClass
                 btc.Width = Form1.txtlongerbt.Text
                 btc.Height = Form1.txtlargebt.Text
                 AddHandler btc.Click, AddressOf ctg_click
-                Form1.FlowLayoutPanel1.Controls.Add(btc)
+                Form1.FL.Controls.Add(btc)
             End If
         End If
 
@@ -1283,7 +1287,7 @@ Public Class SubClass
 
 
             Next
-            Form1.FlowLayoutPanel1.Controls.AddRange(pvs)
+            Form1.FL.Controls.AddRange(pvs)
         Else
             ''''''''''''''''''''''''''''''''''''''''''''''''''' list suivant
             Dim pvs(ctgdt.Rows.Count - 1) As Button
@@ -1329,10 +1333,10 @@ Public Class SubClass
                 pvs(i) = bt
 
             Next
-            Form1.FlowLayoutPanel1.Controls.AddRange(pvs)
+            Form1.FL.Controls.AddRange(pvs)
         End If
 
-        Form1.FlowLayoutPanel1.Visible = True
+        Form1.FL.Visible = True
 
     End Sub
     Public Sub FillDataSource_Bon(ByVal dt As DataTable, ByVal p As Panel)
@@ -1395,6 +1399,54 @@ Public Class SubClass
 
         FactureSelected(b, Nothing)
     End Sub
+    Public Sub AddDataSource_BonPatis(ByVal txt As String, ByVal p As Panel)
+        Dim str As String = txt.Remove(0, 3)
+        Dim bt As New Button
+        bt.Text = txt
+        bt.Tag = str
+         
+
+        If Form1.cbPvClient.Checked Then
+            Dim pv As New CBlock
+            pv.ID = str
+            pv.lb.Text = str
+            pv.Dock = DockStyle.Left
+            AddHandler pv.Choosed, AddressOf FactureSelected
+            AddHandler pv.Delete, AddressOf PvClient_DeleteBon
+            p.Controls.Add(pv)
+        Else
+            Dim rnd As New Random
+            Try
+                bt.Tag = str
+                bt.Text = txt
+            Catch ex As Exception
+            End Try
+
+            bt.BackColor = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255)) 'Color.DarkSlateGray
+            bt.FlatStyle = FlatStyle.Flat
+            bt.ForeColor = Color.White
+            bt.Font = New Font("Arial", 9, FontStyle.Bold)
+            bt.Dock = DockStyle.Left
+            bt.AutoSize = True
+            bt.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly
+            bt.TextAlign = ContentAlignment.MiddleLeft
+            AddHandler bt.Click, AddressOf FactureSelected
+
+            p.Controls.Add(bt)
+            'clear the recept liste
+
+
+
+            rnd = Nothing
+        End If
+         
+        'Form1.RPl.ClearItems()
+
+
+        FactureSelected(bt, Nothing)
+        bt = Nothing
+    End Sub
+
 
     Private Sub EditArticle(ByVal R As DataRow)
 
@@ -2834,15 +2886,21 @@ Public Class SubClass
                 End If
             Next 
         Else
-            For Each b As Button In pl.Controls
-                b.BackColor = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255)) 'Color.DarkSlateGray
-                b.ForeColor = Color.White
-            Next
-            bt.BackColor = Color.White
-            bt.ForeColor = Color.DarkSlateGray
-            fctid = bt.Tag
-            clientName = bt.Text
-            bt.SendToBack()
+            Try
+                For Each b As Button In pl.Controls
+                    b.BackColor = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255)) 'Color.DarkSlateGray
+                    b.ForeColor = Color.White
+                Next
+
+                bt.BackColor = Color.White
+                bt.ForeColor = Color.DarkSlateGray
+                fctid = bt.Tag
+                clientName = bt.Text
+                bt.SendToBack()
+            Catch ex As Exception
+
+            End Try
+
         End If
          
         Form1.lbListBon.Text = Form1.lbListBon.Text.Split("|")(0) & "  |  " & clientName
@@ -2933,7 +2991,440 @@ Public Class SubClass
 
             rnd = Nothing
     End Sub
-    
+
+    Public Sub FillTables()
+        Form1.PanelBody.Controls.Clear()
+
+        Dim rnd As New Random
+        Dim PL1 As New FlowLayoutPanel
+
+        PL1.Name = "PL1"
+        PL1.BackColor = Color.AliceBlue
+        PL1.Height = Form1.txtlargebt.Text + 10
+        Form1.PanelBody.Controls.Add(PL1)
+        PL1.Dock = DockStyle.Top
+        PL1.SendToBack()
+
+        Dim ARR As String() = {"Intérieur", "Extérieur", "Emporter"}
+        For I As Integer = 0 To 2
+            Dim bt As New Button
+            bt.Tag = I + 1
+            bt.Text = ARR(I)
+            bt.FlatStyle = FlatStyle.Flat
+            bt.ForeColor = Color.Black
+            bt.BackColor = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255))
+            bt.Font = New Font("Arial", 16, FontStyle.Bold)
+            bt.Dock = DockStyle.Left
+            bt.AutoSize = True
+            bt.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly
+            bt.TextAlign = ContentAlignment.MiddleCenter
+            bt.Width = Form1.txtlongerbt.Text
+            bt.Height = Form1.txtlargebt.Text
+
+            AddHandler bt.Click, AddressOf LoadTables
+            PL1.Controls.Add(bt)
+        Next
+
+        Dim PL2 As New FlowLayoutPanel
+
+        PL2.Name = "PL2"
+        PL2.AutoScroll = True
+        Form1.PanelBody.Controls.Add(PL2)
+        PL2.Dock = DockStyle.Fill
+        PL2.BringToFront()
+
+        LoadTables(PL1.Controls(0), Nothing)
+
+        rnd = Nothing
+        PL1 = Nothing
+        PL2 = Nothing
+    End Sub
+    Public Sub LoadTables(ByVal sender As Object, ByVal e As EventArgs)
+        Dim btt As Button = sender
+        Dim fpl As FlowLayoutPanel = Form1.PanelBody.Controls(0)
+
+        fpl.Controls.Clear()
+
+        Dim dt As DataTable = Nothing
+        Dim rnd As New Random
+
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+            params.Add("type", btt.Tag)
+
+            dt = c.SelectDataTable("Client", {"*"}, params)
+        End Using
+
+        If dt.Rows.Count > 0 Then
+            For i As Integer = 0 To dt.Rows.Count - 1
+
+                Dim bt As New Button
+                Dim cr As Color = Color.WhiteSmoke
+
+                If (i Mod 2) = 0 Then cr = Color.LightGray
+
+                Try
+                    bt.Tag = dt.Rows(i).Item(0) & "|" & dt.Rows(i).Item("CIN")
+                    bt.Text = dt.Rows(i).Item("name")
+                Catch ex As Exception
+
+                End Try
+
+                bt.FlatStyle = FlatStyle.Flat
+                bt.ForeColor = Color.Black
+                If dt.Rows(i).Item("CIN") <> 0 Then
+                    cr = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255)) 'Color.DarkSlateGray
+                    bt.Image = Form1.Button70.Image
+                    bt.ImageAlign = ContentAlignment.BottomCenter
+                End If
+                bt.BackColor = cr
+
+                bt.Name = "bt" & CStr(rnd.Next)
+                bt.TextAlign = ContentAlignment.BottomCenter
+
+                bt.Font = New Font("Arial", 16, FontStyle.Bold)
+                bt.Dock = DockStyle.Left
+                bt.AutoSize = True
+                bt.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly
+                bt.TextAlign = ContentAlignment.MiddleCenter
+                bt.Width = Form1.txtlongerbt.Text
+                bt.Height = Form1.txtlargebt.Text
+
+
+                AddHandler bt.Click, AddressOf TableSelected
+                fpl.Controls.Add(bt)
+
+                bt = Nothing
+            Next
+        End If
+        rnd = Nothing
+
+        Form1.txtSearch.Text = ""
+        Form1.txtSearch.Focus()
+    End Sub
+    Public Sub TableSelected(ByVal sender As Object, ByVal e As EventArgs)
+        Dim btt As Button = sender
+        Dim pl As Panel = Form1.plright
+        Dim rnd As New Random
+        Dim tableName As String = "Facture"
+        Dim fld As String = "fctid"
+        'If Form1.btswitsh.Tag = 0 Then
+        '    tableName = "Bon"
+        '    fld = "bonid"
+        'End If
+
+        Dim id As Integer = btt.Tag.ToString.Split("|")(1)
+        Dim clid As Integer = btt.Tag.ToString.Split("|")(0)
+
+        If id = 0 Then
+            id = TableNewFacture(clid, btt.Text)
+            If id = 0 Then Exit Sub
+            btt.Tag = clid & "|" & id
+        End If
+
+        Dim bt As New Button
+        Form1.plright.Controls.Clear()
+        bt.BackColor = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255)) 'Color.DarkSlateGray
+        bt.FlatStyle = FlatStyle.Flat
+        bt.ForeColor = Color.White
+
+
+        bt.Name = "bt" & CStr(rnd.Next)
+        bt.TextAlign = ContentAlignment.BottomCenter
+
+        bt.Font = New Font("Arial", 12, FontStyle.Bold)
+        bt.Dock = DockStyle.Left
+        bt.AutoSize = True
+        bt.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowOnly
+        bt.TextAlign = ContentAlignment.MiddleCenter
+        bt.Width = Form1.txtlongerbt.Text
+        bt.Height = Form1.txtlargebt.Text
+        bt.Tag = btt.Tag
+
+        'clear the recept liste
+        Form1.RPl.ClearItems()
+        Form1.RPl.FctId = id
+        Form1.RPl.ClId = clid
+        Form1.RPl.isSell = CBool(Form1.btswitsh.Tag)
+        Form1.RPl.EditMode = False
+
+        'GET AVANCE OF THIS FACTURE
+        'fill the recept items
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+            params.Add(fld, id)
+            Dim dt = c.SelectDataTable(tableName, {"*"}, params)
+
+            If dt.Rows.Count > 0 Then
+                Form1.RPl.Avance = dt.Rows(0).Item("avance")
+                Form1.RPl.ClId = dt.Rows(0).Item("clid")
+                Form1.RPl.ClientName = dt.Rows(0).Item("name")
+
+                bt.Text = dt.Rows(0).Item("name")
+                AddHandler bt.Click, AddressOf TableChanged
+                Form1.plright.Controls.Add(bt)
+
+                Form1.RPl.Num = 0
+                If Form1.chbsell.Checked Then Form1.RPl.Num = dt.Rows(0).Item("num")
+                Try
+                    Form1.RPl.ClientAdresse = dt.Rows(0).Item("adresse")
+                    Form1.RPl.bl = dt.Rows(0).Item("bl")
+                Catch ex As Exception
+                    Form1.RPl.ClientAdresse = ""
+                End Try
+
+                Try
+                    Form1.RPl.Remise = dt.Rows(0).Item("remise")
+                Catch ex As Exception
+                    Form1.RPl.Remise = "0"
+                End Try
+
+            End If
+        End Using
+
+        tableName = "DetailsFacture"
+
+
+        'fill the recept items
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+            Dim params As New Dictionary(Of String, Object)
+            params.Add("fctid", id)
+            Dim dt = c.SelectDataTable(tableName, {"*"}, params)
+
+            If dt.Rows.Count > 0 Then
+                Form1.RPl.AddItems(dt, True)
+            End If
+        End Using
+
+        FillGroupes(True)
+        Form1.txtSearch.Text = ""
+        Form1.txtSearch.Focus()
+        rnd = Nothing
+    End Sub
+    Private Sub TableChanged(ByVal sender As Object, ByVal e As EventArgs)
+        Dim btt As Button = sender
+        Dim tableName As String = "Facture"
+
+        Dim id As Integer = btt.Tag.ToString.Split("|")(1)
+        Dim clid As Integer = btt.Tag.ToString.Split("|")(0)
+
+        Dim newClid As Integer = 0
+        Dim newTable As String = ""
+
+        If MsgBox("voulez vous changer le numéro du table", vbYesNo) = MsgBoxResult.No Then Exit Sub
+
+
+        Dim isSell As Boolean = True
+        Dim chs As New ChoseClient
+        chs.isSell = isSell
+        If chs.ShowDialog = Windows.Forms.DialogResult.OK Then
+            newTable = chs.clientName
+            newClid = chs.cid
+            Dim params As New Dictionary(Of String, Object)
+            Dim where As New Dictionary(Of String, Object)
+
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+
+                params.Add("Clid", newClid)
+                Dim _id = c.SelectByScalar("Client", "CIN", params)
+
+                If _id <> 0 Then
+                    MsgBox("la table est déjà prise")
+                Else
+                    params.Clear()
+                    params.Add("CIN", 0)
+                    where.Add("Clid", clid)
+                    c.UpdateRecord("Client", params, where)
+
+                    params.Clear()
+                    where.Clear()
+
+                    params.Add("CIN", id)
+                    where.Add("Clid", newClid)
+                    c.UpdateRecord("Client", params, where)
+
+
+                    params.Clear()
+                    where.Clear()
+
+                    params.Add("clid", newClid)
+                    params.Add("name", newTable)
+                    where.Add("fctid", id)
+                    c.UpdateRecord("Facture", params, where)
+
+                    btt.Text = newTable
+                    btt.Tag = newClid & "|" & id
+                    Form1.RPl.ClId = newClid
+                    Form1.RPl.ClientName = newTable
+
+                End If
+            End Using
+            fillFactures(1)
+        End If
+
+    End Sub
+    Public Function TableNewFacture(ByVal Clid As Integer, ByVal name As String) As Integer
+        Try
+             Dim tableName As String = "Facture"
+
+            Dim cid As Integer = Clid
+            Dim clientname As String = name
+            Dim clientadesse As String = ""
+            Dim tp As String = 1
+            Dim num As String = ""
+            Dim fid As Integer = 0
+            Dim dte As Date = Date.Now
+
+
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                Dim params As New Dictionary(Of String, Object)
+                Dim where As New Dictionary(Of String, Object)
+
+                params.Add("clid", cid)
+                params.Add("name", clientname)
+                params.Add("total", 0)
+                params.Add("avance", 0)
+                params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
+                params.Add("admin", False)
+                params.Add("writer", CStr(Form1.adminName))
+                params.Add("tp", 1)
+                params.Add("payed", False)
+                params.Add("poid", 0)
+                params.Add("num", 0)
+                params.Add("tva", 0)
+                params.Add("adresse", clientadesse)
+                params.Add("bl", "---")
+                params.Add("remise", 0)
+                params.Add("beInFacture", 0)
+
+                fid = c.InsertRecord(tableName, params, True)
+
+                params.Clear()
+                params.Add("CIN", fid)
+                where.Add("Clid", cid)
+                c.UpdateRecord("Client", params, where)
+            End Using
+
+            Return fid
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return 0
+        End Try
+    End Function
+    Public Sub UpdatefactureTp(ByVal id As Integer)
+
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim params As New Dictionary(Of String, Object)
+            Dim where As New Dictionary(Of String, Object)
+
+
+            where.Add("fctid", id)
+            params.Add("tp", 2)
+
+            Try
+                c.UpdateRecord("Facture", params, where)
+
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+
+        End Using
+    End Sub
+    Public Function readFactureTp(ByVal id As Integer) As Integer
+
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim params As New Dictionary(Of String, Object)
+            Dim where As New Dictionary(Of String, Object)
+
+            where.Add("fctid", id)
+
+            Try
+                Return c.SelectByScalar("Facture", "tp", where)
+
+            Catch ex As Exception
+                Return 0
+            End Try
+        End Using
+
+        Return 0
+    End Function
+    Public Sub AddToCancels(ByVal R As Items)
+
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim price As Double = CDbl(R.Price)
+            If Form1.btswitsh.Tag = 0 Then price = CDbl(R.Bprice)
+            Dim params As New Dictionary(Of String, Object)
+
+            params.Add("fctid", getCancelsFctid())
+            params.Add("name", R.Name)
+            params.Add("bprice", CDbl(R.Bprice))
+            params.Add("price", price)
+            params.Add("unit", R.Unite)
+            params.Add("qte", CDbl(Form1.RPl.CP.Value))
+            params.Add("tva", 20)
+            params.Add("poid", CInt(R.Poid * 100))
+            params.Add("arid", CInt(R.arid))
+            params.Add("depot", CInt(R.Depot))
+            params.Add("code", "")
+            params.Add("cid", CStr(R.cid))
+
+            c.InsertRecord("DetailsBon", params, True)
+            params.Clear()
+
+            params.Add("id", CInt(R.id))
+            c.DeleteRecords("DetailsFacture", params)
+
+            Form1.RPl.DeleteItems()
+        End Using
+    End Sub
+    Public Function getCancelsFctid() As Integer
+        Dim id As Integer = 0
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+
+            Dim dt1 As Date = Date.Parse(Now.Date).AddDays(1)
+            Dim dt2 As Date = Date.Parse(Now.Date).AddDays(-1)
+
+
+            Dim params As New Dictionary(Of String, Object)
+
+            Try
+                params.Add("[date] < ", dt1)
+                params.Add("[date] > ", dt2)
+
+                Dim dt = c.SelectDataTableSymbols("Bon", {"*"}, params)
+
+                id = dt.Rows(0).Item(0)
+                If id > 0 Then Return id
+                params.Clear()
+            Catch ex As Exception
+                params.Clear()
+            End Try
+
+            params.Add("clid", 0)
+            params.Add("name", Form1.RPl.ClientName)
+            params.Add("total", 0)
+            params.Add("avance", 0)
+            params.Add("date", Format(Now.Date, "dd-MM-yyyy hh:mm"))
+            params.Add("admin", False)
+            params.Add("writer", CStr(Form1.adminName))
+            params.Add("tp", 1)
+            params.Add("payed", False)
+            params.Add("poid", 0)
+            params.Add("num", 0)
+            params.Add("tva", 0)
+            params.Add("adresse", "-")
+            params.Add("bl", "---")
+            params.Add("remise", 0)
+            params.Add("beInFacture", 0)
+
+            id = c.InsertRecord("Bon", params, True)
+        End Using
+        Return id
+    End Function
+
+
+
     Public Sub UpdateItem(ByVal i As Items, ByVal qte As Double, ByVal isS As Boolean, ByVal Field As String)
         Try
             If i.id > 0 Then
@@ -2956,7 +3447,6 @@ Public Class SubClass
 
                 End Using
             Else
-
                 Form1.RPl.ChangedItemsQte(i.id, qte, Field)
             End If
 
@@ -3581,6 +4071,7 @@ Public Class SubClass
             Form1.RPl.FctId = 0
             Form1.RPl.ClientName = 0
             Form1.RPl.ClId = 0
+            Form1.RPl.Dte = Form1.dte1.Value
             Form1.RPl.Avance = avance
             Form1.RPl.AddItems(table, isSell)
 

@@ -1410,4 +1410,8 @@
     Private Sub Button18_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button18.Click
         SaveExcel(dg_D, "Factures", "Rapport Factures", dte1.Value.ToString("dd/MM/yyyy") & " au " & dte2.Value.ToString("dd/MM/yyyy"))
     End Sub
+
+    Private Sub btInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btInfo.Click
+
+    End Sub
 End Class

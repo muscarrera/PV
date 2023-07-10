@@ -31,7 +31,7 @@ Partial Class PWDPicker
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Button23 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.pl = New System.Windows.Forms.Panel()
         Me.Button22 = New System.Windows.Forms.Button()
         Me.Button30 = New System.Windows.Forms.Button()
         Me.Panel3 = New System.Windows.Forms.Panel()
@@ -46,6 +46,10 @@ Partial Class PWDPicker
         Me.plClavier = New System.Windows.Forms.Panel()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.DGV1 = New System.Windows.Forms.DataGridView()
+        Me.AdidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AdminDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PwdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -55,10 +59,7 @@ Partial Class PWDPicker
         Me.ShapeContainer2 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.RectangleShape1 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.Panel7 = New System.Windows.Forms.Panel()
-        Me.PwdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AdminDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AdidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lbrf = New System.Windows.Forms.Label()
         Me.Panel3.SuspendLayout()
         Me.plClavier.SuspendLayout()
         Me.Panel6.SuspendLayout()
@@ -125,15 +126,15 @@ Partial Class PWDPicker
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "Utilisateur"
         '
-        'Panel5
+        'pl
         '
-        Me.Panel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel5.Location = New System.Drawing.Point(24, 44)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(48, 56)
-        Me.Panel5.TabIndex = 12
+        Me.pl.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.pl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.pl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pl.Location = New System.Drawing.Point(24, 44)
+        Me.pl.Name = "pl"
+        Me.pl.Size = New System.Drawing.Size(48, 56)
+        Me.pl.TabIndex = 12
         '
         'Button22
         '
@@ -351,14 +352,46 @@ Partial Class PWDPicker
         Me.DGV1.Size = New System.Drawing.Size(263, 418)
         Me.DGV1.TabIndex = 11
         '
+        'AdidDataGridViewTextBoxColumn
+        '
+        Me.AdidDataGridViewTextBoxColumn.DataPropertyName = "adid"
+        Me.AdidDataGridViewTextBoxColumn.HeaderText = "adid"
+        Me.AdidDataGridViewTextBoxColumn.Name = "AdidDataGridViewTextBoxColumn"
+        Me.AdidDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AdidDataGridViewTextBoxColumn.Visible = False
+        '
+        'NameDataGridViewTextBoxColumn
+        '
+        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
+        Me.NameDataGridViewTextBoxColumn.HeaderText = "Utilisateur"
+        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
+        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'AdminDataGridViewTextBoxColumn
+        '
+        Me.AdminDataGridViewTextBoxColumn.DataPropertyName = "admin"
+        Me.AdminDataGridViewTextBoxColumn.HeaderText = ""
+        Me.AdminDataGridViewTextBoxColumn.Name = "AdminDataGridViewTextBoxColumn"
+        Me.AdminDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AdminDataGridViewTextBoxColumn.Visible = False
+        '
+        'PwdDataGridViewTextBoxColumn
+        '
+        Me.PwdDataGridViewTextBoxColumn.DataPropertyName = "pwd"
+        Me.PwdDataGridViewTextBoxColumn.HeaderText = "pwd"
+        Me.PwdDataGridViewTextBoxColumn.Name = "PwdDataGridViewTextBoxColumn"
+        Me.PwdDataGridViewTextBoxColumn.ReadOnly = True
+        Me.PwdDataGridViewTextBoxColumn.Visible = False
+        '
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.WhiteSmoke
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.lbrf)
         Me.Panel2.Controls.Add(Me.btSlvMode)
         Me.Panel2.Controls.Add(Me.Label4)
         Me.Panel2.Controls.Add(Me.Label2)
-        Me.Panel2.Controls.Add(Me.Panel5)
+        Me.Panel2.Controls.Add(Me.pl)
         Me.Panel2.Controls.Add(Me.Panel3)
         Me.Panel2.Controls.Add(Me.Panel4)
         Me.Panel2.Controls.Add(Me.Label1)
@@ -386,7 +419,7 @@ Partial Class PWDPicker
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(23, 116)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(72, 13)
+        Me.Label1.Size = New System.Drawing.Size(71, 13)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Mot de Passe"
         '
@@ -461,36 +494,14 @@ Partial Class PWDPicker
         Me.Panel7.Size = New System.Drawing.Size(91, 68)
         Me.Panel7.TabIndex = 17
         '
-        'PwdDataGridViewTextBoxColumn
+        'lbrf
         '
-        Me.PwdDataGridViewTextBoxColumn.DataPropertyName = "pwd"
-        Me.PwdDataGridViewTextBoxColumn.HeaderText = "pwd"
-        Me.PwdDataGridViewTextBoxColumn.Name = "PwdDataGridViewTextBoxColumn"
-        Me.PwdDataGridViewTextBoxColumn.ReadOnly = True
-        Me.PwdDataGridViewTextBoxColumn.Visible = False
-        '
-        'AdminDataGridViewTextBoxColumn
-        '
-        Me.AdminDataGridViewTextBoxColumn.DataPropertyName = "admin"
-        Me.AdminDataGridViewTextBoxColumn.HeaderText = ""
-        Me.AdminDataGridViewTextBoxColumn.Name = "AdminDataGridViewTextBoxColumn"
-        Me.AdminDataGridViewTextBoxColumn.ReadOnly = True
-        Me.AdminDataGridViewTextBoxColumn.Visible = False
-        '
-        'NameDataGridViewTextBoxColumn
-        '
-        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
-        Me.NameDataGridViewTextBoxColumn.HeaderText = "Utilisateur"
-        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
-        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AdidDataGridViewTextBoxColumn
-        '
-        Me.AdidDataGridViewTextBoxColumn.DataPropertyName = "adid"
-        Me.AdidDataGridViewTextBoxColumn.HeaderText = "adid"
-        Me.AdidDataGridViewTextBoxColumn.Name = "AdidDataGridViewTextBoxColumn"
-        Me.AdidDataGridViewTextBoxColumn.ReadOnly = True
-        Me.AdidDataGridViewTextBoxColumn.Visible = False
+        Me.lbrf.AutoSize = True
+        Me.lbrf.Location = New System.Drawing.Point(130, 328)
+        Me.lbrf.Name = "lbrf"
+        Me.lbrf.Size = New System.Drawing.Size(11, 13)
+        Me.lbrf.TabIndex = 4
+        Me.lbrf.Text = "-"
         '
         'PWDPicker
         '
@@ -524,7 +535,7 @@ Partial Class PWDPicker
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Button23 As System.Windows.Forms.Button
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Panel5 As System.Windows.Forms.Panel
+    Friend WithEvents pl As System.Windows.Forms.Panel
     Friend WithEvents Button22 As System.Windows.Forms.Button
     Friend WithEvents Button30 As System.Windows.Forms.Button
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
@@ -552,4 +563,5 @@ Partial Class PWDPicker
     Friend WithEvents NameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AdminDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PwdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents lbrf As System.Windows.Forms.Label
 End Class

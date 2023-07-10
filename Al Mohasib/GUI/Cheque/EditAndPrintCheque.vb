@@ -18,7 +18,7 @@ Public Class EditAndPrintCheque
     Dim _bnk As String = ""
 
     Public _isSell As Boolean = False
-    Dim _obs As String
+    Dim _obs As String = ""
     Dim _pj As Integer
 
     Public Property Pid As Integer

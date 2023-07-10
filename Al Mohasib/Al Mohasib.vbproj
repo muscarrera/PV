@@ -567,6 +567,12 @@
     <Compile Include="GUI\PayRecept.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\PiecesCaisse.Designer.vb">
+      <DependentUpon>PiecesCaisse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\PiecesCaisse.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\PochetClient.Designer.vb">
       <DependentUpon>PochetClient.vb</DependentUpon>
     </Compile>
@@ -1046,6 +1052,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PayRecept.resx">
       <DependentUpon>PayRecept.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\PiecesCaisse.resx">
+      <DependentUpon>PiecesCaisse.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\PochetClient.resx">
       <DependentUpon>PochetClient.vb</DependentUpon>

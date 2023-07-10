@@ -22,7 +22,6 @@ Partial Class InvoForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(InvoForm))
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.pl = New System.Windows.Forms.Panel()
@@ -31,8 +30,6 @@ Partial Class InvoForm
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.lbV1 = New System.Windows.Forms.Label()
-        Me.lbT1 = New System.Windows.Forms.Label()
         Me.lbQteOut = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.lbQteIn = New System.Windows.Forms.Label()
@@ -48,33 +45,29 @@ Partial Class InvoForm
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.btValid = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.btValid = New System.Windows.Forms.Button()
+        Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.Button11 = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel14 = New System.Windows.Forms.Panel()
-        Me.TxtBox1 = New Al_Mohasib.TxtBox()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Panel15 = New System.Windows.Forms.Panel()
-        Me.TxtBox2 = New Al_Mohasib.TxtBox()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Panel16 = New System.Windows.Forms.Panel()
-        Me.TxtBox3 = New Al_Mohasib.TxtBox()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.cbGArt = New System.Windows.Forms.CheckBox()
-        Me.cbGCat = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Panel12 = New System.Windows.Forms.Panel()
-        Me.txtCat = New Al_Mohasib.TxtBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Panel11 = New System.Windows.Forms.Panel()
-        Me.txtdp2 = New Al_Mohasib.TxtBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -86,6 +79,14 @@ Partial Class InvoForm
         Me.Label1 = New System.Windows.Forms.Label()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.PrintDoc2 = New System.Drawing.Printing.PrintDocument()
+        Me.Button12 = New System.Windows.Forms.Button()
+        Me.Button13 = New System.Windows.Forms.Button()
+        Me.txtWriter = New Al_Mohasib.TxtBox()
+        Me.txtTrCat = New Al_Mohasib.TxtBox()
+        Me.txt = New Al_Mohasib.TxtBox()
+        Me.txtDepot = New Al_Mohasib.TxtBox()
+        Me.txtCat = New Al_Mohasib.TxtBox()
+        Me.txtdp2 = New Al_Mohasib.TxtBox()
         Me.Panel2.SuspendLayout()
         Me.pl.SuspendLayout()
         CType(Me.dg_D, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,6 +99,7 @@ Partial Class InvoForm
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
+        Me.Panel9.SuspendLayout()
         Me.Panel14.SuspendLayout()
         Me.Panel15.SuspendLayout()
         Me.Panel16.SuspendLayout()
@@ -136,8 +138,6 @@ Partial Class InvoForm
         '
         Me.dg_D.AllowUserToAddRows = False
         Me.dg_D.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        Me.dg_D.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dg_D.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dg_D.BackgroundColor = System.Drawing.Color.White
         Me.dg_D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -148,7 +148,6 @@ Partial Class InvoForm
         Me.dg_D.Name = "dg_D"
         Me.dg_D.ReadOnly = True
         Me.dg_D.RowHeadersVisible = False
-        Me.dg_D.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dg_D.RowTemplate.Height = 30
         Me.dg_D.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dg_D.Size = New System.Drawing.Size(1016, 270)
@@ -190,8 +189,6 @@ Partial Class InvoForm
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Panel4.Controls.Add(Me.lbV1)
-        Me.Panel4.Controls.Add(Me.lbT1)
         Me.Panel4.Controls.Add(Me.lbQteOut)
         Me.Panel4.Controls.Add(Me.Label7)
         Me.Panel4.Controls.Add(Me.lbQteIn)
@@ -204,32 +201,6 @@ Partial Class InvoForm
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(1026, 37)
         Me.Panel4.TabIndex = 14
-        '
-        'lbV1
-        '
-        Me.lbV1.BackColor = System.Drawing.Color.LightGray
-        Me.lbV1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.lbV1.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbV1.Location = New System.Drawing.Point(760, 2)
-        Me.lbV1.Name = "lbV1"
-        Me.lbV1.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
-        Me.lbV1.Size = New System.Drawing.Size(150, 35)
-        Me.lbV1.TabIndex = 20
-        Me.lbV1.Text = "0"
-        Me.lbV1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lbT1
-        '
-        Me.lbT1.BackColor = System.Drawing.Color.Gainsboro
-        Me.lbT1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.lbT1.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbT1.Location = New System.Drawing.Point(670, 2)
-        Me.lbT1.Name = "lbT1"
-        Me.lbT1.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
-        Me.lbT1.Size = New System.Drawing.Size(90, 35)
-        Me.lbT1.TabIndex = 21
-        Me.lbT1.Text = "Resultat"
-        Me.lbT1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lbQteOut
         '
@@ -254,7 +225,7 @@ Partial Class InvoForm
         Me.Label7.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
         Me.Label7.Size = New System.Drawing.Size(90, 35)
         Me.Label7.TabIndex = 19
-        Me.Label7.Text = "Sortie"
+        Me.Label7.Text = "V Vente"
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lbQteIn
@@ -280,7 +251,7 @@ Partial Class InvoForm
         Me.Label6.Padding = New System.Windows.Forms.Padding(11, 0, 11, 0)
         Me.Label6.Size = New System.Drawing.Size(90, 35)
         Me.Label6.TabIndex = 17
-        Me.Label6.Text = "Entree"
+        Me.Label6.Text = "V Achat"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lbLnbr
@@ -404,6 +375,7 @@ Partial Class InvoForm
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.btValid)
         Me.TabPage1.Controls.Add(Me.Button10)
         Me.TabPage1.Controls.Add(Me.Button6)
         Me.TabPage1.Location = New System.Drawing.Point(4, 29)
@@ -413,6 +385,21 @@ Partial Class InvoForm
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Invtaires"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'btValid
+        '
+        Me.btValid.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btValid.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btValid.Image = Global.Al_Mohasib.My.Resources.Resources.SAVE_20
+        Me.btValid.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btValid.Location = New System.Drawing.Point(518, 35)
+        Me.btValid.Name = "btValid"
+        Me.btValid.Padding = New System.Windows.Forms.Padding(6, 0, 0, 0)
+        Me.btValid.Size = New System.Drawing.Size(115, 33)
+        Me.btValid.TabIndex = 9
+        Me.btValid.Text = "Valider"
+        Me.btValid.UseVisualStyleBackColor = True
+        Me.btValid.Visible = False
         '
         'Button10
         '
@@ -444,8 +431,10 @@ Partial Class InvoForm
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.btValid)
+        Me.TabPage2.Controls.Add(Me.Panel9)
         Me.TabPage2.Controls.Add(Me.Panel14)
+        Me.TabPage2.Controls.Add(Me.Button13)
+        Me.TabPage2.Controls.Add(Me.Button12)
         Me.TabPage2.Controls.Add(Me.Button7)
         Me.TabPage2.Controls.Add(Me.Panel15)
         Me.TabPage2.Controls.Add(Me.Panel16)
@@ -457,52 +446,56 @@ Partial Class InvoForm
         Me.TabPage2.Text = "Details"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'btValid
+        'Panel9
         '
-        Me.btValid.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btValid.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btValid.Image = Global.Al_Mohasib.My.Resources.Resources.SAVE_20
-        Me.btValid.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btValid.Location = New System.Drawing.Point(556, 49)
-        Me.btValid.Name = "btValid"
-        Me.btValid.Padding = New System.Windows.Forms.Padding(6, 0, 0, 0)
-        Me.btValid.Size = New System.Drawing.Size(115, 33)
-        Me.btValid.TabIndex = 9
-        Me.btValid.Text = "Valider"
-        Me.btValid.UseVisualStyleBackColor = True
-        Me.btValid.Visible = False
+        Me.Panel9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel9.Controls.Add(Me.txtWriter)
+        Me.Panel9.Controls.Add(Me.Button11)
+        Me.Panel9.Controls.Add(Me.Label3)
+        Me.Panel9.Location = New System.Drawing.Point(318, 50)
+        Me.Panel9.Name = "Panel9"
+        Me.Panel9.Size = New System.Drawing.Size(161, 32)
+        Me.Panel9.TabIndex = 8
+        '
+        'Button11
+        '
+        Me.Button11.BackColor = System.Drawing.Color.Transparent
+        Me.Button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button11.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button11.FlatAppearance.BorderSize = 0
+        Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button11.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button11.ForeColor = System.Drawing.Color.Teal
+        Me.Button11.Image = Global.Al_Mohasib.My.Resources.Resources.stock_icon_png_14
+        Me.Button11.Location = New System.Drawing.Point(122, 0)
+        Me.Button11.Name = "Button11"
+        Me.Button11.Size = New System.Drawing.Size(37, 30)
+        Me.Button11.TabIndex = 10
+        Me.Button11.UseVisualStyleBackColor = False
+        '
+        'Label3
+        '
+        Me.Label3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Label3.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(0, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(51, 30)
+        Me.Label3.TabIndex = 1
+        Me.Label3.Text = "Editeur"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Panel14
         '
         Me.Panel14.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel14.Controls.Add(Me.TxtBox1)
+        Me.Panel14.Controls.Add(Me.txtTrCat)
         Me.Panel14.Controls.Add(Me.Button5)
         Me.Panel14.Controls.Add(Me.Label9)
         Me.Panel14.Location = New System.Drawing.Point(151, 49)
         Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(202, 32)
+        Me.Panel14.Size = New System.Drawing.Size(161, 32)
         Me.Panel14.TabIndex = 8
-        '
-        'TxtBox1
-        '
-        Me.TxtBox1.BackColor = System.Drawing.Color.Transparent
-        Me.TxtBox1.BorderColor = System.Drawing.Color.Transparent
-        Me.TxtBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TxtBox1.IsNumiric = False
-        Me.TxtBox1.Location = New System.Drawing.Point(47, 0)
-        Me.TxtBox1.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.TxtBox1.Name = "TxtBox1"
-        Me.TxtBox1.ShowClearIcon = False
-        Me.TxtBox1.ShowSaveIcon = False
-        Me.TxtBox1.Size = New System.Drawing.Size(116, 30)
-        Me.TxtBox1.StartUp = 2
-        Me.TxtBox1.TabIndex = 12
-        Me.TxtBox1.TextSize = 8
-        Me.TxtBox1.TxtBackColor = True
-        Me.TxtBox1.TxtColor = System.Drawing.Color.White
-        Me.TxtBox1.txtReadOnly = False
-        Me.TxtBox1.TxtSelect = New Integer() {1, 0}
         '
         'Button5
         '
@@ -514,7 +507,7 @@ Partial Class InvoForm
         Me.Button5.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button5.ForeColor = System.Drawing.Color.Teal
         Me.Button5.Image = Global.Al_Mohasib.My.Resources.Resources.stock_icon_png_14
-        Me.Button5.Location = New System.Drawing.Point(163, 0)
+        Me.Button5.Location = New System.Drawing.Point(122, 0)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(37, 30)
         Me.Button5.TabIndex = 10
@@ -551,33 +544,13 @@ Partial Class InvoForm
         Me.Panel15.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel15.Controls.Add(Me.TxtBox2)
+        Me.Panel15.Controls.Add(Me.txt)
         Me.Panel15.Controls.Add(Me.Button8)
         Me.Panel15.Controls.Add(Me.Label10)
         Me.Panel15.Location = New System.Drawing.Point(7, 11)
         Me.Panel15.Name = "Panel15"
-        Me.Panel15.Size = New System.Drawing.Size(456, 32)
+        Me.Panel15.Size = New System.Drawing.Size(472, 32)
         Me.Panel15.TabIndex = 5
-        '
-        'TxtBox2
-        '
-        Me.TxtBox2.BackColor = System.Drawing.Color.Transparent
-        Me.TxtBox2.BorderColor = System.Drawing.Color.Transparent
-        Me.TxtBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TxtBox2.IsNumiric = False
-        Me.TxtBox2.Location = New System.Drawing.Point(66, 0)
-        Me.TxtBox2.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.TxtBox2.Name = "TxtBox2"
-        Me.TxtBox2.ShowClearIcon = False
-        Me.TxtBox2.ShowSaveIcon = False
-        Me.TxtBox2.Size = New System.Drawing.Size(357, 30)
-        Me.TxtBox2.StartUp = 2
-        Me.TxtBox2.TabIndex = 11
-        Me.TxtBox2.TextSize = 8
-        Me.TxtBox2.TxtBackColor = True
-        Me.TxtBox2.TxtColor = System.Drawing.Color.White
-        Me.TxtBox2.txtReadOnly = False
-        Me.TxtBox2.TxtSelect = New Integer() {1, 0}
         '
         'Button8
         '
@@ -586,7 +559,7 @@ Partial Class InvoForm
         Me.Button8.FlatAppearance.BorderSize = 0
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button8.Image = CType(resources.GetObject("Button8.Image"), System.Drawing.Image)
-        Me.Button8.Location = New System.Drawing.Point(423, 0)
+        Me.Button8.Location = New System.Drawing.Point(439, 0)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(31, 30)
         Me.Button8.TabIndex = 10
@@ -606,33 +579,13 @@ Partial Class InvoForm
         'Panel16
         '
         Me.Panel16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel16.Controls.Add(Me.TxtBox3)
+        Me.Panel16.Controls.Add(Me.txtDepot)
         Me.Panel16.Controls.Add(Me.Button9)
         Me.Panel16.Controls.Add(Me.Label11)
         Me.Panel16.Location = New System.Drawing.Point(7, 49)
         Me.Panel16.Name = "Panel16"
         Me.Panel16.Size = New System.Drawing.Size(139, 32)
         Me.Panel16.TabIndex = 6
-        '
-        'TxtBox3
-        '
-        Me.TxtBox3.BackColor = System.Drawing.Color.Transparent
-        Me.TxtBox3.BorderColor = System.Drawing.Color.Transparent
-        Me.TxtBox3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TxtBox3.IsNumiric = False
-        Me.TxtBox3.Location = New System.Drawing.Point(46, 0)
-        Me.TxtBox3.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.TxtBox3.Name = "TxtBox3"
-        Me.TxtBox3.ShowClearIcon = False
-        Me.TxtBox3.ShowSaveIcon = False
-        Me.TxtBox3.Size = New System.Drawing.Size(60, 30)
-        Me.TxtBox3.StartUp = 2
-        Me.TxtBox3.TabIndex = 12
-        Me.TxtBox3.TextSize = 8
-        Me.TxtBox3.TxtBackColor = True
-        Me.TxtBox3.TxtColor = System.Drawing.Color.White
-        Me.TxtBox3.txtReadOnly = False
-        Me.TxtBox3.TxtSelect = New Integer() {1, 0}
         '
         'Button9
         '
@@ -663,8 +616,6 @@ Partial Class InvoForm
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.cbGArt)
-        Me.TabPage3.Controls.Add(Me.cbGCat)
         Me.TabPage3.Controls.Add(Me.Button1)
         Me.TabPage3.Controls.Add(Me.Panel12)
         Me.TabPage3.Controls.Add(Me.Panel11)
@@ -676,37 +627,13 @@ Partial Class InvoForm
         Me.TabPage3.Text = "Stock"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
-        'cbGArt
-        '
-        Me.cbGArt.AutoSize = True
-        Me.cbGArt.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbGArt.Location = New System.Drawing.Point(232, 56)
-        Me.cbGArt.Name = "cbGArt"
-        Me.cbGArt.Size = New System.Drawing.Size(152, 19)
-        Me.cbGArt.TabIndex = 11
-        Me.cbGArt.Text = "Grouper par Article"
-        Me.cbGArt.UseVisualStyleBackColor = True
-        Me.cbGArt.Visible = False
-        '
-        'cbGCat
-        '
-        Me.cbGCat.AutoSize = True
-        Me.cbGCat.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbGCat.Location = New System.Drawing.Point(39, 56)
-        Me.cbGCat.Name = "cbGCat"
-        Me.cbGCat.Size = New System.Drawing.Size(173, 19)
-        Me.cbGCat.TabIndex = 10
-        Me.cbGCat.Text = "Grouper par Categorie"
-        Me.cbGCat.UseVisualStyleBackColor = True
-        Me.cbGCat.Visible = False
-        '
         'Button1
         '
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
         Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.Location = New System.Drawing.Point(571, 11)
+        Me.Button1.Location = New System.Drawing.Point(571, 30)
         Me.Button1.Name = "Button1"
         Me.Button1.Padding = New System.Windows.Forms.Padding(6, 0, 0, 0)
         Me.Button1.Size = New System.Drawing.Size(115, 33)
@@ -722,30 +649,10 @@ Partial Class InvoForm
         Me.Panel12.Controls.Add(Me.txtCat)
         Me.Panel12.Controls.Add(Me.Button3)
         Me.Panel12.Controls.Add(Me.Label8)
-        Me.Panel12.Location = New System.Drawing.Point(11, 10)
+        Me.Panel12.Location = New System.Drawing.Point(11, 29)
         Me.Panel12.Name = "Panel12"
         Me.Panel12.Size = New System.Drawing.Size(263, 32)
         Me.Panel12.TabIndex = 7
-        '
-        'txtCat
-        '
-        Me.txtCat.BackColor = System.Drawing.Color.Transparent
-        Me.txtCat.BorderColor = System.Drawing.Color.Transparent
-        Me.txtCat.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtCat.IsNumiric = False
-        Me.txtCat.Location = New System.Drawing.Point(71, 0)
-        Me.txtCat.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtCat.Name = "txtCat"
-        Me.txtCat.ShowClearIcon = False
-        Me.txtCat.ShowSaveIcon = False
-        Me.txtCat.Size = New System.Drawing.Size(153, 30)
-        Me.txtCat.StartUp = 2
-        Me.txtCat.TabIndex = 12
-        Me.txtCat.TextSize = 8
-        Me.txtCat.TxtBackColor = True
-        Me.txtCat.TxtColor = System.Drawing.Color.White
-        Me.txtCat.txtReadOnly = False
-        Me.txtCat.TxtSelect = New Integer() {1, 0}
         '
         'Button3
         '
@@ -781,30 +688,10 @@ Partial Class InvoForm
         Me.Panel11.Controls.Add(Me.txtdp2)
         Me.Panel11.Controls.Add(Me.Button2)
         Me.Panel11.Controls.Add(Me.Label5)
-        Me.Panel11.Location = New System.Drawing.Point(290, 11)
+        Me.Panel11.Location = New System.Drawing.Point(290, 30)
         Me.Panel11.Name = "Panel11"
         Me.Panel11.Size = New System.Drawing.Size(207, 32)
         Me.Panel11.TabIndex = 8
-        '
-        'txtdp2
-        '
-        Me.txtdp2.BackColor = System.Drawing.Color.Transparent
-        Me.txtdp2.BorderColor = System.Drawing.Color.Transparent
-        Me.txtdp2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtdp2.IsNumiric = False
-        Me.txtdp2.Location = New System.Drawing.Point(71, 0)
-        Me.txtdp2.MinimumSize = New System.Drawing.Size(0, 30)
-        Me.txtdp2.Name = "txtdp2"
-        Me.txtdp2.ShowClearIcon = False
-        Me.txtdp2.ShowSaveIcon = False
-        Me.txtdp2.Size = New System.Drawing.Size(97, 30)
-        Me.txtdp2.StartUp = 2
-        Me.txtdp2.TabIndex = 12
-        Me.txtdp2.TextSize = 8
-        Me.txtdp2.TxtBackColor = True
-        Me.txtdp2.TxtColor = System.Drawing.Color.White
-        Me.txtdp2.txtReadOnly = False
-        Me.txtdp2.TxtSelect = New Integer() {1, 0}
         '
         'Button2
         '
@@ -912,6 +799,160 @@ Partial Class InvoForm
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Designation :"
         '
+        'Button12
+        '
+        Me.Button12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button12.BackColor = System.Drawing.Color.Maroon
+        Me.Button12.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button12.ForeColor = System.Drawing.Color.White
+        Me.Button12.Image = Global.Al_Mohasib.My.Resources.Resources.vector_cancel_icon_png_302651
+        Me.Button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button12.Location = New System.Drawing.Point(613, 52)
+        Me.Button12.Name = "Button12"
+        Me.Button12.Padding = New System.Windows.Forms.Padding(6, 0, 0, 0)
+        Me.Button12.Size = New System.Drawing.Size(57, 33)
+        Me.Button12.TabIndex = 7
+        Me.Button12.Text = "2"
+        Me.Button12.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button12.UseVisualStyleBackColor = False
+        '
+        'Button13
+        '
+        Me.Button13.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button13.BackColor = System.Drawing.Color.Maroon
+        Me.Button13.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button13.ForeColor = System.Drawing.Color.White
+        Me.Button13.Image = Global.Al_Mohasib.My.Resources.Resources.vector_cancel_icon_png_302651
+        Me.Button13.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button13.Location = New System.Drawing.Point(556, 52)
+        Me.Button13.Name = "Button13"
+        Me.Button13.Padding = New System.Windows.Forms.Padding(6, 0, 0, 0)
+        Me.Button13.Size = New System.Drawing.Size(51, 33)
+        Me.Button13.TabIndex = 7
+        Me.Button13.Text = "1"
+        Me.Button13.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button13.UseVisualStyleBackColor = False
+        '
+        'txtWriter
+        '
+        Me.txtWriter.BackColor = System.Drawing.Color.Transparent
+        Me.txtWriter.BorderColor = System.Drawing.Color.Transparent
+        Me.txtWriter.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtWriter.IsNumiric = False
+        Me.txtWriter.Location = New System.Drawing.Point(51, 0)
+        Me.txtWriter.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtWriter.Name = "txtWriter"
+        Me.txtWriter.ShowClearIcon = False
+        Me.txtWriter.ShowSaveIcon = False
+        Me.txtWriter.Size = New System.Drawing.Size(71, 30)
+        Me.txtWriter.StartUp = 2
+        Me.txtWriter.TabIndex = 12
+        Me.txtWriter.TextSize = 8
+        Me.txtWriter.TxtBackColor = True
+        Me.txtWriter.TxtColor = System.Drawing.Color.White
+        Me.txtWriter.txtReadOnly = False
+        Me.txtWriter.TxtSelect = New Integer() {1, 0}
+        '
+        'txtTrCat
+        '
+        Me.txtTrCat.BackColor = System.Drawing.Color.Transparent
+        Me.txtTrCat.BorderColor = System.Drawing.Color.Transparent
+        Me.txtTrCat.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtTrCat.IsNumiric = False
+        Me.txtTrCat.Location = New System.Drawing.Point(47, 0)
+        Me.txtTrCat.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtTrCat.Name = "txtTrCat"
+        Me.txtTrCat.ShowClearIcon = False
+        Me.txtTrCat.ShowSaveIcon = False
+        Me.txtTrCat.Size = New System.Drawing.Size(75, 30)
+        Me.txtTrCat.StartUp = 2
+        Me.txtTrCat.TabIndex = 12
+        Me.txtTrCat.TextSize = 8
+        Me.txtTrCat.TxtBackColor = True
+        Me.txtTrCat.TxtColor = System.Drawing.Color.White
+        Me.txtTrCat.txtReadOnly = False
+        Me.txtTrCat.TxtSelect = New Integer() {1, 0}
+        '
+        'txt
+        '
+        Me.txt.BackColor = System.Drawing.Color.Transparent
+        Me.txt.BorderColor = System.Drawing.Color.Transparent
+        Me.txt.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txt.IsNumiric = False
+        Me.txt.Location = New System.Drawing.Point(66, 0)
+        Me.txt.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txt.Name = "txt"
+        Me.txt.ShowClearIcon = False
+        Me.txt.ShowSaveIcon = False
+        Me.txt.Size = New System.Drawing.Size(373, 30)
+        Me.txt.StartUp = 2
+        Me.txt.TabIndex = 11
+        Me.txt.TextSize = 8
+        Me.txt.TxtBackColor = True
+        Me.txt.TxtColor = System.Drawing.Color.White
+        Me.txt.txtReadOnly = False
+        Me.txt.TxtSelect = New Integer() {1, 0}
+        '
+        'txtDepot
+        '
+        Me.txtDepot.BackColor = System.Drawing.Color.Transparent
+        Me.txtDepot.BorderColor = System.Drawing.Color.Transparent
+        Me.txtDepot.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtDepot.IsNumiric = False
+        Me.txtDepot.Location = New System.Drawing.Point(46, 0)
+        Me.txtDepot.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtDepot.Name = "txtDepot"
+        Me.txtDepot.ShowClearIcon = False
+        Me.txtDepot.ShowSaveIcon = False
+        Me.txtDepot.Size = New System.Drawing.Size(60, 30)
+        Me.txtDepot.StartUp = 2
+        Me.txtDepot.TabIndex = 12
+        Me.txtDepot.TextSize = 8
+        Me.txtDepot.TxtBackColor = True
+        Me.txtDepot.TxtColor = System.Drawing.Color.White
+        Me.txtDepot.txtReadOnly = False
+        Me.txtDepot.TxtSelect = New Integer() {1, 0}
+        '
+        'txtCat
+        '
+        Me.txtCat.BackColor = System.Drawing.Color.Transparent
+        Me.txtCat.BorderColor = System.Drawing.Color.Transparent
+        Me.txtCat.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtCat.IsNumiric = False
+        Me.txtCat.Location = New System.Drawing.Point(71, 0)
+        Me.txtCat.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtCat.Name = "txtCat"
+        Me.txtCat.ShowClearIcon = False
+        Me.txtCat.ShowSaveIcon = False
+        Me.txtCat.Size = New System.Drawing.Size(153, 30)
+        Me.txtCat.StartUp = 2
+        Me.txtCat.TabIndex = 12
+        Me.txtCat.TextSize = 8
+        Me.txtCat.TxtBackColor = True
+        Me.txtCat.TxtColor = System.Drawing.Color.White
+        Me.txtCat.txtReadOnly = False
+        Me.txtCat.TxtSelect = New Integer() {1, 0}
+        '
+        'txtdp2
+        '
+        Me.txtdp2.BackColor = System.Drawing.Color.Transparent
+        Me.txtdp2.BorderColor = System.Drawing.Color.Transparent
+        Me.txtdp2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtdp2.IsNumiric = False
+        Me.txtdp2.Location = New System.Drawing.Point(71, 0)
+        Me.txtdp2.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtdp2.Name = "txtdp2"
+        Me.txtdp2.ShowClearIcon = False
+        Me.txtdp2.ShowSaveIcon = False
+        Me.txtdp2.Size = New System.Drawing.Size(97, 30)
+        Me.txtdp2.StartUp = 2
+        Me.txtdp2.TabIndex = 12
+        Me.txtdp2.TextSize = 8
+        Me.txtdp2.TxtBackColor = True
+        Me.txtdp2.TxtColor = System.Drawing.Color.White
+        Me.txtdp2.txtReadOnly = False
+        Me.txtdp2.TxtSelect = New Integer() {1, 0}
+        '
         'InvoForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -933,11 +974,11 @@ Partial Class InvoForm
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
+        Me.Panel9.ResumeLayout(False)
         Me.Panel14.ResumeLayout(False)
         Me.Panel15.ResumeLayout(False)
         Me.Panel16.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
-        Me.TabPage3.PerformLayout()
         Me.Panel12.ResumeLayout(False)
         Me.Panel11.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
@@ -952,8 +993,6 @@ Partial Class InvoForm
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Panel13 As System.Windows.Forms.Panel
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
-    Friend WithEvents lbV1 As System.Windows.Forms.Label
-    Friend WithEvents lbT1 As System.Windows.Forms.Label
     Friend WithEvents lbQteOut As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents lbQteIn As System.Windows.Forms.Label
@@ -973,21 +1012,19 @@ Partial Class InvoForm
     Friend WithEvents Button6 As System.Windows.Forms.Button
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents Panel14 As System.Windows.Forms.Panel
-    Friend WithEvents TxtBox1 As Al_Mohasib.TxtBox
+    Friend WithEvents txtTrCat As Al_Mohasib.TxtBox
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Button7 As System.Windows.Forms.Button
     Friend WithEvents Panel15 As System.Windows.Forms.Panel
-    Friend WithEvents TxtBox2 As Al_Mohasib.TxtBox
+    Friend WithEvents txt As Al_Mohasib.TxtBox
     Friend WithEvents Button8 As System.Windows.Forms.Button
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents Panel16 As System.Windows.Forms.Panel
-    Friend WithEvents TxtBox3 As Al_Mohasib.TxtBox
+    Friend WithEvents txtDepot As Al_Mohasib.TxtBox
     Friend WithEvents Button9 As System.Windows.Forms.Button
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
-    Friend WithEvents cbGArt As System.Windows.Forms.CheckBox
-    Friend WithEvents cbGCat As System.Windows.Forms.CheckBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Panel12 As System.Windows.Forms.Panel
     Friend WithEvents txtCat As Al_Mohasib.TxtBox
@@ -1007,4 +1044,10 @@ Partial Class InvoForm
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents PrintDoc2 As System.Drawing.Printing.PrintDocument
     Friend WithEvents btValid As System.Windows.Forms.Button
+    Friend WithEvents Panel9 As System.Windows.Forms.Panel
+    Friend WithEvents txtWriter As Al_Mohasib.TxtBox
+    Friend WithEvents Button11 As System.Windows.Forms.Button
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Button12 As System.Windows.Forms.Button
+    Friend WithEvents Button13 As System.Windows.Forms.Button
 End Class

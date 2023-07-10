@@ -4,7 +4,7 @@ Imports System.Text.RegularExpressions
 
 Module AdminModule
 
-    Dim VER As String = "ALMsbtrFirstRun_sql_10"
+    Dim VER As String = "ALMsbtrFirstRun_sql_11"
 
     Dim _strKey As String
     Dim strFirstUse = "AL Mohasib System de gestion - Premier utilisation .."
@@ -41,15 +41,15 @@ Module AdminModule
             Dim fdt As Date
             fdt = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strKey, Nothing)
             Try
-                Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Using a As DataAccess2 = New DataAccess2(My.Settings.ALMohassinDBConnectionString)
                     Dim params As New Dictionary(Of String, Object)
-                    params.Add("vkey", "truefont")
+                    params.Add("key", "truefont")
 
                     Dim dt2 = a.SelectDataTable("value", {"*"}, params)
 
 
                     If dt2.Rows(0).Item("val") = "true" Then
-                        Form1.btTrial.Visible = False
+                        Form1.bttrial.Visible = False
                         Return True
                         Exit Function
                     Else
@@ -69,18 +69,15 @@ Module AdminModule
         Else
 
             Try
-                Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Using a As DataAccess2 = New DataAccess2(My.Settings.ALMohassinDBConnectionString)
 
 
                     Dim params As New Dictionary(Of String, Object)
-                    params.Add("vkey", "truefont")
-
+                    params.Add("key", "truefont")
                     Dim dt = a.SelectDataTable("value", {"*"}, params)
 
-
-
                     If dt.Rows(0).Item("val") = "true" Then
-                        Form1.btTrial.Visible = False
+                        Form1.bttrial.Visible = False
                     Else
                         MsgBox("trial version", MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, "AL Mohasib")
                     End If
@@ -124,7 +121,7 @@ Module AdminModule
 
         '''''''''''''''''''''''''''''''''''''''''''''       '''''''''''''''''''''''''''''''''''''''''''''
         '''''''''''''''''''''''''''''''''''''''''''''       '''''''''''''''''''''''''''''''''''''''''''''
-        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+        Using a As DataAccess2 = New DataAccess2(My.Settings.ALMohassinDBConnectionString)
 
 
             If ALMohasibfirstRunDate = Nothing Then
@@ -133,7 +130,7 @@ Module AdminModule
                 Try
 
                     Dim where As New Dictionary(Of String, Object)
-                    where.Add("vkey", "keypsv")
+                    where.Add("key", "keypsv")
 
                     Dim dt = a.SelectDataTable("value", {"*"}, where)
 
@@ -147,13 +144,13 @@ Module AdminModule
                         a.UpdateRecord("value", params, where)
                     Else
                         Dim params As New Dictionary(Of String, Object)
-                        params.Add("vkey", "keypsv")
+                        params.Add("key", "keypsv")
                         params.Add("val", val)
                         a.InsertRecord("value", params)
 
                     End If
                     where.Clear()
-                    where.Add("vkey", "truefont")
+                    where.Add("key", "truefont")
                     Dim dt2 = a.SelectDataTable("value", {"*"}, where)
 
 
@@ -166,7 +163,7 @@ Module AdminModule
                     Else
 
                         Dim params As New Dictionary(Of String, Object)
-                        params.Add("vkey", "truefont")
+                        params.Add("key", "truefont")
                         params.Add("val", "False")
                         a.InsertRecord("value", params)
 
@@ -185,7 +182,7 @@ Module AdminModule
                     Dim val As String = ALMohasibfirstRunDate.Day & ALMohasibfirstRunDate.Hour & "-" & ALMohasibfirstRunDate.Second & "1d5-" & ALMohasibfirstRunDate.ToString("yy") & "2H7" & "-" & mac.ToString.Substring(mac.ToString.Length - 4) & "-" & mac.ToString.Substring(0, 4) & ALMohasibfirstRunDate.Month
 
                     Dim where As New Dictionary(Of String, Object)
-                    where.Add("vkey", "keypsv")
+                    where.Add("key", "keypsv")
 
                     Dim dt = a.SelectDataTable("value", {"*"}, where)
 
@@ -200,7 +197,7 @@ Module AdminModule
                             a.UpdateRecord("value", params, where)
 
                             where.Clear()
-                            where.Add("vkey", "truefont")
+                            where.Add("key", "truefont")
 
                             Dim dt2 = a.SelectDataTable("value", {"*"}, where)
 
@@ -211,7 +208,7 @@ Module AdminModule
                                 a.UpdateRecord("value", params, where)
 
                             Else
-                                params.Add("vkey", "truefont")
+                                params.Add("key", "truefont")
                                 params.Add("val", "false")
                                 a.InsertRecord("value", params)
 
@@ -224,14 +221,14 @@ Module AdminModule
                     Else
 
                         Dim params As New Dictionary(Of String, Object)
-                        params.Add("vkey", "keypsv")
+                        params.Add("key", "keypsv")
                         params.Add("val", val)
                         a.InsertRecord("value", params)
 
                         params.Clear()
                         where.Clear()
 
-                        where.Add("vkey", "truefont")
+                        where.Add("key", "truefont")
                         Dim dt2 = a.SelectDataTable("value", {"*"}, where)
 
 
@@ -240,7 +237,7 @@ Module AdminModule
                             a.UpdateRecord("value", params, where)
 
                         Else
-                            params.Add("vkey", "truefont")
+                            params.Add("key", "truefont")
                             params.Add("val", "false")
                             a.InsertRecord("value", params)
 
@@ -263,7 +260,7 @@ Module AdminModule
 
                     where.Clear()
 
-                    where.Add("vkey", "keypsv")
+                    where.Add("key", "keypsv")
                     Dim dt = a.SelectDataTable("value", {"*"}, where)
 
                     Dim val As String = ALMohasibfirstRunDate.Day & ALMohasibfirstRunDate.Hour & "-" & ALMohasibfirstRunDate.Second & "1d5-" & ALMohasibfirstRunDate.ToString("yy") & "2H7" & "-" & mac.ToString.Substring(mac.ToString.Length - 4) & "-" & mac.ToString.Substring(0, 4) & ALMohasibfirstRunDate.Month
@@ -279,7 +276,7 @@ Module AdminModule
                             params.Clear()
                             where.Clear()
 
-                            where.Add("vkey", "truefont")
+                            where.Add("key", "truefont")
                             Dim dt2 = a.SelectDataTable("value", {"*"}, where)
 
                             If dt.Rows.Count > 0 Then
@@ -288,7 +285,7 @@ Module AdminModule
 
                             Else
 
-                                params.Add("vkey", "truefont")
+                                params.Add("key", "truefont")
                                 params.Add("val", "false")
                                 a.InsertRecord("value", params)
 
@@ -300,14 +297,14 @@ Module AdminModule
                         End If
                     Else
                         params.Clear()
-                        params.Add("vkey", "keypsv")
+                        params.Add("key", "keypsv")
                         params.Add("val", val)
                         a.InsertRecord("value", params)
 
                         params.Clear()
                         where.Clear()
 
-                        where.Add("vkey", "truefont")
+                        where.Add("key", "truefont")
                         Dim dt2 = a.SelectDataTable("value", {"*"}, where)
 
 
@@ -317,7 +314,7 @@ Module AdminModule
 
                         Else
                             params.Clear()
-                            params.Add("vkey", "truefont")
+                            params.Add("key", "truefont")
                             params.Add("val", "False")
                             a.InsertRecord("value", params)
 

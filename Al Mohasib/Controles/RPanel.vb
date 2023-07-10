@@ -7,6 +7,7 @@
     Public Event UpdateDepot(ByVal sender As Object, ByVal e As EventArgs)
     Public Event DeleteItem(ByRef i As Items, ByVal id As Integer)
     Public Event ReturnItem(ByVal sender As Object, ByVal e As EventArgs)
+    Public Event PrintKitchenReceipt(ByVal id As Integer)
 
     Public Event UpdatePayment()
     Public Event UpdateBl()
@@ -1711,5 +1712,33 @@
     Private Sub lbPoint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbPoint.Click
         'test promos
         If Not BwPromos.IsBusy Then BwPromos.RunWorkerAsync()
+    End Sub
+
+    Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        If FctId = 0 Then Exit Sub
+       
+        RaiseEvent PrintKitchenReceipt(FctId)
+
+    End Sub
+
+    Private Sub btPlus_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btPlus.Click, btMinis.Click
+
+        If FctId <= 0 Then Exit Sub
+
+        Try
+            _oldValue = SelectedItem.Qte
+            If SelectedItem.cid = 0 Then Exit Sub
+            RaiseEvent UpdateQte(sender, Nothing)
+
+            If SelectedItem.Qte <= 0 Then
+                CP_DeleteItems()
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub btCalc_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btCalc.Click
+        If Form1.CbBlocCalc.Checked = True Then hideClc = Not hideClc
     End Sub
 End Class

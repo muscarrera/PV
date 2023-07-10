@@ -23,9 +23,15 @@ Partial Class Addadmin
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.AdidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AdminDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PwdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.rfid = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GB = New System.Windows.Forms.GroupBox()
+        Me.lbrf = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
@@ -43,13 +49,10 @@ Partial Class Addadmin
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.ShapeContainer2 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.RectangleShape1 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
-        Me.PwdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AdminDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AdidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lbb = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
+        Me.GB.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
@@ -60,52 +63,99 @@ Partial Class Addadmin
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AdidDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.AdminDataGridViewTextBoxColumn, Me.PwdDataGridViewTextBoxColumn})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AdidDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.AdminDataGridViewTextBoxColumn, Me.PwdDataGridViewTextBoxColumn, Me.rfid})
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(383, 427)
+        Me.DataGridView1.Size = New System.Drawing.Size(551, 427)
         Me.DataGridView1.TabIndex = 0
+        '
+        'AdidDataGridViewTextBoxColumn
+        '
+        Me.AdidDataGridViewTextBoxColumn.DataPropertyName = "adid"
+        Me.AdidDataGridViewTextBoxColumn.HeaderText = "adid"
+        Me.AdidDataGridViewTextBoxColumn.Name = "AdidDataGridViewTextBoxColumn"
+        Me.AdidDataGridViewTextBoxColumn.ReadOnly = True
+        Me.AdidDataGridViewTextBoxColumn.Visible = False
+        '
+        'NameDataGridViewTextBoxColumn
+        '
+        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
+        Me.NameDataGridViewTextBoxColumn.HeaderText = "name"
+        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
+        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'AdminDataGridViewTextBoxColumn
+        '
+        Me.AdminDataGridViewTextBoxColumn.DataPropertyName = "admin"
+        Me.AdminDataGridViewTextBoxColumn.HeaderText = "admin"
+        Me.AdminDataGridViewTextBoxColumn.Name = "AdminDataGridViewTextBoxColumn"
+        Me.AdminDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'PwdDataGridViewTextBoxColumn
+        '
+        Me.PwdDataGridViewTextBoxColumn.DataPropertyName = "pwd"
+        Me.PwdDataGridViewTextBoxColumn.HeaderText = "pwd"
+        Me.PwdDataGridViewTextBoxColumn.Name = "PwdDataGridViewTextBoxColumn"
+        Me.PwdDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'rfid
+        '
+        Me.rfid.DataPropertyName = "rf"
+        Me.rfid.HeaderText = "Rfid"
+        Me.rfid.Name = "rfid"
+        Me.rfid.ReadOnly = True
         '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.DataGridView1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel1.Location = New System.Drawing.Point(298, 0)
+        Me.Panel1.Location = New System.Drawing.Point(317, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(383, 427)
+        Me.Panel1.Size = New System.Drawing.Size(551, 427)
         Me.Panel1.TabIndex = 1
         '
         'TextBox1
         '
         Me.TextBox1.Font = New System.Drawing.Font("Arial Rounded MT Bold", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(20, 100)
+        Me.TextBox1.Location = New System.Drawing.Point(38, 100)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(252, 26)
+        Me.TextBox1.Size = New System.Drawing.Size(234, 26)
         Me.TextBox1.TabIndex = 3
         '
-        'GroupBox1
+        'GB
         '
-        Me.GroupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
-        Me.GroupBox1.Location = New System.Drawing.Point(32, 189)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.GroupBox1.Size = New System.Drawing.Size(240, 96)
-        Me.GroupBox1.TabIndex = 11
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = " "
+        Me.GB.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.GB.Controls.Add(Me.lbrf)
+        Me.GB.Controls.Add(Me.Label1)
+        Me.GB.Controls.Add(Me.TextBox2)
+        Me.GB.Location = New System.Drawing.Point(38, 175)
+        Me.GB.Name = "GB"
+        Me.GB.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.GB.Size = New System.Drawing.Size(240, 136)
+        Me.GB.TabIndex = 11
+        Me.GB.TabStop = False
+        Me.GB.Text = " "
+        '
+        'lbrf
+        '
+        Me.lbrf.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.lbrf.Location = New System.Drawing.Point(3, 103)
+        Me.lbrf.Name = "lbrf"
+        Me.lbrf.Size = New System.Drawing.Size(234, 30)
+        Me.lbrf.TabIndex = 4
+        Me.lbrf.Text = "00"
+        Me.lbrf.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(111, 26)
+        Me.Label1.Location = New System.Drawing.Point(108, 26)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(123, 13)
+        Me.Label1.Size = New System.Drawing.Size(128, 13)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "المرجو ادخال الرقم السري"
         '
@@ -125,9 +175,9 @@ Partial Class Addadmin
         Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"مسؤول", "مستخدم"})
-        Me.ComboBox1.Location = New System.Drawing.Point(20, 148)
+        Me.ComboBox1.Location = New System.Drawing.Point(38, 136)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(193, 21)
+        Me.ComboBox1.Size = New System.Drawing.Size(175, 21)
         Me.ComboBox1.TabIndex = 13
         '
         'Label2
@@ -135,16 +185,16 @@ Partial Class Addadmin
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(232, 81)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(30, 13)
+        Me.Label2.Size = New System.Drawing.Size(36, 13)
         Me.Label2.TabIndex = 14
         Me.Label2.Text = "الاسم"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(232, 148)
+        Me.Label3.Location = New System.Drawing.Point(232, 138)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(32, 13)
+        Me.Label3.Size = New System.Drawing.Size(34, 13)
         Me.Label3.TabIndex = 14
         Me.Label3.Text = "الصفة"
         '
@@ -193,7 +243,7 @@ Partial Class Addadmin
         Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer1.Name = "ShapeContainer1"
         Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.RsDel, Me.RsEdit, Me.RsAdd})
-        Me.ShapeContainer1.Size = New System.Drawing.Size(681, 427)
+        Me.ShapeContainer1.Size = New System.Drawing.Size(868, 427)
         Me.ShapeContainer1.TabIndex = 15
         Me.ShapeContainer1.TabStop = False
         '
@@ -294,46 +344,27 @@ Partial Class Addadmin
         Me.RectangleShape1.Name = "RectangleShape1"
         Me.RectangleShape1.Size = New System.Drawing.Size(107, 31)
         '
-        'PwdDataGridViewTextBoxColumn
+        'lbb
         '
-        Me.PwdDataGridViewTextBoxColumn.DataPropertyName = "pwd"
-        Me.PwdDataGridViewTextBoxColumn.HeaderText = "pwd"
-        Me.PwdDataGridViewTextBoxColumn.Name = "PwdDataGridViewTextBoxColumn"
-        Me.PwdDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AdminDataGridViewTextBoxColumn
-        '
-        Me.AdminDataGridViewTextBoxColumn.DataPropertyName = "admin"
-        Me.AdminDataGridViewTextBoxColumn.HeaderText = "admin"
-        Me.AdminDataGridViewTextBoxColumn.Name = "AdminDataGridViewTextBoxColumn"
-        Me.AdminDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'NameDataGridViewTextBoxColumn
-        '
-        Me.NameDataGridViewTextBoxColumn.DataPropertyName = "name"
-        Me.NameDataGridViewTextBoxColumn.HeaderText = "name"
-        Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
-        Me.NameDataGridViewTextBoxColumn.ReadOnly = True
-        '
-        'AdidDataGridViewTextBoxColumn
-        '
-        Me.AdidDataGridViewTextBoxColumn.DataPropertyName = "adid"
-        Me.AdidDataGridViewTextBoxColumn.HeaderText = "adid"
-        Me.AdidDataGridViewTextBoxColumn.Name = "AdidDataGridViewTextBoxColumn"
-        Me.AdidDataGridViewTextBoxColumn.ReadOnly = True
-        Me.AdidDataGridViewTextBoxColumn.Visible = False
+        Me.lbb.AutoSize = True
+        Me.lbb.Location = New System.Drawing.Point(57, 397)
+        Me.lbb.Name = "lbb"
+        Me.lbb.Size = New System.Drawing.Size(13, 13)
+        Me.lbb.TabIndex = 17
+        Me.lbb.Text = "0"
         '
         'Addadmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(681, 427)
+        Me.ClientSize = New System.Drawing.Size(868, 427)
+        Me.Controls.Add(Me.lbb)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.ComboBox1)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.GB)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.ShapeContainer1)
@@ -345,8 +376,8 @@ Partial Class Addadmin
         Me.Text = "المستخدم"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.GB.ResumeLayout(False)
+        Me.GB.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -356,7 +387,7 @@ Partial Class Addadmin
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents GB As System.Windows.Forms.GroupBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
@@ -378,4 +409,7 @@ Partial Class Addadmin
     Friend WithEvents NameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AdminDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PwdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents rfid As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents lbrf As System.Windows.Forms.Label
+    Friend WithEvents lbb As System.Windows.Forms.Label
 End Class

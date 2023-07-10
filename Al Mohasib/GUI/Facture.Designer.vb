@@ -22,7 +22,7 @@ Partial Class Facture
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -47,6 +47,7 @@ Partial Class Facture
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.DtFct = New System.Windows.Forms.DateTimePicker()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,6 +57,7 @@ Partial Class Facture
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Panel1.Controls.Add(Me.Button4)
         Me.Panel1.Controls.Add(Me.Button3)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Label1)
@@ -65,25 +67,25 @@ Partial Class Facture
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(735, 45)
+        Me.Panel1.Size = New System.Drawing.Size(936, 45)
         Me.Panel1.TabIndex = 1
         '
         'Button3
         '
         Me.Button3.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Location = New System.Drawing.Point(12, 8)
+        Me.Button3.Location = New System.Drawing.Point(151, 9)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(118, 27)
         Me.Button3.TabIndex = 12
-        Me.Button3.Text = "List BL"
+        Me.Button3.Text = "Par date"
         Me.Button3.UseVisualStyleBackColor = False
         '
         'Label2
         '
         Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(539, 16)
+        Me.Label2.Location = New System.Drawing.Point(740, 16)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(39, 13)
         Me.Label2.TabIndex = 11
@@ -93,7 +95,7 @@ Partial Class Facture
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(331, 15)
+        Me.Label1.Location = New System.Drawing.Point(532, 15)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(39, 13)
         Me.Label1.TabIndex = 11
@@ -103,7 +105,7 @@ Partial Class Facture
         '
         Me.DtpArt2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DtpArt2.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpArt2.Location = New System.Drawing.Point(376, 11)
+        Me.DtpArt2.Location = New System.Drawing.Point(577, 11)
         Me.DtpArt2.Name = "DtpArt2"
         Me.DtpArt2.Size = New System.Drawing.Size(142, 20)
         Me.DtpArt2.TabIndex = 10
@@ -112,7 +114,7 @@ Partial Class Facture
         '
         Me.DtpArt1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DtpArt1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DtpArt1.Location = New System.Drawing.Point(583, 12)
+        Me.DtpArt1.Location = New System.Drawing.Point(784, 12)
         Me.DtpArt1.Name = "DtpArt1"
         Me.DtpArt1.Size = New System.Drawing.Size(134, 20)
         Me.DtpArt1.TabIndex = 9
@@ -121,11 +123,11 @@ Partial Class Facture
         '
         Me.Button1.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(136, 8)
+        Me.Button1.Location = New System.Drawing.Point(21, 9)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(122, 27)
         Me.Button1.TabIndex = 0
-        Me.Button1.Text = "List Clients"
+        Me.Button1.Text = "Par Clients"
         Me.Button1.UseVisualStyleBackColor = False
         '
         'Panel2
@@ -134,7 +136,7 @@ Partial Class Facture
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 45)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(735, 349)
+        Me.Panel2.Size = New System.Drawing.Size(936, 349)
         Me.Panel2.TabIndex = 2
         '
         'DataGridView1
@@ -144,15 +146,15 @@ Partial Class Facture
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.DataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDarkDark
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.Padding = New System.Windows.Forms.Padding(5)
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.Padding = New System.Windows.Forms.Padding(5)
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column2, Me.Column1, Me.Column3, Me.Column4, Me.Column5, Me.Column6})
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -162,7 +164,7 @@ Partial Class Facture
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(735, 349)
+        Me.DataGridView1.Size = New System.Drawing.Size(936, 349)
         Me.DataGridView1.TabIndex = 0
         '
         'Column2
@@ -219,7 +221,7 @@ Partial Class Facture
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel3.Location = New System.Drawing.Point(0, 394)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(735, 119)
+        Me.Panel3.Size = New System.Drawing.Size(936, 119)
         Me.Panel3.TabIndex = 3
         '
         'cbway
@@ -267,7 +269,7 @@ Partial Class Facture
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(285, 14)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(84, 13)
+        Me.Label4.Size = New System.Drawing.Size(85, 13)
         Me.Label4.TabIndex = 11
         Me.Label4.Text = "Date de Facture"
         '
@@ -276,7 +278,7 @@ Partial Class Facture
         Me.LbRemise.AutoSize = True
         Me.LbRemise.Location = New System.Drawing.Point(18, 74)
         Me.LbRemise.Name = "LbRemise"
-        Me.LbRemise.Size = New System.Drawing.Size(42, 13)
+        Me.LbRemise.Size = New System.Drawing.Size(41, 13)
         Me.LbRemise.TabIndex = 11
         Me.LbRemise.Text = "Remise"
         '
@@ -307,11 +309,22 @@ Partial Class Facture
         Me.DtFct.Size = New System.Drawing.Size(231, 20)
         Me.DtFct.TabIndex = 10
         '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Location = New System.Drawing.Point(277, 9)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(118, 27)
+        Me.Button4.TabIndex = 12
+        Me.Button4.Text = "Par Md Paiement"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
         'Facture
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(735, 513)
+        Me.ClientSize = New System.Drawing.Size(936, 513)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel3)
@@ -354,4 +367,5 @@ Partial Class Facture
     Friend WithEvents LbRemise As System.Windows.Forms.Label
     Friend WithEvents cbway As System.Windows.Forms.ComboBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents Button4 As System.Windows.Forms.Button
 End Class

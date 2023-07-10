@@ -393,4 +393,77 @@
         txtRemise.text = totalFacture
         LbRemise.Text = "Remise : " & remise & " % - (" & remiseValue & " dhs)"
     End Sub
+
+    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
+        Try
+            Dim dt2 As Date = CDate(DtpArt1.Text).AddDays(1)
+            Dim dt1 As Date = CDate(DtpArt2.Text).AddDays(-1)
+            Dim b As Boolean = EditMode
+
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+
+                Dim tb As String = "Facture"
+                Dim tb_p As String = "payment"
+            
+
+                params.Add(tb & ".beInFacture <= ", CInt(0))
+                params.Add(tb & ".date >", dt1)
+                params.Add(tb & ".date <", dt2)
+                params.Add(tb_p & ".way LIKE", "%" & cbway.Text & "%")
+
+                Dim dt = c.SelectDataTableSymbols("(" & tb & " INNER JOIN " & tb_p & " ON " & tb & ".fctid = " & tb_p & ".fctid)",
+                            {tb & ".*"}, params)
+
+                Dim __b As Boolean = False
+                Dim __ls As New List(Of Integer)
+
+                Try
+                    If __b Then
+                        params.Clear()
+
+                        If Form1.adminName.Contains("*") Then
+                            params.Add("CIN LIKE", "%*%")
+                        ElseIf Form1.adminName.Contains("/") Then
+                            params.Add("CIN LIKE", "%/%")
+                        End If
+                        Dim __dt As DataTable = c.SelectDataTableSymbols("Client", {"Clid "}, params)
+
+                        For i As Integer = 0 To __dt.Rows.Count - 1
+                            __ls.Add(__dt.Rows(i).Item(0))
+                        Next
+
+
+                    End If
+                Catch ex As Exception
+                End Try
+
+
+                If b = False Then DataGridView1.Rows.Clear()
+
+                lst = ""
+                If dt.Rows.Count > 0 Then
+                    For i As Integer = 0 To dt.Rows.Count - 1
+                        If __b Then
+                            If __ls.Contains(dt.Rows(i).Item("clid")) = False Then Continue For
+                        End If
+
+                        DataGridView1.Rows.Add(False, dt.Rows(i).Item(0).ToString,
+                        CDate(dt.Rows(i).Item("date")).ToString("dd, MMMM yy"),
+                        dt.Rows(i).Item("total"), dt.Rows(i).Item("remise"),
+                        dt.Rows(i).Item("name").ToString)
+
+                    Next
+                    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                    UnpayedMode = True
+                Else
+                    MsgBox("لا توجد اي ايصالات لهذا الزبون")
+                End If
+                params = Nothing
+            End Using
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
 End Class
