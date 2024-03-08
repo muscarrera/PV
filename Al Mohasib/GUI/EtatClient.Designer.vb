@@ -27,6 +27,7 @@ Partial Class EtatClient
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.btPrint = New System.Windows.Forms.Button()
         Me.lbClient = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -57,13 +58,32 @@ Partial Class EtatClient
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Indigo
+        Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.btPrint)
         Me.Panel1.Controls.Add(Me.lbClient)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(603, 64)
+        Me.Panel1.Size = New System.Drawing.Size(804, 79)
         Me.Panel1.TabIndex = 2
+        '
+        'Button1
+        '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Image = Global.Al_Mohasib.My.Resources.Resources.PDF_22
+        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.Location = New System.Drawing.Point(515, 18)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(113, 49)
+        Me.Button1.TabIndex = 5
+        Me.Button1.Text = "Aperçu    "
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'btPrint
         '
@@ -73,11 +93,12 @@ Partial Class EtatClient
         Me.btPrint.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btPrint.Image = Global.Al_Mohasib.My.Resources.Resources.Lprint
         Me.btPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btPrint.Location = New System.Drawing.Point(477, 14)
+        Me.btPrint.Location = New System.Drawing.Point(636, 17)
+        Me.btPrint.Margin = New System.Windows.Forms.Padding(4)
         Me.btPrint.Name = "btPrint"
-        Me.btPrint.Size = New System.Drawing.Size(114, 40)
+        Me.btPrint.Size = New System.Drawing.Size(152, 49)
         Me.btPrint.TabIndex = 5
-        Me.btPrint.Text = "Imprimer"
+        Me.btPrint.Text = "Imprimer    "
         Me.btPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btPrint.UseVisualStyleBackColor = False
         '
@@ -87,9 +108,10 @@ Partial Class EtatClient
         Me.lbClient.BackColor = System.Drawing.Color.Transparent
         Me.lbClient.Font = New System.Drawing.Font("Arial Rounded MT Bold", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbClient.ForeColor = System.Drawing.Color.White
-        Me.lbClient.Location = New System.Drawing.Point(42, 19)
+        Me.lbClient.Location = New System.Drawing.Point(56, 23)
+        Me.lbClient.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lbClient.Name = "lbClient"
-        Me.lbClient.Size = New System.Drawing.Size(24, 24)
+        Me.lbClient.Size = New System.Drawing.Size(33, 32)
         Me.lbClient.TabIndex = 0
         Me.lbClient.Text = "--"
         '
@@ -98,9 +120,10 @@ Partial Class EtatClient
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Arial Rounded MT Bold", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(422, 24)
+        Me.Label4.Location = New System.Drawing.Point(563, 30)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(33, 12)
+        Me.Label4.Size = New System.Drawing.Size(42, 16)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Total"
         '
@@ -109,9 +132,10 @@ Partial Class EtatClient
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Arial Rounded MT Bold", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(14, 24)
+        Me.Label3.Location = New System.Drawing.Point(19, 30)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(102, 12)
+        Me.Label3.Size = New System.Drawing.Size(128, 16)
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Rest Sur les Bons"
         '
@@ -120,9 +144,10 @@ Partial Class EtatClient
         Me.lbRest.AutoSize = True
         Me.lbRest.Font = New System.Drawing.Font("Arial Rounded MT Bold", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbRest.ForeColor = System.Drawing.Color.Green
-        Me.lbRest.Location = New System.Drawing.Point(422, 46)
+        Me.lbRest.Location = New System.Drawing.Point(563, 57)
+        Me.lbRest.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lbRest.Name = "lbRest"
-        Me.lbRest.Size = New System.Drawing.Size(22, 24)
+        Me.lbRest.Size = New System.Drawing.Size(31, 32)
         Me.lbRest.TabIndex = 0
         Me.lbRest.Text = "0"
         '
@@ -154,12 +179,13 @@ Partial Class EtatClient
         Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowTemplate.Height = 36
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(603, 396)
+        Me.DataGridView1.Size = New System.Drawing.Size(804, 486)
         Me.DataGridView1.TabIndex = 0
         '
         'Column1
@@ -198,9 +224,10 @@ Partial Class EtatClient
         Me.Panel3.Controls.Add(Me.DataGridView1)
         Me.Panel3.Controls.Add(Me.DataGridView2)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel3.Location = New System.Drawing.Point(0, 64)
+        Me.Panel3.Location = New System.Drawing.Point(0, 79)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(603, 446)
+        Me.Panel3.Size = New System.Drawing.Size(804, 548)
         Me.Panel3.TabIndex = 3
         '
         'DataGridView2
@@ -231,13 +258,14 @@ Partial Class EtatClient
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.DataGridView2.Location = New System.Drawing.Point(0, 396)
+        Me.DataGridView2.Location = New System.Drawing.Point(0, 486)
+        Me.DataGridView2.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridView2.MultiSelect = False
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.ReadOnly = True
         Me.DataGridView2.RowTemplate.Height = 36
         Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView2.Size = New System.Drawing.Size(603, 50)
+        Me.DataGridView2.Size = New System.Drawing.Size(804, 62)
         Me.DataGridView2.TabIndex = 0
         '
         'DataGridViewTextBoxColumn1
@@ -269,9 +297,10 @@ Partial Class EtatClient
         Me.lbrestFact.AutoSize = True
         Me.lbrestFact.Font = New System.Drawing.Font("Arial Rounded MT Bold", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbrestFact.ForeColor = System.Drawing.Color.Red
-        Me.lbrestFact.Location = New System.Drawing.Point(12, 46)
+        Me.lbrestFact.Location = New System.Drawing.Point(16, 57)
+        Me.lbrestFact.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lbrestFact.Name = "lbrestFact"
-        Me.lbrestFact.Size = New System.Drawing.Size(22, 24)
+        Me.lbrestFact.Size = New System.Drawing.Size(31, 32)
         Me.lbrestFact.TabIndex = 0
         Me.lbrestFact.Text = "0"
         '
@@ -282,9 +311,10 @@ Partial Class EtatClient
         Me.Panel2.Controls.Add(Me.lbRest)
         Me.Panel2.Controls.Add(Me.lbrestFact)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 510)
+        Me.Panel2.Location = New System.Drawing.Point(0, 627)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(603, 81)
+        Me.Panel2.Size = New System.Drawing.Size(804, 100)
         Me.Panel2.TabIndex = 1
         '
         'PrintDoc
@@ -292,12 +322,13 @@ Partial Class EtatClient
         '
         'EtatClient
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(603, 591)
+        Me.ClientSize = New System.Drawing.Size(804, 727)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "EtatClient"
         Me.Text = "EtatClient"
         Me.Panel1.ResumeLayout(False)
@@ -331,4 +362,5 @@ Partial Class EtatClient
     Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column3 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column4 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

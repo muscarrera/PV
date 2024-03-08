@@ -9,7 +9,7 @@
     Public isEditing As Boolean
     Public editMode As Boolean
     Public id As Integer
-
+    Public isTables As Boolean = False
     Private dt As DataTable
     Private IND As Integer
 
@@ -21,10 +21,20 @@
             If isSell = False Then
                 tableName = "company"
             End If
-        
-            dt = c.SelectDataTable(tableName, {"*"})
-        End Using
+            If Form1.cbCafeMode.Checked And Form1.cbCafeTable.Checked Then
+                Dim params As New Dictionary(Of String, Object)
+                If isTables Then
+                    params.Add("type >", 0)
+                Else
+                    params.Add("type =", 0)
+                End If
+                dt = c.SelectDataTableSymbols(tableName, {"*"}, params)
+            Else
+                dt = c.SelectDataTable(tableName, {"*"})
+            End If
 
+
+        End Using
         FillBloc(0)
     End Sub
     Public Sub FillBloc(ByVal startIndex As Integer)
@@ -149,17 +159,18 @@
             DataGridView1.Rows.Clear()
 
             Dim params As New Dictionary(Of String, Object)
-            params.Add("clid", cl.Arid)
-            params.Add("payed", False)
-            params.Add("admin", True)
+            params.Add("clid = ", cl.Arid)
+            params.Add("payed = ", False)
+            params.Add("admin = ", True)
+            ' params.Add("bc NOT LIKE ", "B-%")
 
-            Dim dt = c.SelectDataTable(tableName, {"*"}, params)
+            Dim dt = c.SelectDataTableSymbols(tableName, {"*"}, params)
             If dt.Rows.Count > 0 Then
                 For i As Integer = 0 To dt.Rows.Count - 1
 
                     DataGridView1.Rows.Add(dt.Rows(i).Item(0),
                                            CDate(dt.Rows(i).Item("date")).ToString("dd,MM yy"),
-                                           dt.Rows(i).Item("total"), dt.Rows(i).Item("bl"))
+                                           dt.Rows(i).Item("total"), dt.Rows(i).Item("bl"), dt.Rows(i).Item("bc"))
 
                     rest += DblValue(dt, "total", i) - DblValue(dt, "avance", i)
                 Next
@@ -340,6 +351,9 @@
         FillBloc(0)
     End Sub
     Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+
+        If DataGridView1.SelectedRows(0).Cells(0).Value.ToString.ToUpper.StartsWith("B-") Then Exit Sub
+
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
 
             id = DataGridView1.SelectedRows(0).Cells(0).Value
@@ -386,7 +400,7 @@
 
                 Dim dt = c.SelectDataTable("Detailstock", {"*"}, where)
                 where.Clear()
-
+                params.Clear()
                 If dt.Rows.Count > 0 Then
                     Dim qte As Double = table.Rows(i).Item("qte")
                     Dim dsid As Integer = dt.Rows(0).Item(0)

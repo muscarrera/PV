@@ -176,6 +176,8 @@
         PARAMS.Add("Prix TTC (Ryl)", "xPriceTTC-RYL")
         PARAMS.Add("Total (Ryl)", "xTotal-RYL")
         PARAMS.Add("Total TTC (Ryl)", "xTotalTTC-RYL")
+        PARAMS.Add("qteStr", "qteStr")
+        PARAMS.Add("freeQte", "freeQte")
         PARAMS.Add("CheckBox", "CheckBox")
 
         ComboBox1.ValueMember = "Value"

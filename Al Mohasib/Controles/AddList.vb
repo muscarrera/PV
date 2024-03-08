@@ -249,6 +249,11 @@ Public Class AddList
         If DataListe.Count = 0 Then Exit Sub
         Dim price As Double = CDbl(txtprice.text)
 
+        If bprice > price Then
+            MsgBox("error.. merci de modifier les prix")
+            Exit Sub
+        End If
+
         Dim elements As String = ""
         For Each kv As KeyValuePair(Of String, Object) In DataListe
             elements &= kv.Key & " & " & kv.Value & "*"

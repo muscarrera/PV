@@ -30,10 +30,10 @@ Public Class PromosList
             DataGridView1.Rows.Add(localname)
         End If
 
-        Dim dir1 As New DirectoryInfo(Form1.ImgPah & "\" & TableName)
+        Dim dir1 As New DirectoryInfo(Form1.Data_Comp_Path & "\" & TableName)
         If dir1.Exists = False Then dir1.Create()
 
-        WriteToXmlFile(Of Promos)(Form1.ImgPah & "\" & TableName & "\" & localname, g)
+        WriteToXmlFile(Of Promos)(Form1.Data_Comp_Path & "\" & TableName & "\" & localname, g)
 
         Dim ad As New AddEditPromos
         ad.TableName = TableName
@@ -49,7 +49,7 @@ Public Class PromosList
     End Sub
 
     Private Sub PromosList_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim dir1 As New DirectoryInfo(Form1.ImgPah & "\" & TableName)
+        Dim dir1 As New DirectoryInfo(Form1.Data_Comp_Path & "\" & TableName)
         If dir1.Exists = False Then dir1.Create()
 
         lb.Text = TableName
@@ -87,7 +87,7 @@ Public Class PromosList
     Public Sub LoadXml()
         Dim _g As New Promos
         Try
-            _g = ReadFromXmlFile(Of Promos)(Form1.ImgPah & "\" & TableName & "\" & localname)
+            _g = ReadFromXmlFile(Of Promos)(Form1.Data_Comp_Path & "\" & TableName & "\" & localname)
             txtName.text = _g.name
             txtDesc.text = _g.desgn
             txtEcheance.text = _g.ech
@@ -109,7 +109,7 @@ Public Class PromosList
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         If MsgBox("Vous ete sure de supprimer cet item? ", MsgBoxStyle.YesNo, "Supression") = MsgBoxResult.Yes Then
             Try
-                Dim strpath As String = Form1.ImgPah & "\" & TableName
+                Dim strpath As String = Form1.Data_Comp_Path & "\" & TableName
                 localname = DataGridView1.SelectedRows(0).Cells(0).Value.ToString
                 Dim fullPath As String = Path.Combine(strpath, localname)
                 File.Delete(fullPath)

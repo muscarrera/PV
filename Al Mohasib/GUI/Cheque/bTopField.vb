@@ -14,4 +14,7 @@
     Public fName As String = "Arial"
     Public points As String
     Public isDeleted As Boolean = False
+    Public isVertical As Boolean = False
+    Public isRotate As Boolean = False
+    Public rotation As Integer = 0
 End Class

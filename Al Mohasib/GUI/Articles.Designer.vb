@@ -71,6 +71,7 @@ Partial Class Articles
         Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.plup.SuspendLayout()
         Me.Panel21.SuspendLayout()
         Me.Panel24.SuspendLayout()
@@ -92,20 +93,23 @@ Partial Class Articles
         Me.plup.Controls.Add(Me.Panel12)
         Me.plup.Dock = System.Windows.Forms.DockStyle.Top
         Me.plup.Location = New System.Drawing.Point(0, 0)
+        Me.plup.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.plup.Name = "plup"
-        Me.plup.Size = New System.Drawing.Size(1148, 93)
+        Me.plup.Size = New System.Drawing.Size(1531, 114)
         Me.plup.TabIndex = 1
         '
         'Panel21
         '
         Me.Panel21.BackgroundImage = CType(resources.GetObject("Panel21.BackgroundImage"), System.Drawing.Image)
+        Me.Panel21.Controls.Add(Me.Button3)
         Me.Panel21.Controls.Add(Me.Button1)
         Me.Panel21.Controls.Add(Me.Panel22)
         Me.Panel21.Controls.Add(Me.Panel23)
         Me.Panel21.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel21.Location = New System.Drawing.Point(661, 0)
+        Me.Panel21.Location = New System.Drawing.Point(881, 0)
+        Me.Panel21.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(487, 93)
+        Me.Panel21.Size = New System.Drawing.Size(650, 114)
         Me.Panel21.TabIndex = 3
         '
         'Button1
@@ -116,9 +120,10 @@ Partial Class Articles
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Button1.Location = New System.Drawing.Point(6, 46)
+        Me.Button1.Location = New System.Drawing.Point(177, 18)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(142, 23)
+        Me.Button1.Size = New System.Drawing.Size(146, 38)
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "Details Infos"
         Me.Button1.UseVisualStyleBackColor = False
@@ -128,18 +133,20 @@ Partial Class Articles
         Me.Panel22.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.btmenu1
         Me.Panel22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel22.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel22.Location = New System.Drawing.Point(0, 72)
+        Me.Panel22.Location = New System.Drawing.Point(0, 88)
+        Me.Panel22.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel22.Name = "Panel22"
-        Me.Panel22.Size = New System.Drawing.Size(486, 21)
+        Me.Panel22.Size = New System.Drawing.Size(649, 26)
         Me.Panel22.TabIndex = 3
         '
         'Panel23
         '
         Me.Panel23.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.line
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel23.Location = New System.Drawing.Point(486, 0)
+        Me.Panel23.Location = New System.Drawing.Point(649, 0)
+        Me.Panel23.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(1, 93)
+        Me.Panel23.Size = New System.Drawing.Size(1, 114)
         Me.Panel23.TabIndex = 2
         '
         'Panel24
@@ -151,9 +158,10 @@ Partial Class Articles
         Me.Panel24.Controls.Add(Me.Panel25)
         Me.Panel24.Controls.Add(Me.Panel26)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel24.Location = New System.Drawing.Point(430, 0)
+        Me.Panel24.Location = New System.Drawing.Point(573, 0)
+        Me.Panel24.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(231, 93)
+        Me.Panel24.Size = New System.Drawing.Size(308, 114)
         Me.Panel24.TabIndex = 3
         '
         'Label9
@@ -162,27 +170,30 @@ Partial Class Articles
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label9.Location = New System.Drawing.Point(15, 3)
+        Me.Label9.Location = New System.Drawing.Point(20, 4)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(109, 17)
+        Me.Label9.Size = New System.Drawing.Size(129, 20)
         Me.Label9.TabIndex = 0
         Me.Label9.Text = "Réf/Designation"
         '
         'txt
         '
         Me.txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txt.Location = New System.Drawing.Point(15, 23)
+        Me.txt.Location = New System.Drawing.Point(20, 28)
+        Me.txt.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txt.Name = "txt"
-        Me.txt.Size = New System.Drawing.Size(198, 20)
+        Me.txt.Size = New System.Drawing.Size(263, 22)
         Me.txt.TabIndex = 5
         '
         'Button5
         '
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button5.Location = New System.Drawing.Point(15, 46)
+        Me.Button5.Location = New System.Drawing.Point(20, 57)
+        Me.Button5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(198, 23)
+        Me.Button5.Size = New System.Drawing.Size(264, 28)
         Me.Button5.TabIndex = 4
         Me.Button5.Text = "RECHERCHE"
         Me.Button5.UseVisualStyleBackColor = True
@@ -193,9 +204,10 @@ Partial Class Articles
         Me.Panel25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel25.Controls.Add(Me.Label13)
         Me.Panel25.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel25.Location = New System.Drawing.Point(0, 72)
+        Me.Panel25.Location = New System.Drawing.Point(0, 88)
+        Me.Panel25.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel25.Name = "Panel25"
-        Me.Panel25.Size = New System.Drawing.Size(230, 21)
+        Me.Panel25.Size = New System.Drawing.Size(307, 26)
         Me.Panel25.TabIndex = 3
         '
         'Label13
@@ -204,9 +216,10 @@ Partial Class Articles
         Me.Label13.BackColor = System.Drawing.Color.Transparent
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label13.Location = New System.Drawing.Point(73, 1)
+        Me.Label13.Location = New System.Drawing.Point(97, 1)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(93, 17)
+        Me.Label13.Size = New System.Drawing.Size(116, 20)
         Me.Label13.TabIndex = 0
         Me.Label13.Text = "RECHERCHE"
         '
@@ -215,9 +228,10 @@ Partial Class Articles
         Me.Panel26.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.line
         Me.Panel26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel26.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel26.Location = New System.Drawing.Point(230, 0)
+        Me.Panel26.Location = New System.Drawing.Point(307, 0)
+        Me.Panel26.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel26.Name = "Panel26"
-        Me.Panel26.Size = New System.Drawing.Size(1, 93)
+        Me.Panel26.Size = New System.Drawing.Size(1, 114)
         Me.Panel26.TabIndex = 2
         '
         'Panel15
@@ -229,9 +243,10 @@ Partial Class Articles
         Me.Panel15.Controls.Add(Me.Panel16)
         Me.Panel15.Controls.Add(Me.Panel17)
         Me.Panel15.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel15.Location = New System.Drawing.Point(145, 0)
+        Me.Panel15.Location = New System.Drawing.Point(193, 0)
+        Me.Panel15.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel15.Name = "Panel15"
-        Me.Panel15.Size = New System.Drawing.Size(285, 93)
+        Me.Panel15.Size = New System.Drawing.Size(380, 114)
         Me.Panel15.TabIndex = 2
         '
         'Button2
@@ -243,9 +258,10 @@ Partial Class Articles
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Button2.Location = New System.Drawing.Point(181, 5)
+        Me.Button2.Location = New System.Drawing.Point(241, 6)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(92, 65)
+        Me.Button2.Size = New System.Drawing.Size(123, 80)
         Me.Button2.TabIndex = 0
         Me.Button2.Text = "SUPPRIMER"
         Me.Button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -260,9 +276,10 @@ Partial Class Articles
         Me.Button48.FlatAppearance.BorderSize = 0
         Me.Button48.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button48.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Button48.Location = New System.Drawing.Point(96, 5)
+        Me.Button48.Location = New System.Drawing.Point(128, 6)
+        Me.Button48.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button48.Name = "Button48"
-        Me.Button48.Size = New System.Drawing.Size(79, 65)
+        Me.Button48.Size = New System.Drawing.Size(105, 80)
         Me.Button48.TabIndex = 0
         Me.Button48.Text = "MODIFIER"
         Me.Button48.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -277,9 +294,10 @@ Partial Class Articles
         Me.Button35.FlatAppearance.BorderSize = 0
         Me.Button35.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button35.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Button35.Location = New System.Drawing.Point(6, 4)
+        Me.Button35.Location = New System.Drawing.Point(8, 5)
+        Me.Button35.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button35.Name = "Button35"
-        Me.Button35.Size = New System.Drawing.Size(84, 65)
+        Me.Button35.Size = New System.Drawing.Size(112, 80)
         Me.Button35.TabIndex = 0
         Me.Button35.Text = "NOUVEAU"
         Me.Button35.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -291,9 +309,10 @@ Partial Class Articles
         Me.Panel16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel16.Controls.Add(Me.Label11)
         Me.Panel16.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel16.Location = New System.Drawing.Point(0, 72)
+        Me.Panel16.Location = New System.Drawing.Point(0, 88)
+        Me.Panel16.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel16.Name = "Panel16"
-        Me.Panel16.Size = New System.Drawing.Size(284, 21)
+        Me.Panel16.Size = New System.Drawing.Size(379, 26)
         Me.Panel16.TabIndex = 3
         '
         'Label11
@@ -302,9 +321,10 @@ Partial Class Articles
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label11.Location = New System.Drawing.Point(107, 1)
+        Me.Label11.Location = New System.Drawing.Point(143, 1)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(74, 17)
+        Me.Label11.Size = New System.Drawing.Size(90, 20)
         Me.Label11.TabIndex = 0
         Me.Label11.Text = "ARTICLES"
         '
@@ -313,9 +333,10 @@ Partial Class Articles
         Me.Panel17.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.line
         Me.Panel17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel17.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel17.Location = New System.Drawing.Point(284, 0)
+        Me.Panel17.Location = New System.Drawing.Point(379, 0)
+        Me.Panel17.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel17.Name = "Panel17"
-        Me.Panel17.Size = New System.Drawing.Size(1, 93)
+        Me.Panel17.Size = New System.Drawing.Size(1, 114)
         Me.Panel17.TabIndex = 2
         '
         'Panel12
@@ -326,8 +347,9 @@ Partial Class Articles
         Me.Panel12.Controls.Add(Me.Button6)
         Me.Panel12.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel12.Location = New System.Drawing.Point(0, 0)
+        Me.Panel12.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel12.Name = "Panel12"
-        Me.Panel12.Size = New System.Drawing.Size(145, 93)
+        Me.Panel12.Size = New System.Drawing.Size(193, 114)
         Me.Panel12.TabIndex = 2
         '
         'Panel14
@@ -336,9 +358,10 @@ Partial Class Articles
         Me.Panel14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel14.Controls.Add(Me.Label7)
         Me.Panel14.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel14.Location = New System.Drawing.Point(0, 72)
+        Me.Panel14.Location = New System.Drawing.Point(0, 88)
+        Me.Panel14.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(144, 21)
+        Me.Panel14.Size = New System.Drawing.Size(192, 26)
         Me.Panel14.TabIndex = 3
         '
         'Label7
@@ -347,9 +370,10 @@ Partial Class Articles
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label7.Location = New System.Drawing.Point(30, 3)
+        Me.Label7.Location = New System.Drawing.Point(40, 4)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(77, 17)
+        Me.Label7.Size = New System.Drawing.Size(92, 20)
         Me.Label7.TabIndex = 0
         Me.Label7.Text = "GROUPES"
         '
@@ -358,9 +382,10 @@ Partial Class Articles
         Me.Panel13.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.line
         Me.Panel13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel13.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel13.Location = New System.Drawing.Point(144, 0)
+        Me.Panel13.Location = New System.Drawing.Point(192, 0)
+        Me.Panel13.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel13.Name = "Panel13"
-        Me.Panel13.Size = New System.Drawing.Size(1, 93)
+        Me.Panel13.Size = New System.Drawing.Size(1, 114)
         Me.Panel13.TabIndex = 2
         '
         'Button6
@@ -372,9 +397,10 @@ Partial Class Articles
         Me.Button6.FlatAppearance.BorderSize = 0
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Button6.Location = New System.Drawing.Point(12, 4)
+        Me.Button6.Location = New System.Drawing.Point(16, 5)
+        Me.Button6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(126, 65)
+        Me.Button6.Size = New System.Drawing.Size(168, 80)
         Me.Button6.TabIndex = 0
         Me.Button6.Tag = "0"
         Me.Button6.Text = "GROUPES"
@@ -385,9 +411,11 @@ Partial Class Articles
         '
         Me.GroupBox1.Controls.Add(Me.FlowLayoutPanel5)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GroupBox1.Location = New System.Drawing.Point(855, 93)
+        Me.GroupBox1.Location = New System.Drawing.Point(1140, 114)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(293, 482)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Size = New System.Drawing.Size(391, 594)
         Me.GroupBox1.TabIndex = 2
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GROUPES"
@@ -398,9 +426,10 @@ Partial Class Articles
         Me.FlowLayoutPanel5.BackColor = System.Drawing.Color.FloralWhite
         Me.FlowLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FlowLayoutPanel5.Location = New System.Drawing.Point(3, 16)
+        Me.FlowLayoutPanel5.Location = New System.Drawing.Point(4, 19)
+        Me.FlowLayoutPanel5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.FlowLayoutPanel5.Name = "FlowLayoutPanel5"
-        Me.FlowLayoutPanel5.Size = New System.Drawing.Size(287, 463)
+        Me.FlowLayoutPanel5.Size = New System.Drawing.Size(383, 571)
         Me.FlowLayoutPanel5.TabIndex = 1
         '
         'GroupBox2
@@ -408,9 +437,11 @@ Partial Class Articles
         Me.GroupBox2.Controls.Add(Me.DGVPRD)
         Me.GroupBox2.Controls.Add(Me.Panel2)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Location = New System.Drawing.Point(0, 93)
+        Me.GroupBox2.Location = New System.Drawing.Point(0, 114)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(855, 482)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox2.Size = New System.Drawing.Size(1140, 594)
         Me.GroupBox2.TabIndex = 2
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "ARTICLES"
@@ -446,13 +477,14 @@ Partial Class Articles
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DGVPRD.DefaultCellStyle = DataGridViewCellStyle3
         Me.DGVPRD.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DGVPRD.Location = New System.Drawing.Point(3, 16)
+        Me.DGVPRD.Location = New System.Drawing.Point(4, 19)
+        Me.DGVPRD.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DGVPRD.Name = "DGVPRD"
         Me.DGVPRD.ReadOnly = True
         Me.DGVPRD.RowHeadersVisible = False
         Me.DGVPRD.RowTemplate.Height = 28
         Me.DGVPRD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGVPRD.Size = New System.Drawing.Size(839, 463)
+        Me.DGVPRD.Size = New System.Drawing.Size(1119, 571)
         Me.DGVPRD.TabIndex = 20
         '
         'Column1
@@ -572,20 +604,39 @@ Partial Class Articles
         '
         Me.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel2.Location = New System.Drawing.Point(842, 16)
+        Me.Panel2.Location = New System.Drawing.Point(1123, 19)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(10, 463)
+        Me.Panel2.Size = New System.Drawing.Size(13, 571)
         Me.Panel2.TabIndex = 0
+        '
+        'Button3
+        '
+        Me.Button3.AllowDrop = True
+        Me.Button3.BackColor = System.Drawing.Color.DarkRed
+        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Button3.FlatAppearance.BorderSize = 0
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
+        Me.Button3.ForeColor = System.Drawing.Color.White
+        Me.Button3.Location = New System.Drawing.Point(29, 18)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(123, 38)
+        Me.Button3.TabIndex = 0
+        Me.Button3.Text = "BALANCE"
+        Me.Button3.UseVisualStyleBackColor = False
         '
         'Articles
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1148, 575)
+        Me.ClientSize = New System.Drawing.Size(1531, 708)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.plup)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Articles"
@@ -654,4 +705,5 @@ Partial Class Articles
     Friend WithEvents Column14 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column15 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column16 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Button3 As System.Windows.Forms.Button
 End Class

@@ -109,15 +109,18 @@
             Me.Show()
             txtsprice.Focus()
         Else
-            LBQTE.Top = LBBPRICE.Top
-            txtqte.Top = txtbprice.Top
+            'LBQTE.Top = LBBPRICE.Top
+            'txtqte.Top = txtbprice.Top
 
             LBBPRICE.Visible = False
             LBSPR.Visible = False
             txtbprice.Visible = False
             txtsprice.Visible = False
 
-            Me.Height = 385
+            cbChangeName.Visible = False
+            cbChangePrice.Visible = False
+            chNotDepot.Visible = False
+            ' Me.Height = 385
             Me.Show()
             txtqte.Focus()
         End If

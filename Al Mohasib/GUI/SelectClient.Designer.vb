@@ -45,9 +45,10 @@ Partial Class SelectClient
         Me.txtCode.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtCode.Dock = System.Windows.Forms.DockStyle.Fill
         Me.txtCode.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCode.Location = New System.Drawing.Point(11, 11)
+        Me.txtCode.Location = New System.Drawing.Point(15, 14)
+        Me.txtCode.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCode.Name = "txtCode"
-        Me.txtCode.Size = New System.Drawing.Size(565, 24)
+        Me.txtCode.Size = New System.Drawing.Size(753, 30)
         Me.txtCode.TabIndex = 0
         '
         'Panel3
@@ -55,10 +56,11 @@ Partial Class SelectClient
         Me.Panel3.BackColor = System.Drawing.Color.White
         Me.Panel3.Controls.Add(Me.txtCode)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel3.Location = New System.Drawing.Point(0, 352)
+        Me.Panel3.Location = New System.Drawing.Point(0, 434)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Padding = New System.Windows.Forms.Padding(11)
-        Me.Panel3.Size = New System.Drawing.Size(587, 10)
+        Me.Panel3.Padding = New System.Windows.Forms.Padding(15, 14, 15, 14)
+        Me.Panel3.Size = New System.Drawing.Size(783, 12)
         Me.Panel3.TabIndex = 6
         '
         'Label1
@@ -66,9 +68,10 @@ Partial Class SelectClient
         Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Label1.Font = New System.Drawing.Font("Arial Rounded MT Bold", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.ForestGreen
-        Me.Label1.Location = New System.Drawing.Point(11, 11)
+        Me.Label1.Location = New System.Drawing.Point(15, 14)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(565, 27)
+        Me.Label1.Size = New System.Drawing.Size(753, 32)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "merci de scanner votre badge ..."
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -78,9 +81,10 @@ Partial Class SelectClient
         Me.Button1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Button1.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Button1.Location = New System.Drawing.Point(11, 11)
+        Me.Button1.Location = New System.Drawing.Point(15, 14)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(476, 40)
+        Me.Button1.Size = New System.Drawing.Size(635, 48)
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "CONTINUER"
         Me.Button1.UseVisualStyleBackColor = True
@@ -90,10 +94,11 @@ Partial Class SelectClient
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 362)
+        Me.Panel2.Location = New System.Drawing.Point(0, 446)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Padding = New System.Windows.Forms.Padding(11)
-        Me.Panel2.Size = New System.Drawing.Size(587, 49)
+        Me.Panel2.Padding = New System.Windows.Forms.Padding(15, 14, 15, 14)
+        Me.Panel2.Size = New System.Drawing.Size(783, 60)
         Me.Panel2.TabIndex = 5
         '
         'Panel1
@@ -101,10 +106,11 @@ Partial Class SelectClient
         Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel1.Location = New System.Drawing.Point(0, 411)
+        Me.Panel1.Location = New System.Drawing.Point(0, 506)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Padding = New System.Windows.Forms.Padding(11)
-        Me.Panel1.Size = New System.Drawing.Size(587, 62)
+        Me.Panel1.Padding = New System.Windows.Forms.Padding(15, 14, 15, 14)
+        Me.Panel1.Size = New System.Drawing.Size(783, 76)
         Me.Panel1.TabIndex = 4
         '
         'Button2
@@ -115,9 +121,10 @@ Partial Class SelectClient
         Me.Button2.Dock = System.Windows.Forms.DockStyle.Right
         Me.Button2.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Button2.Location = New System.Drawing.Point(493, 11)
+        Me.Button2.Location = New System.Drawing.Point(657, 14)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(4)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(83, 40)
+        Me.Button2.Size = New System.Drawing.Size(111, 48)
         Me.Button2.TabIndex = 1
         Me.Button2.UseVisualStyleBackColor = False
         '
@@ -129,8 +136,9 @@ Partial Class SelectClient
         Me.Panel4.Controls.Add(Me.Panel5)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel4.Location = New System.Drawing.Point(0, 0)
+        Me.Panel4.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(587, 352)
+        Me.Panel4.Size = New System.Drawing.Size(783, 434)
         Me.Panel4.TabIndex = 7
         '
         'Panel5
@@ -140,9 +148,10 @@ Partial Class SelectClient
         Me.Panel5.Controls.Add(Me.bName)
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel5.ForeColor = System.Drawing.Color.Red
-        Me.Panel5.Location = New System.Drawing.Point(0, 283)
+        Me.Panel5.Location = New System.Drawing.Point(0, 349)
+        Me.Panel5.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(587, 69)
+        Me.Panel5.Size = New System.Drawing.Size(783, 85)
         Me.Panel5.TabIndex = 0
         '
         'TXT
@@ -153,9 +162,10 @@ Partial Class SelectClient
         Me.TXT.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TXT.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TXT.ForeColor = System.Drawing.SystemColors.Info
-        Me.TXT.Location = New System.Drawing.Point(36, 35)
+        Me.TXT.Location = New System.Drawing.Point(48, 43)
+        Me.TXT.Margin = New System.Windows.Forms.Padding(4)
         Me.TXT.Name = "TXT"
-        Me.TXT.Size = New System.Drawing.Size(528, 23)
+        Me.TXT.Size = New System.Drawing.Size(704, 29)
         Me.TXT.TabIndex = 1
         Me.TXT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -165,22 +175,24 @@ Partial Class SelectClient
         Me.bName.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.bName.ForeColor = System.Drawing.Color.WhiteSmoke
         Me.bName.Location = New System.Drawing.Point(0, 0)
+        Me.bName.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.bName.Name = "bName"
-        Me.bName.Size = New System.Drawing.Size(587, 28)
+        Me.bName.Size = New System.Drawing.Size(783, 34)
         Me.bName.TabIndex = 0
         Me.bName.Text = "C O D E       C L I E N T  :"
         Me.bName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'SelectClient
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(587, 473)
+        Me.ClientSize = New System.Drawing.Size(783, 582)
         Me.Controls.Add(Me.Panel4)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "SelectClient"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Client ..."

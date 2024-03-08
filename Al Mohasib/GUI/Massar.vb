@@ -3,12 +3,12 @@
 
     Private Sub Massar_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         str = Form1.btDbDv.Tag
-        conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & str & ";Persist Security Info=False;"
+
     End Sub
     Public Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         DataGridView1.Rows.Clear()
         Try
-            Using c As DataAccess = New DataAccess(conString, True)
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
                 Dim params As New Dictionary(Of String, Object)
                 params.Add("fctid", TxtBox1.text)
 
@@ -18,7 +18,7 @@
                     txtfct.text = dt.Rows(0).Item("fctid")
 
                     For j As Integer = 0 To dt.Rows.Count - 1
-                        DataGridView1.Rows.Add(CDate(dt.Rows(j).Item("date")).ToString("dd, MMM yy"),
+                        DataGridView1.Rows.Add(dt.Rows(j).Item("date"),
                                                dt.Rows(j).Item("Designation"),
                                                  dt.Rows(j).Item("Qte"),
                                                dt.Rows(j).Item("Price"),
@@ -36,14 +36,13 @@
     End Sub
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         DataGridView2.Rows.Clear()
-        Using c As DataAccess = New DataAccess(conString, True)
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
             Dim dt1 As Date = Date.Parse(DateTimePicker1.Text).AddDays(1)
             Dim dt2 As Date = Date.Parse(DateTimePicker1.Text).AddDays(-1)
-
-
+             
             Dim params As New Dictionary(Of String, Object)
-            params.Add("[date] <", dt1)
-            params.Add("[date] >", dt2)
+            params.Add("date <", dt1)
+            params.Add("date >", dt2)
 
             Dim dt = c.SelectDataTableSymbols("historique", {"*"}, params)
             If dt.Rows.Count > 0 Then
@@ -78,7 +77,7 @@
         If DataGridView2.SelectedRows.Count = 0 Then Exit Sub
         DataGridView1.Rows.Clear()
 
-        Using c As DataAccess = New DataAccess(conString, True)
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
             Dim params As New Dictionary(Of String, Object)
             params.Add("fctid", DataGridView2.SelectedRows(0).Cells(0).Value)
 
@@ -88,7 +87,7 @@
                 txtfct.text = dt.Rows(0).Item("fctid")
 
                 For j As Integer = 0 To dt.Rows.Count - 1
-                    DataGridView1.Rows.Add(CDate(dt.Rows(j).Item("date")).ToString("dd, MMM yy"),
+                    DataGridView1.Rows.Add(dt.Rows(j).Item("date"),
                                            dt.Rows(j).Item("Designation"),
                                              dt.Rows(j).Item("Qte"),
                                            dt.Rows(j).Item("Price"),

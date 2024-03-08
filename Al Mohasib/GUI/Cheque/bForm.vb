@@ -72,6 +72,8 @@ Public Class bForm
             data.Columns.Add("Date", GetType(String))
             data.Columns.Add("Montant", GetType(String))
             data.Columns.Add("En_Chiffre", GetType(String))
+            data.Columns.Add("date_Creation", GetType(String))
+            data.Columns.Add("ref", GetType(String))
 
             Dim str_mnt_chfr As String = ""
             Try
@@ -88,7 +90,7 @@ Public Class bForm
             Catch ex As Exception
 
             End Try
-            data.Rows.Add(" ", "Mohamed Ali", Now.Date.ToString("dd/MM/yyyy"), "100.00", str_mnt_chfr)
+            data.Rows.Add(" ", "Mohamed Ali", Now.Date.ToString("dd/MM/yyyy"), "100.00", str_mnt_chfr, Now.Date.ToString("dd/MM/yyyy"), "ref")
             Return data
         End Get
     End Property
@@ -196,6 +198,18 @@ Public Class bForm
 
                         Else
                             sf.Alignment = a.Alignement
+                            If a.isVertical Then
+                                sf.FormatFlags = StringFormatFlags.DirectionVertical
+                            Else
+                                sf.FormatFlags = StringFormatFlags.DisplayFormatControl
+                            End If
+
+                            If a.isRotate Then
+                                G.TranslateTransform(0, 150)
+                                G.RotateTransform(a.rotation)
+                            Else
+                                G.ResetTransform() 
+                            End If
                             Dim str As String = data.Rows(0).Item(a.field)
                             str = a.str_start & str & a.str_end
                             G.DrawString(str, fn, B, New RectangleF(top_x, top_y, a.width, a.height), sf)

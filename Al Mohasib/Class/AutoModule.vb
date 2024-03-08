@@ -46,6 +46,17 @@ Module AutoModule
         End Try
         Return str
     End Function
+    Public Function IsAtLeastOneDayAgo(ByVal targetDate As DateTime, ByVal nbrDays As Integer) As Boolean
+        ' Assuming targetDateStr is in the format 'YYYY-MM-DD'
+        'Dim targetDate As DateTime = DateTime.ParseExact(targetDateStr, "dd/MM/yyyy", Nothing)
+
+        ' Calculate the difference between the current date and the target date
+        Dim timeDifference As TimeSpan = DateTime.Now - targetDate
+
+        ' Check if the difference is at least one day
+        Return timeDifference.Days >= nbrDays
+    End Function
+
 
     '''''''''''''''''''''''''''
 

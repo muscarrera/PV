@@ -24,24 +24,15 @@ Partial Class ChoseDepot
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.DpidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DpidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.btCancel = New System.Windows.Forms.Button()
-        Me.GroupBox1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.DataGridView1)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 12)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(422, 328)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
         '
         'DataGridView1
         '
@@ -70,20 +61,14 @@ Partial Class ChoseDepot
         Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.GridColor = System.Drawing.SystemColors.Info
-        Me.DataGridView1.Location = New System.Drawing.Point(3, 16)
+        Me.DataGridView1.Location = New System.Drawing.Point(4, 19)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.RowTemplate.Height = 35
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(416, 309)
+        Me.DataGridView1.Size = New System.Drawing.Size(555, 381)
         Me.DataGridView1.TabIndex = 0
-        '
-        'DpidDataGridViewTextBoxColumn
-        '
-        Me.DpidDataGridViewTextBoxColumn.DataPropertyName = "dpid"
-        Me.DpidDataGridViewTextBoxColumn.HeaderText = "ID"
-        Me.DpidDataGridViewTextBoxColumn.Name = "DpidDataGridViewTextBoxColumn"
-        Me.DpidDataGridViewTextBoxColumn.ReadOnly = True
         '
         'NameDataGridViewTextBoxColumn
         '
@@ -92,14 +77,33 @@ Partial Class ChoseDepot
         Me.NameDataGridViewTextBoxColumn.Name = "NameDataGridViewTextBoxColumn"
         Me.NameDataGridViewTextBoxColumn.ReadOnly = True
         '
+        'DpidDataGridViewTextBoxColumn
+        '
+        Me.DpidDataGridViewTextBoxColumn.DataPropertyName = "dpid"
+        Me.DpidDataGridViewTextBoxColumn.HeaderText = "ID"
+        Me.DpidDataGridViewTextBoxColumn.Name = "DpidDataGridViewTextBoxColumn"
+        Me.DpidDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.DataGridView1)
+        Me.GroupBox1.Location = New System.Drawing.Point(16, 15)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox1.Size = New System.Drawing.Size(563, 404)
+        Me.GroupBox1.TabIndex = 0
+        Me.GroupBox1.TabStop = False
+        '
         'Button1
         '
         Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Button1.FlatAppearance.BorderSize = 2
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(244, 347)
+        Me.Button1.Location = New System.Drawing.Point(325, 427)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(187, 53)
+        Me.Button1.Size = New System.Drawing.Size(249, 65)
         Me.Button1.TabIndex = 1
         Me.Button1.Text = "تأكيد"
         Me.Button1.UseVisualStyleBackColor = True
@@ -109,37 +113,39 @@ Partial Class ChoseDepot
         Me.btCancel.FlatAppearance.BorderColor = System.Drawing.Color.Red
         Me.btCancel.FlatAppearance.BorderSize = 2
         Me.btCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btCancel.Location = New System.Drawing.Point(15, 347)
+        Me.btCancel.Location = New System.Drawing.Point(20, 427)
+        Me.btCancel.Margin = New System.Windows.Forms.Padding(4)
         Me.btCancel.Name = "btCancel"
-        Me.btCancel.Size = New System.Drawing.Size(121, 53)
+        Me.btCancel.Size = New System.Drawing.Size(161, 65)
         Me.btCancel.TabIndex = 1
         Me.btCancel.Text = "الغاء المخزن"
         Me.btCancel.UseVisualStyleBackColor = True
         '
         'ChoseDepot
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(446, 423)
+        Me.ClientSize = New System.Drawing.Size(595, 521)
         Me.Controls.Add(Me.btCancel)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GroupBox1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "ChoseDepot"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "تعديل المخزون"
-        Me.GroupBox1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents btCancel As System.Windows.Forms.Button
     Friend WithEvents DpidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents NameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents btCancel As System.Windows.Forms.Button
 End Class

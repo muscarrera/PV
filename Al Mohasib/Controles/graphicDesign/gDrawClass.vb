@@ -289,12 +289,17 @@ Public Class gDrawClass
                 Return
             End If
 
+            Dim freeQte = details.Rows(m).Item("freeQte")
 
             If tc.hasRows Then
                 Dim __h = plus_h
                 For Each c As gColClass In tc.details
                     If c.Field = "name" Then '///////////////////////////////////////////////
                         Dim _str = details.Rows(m).Item("name")
+                        If freeQte > 0 Then
+                            _str &= vbNewLine & "  *-------------------------*" & vbNewLine &
+                          "   Cdx : +" & freeQte & "(u)  Gratuit" & vbNewLine & "  *-------------------------*"
+                        End If
                         sf.Alignment = StringAlignment.Near
                         Dim size As SizeF = g.MeasureString(_str, F_D, c.ColWidth - 3)
                         __h = size.Height
@@ -371,19 +376,23 @@ Public Class gDrawClass
 
                 ElseIf c.Field = "xname" Then '//////////////////////////////////////////////
                     _str = "[" & details.Rows(m).Item("ref") & "] " & details.Rows(m).Item("name")
+                    If freeQte > 0 Then
+                        _str &= vbNewLine & "  *-------------------------*" & vbNewLine &
+                        "   Cdx : +" & freeQte & "(u)  Gratuit" & vbNewLine & "  *-------------------------*"
+                    End If
                     sf.Alignment = StringAlignment.Near
-
                     If rtl Then sf.Alignment = StringAlignment.Far
-
                     Dim size As SizeF = g.MeasureString(_str, F_D, c.ColWidth - 3)
                     plus_h = size.Height
 
                 ElseIf c.Field = "name" Then '///////////////////////////////////////////////
                     _str = details.Rows(m).Item("name")
+                    If freeQte > 0 Then
+                        _str &= vbNewLine & "  *-------------------------*" & vbNewLine &
+                        "   Cdx : +" & freeQte & "(u)  Gratuit" & vbNewLine & "  *-------------------------*"
+                    End If
                     sf.Alignment = StringAlignment.Near
-
                     If rtl Then sf.Alignment = StringAlignment.Far
-
                     Dim size As SizeF = g.MeasureString(_str, F_D, c.ColWidth - 3)
                     plus_h = size.Height
                 ElseIf c.Field = "CheckBox" Then '///////////////////////////////////////////////
@@ -411,7 +420,7 @@ Public Class gDrawClass
 
                     sf.Alignment = StringAlignment.Far
 
-                ElseIf c.Field = "qte" Then '////////////////////////////////////////////////
+                ElseIf c.Field = "qte" Or field = "qteStr" Then '////////////////////////////////////////////////
                     _str = details.Rows(m).Item(c.Field)
                     sf.Alignment = StringAlignment.Center
                 Else
@@ -595,6 +604,25 @@ Public Class gDrawClass
                             g.DrawString(str, fn, B, New RectangleF(xx, yy, a.width, a.height), sf)
                         Catch ex As Exception
                         End Try
+                    ElseIf a.field.StartsWith("g_totalGratuits") Then
+                        Dim ttr As String = CDbl(data.Rows(0).Item("g_totalGratuits"))
+
+                        If ttr > 0 Then
+                            Try
+                                If a.hasBloc Then
+                                    Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
+                                    g.FillRectangle(_br, a.x + a.width, a.y, a.width, a.height)
+                                    g.DrawRectangle(pen, a.x + a.width, a.y, a.width, a.height)
+                                    xx += 5
+                                    yy += 3
+                                End If
+
+                                sf.Alignment = StringAlignment.Near
+                                g.DrawString(CStr(a.designation) & "  " & ttr, fn, B, New RectangleF(xx, yy, a.width, a.height), sf)
+
+                            Catch ex As Exception
+                            End Try
+                        End If
                     Else
                         Try
                             Dim str As String = CStr(a.designation)

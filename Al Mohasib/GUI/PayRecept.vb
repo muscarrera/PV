@@ -51,21 +51,27 @@
         End Get
         Set(ByVal value As Double)
             _avc = value
-            txt.Text = value.ToString(Form1.frmDbl)
+            txtAvc.Text = value.ToString(Form1.frmDbl)
 
         End Set
     End Property
 
     Private Sub PayRecept_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         pay = 0
+        If Form1.cbRYL.Checked Then ryalDevise = 20
     End Sub
 
-
+    Public ryalDevise As Integer = 1
     Private Sub Button22_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button30.Click, Button29.Click, Button28.Click, Button27.Click, Button26.Click, Button25.Click, Button24.Click, Button23.Click, Button22.Click
         Dim bt2 As Button = sender
-        pay = pay + CDbl(bt2.Text)
-        str &= "/" & bt2.Text & " Dhs"
-        WAY = "CACHE"
+        pay = pay + CDbl(bt2.Text * ryalDevise)
+
+        If ryalDevise = 1 Then
+            str &= "/" & bt2.Text & " Dhs"
+        Else
+            str &= "/" & CDbl(bt2.Text * ryalDevise).ToString() & " Ryl"
+        End If
+        WAY = "Cache"
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -78,7 +84,7 @@
         pay = total - avc
         str = "-- cache --"
 
-        WAY = "CACHE"
+        WAY = "Cache"
 
         AddPayement()
         Me.DialogResult = Windows.Forms.DialogResult.OK
@@ -96,7 +102,19 @@
 
 
     Public Sub AddPayement()
-        If pay = 0 Then Exit Sub
+        If pay = 0 Then
+            If Form1.cbCafeMode.Checked And Form1.cbCafeTable.Checked Then
+                pay = total - avc
+                str = "-- cache --"
+
+                WAY = "Cache"
+
+            Else
+                Exit Sub
+            End If
+        End If
+
+
 
         Dim isSell = Form1.RPl.isSell
         Dim tableName As String = "CompanyPayment"
@@ -170,7 +188,7 @@
         pay = total - avc
         str = "-- CHEQUE --"
 
-        WAY = "CHEQUE"
+        WAY = "Cheque"
 
         AddPayement()
         Me.DialogResult = Windows.Forms.DialogResult.OK
@@ -180,7 +198,7 @@
         pay = total - avc
         str = "-- VIREMENT --"
 
-        WAY = "VIREMENT"
+        WAY = "Virement Bancaire"
 
         AddPayement()
         Me.DialogResult = Windows.Forms.DialogResult.OK

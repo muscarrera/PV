@@ -11,10 +11,6 @@ AlMohasib
  Converts Integer or Decimal numbers into their textual String representations (converts numbers to words).
  </summary>
 	<remarks></remarks>
-</member><member name="T:Al_Mohasib.ALMohassinDBDataSet">
-	<summary>
-Represents a strongly typed in-memory cache of data.
-</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.
@@ -560,6 +556,14 @@ Represents a strongly typed in-memory cache of data.
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.impCheq__01">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Al_Mohasib.My.Resources.Resources.impCheq_01">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:Al_Mohasib.My.Resources.Resources.JOINDRE_20">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -867,6 +871,10 @@ Represents a strongly typed in-memory cache of data.
 </member><member name="T:Al_Mohasib.My.Resources.Resources">
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="T:Al_Mohasib.ALMohassinDBDataSet">
+	<summary>
+Represents a strongly typed in-memory cache of data.
 </summary>
 </member>
 </members>

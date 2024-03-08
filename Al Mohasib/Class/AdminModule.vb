@@ -4,12 +4,17 @@ Imports System.Text.RegularExpressions
 
 Module AdminModule
 
-    Dim VER As String = "ALMsbtrFirstRun_sql_11"
+    Dim VER As String = "ALMsbtrFirstRun_sql_12"
+    Dim VER_ID As String = "sdf_id_cvb_ver"
+    Dim DB_ID As String = "fgh_db_ert_id"
+    Dim _strLastDate As String = "lastDate_17"
 
     Dim _strKey As String
     Dim strFirstUse = "AL Mohasib System de gestion - Premier utilisation .."
     Dim nbrDays = 90
-    Dim _strLastDate As String = "lastDate_17"
+    Dim __id As String = "00"
+    Dim __oldid As String = "--"
+
 
     Public ReadOnly Property TrialVersion_Master
         Get
@@ -33,6 +38,318 @@ Module AdminModule
             Return r
         End Get
     End Property
+
+    'Functions
+    Private Function LookForIt() As Boolean
+        If isAFerstTime() Then
+            If __oldid.Length < 5 Then
+                Dim us As New UserInterface
+                us.ID = __id
+
+                If us.ShowDialog = DialogResult.OK Then
+                    setRegistryinfo(VER_ID, __id)
+                    setRegistryinfo(DB_ID, us.dbid)
+
+
+
+
+                Else
+                    MsgBox("Vous devez Contacter l'administration pour plus d'infos" & vbNewLine & __id, MsgBoxStyle.Information, "***TRIAL INTERFACE***")
+                    End
+                End If
+            End If
+        Else
+
+
+
+
+
+        End If
+
+        Return False
+    End Function
+
+    Private Function getRegistryinfo(ByVal str As String, ByVal v As String)
+        Try
+            Dim msg As String
+            msg = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", str, Nothing)
+            Return msg
+        Catch ex As Exception
+            Return v
+        End Try
+    End Function
+    Private Function setRegistryinfo(ByVal str As String, ByVal v As String)
+        Try
+            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", str, v)
+            Return True
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+    'Private Function HandleRegistry_net() As Integer
+    '    Dim ALMohasibfirstRunDate As Date
+    '    Dim LastRunDate As Date
+
+    '    ALMohasibfirstRunDate = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strKey, Nothing)
+    '    LastRunDate = My.Computer.Registry.GetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", _strLastDate, Nothing)
+
+    '    If LastRunDate = Nothing Then
+    '        My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", _strLastDate, Now.Date)
+    '    ElseIf (Now - LastRunDate).Days <= -10 Then
+    '        MsgBox("Merci de regler la date de votre PC ..", MsgBoxStyle.Information, "Error_Date")
+    '        End
+    '    End If
+
+    '    If CDate(Now) > CDate(LastRunDate) Then My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", _strLastDate, Now.Date)
+
+    '    '''''''''''''''''''''''''''''''''''''''''''''       '''''''''''''''''''''''''''''''''''''''''''''
+    '    '''''''''''''''''''''''''''''''''''''''''''''       '''''''''''''''''''''''''''''''''''''''''''''
+    '    Using a As DataAccess2 = New DataAccess2(My.Settings.ALMohassinDBConnectionString)
+
+
+    '        If ALMohasibfirstRunDate = Nothing Then
+    '            ALMohasibfirstRunDate = Now
+    '            My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\MUSCRRER", strKey, ALMohasibfirstRunDate)
+    '            Try
+
+    '                Dim where As New Dictionary(Of String, Object)
+    '                where.Add("key", "keypsv")
+
+    '                Dim dt = a.SelectDataTable("value", {"*"}, where)
+    '                Dim val As String = ALMohasibfirstRunDate.Day & ALMohasibfirstRunDate.Hour & "-" & ALMohasibfirstRunDate.Second & "1d5-" & ALMohasibfirstRunDate.ToString("yy") & "2H7" & "-" & __id.ToString.Substring(__id.ToString.Length - 4) & "-" & __id.ToString.Substring(0, 4) & ALMohasibfirstRunDate.Month
+
+    '                If dt.Rows.Count > 0 Then
+    '                    Dim params As New Dictionary(Of String, Object)
+    '                    params.Add("val", val)
+    '                    a.UpdateRecord("value", params, where)
+    '                Else
+    '                    Dim params As New Dictionary(Of String, Object)
+    '                    params.Add("key", "keypsv")
+    '                    params.Add("val", val)
+    '                    a.InsertRecord("value", params)
+    '                End If
+    '                where.Clear()
+    '                where.Add("key", "truefont")
+    '                Dim dt2 = a.SelectDataTable("value", {"*"}, where)
+
+
+    '                If dt.Rows.Count > 0 Then
+
+    '                    Dim params As New Dictionary(Of String, Object)
+    '                    params.Add("val", "false")
+
+    '                    a.UpdateRecord("value", params, where)
+    '                Else
+
+    '                    Dim params As New Dictionary(Of String, Object)
+    '                    params.Add("key", "truefont")
+    '                    params.Add("val", "False")
+    '                    a.InsertRecord("value", params)
+
+    '                End If
+
+    '                MsgBox(strFirstUse)
+
+    '            Catch ex As Exception
+    '                MsgBox(ex.Message)
+
+    '            End Try
+    '            Return 1
+    '        ElseIf (Now - ALMohasibfirstRunDate).Days > nbrDays Then
+    '            Try
+
+    '                Dim val As String = ALMohasibfirstRunDate.Day & ALMohasibfirstRunDate.Hour & "-" & ALMohasibfirstRunDate.Second & "1d5-" & ALMohasibfirstRunDate.ToString("yy") & "2H7" & "-" & mac.ToString.Substring(mac.ToString.Length - 4) & "-" & mac.ToString.Substring(0, 4) & ALMohasibfirstRunDate.Month
+
+    '                Dim where As New Dictionary(Of String, Object)
+    '                where.Add("key", "keypsv")
+
+    '                Dim dt = a.SelectDataTable("value", {"*"}, where)
+
+
+    '                If dt.Rows.Count > 0 Then
+
+    '                    If dt.Rows(0).Item("val") <> val Then
+
+    '                        Dim params As New Dictionary(Of String, Object)
+    '                        params.Add("val", val)
+
+    '                        a.UpdateRecord("value", params, where)
+
+    '                        where.Clear()
+    '                        where.Add("key", "truefont")
+
+    '                        Dim dt2 = a.SelectDataTable("value", {"*"}, where)
+
+    '                        params.Clear()
+
+    '                        If dt.Rows.Count > 0 Then
+    '                            params.Add("val", "false")
+    '                            a.UpdateRecord("value", params, where)
+
+    '                        Else
+    '                            params.Add("key", "truefont")
+    '                            params.Add("val", "false")
+    '                            a.InsertRecord("value", params)
+
+    '                            MsgBox(strFirstUse)
+    '                        End If
+
+    '                    Else
+
+    '                    End If
+    '                Else
+
+    '                    Dim params As New Dictionary(Of String, Object)
+    '                    params.Add("key", "keypsv")
+    '                    params.Add("val", val)
+    '                    a.InsertRecord("value", params)
+
+    '                    params.Clear()
+    '                    where.Clear()
+
+    '                    where.Add("key", "truefont")
+    '                    Dim dt2 = a.SelectDataTable("value", {"*"}, where)
+
+
+    '                    If dt.Rows.Count > 0 Then
+    '                        params.Add("val", val)
+    '                        a.UpdateRecord("value", params, where)
+
+    '                    Else
+    '                        params.Add("key", "truefont")
+    '                        params.Add("val", "false")
+    '                        a.InsertRecord("value", params)
+
+    '                    End If
+    '                    MsgBox(strFirstUse)
+
+    '                End If
+    '                '''''''
+
+    '            Catch ex As Exception
+    '                MsgBox(ex.Message)
+
+    '            End Try
+    '            Return 0
+    '        Else
+
+    '            Try
+    '                Dim params As New Dictionary(Of String, Object)
+    '                Dim where As New Dictionary(Of String, Object)
+
+    '                where.Clear()
+
+    '                where.Add("key", "keypsv")
+    '                Dim dt = a.SelectDataTable("value", {"*"}, where)
+
+    '                Dim val As String = ALMohasibfirstRunDate.Day & ALMohasibfirstRunDate.Hour & "-" & ALMohasibfirstRunDate.Second & "1d5-" & ALMohasibfirstRunDate.ToString("yy") & "2H7" & "-" & mac.ToString.Substring(mac.ToString.Length - 4) & "-" & mac.ToString.Substring(0, 4) & ALMohasibfirstRunDate.Month
+    '                ''''''
+    '                If dt.Rows.Count > 0 Then
+
+    '                    If dt.Rows(0).Item("val") <> val Then
+
+    '                        params.Add("val", val)
+    '                        a.UpdateRecord("value", params, where)
+
+
+    '                        params.Clear()
+    '                        where.Clear()
+
+    '                        where.Add("key", "truefont")
+    '                        Dim dt2 = a.SelectDataTable("value", {"*"}, where)
+
+    '                        If dt.Rows.Count > 0 Then
+    '                            params.Add("val", "false")
+    '                            a.UpdateRecord("value", params, where)
+
+    '                        Else
+
+    '                            params.Add("key", "truefont")
+    '                            params.Add("val", "false")
+    '                            a.InsertRecord("value", params)
+
+    '                            MsgBox(strFirstUse)
+    '                        End If
+
+    '                    Else
+
+    '                    End If
+    '                Else
+    '                    params.Clear()
+    '                    params.Add("key", "keypsv")
+    '                    params.Add("val", val)
+    '                    a.InsertRecord("value", params)
+
+    '                    params.Clear()
+    '                    where.Clear()
+
+    '                    where.Add("key", "truefont")
+    '                    Dim dt2 = a.SelectDataTable("value", {"*"}, where)
+
+
+    '                    If dt.Rows.Count > 0 Then
+    '                        params.Add("val", "false")
+    '                        a.UpdateRecord("value", params, where)
+
+    '                    Else
+    '                        params.Clear()
+    '                        params.Add("key", "truefont")
+    '                        params.Add("val", "False")
+    '                        a.InsertRecord("value", params)
+
+    '                    End If
+    '                    MsgBox(strFirstUse)
+
+    '                End If
+    '                '''''''
+
+    '            Catch ex As Exception
+    '                MsgBox(ex.Message)
+    '            End Try
+    '            Return 1
+    '        End If
+    '    End Using
+    'End Function
+
+
+
+    '1 ferstTimeToOpen
+    Private Function isAFerstTime() As Boolean
+
+        Try
+            Dim md As String = SystemSerialNumber()
+            Dim cp As String = CpuId()
+
+            __id = "I5050D" & md & cp
+            __oldid = getRegistryinfo(VER_ID, "")
+
+            If __id = __oldid Then
+                Return False
+            Else
+                Return True
+            End If
+        Catch ex As Exception
+            Return True
+        End Try
+
+    End Function
+
+    '2ChequeFortheId && isMasterOrSlayve
+
+
+    '3ifxTimeCheckTheCloud
+
+
+
+    '4ifNeverConnectForAyear
+
+
+
+    '5ChequeLocally
+
+
+
+
 
     ' for master
     Private Function checktrialMaster() As Boolean
@@ -331,6 +648,10 @@ Module AdminModule
             End If
         End Using
     End Function
+
+
+
+
     ' for slave
     Private Function checktrialSlave() As Boolean
 
@@ -351,7 +672,7 @@ Module AdminModule
                 Dim dt2 = a.SelectDataTable("value", {"*"}, params)
 
                 If dt2.Rows(0).Item("val") = "true" Then
-                    Form1.btTrial.Visible = False
+                    Form1.bttrial.Visible = False
                     Return True
                     Exit Function
                 Else

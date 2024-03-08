@@ -22,6 +22,7 @@
     End Property
 
     Dim dt_ajustement As DataTable
+    Dim dt_alimentation As DataTable
 
     Private Sub ChoseCompany_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         dte1.Value = Now.Date.AddMonths(-2)
@@ -39,16 +40,37 @@
         dt_ajustement.Columns.Add("cid", GetType(String))
         dt_ajustement.Columns.Add("dpid", GetType(Integer))
 
+
+
+        dt_alimentation = New DataTable
+
+        dt_alimentation.Columns.Add("DSID", GetType(Integer))
+        dt_alimentation.Columns.Add("arid", GetType(Integer))
+        dt_alimentation.Columns.Add("Designation", GetType(String))
+        dt_alimentation.Columns.Add("Unite", GetType(String))
+        dt_alimentation.Columns.Add("Qte", GetType(Double))
+        dt_alimentation.Columns.Add("Q. Réelle", GetType(String))
+        dt_alimentation.Columns.Add("Prix", GetType(Double))
+        dt_alimentation.Columns.Add("Total", GetType(Double))
+        dt_alimentation.Columns.Add("cid", GetType(String))
+        dt_alimentation.Columns.Add("dpid", GetType(Integer))
+
         BackgroundWorker1.RunWorkerAsync()
 
 
         Using a As SubClass = New SubClass(1)
+            a.AutoCompleteArticles(txt, "Article")
             a.AutoCompleteArticles(txt, "Article")
             a.AutoCompleteArticles(txtR, "Client")
         End Using
     End Sub
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
         ResetLabels()
+        If txt.text = "*stock" Then
+            updateStockFacture()
+            Exit Sub
+        End If
+
 
         Trace_Search()
 
@@ -83,9 +105,7 @@
             Dim params As New Dictionary(Of String, Object)
             Dim tb As String = "Bon"
             Dim tb_D As String = "DetailsBon"
-
-
-
+             
             params.Add(tb & ".date >", dt1)
             params.Add(tb & ".date <", dt2)
 
@@ -120,7 +140,45 @@
         End Using
 
     End Sub
+    Private Sub updateStockFacture()
+        Try
+            Dim where As New Dictionary(Of String, Object)
+            Dim __qte As Double = 0
+            Dim Stock_Value As Double = 0
 
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                Dim dpId As Integer = 0
+                where.Add("codebar LIKE ", "%*%")
+                Dim dt_ar = a.SelectDataTableSymbols("article", {"*"}, where)
+                 
+                For i As Integer = 0 To dt_ar.Rows.Count - 1
+                    __qte = 0
+                    where.Clear()
+                    where.Add("arid", dt_ar.Rows(i).Item(0))
+                 
+                    Dim qteOUT = a.SelectByScalar("detailsfacture", "SUM(qte)", where)
+                    Dim qteIN = a.SelectByScalar("detailsbon", "SUM(qte)", where)
+
+                    If IsDBNull(qteIN) Then qteIN = 0
+                    If IsDBNull(qteOUT) Then qteOUT = 0
+
+                    __qte = qteIN - qteOUT
+                    where.Clear()
+
+                    where.Add("arid", dt_ar.Rows(i).Item(0))
+                    where.Add("dpid", dt_ar.Rows(i).Item("depot"))
+                    where.Add("qte", __qte)
+                    where.Add("cid", dt_ar.Rows(i).Item("cid"))
+                    where.Add("unit", dt_ar.Rows(i).Item("unite"))
+                    a.InsertRecord("detailstock", where)
+             
+                Next 
+            End Using
+            MsgBox("Ok")
+        Catch ex As Exception
+
+        End Try
+    End Sub
     Dim _dpid As Integer = -1
     Dim _cid As Integer = 0
 
@@ -397,7 +455,7 @@
         Label7.Text = "TOTAL"
         Search_Search()
 
-        Search_filtreTheData()
+        'Search_filtreTheData()
 
         STR_TITLE = "valorisation de stock "
     End Sub
@@ -409,17 +467,164 @@
          
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             Dim params As New Dictionary(Of String, Object)
+            Dim where As New Dictionary(Of String, Object)
+            Dim catId As Integer = 0
+            Try
+                If txtCat.text.Contains("|") Then catId = txtCat.text.Split("|")(1)
+            Catch ex As Exception
+                catId = 0
+            End Try
+
             Dim tb As String = "Article"
-            Dim tb_D As String = "Detailstock"
+            ' Dim tb_D As String = "Detailstock"
+            If catId > 0 Then
+                where.Add("cid = ", catId)
+                Else
+                where.Add("cid >", 0)
+            End If
 
+            dt_stk = a.SelectDataTableSymbols(tb, {"name AS Designation, bprice AS Prix_Achat, sprice AS Prix_Vente, codebar, '3' AS Depot, 0.0 AS Qte, cid, arid, unite, bprice AS Valeur "}, where)
 
-            dt_stk = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".arid = " & tb & ".arid) INNER JOIN Depot ON Detailstock.dpid = Depot.dpid)",
-                        {"Depot.name, " & tb & ".name AS Designation, " & tb & ".bprice, " & tb & ".sprice, " & tb & ".codebar, " &
-                            tb_D & ".dpid, " & tb_D & ".qte, " & tb_D & ".cid, " & tb_D & ".arid, " &
-            tb_D & ".unit, " & tb_D & ".DSID,    Detailstock.qte * Article.bprice AS Valeur"})
+            'dt_stk = a.SelectDataTableSymbols("((" & tb_D & " INNER JOIN " & tb & " ON " & tb_D & ".arid = " & tb & ".arid) INNER JOIN Depot ON Detailstock.dpid = Depot.dpid)",
+            '            {"Depot.name, " & tb & ".name AS Designation, " & tb & ".bprice, " & tb & ".sprice, " & tb & ".codebar, " &
+            '                tb_D & ".dpid, " & tb_D & ".qte, " & tb_D & ".cid, " & tb_D & ".arid, " &
+            'tb_D & ".unit, " & tb_D & ".DSID,    Detailstock.qte * Article.bprice AS Valeur"})
 
         End Using
 
+        If Not bwStk.IsBusy Then bwStk.RunWorkerAsync()
+    End Sub
+    Private Sub bwStk_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwStk.DoWork
+        Try
+            Dim DG As DataGridView = PL.Controls(0)
+            ' If DG.SelectedRows.Count = 0 Then Exit Sub
+            Dim where As New Dictionary(Of String, Object)
+            Dim __qte As Double = 0
+            Dim Stock_Value As Double = 0
+
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+                Dim dpId As Integer = 0
+
+                Try
+                    If txtdp2.text.Contains("|") Then dpId = txtdp2.text.Split("|")(1)
+                Catch ex As Exception
+                    dpId = 0
+                End Try
+
+
+                ' If Form1.isBaseOnNormalStockMethode = False Then
+
+                For i As Integer = 0 To dt_stk.Rows.Count - 1
+                    __qte = 0
+                    where.Clear()
+
+
+                    where.Add("arid", dt_stk.Rows(i).Item(7))
+                    If dpId > 0 Then where.Add("depot", dpId)
+
+                    Dim qteOUT = a.SelectByScalar("detailsfacture", "SUM(qte)", where)
+                    Dim qteIN = a.SelectByScalar("detailsbon", "SUM(qte)", where)
+
+                    If IsDBNull(qteIN) Then qteIN = 0
+                    If IsDBNull(qteOUT) Then qteOUT = 0
+
+                    __qte = qteIN - qteOUT
+
+                    dt_stk.Rows(i).Item(5) = __qte.ToString()
+                    dt_stk.Rows(i).Item(4) = dpId
+
+                    'Prix moyenne
+                    Dim pr As Double = 0
+                    Try
+                        pr = dt_stk.Rows(i).Item(2)
+                    Catch ex As Exception
+                    End Try
+
+                    Try
+                        'valeur
+                        Stock_Value += __qte * pr
+                        dt_stk.Rows(i).Item(9) = (__qte * pr).ToString("N2")
+                    Catch ex As Exception
+                    End Try
+                Next
+
+                '' Else
+
+
+                'For i As Integer = 0 To dt_stk.Rows.Count - 1
+                '    __qte = 0
+                '    where.Clear()
+                '    where.Add("arid", dt_stk.Rows(i).Item(7))
+                '    If dpId > 0 Then where.Add("dpid", dpId)
+
+                '    Try
+                '        __qte = a.SelectByScalar("Detailstock", "qte", where)
+                '    Catch ex As Exception
+                '        __qte = 0
+                '    End Try
+
+
+                '    dt_stk.Rows(i).Item(5) = __qte.ToString()
+                '    dt_stk.Rows(i).Item(4) = dpId
+
+                '    'Prix moyenne
+                '    Dim pr As Double = 0
+                '    Try
+                '        pr = dt_stk.Rows(i).Item(2)
+                '    Catch ex As Exception
+                '    End Try
+
+                '    Try
+                '        'valeur
+                '        Stock_Value += __qte * pr
+                '        dt_stk.Rows(i).Item(9) = (__qte * pr).ToString("N2")
+                '    Catch ex As Exception
+                '    End Try
+                'Next
+                '    End If
+
+
+                DG.BeginInvoke(Sub()
+                                   Dim sum As Double
+                                   Try
+                                       sum = Convert.ToDouble(dt_stk.Compute("SUM(Valeur)", String.Empty))
+                                       lbQteIn.Text = sum.ToString("N2") & " Dhs"
+                                       lbQteOut.Text = sum.ToString("N2") & " Dhs"
+                                   Catch ex As Exception
+                                       lbQteIn.Text = "... "
+                                   End Try
+
+                                   DG.DataSource = dt_stk
+
+                                   Try
+
+                                       dg_D.Columns(0).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
+                                       dg_D.Columns(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+
+                                       dg_D.Columns(5).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
+                                       dg_D.Columns(9).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
+
+                                       dg_D.Columns(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+                                       dg_D.Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+                                       'dg_D.Columns(4).AutoSizeMode = DataGridViewAutoSizeColumnMode.
+                                       dg_D.Columns(6).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+                                       dg_D.Columns(7).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+                                       dg_D.Columns(9).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+
+                                       dg_D.Columns(2).DefaultCellStyle.Format = "N2"
+                                       dg_D.Columns(3).DefaultCellStyle.Format = "N2"
+                                       dg_D.Columns(9).DefaultCellStyle.Format = "N2"
+
+                                   Catch ex As Exception
+                                   End Try
+
+                                   lbLnbr.Text = dg_D.Rows.Count & " Lines"
+
+                               End Sub)
+            End Using
+
+        Catch ex As Exception 
+        End Try
 
     End Sub
     Private Sub Search_filtreTheData()
@@ -544,6 +749,91 @@
         lbLnbr.Text = dg_D.Rows.Count & " Lines"
        
     End Sub
+
+    Private Sub Search_filtreAlimentationData()
+
+        Dim dt As New DataTable
+        dg_D.DataSource = Nothing
+        StyleDatagrid(dg_D)
+
+        If IsNothing(dt_alimentation) Then Exit Sub
+
+        Dim dpId As Integer = 0
+        Dim catId As Integer = 0
+         
+        Try
+            If txtCatAl.text.Contains("|") Then catId = txtCatAl.text.Split("|")(1)
+        Catch ex As Exception
+            catId = 0
+        End Try
+
+
+        If catId > 0 Then
+
+            Dim result = From myRow As DataRow In dt_alimentation.Rows
+                                    Where myRow("cid") = catId Select myRow
+            If result.Count Then
+                dt = result.CopyToDataTable
+            Else
+                dt.Rows.Clear()
+            End If 
+        Else
+
+            dt = dt_alimentation.Copy
+        End If
+
+
+        If txtAl.text.Trim <> "" Then
+            Dim result = From myRow As DataRow In dt.Rows
+                                    Where myRow("Designation").ToString.Contains(txtAl.text) Select myRow
+            If result.Count Then
+                dt = result.CopyToDataTable
+            Else
+                dt.Rows.Clear()
+            End If
+        End If
+
+
+        dg_D.ReadOnly = False
+        dg_D.DataSource = dt
+
+        Try
+            dg_D.Columns(0).Visible = False
+            dg_D.Columns(1).Visible = False '2 3 4
+            dg_D.Columns(4).Visible = False
+            dg_D.Columns(7).Visible = False
+
+            dg_D.Columns(2).ReadOnly = True
+            dg_D.Columns(3).ReadOnly = True
+            dg_D.Columns(4).ReadOnly = True
+            '  dg_D.Columns(5).ReadOnly = True
+            ' dg_D.Columns(6).ReadOnly = True
+            dg_D.Columns(7).ReadOnly = True
+            ' dg_D.Columns(8).ReadOnly = True
+            ' dg_D.Columns(9).ReadOnly = True
+
+            dg_D.Columns(5).DefaultCellStyle.BackColor = Color.LightSalmon
+            dg_D.Columns(2).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
+
+            dg_D.Columns(3).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            dg_D.Columns(4).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            dg_D.Columns(6).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            dg_D.Columns(7).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            dg_D.Columns(8).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+            dg_D.Columns(9).AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
+
+            dg_D.Columns(5).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
+            dg_D.Columns(5).AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
+
+            dg_D.Columns(9).DefaultCellStyle.Font = New Font(Form1.fontName_Normal, Form1.fontSize_Normal, FontStyle.Bold)
+        Catch ex As Exception
+        End Try
+
+        'dg_D.Columns(9).DisplayIndex = 2
+        
+        lbLnbr.Text = dg_D.Rows.Count & " Lines"
+
+    End Sub
     Private Sub Search_filtreAjustementData()
 
         Dim dt As New DataTable
@@ -660,8 +950,6 @@
             End Try
         End Try
 
-
-
         lbLnbr.Text = dg_D.Rows.Count & " Lines"
 
     End Sub
@@ -677,40 +965,93 @@
             Dim where As New Dictionary(Of String, Object)
 
             dt_ajustement.Rows.Clear()
+            params.Add("cid >", 0)
 
-            Dim st_dt As DataTable = a.SelectDataTable("Detailstock", {"*"})
+
+            Dim st_dt As DataTable = a.SelectDataTableSymbols("Article", {"*"}, params)
+
             For i As Integer = 0 To st_dt.Rows.Count - 1
+                  Dim arid As Integer = IntValue(st_dt, "arid", i)
+                Dim pr As Double = 0
+                Dim tt As Double = 0
+                Dim nm As String = ""
+
+                where.Clear()
+                where.Add("arid", IntValue(st_dt, "arid", i))
+ 
+                Dim qteOUT = a.SelectByScalar("detailsfacture", "SUM(qte)", where)
+                Dim qteIN = a.SelectByScalar("detailsbon", "SUM(qte)", where)
+
+                If IsDBNull(qteIN) Then qteIN = 0
+                If IsDBNull(qteOUT) Then qteOUT = 0
+
+                qteIN -= qteOUT
+
+
                 Try
-                    params.Clear()
-                    Dim arid As Integer = IntValue(st_dt, "arid", i)
-                    params.Add("arid", arid)
-                    Dim dt As New DataTable
+                    nm = StrValue(st_dt, "name", i)
+                    pr = DblValue(st_dt, "bprice", i)
 
-                    Try
-                        dt = a.SelectDataTable("Article", {"name", "bprice"}, params)
-                    Catch ex As Exception
-                    End Try
-                    Dim pr As Double = 0
-                    Dim tt As Double = 0
-                    Dim nm As String = ""
-                    Try
-                        nm = StrValue(dt, "name", 0)
-                        pr = DblValue(dt, "bprice", 0)
-                        tt = DblValue(st_dt, "qte", i) * pr
-                    Catch ex As Exception
-
-                    End Try
-                    dt_ajustement.Rows.Add(IntValue(st_dt, "DSID", i), arid, nm,
-                                           StrValue(st_dt, "unit", i), DblValue(st_dt, "qte", i), "", pr.ToString("N2"), tt.ToString("N2"), IntValue(st_dt, "cid", i), IntValue(st_dt, "dpid", i))
-
-
-
-
+                    tt = qteIN * pr
                 Catch ex As Exception
-                    MsgBox(ex.Message)
                 End Try
+
+                dt_ajustement.Rows.Add(i, arid, nm,
+                                    StrValue(st_dt, "unite", i), qteIN, "", pr.ToString("N2"), tt.ToString("N2"), IntValue(st_dt, "cid", i), 3)
+
             Next
 
+
+            
+            'Dim st_dt As DataTable = a.SelectDataTable("Detailstock", {"*"})
+            'For i As Integer = 0 To st_dt.Rows.Count - 1
+            '    Try
+            '        params.Clear()
+            '        Dim arid As Integer = IntValue(st_dt, "arid", i)
+            '        params.Add("arid", arid)
+            '        Dim dt As New DataTable
+
+            '        Try
+            '            dt = a.SelectDataTable("Article", {"name", "bprice"}, params)
+            '        Catch ex As Exception
+            '        End Try
+            '        Dim pr As Double = 0
+            '        Dim tt As Double = 0
+            '        Dim nm As String = ""
+            '        Try
+            '            nm = StrValue(dt, "name", 0)
+            '            pr = DblValue(dt, "bprice", 0)
+            '            tt = DblValue(st_dt, "qte", i) * pr
+            '        Catch ex As Exception
+
+            '        End Try
+            '        dt_ajustement.Rows.Add(IntValue(st_dt, "DSID", i), arid, nm,
+            '                               StrValue(st_dt, "unit", i), DblValue(st_dt, "qte", i), "", pr.ToString("N2"), tt.ToString("N2"), IntValue(st_dt, "cid", i), IntValue(st_dt, "dpid", i))
+
+
+            '    Catch ex As Exception
+            '        MsgBox(ex.Message)
+            '    End Try
+            'Next
+
+            lbinfoAjust.BeginInvoke(Sub()
+                                        lbinfoAjust.Text = "ok"
+                                    End Sub)
+
+
+            params.Clear()
+            params.Add("cid >", 0)
+            dt_alimentation.Rows.Clear()
+            Dim art_dt As DataTable = a.SelectDataTableSymbols("Article", {"*"}, params)
+            For i As Integer = 0 To art_dt.Rows.Count - 1
+                dt_alimentation.Rows.Add(i, IntValue(art_dt, "arid", i), StrValue(art_dt, "name", i),
+                                                       StrValue(art_dt, "unite", i), DblValue(art_dt, "bprice", i), "", DblValue(art_dt, "bprice", i), 0, IntValue(art_dt, "cid", i), IntValue(art_dt, "depot", i))
+
+            Next
+
+            lbinfoAlim.BeginInvoke(Sub()
+                                       lbinfoAlim.Text = "ok"
+                                   End Sub)
         End Using
 
     End Sub
@@ -757,49 +1098,72 @@
             Dim d_i = dg_D.SelectedRows(0).Cells(0).Value
             Dim d_P = dg_D.SelectedRows(0).Cells(6).Value
 
-            For i As Integer = 0 To dt_ajustement.Rows.Count - 1
-                If dt_ajustement.Rows(i).Item(0) = d_i Then
-                    dt_ajustement.Rows(i).Item(5) = d_v
 
-                    If Not IsNumeric(d_P) Then
-                        dg_D.SelectedRows(0).Cells(6).Value = dt_ajustement.Rows(i).Item(6)
-                        d_P = dt_ajustement.Rows(i).Item(6)
+
+            If STR_TITLE = "Alimentation de stock " Then
+                For i As Integer = 0 To dt_alimentation.Rows.Count - 1
+                    If dt_alimentation.Rows(i).Item(0) = d_i Then
+                        dt_alimentation.Rows(i).Item(5) = d_v
+
+                        If Not IsNumeric(d_P) Then
+                            dg_D.SelectedRows(0).Cells(6).Value = dt_alimentation.Rows(i).Item(6)
+                            d_P = dt_alimentation.Rows(i).Item(6)
+                        End If
+
+                        dt_alimentation.Rows(i).Item(6) = d_P
+
+                        If IsNumeric(dg_D.SelectedRows(0).Cells(5).Value) Then
+                            dt_alimentation.Rows(i).Item(9) = dg_D.SelectedRows(0).Cells(9).Value
+                        End If
+
+
+
+
+                        Exit For
                     End If
+                Next
+            Else
 
-                    dt_ajustement.Rows(i).Item(6) = d_P
+                For i As Integer = 0 To dt_ajustement.Rows.Count - 1
+                    If dt_ajustement.Rows(i).Item(0) = d_i Then
+                        dt_ajustement.Rows(i).Item(5) = d_v
+
+                        If Not IsNumeric(d_P) Then
+                            dg_D.SelectedRows(0).Cells(6).Value = dt_ajustement.Rows(i).Item(6)
+                            d_P = dt_ajustement.Rows(i).Item(6)
+                        End If
+
+                        dt_ajustement.Rows(i).Item(6) = d_P
 
 
-                    If Not IsNumeric(d_v) Then
-                        d_v = dt_ajustement.Rows(i).Item(4)
+                        If Not IsNumeric(d_v) Then
+                            d_v = dt_ajustement.Rows(i).Item(4)
+                        End If
+
+                        dt_ajustement.Rows(i).Item(7) = CDbl(d_v * d_P).ToString("N2")
+
+                        dg_D.SelectedRows(0).Cells(7).Value = dt_ajustement.Rows(i).Item(7)
+                        Exit For
                     End If
+                Next
+       
 
-                    dt_ajustement.Rows(i).Item(7) = CDbl(d_v * d_P).ToString("N2")
+                Try
+                    Dim sum As Double = Convert.ToDouble(dt_ajustement.Compute("SUM(total)", String.Empty))
+                    lbQteIn.Text = String.Format("{0:n}", CDec(sum))
 
-                    dg_D.SelectedRows(0).Cells(7).Value = dt_ajustement.Rows(i).Item(7)
-                    Exit For
-                End If
-            Next
+                Catch ex As Exception
+
+                End Try
+
+            End If
         Catch ex As Exception
         End Try
-
-        Try
-            Dim sum As Double = Convert.ToDouble(dt_ajustement.Compute("SUM(total)", String.Empty))
-            lbQteIn.Text = String.Format("{0:n}", CDec(sum))
-
-        Catch ex As Exception
-            Try
-                Dim SM = dt_ajustement.AsEnumerable().Aggregate(0, Function(n, r) PriceField(r) + n)
-                lbQteIn.Text = String.Format("{0:n}", CDec(SM))
-            Catch exe As Exception
-            End Try
-        End Try
-
     End Sub
     Private Sub txtCat_TxtChanged() Handles txtdp2.TxtChanged, txtCat.TxtChanged
-        Search_filtreTheData()
+        'Search_filtreTheData()
+        ' If Not bwStk.IsBusy Then bwStk.RunWorkerAsync()
     End Sub
-
-    
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
         Dim clc As New ChooseCat
 
@@ -828,16 +1192,62 @@
 
     Private Sub Button9_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button9.Click
         ResetLabels()
-        Search_filtreAjustementData()
 
+
+        If txtAjustArt.text.ToLower = "*stock" Then
+            'RunStockToOldStock()
+            If BBW.IsBusy = False Then BBW.RunWorkerAsync()
+            Exit Sub
+        End If
+
+        Search_filtreAjustementData()
         STR_TITLE = "Ajustement de stock "
     End Sub
+    Private Sub RunStockToOldStock()
 
+
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim params As New Dictionary(Of String, Object)
+            
+            For i As Integer = 0 To dt_ajustement.Rows.Count - 1
+                params.Clear()
+
+                Try
+                    params.Add("arid", dt_ajustement.Rows(i).Item("arid"))
+                    params.Add("dpid", dt_ajustement.Rows(i).Item("dpid"))
+
+                    Dim qteOUT = a.SelectByScalar("detailstock", "SUM(qte)", params)
+                    If IsDBNull(qteOUT) Then qteOUT = 0
+                     
+                    dt_ajustement.Rows(i).Item(5) = qteOUT
+
+                Catch ex As Exception
+                End Try
+            Next
+        End Using
+
+
+    End Sub
     Private Sub txtAjustArt_TxtChanged() Handles txtAjustDp.TxtChanged, txtAjustCat.TxtChanged, txtAjustArt.TxtChanged
         Search_filtreAjustementData()
     End Sub
+    Private Sub txtAlumArt_TxtChanged() Handles txtAl.TxtChanged, txtCatAl.TxtChanged
+        Search_filtreAlimentationData()
+    End Sub
 
     Private Sub Button10_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button10.Click
+
+        If txtAjustArt.text.ToLower = "stock-0" Then
+            RunStockToZero()
+            Exit Sub
+        End If
+        If BBValide.IsBusy = False Then BBValide.RunWorkerAsync()
+
+
+    End Sub
+    'rapport dala33333
+    Dim dt_Art As New DataTable
+    Private Sub RunStockToZero()
 
 
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
@@ -845,16 +1255,40 @@
             Dim where As New Dictionary(Of String, Object)
 
             For i As Integer = 0 To dt_ajustement.Rows.Count - 1
-                If Not IsNumeric(dt_ajustement.Rows(i).Item(5)) Then Continue For
-
                 params.Clear()
                 where.Clear()
                 Try
-                    params.Add("DSID", dt_ajustement.Rows(i).Item(0))
-                    where.Add("qte", dt_ajustement.Rows(i).Item(5))
+                    where.Add("arid", dt_ajustement.Rows(i).Item("arid"))
 
+                    'Dim qteOUT = a.SelectByScalar("detailsfacture", "SUM(qte)", where)
+                    'Dim qteIN = a.SelectByScalar("detailsbon", "SUM(qte)", where)
 
-                    a.UpdateRecord("Detailstock", where, params)
+                    'If IsDBNull(qteIN) Then qteIN = 0
+                    'If IsDBNull(qteOUT) Then qteOUT = 0
+
+                    'qteIN -= qteOUT
+                    'qteIN *= -1
+
+                    Dim qteIN As Double = dt_ajustement.Rows(i).Item(4)
+                    qteIN *= -1
+
+                    params.Clear()
+                    params.Add("fctid", -5)
+                    params.Add("name", dt_ajustement.Rows(i).Item("Designation"))
+                    params.Add("bprice", dt_ajustement.Rows(i).Item("Prix"))
+                    params.Add("price", dt_ajustement.Rows(i).Item("Prix"))
+                    params.Add("unit", dt_ajustement.Rows(i).Item("Unite"))
+                    params.Add("qte", qteIN)
+                    params.Add("tva", 0)
+                    params.Add("arid", dt_ajustement.Rows(i).Item("arid"))
+                    params.Add("depot", dt_ajustement.Rows(i).Item("dpid"))
+                    params.Add("poid", 0)
+                    params.Add("code", "StockZERO" & Now.Date.ToString)
+                    params.Add("cid", dt_ajustement.Rows(i).Item("cid"))
+                    params.Add("rprice", 0)
+                    params.Add("caisse", 0)
+
+                    a.InsertRecord("detailsbon", params)
 
                     params.Clear()
                     where.Clear()
@@ -864,17 +1298,17 @@
 
 
                     a.UpdateRecord("Article", where, params)
+
                 Catch ex As Exception
                 End Try
             Next
             MsgBox("Enregistrement est terminé avec succès ...  ^^")
+            dg_D.DataSource = Nothing
+            If BackgroundWorker1.IsBusy = False Then BackgroundWorker1.RunWorkerAsync()
         End Using
 
 
     End Sub
-    'rapport dala33333
-    Dim dt_Art As New DataTable
-
     Private Sub Button11_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button11.Click
 
         Dim rp As New ProfitProduitRapport
@@ -1235,6 +1669,7 @@
             _dt.Columns.Add("Tva_20", GetType(String))
             _dt.Columns.Add("Tva_14", GetType(String))
             _dt.Columns.Add("Tva_10", GetType(String))
+            _dt.Columns.Add("Tva_8", GetType(String))
             _dt.Columns.Add("Tva_7", GetType(String))
             _dt.Columns.Add("EXO", GetType(String))
 
@@ -1242,6 +1677,7 @@
                 Dim T20 As Double = 0
                 Dim T14 As Double = 0
                 Dim T10 As Double = 0
+                Dim T8 As Double = 0
                 Dim T7 As Double = 0
                 Dim EXO As Double = 0
 
@@ -1295,6 +1731,7 @@
                         Dim _t20 As Double = 0
                         Dim _t14 As Double = 0
                         Dim _t10 As Double = 0
+                        Dim _t8 As Double = 0
                         Dim _t7 As Double = 0
                         Dim _exo As Double = 0
 
@@ -1307,6 +1744,8 @@
                                 _t14 += DblValue(ddt, "price", t) * DblValue(ddt, "qte", t)
                             ElseIf tv = 10 Then
                                 _t10 += DblValue(ddt, "price", t) * DblValue(ddt, "qte", t)
+                            ElseIf tv = 8 Then
+                                _t8 += DblValue(ddt, "price", t) * DblValue(ddt, "qte", t)
                             ElseIf tv = 7 Then
                                 _t7 += DblValue(ddt, "price", t) * DblValue(ddt, "qte", t)
                             ElseIf tv = 0 Then
@@ -1318,6 +1757,7 @@
                             _dt.Rows(i).Item("Tva_20") = _t20
                             _dt.Rows(i).Item("Tva_14") = _t14
                             _dt.Rows(i).Item("Tva_10") = _t10
+                            _dt.Rows(i).Item("Tva_8") = _t8
                             _dt.Rows(i).Item("Tva_7") = _t7
                             _dt.Rows(i).Item("EXO") = _exo
                         Else
@@ -1325,6 +1765,7 @@
                             _dt.Rows(i).Item("Tva_20") = _t20 & "[" & (_t20 * 20 / 120).ToString("N2") & "]"
                             _dt.Rows(i).Item("Tva_14") = _t14 & "[" & (_t14 * 14 / 114).ToString("N2") & "]"
                             _dt.Rows(i).Item("Tva_10") = _t10 & "[" & (_t10 * 10 / 110).ToString("N2") & "]"
+                            _dt.Rows(i).Item("Tva_8") = _t8 & "[" & (_t8 * 8 / 108).ToString("N2") & "]"
                             _dt.Rows(i).Item("Tva_7") = _t7 & "[" & (_t7 * 7 / 107).ToString("N2") & "]"
                             _dt.Rows(i).Item("EXO") = _exo & "[0]"
                         End If
@@ -1333,6 +1774,7 @@
                         T20 += _t20
                         T14 += _t14
                         T10 += _t10
+                        T8 += _t8
                         T7 += _t7
                         EXO += _exo
                     End If
@@ -1360,17 +1802,17 @@
 
                 _dt.Rows.Add(0, 0, 0, Now.Date, 0, 0, "=====", 0, "=====", 0, "=====")
                 _dt.Rows.Add(-1, 0, 0, Now.Date, 0, 0, "Total : ", lbQteIn.Text, " Total : ", 0, "=====",
-                                 T20.ToString("N2"), T14.ToString("N2"), T10.ToString("N2"),
+                                 T20.ToString("N2"), T14.ToString("N2"), T10.ToString("N2"), T8.ToString("N2"),
                                    T7.ToString("N2"), EXO.ToString("N2"))
                 _dt.Rows.Add(-2, 0, 0, Now.Date, 0, 0, "=====", 0, "=====", 0, "=====")
                 _dt.Rows.Add(-3, 0, 0, Now.Date, 0, 0, "TVA : ", 0, " TVA : ", 0, "=====",
                                  (T20 * 20 / 120).ToString("N2"), (T14 * 14 / 114).ToString("N2"), (T10 * 10 / 110).ToString("N2"),
-                                   (T7 * 7 / 107).ToString("N2"), 0)
+                                  (T8 * 8 / 108).ToString("N2"), (T7 * 7 / 107).ToString("N2"), 0)
 
                 lbT1.Visible = True
                 lbV1.Visible = True
                 lbT1.Text = "T. Tva :"
-                lbV1.Text = (((T20 * 20) / 120 + (T14 * 14) / 114 + (T10 * 10) / 110 + (T7 * 7) / 107)).ToString("N2")
+                lbV1.Text = (((T20 * 20) / 120 + (T14 * 14) / 114 + (T10 * 10) / 110 + (T8 * 8) / 108 + (T7 * 7) / 107)).ToString("N2")
             Catch ex As Exception
             End Try
 
@@ -1413,5 +1855,219 @@
 
     Private Sub btInfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btInfo.Click
 
+    End Sub
+
+    Private Sub Button22_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button22.Click
+        Dim clc As New ChooseCat
+
+        If clc.ShowDialog = DialogResult.OK Then
+            If clc.Button1.Tag = 1 Then
+                txtCatAl.text = clc.DataGridView1.SelectedRows(0).Cells(1).Value & "|" & clc.DataGridView1.SelectedRows(0).Cells(0).Value
+            Else
+                txtCatAl.text = ""
+            End If
+        End If
+    End Sub
+
+    Private Sub Button20_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button20.Click
+        ResetLabels()
+        Search_filtreAlimentationData()
+
+        STR_TITLE = "Alimentation de stock "
+    End Sub
+
+    Private Sub Button19_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button19.Click
+
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim params As New Dictionary(Of String, Object)
+            Dim where As New Dictionary(Of String, Object)
+
+            For i As Integer = 0 To dt_alimentation.Rows.Count - 1
+                If Not IsNumeric(dt_alimentation.Rows(i).Item(5)) Then Continue For
+
+                params.Clear()
+                where.Clear()
+                Try
+
+                    'where.Add("arid", dt_alimentation.Rows(i).Item("arid"))
+                    'where.Add("dpid", dt_alimentation.Rows(i).Item("dpid"))
+
+                    'Dim dt = a.SelectDataTable("Detailstock", {"*"}, where)
+
+                    '  where.Add("arid", dt_alimentation.Rows(i).Item("arid"))
+                    '  where.Add("depot", dt_alimentation.Rows(i).Item("dpid"))
+
+                    '  Dim qteOUT = a.SelectByScalar("detailsfacture", "SUM(qte)", where)
+                    Dim qteIN = 0 'a.SelectByScalar("detailsbon", "SUM(qte)", where)
+
+                    ' If IsDBNull(qteIN) Then qteIN = 0
+                    '  If IsDBNull(qteOUT) Then qteOUT = 0
+
+                    '  qteIN = -qteOUT
+                    qteIN = dt_alimentation.Rows(i).Item(5)
+
+                    params.Clear()
+                    params.Add("fctid", -1)
+                    params.Add("name", dt_alimentation.Rows(i).Item("Designation"))
+                    params.Add("bprice", dt_alimentation.Rows(i).Item("Prix"))
+                    params.Add("price", dt_alimentation.Rows(i).Item("Prix"))
+                    params.Add("unit", dt_alimentation.Rows(i).Item("Unite"))
+                    params.Add("qte", qteIN)
+                    params.Add("tva", 0)
+                    params.Add("arid", dt_alimentation.Rows(i).Item("arid"))
+                    params.Add("depot", dt_alimentation.Rows(i).Item("dpid"))
+                    params.Add("poid", 0)
+                    params.Add("code", "Alimentation" & Now.Date.ToString)
+                    params.Add("cid", dt_alimentation.Rows(i).Item("cid"))
+                    params.Add("rprice", 0)
+                    params.Add("caisse", 0)
+                    
+                    a.InsertRecord("detailsbon", params)
+                 
+                    'Dim old_Qte As Double = 0
+
+                    'If dt.Rows.Count > 0 Then
+                    '    Dim qte As Double = dt.Rows(0).Item("qte")
+                    '    Dim dsid As Integer = dt.Rows(0).Item(0)
+                    '''''some code up there
+                    '''''
+                    '    params.Add("qte", qte)
+                    '    where.Add("DSID", dsid)
+
+                    '    a.UpdateRecord("Detailstock", params, where)
+                    'Else
+
+                    '    Dim qte As Double = dt_alimentation.Rows(i).Item(5)
+
+                    '    params.Add("arid", dt_alimentation.Rows(i).Item("arid"))
+                    '    params.Add("dpid", dt_alimentation.Rows(i).Item("dpid"))
+                    '    params.Add("qte", qte)
+                    '    params.Add("unit", dt_alimentation.Rows(i).Item("Unite"))
+                    '    params.Add("cid", dt_alimentation.Rows(i).Item("cid"))
+
+                    '    a.InsertRecord("Detailstock", params)
+                    'End If
+                     
+                    If dt_alimentation.Rows(i).Item(6) <> dt_alimentation.Rows(i).Item(4) Then
+                        params.Clear()
+                        where.Clear()
+
+                        params.Add("arid", dt_alimentation.Rows(i).Item("arid"))
+                        where.Add("bprice", dt_alimentation.Rows(i).Item(6))
+
+                        a.UpdateRecord("Article", where, params)
+                    End If
+
+                Catch ex As Exception
+                End Try
+            Next
+            MsgBox("Enregistrement est terminé avec succès ...  ^^")
+            dg_D.DataSource = Nothing
+            If BackgroundWorker1.IsBusy = False Then BackgroundWorker1.RunWorkerAsync()
+        End Using
+
+    End Sub
+      
+    Private Sub BBW_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BBW.DoWork
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim params As New Dictionary(Of String, Object)
+
+            For i As Integer = 0 To dt_ajustement.Rows.Count - 1
+                params.Clear()
+
+                Try
+                    params.Add("arid", dt_ajustement.Rows(i).Item("arid"))
+                    params.Add("dpid", dt_ajustement.Rows(i).Item("dpid"))
+
+                    Dim qteOUT = a.SelectByScalar("detailstock", "SUM(qte)", params)
+                    If IsDBNull(qteOUT) Then qteOUT = 0
+
+                    dt_ajustement.Rows(i).Item(5) = qteOUT
+
+                    BBW.ReportProgress(i)
+
+                Catch ex As Exception
+                End Try
+            Next
+        End Using
+    End Sub
+
+    Private Sub BBW_ProgressChanged(ByVal sender As System.Object, ByVal e As System.ComponentModel.ProgressChangedEventArgs) Handles BBW.ProgressChanged, BBValide.ProgressChanged
+
+        Button4.Text = e.ProgressPercentage
+    End Sub
+
+    Private Sub BBValide_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BBValide.DoWork
+
+
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim params As New Dictionary(Of String, Object)
+            Dim where As New Dictionary(Of String, Object)
+
+            For i As Integer = 0 To dt_ajustement.Rows.Count - 1
+                If Not IsNumeric(dt_ajustement.Rows(i).Item(5)) Then Continue For
+
+                params.Clear()
+                where.Clear()
+                Try
+                    'params.Add("DSID", dt_ajustement.Rows(i).Item(0))
+                    'where.Add("qte", dt_ajustement.Rows(i).Item(5))
+
+
+                    'a.UpdateRecord("Detailstock", where, params)
+
+                    where.Add("arid", dt_ajustement.Rows(i).Item("arid"))
+
+                    Dim qteOUT = a.SelectByScalar("detailsfacture", "SUM(qte)", where)
+                    Dim qteIN = a.SelectByScalar("detailsbon", "SUM(qte)", where)
+
+                    If IsDBNull(qteIN) Then qteIN = 0
+                    If IsDBNull(qteOUT) Then qteOUT = 0
+
+                    qteIN -= qteOUT
+                    qteIN -= dt_ajustement.Rows(i).Item(5)
+                    qteIN *= -1
+
+
+                    params.Clear()
+                    params.Add("fctid", -2)
+                    params.Add("name", dt_ajustement.Rows(i).Item("Designation"))
+                    params.Add("bprice", dt_ajustement.Rows(i).Item("Prix"))
+                    params.Add("price", dt_ajustement.Rows(i).Item("Prix"))
+                    params.Add("unit", dt_ajustement.Rows(i).Item("Unite"))
+                    params.Add("qte", qteIN)
+                    params.Add("tva", 0)
+                    params.Add("arid", dt_ajustement.Rows(i).Item("arid"))
+                    params.Add("depot", dt_ajustement.Rows(i).Item("dpid"))
+                    params.Add("poid", 0)
+                    params.Add("code", "ajustement")
+                    params.Add("cid", dt_ajustement.Rows(i).Item("cid"))
+                    params.Add("rprice", 0)
+                    params.Add("caisse", 0)
+
+                    a.InsertRecord("detailsbon", params)
+
+                    params.Clear()
+                    where.Clear()
+
+                    params.Add("arid", dt_ajustement.Rows(i).Item("arid"))
+                    where.Add("bprice", dt_ajustement.Rows(i).Item(6))
+
+
+                    a.UpdateRecord("Article", where, params)
+
+                    BBValide.ReportProgress(i)
+                Catch ex As Exception
+                End Try
+            Next
+            MsgBox("Enregistrement est terminé avec succès ...  ^^")
+        End Using
+
+        dg_D.BeginInvoke(Sub()
+                             dg_D.DataSource = Nothing 
+
+                         End Sub)
+
+        If BackgroundWorker1.IsBusy = False Then BackgroundWorker1.RunWorkerAsync()
     End Sub
 End Class

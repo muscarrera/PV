@@ -1,6 +1,8 @@
 ﻿Public Class OpenFactures
 
     Public id As Integer = 0
+    Public cid As Integer = 0
+
     Public data As New DataTable
 
     Private Sub OpenFactures_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -28,7 +30,7 @@
                 dg.Rows.Clear()
                 For i As Integer = 0 To data.Rows.Count - 1
                 
-                dg.Rows.Add(data.Rows(i).Item(0), StrValue(data, "name", i), DteValue(data, "date", i))
+                dg.Rows.Add(data.Rows(i).Item(0), StrValue(data, "name", i), DteValue(data, "date", i), IntValue(data, "clid", i))
                 Next
             End If
 
@@ -38,7 +40,7 @@
         If dg.SelectedRows.Count = 0 Then Exit Sub
 
         id = dg.SelectedRows(0).Cells(0).Value
-
+        cid = dg.SelectedRows(0).Cells(3).Value
        
 
         Me.DialogResult = Windows.Forms.DialogResult.OK

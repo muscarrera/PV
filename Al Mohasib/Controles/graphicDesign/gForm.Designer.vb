@@ -59,6 +59,7 @@ Partial Class gForm
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.SplitContainer1.Name = "SplitContainer1"
         '
         'SplitContainer1.Panel1
@@ -68,8 +69,9 @@ Partial Class gForm
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.Panel2)
-        Me.SplitContainer1.Size = New System.Drawing.Size(991, 534)
-        Me.SplitContainer1.SplitterDistance = 421
+        Me.SplitContainer1.Size = New System.Drawing.Size(1321, 657)
+        Me.SplitContainer1.SplitterDistance = 561
+        Me.SplitContainer1.SplitterWidth = 5
         Me.SplitContainer1.TabIndex = 2
         '
         'Panel1
@@ -79,8 +81,9 @@ Partial Class gForm
         Me.Panel1.Controls.Add(Me.PT)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(421, 534)
+        Me.Panel1.Size = New System.Drawing.Size(561, 657)
         Me.Panel1.TabIndex = 0
         '
         'Panel5
@@ -90,17 +93,19 @@ Partial Class gForm
         Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel5.Controls.Add(Me.gt)
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel5.Location = New System.Drawing.Point(0, 126)
+        Me.Panel5.Location = New System.Drawing.Point(0, 155)
+        Me.Panel5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(421, 275)
+        Me.Panel5.Size = New System.Drawing.Size(561, 339)
         Me.Panel5.TabIndex = 3
         '
         'gt
         '
         Me.gt.Dock = System.Windows.Forms.DockStyle.Fill
         Me.gt.Location = New System.Drawing.Point(0, 0)
+        Me.gt.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.gt.Name = "gt"
-        Me.gt.Size = New System.Drawing.Size(419, 273)
+        Me.gt.Size = New System.Drawing.Size(559, 337)
         Me.gt.TabIndex = 0
         Me.gt.TabProp = GTabClass1
         '
@@ -110,17 +115,19 @@ Partial Class gForm
         Me.Pfp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Pfp.Controls.Add(Me.Pf)
         Me.Pfp.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Pfp.Location = New System.Drawing.Point(0, 401)
+        Me.Pfp.Location = New System.Drawing.Point(0, 494)
+        Me.Pfp.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Pfp.Name = "Pfp"
-        Me.Pfp.Size = New System.Drawing.Size(421, 133)
+        Me.Pfp.Size = New System.Drawing.Size(561, 163)
         Me.Pfp.TabIndex = 2
         '
         'Pf
         '
         Me.Pf.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Pf.Location = New System.Drawing.Point(0, 0)
+        Me.Pf.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Pf.Name = "Pf"
-        Me.Pf.Size = New System.Drawing.Size(419, 131)
+        Me.Pf.Size = New System.Drawing.Size(559, 161)
         Me.Pf.TabIndex = 0
         '
         'PT
@@ -129,8 +136,9 @@ Partial Class gForm
         Me.PT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PT.Dock = System.Windows.Forms.DockStyle.Top
         Me.PT.Location = New System.Drawing.Point(0, 0)
+        Me.PT.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.PT.Name = "PT"
-        Me.PT.Size = New System.Drawing.Size(421, 126)
+        Me.PT.Size = New System.Drawing.Size(561, 155)
         Me.PT.TabIndex = 4
         '
         'Panel2
@@ -152,16 +160,18 @@ Partial Class gForm
         Me.Panel2.Controls.Add(Me.pb)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(566, 534)
+        Me.Panel2.Size = New System.Drawing.Size(755, 657)
         Me.Panel2.TabIndex = 0
         '
         'cbEntete
         '
         Me.cbEntete.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbEntete.Location = New System.Drawing.Point(578, 11)
+        Me.cbEntete.Location = New System.Drawing.Point(771, 14)
+        Me.cbEntete.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cbEntete.Name = "cbEntete"
-        Me.cbEntete.Size = New System.Drawing.Size(74, 44)
+        Me.cbEntete.Size = New System.Drawing.Size(99, 54)
         Me.cbEntete.TabIndex = 4
         Me.cbEntete.Text = "Vider Entete"
         Me.cbEntete.UseVisualStyleBackColor = True
@@ -170,9 +180,10 @@ Partial Class gForm
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(380, 28)
+        Me.Label2.Location = New System.Drawing.Point(507, 34)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(75, 13)
+        Me.Label2.Size = New System.Drawing.Size(95, 17)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "Pagination :"
         '
@@ -180,9 +191,10 @@ Partial Class gForm
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(137, 29)
+        Me.Label1.Location = New System.Drawing.Point(183, 36)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(44, 13)
+        Me.Label1.Size = New System.Drawing.Size(55, 17)
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "Page :"
         '
@@ -191,12 +203,13 @@ Partial Class gForm
         Me.txtY.BackColor = System.Drawing.Color.Transparent
         Me.txtY.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtY.IsNumiric = True
-        Me.txtY.Location = New System.Drawing.Point(513, 18)
-        Me.txtY.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtY.Location = New System.Drawing.Point(684, 22)
+        Me.txtY.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtY.MinimumSize = New System.Drawing.Size(0, 37)
         Me.txtY.Name = "txtY"
         Me.txtY.ShowClearIcon = False
         Me.txtY.ShowSaveIcon = False
-        Me.txtY.Size = New System.Drawing.Size(48, 30)
+        Me.txtY.Size = New System.Drawing.Size(64, 37)
         Me.txtY.StartUp = 2
         Me.txtY.TabIndex = 2
         Me.txtY.TextSize = 8
@@ -210,12 +223,13 @@ Partial Class gForm
         Me.Txt_H.BackColor = System.Drawing.Color.Transparent
         Me.Txt_H.BorderColor = System.Drawing.SystemColors.ControlText
         Me.Txt_H.IsNumiric = False
-        Me.Txt_H.Location = New System.Drawing.Point(241, 19)
-        Me.Txt_H.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.Txt_H.Location = New System.Drawing.Point(321, 23)
+        Me.Txt_H.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.Txt_H.MinimumSize = New System.Drawing.Size(0, 37)
         Me.Txt_H.Name = "Txt_H"
         Me.Txt_H.ShowClearIcon = False
         Me.Txt_H.ShowSaveIcon = False
-        Me.Txt_H.Size = New System.Drawing.Size(48, 30)
+        Me.Txt_H.Size = New System.Drawing.Size(64, 37)
         Me.Txt_H.StartUp = 2
         Me.Txt_H.TabIndex = 2
         Me.Txt_H.TextSize = 8
@@ -229,12 +243,13 @@ Partial Class gForm
         Me.txtX.BackColor = System.Drawing.Color.Transparent
         Me.txtX.BorderColor = System.Drawing.SystemColors.ControlText
         Me.txtX.IsNumiric = True
-        Me.txtX.Location = New System.Drawing.Point(461, 19)
-        Me.txtX.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.txtX.Location = New System.Drawing.Point(615, 23)
+        Me.txtX.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtX.MinimumSize = New System.Drawing.Size(0, 37)
         Me.txtX.Name = "txtX"
         Me.txtX.ShowClearIcon = False
         Me.txtX.ShowSaveIcon = False
-        Me.txtX.Size = New System.Drawing.Size(48, 30)
+        Me.txtX.Size = New System.Drawing.Size(64, 37)
         Me.txtX.StartUp = 2
         Me.txtX.TabIndex = 2
         Me.txtX.TextSize = 8
@@ -248,12 +263,13 @@ Partial Class gForm
         Me.Txt_W.BackColor = System.Drawing.Color.Transparent
         Me.Txt_W.BorderColor = System.Drawing.SystemColors.ControlText
         Me.Txt_W.IsNumiric = False
-        Me.Txt_W.Location = New System.Drawing.Point(187, 19)
-        Me.Txt_W.MinimumSize = New System.Drawing.Size(0, 30)
+        Me.Txt_W.Location = New System.Drawing.Point(249, 23)
+        Me.Txt_W.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.Txt_W.MinimumSize = New System.Drawing.Size(0, 37)
         Me.Txt_W.Name = "Txt_W"
         Me.Txt_W.ShowClearIcon = False
         Me.Txt_W.ShowSaveIcon = False
-        Me.Txt_W.Size = New System.Drawing.Size(48, 30)
+        Me.Txt_W.Size = New System.Drawing.Size(64, 37)
         Me.Txt_W.StartUp = 2
         Me.Txt_W.TabIndex = 2
         Me.Txt_W.TextSize = 8
@@ -266,9 +282,10 @@ Partial Class gForm
         '
         Me.Button3.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.iconfinder_folder_delete_61770
         Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Button3.Location = New System.Drawing.Point(691, 16)
+        Me.Button3.Location = New System.Drawing.Point(921, 20)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(44, 37)
+        Me.Button3.Size = New System.Drawing.Size(59, 46)
         Me.Button3.TabIndex = 1
         Me.Button3.UseVisualStyleBackColor = True
         '
@@ -276,9 +293,10 @@ Partial Class gForm
         '
         Me.Button2.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.SAVE_20
         Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Button2.Location = New System.Drawing.Point(68, 16)
+        Me.Button2.Location = New System.Drawing.Point(91, 20)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(43, 36)
+        Me.Button2.Size = New System.Drawing.Size(57, 44)
         Me.Button2.TabIndex = 1
         Me.Button2.UseVisualStyleBackColor = True
         '
@@ -289,9 +307,10 @@ Partial Class gForm
         Me.btLand.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.btLand.FlatAppearance.BorderSize = 0
         Me.btLand.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btLand.Location = New System.Drawing.Point(290, 18)
+        Me.btLand.Location = New System.Drawing.Point(387, 22)
+        Me.btLand.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btLand.Name = "btLand"
-        Me.btLand.Size = New System.Drawing.Size(29, 36)
+        Me.btLand.Size = New System.Drawing.Size(39, 44)
         Me.btLand.TabIndex = 1
         Me.btLand.UseVisualStyleBackColor = False
         '
@@ -299,9 +318,10 @@ Partial Class gForm
         '
         Me.Button4.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.iconfinder_Folder_Settings_Tools_icon_88583_X_24
         Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Button4.Location = New System.Drawing.Point(325, 17)
+        Me.Button4.Location = New System.Drawing.Point(433, 21)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(44, 36)
+        Me.Button4.Size = New System.Drawing.Size(59, 44)
         Me.Button4.TabIndex = 1
         Me.Button4.UseVisualStyleBackColor = True
         '
@@ -309,9 +329,10 @@ Partial Class gForm
         '
         Me.Button1.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.AVOIR_22
         Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Button1.Location = New System.Drawing.Point(18, 16)
+        Me.Button1.Location = New System.Drawing.Point(24, 20)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(44, 36)
+        Me.Button1.Size = New System.Drawing.Size(59, 44)
         Me.Button1.TabIndex = 1
         Me.Button1.UseVisualStyleBackColor = True
         '
@@ -319,18 +340,20 @@ Partial Class gForm
         '
         Me.pb.BackColor = System.Drawing.Color.White
         Me.pb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.pb.Location = New System.Drawing.Point(18, 59)
+        Me.pb.Location = New System.Drawing.Point(24, 73)
+        Me.pb.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pb.Name = "pb"
-        Me.pb.Size = New System.Drawing.Size(729, 478)
+        Me.pb.Size = New System.Drawing.Size(972, 588)
         Me.pb.TabIndex = 0
         Me.pb.TabStop = False
         '
         'gForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(991, 534)
+        Me.ClientSize = New System.Drawing.Size(1321, 657)
         Me.Controls.Add(Me.SplitContainer1)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "gForm"
         Me.Text = "gForm"
         Me.SplitContainer1.Panel1.ResumeLayout(False)

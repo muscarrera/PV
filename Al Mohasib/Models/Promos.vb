@@ -21,5 +21,5 @@ Public Class PromosArticle
     Public name As String
     Public arid As Integer
     Public qte As Double
-    Public point As Integer
+    Public point As Double
 End Class

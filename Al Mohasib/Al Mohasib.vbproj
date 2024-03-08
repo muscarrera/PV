@@ -93,12 +93,14 @@
     </Compile>
     <Compile Include="Class\AdminModule.vb" />
     <Compile Include="Class\AutoModule.vb" />
+    <Compile Include="Class\BackUpModule.vb" />
     <Compile Include="Class\BackUpRestaure.vb" />
     <Compile Include="Class\BoundClass.vb" />
     <Compile Include="Class\CaisseModule.vb" />
     <Compile Include="Class\ChargesClass.vb" />
     <Compile Include="Class\DataAccess2.vb" />
     <Compile Include="Class\ExcelModule.vb" />
+    <Compile Include="Class\IdModule.vb" />
     <Compile Include="Class\ImageModule.vb" />
     <Compile Include="Class\mdlprint.vb" />
     <Compile Include="Class\ModuleCodeBar.vb" />
@@ -333,6 +335,12 @@
     <Compile Include="GUI\byname.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\CaisseDetailsList.Designer.vb">
+      <DependentUpon>CaisseDetailsList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\CaisseDetailsList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\Calc.Designer.vb">
       <DependentUpon>Calc.vb</DependentUpon>
     </Compile>
@@ -343,6 +351,12 @@
       <DependentUpon>AddEditBanqueField.vb</DependentUpon>
     </Compile>
     <Compile Include="GUI\Cheque\AddEditBanqueField.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Cheque\AddEditCaisseDetail.Designer.vb">
+      <DependentUpon>AddEditCaisseDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Cheque\AddEditCaisseDetail.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\Cheque\AddFiles.Designer.vb">
@@ -389,11 +403,23 @@
     <Compile Include="GUI\Cheque\EditAndPrintCheque.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\Cheque\FacturePayementItem.Designer.vb">
+      <DependentUpon>FacturePayementItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Cheque\FacturePayementItem.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="GUI\Cheque\FileLine.Designer.vb">
       <DependentUpon>FileLine.vb</DependentUpon>
     </Compile>
     <Compile Include="GUI\Cheque\FileLine.vb">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\Cheque\ListUnUsedCheque.Designer.vb">
+      <DependentUpon>ListUnUsedCheque.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Cheque\ListUnUsedCheque.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\Cheque\SearchBloc.Designer.vb">
       <DependentUpon>SearchBloc.vb</DependentUpon>
@@ -479,6 +505,12 @@
     <Compile Include="GUI\Depot.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GUI\DevisionAuto.Designer.vb">
+      <DependentUpon>DevisionAuto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\DevisionAuto.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\EditDate.Designer.vb">
       <DependentUpon>EditDate.vb</DependentUpon>
     </Compile>
@@ -553,6 +585,18 @@
       <DependentUpon>ListMultiCodes.vb</DependentUpon>
     </Compile>
     <Compile Include="GUI\ListMultiCodes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\MultiCompanies\CompanyBloc.Designer.vb">
+      <DependentUpon>CompanyBloc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\MultiCompanies\CompanyBloc.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\MultiCompanies\LoadCompanies.Designer.vb">
+      <DependentUpon>LoadCompanies.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\MultiCompanies\LoadCompanies.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\OpenFactures.Designer.vb">
@@ -770,6 +814,12 @@
     <Compile Include="GUI\SidePanel\SideElement.vb" />
     <Compile Include="GUI\SidePanel\SideGlobal.vb" />
     <Compile Include="GUI\SidePanel\SidePanel.vb" />
+    <Compile Include="GUI\SplitDetailsBon.Designer.vb">
+      <DependentUpon>SplitDetailsBon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\SplitDetailsBon.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GUI\stk.Designer.vb">
       <DependentUpon>stk.vb</DependentUpon>
     </Compile>
@@ -798,6 +848,12 @@
       <DependentUpon>TrialVersion.vb</DependentUpon>
     </Compile>
     <Compile Include="GUI\TrialVersion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\UserInterface.Designer.vb">
+      <DependentUpon>UserInterface.vb</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UserInterface.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\UserParmissionCheck.Designer.vb">
@@ -939,11 +995,17 @@
     <EmbeddedResource Include="GUI\byname.resx">
       <DependentUpon>byname.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\CaisseDetailsList.resx">
+      <DependentUpon>CaisseDetailsList.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Calc.resx">
       <DependentUpon>Calc.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Cheque\AddEditBanqueField.resx">
       <DependentUpon>AddEditBanqueField.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Cheque\AddEditCaisseDetail.resx">
+      <DependentUpon>AddEditCaisseDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Cheque\AddFiles.resx">
       <DependentUpon>AddFiles.vb</DependentUpon>
@@ -966,8 +1028,14 @@
     <EmbeddedResource Include="GUI\Cheque\EditAndPrintCheque.resx">
       <DependentUpon>EditAndPrintCheque.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Cheque\FacturePayementItem.resx">
+      <DependentUpon>FacturePayementItem.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Cheque\FileLine.resx">
       <DependentUpon>FileLine.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Cheque\ListUnUsedCheque.resx">
+      <DependentUpon>ListUnUsedCheque.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Cheque\SearchBloc.resx">
       <DependentUpon>SearchBloc.vb</DependentUpon>
@@ -1011,6 +1079,9 @@
     <EmbeddedResource Include="GUI\Depot.resx">
       <DependentUpon>Depot.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\DevisionAuto.resx">
+      <DependentUpon>DevisionAuto.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\EditDate.resx">
       <DependentUpon>EditDate.vb</DependentUpon>
     </EmbeddedResource>
@@ -1046,6 +1117,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\ListMultiCodes.resx">
       <DependentUpon>ListMultiCodes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MultiCompanies\CompanyBloc.resx">
+      <DependentUpon>CompanyBloc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MultiCompanies\LoadCompanies.resx">
+      <DependentUpon>LoadCompanies.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\OpenFactures.resx">
       <DependentUpon>OpenFactures.vb</DependentUpon>
@@ -1152,6 +1229,9 @@
     <EmbeddedResource Include="GUI\SidePanel\AddEditSidePanel.resx">
       <DependentUpon>AddEditSidePanel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\SplitDetailsBon.resx">
+      <DependentUpon>SplitDetailsBon.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\stk.resx">
       <DependentUpon>stk.vb</DependentUpon>
     </EmbeddedResource>
@@ -1166,6 +1246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\TrialVersion.resx">
       <DependentUpon>TrialVersion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\UserInterface.resx">
+      <DependentUpon>UserInterface.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\UserParmissionCheck.resx">
       <DependentUpon>UserParmissionCheck.vb</DependentUpon>
@@ -1312,6 +1395,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MyBarcode.dll" />
+    <None Include="Resources\impCheq--01.png" />
+    <None Include="Resources\impCheq-01.png" />
     <None Include="Resources\téléchargement %281%29.png" />
     <None Include="Resources\JOINDRE 20.png" />
     <None Include="Resources\WORD  22.png" />
@@ -1536,6 +1621,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

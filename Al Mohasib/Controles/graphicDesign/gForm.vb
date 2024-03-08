@@ -104,16 +104,18 @@ Public Class gForm
             table.Columns.Add("remise", GetType(Integer))
             table.Columns.Add("bl", GetType(Integer))
             table.Columns.Add("totaltva", GetType(Double))
+            table.Columns.Add("freeQte", GetType(Double))
+            table.Columns.Add("qteStr", GetType(Double))
 
             ' Add  rows with those columns filled in the DataTable.
             table.Rows.Add(1, "Article1", "u", 1, 3, String.Format("{0:0.00}", 11.5), 11,
-                              20, "REF 123", 4, 0, 2, 3)
+                              20, "REF 123", 4, 0, 2, 3, 0, 0)
             table.Rows.Add(1, "Lorem ipsum dolor sit amet, consectetur adipiscing elit", "u", 3, 12, String.Format("{0:0.00}", 34.4), 11,
-                             10, "REF 123", 3, 0, 2, 4)
+                             10, "REF 123", 3, 0, 2, 4, 0, 0)
             table.Rows.Add(1, "Article3", "u", 3, 3, String.Format("{0:0.00}", 66), 11,
-                             20, "REF 123", 3, 0, 2, 5)
+                             20, "REF 123", 3, 0, 2, 5, 1, 1)
             table.Rows.Add(1, "Article4", "u", 3, 54, String.Format("{0:0.00}", 5), 11,
-                             14, "REF 123", 4, 0, 2, 6)
+                             14, "REF 123", 4, 0, 2, 6, 0, 0)
             Return table
         End Get
     End Property
@@ -151,12 +153,15 @@ Public Class gForm
             table.Columns.Add("PC_Tel", GetType(String))
             table.Columns.Add("PC_Adr", GetType(String))
             table.Columns.Add("poid", GetType(String))
-
+            table.Columns.Add("bc", GetType(String))
+            table.Columns.Add("bl", GetType(String))
+            table.Columns.Add("Pouchet", GetType(String))
+            table.Columns.Add("g_totalGratuits", GetType(String))
 
             ' Add  rows with those columns filled in the DataTable.
             table.Rows.Add(1, Now.Date, 1, "Mohamed", String.Format("{0:n2}", 222),
                            String.Format("{0:n2}", 66), String.Format("{0:n2}", 288), "0",
-                              "0", "0", "CHEQUE", "ADMIN", "4 - Artciles", "Med", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "nom", "tel", "adrs", 12)
+                              "0", "0", "CHEQUE", "ADMIN", "4 - Artciles", "Med", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "nom", "tel", "adrs", 12, 0, 0, 0, 10)
             Return table
         End Get
     End Property
@@ -340,9 +345,7 @@ Public Class gForm
                     Next
 
                 ElseIf tc.Type = "None" Then  '//////////////////////////////////////////////
-
-
-
+                     
                     For Each c As gColClass In tc.details
                         G.DrawString(c.HeaderName, F_T, Brushes.Black,
                                         New RectangleF(x, tc.y + 3, c.ColWidth, 15), sfc)
@@ -441,7 +444,7 @@ Public Class gForm
 
                     Dim _x As Integer = tc.x
                     Dim plus_h As Integer = F_D.Height
-
+                    Dim freeQte = details.Rows(m).Item("freeQte")
 
                     If tc.hasRows Then
 
@@ -449,6 +452,12 @@ Public Class gForm
                         For Each c As gColClass In tc.details
                             If c.Field = "name" Then '///////////////////////////////////////////////
                                 Dim _str = details.Rows(m).Item("name")
+
+                                If freeQte > 0 Then
+                                    _str &= vbNewLine & "      *-----------------------------------*" & vbNewLine &
+                                    "      Cadeau : +" & freeQte & "(u)  Gratuit" & vbNewLine & "      *-----------------------------------*"
+                                End If
+
                                 sf.Alignment = StringAlignment.Near
                                 Dim size As SizeF = G.MeasureString(_str, F_D, c.ColWidth - 3)
                                 __h = size.Height
@@ -507,12 +516,23 @@ Public Class gForm
 
                         ElseIf field = "xname" Then '//////////////////////////////////////////////
                             _str = "[" & details.Rows(m).Item("ref") & "] " & details.Rows(m).Item("name")
+                            If freeQte > 0 Then
+                                _str &= vbNewLine & "      *-----------------------------------*" & vbNewLine &
+                                      "      Cadeau : +" & freeQte & "(u)  Gratuit" & vbNewLine & "      *-----------------------------------*"
+                            End If
+
                             sf.Alignment = StringAlignment.Near
                             Dim size As SizeF = G.MeasureString(_str, F_D, c.ColWidth - 3)
                             plus_h = size.Height
 
                         ElseIf field = "name" Then '///////////////////////////////////////////////
                             _str = details.Rows(m).Item("name")
+
+                            If freeQte > 0 Then
+                                _str &= vbNewLine & "      *-----------------------------------*" & vbNewLine &
+                                    "      Cadeau : +" & freeQte & "(u)  Gratuit" & vbNewLine & "      *-----------------------------------*"
+                            End If
+
                             sf.Alignment = StringAlignment.Near
                             Dim size As SizeF = G.MeasureString(_str, F_D, c.ColWidth - 3)
                             plus_h = size.Height
@@ -531,7 +551,7 @@ Public Class gForm
                             _str = CDbl(_str).ToString(formatString)
                             sf.Alignment = StringAlignment.Far
 
-                        ElseIf field = "qte" Then '////////////////////////////////////////////////
+                        ElseIf field = "qte" Or field = "qteStr" Then '////////////////////////////////////////////////
                             _str = details.Rows(m).Item(c.Field)
                             sf.Alignment = StringAlignment.Center
                         Else
@@ -727,6 +747,25 @@ Public Class gForm
                                 G.DrawString(str, fn, B, New RectangleF(xx, yy, a.width, a.height), sf)
                             Catch ex As Exception
                             End Try
+                        ElseIf a.field.StartsWith("g_totalGratuits") Then
+                            Dim ttr As String = CDbl(data.Rows(0).Item("g_totalGratuits"))
+
+                            If ttr > 0 Then
+                                Try
+                                    If a.hasBloc Then
+                                        Dim _br As New SolidBrush(Color.FromArgb(a.backColor))
+                                        G.FillRectangle(_br, a.x + a.width, a.y, a.width, a.height)
+                                        G.DrawRectangle(pen, a.x + a.width, a.y, a.width, a.height)
+                                        xx += 5
+                                        yy += 3
+                                    End If
+
+                                    sf.Alignment = StringAlignment.Near
+                                    G.DrawString(CStr(a.designation) & "  " & ttr, fn, B, New RectangleF(xx, yy, a.width, a.height), sf)
+
+                                Catch ex As Exception
+                                End Try
+                            End If
                         Else
                             Try
                                 sf.Alignment = StringAlignment.Near
@@ -1045,4 +1084,7 @@ Public Class gForm
         p_Kind = doc.DefaultPageSettings.PaperSize.Kind
     End Sub
 
+    Private Sub gForm_Load_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

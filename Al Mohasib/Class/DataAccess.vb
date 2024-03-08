@@ -577,6 +577,7 @@ Public Class DataAccess
 
         ' create the command
         Try
+
             Using cmd As MySqlCommand = BuildCommand(q, params)
                 Return cmd.ExecuteNonQuery()
             End Using

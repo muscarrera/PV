@@ -44,8 +44,9 @@ Partial Class SearchBloc
         Me.Panel26.Controls.Add(Me.PB2)
         Me.Panel26.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel26.Location = New System.Drawing.Point(0, 0)
+        Me.Panel26.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel26.Name = "Panel26"
-        Me.Panel26.Size = New System.Drawing.Size(58, 30)
+        Me.Panel26.Size = New System.Drawing.Size(72, 37)
         Me.Panel26.TabIndex = 9
         '
         'Button14
@@ -56,9 +57,10 @@ Partial Class SearchBloc
         Me.Button14.Dock = System.Windows.Forms.DockStyle.Left
         Me.Button14.FlatAppearance.BorderSize = 0
         Me.Button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button14.Location = New System.Drawing.Point(40, 1)
+        Me.Button14.Location = New System.Drawing.Point(48, 1)
+        Me.Button14.Margin = New System.Windows.Forms.Padding(4)
         Me.Button14.Name = "Button14"
-        Me.Button14.Size = New System.Drawing.Size(17, 28)
+        Me.Button14.Size = New System.Drawing.Size(23, 35)
         Me.Button14.TabIndex = 10
         Me.Button14.UseVisualStyleBackColor = False
         '
@@ -69,10 +71,10 @@ Partial Class SearchBloc
         Me.lb.Font = New System.Drawing.Font("Century Gothic", 7.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lb.ForeColor = System.Drawing.SystemColors.ControlDark
         Me.lb.Location = New System.Drawing.Point(1, 1)
-        Me.lb.Margin = New System.Windows.Forms.Padding(3, 6, 3, 0)
+        Me.lb.Margin = New System.Windows.Forms.Padding(4, 7, 4, 0)
         Me.lb.Name = "lb"
-        Me.lb.Padding = New System.Windows.Forms.Padding(0, 3, 0, 0)
-        Me.lb.Size = New System.Drawing.Size(39, 17)
+        Me.lb.Padding = New System.Windows.Forms.Padding(0, 4, 0, 0)
+        Me.lb.Size = New System.Drawing.Size(47, 20)
         Me.lb.TabIndex = 11
         Me.lb.Text = "Label1"
         Me.lb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -81,9 +83,10 @@ Partial Class SearchBloc
         '
         Me.PR2.BackColor = System.Drawing.Color.Silver
         Me.PR2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PR2.Location = New System.Drawing.Point(57, 1)
+        Me.PR2.Location = New System.Drawing.Point(71, 1)
+        Me.PR2.Margin = New System.Windows.Forms.Padding(4)
         Me.PR2.Name = "PR2"
-        Me.PR2.Size = New System.Drawing.Size(1, 28)
+        Me.PR2.Size = New System.Drawing.Size(1, 35)
         Me.PR2.TabIndex = 8
         '
         'PL2
@@ -91,8 +94,9 @@ Partial Class SearchBloc
         Me.PL2.BackColor = System.Drawing.Color.Silver
         Me.PL2.Dock = System.Windows.Forms.DockStyle.Left
         Me.PL2.Location = New System.Drawing.Point(0, 1)
+        Me.PL2.Margin = New System.Windows.Forms.Padding(4)
         Me.PL2.Name = "PL2"
-        Me.PL2.Size = New System.Drawing.Size(1, 28)
+        Me.PL2.Size = New System.Drawing.Size(1, 35)
         Me.PL2.TabIndex = 7
         '
         'PT2
@@ -100,28 +104,32 @@ Partial Class SearchBloc
         Me.PT2.BackColor = System.Drawing.Color.Silver
         Me.PT2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PT2.Location = New System.Drawing.Point(0, 0)
+        Me.PT2.Margin = New System.Windows.Forms.Padding(4)
         Me.PT2.Name = "PT2"
-        Me.PT2.Size = New System.Drawing.Size(58, 1)
+        Me.PT2.Size = New System.Drawing.Size(72, 1)
         Me.PT2.TabIndex = 6
         '
         'PB2
         '
         Me.PB2.BackColor = System.Drawing.Color.Silver
         Me.PB2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PB2.Location = New System.Drawing.Point(0, 29)
+        Me.PB2.Location = New System.Drawing.Point(0, 36)
+        Me.PB2.Margin = New System.Windows.Forms.Padding(4)
         Me.PB2.Name = "PB2"
-        Me.PB2.Size = New System.Drawing.Size(58, 1)
+        Me.PB2.Size = New System.Drawing.Size(72, 1)
         Me.PB2.TabIndex = 5
         '
         'SearchBloc
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.BackColor = System.Drawing.Color.Transparent
         Me.Controls.Add(Me.Panel26)
+        Me.Margin = New System.Windows.Forms.Padding(4)
+        Me.MinimumSize = New System.Drawing.Size(88, 37)
         Me.Name = "SearchBloc"
-        Me.Size = New System.Drawing.Size(60, 30)
+        Me.Size = New System.Drawing.Size(88, 37)
         Me.Panel26.ResumeLayout(False)
         Me.Panel26.PerformLayout()
         Me.ResumeLayout(False)

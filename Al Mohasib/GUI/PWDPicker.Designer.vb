@@ -46,11 +46,8 @@ Partial Class PWDPicker
         Me.plClavier = New System.Windows.Forms.Panel()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.DGV1 = New System.Windows.Forms.DataGridView()
-        Me.AdidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AdminDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PwdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.lbrf = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -59,7 +56,12 @@ Partial Class PWDPicker
         Me.ShapeContainer2 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
         Me.RectangleShape1 = New Microsoft.VisualBasic.PowerPacks.RectangleShape()
         Me.Panel7 = New System.Windows.Forms.Panel()
-        Me.lbrf = New System.Windows.Forms.Label()
+        Me.AdidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AdminDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PwdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.role = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.rf = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel3.SuspendLayout()
         Me.plClavier.SuspendLayout()
         Me.Panel6.SuspendLayout()
@@ -73,9 +75,10 @@ Partial Class PWDPicker
         Me.btSlvMode.AutoSize = True
         Me.btSlvMode.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btSlvMode.ForeColor = System.Drawing.SystemColors.ButtonShadow
-        Me.btSlvMode.Location = New System.Drawing.Point(252, 383)
+        Me.btSlvMode.Location = New System.Drawing.Point(336, 471)
+        Me.btSlvMode.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.btSlvMode.Name = "btSlvMode"
-        Me.btSlvMode.Size = New System.Drawing.Size(46, 16)
+        Me.btSlvMode.Size = New System.Drawing.Size(54, 20)
         Me.btSlvMode.TabIndex = 4
         Me.btSlvMode.Text = "الدخول"
         '
@@ -85,9 +88,10 @@ Partial Class PWDPicker
         Me.Button33.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button33.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button33.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button33.Location = New System.Drawing.Point(105, 314)
+        Me.Button33.Location = New System.Drawing.Point(140, 386)
+        Me.Button33.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button33.Name = "Button33"
-        Me.Button33.Size = New System.Drawing.Size(169, 87)
+        Me.Button33.Size = New System.Drawing.Size(225, 107)
         Me.Button33.TabIndex = 0
         Me.Button33.Text = "Rest"
         Me.Button33.UseVisualStyleBackColor = False
@@ -96,9 +100,10 @@ Partial Class PWDPicker
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(23, 383)
+        Me.Label4.Location = New System.Drawing.Point(31, 471)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(57, 16)
+        Me.Label4.Size = New System.Drawing.Size(68, 20)
         Me.Label4.TabIndex = 4
         Me.Label4.Text = "Clavier"
         '
@@ -108,9 +113,10 @@ Partial Class PWDPicker
         Me.Button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button23.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button23.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button23.Location = New System.Drawing.Point(105, 17)
+        Me.Button23.Location = New System.Drawing.Point(140, 21)
+        Me.Button23.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button23.Name = "Button23"
-        Me.Button23.Size = New System.Drawing.Size(80, 87)
+        Me.Button23.Size = New System.Drawing.Size(107, 107)
         Me.Button23.TabIndex = 0
         Me.Button23.Text = "2"
         Me.Button23.UseVisualStyleBackColor = False
@@ -120,9 +126,10 @@ Partial Class PWDPicker
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Times New Roman", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Label2.Location = New System.Drawing.Point(24, 21)
+        Me.Label2.Location = New System.Drawing.Point(32, 26)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(77, 17)
+        Me.Label2.Size = New System.Drawing.Size(95, 22)
         Me.Label2.TabIndex = 4
         Me.Label2.Text = "Utilisateur"
         '
@@ -131,9 +138,10 @@ Partial Class PWDPicker
         Me.pl.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.pl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.pl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pl.Location = New System.Drawing.Point(24, 44)
+        Me.pl.Location = New System.Drawing.Point(32, 54)
+        Me.pl.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pl.Name = "pl"
-        Me.pl.Size = New System.Drawing.Size(48, 56)
+        Me.pl.Size = New System.Drawing.Size(63, 68)
         Me.pl.TabIndex = 12
         '
         'Button22
@@ -142,9 +150,10 @@ Partial Class PWDPicker
         Me.Button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button22.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button22.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button22.Location = New System.Drawing.Point(17, 17)
+        Me.Button22.Location = New System.Drawing.Point(23, 21)
+        Me.Button22.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button22.Name = "Button22"
-        Me.Button22.Size = New System.Drawing.Size(80, 87)
+        Me.Button22.Size = New System.Drawing.Size(107, 107)
         Me.Button22.TabIndex = 0
         Me.Button22.Text = "1"
         Me.Button22.UseVisualStyleBackColor = False
@@ -155,9 +164,10 @@ Partial Class PWDPicker
         Me.Button30.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button30.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button30.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button30.Location = New System.Drawing.Point(194, 215)
+        Me.Button30.Location = New System.Drawing.Point(259, 265)
+        Me.Button30.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button30.Name = "Button30"
-        Me.Button30.Size = New System.Drawing.Size(80, 87)
+        Me.Button30.Size = New System.Drawing.Size(107, 107)
         Me.Button30.TabIndex = 0
         Me.Button30.Text = "9"
         Me.Button30.UseVisualStyleBackColor = False
@@ -167,9 +177,10 @@ Partial Class PWDPicker
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel3.Controls.Add(Me.TextBox2)
-        Me.Panel3.Location = New System.Drawing.Point(78, 44)
+        Me.Panel3.Location = New System.Drawing.Point(104, 54)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(232, 56)
+        Me.Panel3.Size = New System.Drawing.Size(309, 68)
         Me.Panel3.TabIndex = 12
         '
         'TextBox2
@@ -178,9 +189,10 @@ Partial Class PWDPicker
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox2.Font = New System.Drawing.Font("Times New Roman", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox2.ForeColor = System.Drawing.Color.Gray
-        Me.TextBox2.Location = New System.Drawing.Point(9, 16)
+        Me.TextBox2.Location = New System.Drawing.Point(12, 20)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(210, 25)
+        Me.TextBox2.Size = New System.Drawing.Size(280, 31)
         Me.TextBox2.TabIndex = 1
         Me.TextBox2.Text = "الرقم السري"
         Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -191,9 +203,10 @@ Partial Class PWDPicker
         Me.Button29.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button29.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button29.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button29.Location = New System.Drawing.Point(105, 215)
+        Me.Button29.Location = New System.Drawing.Point(140, 265)
+        Me.Button29.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button29.Name = "Button29"
-        Me.Button29.Size = New System.Drawing.Size(80, 87)
+        Me.Button29.Size = New System.Drawing.Size(107, 107)
         Me.Button29.TabIndex = 0
         Me.Button29.Text = "8"
         Me.Button29.UseVisualStyleBackColor = False
@@ -204,9 +217,10 @@ Partial Class PWDPicker
         Me.Button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button25.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button25.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button25.Location = New System.Drawing.Point(17, 116)
+        Me.Button25.Location = New System.Drawing.Point(23, 143)
+        Me.Button25.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button25.Name = "Button25"
-        Me.Button25.Size = New System.Drawing.Size(80, 87)
+        Me.Button25.Size = New System.Drawing.Size(107, 107)
         Me.Button25.TabIndex = 0
         Me.Button25.Text = "4"
         Me.Button25.UseVisualStyleBackColor = False
@@ -217,9 +231,10 @@ Partial Class PWDPicker
         Me.Button27.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button27.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button27.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button27.Location = New System.Drawing.Point(194, 116)
+        Me.Button27.Location = New System.Drawing.Point(259, 143)
+        Me.Button27.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button27.Name = "Button27"
-        Me.Button27.Size = New System.Drawing.Size(80, 87)
+        Me.Button27.Size = New System.Drawing.Size(107, 107)
         Me.Button27.TabIndex = 0
         Me.Button27.Text = "6"
         Me.Button27.UseVisualStyleBackColor = False
@@ -230,9 +245,10 @@ Partial Class PWDPicker
         Me.Button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button24.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button24.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button24.Location = New System.Drawing.Point(193, 17)
+        Me.Button24.Location = New System.Drawing.Point(257, 21)
+        Me.Button24.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button24.Name = "Button24"
-        Me.Button24.Size = New System.Drawing.Size(80, 87)
+        Me.Button24.Size = New System.Drawing.Size(107, 107)
         Me.Button24.TabIndex = 0
         Me.Button24.Text = "3"
         Me.Button24.UseVisualStyleBackColor = False
@@ -243,9 +259,10 @@ Partial Class PWDPicker
         Me.Button31.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button31.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button31.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button31.Location = New System.Drawing.Point(17, 314)
+        Me.Button31.Location = New System.Drawing.Point(23, 386)
+        Me.Button31.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button31.Name = "Button31"
-        Me.Button31.Size = New System.Drawing.Size(80, 87)
+        Me.Button31.Size = New System.Drawing.Size(107, 107)
         Me.Button31.TabIndex = 0
         Me.Button31.Text = "0"
         Me.Button31.UseVisualStyleBackColor = False
@@ -256,9 +273,10 @@ Partial Class PWDPicker
         Me.Button28.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button28.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button28.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button28.Location = New System.Drawing.Point(17, 215)
+        Me.Button28.Location = New System.Drawing.Point(23, 265)
+        Me.Button28.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button28.Name = "Button28"
-        Me.Button28.Size = New System.Drawing.Size(80, 87)
+        Me.Button28.Size = New System.Drawing.Size(107, 107)
         Me.Button28.TabIndex = 0
         Me.Button28.Text = "7"
         Me.Button28.UseVisualStyleBackColor = False
@@ -269,9 +287,10 @@ Partial Class PWDPicker
         Me.Button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button26.Font = New System.Drawing.Font("Arial", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button26.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Button26.Location = New System.Drawing.Point(105, 116)
+        Me.Button26.Location = New System.Drawing.Point(140, 143)
+        Me.Button26.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button26.Name = "Button26"
-        Me.Button26.Size = New System.Drawing.Size(80, 87)
+        Me.Button26.Size = New System.Drawing.Size(107, 107)
         Me.Button26.TabIndex = 0
         Me.Button26.Text = "5"
         Me.Button26.UseVisualStyleBackColor = False
@@ -293,9 +312,10 @@ Partial Class PWDPicker
         Me.plClavier.Controls.Add(Me.Button28)
         Me.plClavier.Controls.Add(Me.Button26)
         Me.plClavier.Dock = System.Windows.Forms.DockStyle.Left
-        Me.plClavier.Location = New System.Drawing.Point(11, 11)
+        Me.plClavier.Location = New System.Drawing.Point(15, 14)
+        Me.plClavier.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.plClavier.Name = "plClavier"
-        Me.plClavier.Size = New System.Drawing.Size(300, 418)
+        Me.plClavier.Size = New System.Drawing.Size(399, 514)
         Me.plClavier.TabIndex = 12
         '
         'Panel6
@@ -303,10 +323,11 @@ Partial Class PWDPicker
         Me.Panel6.Controls.Add(Me.DGV1)
         Me.Panel6.Controls.Add(Me.Panel2)
         Me.Panel6.Controls.Add(Me.plClavier)
-        Me.Panel6.Location = New System.Drawing.Point(45, 57)
+        Me.Panel6.Location = New System.Drawing.Point(60, 55)
+        Me.Panel6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Padding = New System.Windows.Forms.Padding(11)
-        Me.Panel6.Size = New System.Drawing.Size(917, 440)
+        Me.Panel6.Padding = New System.Windows.Forms.Padding(15, 14, 15, 14)
+        Me.Panel6.Size = New System.Drawing.Size(1223, 542)
         Me.Panel6.TabIndex = 18
         '
         'DGV1
@@ -330,7 +351,7 @@ Partial Class PWDPicker
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DGV1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DGV1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGV1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AdidDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.AdminDataGridViewTextBoxColumn, Me.PwdDataGridViewTextBoxColumn})
+        Me.DGV1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AdidDataGridViewTextBoxColumn, Me.NameDataGridViewTextBoxColumn, Me.AdminDataGridViewTextBoxColumn, Me.PwdDataGridViewTextBoxColumn, Me.role, Me.rf})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -342,15 +363,144 @@ Partial Class PWDPicker
         Me.DGV1.DefaultCellStyle = DataGridViewCellStyle3
         Me.DGV1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DGV1.GridColor = System.Drawing.Color.SteelBlue
-        Me.DGV1.Location = New System.Drawing.Point(643, 11)
+        Me.DGV1.Location = New System.Drawing.Point(856, 14)
+        Me.DGV1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DGV1.MultiSelect = False
         Me.DGV1.Name = "DGV1"
         Me.DGV1.ReadOnly = True
         Me.DGV1.RowHeadersVisible = False
         Me.DGV1.RowTemplate.Height = 30
         Me.DGV1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGV1.Size = New System.Drawing.Size(263, 418)
+        Me.DGV1.Size = New System.Drawing.Size(352, 514)
         Me.DGV1.TabIndex = 11
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.lbrf)
+        Me.Panel2.Controls.Add(Me.btSlvMode)
+        Me.Panel2.Controls.Add(Me.Label4)
+        Me.Panel2.Controls.Add(Me.Label2)
+        Me.Panel2.Controls.Add(Me.pl)
+        Me.Panel2.Controls.Add(Me.Panel3)
+        Me.Panel2.Controls.Add(Me.Panel4)
+        Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Controls.Add(Me.Panel1)
+        Me.Panel2.Controls.Add(Me.Button1)
+        Me.Panel2.Controls.Add(Me.ShapeContainer2)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Panel2.Location = New System.Drawing.Point(414, 14)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(442, 514)
+        Me.Panel2.TabIndex = 12
+        '
+        'lbrf
+        '
+        Me.lbrf.AutoSize = True
+        Me.lbrf.Location = New System.Drawing.Point(173, 404)
+        Me.lbrf.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lbrf.Name = "lbrf"
+        Me.lbrf.Size = New System.Drawing.Size(13, 17)
+        Me.lbrf.TabIndex = 4
+        Me.lbrf.Text = "-"
+        '
+        'Panel4
+        '
+        Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Location = New System.Drawing.Point(29, 164)
+        Me.Panel4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(63, 68)
+        Me.Panel4.TabIndex = 12
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(31, 143)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(94, 17)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "Mot de Passe"
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.TextBox1)
+        Me.Panel1.Location = New System.Drawing.Point(101, 164)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(309, 68)
+        Me.Panel1.TabIndex = 12
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox1.Font = New System.Drawing.Font("Times New Roman", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.ForeColor = System.Drawing.Color.Gray
+        Me.TextBox1.Location = New System.Drawing.Point(12, 20)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.TextBox1.Size = New System.Drawing.Size(280, 31)
+        Me.TextBox1.TabIndex = 1
+        Me.TextBox1.Text = "الرقم السري"
+        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.SystemColors.MenuHighlight
+        Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Arial Rounded MT Bold", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button1.Location = New System.Drawing.Point(71, 274)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(311, 70)
+        Me.Button1.TabIndex = 6
+        Me.Button1.Text = "SUBMIT"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'ShapeContainer2
+        '
+        Me.ShapeContainer2.Location = New System.Drawing.Point(0, 0)
+        Me.ShapeContainer2.Margin = New System.Windows.Forms.Padding(0)
+        Me.ShapeContainer2.Name = "ShapeContainer2"
+        Me.ShapeContainer2.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.RectangleShape1})
+        Me.ShapeContainer2.Size = New System.Drawing.Size(440, 512)
+        Me.ShapeContainer2.TabIndex = 13
+        Me.ShapeContainer2.TabStop = False
+        '
+        'RectangleShape1
+        '
+        Me.RectangleShape1.BackColor = System.Drawing.SystemColors.MenuHighlight
+        Me.RectangleShape1.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
+        Me.RectangleShape1.CornerRadius = 5
+        Me.RectangleShape1.FillGradientColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.RectangleShape1.Location = New System.Drawing.Point(44, 222)
+        Me.RectangleShape1.Name = "RectangleShape1"
+        Me.RectangleShape1.Size = New System.Drawing.Size(250, 58)
+        '
+        'Panel7
+        '
+        Me.Panel7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Panel7.BackColor = System.Drawing.Color.Transparent
+        Me.Panel7.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources._500px_Crystal_Clear_action_exit_svg
+        Me.Panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Panel7.Location = New System.Drawing.Point(60, 619)
+        Me.Panel7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Panel7.Name = "Panel7"
+        Me.Panel7.Size = New System.Drawing.Size(80, 55)
+        Me.Panel7.TabIndex = 17
         '
         'AdidDataGridViewTextBoxColumn
         '
@@ -383,139 +533,36 @@ Partial Class PWDPicker
         Me.PwdDataGridViewTextBoxColumn.ReadOnly = True
         Me.PwdDataGridViewTextBoxColumn.Visible = False
         '
-        'Panel2
+        'role
         '
-        Me.Panel2.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel2.Controls.Add(Me.lbrf)
-        Me.Panel2.Controls.Add(Me.btSlvMode)
-        Me.Panel2.Controls.Add(Me.Label4)
-        Me.Panel2.Controls.Add(Me.Label2)
-        Me.Panel2.Controls.Add(Me.pl)
-        Me.Panel2.Controls.Add(Me.Panel3)
-        Me.Panel2.Controls.Add(Me.Panel4)
-        Me.Panel2.Controls.Add(Me.Label1)
-        Me.Panel2.Controls.Add(Me.Panel1)
-        Me.Panel2.Controls.Add(Me.Button1)
-        Me.Panel2.Controls.Add(Me.ShapeContainer2)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel2.Location = New System.Drawing.Point(311, 11)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(332, 418)
-        Me.Panel2.TabIndex = 12
+        Me.role.DataPropertyName = "role"
+        Me.role.HeaderText = "role"
+        Me.role.Name = "role"
+        Me.role.ReadOnly = True
+        Me.role.Visible = False
         '
-        'Panel4
+        'rf
         '
-        Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel4.Location = New System.Drawing.Point(22, 133)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(48, 56)
-        Me.Panel4.TabIndex = 12
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(23, 116)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(71, 13)
-        Me.Label1.TabIndex = 4
-        Me.Label1.Text = "Mot de Passe"
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.TextBox1)
-        Me.Panel1.Location = New System.Drawing.Point(76, 133)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(232, 56)
-        Me.Panel1.TabIndex = 12
-        '
-        'TextBox1
-        '
-        Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Font = New System.Drawing.Font("Times New Roman", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.ForeColor = System.Drawing.Color.Gray
-        Me.TextBox1.Location = New System.Drawing.Point(9, 16)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.TextBox1.Size = New System.Drawing.Size(210, 25)
-        Me.TextBox1.TabIndex = 1
-        Me.TextBox1.Text = "الرقم السري"
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.SystemColors.MenuHighlight
-        Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Arial Rounded MT Bold", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.Location = New System.Drawing.Point(53, 223)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(233, 57)
-        Me.Button1.TabIndex = 6
-        Me.Button1.Text = "SUBMIT"
-        Me.Button1.UseVisualStyleBackColor = False
-        '
-        'ShapeContainer2
-        '
-        Me.ShapeContainer2.Location = New System.Drawing.Point(0, 0)
-        Me.ShapeContainer2.Margin = New System.Windows.Forms.Padding(0)
-        Me.ShapeContainer2.Name = "ShapeContainer2"
-        Me.ShapeContainer2.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.RectangleShape1})
-        Me.ShapeContainer2.Size = New System.Drawing.Size(330, 416)
-        Me.ShapeContainer2.TabIndex = 13
-        Me.ShapeContainer2.TabStop = False
-        '
-        'RectangleShape1
-        '
-        Me.RectangleShape1.BackColor = System.Drawing.SystemColors.MenuHighlight
-        Me.RectangleShape1.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.RectangleShape1.CornerRadius = 5
-        Me.RectangleShape1.FillGradientColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.RectangleShape1.Location = New System.Drawing.Point(44, 222)
-        Me.RectangleShape1.Name = "RectangleShape1"
-        Me.RectangleShape1.Size = New System.Drawing.Size(250, 58)
-        '
-        'Panel7
-        '
-        Me.Panel7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Panel7.BackColor = System.Drawing.Color.Transparent
-        Me.Panel7.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources._500px_Crystal_Clear_action_exit_svg
-        Me.Panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Panel7.Location = New System.Drawing.Point(55, 453)
-        Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(91, 68)
-        Me.Panel7.TabIndex = 17
-        '
-        'lbrf
-        '
-        Me.lbrf.AutoSize = True
-        Me.lbrf.Location = New System.Drawing.Point(130, 328)
-        Me.lbrf.Name = "lbrf"
-        Me.lbrf.Size = New System.Drawing.Size(11, 13)
-        Me.lbrf.TabIndex = 4
-        Me.lbrf.Text = "-"
+        Me.rf.DataPropertyName = "rf"
+        Me.rf.HeaderText = "rf"
+        Me.rf.Name = "rf"
+        Me.rf.ReadOnly = True
+        Me.rf.Visible = False
         '
         'PWDPicker
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(999, 554)
+        Me.ClientSize = New System.Drawing.Size(1332, 682)
         Me.Controls.Add(Me.Panel7)
         Me.Controls.Add(Me.Panel6)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "PWDPicker"
-        Me.Padding = New System.Windows.Forms.Padding(11)
+        Me.Padding = New System.Windows.Forms.Padding(15, 14, 15, 14)
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "لوحة تسجيل الذخول"
         Me.Panel3.ResumeLayout(False)
@@ -559,9 +606,11 @@ Partial Class PWDPicker
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents ShapeContainer2 As Microsoft.VisualBasic.PowerPacks.ShapeContainer
     Friend WithEvents RectangleShape1 As Microsoft.VisualBasic.PowerPacks.RectangleShape
+    Friend WithEvents lbrf As System.Windows.Forms.Label
     Friend WithEvents AdidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents NameDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents AdminDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PwdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents lbrf As System.Windows.Forms.Label
+    Friend WithEvents role As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents rf As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

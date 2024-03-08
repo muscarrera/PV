@@ -1,8 +1,12 @@
 ﻿Public Class RPanel
 
+    Dim _freeTotal As Decimal
+
     'Events
     Public Event UpdateItem(ByVal sender As Object, ByVal e As EventArgs)
     Public Event UpdateQte(ByVal sender As Object, ByVal e As EventArgs)
+    Public Event UpdateQteCafe(ByVal sender As Object, ByVal e As EventArgs)
+
     Public Event UpdatePrice(ByVal sender As Object, ByVal e As EventArgs)
     Public Event UpdateDepot(ByVal sender As Object, ByVal e As EventArgs)
     Public Event DeleteItem(ByRef i As Items, ByVal id As Integer)
@@ -13,6 +17,7 @@
     Public Event UpdateBl()
     Public Event SetDetailFacture()
     Public Event UpdateClient()
+
     Public Event SaveFacture(ByVal id As Integer, ByVal total As Double, ByVal avance As Double, ByVal tva As Double, ByVal table As DataTable)
     Public Event SaveAndPrint(ByVal id As Integer, ByVal total As Double, ByVal avance As Double, ByVal tva As Double, ByVal table As DataTable, ByVal b As Boolean, ByVal isBl As Boolean, ByVal SecondModel As Boolean)
     Public Event EditFacture(ByVal id As Integer, ByVal Clid As Integer, ByVal ClientName As String, ByVal total As Double, ByVal avance As Double, ByVal table As DataTable)
@@ -62,6 +67,12 @@
 
     Event printRapportJr()
 
+    Event DupliquerBon()
+
+    Event DivisionBon()
+
+    Event TotalDirect()
+
     'properties
     Public Property ClId As Integer
         Get
@@ -99,9 +110,12 @@
 
             Dim a As Items
             Dim t As Decimal = 0
+            Dim free_t As Decimal = 0
             For Each a In Pl.Controls
                 t += a.Total_ht
+                free_t += a.FreeTotal_Str
             Next
+            freeTotal = free_t
             'If hasManyRemise = False Then t -= (t * Remise) / 100
             Return t
         End Get
@@ -220,6 +234,23 @@
             End If
         End Set
     End Property
+    Public Property freeTotal As Decimal
+        Get
+            Return _freeTotal
+        End Get
+        Set(ByVal value As Decimal)
+            _freeTotal = value
+
+            If value > 0 Then
+                lbFree.Text = "Gratuits :" & value.ToString("N2")
+                lbFree.Visible = True
+            Else
+                lbFree.Text = "- :"
+                lbFree.Visible = False
+            End If
+             
+        End Set
+    End Property
     Public ReadOnly Property poid As Decimal
         Get
  
@@ -265,12 +296,29 @@
     End Property
     Public Property bl As String
         Get
-            Return _bl
+            Return CP.bl
         End Get
         Set(ByVal value As String)
             If value = "" Then value = "---"
-            _bl = value
             CP.bl = value
+        End Set
+    End Property
+    Public Property bc As String
+        Get
+            Return CP.bc
+        End Get
+        Set(ByVal value As String)
+            If value = "" Then value = "---"
+            CP.bc = value
+        End Set
+    End Property
+    Public Property livreur As String
+        Get
+            Return CP.Liv
+        End Get
+        Set(ByVal value As String)
+            If value = "" Then value = "---"
+            CP.Liv = value
         End Set
     End Property
     Public Property Dte As Date
@@ -279,8 +327,19 @@
         End Get
         Set(ByVal value As Date)
             lbDate.Text = value
+
+
+            Dim timeDifference As TimeSpan = Now - value
+
+            ' Check if the time difference is less than 24 hours
+            If timeDifference.TotalHours < 24 Then
+                facture_is_over_24h = False
+            Else
+                facture_is_over_24h = True
+            End If
         End Set
     End Property
+    Private facture_is_over_24h As Boolean = False
     Public ReadOnly Property SelectedItem As Items
         Get
             Dim a As Items
@@ -317,13 +376,16 @@
             table.Columns.Add("id", GetType(Double))
             table.Columns.Add("xOrder", GetType(Integer))
             table.Columns.Add("rprice", GetType(Double))
+            table.Columns.Add("freeQte", GetType(Double))
+            table.Columns.Add("qteStr", GetType(String))
+
             Dim a As Items
             Dim i = 0
             For Each a In Pl.Controls
                 ' Add  rows with those columns filled in the DataTable.
                 table.Rows.Add(a.arid, a.Name, a.Unite, a.Price, a.Bprice, a.Tva,
                                a.Qte, a.Unite, a.Total_ttc, a.cid, a.code,
-                               a.Depot, a.Poid, a.Total_ht, a.Total_tva, a.id, a.Remise, a.id, i, a.rprice)
+                               a.Depot, a.Poid, a.Total_ht, a.Total_tva, a.id, a.Remise, a.id, i, a.rprice, a.FreeQte, a.Qte_Str)
                 i += 1
             Next
 
@@ -521,7 +583,6 @@
             ap.Name = R("name")
             ap.Price = R("sprice")
 
-
             'Try
             '    If R("depot") = 0 Then
 
@@ -567,14 +628,16 @@
 
             ap.Qte = CP.Value
 
+            'ArticlePrix Promo
+            SpecialPromoArticleCategory(ap)
+            
             'ap.IsArabic = True
 
             AddHandler ap.Click, AddressOf ClearPanel
             AddHandler ap.ItemDoubleClick, AddressOf Item_Doubleclick
             AddHandler ap.Item_DoubleClick, AddressOf Item_ShowBlocModif
             AddHandler ap.RemiseChanged, AddressOf UpdateValue
-
-
+             
             Pl.Controls.Add(ap)
             ap.BringToFront()
 
@@ -674,6 +737,7 @@
             MsgBox(ex.Message)
         End Try
     End Sub
+
     Public Sub AddItems(ByVal D As DataTable, ByVal isSell As Boolean)
         Try
             For i As Integer = 0 To D.Rows.Count - 1
@@ -694,7 +758,6 @@
                 ap.arid = D.Rows(i).Item("arid")
                 ap.Tva = D.Rows(i).Item("tva")
                 ap.cid = D.Rows(i).Item("cid")
-
                 ap.code = D.Rows(i).Item("code")
 
                 Try
@@ -711,6 +774,11 @@
                     ap.Qte = qte * -1
                 Else
                     ap.Qte = qte
+
+                    'ArticlePrix Promo
+                    SpecialPromoArticleCategory(ap)
+
+
                 End If
 
                 ap.BgColor = Color.White
@@ -740,6 +808,30 @@
             UpdateValue()
             CP.Value = 0
             CP.ActiveQte(False)
+
+
+            If isSell And Form1.cbPromos.Checked And EditMode = False And facture_is_over_24h = False Then
+
+                Dim a As Items
+                For Each a In Pl.Controls
+                    If a.Price = 0 And a.cid = -600 Then
+
+                        Dim itm As Items
+                        For Each itm In Pl.Controls
+                            If itm.id = a.code And itm.FreeQte > 0 Then
+                                RaiseEvent DeleteItem(a, FctId)
+                                Pl.Controls.Remove(a)
+                            End If
+                        Next
+                    End If
+                Next
+
+
+
+            End If
+
+
+
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -866,7 +958,7 @@
 
             Dim rnd As New Random
 
-            ap.Bprice = R.point
+            ap.Bprice = 0
             ap.BgColor = Color.White
             ap.SideColor = Color.Moccasin
             ap.id = CInt(rnd.Next(111, 999)) * -1
@@ -1018,12 +1110,90 @@
             End If
         Next
     End Sub
+    Private Sub SpecialPromoArticleCategory(ByRef a As Items)
+
+        If isSell = False Or Form1.cbPromos.Checked = False Or EditMode Then Exit Sub
+        If facture_is_over_24h Then Exit Sub
+         
+        If a.Price = 0 Then Exit Sub
+        If ClId > 0 Then Exit Sub
+        a.skipPromo = False
+
+        Try
+            If paramsArtsGratuit.Count Then
+                If paramsArtsGratuit.ContainsValue(a.arid) Then
+                    Dim ch_qte As Double = 0
+                    Dim _qte As Double = 0
+                    For Each kv As KeyValuePair(Of String, Integer) In paramsArtsGratuit
+                        If kv.Value <> a.arid Then Continue For
+                        _qte = kv.Key.Split("|")(0)
+
+                        If a.Qte >= _qte And _qte >= ch_qte Then
+                            a.FreeQte = kv.Key.Split("|")(1)
+                            ch_qte = _qte
+                            a.skipPromo = True
+                        End If
+                    Next
+
+                    Exit Sub
+                End If
+            End If
+        Catch ex As Exception
+        End Try
+
+
+        Try
+            If paramsCatsPrix.Count Then
+                If paramsCatsPrix.ContainsValue(a.cid) Then
+                    Dim ch_qte As Double = 0
+                    Dim _qte As Double = 0
+                    For Each kv As KeyValuePair(Of String, Integer) In paramsCatsPrix
+                        If kv.Value <> a.cid Then Continue For
+                        _qte = kv.Key.Split("|")(0)
+
+                        If a.Qte >= _qte And _qte >= ch_qte Then
+                            a.Remise = kv.Key.Split("|")(1)
+                            ch_qte = _qte
+                            a.skipPromo = True
+                        End If
+                    Next
+                End If
+            End If
+        Catch ex As Exception
+        End Try
+
+        Try
+            If paramsArtsPrix.Count Then
+                If paramsArtsPrix.ContainsValue(a.arid) Then
+                    Dim ch_qte As Double = 0
+                    Dim _qte As Double = 0
+                    For Each kv As KeyValuePair(Of String, Integer) In paramsArtsPrix
+                        If kv.Value <> a.arid Then Continue For
+                        _qte = kv.Key.Split("|")(0)
+
+                        If a.Qte >= _qte And _qte >= ch_qte Then
+                            a.Price = kv.Key.Split("|")(1)
+                            ch_qte = _qte
+                            a.skipPromo = True
+                        End If
+                    Next
+                End If
+            End If
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
     Public Sub ChangedItemsQte(ByRef arid As Integer, ByVal dpid As Integer, ByVal qte As Double)
 
         Dim a As Items
         For Each a In Pl.Controls
-            If a.arid = arid And a.Depot = dpid And a.isRetour = False Then
+            If a.arid = arid And a.Depot = dpid And a.isRetour = False And a.Price > 0 Then
                 a.Qte = qte  '+= CP.Value
+
+                'ArticlePrix Promo
+                SpecialPromoArticleCategory(a)
 
                 UpdateValue()
                 CP.Value = 0
@@ -1066,6 +1236,9 @@
                 a.Bprice = bprice
 
 
+                SpecialPromoArticleCategory(a)
+
+                 
                 UpdateValue()
                 CP.Value = 0
 
@@ -1086,6 +1259,7 @@
             If a.id = id Then
                 If field = "qte" Then
                     a.Qte = q
+                    SpecialPromoArticleCategory(a)
                 Else
                     a.Price = q
                 End If
@@ -1095,6 +1269,7 @@
             End If
         Next
     End Sub
+     
     Public Sub DeleteItems()
         Dim a As Items
         For Each a In Pl.Controls
@@ -1126,6 +1301,8 @@
         ClId = 0
         Remise = 0
         bl = "---"
+        bc = "---"
+        livreur = "---"
         lbProfit.Text = "[]"
         delivredDay = "-"
         Dte = Now
@@ -1157,7 +1334,7 @@
             Return False
         End If
         For Each a In Pl.Controls
-            If a.arid = arid And a.Depot = dpid And a.FullName = nm And a.isRetour = False Then
+            If a.arid = arid And a.Depot = dpid And a.FullName = nm And a.isRetour = False And a.Price > 0 Then
                 Return True
                 Exit Function
             End If
@@ -1170,7 +1347,7 @@
             Return Nothing
         End If
         For Each a In Pl.Controls
-            If a.arid = arid And a.Depot = dpid And a.FullName = nm And a.isRetour = False Then
+            If a.arid = arid And a.Depot = dpid And a.FullName = nm And a.isRetour = False And a.Price > 0 Then
                 Return a
                 Exit Function
             End If
@@ -1253,6 +1430,9 @@
         CP.ActiveQte(it.IsSelected)
     End Sub
     Private Sub Item_ShowBlocModif(ByVal sender As Object, ByVal e As EventArgs)
+
+        If Form1.cbCafeMode.Checked And Form1.cbCafeTable.Checked Then Exit Sub
+
         '_oldValue = SelectedItem.Qte
         Dim itm As Items = sender
         If Form1.cbBadgeMA.Checked And EditMode Then
@@ -1336,6 +1516,29 @@
             RaiseEvent CPValueChange()
             Exit Sub
         End If
+
+
+
+
+        If Form1.cbBadgeEncPm.Checked Then
+            Dim result As Boolean = IsAtLeastOneDayAgo(Dte, 1)
+            If result Then
+                Try
+                    Dim sc As New UserParmissionCheck
+                    sc.bName.Text = "Activer paiement enciens bons"
+                    sc.lbNum.Text = Form1.adminName
+                    If sc.ShowDialog = DialogResult.OK Then
+                        RaiseEvent UpdatePayment()
+                        If EditMode Then RaiseEvent EditingItemValueChanged(0, 0, "not", _editingItem)
+                    End If
+
+                Catch
+                End Try
+                Exit Sub
+            End If
+        End If
+
+
         RaiseEvent UpdatePayment()
         If EditMode Then RaiseEvent EditingItemValueChanged(0, 0, "not", _editingItem) 'SaveFacture(FctId, Total, Avance, Tva, DataSource)
     End Sub
@@ -1346,6 +1549,9 @@
         End If
 
         If EditMode Then
+
+            If bc.ToUpper.StartsWith("B-") Then Exit Sub
+
             If Form1.cbBadgeMB.Checked Then
                 Try
                     Dim sc As New UserParmissionCheck
@@ -1379,7 +1585,7 @@
             End If
         End If
     End Sub
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtPrint.Click, BtBlPrint.Click
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtPrint.Click, BtBlPrint.Click, Button2.Click
 
         Form1.page_Number = 1
 
@@ -1529,7 +1735,47 @@
         'bl = InputBox("Designation =  ")
         'RaiseEvent SetDetailArticle(bl, SelectedItem)
     End Sub
+    Private Sub CP_TotalDirect() Handles CP.TotalDirect
+        RaiseEvent TotalDirect()
+    End Sub
+    Private Sub CP_DivisionBon() Handles CP.DivisionBon
+        RaiseEvent DivisionBon()
+    End Sub
+    Private Sub CP_DupliquerBon() Handles CP.DupliquerBon
+        If FctId = 0 Then
+            RaiseEvent CPValueChange()
+            Exit Sub
+        End If
 
+        Dim str As String = " عند قيامكم على الضغط على 'موافق' سيتم انشاء نسخة من ايصال "
+        str = str + vbNewLine
+        str = str & ClientName & " ( " & FctId & ")"
+        str = str + vbNewLine
+        str = str + " و جميع المواد المسجلة في القائمة ..    "
+        str = str + vbNewLine
+        str = str + "  .. إضغط  'لا'  لالغاء الامر   "
+
+        If MsgBox(str, MsgBoxStyle.YesNo Or MessageBoxIcon.Exclamation, "نسخة من الايصال") = MsgBoxResult.No Then
+            Exit Sub
+        End If
+
+        If Form1.cbBadgeSB.Checked And EditMode Then
+            Try
+                Dim sc As New UserParmissionCheck
+                sc.bName.Text = "Bon N° " & FctId
+                sc.lbNum.Text = Total_TTC
+                If sc.ShowDialog = DialogResult.OK Then
+                    RaiseEvent DupliquerBon()
+                End If
+            Catch ex As Exception
+            End Try
+
+            Exit Sub
+        End If
+
+        RaiseEvent DupliquerBon()
+
+    End Sub
     Private Sub CP_CommandeDate() Handles CP.CommandeDate
         If FctId = 0 Then
             RaiseEvent CPValueChange()
@@ -1544,10 +1790,10 @@
             Dim clc As New ChoseLivreur
             If clc.ShowDialog = DialogResult.OK Then
                 Try
-                    bl = clc.DataGridView1.SelectedRows(0).Cells(0).Value
+                    livreur = clc.DataGridView1.SelectedRows(0).Cells(1).Value
                     ' bl = InputBox("Infos =  ")
                 Catch ex As Exception
-                    bl = "---"
+                    livreur = "---"
                 End Try
 
                 If clc.Button1.Tag = 2 Then bl = "-"
@@ -1558,7 +1804,35 @@
 
         RaiseEvent SetDetailFacture()
     End Sub
+    Private Sub CP_UpdateRefBon(ByVal str As String) Handles CP.UpdateRefBon
+        If FctId = 0 Then
+            RaiseEvent CPValueChange()
+            Exit Sub
+        End If
+        'RaiseEvent CommandeDate()
+         
+        If isSell Then
+            Try
+                If str = "bl" Then
+                    bl = InputBox(str & "  =  ", str, bl)
+                Else
+                    bc = InputBox(str & "  =  ", str, bc)
+                End If
 
+            Catch ex As Exception
+
+                If str = "bl" Then
+                bl = "---"
+                Else
+                bc = "---"
+                End If
+            End Try
+        Else
+            bl = InputBox("Infos / Ref :", "BON D'ACHATS ..", bl)
+        End If
+
+        RaiseEvent SetDetailFacture()
+    End Sub
     Dim hh As Integer = 0
     Private Sub Panel2_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles plPromo.MouseDown
         hh = e.Y
@@ -1581,6 +1855,10 @@
     Public FerstPointToWin As Integer = 1000000
     Public SelectedAutoPromoPoint As Integer = 0
     Public CadeauxAuto_ls As New List(Of PromosArticle)
+
+    Public paramsCatsPrix As New Dictionary(Of String, Integer)
+    Public paramsArtsPrix As New Dictionary(Of String, Integer)
+    Public paramsArtsGratuit As New Dictionary(Of String, Integer)
 
     Public paramsArts As New Dictionary(Of Integer, String)
     Public paramsCats As New Dictionary(Of Integer, String)
@@ -1634,9 +1912,11 @@
             Next
         Next
 
-   
+
         Dim a As Items
         For Each a In Pl.Controls
+            If a.skipPromo Then Continue For
+
 
             If a.cid = -500 Then 'Cadreau
                 Try
@@ -1722,13 +2002,13 @@
     End Sub
 
     Private Sub btPlus_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btPlus.Click, btMinis.Click
-
+        If EditMode Then Exit Sub
         If FctId <= 0 Then Exit Sub
 
         Try
             _oldValue = SelectedItem.Qte
             If SelectedItem.cid = 0 Then Exit Sub
-            RaiseEvent UpdateQte(sender, Nothing)
+            RaiseEvent UpdateQteCafe(sender, Nothing)
 
             If SelectedItem.Qte <= 0 Then
                 CP_DeleteItems()
@@ -1741,4 +2021,6 @@
     Private Sub btCalc_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btCalc.Click
         If Form1.CbBlocCalc.Checked = True Then hideClc = Not hideClc
     End Sub
+
+ 
 End Class

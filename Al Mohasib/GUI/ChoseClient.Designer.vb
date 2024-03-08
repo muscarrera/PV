@@ -61,10 +61,6 @@ Partial Class ChoseClient
         Me.PlLeft = New System.Windows.Forms.Panel()
         Me.Panel9 = New System.Windows.Forms.Panel()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -76,6 +72,11 @@ Partial Class ChoseClient
         Me.lbCredit = New System.Windows.Forms.Label()
         Me.Pl = New System.Windows.Forms.Panel()
         Me.Fpl = New System.Windows.Forms.FlowLayoutPanel()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.plup.SuspendLayout()
         Me.Panel21.SuspendLayout()
         Me.Panel22.SuspendLayout()
@@ -107,8 +108,9 @@ Partial Class ChoseClient
         Me.plup.Controls.Add(Me.Panel12)
         Me.plup.Dock = System.Windows.Forms.DockStyle.Top
         Me.plup.Location = New System.Drawing.Point(0, 0)
+        Me.plup.Margin = New System.Windows.Forms.Padding(4)
         Me.plup.Name = "plup"
-        Me.plup.Size = New System.Drawing.Size(844, 94)
+        Me.plup.Size = New System.Drawing.Size(1125, 116)
         Me.plup.TabIndex = 4
         '
         'Panel21
@@ -121,9 +123,10 @@ Partial Class ChoseClient
         Me.Panel21.Controls.Add(Me.Panel23)
         Me.Panel21.Controls.Add(Me.Panel24)
         Me.Panel21.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel21.Location = New System.Drawing.Point(401, 0)
+        Me.Panel21.Location = New System.Drawing.Point(534, 0)
+        Me.Panel21.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel21.Name = "Panel21"
-        Me.Panel21.Size = New System.Drawing.Size(443, 94)
+        Me.Panel21.Size = New System.Drawing.Size(591, 116)
         Me.Panel21.TabIndex = 6
         '
         'Button2
@@ -135,9 +138,10 @@ Partial Class ChoseClient
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Button2.Location = New System.Drawing.Point(360, 5)
+        Me.Button2.Location = New System.Drawing.Point(480, 6)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(4)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(79, 65)
+        Me.Button2.Size = New System.Drawing.Size(105, 80)
         Me.Button2.TabIndex = 0
         Me.Button2.Text = "خروج"
         Me.Button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -149,9 +153,10 @@ Partial Class ChoseClient
         Me.Panel22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel22.Controls.Add(Me.Label3)
         Me.Panel22.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel22.Location = New System.Drawing.Point(209, 73)
+        Me.Panel22.Location = New System.Drawing.Point(279, 90)
+        Me.Panel22.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel22.Name = "Panel22"
-        Me.Panel22.Size = New System.Drawing.Size(233, 21)
+        Me.Panel22.Size = New System.Drawing.Size(311, 26)
         Me.Panel22.TabIndex = 3
         '
         'Label3
@@ -160,9 +165,10 @@ Partial Class ChoseClient
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label3.Location = New System.Drawing.Point(52, 2)
+        Me.Label3.Location = New System.Drawing.Point(69, 2)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(35, 17)
+        Me.Label3.Size = New System.Drawing.Size(40, 20)
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "تصفح"
         '
@@ -175,9 +181,10 @@ Partial Class ChoseClient
         Me.Button7.FlatAppearance.BorderSize = 0
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button7.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Button7.Location = New System.Drawing.Point(215, 12)
+        Me.Button7.Location = New System.Drawing.Point(287, 15)
+        Me.Button7.Margin = New System.Windows.Forms.Padding(4)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(55, 55)
+        Me.Button7.Size = New System.Drawing.Size(73, 68)
         Me.Button7.TabIndex = 0
         Me.Button7.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button7.UseVisualStyleBackColor = False
@@ -191,9 +198,10 @@ Partial Class ChoseClient
         Me.Button6.FlatAppearance.BorderSize = 0
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Button6.Location = New System.Drawing.Point(276, 12)
+        Me.Button6.Location = New System.Drawing.Point(368, 15)
+        Me.Button6.Margin = New System.Windows.Forms.Padding(4)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(55, 55)
+        Me.Button6.Size = New System.Drawing.Size(73, 68)
         Me.Button6.TabIndex = 0
         Me.Button6.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button6.UseVisualStyleBackColor = False
@@ -202,9 +210,10 @@ Partial Class ChoseClient
         '
         Me.Panel23.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.line
         Me.Panel23.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel23.Location = New System.Drawing.Point(442, 0)
+        Me.Panel23.Location = New System.Drawing.Point(590, 0)
+        Me.Panel23.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel23.Name = "Panel23"
-        Me.Panel23.Size = New System.Drawing.Size(1, 94)
+        Me.Panel23.Size = New System.Drawing.Size(1, 116)
         Me.Panel23.TabIndex = 2
         '
         'Panel24
@@ -217,8 +226,9 @@ Partial Class ChoseClient
         Me.Panel24.Controls.Add(Me.Panel26)
         Me.Panel24.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel24.Location = New System.Drawing.Point(0, 0)
+        Me.Panel24.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel24.Name = "Panel24"
-        Me.Panel24.Size = New System.Drawing.Size(209, 94)
+        Me.Panel24.Size = New System.Drawing.Size(279, 116)
         Me.Panel24.TabIndex = 3
         '
         'Label9
@@ -227,25 +237,28 @@ Partial Class ChoseClient
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label9.Location = New System.Drawing.Point(108, 2)
+        Me.Label9.Location = New System.Drawing.Point(150, 7)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(95, 17)
+        Me.Label9.Size = New System.Drawing.Size(116, 20)
         Me.Label9.TabIndex = 0
         Me.Label9.Text = "اسم الزبون أو رقمه"
         '
         'txtsearch
         '
-        Me.txtsearch.Location = New System.Drawing.Point(6, 24)
+        Me.txtsearch.Location = New System.Drawing.Point(8, 30)
+        Me.txtsearch.Margin = New System.Windows.Forms.Padding(4)
         Me.txtsearch.Name = "txtsearch"
-        Me.txtsearch.Size = New System.Drawing.Size(196, 20)
+        Me.txtsearch.Size = New System.Drawing.Size(260, 22)
         Me.txtsearch.TabIndex = 5
         '
         'Button5
         '
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Location = New System.Drawing.Point(6, 48)
+        Me.Button5.Location = New System.Drawing.Point(8, 59)
+        Me.Button5.Margin = New System.Windows.Forms.Padding(4)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(75, 23)
+        Me.Button5.Size = New System.Drawing.Size(100, 28)
         Me.Button5.TabIndex = 4
         Me.Button5.Text = "بحث"
         Me.Button5.UseVisualStyleBackColor = True
@@ -256,9 +269,10 @@ Partial Class ChoseClient
         Me.Panel25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel25.Controls.Add(Me.Label13)
         Me.Panel25.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel25.Location = New System.Drawing.Point(0, 73)
+        Me.Panel25.Location = New System.Drawing.Point(0, 90)
+        Me.Panel25.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel25.Name = "Panel25"
-        Me.Panel25.Size = New System.Drawing.Size(208, 21)
+        Me.Panel25.Size = New System.Drawing.Size(278, 26)
         Me.Panel25.TabIndex = 3
         '
         'Label13
@@ -267,9 +281,10 @@ Partial Class ChoseClient
         Me.Label13.BackColor = System.Drawing.Color.Transparent
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label13.Location = New System.Drawing.Point(89, 2)
+        Me.Label13.Location = New System.Drawing.Point(119, 2)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(29, 17)
+        Me.Label13.Size = New System.Drawing.Size(34, 20)
         Me.Label13.TabIndex = 0
         Me.Label13.Text = "بحث"
         '
@@ -278,9 +293,10 @@ Partial Class ChoseClient
         Me.Panel26.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.line
         Me.Panel26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel26.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel26.Location = New System.Drawing.Point(208, 0)
+        Me.Panel26.Location = New System.Drawing.Point(278, 0)
+        Me.Panel26.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel26.Name = "Panel26"
-        Me.Panel26.Size = New System.Drawing.Size(1, 94)
+        Me.Panel26.Size = New System.Drawing.Size(1, 116)
         Me.Panel26.TabIndex = 2
         '
         'Panel4
@@ -290,9 +306,10 @@ Partial Class ChoseClient
         Me.Panel4.Controls.Add(Me.Panel6)
         Me.Panel4.Controls.Add(Me.BtNewClt)
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel4.Location = New System.Drawing.Point(304, 0)
+        Me.Panel4.Location = New System.Drawing.Point(405, 0)
+        Me.Panel4.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(97, 94)
+        Me.Panel4.Size = New System.Drawing.Size(129, 116)
         Me.Panel4.TabIndex = 5
         '
         'Panel5
@@ -301,9 +318,10 @@ Partial Class ChoseClient
         Me.Panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel5.Controls.Add(Me.Label2)
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel5.Location = New System.Drawing.Point(0, 73)
+        Me.Panel5.Location = New System.Drawing.Point(0, 90)
+        Me.Panel5.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(96, 21)
+        Me.Panel5.Size = New System.Drawing.Size(128, 26)
         Me.Panel5.TabIndex = 3
         '
         'Label2
@@ -312,9 +330,10 @@ Partial Class ChoseClient
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label2.Location = New System.Drawing.Point(30, 1)
+        Me.Label2.Location = New System.Drawing.Point(40, 1)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(29, 17)
+        Me.Label2.Size = New System.Drawing.Size(34, 20)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "جديد"
         '
@@ -322,9 +341,10 @@ Partial Class ChoseClient
         '
         Me.Panel6.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.line
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel6.Location = New System.Drawing.Point(96, 0)
+        Me.Panel6.Location = New System.Drawing.Point(128, 0)
+        Me.Panel6.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(1, 94)
+        Me.Panel6.Size = New System.Drawing.Size(1, 116)
         Me.Panel6.TabIndex = 2
         '
         'BtNewClt
@@ -336,9 +356,10 @@ Partial Class ChoseClient
         Me.BtNewClt.FlatAppearance.BorderSize = 0
         Me.BtNewClt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtNewClt.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.BtNewClt.Location = New System.Drawing.Point(6, 5)
+        Me.BtNewClt.Location = New System.Drawing.Point(8, 6)
+        Me.BtNewClt.Margin = New System.Windows.Forms.Padding(4)
         Me.BtNewClt.Name = "BtNewClt"
-        Me.BtNewClt.Size = New System.Drawing.Size(84, 65)
+        Me.BtNewClt.Size = New System.Drawing.Size(112, 80)
         Me.BtNewClt.TabIndex = 0
         Me.BtNewClt.Text = "  جديد"
         Me.BtNewClt.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -351,9 +372,10 @@ Partial Class ChoseClient
         Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.btOk)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel1.Location = New System.Drawing.Point(197, 0)
+        Me.Panel1.Location = New System.Drawing.Point(262, 0)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(107, 94)
+        Me.Panel1.Size = New System.Drawing.Size(143, 116)
         Me.Panel1.TabIndex = 4
         '
         'Panel2
@@ -362,9 +384,10 @@ Partial Class ChoseClient
         Me.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 73)
+        Me.Panel2.Location = New System.Drawing.Point(0, 90)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(106, 21)
+        Me.Panel2.Size = New System.Drawing.Size(142, 26)
         Me.Panel2.TabIndex = 3
         '
         'Label1
@@ -373,9 +396,10 @@ Partial Class ChoseClient
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label1.Location = New System.Drawing.Point(36, 1)
+        Me.Label1.Location = New System.Drawing.Point(48, 1)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(28, 17)
+        Me.Label1.Size = New System.Drawing.Size(34, 20)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "تأكيد"
         '
@@ -383,9 +407,10 @@ Partial Class ChoseClient
         '
         Me.Panel3.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.line
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel3.Location = New System.Drawing.Point(106, 0)
+        Me.Panel3.Location = New System.Drawing.Point(142, 0)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1, 94)
+        Me.Panel3.Size = New System.Drawing.Size(1, 116)
         Me.Panel3.TabIndex = 2
         '
         'btOk
@@ -397,9 +422,10 @@ Partial Class ChoseClient
         Me.btOk.FlatAppearance.BorderSize = 0
         Me.btOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btOk.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.btOk.Location = New System.Drawing.Point(11, 5)
+        Me.btOk.Location = New System.Drawing.Point(15, 6)
+        Me.btOk.Margin = New System.Windows.Forms.Padding(4)
         Me.btOk.Name = "btOk"
-        Me.btOk.Size = New System.Drawing.Size(84, 65)
+        Me.btOk.Size = New System.Drawing.Size(112, 80)
         Me.btOk.TabIndex = 0
         Me.btOk.Text = "تأكيد "
         Me.btOk.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -412,9 +438,10 @@ Partial Class ChoseClient
         Me.Panel18.Controls.Add(Me.Panel20)
         Me.Panel18.Controls.Add(Me.Button35)
         Me.Panel18.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel18.Location = New System.Drawing.Point(100, 0)
+        Me.Panel18.Location = New System.Drawing.Point(133, 0)
+        Me.Panel18.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel18.Name = "Panel18"
-        Me.Panel18.Size = New System.Drawing.Size(97, 94)
+        Me.Panel18.Size = New System.Drawing.Size(129, 116)
         Me.Panel18.TabIndex = 2
         '
         'Panel19
@@ -423,9 +450,10 @@ Partial Class ChoseClient
         Me.Panel19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel19.Controls.Add(Me.Label12)
         Me.Panel19.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel19.Location = New System.Drawing.Point(0, 73)
+        Me.Panel19.Location = New System.Drawing.Point(0, 90)
+        Me.Panel19.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel19.Name = "Panel19"
-        Me.Panel19.Size = New System.Drawing.Size(96, 21)
+        Me.Panel19.Size = New System.Drawing.Size(128, 26)
         Me.Panel19.TabIndex = 3
         '
         'Label12
@@ -434,9 +462,10 @@ Partial Class ChoseClient
         Me.Label12.BackColor = System.Drawing.Color.Transparent
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label12.Location = New System.Drawing.Point(26, 3)
+        Me.Label12.Location = New System.Drawing.Point(35, 4)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(28, 17)
+        Me.Label12.Size = New System.Drawing.Size(34, 20)
         Me.Label12.TabIndex = 0
         Me.Label12.Text = "تأكيد"
         '
@@ -444,9 +473,10 @@ Partial Class ChoseClient
         '
         Me.Panel20.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.line
         Me.Panel20.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel20.Location = New System.Drawing.Point(96, 0)
+        Me.Panel20.Location = New System.Drawing.Point(128, 0)
+        Me.Panel20.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel20.Name = "Panel20"
-        Me.Panel20.Size = New System.Drawing.Size(1, 94)
+        Me.Panel20.Size = New System.Drawing.Size(1, 116)
         Me.Panel20.TabIndex = 2
         '
         'Button35
@@ -458,9 +488,10 @@ Partial Class ChoseClient
         Me.Button35.FlatAppearance.BorderSize = 0
         Me.Button35.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button35.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Button35.Location = New System.Drawing.Point(6, 7)
+        Me.Button35.Location = New System.Drawing.Point(8, 9)
+        Me.Button35.Margin = New System.Windows.Forms.Padding(4)
         Me.Button35.Name = "Button35"
-        Me.Button35.Size = New System.Drawing.Size(84, 65)
+        Me.Button35.Size = New System.Drawing.Size(112, 80)
         Me.Button35.TabIndex = 0
         Me.Button35.Text = "زبون عادي"
         Me.Button35.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -474,8 +505,9 @@ Partial Class ChoseClient
         Me.Panel12.Controls.Add(Me.Panel13)
         Me.Panel12.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel12.Location = New System.Drawing.Point(0, 0)
+        Me.Panel12.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel12.Name = "Panel12"
-        Me.Panel12.Size = New System.Drawing.Size(100, 94)
+        Me.Panel12.Size = New System.Drawing.Size(133, 116)
         Me.Panel12.TabIndex = 2
         '
         'Button8
@@ -487,9 +519,10 @@ Partial Class ChoseClient
         Me.Button8.FlatAppearance.BorderSize = 0
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button8.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(178, Byte))
-        Me.Button8.Location = New System.Drawing.Point(12, 5)
+        Me.Button8.Location = New System.Drawing.Point(16, 6)
+        Me.Button8.Margin = New System.Windows.Forms.Padding(4)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(79, 65)
+        Me.Button8.Size = New System.Drawing.Size(105, 80)
         Me.Button8.TabIndex = 4
         Me.Button8.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button8.UseVisualStyleBackColor = False
@@ -500,9 +533,10 @@ Partial Class ChoseClient
         Me.Panel14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel14.Controls.Add(Me.Label7)
         Me.Panel14.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel14.Location = New System.Drawing.Point(0, 73)
+        Me.Panel14.Location = New System.Drawing.Point(0, 90)
+        Me.Panel14.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel14.Name = "Panel14"
-        Me.Panel14.Size = New System.Drawing.Size(99, 21)
+        Me.Panel14.Size = New System.Drawing.Size(132, 26)
         Me.Panel14.TabIndex = 3
         '
         'Label7
@@ -511,9 +545,10 @@ Partial Class ChoseClient
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Arial Black", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label7.Location = New System.Drawing.Point(23, 3)
+        Me.Label7.Location = New System.Drawing.Point(31, 4)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(51, 17)
+        Me.Label7.Size = New System.Drawing.Size(66, 22)
         Me.Label7.TabIndex = 0
         Me.Label7.Text = "Retour"
         '
@@ -522,9 +557,10 @@ Partial Class ChoseClient
         Me.Panel13.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.line
         Me.Panel13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Panel13.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel13.Location = New System.Drawing.Point(99, 0)
+        Me.Panel13.Location = New System.Drawing.Point(132, 0)
+        Me.Panel13.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel13.Name = "Panel13"
-        Me.Panel13.Size = New System.Drawing.Size(1, 94)
+        Me.Panel13.Size = New System.Drawing.Size(1, 116)
         Me.Panel13.TabIndex = 2
         '
         'PlLeft
@@ -534,9 +570,10 @@ Partial Class ChoseClient
         Me.PlLeft.Controls.Add(Me.Panel7)
         Me.PlLeft.Controls.Add(Me.Panel10)
         Me.PlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PlLeft.Location = New System.Drawing.Point(0, 94)
+        Me.PlLeft.Location = New System.Drawing.Point(0, 116)
+        Me.PlLeft.Margin = New System.Windows.Forms.Padding(4)
         Me.PlLeft.Name = "PlLeft"
-        Me.PlLeft.Size = New System.Drawing.Size(292, 520)
+        Me.PlLeft.Size = New System.Drawing.Size(389, 640)
         Me.PlLeft.TabIndex = 5
         Me.PlLeft.Visible = False
         '
@@ -544,10 +581,11 @@ Partial Class ChoseClient
         '
         Me.Panel9.Controls.Add(Me.DataGridView1)
         Me.Panel9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel9.Location = New System.Drawing.Point(0, 113)
+        Me.Panel9.Location = New System.Drawing.Point(0, 140)
+        Me.Panel9.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel9.Name = "Panel9"
-        Me.Panel9.Padding = New System.Windows.Forms.Padding(5)
-        Me.Panel9.Size = New System.Drawing.Size(292, 344)
+        Me.Panel9.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
+        Me.Panel9.Size = New System.Drawing.Size(389, 422)
         Me.Panel9.TabIndex = 0
         '
         'DataGridView1
@@ -556,9 +594,10 @@ Partial Class ChoseClient
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5})
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Location = New System.Drawing.Point(5, 5)
+        Me.DataGridView1.Location = New System.Drawing.Point(7, 6)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
@@ -566,8 +605,152 @@ Partial Class ChoseClient
         Me.DataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(282, 334)
+        Me.DataGridView1.Size = New System.Drawing.Size(375, 410)
         Me.DataGridView1.TabIndex = 0
+        '
+        'Panel8
+        '
+        Me.Panel8.BackColor = System.Drawing.SystemColors.InactiveCaption
+        Me.Panel8.Controls.Add(Me.Button3)
+        Me.Panel8.Controls.Add(Me.Button1)
+        Me.Panel8.Controls.Add(Me.Button4)
+        Me.Panel8.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel8.Location = New System.Drawing.Point(0, 78)
+        Me.Panel8.Margin = New System.Windows.Forms.Padding(4)
+        Me.Panel8.Name = "Panel8"
+        Me.Panel8.Padding = New System.Windows.Forms.Padding(20, 6, 20, 6)
+        Me.Panel8.Size = New System.Drawing.Size(389, 62)
+        Me.Panel8.TabIndex = 0
+        '
+        'Button3
+        '
+        Me.Button3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Button3.Location = New System.Drawing.Point(153, 6)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(83, 50)
+        Me.Button3.TabIndex = 0
+        Me.Button3.Text = "Button1"
+        Me.Button3.UseVisualStyleBackColor = True
+        Me.Button3.Visible = False
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.SystemColors.HotTrack
+        Me.Button1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.Button1.Location = New System.Drawing.Point(20, 6)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(133, 50)
+        Me.Button1.TabIndex = 0
+        Me.Button1.Text = "EDIT"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'Button4
+        '
+        Me.Button4.BackColor = System.Drawing.Color.LimeGreen
+        Me.Button4.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button4.ForeColor = System.Drawing.Color.DarkSlateGray
+        Me.Button4.Location = New System.Drawing.Point(236, 6)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(133, 50)
+        Me.Button4.TabIndex = 0
+        Me.Button4.Text = "NEVEAU"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
+        'Panel7
+        '
+        Me.Panel7.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Panel7.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.BD_CB
+        Me.Panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel7.Controls.Add(Me.Lbnm)
+        Me.Panel7.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel7.Location = New System.Drawing.Point(0, 0)
+        Me.Panel7.Margin = New System.Windows.Forms.Padding(4)
+        Me.Panel7.Name = "Panel7"
+        Me.Panel7.Size = New System.Drawing.Size(389, 78)
+        Me.Panel7.TabIndex = 0
+        '
+        'Lbnm
+        '
+        Me.Lbnm.AutoSize = True
+        Me.Lbnm.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lbnm.ForeColor = System.Drawing.Color.DarkBlue
+        Me.Lbnm.Location = New System.Drawing.Point(20, 32)
+        Me.Lbnm.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Lbnm.Name = "Lbnm"
+        Me.Lbnm.Size = New System.Drawing.Size(77, 25)
+        Me.Lbnm.TabIndex = 0
+        Me.Lbnm.Text = "Label3"
+        Me.Lbnm.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'Panel10
+        '
+        Me.Panel10.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Panel10.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.BD_CB
+        Me.Panel10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel10.Controls.Add(Me.Label4)
+        Me.Panel10.Controls.Add(Me.lbCredit)
+        Me.Panel10.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Panel10.Location = New System.Drawing.Point(0, 562)
+        Me.Panel10.Margin = New System.Windows.Forms.Padding(4)
+        Me.Panel10.Name = "Panel10"
+        Me.Panel10.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Panel10.Size = New System.Drawing.Size(389, 78)
+        Me.Panel10.TabIndex = 1
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Label4.Location = New System.Drawing.Point(29, 33)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(63, 18)
+        Me.Label4.TabIndex = 0
+        Me.Label4.Text = "Credit :"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'lbCredit
+        '
+        Me.lbCredit.AutoSize = True
+        Me.lbCredit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbCredit.ForeColor = System.Drawing.Color.DarkBlue
+        Me.lbCredit.Location = New System.Drawing.Point(116, 30)
+        Me.lbCredit.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lbCredit.Name = "lbCredit"
+        Me.lbCredit.Size = New System.Drawing.Size(36, 25)
+        Me.lbCredit.TabIndex = 0
+        Me.lbCredit.Text = "00"
+        Me.lbCredit.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'Pl
+        '
+        Me.Pl.Controls.Add(Me.Fpl)
+        Me.Pl.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Pl.Location = New System.Drawing.Point(389, 116)
+        Me.Pl.Margin = New System.Windows.Forms.Padding(4)
+        Me.Pl.Name = "Pl"
+        Me.Pl.Size = New System.Drawing.Size(736, 640)
+        Me.Pl.TabIndex = 5
+        '
+        'Fpl
+        '
+        Me.Fpl.AutoScroll = True
+        Me.Fpl.BackColor = System.Drawing.SystemColors.HighlightText
+        Me.Fpl.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Fpl.Location = New System.Drawing.Point(0, 0)
+        Me.Fpl.Margin = New System.Windows.Forms.Padding(4)
+        Me.Fpl.Name = "Fpl"
+        Me.Fpl.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Fpl.Size = New System.Drawing.Size(736, 640)
+        Me.Fpl.TabIndex = 0
         '
         'Column1
         '
@@ -593,149 +776,23 @@ Partial Class ChoseClient
         Me.Column4.Name = "Column4"
         Me.Column4.ReadOnly = True
         '
-        'Panel8
+        'Column5
         '
-        Me.Panel8.BackColor = System.Drawing.SystemColors.InactiveCaption
-        Me.Panel8.Controls.Add(Me.Button3)
-        Me.Panel8.Controls.Add(Me.Button1)
-        Me.Panel8.Controls.Add(Me.Button4)
-        Me.Panel8.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel8.Location = New System.Drawing.Point(0, 63)
-        Me.Panel8.Name = "Panel8"
-        Me.Panel8.Padding = New System.Windows.Forms.Padding(15, 5, 15, 5)
-        Me.Panel8.Size = New System.Drawing.Size(292, 50)
-        Me.Panel8.TabIndex = 0
-        '
-        'Button3
-        '
-        Me.Button3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Button3.Location = New System.Drawing.Point(115, 5)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(62, 40)
-        Me.Button3.TabIndex = 0
-        Me.Button3.Text = "Button1"
-        Me.Button3.UseVisualStyleBackColor = True
-        Me.Button3.Visible = False
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.SystemColors.HotTrack
-        Me.Button1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.Button1.Location = New System.Drawing.Point(15, 5)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(100, 40)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "EDIT"
-        Me.Button1.UseVisualStyleBackColor = False
-        Me.Button1.Visible = False
-        '
-        'Button4
-        '
-        Me.Button4.BackColor = System.Drawing.Color.LimeGreen
-        Me.Button4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Button4.Location = New System.Drawing.Point(177, 5)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(100, 40)
-        Me.Button4.TabIndex = 0
-        Me.Button4.Text = "NEVEAU"
-        Me.Button4.UseVisualStyleBackColor = False
-        '
-        'Panel7
-        '
-        Me.Panel7.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Panel7.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.BD_CB
-        Me.Panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Panel7.Controls.Add(Me.Lbnm)
-        Me.Panel7.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel7.Location = New System.Drawing.Point(0, 0)
-        Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(292, 63)
-        Me.Panel7.TabIndex = 0
-        '
-        'Lbnm
-        '
-        Me.Lbnm.AutoSize = True
-        Me.Lbnm.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lbnm.ForeColor = System.Drawing.Color.DarkBlue
-        Me.Lbnm.Location = New System.Drawing.Point(15, 26)
-        Me.Lbnm.Name = "Lbnm"
-        Me.Lbnm.Size = New System.Drawing.Size(63, 20)
-        Me.Lbnm.TabIndex = 0
-        Me.Lbnm.Text = "Label3"
-        Me.Lbnm.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'Panel10
-        '
-        Me.Panel10.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Panel10.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.BD_CB
-        Me.Panel10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Panel10.Controls.Add(Me.Label4)
-        Me.Panel10.Controls.Add(Me.lbCredit)
-        Me.Panel10.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel10.Location = New System.Drawing.Point(0, 457)
-        Me.Panel10.Name = "Panel10"
-        Me.Panel10.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Panel10.Size = New System.Drawing.Size(292, 63)
-        Me.Panel10.TabIndex = 1
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Label4.Location = New System.Drawing.Point(22, 27)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(53, 15)
-        Me.Label4.TabIndex = 0
-        Me.Label4.Text = "Credit :"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'lbCredit
-        '
-        Me.lbCredit.AutoSize = True
-        Me.lbCredit.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbCredit.ForeColor = System.Drawing.Color.DarkBlue
-        Me.lbCredit.Location = New System.Drawing.Point(87, 24)
-        Me.lbCredit.Name = "lbCredit"
-        Me.lbCredit.Size = New System.Drawing.Size(29, 20)
-        Me.lbCredit.TabIndex = 0
-        Me.lbCredit.Text = "00"
-        Me.lbCredit.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        '
-        'Pl
-        '
-        Me.Pl.Controls.Add(Me.Fpl)
-        Me.Pl.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Pl.Location = New System.Drawing.Point(292, 94)
-        Me.Pl.Name = "Pl"
-        Me.Pl.Size = New System.Drawing.Size(552, 520)
-        Me.Pl.TabIndex = 5
-        '
-        'Fpl
-        '
-        Me.Fpl.AutoScroll = True
-        Me.Fpl.BackColor = System.Drawing.SystemColors.HighlightText
-        Me.Fpl.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Fpl.Location = New System.Drawing.Point(0, 0)
-        Me.Fpl.Name = "Fpl"
-        Me.Fpl.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Fpl.Size = New System.Drawing.Size(552, 520)
-        Me.Fpl.TabIndex = 0
+        Me.Column5.HeaderText = "bc"
+        Me.Column5.Name = "Column5"
+        Me.Column5.ReadOnly = True
+        Me.Column5.Visible = False
         '
         'ChoseClient
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(844, 614)
+        Me.ClientSize = New System.Drawing.Size(1125, 756)
         Me.Controls.Add(Me.Pl)
         Me.Controls.Add(Me.PlLeft)
         Me.Controls.Add(Me.plup)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "ChoseClient"
@@ -811,10 +868,6 @@ Partial Class ChoseClient
     Friend WithEvents Fpl As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents Panel9 As System.Windows.Forms.Panel
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents Column1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column4 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Panel8 As System.Windows.Forms.Panel
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
@@ -828,4 +881,9 @@ Partial Class ChoseClient
     Friend WithEvents Panel10 As System.Windows.Forms.Panel
     Friend WithEvents lbCredit As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents Column1 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column3 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

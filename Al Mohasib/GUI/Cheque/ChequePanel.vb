@@ -277,8 +277,7 @@ Public Class ChequePanel
         txtR.text = ""
         txtM.text = ""
     End Sub
-
-
+     
     Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
 
@@ -324,15 +323,11 @@ Public Class ChequePanel
     Private Sub Button12_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button12.Click, Label17.Click
         End
     End Sub
-
-
-
-
+     
     Private Sub Button18_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button18.Click
         Panel1.Width = 10
     End Sub
-
-
+     
     Private Sub btTrial_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btTrial.Click
         Dim trial As New bTrialVersion
         If trial.ShowDialog = Windows.Forms.DialogResult.OK Then
@@ -385,7 +380,7 @@ Public Class ChequePanel
         Dim edt As New EditAndPrintCheque
         edt.isSell = isSell
         edt.Pid = 0
-
+        edt.isRelatedApp = isRelatedApp
         If edt.ShowDialog = Windows.Forms.DialogResult.OK Then
 
         End If
@@ -393,12 +388,11 @@ Public Class ChequePanel
 
     Private Sub Label7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label7.Click
         Try
-
-
             Dim dg As DataGridView = pl.Controls(0)
             If dg.SelectedRows.Count = 0 Then Exit Sub
 
             Dim edt As New EditAndPrintCheque
+            edt.isRelatedApp = isRelatedApp
             edt.isSell = isSell
             edt.Pid = dg.SelectedRows(0).Cells(0).Value
 
@@ -406,8 +400,8 @@ Public Class ChequePanel
 
 
             End If
-        Catch ex As Exception
 
+        Catch ex As Exception
         End Try
 
     End Sub
@@ -497,7 +491,7 @@ Public Class ChequePanel
     Private Sub Button11_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button11.Click
         For Each sb As SearchBloc In plBlocSearch.Controls
             If sb.Mode = "P:isPayed" Then
-                sb.Key = "desig:-;ech:" & Now.Date.ToString("yyyy-MM-dd") & ":>=;way:Cache:<>"
+                sb.Key = "desig:0;ech:" & Now.Date.ToString("yyyy-MM-dd") & ":>="
                 sb.Value = sender.text
 
                 plBlocSearch_ControlAdded(Nothing, Nothing)
@@ -507,7 +501,7 @@ Public Class ChequePanel
 
         Dim ss As New SearchBloc
         ss.Mode = "P:isPayed"
-        ss.Key = "desig:-;ech:" & Now.Date.ToString("yyyy-MM-dd") & ":>=;way:Cache:<>"
+        ss.Key = "desig:0;ech:" & Now.Date.ToString("yyyy-MM-dd") & ":>="
         ss.Value = sender.text
 
         AddHandler ss.ClearElemeent, AddressOf SearchBloc_ClearElemeent
@@ -518,7 +512,7 @@ Public Class ChequePanel
     Private Sub Button14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button14.Click
         For Each sb As SearchBloc In plBlocSearch.Controls
             If sb.Mode = "P:isPayed" Then
-                sb.Key = "desig:IMPAYE:<>;ech:" & Now.Date.ToString("yyyy-MM-dd") & ":<;way:Cache%:NOT LIKE; way :%[%:NOT LIKE" '"desig:PAYE"
+                sb.Key = "desig:0:<>; desig :IMPAYE:<>" '"desig:PAYE"
                 sb.Value = sender.text
 
                 plBlocSearch_ControlAdded(Nothing, Nothing)
@@ -528,7 +522,7 @@ Public Class ChequePanel
 
         Dim ss As New SearchBloc
         ss.Mode = "P:isPayed"
-        ss.Key = "desig:IMPAYE:<>;ech:" & Now.Date.ToString("yyyy-MM-dd") & ":<;way:Cache%:NOT LIKE; way :%[%:NOT LIKE" '"desig:PAYE"
+        ss.Key = "desig:0:<>; desig :IMPAYE:<>"
         ss.Value = sender.text
 
         AddHandler ss.ClearElemeent, AddressOf SearchBloc_ClearElemeent
@@ -539,7 +533,7 @@ Public Class ChequePanel
     Private Sub Button17_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button17.Click
         For Each sb As SearchBloc In plBlocSearch.Controls
             If sb.Mode = "P:isPayed" Then
-                sb.Key = "desig:IMPAYE"
+                sb.Key = "desig:%IMPAYE%: LIKE"  'way:Cache%:NOT LIKE
                 sb.Value = sender.text
 
                 plBlocSearch_ControlAdded(Nothing, Nothing)
@@ -549,7 +543,7 @@ Public Class ChequePanel
 
         Dim ss As New SearchBloc
         ss.Mode = "P:isPayed"
-        ss.Key = "desig:IMPAYE"
+        ss.Key = "desig:%IMPAYE%: LIKE"
         ss.Value = sender.text
 
         AddHandler ss.ClearElemeent, AddressOf SearchBloc_ClearElemeent
@@ -578,6 +572,7 @@ Public Class ChequePanel
             order.Add(_pid, "DESC")
             params.Add("desig <> ", "@F")
             params.Add("way NOT LIKE ", "%CACHE%")
+            params.Add(" way NOT LIKE ", "%TPE%")
             params.Add("name NOT LIKE ", "@%")
 
             If plBlocSearch.Controls.Count = 0 Then
@@ -598,7 +593,7 @@ Public Class ChequePanel
 
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             Dim params As New Dictionary(Of String, Object)
-
+            Dim __md As Boolean = True
             For Each p As SearchBloc In plBlocSearch.Controls
                 If p.Mode.StartsWith("DT") Then
                     dateElementSearch(p, params, "date")
@@ -607,6 +602,7 @@ Public Class ChequePanel
                     dateElementSearch(p, params, "ech")
                     Continue For
                 End If
+                If p.Mode.StartsWith("Mth") Then __md = False
 
                 Dim str = p.Key.Split(";")
                 For i As Integer = 0 To str.Length - 1
@@ -621,6 +617,10 @@ Public Class ChequePanel
 
             params.Add(" desig <> ", "@F")
             params.Add("name NOT LIKE ", "@%")
+            If __md Then
+                params.Add("  way NOT LIKE ", "%CACHE%")
+                params.Add(" way NOT LIKE ", "%TPE%")
+            End If
 
             Dim order As New Dictionary(Of String, String)
             order.Add(_pid, "DESC")
@@ -831,6 +831,13 @@ Public Class ChequePanel
             ElseIf str.Trim.ToUpper.StartsWith("V") Then
                 _mode = "Vl:Valeur"
                 _key = "montant:" & str.Split(":")(1)
+            ElseIf str.Trim.ToUpper.StartsWith("N") Or str.Trim.ToUpper.StartsWith("ID") Then
+                _mode = "N°:Id"
+                If isSell Then
+                    _key = "Pid:" & str.Split(":")(1)
+                Else
+                    _key = "PBid:" & str.Split(":")(1)
+                End If
             Else
                 _mode = "Nm:Nom"
                 _key = "name:%" & str.Split(":")(1) & "%: LIKE "

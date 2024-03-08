@@ -1,4 +1,8 @@
 ﻿Public Class CPanel
+
+    Dim _bc As String
+    Dim _liv As String
+
     Public Event UpdateQte()
     Public Event UpdatePrice()
     Public Event DeleteItems()
@@ -17,6 +21,14 @@
     Private _EditMode As Boolean
     Private _bl As String
     Private _depot As Integer = 0
+
+    Event UpdateRefBon(ByVal p1 As String)
+
+    Event DupliquerBon()
+
+    Event DivisionBon()
+
+    Event TotalDirect()
 
 
 
@@ -62,7 +74,27 @@
         Set(ByVal value As String)
             If value = "" Then value = "---"
             _bl = value
-            BtCmd.Text = value
+
+        End Set
+    End Property
+    Public Property bc As String
+        Get
+            Return _bc
+        End Get
+        Set(ByVal value As String)
+            If value = "" Then value = "---"
+            _bc = value
+
+        End Set
+    End Property
+    Public Property Liv As String
+        Get
+            Return _liv
+        End Get
+        Set(ByVal value As String)
+            If value = "" Then value = "---"
+            _liv = value
+
         End Set
     End Property
     Public Property hasRemise() As Boolean
@@ -134,13 +166,15 @@
     End Sub
     Private Sub BtQte_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtQte.Click
         If isActive Then
+            If Form1.cbCafeMode.Checked And Form1.cbCafeTable.Checked Then Exit Sub
+
             If Form1.cbBadgeMA.Checked And EditMode Then
                 Try
                     Dim sc As New UserParmissionCheck
                     sc.bName.Text = Form1.RPl.SelectedItem.Name
                     sc.lbNum.Text = Form1.RPl.SelectedItem.Qte
                     If sc.ShowDialog = DialogResult.OK Then
-                      RaiseEvent UpdateQte()
+                        RaiseEvent UpdateQte()
                     End If
                 Catch ex As Exception
                 End Try
@@ -154,6 +188,7 @@
     End Sub
     Private Sub BtPrix_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtPrix.Click
         If isActive Then
+            If Form1.cbCafeMode.Checked And Form1.cbCafeTable.Checked Then Exit Sub
 
             If Form1.cbBadgeMA.Checked And EditMode Then
                 Try
@@ -200,9 +235,25 @@
         End If
     End Sub
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
+        '  If Form1.adminRole < 31 Then Exit Sub
+
+        If Form1.cbBadgeTPm.Checked Then
+            Try
+                Dim sc As New UserParmissionCheck
+                sc.bName.Text = "Activer Paiements"
+                sc.lbNum.Text = Form1.adminName
+                If sc.ShowDialog = DialogResult.OK Then RaiseEvent UpdatePayment()
+            Catch
+            End Try
+            Exit Sub
+        End If
+
+
         RaiseEvent UpdatePayment()
     End Sub
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtRemise.Click
+        If Form1.adminRole < 31 Then Exit Sub
+
         If hasRemise Then
             RaiseEvent UpdateArticleRemise()
         Else
@@ -216,7 +267,7 @@
             If Form1.cbBadgeSA.Checked Then
                 Try
                     Dim sc As New UserParmissionCheck
-                    sc.bName.Text = "Caisse"
+                    sc.bName.Text = "Retour"
                     sc.lbNum.Text = Form1.adminName
                     If sc.ShowDialog = DialogResult.OK Then RaiseEvent ReturnItem()
                 Catch
@@ -266,9 +317,63 @@
         RaiseEvent ValueChange()
     End Sub
     Private Sub BtCmd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtCmd.Click
-        RaiseEvent CommandeDate()
-    End Sub
+        'RaiseEvent CommandeDate()
+        'RaiseEvent UpdateRemise()
+        Dim op As New PopUpMenu   ' OptionAddElement
+        op.mode = "M:Machine"
+        Dim params As New Dictionary(Of String, String)
+        If Form1.RPl.isSell Then
+            params.Add("Division bon  ", "6")
+            params.Add("Dupliquer  ", "5")
+            params.Add(" ---- ", "0")
+            params.Add("Livreur : " & Liv, "3")
+            params.Add("BC : " & bc, "2") '  la 
+            params.Add("BL : " & bl, "1")
+        Else
+            params.Add("Total Direct  ", "10")
+            params.Add("Dupliquer  ", "5")
+            params.Add("BC : " & bc, "2") '  la 
+            params.Add("BL : " & bl, "1")
+        End If
 
+
+
+
+        op.dataSource = params
+
+        Dim MPx As Point = MousePosition()
+        Dim y = 10 'MPx.Y - op.Height
+        Dim x = 60
+        op.Location = New Point(x, y)
+
+        AddHandler op.MenuLostFocus, AddressOf MenuLostFocus
+        AddHandler op.MenuElementSelected, AddressOf MenuElementSelected_Machine
+
+
+        Me.Controls.Add(op)
+        op.BringToFront()
+    End Sub
+    Private Sub MenuLostFocus(ByRef ds As PopUpMenu)
+        Me.Controls.Remove(ds)
+        ds.Dispose()
+    End Sub
+    Private Sub MenuElementSelected_Machine(ByRef op As PopUpMenu)
+        Dim _str As String = ""
+        If op.key = "1" Then
+            RaiseEvent UpdateRefBon("bl")
+        ElseIf op.key = "2" Then
+            RaiseEvent UpdateRefBon("bc")
+        ElseIf op.key = "3" Then
+            RaiseEvent CommandeDate()
+        ElseIf op.key = "5" Then
+            RaiseEvent DupliquerBon()
+        ElseIf op.key = "6" Then
+            RaiseEvent DivisionBon()
+
+        ElseIf op.key = "10" Then
+            RaiseEvent TotalDirect()
+        End If
+    End Sub
     Private Sub Panel3_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Panel3.Resize
         Dim wd As Integer = Panel3.Width
 

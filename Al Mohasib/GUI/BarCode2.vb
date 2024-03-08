@@ -67,7 +67,7 @@ Public Class BarCode2
         'getRegistryinfo(TxtBox2, "TxtBox2", "55")
         'getRegistryinfo(TxtBox3, "TxtBox3", "6")
         'getRegistryinfo(TxtBox4, "TxtBox4", "16")
-        'getRegistryinfo(TxtBox5, "TxtBox5", "0")
+        'getRegistryinfo(TxtBox5, "TxtBox5", "0")S
         'getRegistryinfo(TxtBox6, "TxtBox6", "0")
         'getRegistryinfo(CheckBox1, "isRayounage", False)
 

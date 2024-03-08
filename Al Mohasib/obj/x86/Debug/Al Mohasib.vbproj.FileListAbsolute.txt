@@ -702,3 +702,143 @@ C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Select
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChooseUsers.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.InvoForm.resources
 C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PiecesCaisse.resources
+C:\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.SplitDetailsBon.resources
+\\192.168.1.109\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\bin\Debug\Al Mohasib.exe.config
+\\192.168.1.109\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.vbproj.ResolveComReference.cache
+\\192.168.1.109\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.exe
+\\192.168.1.109\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.xml
+\\192.168.1.109\Users\hp\Desktop\PRT\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.pdb
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\bin\Debug\ALMohassinDB.mdb
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\bin\Debug\Al Mohasib.exe.config
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\bin\Debug\Al Mohasib.pdb
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\bin\Debug\Al Mohasib.xml
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\bin\Debug\MyBarcode.dll
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.vbprojResolveAssemblyReference.cache
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.vbproj.ResolveComReference.cache
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddList.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddPanel.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ArtBloc.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.CBlock.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ClientBloc.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.CPanel.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditTopField.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.gChooseDesign.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.gColumn.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.gForm.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.gTable.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Items.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PopUpMenu.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PvArticle.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PvCat.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.RPanel.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Tag.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.TxtBox.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Addadmin.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddArticleToFacture.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddCharges.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddDepot.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditArticle.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditCat.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditCharges.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddMashine.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddMelange.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.addtoliste.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ArticleDetails.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Articles.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AvanceCheck.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.BackUP.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.BarCode1.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.BarCode2.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.byPrice.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.byname.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.CaisseDetailsList.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Calc.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditBanqueField.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditCaisseDetail.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddFiles.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.bForm.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.bSetting.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.bTrialVersion.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChequePanel.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChooseBanque.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.EditAndPrintCheque.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.FacturePayementItem.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.FileLine.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ListUnUsedCheque.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.SearchBloc.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.SelectBanque.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.SelectBon.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChooseCat.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChooseUsers.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChoseClient.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChoseCompany.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChoseDepot.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Client.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ClientDetails.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ClientRapport.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.company.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.CompanyPAYEMENT.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Depot.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.DevisionAuto.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.EditDate.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.EtatClient.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.InvoForm.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditElement.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.CatSetting.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.DSBarCode.BarCodeCtrl.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.LbSetting.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ShapeElement.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ShapeTrace.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.LabelPrinter.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.LabelSetting.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ListMultiCodes.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.CompanyBloc.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.LoadCompanies.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.OpenFactures.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PayRecept.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PiecesCaisse.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PochetClient.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PriceType.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PricingGetter.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PricingParams.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ProfitElementRapport.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ProfitProduitRapport.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PromoListClientIdForm.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditPromos.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PromoArticleBloc.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PromosList.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Screen2.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Devis.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Commande.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Editprdfact.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.EditStock.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Facture.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Form1.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.GestionStock.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.LookForDevis.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Massar.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.num.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.OpenAvoir.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.ChoseLivreur.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PAYEMENT.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PayFacture.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.paypmt.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.PWDPicker.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.SavePrint.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.SelectCaisse.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.SelectClient.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditSideElement.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.AddEditSidePanel.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.SplitDetailsBon.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.stk.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Stock.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.testimage.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.TransformeStock.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.TrialVersion.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.UserInterface.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.UserParmissionCheck.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al_Mohasib.Resources.resources
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.vbproj.GenerateResource.Cache
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.exe
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.xml
+C:\Users\SAMSUNG\OneDrive\Bureau\CG_My\Al Mohasib_My\Al Mohasib\obj\x86\Debug\Al Mohasib.pdb

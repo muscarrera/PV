@@ -753,4 +753,303 @@ Public Class BackUP
         My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "EnableDeleting", CheckBox1.Checked)
         Form1.EnableDeleting = CheckBox1.Checked
     End Sub
+
+    Private Sub Button19_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button19.Click
+        Dim g As New BackUpClass
+
+        Try
+            Dim OPF As New OpenFileDialog
+
+            If OPF.ShowDialog = Windows.Forms.DialogResult.OK Then
+                g = ReadFromXmlFile(Of BackUpClass)(OPF.FileName)
+
+                SaveDataLocalyWithPathToDb(g)
+                 
+
+            End If
+
+        Catch ex As Exception
+        End Try
+    End Sub
+    Public Sub SaveDataLocalyWithPathToDb(ByVal bk As BackUpClass)
+        Try
+
+
+
+
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+                a.DeleteRecords("article")
+                For i As Integer = 0 To bk.dt_article.Rows.Count - 1
+                    params.Clear()
+                    params.Add("arid", bk.dt_article.Rows(i).Item("arid"))
+                    params.Add("cid", bk.dt_article.Rows(i).Item("cid")) ' cid)
+                    params.Add("name", bk.dt_article.Rows(i).Item("name")) 'txtprdname.text)
+                    params.Add("bprice", bk.dt_article.Rows(i).Item("bprice")) 'bprice)
+                    params.Add("sprice", bk.dt_article.Rows(i).Item("sprice")) 'sprice)
+                    params.Add("unite", bk.dt_article.Rows(i).Item("unite")) 'txtunit.text)
+                    params.Add("codebar", bk.dt_article.Rows(i).Item("codebar")) ' txtcb.text)
+                    params.Add("tva", bk.dt_article.Rows(i).Item("tva")) 'tva)
+                    params.Add("sp3", bk.dt_article.Rows(i).Item("sp3")) 'price2)
+                    params.Add("sp4", bk.dt_article.Rows(i).Item("sp4")) ' price3)
+                    params.Add("sp5", bk.dt_article.Rows(i).Item("sp5")) 'price4)
+                    params.Add("poid", bk.dt_article.Rows(i).Item("poid")) 'TxtPoids.text)
+                    params.Add("depot", bk.dt_article.Rows(i).Item("depot")) ' CInt(CBdp.SelectedValue))
+                    params.Add("mixte", bk.dt_article.Rows(i).Item("mixte")) 'CBool(cbIsMixte.Checked))
+                    params.Add("elements", bk.dt_article.Rows(i).Item("elements")) 'txtMinStock.text)
+                    params.Add("isMixte", bk.dt_article.Rows(i).Item("isMixte")) 'CBool(cbIsMixte.Checked))
+                    a.InsertRecord("article", params)
+                Next
+
+
+                a.DeleteRecords("facture_liste")
+                For i As Integer = 0 To bk.dt_facture_liste.Rows.Count - 1
+                    params.Clear()
+                    params.Add("ListBl", bk.dt_facture_liste.Rows(i).Item("ListBl")) '
+                    params.Add("clid", bk.dt_facture_liste.Rows(i).Item("clid")) '
+                    params.Add("date", bk.dt_facture_liste.Rows(i).Item("date")) '
+                    params.Add("remise", bk.dt_facture_liste.Rows(i).Item("remise")) '
+                    params.Add("timbre", bk.dt_facture_liste.Rows(i).Item("timbre")) '
+                    params.Add("mode", bk.dt_facture_liste.Rows(i).Item("mode")) '
+                    params.Add("total", bk.dt_facture_liste.Rows(i).Item("total")) '
+
+                    a.InsertRecord("facture_liste", params)
+                Next
+
+
+                a.DeleteRecords("depot")
+                For i As Integer = 0 To bk.dt_Depot.Rows.Count - 1
+                    params.Clear()
+                    params.Add("dpid", bk.dt_Depot.Rows(i).Item("dpid")) '
+                    params.Add("name", bk.dt_Depot.Rows(i).Item("name")) '
+
+                    a.InsertRecord("depot", params)
+                Next
+
+                a.DeleteRecords("machine")
+                For i As Integer = 0 To bk.dt_machine.Rows.Count - 1
+                    params.Clear()
+                    params.Add("Mid ", bk.dt_machine.Rows(i).Item("Mid")) '
+                    params.Add("name", bk.dt_machine.Rows(i).Item("name")) '
+                    params.Add("val", bk.dt_machine.Rows(i).Item("val")) '
+
+                    a.InsertRecord("machine", params)
+                Next
+
+                'chid	name	price	isRepeated	duree	writer	date	
+                a.DeleteRecords("charge")
+                For i As Integer = 0 To bk.dt_Charge.Rows.Count - 1
+                    params.Clear()
+                    ' params.Add("Mid ", bk.dt_Charge.Rows(i).Item("Mid")) '
+                    params.Add("name", bk.dt_Charge.Rows(i).Item("name")) '
+                    params.Add("price", bk.dt_Charge.Rows(i).Item("price")) '
+                    params.Add("isRepeated ", bk.dt_Charge.Rows(i).Item("isRepeated")) '
+                    params.Add("duree", bk.dt_Charge.Rows(i).Item("duree")) '
+                    params.Add("writer", bk.dt_Charge.Rows(i).Item("writer")) '
+                    params.Add("date", bk.dt_Charge.Rows(i).Item("date")) '
+                    a.InsertRecord("charge", params)
+                Next
+
+
+                a.DeleteRecords("Category")
+                For i As Integer = 0 To bk.dt_Category.Rows.Count - 1
+                    params.Clear()
+                    params.Add("cid", bk.dt_Category.Rows(i).Item("cid"))
+                    params.Add("name", bk.dt_Category.Rows(i).Item("name")) ' TextBox1.Text)
+                    params.Add("img", bk.dt_Category.Rows(i).Item("img")) ' PBctg.Tag)
+                    params.Add("pr", bk.dt_Category.Rows(i).Item("pr")) ' cp) 'CBool(cbIsMixte.Checked))
+                    a.InsertRecord("Category", params)
+                Next
+
+
+                a.DeleteRecords("Client")
+                For i As Integer = 0 To bk.dt_Client.Rows.Count - 1
+                    params.Clear()
+
+                    params.Add("Clid", bk.dt_Client.Rows(i).Item("Clid")) 'txtname.text)
+                    params.Add("name", bk.dt_Client.Rows(i).Item("name")) 'txtname.text)
+                    params.Add("CIN", bk.dt_Client.Rows(i).Item("CIN")) 'txtcin.text)
+                    params.Add("Adress", bk.dt_Client.Rows(i).Item("Adress")) 'adresse)
+                    params.Add("tel", bk.dt_Client.Rows(i).Item("tel")) 'txttel.text)
+                    params.Add("credit", bk.dt_Client.Rows(i).Item("credit")) ' "0")
+                    params.Add("type", bk.dt_Client.Rows(i).Item("type")) ' tp) 'CInt(txtcrd.text))
+                     
+                    a.InsertRecord("Client", params)
+                Next
+
+                a.DeleteRecords("company")
+                For i As Integer = 0 To bk.dt_Fournisseur.Rows.Count - 1
+                    params.Clear()
+
+                    params.Add("compid", bk.dt_Fournisseur.Rows(i).Item("compid")) 'txtname.text)
+                    params.Add("name", bk.dt_Fournisseur.Rows(i).Item("name")) 'txtname.text)
+                    params.Add("gerant", bk.dt_Fournisseur.Rows(i).Item("gerant")) 'txtcin.text)
+                    params.Add("adress", bk.dt_Fournisseur.Rows(i).Item("adress")) 'adresse)
+                    params.Add("tel", bk.dt_Fournisseur.Rows(i).Item("tel")) 'txttel.text)
+                    params.Add("credit", bk.dt_Fournisseur.Rows(i).Item("credit")) ' "0")
+
+                    a.InsertRecord("company", params)
+                Next
+
+                a.DeleteRecords("payment")
+                For i As Integer = 0 To bk.dt_Client_Payement.Rows.Count - 1
+                    params.Clear()
+
+                    params.Add("Pid", bk.dt_Client_Payement.Rows(i).Item("Pid")) '
+                    params.Add("name", bk.dt_Client_Payement.Rows(i).Item("name")) '
+                    params.Add("cid", bk.dt_Client_Payement.Rows(i).Item("cid")) '
+                    params.Add("montant", bk.dt_Client_Payement.Rows(i).Item("montant")) ' '
+                    params.Add("way", bk.dt_Client_Payement.Rows(i).Item("way")) '
+                    params.Add("date", bk.dt_Client_Payement.Rows(i).Item("date")) ' Format(dte, "dd-MM-yyyy HH:mm"))
+                    params.Add("Num", bk.dt_Client_Payement.Rows(i).Item("Num")) '
+                    params.Add("fctid", bk.dt_Client_Payement.Rows(i).Item("fctid")) '
+                    params.Add("writer", bk.dt_Client_Payement.Rows(i).Item("writer")) '
+                    params.Add("caisse", bk.dt_Client_Payement.Rows(i).Item("caisse")) '
+                     
+                    a.InsertRecord("payment", params)
+                Next
+
+                a.DeleteRecords("companypayment")
+                For i As Integer = 0 To bk.dt_Company_Payement.Rows.Count - 1
+                    params.Clear()
+
+                    params.Add("PBid", bk.dt_Company_Payement.Rows(i).Item("PBid")) '
+                    params.Add("name", bk.dt_Company_Payement.Rows(i).Item("name")) '
+                    params.Add("cid", bk.dt_Company_Payement.Rows(i).Item("cid")) '
+                    params.Add("montant", bk.dt_Company_Payement.Rows(i).Item("montant")) ' '
+                    params.Add("way", bk.dt_Company_Payement.Rows(i).Item("way")) '
+                    params.Add("date", bk.dt_Company_Payement.Rows(i).Item("date")) ' Format(dte, "dd-MM-yyyy HH:mm"))
+                    params.Add("Num", bk.dt_Company_Payement.Rows(i).Item("Num")) '
+                    params.Add("fctid", bk.dt_Company_Payement.Rows(i).Item("fctid")) '
+                    params.Add("writer", bk.dt_Company_Payement.Rows(i).Item("writer")) '
+                    'params.Add("caisse", bk.dt_Company_Payement.Rows(i).Item("caisse")) '
+
+                    a.InsertRecord("companypayment", params)
+                Next
+
+                a.DeleteRecords("facture")
+                For i As Integer = 0 To bk.dt_Sell_Facture.Rows.Count - 1
+                    params.Clear()
+
+                    params.Add("fctid", bk.dt_Sell_Facture.Rows(i).Item("fctid")) '
+                    params.Add("clid", bk.dt_Sell_Facture.Rows(i).Item("clid")) '
+                    params.Add("name", bk.dt_Sell_Facture.Rows(i).Item("name")) '
+                    params.Add("total", bk.dt_Sell_Facture.Rows(i).Item("total")) '
+                    params.Add("avance", bk.dt_Sell_Facture.Rows(i).Item("avance")) '
+                    params.Add("date", bk.dt_Sell_Facture.Rows(i).Item("date")) '
+                    params.Add("admin", bk.dt_Sell_Facture.Rows(i).Item("admin")) '
+                    params.Add("writer", bk.dt_Sell_Facture.Rows(i).Item("writer")) '
+                    params.Add("tp", bk.dt_Sell_Facture.Rows(i).Item("tp")) '
+                    params.Add("payed", bk.dt_Sell_Facture.Rows(i).Item("payed")) '
+                    params.Add("poid", bk.dt_Sell_Facture.Rows(i).Item("poid")) '
+                    params.Add("num", bk.dt_Sell_Facture.Rows(i).Item("num")) '
+                    params.Add("tva", bk.dt_Sell_Facture.Rows(i).Item("tva")) '
+                    params.Add("adresse", bk.dt_Sell_Facture.Rows(i).Item("adresse")) '
+                    params.Add("bl", bk.dt_Sell_Facture.Rows(i).Item("bl")) '
+                    params.Add("remise", bk.dt_Sell_Facture.Rows(i).Item("remise")) '
+                    params.Add("beInFacture", bk.dt_Sell_Facture.Rows(i).Item("beInFacture")) '
+                    params.Add("caisse", bk.dt_Sell_Facture.Rows(i).Item("caisse")) '
+
+                    a.InsertRecord("facture", params)
+                Next
+
+                a.DeleteRecords("bon")
+                For i As Integer = 0 To bk.dt_Bon_Achat.Rows.Count - 1
+                    params.Clear()
+
+                    params.Add("bonid", bk.dt_Bon_Achat.Rows(i).Item("bonid")) '
+                    params.Add("clid", bk.dt_Bon_Achat.Rows(i).Item("clid")) '
+                    params.Add("name", bk.dt_Bon_Achat.Rows(i).Item("name")) '
+                    params.Add("total", bk.dt_Bon_Achat.Rows(i).Item("total")) '
+                    params.Add("avance", bk.dt_Bon_Achat.Rows(i).Item("avance")) '
+                    params.Add("date", bk.dt_Bon_Achat.Rows(i).Item("date")) '
+                    params.Add("admin", bk.dt_Bon_Achat.Rows(i).Item("admin")) '
+                    params.Add("writer", bk.dt_Bon_Achat.Rows(i).Item("writer")) '
+                    params.Add("tp", bk.dt_Bon_Achat.Rows(i).Item("tp")) '
+                    params.Add("payed", bk.dt_Bon_Achat.Rows(i).Item("payed")) '
+                    params.Add("poid", bk.dt_Bon_Achat.Rows(i).Item("poid")) '
+                    params.Add("num", bk.dt_Bon_Achat.Rows(i).Item("num")) '
+                    params.Add("tva", bk.dt_Bon_Achat.Rows(i).Item("tva")) '
+                    params.Add("adresse", bk.dt_Bon_Achat.Rows(i).Item("adresse")) '
+                    params.Add("bl", bk.dt_Bon_Achat.Rows(i).Item("bl")) '
+                    params.Add("remise", bk.dt_Bon_Achat.Rows(i).Item("remise")) '
+                    params.Add("beInFacture", bk.dt_Bon_Achat.Rows(i).Item("beInFacture")) '
+                    params.Add("caisse", bk.dt_Bon_Achat.Rows(i).Item("caisse")) '
+
+                    a.InsertRecord("bon", params)
+                Next
+
+                a.DeleteRecords("detailsfacture")
+                For i As Integer = 0 To bk.dt_Details_Sell_Facture.Rows.Count - 1
+                    params.Clear()
+
+                    params.Add("fctid", bk.dt_Details_Sell_Facture.Rows(i).Item("fctid")) '
+                    params.Add("name", bk.dt_Details_Sell_Facture.Rows(i).Item("name")) '
+                    params.Add("bprice", bk.dt_Details_Sell_Facture.Rows(i).Item("bprice")) '
+                    params.Add("price", bk.dt_Details_Sell_Facture.Rows(i).Item("price")) '
+                    params.Add("unit", bk.dt_Details_Sell_Facture.Rows(i).Item("unit")) '
+                    params.Add("qte", bk.dt_Details_Sell_Facture.Rows(i).Item("qte")) '
+                    params.Add("tva", bk.dt_Details_Sell_Facture.Rows(i).Item("tva")) '
+                    params.Add("arid", bk.dt_Details_Sell_Facture.Rows(i).Item("arid")) '
+                    params.Add("depot", bk.dt_Details_Sell_Facture.Rows(i).Item("depot")) '
+                    params.Add("poid", bk.dt_Details_Sell_Facture.Rows(i).Item("poid")) '
+                    params.Add("code", bk.dt_Details_Sell_Facture.Rows(i).Item("code")) '
+                    params.Add("cid", bk.dt_Details_Sell_Facture.Rows(i).Item("cid")) '
+                    params.Add("rprice", bk.dt_Details_Sell_Facture.Rows(i).Item("rprice")) '
+                    params.Add("caisse", bk.dt_Details_Sell_Facture.Rows(i).Item("caisse")) '
+
+                    a.InsertRecord("detailsfacture", params)
+                Next
+
+                a.DeleteRecords("detailsbon")
+                For i As Integer = 0 To bk.dt_Details_Bon_Achat.Rows.Count - 1
+                    params.Clear()
+
+                    params.Add("fctid", bk.dt_Details_Bon_Achat.Rows(i).Item("fctid")) '
+                    params.Add("name", bk.dt_Details_Bon_Achat.Rows(i).Item("name")) '
+                    params.Add("bprice", bk.dt_Details_Bon_Achat.Rows(i).Item("bprice")) '
+                    params.Add("price", bk.dt_Details_Bon_Achat.Rows(i).Item("price")) '
+                    params.Add("unit", bk.dt_Details_Bon_Achat.Rows(i).Item("unit")) '
+                    params.Add("qte", bk.dt_Details_Bon_Achat.Rows(i).Item("qte")) '
+                    params.Add("tva", bk.dt_Details_Bon_Achat.Rows(i).Item("tva")) '
+                    params.Add("arid", bk.dt_Details_Bon_Achat.Rows(i).Item("arid")) '
+                    params.Add("depot", bk.dt_Details_Bon_Achat.Rows(i).Item("depot")) '
+                    params.Add("poid", bk.dt_Details_Bon_Achat.Rows(i).Item("poid")) '
+                    params.Add("code", bk.dt_Details_Bon_Achat.Rows(i).Item("code")) '
+                    params.Add("cid", bk.dt_Details_Bon_Achat.Rows(i).Item("cid")) '
+                    params.Add("rprice", bk.dt_Details_Bon_Achat.Rows(i).Item("rprice")) '
+                    params.Add("caisse", bk.dt_Details_Bon_Achat.Rows(i).Item("caisse")) '
+
+                    a.InsertRecord("detailsbon", params)
+                Next
+
+                a.DeleteRecords("admin")
+                For i As Integer = 0 To bk.dt_admin.Rows.Count - 1
+                    params.Clear()
+                    params.Add("adid", bk.dt_admin.Rows(i).Item("adid")) '
+                    params.Add("name", bk.dt_admin.Rows(i).Item("name")) '
+                    params.Add("admin", bk.dt_admin.Rows(i).Item("admin")) '
+                    params.Add("pwd", bk.dt_admin.Rows(i).Item("pwd")) '
+                    params.Add("rf", "-")
+                    params.Add("role", bk.dt_admin.Rows(i).Item("role")) '
+
+                    a.InsertRecord("admin", params)
+                Next
+
+
+
+                'bk.dt_machine = a.SelectDataTable("machine", {"*"})
+                'bk.dt_Charge = a.SelectDataTable("charge", {"*"})
+            End Using
+ 
+            MsgBox("  تم حفظ البيانات  بنجاح ")
+
+        Catch ex As Exception
+        End Try
+
+
+
+
+
+    End Sub
 End Class

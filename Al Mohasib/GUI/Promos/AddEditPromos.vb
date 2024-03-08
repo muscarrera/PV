@@ -30,10 +30,10 @@ Public Class AddEditPromos
 
     Private Sub btRelveClientArch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btRelveClientArch.Click
          
-        Dim dir1 As New DirectoryInfo(Form1.ImgPah & "\" & TableName)
+        Dim dir1 As New DirectoryInfo(Form1.Data_Comp_Path & "\" & TableName)
         If dir1.Exists = False Then dir1.Create()
 
-        WriteToXmlFile(Of Promos)(Form1.ImgPah & "\" & TableName & "\" & localname, promos)
+        WriteToXmlFile(Of Promos)(Form1.Data_Comp_Path & "\" & TableName & "\" & localname, promos)
          
     End Sub
 
@@ -92,7 +92,13 @@ Public Class AddEditPromos
         Dim p As New PromosArticle
         p.type = cbCond.Text
         p.arid = id
-        p.name = txt.text.Split("|")(0)
+
+        Try
+            p.name = txt.text.Split("|")(2)
+        Catch ex As Exception
+            p.name = txt.text.Split("|")(0)
+        End Try
+
         p.qte = txtQ.text
         p.point = txtP.text
 
@@ -126,5 +132,26 @@ Public Class AddEditPromos
 
     Private Sub Button14_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button14.Click
         txtEcheance.text = Now.Date.ToShortDateString
+    End Sub
+
+    Private Sub cbB_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbB.SelectedIndexChanged
+
+        ' TA - Total Achat
+        'TB - Total Bon
+        'LA - List d'Articles 
+        
+         
+
+        If cbB.Text = "Article_Gratuit" Or cbB.Text = "Total_Gratuit" Then
+            lbpintName.Text = "Qte Gratuits"
+        ElseIf cbB.Text = "Categories_Prix" Then
+            lbpintName.Text = "Remise"
+        ElseIf cbB.Text = "Article_Prix" Then
+            lbpintName.Text = "Nouveau prix"
+        Else 
+            lbpintName.Text = "Points"
+        End If
+
+
     End Sub
 End Class

@@ -1,4 +1,7 @@
 ﻿Public Class Items
+
+    Dim _FreeQte As Object
+
     Public Event ItemDoubleClick(ByVal sender As Object, ByVal e As EventArgs)
     Public Event Item_DoubleClick(ByVal sender As Object, ByVal e As EventArgs)
     Public Event ItemValueChanged(ByVal oldValue As Double, ByVal newValue As Double, ByVal Field As String, ByVal itm As Items)
@@ -30,6 +33,7 @@
     Public Poid As Double
     Public cid As Integer
     Private _depot As Integer
+    Public skipPromo As Boolean = False
 
     'properties
     Public Property isRetour As Boolean
@@ -166,7 +170,12 @@
             'Dim q As Decimal = _qte.ToString.TrimEnd(".0000")
             'q = q.ToString.TrimEnd(",0000")
 
-            LbQte.Text = Val(_qte) & " " & CStr(Unite) '& " x "
+            If FreeQte = 0 Then
+                LbQte.Text = Val(_qte) & " " & CStr(Unite) '& " x "
+            Else
+                LbQte.Text = "(" & Qte_Str & ") " & CStr(Unite) '& " x "
+            End If
+
             
             Try
                 '    If Form1.cbPromos.Checked Then
@@ -182,6 +191,68 @@
             Catch ex As Exception
             End Try
         End Set
+    End Property
+    Public Property FreeQte() As Decimal
+        Get
+            Return _FreeQte
+        End Get
+        Set(ByVal value As Decimal)
+            '''''''
+        
+            If value <= 0 Then
+                _FreeQte = 0
+                Me.Height = 55
+                plBottom.Visible = False
+                lbBottom.Text = "---"
+            Else
+                _FreeQte = value
+                Me.Height = 70
+                lbBottom.Text = "Cadeau : +" & value & " " & Unite & " Gratuit"
+            End If
+
+            If Form1.isBaseOnRIYAL Then
+                LbTotal.Text = Total_ttc.ToString("N0")
+            Else
+                LbTotal.Text = String.Format("{0:n}", Total_ttc)
+            End If
+
+            'Dim q As Decimal = _qte.ToString.TrimEnd(".0000")
+            'q = q.ToString.TrimEnd(",0000")
+
+            If FreeQte = 0 Then
+                LbQte.Text = Val(_qte) & " " & CStr(Unite) '& " x "
+            Else
+                LbQte.Text = "(" & Qte_Str & ") " & CStr(Unite) '& " x "
+            End If
+
+            Try
+                '    If Form1.cbPromos.Checked Then
+                If CDbl(LbTotal.Text) <= 0 Then
+                    LbTotal.BackColor = Color.Crimson
+                    LbTotal.ForeColor = Color.White
+                Else
+                    LbTotal.BackColor = Color.Transparent
+                    LbTotal.ForeColor = Color.DarkCyan
+                End If
+                '    End If
+
+            Catch ex As Exception
+            End Try
+        End Set
+    End Property
+    Public ReadOnly Property Qte_Str As String
+        Get
+            Dim str As String = Qte.ToString("n")
+            If FreeQte Then str = Qte.ToString & " + " & FreeQte.ToString
+
+            Return str
+
+        End Get
+    End Property
+    Public ReadOnly Property FreeTotal_Str As Decimal
+        Get  
+            Return FreeQte * Price 
+        End Get
     End Property
     Public Property Price() As Decimal
         Get
@@ -350,6 +421,16 @@
             LbTva.Visible = value
         End Set
     End Property
+    Public Property ColorFont() As Color
+        Get
+            Return Color.Crimson
+        End Get
+        Set(ByVal value As Color)
+
+            LbName.ForeColor = value
+            LbTotal.ForeColor = value
+        End Set
+    End Property
     Public Property ColorStock() As Integer
         Get
             Return _colorStock
@@ -415,6 +496,8 @@
 
     End Sub
     Private Sub PlBody_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Pl.Click, LbQte.Click, LbName.Click, LbTotal.Click, LbTva.Click, Panel1.Click, LbStk.Click, LbPrice.Click, Label3.Click, Label2.Click
+      
+
         If IsSelected = True Then
             IsSelected = False
         Else

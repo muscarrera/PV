@@ -15,7 +15,7 @@ Public Class AddEditArticle
     Private imgWithPrice, _imgPrd As Image
     Dim rnd As New Random
     Dim cr As Color = Color.WhiteSmoke
-
+    Dim isOldBalance As Boolean = False
 
     Private Sub AddEditArticle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
@@ -39,6 +39,7 @@ Public Class AddEditArticle
             lbpoids.Left = TxtPoids.Left
         End If
 
+        If Form1.adminRole > 50 Then plStk.Visible = True
 
         Try
             If txtMarge.text = "" Then txtMarge.text = 0
@@ -198,9 +199,10 @@ Public Class AddEditArticle
 
     Private Sub btprd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btprd.Click
         If SaveProduct() Then
+            SaveArticleLocaly()
             Me.DialogResult = Windows.Forms.DialogResult.OK
         End If
-   
+
     End Sub
 
     Public Function SaveProduct() As Boolean
@@ -221,33 +223,144 @@ Public Class AddEditArticle
         Dim price4 As Double = txtPrice4.text 'txtMarge.text
         If cid = 0 Then cid = cbctg.SelectedValue
 
-        Dim params As New Dictionary(Of String, Object)
-        params.Add("cid", cid)
-        params.Add("name", txtprdname.text)
-        params.Add("bprice", bprice)
-        params.Add("sprice", sprice)
-        params.Add("unite", txtunit.text)
-        params.Add("codebar", txtcb.text)
-        params.Add("tva", tva)
-        params.Add("sp3", price2)
-        params.Add("sp4", price3)
-        params.Add("sp5", price4)
-        params.Add("poid", TxtPoids.text)
-        params.Add("depot", CInt(CBdp.SelectedValue))
-        params.Add("mixte", CBool(cbIsMixte.Checked))
-        params.Add("elements", txtMinStock.text)
-        params.Add("isMixte", CBool(cbIsMixte.Checked))
-        ' addddd
         Dim x As Integer = 0
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            Dim params As New Dictionary(Of String, Object)
+
+            If cbIsMixte.Checked Then
+                If Not IsNumeric(txtcb.text) And txtcb.text.Length <> 3 Then
+                    MsgBox("الرموز الخاصة بالميزان يجب ان تكون : " & vbNewLine & " * عدد صحيح مكون من 3 أرقم و لا يحتوي على أي حرف أو رموز", MsgBoxStyle.Exclamation, "خطأ في رمز المادة")
+                    txtcb.TXT.Focus()
+                    Return False
+                End If
+                params.Add("mixte", True)
+                params.Add("codebar", txtcb.text)
+                Dim __dt As New DataTable
+                __dt = a.SelectDataTable("Article", {"arid"}, params)
+                Try
+                    If __dt.Rows.Count > 0 Then
+                        If id = 0 Then
+                            MsgBox("يجب عدم تكرار نفس الرمز لأكثر من مادة", MsgBoxStyle.Exclamation, "خطأ في رمز المادة")
+                            txtcb.TXT.Focus()
+                            Return False
+                        End If
+
+                        'For i As Integer = 0 To __dt.Rows.Count - 1
+                        '    If id <> __dt.Rows(i).Item("arid") Then
+                        '        MsgBox("يجب عدم تكرار نفس الرمز لأكثر من مادة", MsgBoxStyle.Exclamation, "خطأ في رمز المادة")
+                        '        txtcb.TXT.Focus()
+                        '        Return False
+                        '    End If
+                        'Next
+                    End If
+                Catch ex As Exception
+                End Try
+            End If
+
+            params.Clear()
+            params.Add("cid", cid)
+            params.Add("name", txtprdname.text)
+            params.Add("bprice", bprice)
+            params.Add("sprice", sprice)
+            params.Add("unite", txtunit.text)
+            params.Add("codebar", txtcb.text)
+            params.Add("tva", tva)
+            params.Add("sp3", price2)
+            params.Add("sp4", price3)
+            params.Add("sp5", price4)
+            params.Add("poid", TxtPoids.text)
+            params.Add("depot", CInt(CBdp.SelectedValue))
+            params.Add("mixte", CBool(cbIsMixte.Checked))
+            params.Add("elements", txtMinStock.text)
+            params.Add("isMixte", CBool(cbIsMixte.Checked))
+            ' addddd
+
+
             Dim where As New Dictionary(Of String, Object)
 
             If editMode Then
+
+                If isOldBalance And cbIsMixte.Checked = False Then
+                    Dim str As String = "لقد ازلت هذه المادة من قائمة الميزان" & vbNewLine
+                    str &= " عند الموافقة سينم ازالتها من القائمة و قد يكون عندك نغيير في ترنيب المواد في قائمة الميزان"
+
+
+                    Dim ss = MsgBox(str, MsgBoxStyle.YesNo, "balance")
+                    If ss = MsgBoxResult.No Then    Return False
+                End If
+                 
                 where.Add("arid", id)
                 x = a.UpdateRecord("Article", params, where)
+
+                If x And CheckBox2.Checked And IsNumeric(txtStk.text) Then
+
+                    where.Clear()
+                    where.Add("arid", id)
+
+                    Dim qteOUT = a.SelectByScalar("detailsfacture", "SUM(qte)", where)
+                    Dim qteIN = a.SelectByScalar("detailsbon", "SUM(qte)", where)
+
+                    If IsDBNull(qteIN) Then qteIN = 0
+                    If IsDBNull(qteOUT) Then qteOUT = 0
+
+                    qteIN -= qteOUT
+                    qteIN -= CDbl(txtStk.text)
+                    qteIN *= -1
+
+
+
+
+                    params.Clear()
+                    params.Add("fctid", -7)
+                    params.Add("name", txtprdname.text)
+                    params.Add("bprice", bprice)
+                    params.Add("price", bprice)
+                    params.Add("unit", txtunit.text)
+                    params.Add("qte", qteIN)
+                    params.Add("tva", 0)
+                    params.Add("arid", id)
+                    params.Add("depot", CInt(CBdp.SelectedValue))
+                    params.Add("poid", 0)
+                    params.Add("code", "Article details stock")
+                    params.Add("cid", cid)
+                    params.Add("rprice", 0)
+                    params.Add("caisse", 0)
+
+                    a.InsertRecord("detailsbon", params)
+
+                End If
+
+
+
             Else
                 params.Add("img", imagePath)
-                x = a.InsertRecord("Article", params)
+                x = a.InsertRecord("Article", params, True)
+
+                If x And CheckBox2.Checked And IsNumeric(txtStk.text) Then
+                     
+
+                    params.Clear()
+                    params.Add("fctid", -7)
+                    params.Add("name", txtprdname.text)
+                    params.Add("bprice", bprice)
+                    params.Add("price", bprice)
+                    params.Add("unit", txtunit.text)
+                    params.Add("qte", CDbl(txtStk.text))
+                    params.Add("tva", 0)
+                    params.Add("arid", x)
+                    params.Add("depot", CInt(CBdp.SelectedValue))
+                    params.Add("poid", 0)
+                    params.Add("code", "Article details stock")
+                    params.Add("cid", cid)
+                    params.Add("rprice", 0)
+                    params.Add("caisse", 0)
+
+                    a.InsertRecord("detailsbon", params)
+
+                End If
+
+
+
 
                 If CheckBox1.Checked Then
                     txtcb.text = ""
@@ -386,7 +499,7 @@ Public Class AddEditArticle
 
             Dim CD As New BarCode2
             CD.CODE = cde
-            CD.Article = txtprdname.Text
+            CD.Article = txtprdname.text
             ' CD.qte = txtsprice.text
 
             If CD.ShowDialog = DialogResult.OK Then
@@ -398,7 +511,7 @@ Public Class AddEditArticle
         End Try
 
     End Sub
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click, lbunitStk.Click
         Try
             Dim tva As Double = 1.2
             If txttva.text <> "" Then tva = (100 + txttva.text) / 100
@@ -476,17 +589,18 @@ Public Class AddEditArticle
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
             Dim dt As DataTable = a.SelectDataTable("Article", {"*"}, params)
             If dt.Rows.Count > 0 Then
-
+                Dim dpid = IntValue(dt, "depot", 0)
                 txtcb.text = StrValue(dt, "codebar", 0)
                 txtprdname.Text = StrValue(dt, "name", 0)
                 txtunit.Text = StrValue(dt, "unite", 0) 'dt.Rows(0).Item("")
                 cid = IntValue(dt, "cid", 0)
                 cbctg.SelectedValue = cid
-                CBdp.SelectedValue = IntValue(dt, "depot", 0)
+                CBdp.SelectedValue = dpid
                 txttva.text = DblValue(dt, "tva", 0)
                 txtMinStock.text = StrValue(dt, "elements", 0)
                 TxtPoids.text = DblValue(dt, "poid", 0)
                 cbIsMixte.Checked = BoolValue(dt, "mixte", 0)
+                If cbIsMixte.Checked Then isOldBalance = True
 
                 txtbprice.text = DblValue(dt, "bprice", 0).ToString(Form1.frmDbl)
                 txtsprice.text = DblValue(dt, "sprice", 0).ToString(Form1.frmDbl)
@@ -495,6 +609,26 @@ Public Class AddEditArticle
                 txtPrice4.text = DblValue(dt, "sp5", 0).ToString(Form1.frmDbl)
 
                 txtMarge.text = DblValue(dt, "sp5", 0).ToString(Form1.frmDbl)
+
+
+                Try
+                    params.Clear()
+                    params.Add("arid", id)
+                    If dpid > 0 Then params.Add("depot", dpid)
+
+                    Dim qteOUT = a.SelectByScalar("detailsfacture", "SUM(qte)", params)
+                    Dim qteIN = a.SelectByScalar("detailsbon", "SUM(qte)", params)
+
+                    If IsDBNull(qteIN) Then qteIN = 0
+                    If IsDBNull(qteOUT) Then qteOUT = 0
+
+                    qteIN = qteIN - qteOUT
+
+                    txtStk.text = qteIN
+
+                Catch ex As Exception
+                End Try
+
 
                 Try
                     imagePath = StrValue(dt, "img", 0)
@@ -941,7 +1075,7 @@ Public Class AddEditArticle
 
     End Sub
 
-    Private Sub txtbprice_TxtChanged() Handles txtbprice.TxtChanged
+    Private Sub txtbprice_TxtChanged() Handles txtbprice.TxtChanged, txtStk.TxtChanged
         'Try
         '    If txtMarge.text = "" Then txtMarge.text = 0
         '    If txtbprice.TXT.Focused = False Then Exit Sub
@@ -989,5 +1123,40 @@ Public Class AddEditArticle
 
         End Try
     End Sub
+
+    
+    Private Sub CheckBox2_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBox2.CheckedChanged
+        txtStk.txtReadOnly = CheckBox1.Checked
+    End Sub
+
+    Private Sub CBdp_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CBdp.SelectedIndexChanged
+        Try
+            If editMode = False Then Exit Sub
+
+            ' added some items
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                Dim params As New Dictionary(Of String, Object)
+                 
+                params.Clear()
+                params.Add("arid", id)
+                If CInt(CBdp.SelectedValue) > 0 Then params.Add("depot", CInt(CBdp.SelectedValue))
+
+                Dim qteOUT = a.SelectByScalar("detailsfacture", "SUM(qte)", params)
+                Dim qteIN = a.SelectByScalar("detailsbon", "SUM(qte)", params)
+
+                If IsDBNull(qteIN) Then qteIN = 0
+                If IsDBNull(qteOUT) Then qteOUT = 0
+
+                qteIN = qteIN - qteOUT
+
+                txtStk.text = qteIN
+
+          End Using  
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+     
 End Class
 

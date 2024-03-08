@@ -5,7 +5,7 @@ Public Class SelectBanque
 
 
     Private Sub FillBanques()
-        Dim dir1 As New DirectoryInfo(Form1.ImgPah & "\bqu")
+        Dim dir1 As New DirectoryInfo(ChequePanel.str_Path & "\bqu")
         If dir1.Exists = False Then dir1.Create()
 
         Dim aryFi As IO.FileInfo() = dir1.GetFiles("*.bqu")

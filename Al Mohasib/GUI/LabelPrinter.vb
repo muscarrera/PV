@@ -1252,7 +1252,4 @@ Public Class LabelPrinter
         Return True
     End Function
 
-    Private Sub plTrial_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles plTrial.Paint
-
-    End Sub
 End Class

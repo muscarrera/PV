@@ -37,9 +37,10 @@ Partial Class SelectBanque
         Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Button1.FlatAppearance.BorderSize = 2
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(73, 304)
+        Me.Button1.Location = New System.Drawing.Point(97, 374)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(218, 53)
+        Me.Button1.Size = New System.Drawing.Size(291, 65)
         Me.Button1.TabIndex = 6
         Me.Button1.Text = "تأكيد"
         Me.Button1.UseVisualStyleBackColor = False
@@ -50,9 +51,10 @@ Partial Class SelectBanque
         Me.Button2.FlatAppearance.BorderColor = System.Drawing.Color.Red
         Me.Button2.FlatAppearance.BorderSize = 2
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Location = New System.Drawing.Point(14, 304)
+        Me.Button2.Location = New System.Drawing.Point(19, 374)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(55, 53)
+        Me.Button2.Size = New System.Drawing.Size(73, 65)
         Me.Button2.TabIndex = 5
         Me.Button2.Text = "الغاء"
         Me.Button2.UseVisualStyleBackColor = False
@@ -65,11 +67,12 @@ Partial Class SelectBanque
         Me.dg.BackgroundColor = System.Drawing.Color.White
         Me.dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dg.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1})
-        Me.dg.Location = New System.Drawing.Point(17, 16)
+        Me.dg.Location = New System.Drawing.Point(23, 20)
+        Me.dg.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.dg.Name = "dg"
         Me.dg.ReadOnly = True
         Me.dg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dg.Size = New System.Drawing.Size(267, 261)
+        Me.dg.Size = New System.Drawing.Size(356, 321)
         Me.dg.TabIndex = 11
         '
         'Column1
@@ -83,22 +86,24 @@ Partial Class SelectBanque
         Me.Panel1.BackgroundImage = Global.Al_Mohasib.My.Resources.Resources.WhatsApp_Image_2021_06_02_at_17_59_22__1_
         Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.dg)
         Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Controls.Add(Me.Button1)
-        Me.Panel1.Location = New System.Drawing.Point(61, 45)
+        Me.Panel1.Controls.Add(Me.dg)
+        Me.Panel1.Location = New System.Drawing.Point(81, 55)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(303, 377)
+        Me.Panel1.Size = New System.Drawing.Size(417, 464)
         Me.Panel1.TabIndex = 12
         '
         'SelectBanque
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.ClientSize = New System.Drawing.Size(444, 478)
+        Me.ClientSize = New System.Drawing.Size(592, 588)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "SelectBanque"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "SelectBanque"

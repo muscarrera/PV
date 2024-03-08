@@ -27,24 +27,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7ACD39213FB73EEA5B2E152ED0B3C984"
-        "OwnerKey" = "8:_2246C4D8FDFB46C99FE2DFDC0D68ED8B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7E3BD98DBF8004715E5DE71A78E62938"
-        "OwnerKey" = "8:_7ACD39213FB73EEA5B2E152ED0B3C984"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7E3BD98DBF8004715E5DE71A78E62938"
-        "OwnerKey" = "8:_2246C4D8FDFB46C99FE2DFDC0D68ED8B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_88CB14E8CFC494103344A73BA87DE3E3"
         "OwnerKey" = "8:_2246C4D8FDFB46C99FE2DFDC0D68ED8B"
         "MsmSig" = "8:_UNDEFINED"
@@ -52,7 +34,55 @@
         "Entry"
         {
         "MsmKey" = "8:_88CB14E8CFC494103344A73BA87DE3E3"
-        "OwnerKey" = "8:_7ACD39213FB73EEA5B2E152ED0B3C984"
+        "OwnerKey" = "8:_E9E48190FED03204B06C555C7A9447FF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_89B60FD5AC10AC036C6DD7D9013CAB9E"
+        "OwnerKey" = "8:_2246C4D8FDFB46C99FE2DFDC0D68ED8B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_89B60FD5AC10AC036C6DD7D9013CAB9E"
+        "OwnerKey" = "8:_E9E48190FED03204B06C555C7A9447FF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_ACB800DC45B0594D6C141272A1C85477"
+        "OwnerKey" = "8:_E9E48190FED03204B06C555C7A9447FF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_ACB800DC45B0594D6C141272A1C85477"
+        "OwnerKey" = "8:_2246C4D8FDFB46C99FE2DFDC0D68ED8B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E9E48190FED03204B06C555C7A9447FF"
+        "OwnerKey" = "8:_2246C4D8FDFB46C99FE2DFDC0D68ED8B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2246C4D8FDFB46C99FE2DFDC0D68ED8B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E9E48190FED03204B06C555C7A9447FF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_ACB800DC45B0594D6C141272A1C85477"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -64,19 +94,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2246C4D8FDFB46C99FE2DFDC0D68ED8B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7ACD39213FB73EEA5B2E152ED0B3C984"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7E3BD98DBF8004715E5DE71A78E62938"
+        "OwnerKey" = "8:_89B60FD5AC10AC036C6DD7D9013CAB9E"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -97,6 +115,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -113,6 +152,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -162,20 +222,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7ACD39213FB73EEA5B2E152ED0B3C984"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_88CB14E8CFC494103344A73BA87DE3E3"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Al Mohasib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+            "AssemblyAsmDisplayName" = "8:Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7ACD39213FB73EEA5B2E152ED0B3C984"
+                    "_88CB14E8CFC494103344A73BA87DE3E3"
                     {
-                    "Name" = "8:Al Mohasib.exe"
+                    "Name" = "8:Microsoft.VisualBasic.PowerPacks.Vs.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Al Mohasib.exe"
+            "SourcePath" = "8:Microsoft.VisualBasic.PowerPacks.Vs.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F816E95C26514EC9AE0E56054E467158"
@@ -193,14 +253,45 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7E3BD98DBF8004715E5DE71A78E62938"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_89B60FD5AC10AC036C6DD7D9013CAB9E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_89B60FD5AC10AC036C6DD7D9013CAB9E"
+                    {
+                    "Name" = "8:MySql.Data.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MySql.Data.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_F816E95C26514EC9AE0E56054E467158"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_ACB800DC45B0594D6C141272A1C85477"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:MyBarcode, Version=1.0.6854.32559, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_7E3BD98DBF8004715E5DE71A78E62938"
+                    "_ACB800DC45B0594D6C141272A1C85477"
                     {
                     "Name" = "8:MyBarcode.dll"
                     "Attributes" = "3:512"
@@ -224,20 +315,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_88CB14E8CFC494103344A73BA87DE3E3"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E9E48190FED03204B06C555C7A9447FF"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Al Mohasib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_88CB14E8CFC494103344A73BA87DE3E3"
+                    "_E9E48190FED03204B06C555C7A9447FF"
                     {
-                    "Name" = "8:Microsoft.VisualBasic.PowerPacks.Vs.dll"
+                    "Name" = "8:Al Mohasib.exe"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Microsoft.VisualBasic.PowerPacks.Vs.dll"
+            "SourcePath" = "8:Al Mohasib.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F816E95C26514EC9AE0E56054E467158"
@@ -312,7 +403,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:POS 6 Slv"
         "ProductCode" = "8:{22F0B4CB-EEAC-45D7-9510-6B48B9B1C61B}"
-        "PackageCode" = "8:{086BF18F-98CF-4BA5-9F49-D329E446B6ED}"
+        "PackageCode" = "8:{BB9EA794-5390-497C-AF80-13E8402FD68C}"
         "UpgradeCode" = "8:{5AB2A8E2-F8A9-4D8D-9946-B446E75BB9B8}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"

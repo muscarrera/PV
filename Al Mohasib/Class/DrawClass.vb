@@ -4,7 +4,112 @@
     '*Members
     ' Private m As Integer = 0
     Private l As Integer = 250
+    Public Sub DrawReceipt(ByRef e As System.Drawing.Printing.PrintPageEventArgs, ByVal dt As DataTable, ByVal fid As Integer,
+                               ByVal CName As String, ByVal CAdresse As String, ByVal totalht As Double, ByVal totalttc As Double,
+                               ByVal totaltva As Double, ByVal avance As Double, ByVal isSell As Boolean, ByVal dte As String,
+                               ByVal remise As Double, ByRef m As Integer)
 
+        Dim pen As New Pen(Brushes.Black, 1.0F)
+        Dim pn As New Pen(Brushes.Black, 0.5F)
+
+        Dim fnt As New Font(Form1.txtfname.Text, CInt(Form1.txtfntsize.Text))
+        Dim fntTitle As New Font("Arial", 12, FontStyle.Bold)
+
+        Dim sf As New StringFormat()
+        sf.Alignment = StringAlignment.Near
+        Dim sf1 As New StringFormat()
+        sf1.Alignment = StringAlignment.Far
+        Dim sf2 As New StringFormat()
+        sf2.Alignment = StringAlignment.Center
+
+        Dim fctid As Integer = fid
+        Dim clientName As String = CName
+        Dim data As DataTable = dt
+        Dim poids As Decimal = 0
+
+        e.Graphics.DrawString(Form1.txttitle.Text, fntTitle, Brushes.Black, New RectangleF(10, 20, 300, 55), sf2)
+        e.Graphics.DrawString(Form1.txttel.Text, fnt, Brushes.Black, New RectangleF(10, 80, 300, 30), sf2)
+
+        Try
+            e.Graphics.DrawImage(Image.FromFile(Form1.txtLogo.Text), 10, 10, 300, 120)
+        Catch ex As Exception
+
+        End Try
+
+        e.Graphics.DrawString(Form1.TxtSignature.Text, fnt, Brushes.Black, 15, 145)
+
+        Dim myPoints() As Point = New Point() {New Point(10, 160), New Point(270, 160),
+                                               New Point(282, 175), New Point(270, 190),
+                                               New Point(10, 190)}
+        '  e.Graphics.FillPolygon(Brushes.WhiteSmoke, myPoints)
+        e.Graphics.DrawPolygon(New Pen(Brushes.Black, 0.5F), myPoints)
+
+        'print date 
+        e.Graphics.DrawString(dte, fnt, Brushes.Black, 15, 200)
+        'print  num Facture 
+
+        e.Graphics.DrawString("Receipt  N° : " & fctid, fntTitle, Brushes.Black, 15, 165)
+
+        'print Client 
+        e.Graphics.DrawString(clientName, fnt, Brushes.Black, 15, 215)
+        e.Graphics.DrawString("*****  " & dt.Rows.Count & " - Vidals    |", fnt, Brushes.Black, 15, 230)
+
+        e.Graphics.DrawString("Editeur :", fnt, Brushes.Black, 200, 200)
+        e.Graphics.DrawString(Form1.adminName, fnt, Brushes.Black, 200, 215)
+
+        If m > 0 Then
+            e.Graphics.DrawString("[ ..... ]", fnt, Brushes.Black, 10, l)
+            l += 15
+        End If
+
+        e.Graphics.DrawLine(pn, 10, l, 300, l)
+
+        l = l + 10
+
+        While m < data.Rows.Count
+
+            'Dim ref As String = data.Rows(m).Item("code")
+            Dim prdName As String = data.Rows(m).Item("name")
+            Dim qte As String = String.Format("{0:n}", CDec(data.Rows(m).Item("qte")))
+            Dim price As String = String.Format("{0:n}", CDec(data.Rows(m).Item("price")))
+            Dim total As String = String.Format("{0:n}", CDec(data.Rows(m).Item("price") * data.Rows(m).Item("qte")))
+
+            ''''''
+
+            Dim size As SizeF = e.Graphics.MeasureString(prdName, fnt, 120)
+
+            e.Graphics.DrawString(qte, fnt, Brushes.Black, New RectangleF(10, l, 40, size.Height), sf1)
+            e.Graphics.DrawLine(pn, 52, l, 52, l + size.Height)
+            e.Graphics.DrawString(prdName, fnt, Brushes.Black, New RectangleF(55, l, 120, size.Height), sf)
+            e.Graphics.DrawLine(pn, 177, l, 177, l + size.Height)
+            e.Graphics.DrawString(price, fnt, Brushes.Black, New RectangleF(180, l, 50, 25), sf1)
+            e.Graphics.DrawLine(pn, 232, l, 232, l + size.Height)
+            e.Graphics.DrawString(total, fnt, Brushes.Black, New RectangleF(230, l, 55, 25), sf1)
+
+            l = l + size.Height + 5
+            m += 1
+        End While
+
+
+        Dim ttc As String = String.Format("{0:n}", CDec(totalttc))
+
+        l += 10
+
+        e.Graphics.DrawLine(pn, 10, l, 300, l)
+        e.Graphics.DrawLine(pn, 10, l + 2, 300, l + 2)
+
+        l += 10
+
+        e.Graphics.DrawString("Total  : ", fnt, Brushes.Black, New RectangleF(10, l, 200, 22), sf)
+        e.Graphics.DrawString(ttc & " (Dhs)", fntTitle, Brushes.Black, New RectangleF(10, l + 20, 220, 22), sf)
+
+
+        e.Graphics.FillRectangle(Brushes.Black, 5, l + 60, 280, 25)
+        e.Graphics.DrawString("***  Merci  de  votre  visite  ***", New Font(fnt, FontStyle.Bold), Brushes.White, New RectangleF(5, l + 65, 280, 25), sf2)
+
+        l = 250
+        m = 0
+    End Sub
     Public Sub DrawBon(ByRef e As System.Drawing.Printing.PrintPageEventArgs, ByVal dt As DataTable, ByVal fid As Integer, ByVal clid As Integer,
                            ByVal CName As String, ByVal CAdresse As String, ByVal totalht As Double, ByVal totalttc As Double, ByVal avance As Double,
                            ByVal totaltva As Double, ByVal isSell As Boolean, ByVal dte As String,

@@ -4,9 +4,10 @@
         'TODO: This line of code loads data into the 'ALMohassinDBDataSet.Depot' table. You can move, or remove it, as needed.
         Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             DataGridView1.DataSource = a.SelectDataTableSymbols("Depot", {"*"})
-
         End Using
+
         Button1.Tag = 0
+
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click

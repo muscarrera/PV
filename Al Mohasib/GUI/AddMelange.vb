@@ -55,37 +55,58 @@ Public Class AddMelange
                 'Detailstock
                 Dim id As String = CStr(kv.Key).Split("|")(1)
                 Dim qte As Double = CStr(kv.Value)
-
-                Dim where As New Dictionary(Of String, Object)
-                where.Add("arid", id)
-                where.Add("dpid", p)
-
-                Dim CloseBoxQte As Double = c.SelectByScalar("Detailstock", "qte", where)
-                where.Clear()
-
-                CloseBoxQte -= qte
-
                 Dim params As New Dictionary(Of String, Object)
-                params.Add("qte", CloseBoxQte)
-                where.Clear()
-                where.Add("arid", id)
-                where.Add("dpid", p)
-                If c.UpdateRecord("Detailstock", params, where) = 0 Then
-                    params.Clear()
-                    where.Clear()
-                    where.Add("arid", id)
-                    Dim cid As String = c.SelectByScalar("Article", "cid", where)
-                    Dim unit As String = c.SelectByScalar("Article", "unite", where)
+                params.Add("arid", id)
+                Dim cid As String = c.SelectByScalar("Article", "cid", params)
+                'Dim unit As String = c.SelectByScalar("Article", "unite", params)
+                Dim bprice As String = c.SelectByScalar("Article", "bprice", params)
+                Dim nm As String = c.SelectByScalar("Article", "name", params)
 
-                    params.Add("qte", CloseBoxQte)
-                    params.Add("arid", id)
-                    params.Add("dpid", p)
-                    params.Add("cid", cid)
-                    params.Add("unit", unit)
-                    c.InsertRecord("Detailstock", params)
-                End If
                 params.Clear()
-                where.Clear()
+                params.Add("fctid", -3)
+                params.Add("name", nm)
+                params.Add("bprice", bprice)
+                params.Add("price", bprice)
+                params.Add("unit", "u")
+                params.Add("qte", qte * -1)
+                params.Add("tva", 0)
+                params.Add("arid", id)
+                params.Add("depot", p)
+                params.Add("poid", 0)
+                params.Add("code", "Melonge " & Now.Date.ToString)
+                params.Add("cid", cid)
+                params.Add("rprice", 0)
+                params.Add("caisse", 0)
+
+                c.InsertRecord("detailsbon", params)
+
+                'where.Add("arid", id)
+                'where.Add("dpid", p)
+
+                'Dim CloseBoxQte As Double = c.SelectByScalar("Detailstock", "qte", where)
+                'where.Clear()
+
+                'CloseBoxQte -= qte
+
+                'Dim where As New Dictionary(Of String, Object)
+                'params.Add("qte", CloseBoxQte)
+                'where.Clear()
+                'where.Add("arid", id)
+                'where.Add("dpid", p)
+                'If c.UpdateRecord("Detailstock", params, where) = 0 Then
+                '    params.Clear()
+                '    where.Clear()
+                '    where.Add("arid", id)
+
+                '    params.Add("qte", CloseBoxQte)
+                '    params.Add("arid", id)
+                '    params.Add("dpid", p)
+                '    params.Add("cid", cid)
+                '    params.Add("unit", unit)
+                '    c.InsertRecord("Detailstock", params)
+                'End If
+                params.Clear()
+                'where.Clear()
             Next
 
             AddList1.Clearliste()

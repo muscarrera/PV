@@ -321,4 +321,42 @@ Public Class Articles
             txt.Focus()
         End If
     End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+
+            Try
+                Dim params As New Dictionary(Of String, Object)
+                Dim artdt As DataTable
+                params.Add("mixte", True)
+                Dim order As New Dictionary(Of String, String)
+                order.Add("codebar", "ASC")
+                artdt = a.SelectDataTable("article", {"*"}, params, order)
+                 
+                DGVPRD.Rows.Clear()
+                txt.Text = ""
+
+                 
+                    If artdt.Rows.Count = 0 Then
+                        MsgBox("لا يوجد اي سجل", MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, "المواد")
+
+                    Else
+
+                        For i As Integer = 0 To artdt.Rows.Count - 1
+
+                        DGVPRD.Rows.Add(artdt.Rows(i).Item("arid").ToString, artdt.Rows(i).Item("codebar").ToString,
+                                        artdt.Rows(i).Item("name").ToString, artdt.Rows(i).Item("unite").ToString,
+                                        artdt.Rows(i).Item("bprice").ToString, artdt.Rows(i).Item("sprice").ToString,
+                                        artdt.Rows(i).Item("tva").ToString, artdt.Rows(i).Item("sp3").ToString,
+                                        artdt.Rows(i).Item("sp4").ToString, artdt.Rows(i).Item("sp5").ToString,
+                                        artdt.Rows(i).Item("poid").ToString, artdt.Rows(i).Item("cid").ToString, artdt.Rows(i).Item("Depot").ToString,
+                                        artdt.Rows(i).Item("img").ToString, artdt.Rows(i).Item("mixte"), artdt.Rows(i).Item("elements"))
+                        Next
+                    End If 
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try 
+            txt.Focus()
+        End Using
+    End Sub
 End Class

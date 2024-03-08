@@ -16,6 +16,10 @@
             _tabProp.fSize = T.text
             _tabProp.fName = txtF1.text
             _tabProp.isBold = CheckBox1.Checked
+            _tabProp.isVertical = cbIsV.Checked
+
+            _tabProp.isRotate = cbIsRotate.Checked
+            _tabProp.rotation = cbRotation.Text
 
             _tabProp.backColor = btColor.BackColor.ToArgb
             _tabProp.hasBloc = cbBloc.Checked
@@ -33,7 +37,6 @@
             Catch ex As Exception
             End Try
 
-
             txt.text = value.str_start
             TxtBox1.text = value.str_end
             CB.Text = value.field
@@ -48,8 +51,9 @@
             cbBloc.Checked = value.hasBloc
             Align = value.Alignement
             txtF1.text = value.fName
-
-
+            cbIsV.Checked = value.isVertical
+            cbIsRotate.Checked = value.isRotate
+            cbRotation.Text = value.rotation
         End Set
     End Property
     Private Property Align As Integer
@@ -121,7 +125,7 @@
     End Sub
 
 
-    Private Sub CB_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CB.SelectedIndexChanged
+    Private Sub CB_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CB.SelectedIndexChanged, cbRotation.SelectedIndexChanged
         If CB.Text = "Forms" Then
             txt.text = "S"
 
@@ -135,4 +139,6 @@
             End If
         End If
     End Sub
+
+     
 End Class

@@ -53,13 +53,14 @@ Public Class Addadmin
         End If
         lbrf.Text = DataGridView1.SelectedRows(0).Cells(4).Value
         TextBox1.Tag = DataGridView1.SelectedRows(0).Cells(0).Value
+
         'TextBox1.Enabled = False
         ComboBox1.Enabled = False
 
 
 
         Button2.Tag = "1"
-
+        txtRole.Text = DataGridView1.SelectedRows(0).Cells(5).Value
 
         Try
             If isPortOn = False Then
@@ -74,6 +75,7 @@ Public Class Addadmin
         TextBox1.Text = ""
         TextBox2.Text = ""
         TextBox1.Tag = ""
+        txtRole.Text = ""
         Button2.Tag = "2"
         rf = ""
         lbrf.Text = "0"
@@ -95,11 +97,21 @@ Public Class Addadmin
                 a = "admin"
             End If
 
+            If Not IsNumeric(txtRole.Text) Then
+                If a = "admin" Then
+                    txtRole.Text = 30
+                Else
+                    txtRole.Text = 10
+                End If
+            End If
+
+
             Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
                 Dim params As New Dictionary(Of String, Object)
                 params.Add("name", TextBox1.Text)
                 params.Add("admin", a)
                 params.Add("rf", lbrf.Text)
+                params.Add("role", txtRole.Text)
 
                 If Button2.Tag = "1" Then
                     If TextBox2.Text <> "" Then params.Add("pwd", TextBox2.Text)
@@ -123,7 +135,7 @@ Public Class Addadmin
             TextBox1.Text = ""
             TextBox2.Text = ""
             TextBox1.Tag = ""
-
+            txtRole.Text = ""
         Catch ex As Exception
             MsgBox(ex)
         End Try
@@ -148,7 +160,7 @@ Public Class Addadmin
         TextBox1.Tag = ""
         Button2.Tag = "2"
         lbrf.Text = "0"
-
+        txtRole.Text = ""
         Try
             If isPortOn Then
                 isPortOn = ClosePort()

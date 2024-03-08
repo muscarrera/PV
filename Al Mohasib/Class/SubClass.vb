@@ -196,7 +196,7 @@ Public Class SubClass
             params.Add("pr", c)
             Dim ctgdt = a.SelectDataTable("category", {"*"}, params)
 
-            FillDataSource_Cats(ctgdt, False)
+            If ctgdt.Rows.Count > 0 Then FillDataSource_Cats(ctgdt, False)
         End Using
         If Form1.chbcb.Checked Then
             Form1.txtSearchCode.Text = ""
@@ -607,7 +607,7 @@ Public Class SubClass
         End If
 
 
-        FillGroupesByCat(bt2.Tag)
+        If bt2.Tag > 0 Then FillGroupesByCat(bt2.Tag)
         '   FillGroupesByCat_reader(bt2.Tag)
 
         Form1.btGoBack.Tag = bt2.Tag
@@ -776,15 +776,15 @@ Public Class SubClass
                     'Catch ex As Exception
                     'End Try
 
-                    If Form1.NouveauBon_Creation Then
-                        Dim clientname As String = Form1.txtcltcomptoir.Text.Split("/")(0)
-                        Dim cid As String = 0
+                    'If Form1.NouveauBon_Creation Then
+                    Dim clientname As String = Form1.txtcltcomptoir.Text.Split("/")(0)
+                    Dim cid As String = 0
 
-                        NewFacture(cid, clientname, "", 0)
+                    NewFacture(cid, clientname, "", 0)
 
-                    Else
-                        Form1.RPl.FctId = -198722
-                    End If
+                    'Else
+                    '    Form1.RPl.FctId = -198722
+                    'End If
                 Else
                     Exit Sub
                 End If
@@ -1059,6 +1059,8 @@ Public Class SubClass
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             Dim params As New Dictionary(Of String, Object)
             params.Add("admin", False)
+            'Dim order As New Dictionary(Of String, String)
+            'order.Add("fctid", "DESC")
 
             If Form1.cbAffichageLimite.Checked Then params.Add("writer", Form1.adminName)
             dt = c.SelectDataTable(tableName, {"*"}, params)
@@ -1288,6 +1290,17 @@ Public Class SubClass
 
             Next
             Form1.FL.Controls.AddRange(pvs)
+
+            Dim pva As New PvCat
+            pva.CID = -0
+            pva.CatName = "Melange"
+            pva.Width = Form1.txtlongerbt.Text
+            pva.Height = Form1.txtlargebt.Text
+            pva.fnt = fn
+            'Form1.FlowLayoutPanel1.Controls.Add(pv)
+            AddHandler pva.Choosed, AddressOf ctg_click
+            Form1.FL.Controls.Add(pva)
+
         Else
             ''''''''''''''''''''''''''''''''''''''''''''''''''' list suivant
             Dim pvs(ctgdt.Rows.Count - 1) As Button
@@ -1334,6 +1347,16 @@ Public Class SubClass
 
             Next
             Form1.FL.Controls.AddRange(pvs)
+
+            Dim btc As New Button
+            btc.BackColor = Color.LightGoldenrodYellow
+            btc.Text = "Melange"
+            btc.Name = "ctgMongrpcADMLG"
+            btc.Tag = -0
+            btc.Width = Form1.txtlongerbt.Text
+            btc.Height = Form1.txtlargebt.Text
+            AddHandler btc.Click, AddressOf ctg_click
+            Form1.FL.Controls.Add(btc)
         End If
 
         Form1.FL.Visible = True
@@ -1446,7 +1469,6 @@ Public Class SubClass
         FactureSelected(bt, Nothing)
         bt = Nothing
     End Sub
-
 
     Private Sub EditArticle(ByVal R As DataRow)
 
@@ -1764,6 +1786,27 @@ Public Class SubClass
     End Sub
     ' create new fact
     Public Sub NewFacture(ByVal t As Integer)
+        Dim __is As Boolean = True
+
+        If Form1.cbBadgeClt.Checked Then
+            __is = False
+            Try
+                Dim sc As New UserParmissionCheck
+                sc.bName.Text = "List Clients/Fournisseur"
+                sc.lbNum.Text = "Creation nouveau bon"
+                If sc.ShowDialog = DialogResult.OK Then
+                    __is = True
+                End If
+            Catch ex As Exception
+                __is = False
+            End Try
+        End If
+
+        If __is = False Then Exit Sub
+
+
+
+
         Try
             Dim chs As New ChoseClient
             chs.isSell = Form1.RPl.isSell
@@ -1820,8 +1863,12 @@ Public Class SubClass
                 End If
 
 
+                If chs.isEditing Then
+                    fillFactures(CInt(Form1.btswitsh.Tag))
+                Else
+                    NewFacture(chs.cid, chs.clientName, chs.clientadresse, chs.num)
+                End If
 
-                NewFacture(chs.cid, chs.clientName, chs.clientadresse, chs.num)
             End If
 
             If Form1.chbcb.Checked Then
@@ -1955,8 +2002,6 @@ Public Class SubClass
         If Form1.RPl.FctId = 0 Then Exit Sub
         If Form1.RPl.FctId = -198722 Then NewFacture__0(True)
 
-
-
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
 
             Dim prId_str = "id"
@@ -1966,8 +2011,6 @@ Public Class SubClass
             Dim where As New Dictionary(Of String, Object)
 
             Dim data = Form1.RPl.DataSource
-
-
             For i As Integer = 0 To data.Rows.Count - 1
 
                 params.Clear()
@@ -2024,6 +2067,10 @@ Public Class SubClass
                 params.Add("tva", 0)
                 params.Add("adresse", clientadesse)
                 params.Add("bl", "---")
+                If isSell Then
+                    params.Add("bc", "---")
+                    params.Add("liv", "---")
+                End If
                 params.Add("remise", 0)
                 params.Add("beInFacture", 0)
                 params.Add("caisse", Form1.caisseId)
@@ -2070,6 +2117,9 @@ Public Class SubClass
                 Form1.RPl.ClientName = clientname
                 Form1.RPl.ClientAdresse = ""
                 Form1.RPl.Dte = Now
+
+                If isSell Then AppendData(fid, "Creation de la Bon", "-", "-")
+
                 Return True
 
             End If
@@ -2516,7 +2566,9 @@ Public Class SubClass
             params.Add("tva", tva)
             params.Add("remise", Remise)
             'params.Add("date", dte)
-            params.Add("bl", BL)
+            params.Add("bl", Form1.RPl.bl)
+            params.Add("bc", Form1.RPl.bc)
+            params.Add("liv", Form1.RPl.livreur)
 
             Dim where As New Dictionary(Of String, Object)
 
@@ -2533,6 +2585,34 @@ Public Class SubClass
                 Dim arid As Integer = table.Rows(i).Item(0)
                 Dim dpid As Integer = table.Rows(i).Item("depot")
                 Dim cid As Integer = table.Rows(i).Item("cid")
+                Dim freeqte As Double = table.Rows(i).Item("freeQte")
+
+                params.Clear()
+
+
+
+                If freeqte > 0 And isSell Then
+
+                    params.Add("fctid", Form1.RPl.FctId)
+                    params.Add("name", table.Rows(i).Item("name") & " [Gratuits]")
+                    params.Add("bprice", table.Rows(i).Item("bprice"))
+                    params.Add("price", 0)
+                    params.Add("unit", table.Rows(i).Item("unit"))
+                    params.Add("qte", freeqte)
+                    params.Add("tva", table.Rows(i).Item("tva"))
+                    params.Add("arid", table.Rows(i).Item("arid"))
+                    params.Add("depot", table.Rows(i).Item("depot"))
+                    params.Add("poid", CInt(table.Rows(i).Item("poid")))
+                    params.Add("code", table.Rows(i).Item("id"))
+                    params.Add("cid", -600)
+                    params.Add("rprice", table.Rows(i).Item("rprice"))
+                    params.Add("caisse", Form1.caisseId)
+
+                    c.InsertRecord(Form1.TB_Details, params)
+                End If
+
+                params.Clear()
+                where.Clear()
 
                 If cid <> 0 Then
 
@@ -2544,7 +2624,7 @@ Public Class SubClass
                     Dim old_Qte As Double = 0
 
                     If dt.Rows.Count > 0 Then
-                        Dim qte As Double = table.Rows(i).Item("qte")
+                        Dim qte As Double = table.Rows(i).Item("qte") + freeqte
                         Dim dsid As Integer = dt.Rows(0).Item(0)
                         old_Qte = dt.Rows(0).Item("qte")
                         If isS Then qte = qte * (-1)
@@ -2555,7 +2635,7 @@ Public Class SubClass
 
                         c.UpdateRecord("Detailstock", params, where)
                     Else
-                        Dim qte As Double = table.Rows(i).Item("qte")
+                        Dim qte As Double = table.Rows(i).Item("qte") + freeqte
                         If isS Then qte = qte * (-1)
 
                         params.Add("arid", arid)
@@ -2603,6 +2683,18 @@ Public Class SubClass
 
                     params.Clear()
                     where.Clear()
+                Else
+
+                    If Form1._isMahfoud Then
+                        where.Clear()
+                        params.Clear()
+                        where.Add("arid", arid)
+                        params.Add("cid", -100)
+                        c.UpdateRecord("Article", params, where)
+                    End If
+
+                    params.Clear()
+                    where.Clear()
                 End If
             Next
             'End If
@@ -2627,6 +2719,15 @@ Public Class SubClass
                 End If
             Catch ex As Exception
             End Try
+
+            If Form1.cbCafeMode.Checked And Form1.cbCafeTable.Checked Then
+                params.Clear()
+                where.Clear()
+
+                params.Add("CIN", 0)
+                where.Add("Clid", Form1.RPl.ClId)
+                c.UpdateRecord("Client", params, where)
+            End If
 
             If isS Then
                 AppendData(id, table)
@@ -2927,9 +3028,24 @@ Public Class SubClass
                 Form1.RPl.delivredDay = dt.Rows(0).Item("tp")
                 If Form1.chbsell.Checked Then Form1.RPl.Num = dt.Rows(0).Item("num")
                 Try
+
                     Form1.RPl.ClientAdresse = dt.Rows(0).Item("adresse")
                     Form1.RPl.bl = dt.Rows(0).Item("bl")
-                    Form1.RPl.Dte = dt.Rows(0).Item("date")
+                    Form1.RPl.bc = dt.Rows(0).Item("bc")
+                    Form1.RPl.livreur = dt.Rows(0).Item("liv")
+
+                    Try
+                        Form1.RPl.Dte = dt.Rows(0).Item("date")
+                    Catch ex As Exception
+
+                        Dim where As New Dictionary(Of String, Object)
+                        where.Add("date", Now)
+                        c.UpdateRecord(Form1.TB_Bon, where, params)
+                        Form1.RPl.Dte = Now
+                    End Try
+
+
+
                 Catch ex As Exception
                     Form1.RPl.ClientAdresse = ""
                 End Try
@@ -2994,9 +3110,15 @@ Public Class SubClass
 
     Public Sub FillTables()
         Form1.PanelBody.Controls.Clear()
+        Form1.PanelBody.Visible = True
+        Form1.PanelBody.Dock = DockStyle.Fill
+
+
 
         Dim rnd As New Random
         Dim PL1 As New FlowLayoutPanel
+
+
 
         PL1.Name = "PL1"
         PL1.BackColor = Color.AliceBlue
@@ -3004,6 +3126,7 @@ Public Class SubClass
         Form1.PanelBody.Controls.Add(PL1)
         PL1.Dock = DockStyle.Top
         PL1.SendToBack()
+
 
         Dim ARR As String() = {"Intérieur", "Extérieur", "Emporter"}
         For I As Integer = 0 To 2
@@ -3103,6 +3226,12 @@ Public Class SubClass
         Form1.txtSearch.Focus()
     End Sub
     Public Sub TableSelected(ByVal sender As Object, ByVal e As EventArgs)
+
+        Try
+            saveChanges()
+        Catch ex As Exception
+        End Try
+
         Dim btt As Button = sender
         Dim pl As Panel = Form1.plright
         Dim rnd As New Random
@@ -3156,6 +3285,16 @@ Public Class SubClass
             Dim dt = c.SelectDataTable(tableName, {"*"}, params)
 
             If dt.Rows.Count > 0 Then
+
+                If dt.Rows(0).Item("writer") <> Form1.adminName Then
+
+                    MsgBox("une commande de serveur " & dt.Rows(0).Item("writer") & " est en cours sur " & btt.Text)
+                    Exit Sub
+                End If
+
+
+
+
                 Form1.RPl.Avance = dt.Rows(0).Item("avance")
                 Form1.RPl.ClId = dt.Rows(0).Item("clid")
                 Form1.RPl.ClientName = dt.Rows(0).Item("name")
@@ -3217,6 +3356,8 @@ Public Class SubClass
         Dim isSell As Boolean = True
         Dim chs As New ChoseClient
         chs.isSell = isSell
+        chs.isTables = True
+
         If chs.ShowDialog = Windows.Forms.DialogResult.OK Then
             newTable = chs.clientName
             newClid = chs.cid
@@ -3284,7 +3425,7 @@ Public Class SubClass
                 params.Add("name", clientname)
                 params.Add("total", 0)
                 params.Add("avance", 0)
-                params.Add("date", Format(dte, "dd-MM-yyyy HH:mm"))
+                params.Add("date", Now)
                 params.Add("admin", False)
                 params.Add("writer", CStr(Form1.adminName))
                 params.Add("tp", 1)
@@ -3296,6 +3437,7 @@ Public Class SubClass
                 params.Add("bl", "---")
                 params.Add("remise", 0)
                 params.Add("beInFacture", 0)
+                params.Add("caisse", Form1.caisseId)
 
                 fid = c.InsertRecord(tableName, params, True)
 
@@ -3389,8 +3531,8 @@ Public Class SubClass
             Dim params As New Dictionary(Of String, Object)
 
             Try
-                params.Add("[date] < ", dt1)
-                params.Add("[date] > ", dt2)
+                params.Add("date < ", dt1)
+                params.Add("date > ", dt2)
 
                 Dim dt = c.SelectDataTableSymbols("Bon", {"*"}, params)
 
@@ -3402,11 +3544,11 @@ Public Class SubClass
             End Try
 
             params.Add("clid", 0)
-            params.Add("name", Form1.RPl.ClientName)
+            params.Add("name", "Retour Articles : " & Now.Date.ToString("dd-MMM"))
             params.Add("total", 0)
             params.Add("avance", 0)
-            params.Add("date", Format(Now.Date, "dd-MM-yyyy hh:mm"))
-            params.Add("admin", False)
+            params.Add("date", Now)
+            params.Add("admin", True)
             params.Add("writer", CStr(Form1.adminName))
             params.Add("tp", 1)
             params.Add("payed", False)
@@ -3422,8 +3564,6 @@ Public Class SubClass
         End Using
         Return id
     End Function
-
-
 
     Public Sub UpdateItem(ByVal i As Items, ByVal qte As Double, ByVal isS As Boolean, ByVal Field As String)
         Try
@@ -3659,17 +3799,28 @@ Public Class SubClass
             Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
                 Dim where As New Dictionary(Of String, Object)
                 where.Add(FC, i.id)
+
+                Dim params As New Dictionary(Of String, Object)
+                params.Add("fctid", CInt(Form1.RPl.FctId * -1))
+                params.Add("price", 0)
+                params.Add("bprice", 0)
+                params.Add("qte", 0)
+                params.Add("code", Now.ToString("dd/MM/yy HH:mm"))
                 'where.Add("arid", i.id)
 
-                If c.DeleteRecords(Form1.TB_Details, where) Then
+                If c.UpdateRecord(Form1.TB_Details, params, where) Then
                     Form1.RPl.DeleteItems()
                 End If
+
+                'If c.DeleteRecords(Form1.TB_Details, where) Then
+                '    Form1.RPl.DeleteItems()
+                'End If
 
                 'Stock
                 Try
                     If Form1.RPl.EditMode Then
 
-                        Dim params As New Dictionary(Of String, Object)
+                        params.Clear()
                         params.Add("arid", i.arid)
                         params.Add("dpid", i.Depot)
 
@@ -3700,7 +3851,28 @@ Public Class SubClass
                 End Try
             End Using
         Else
+            'Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+            '    Dim params As New Dictionary(Of String, Object)
+            '    params.Clear()
+            '    params.Add("fctid", CInt(Form1.RPl.FctId * -1))
+            '    params.Add("price", 0)
+            '    params.Add("code", Now.ToString("dd/MM/yy HH:mm"))
+            '    params.Add("name", i.Name)
+            '    params.Add("bprice", i.Bprice)
+            '    params.Add("unit", i.Unite)
+            '    params.Add("qte", i.Qte)
+            '    params.Add("tva", i.Tva)
+            '    params.Add("arid", i.arid)
+            '    params.Add("depot", i.Depot)
+            '    params.Add("poid", 0)
+            '    params.Add("cid", i.cid)
+            '    params.Add("rprice", 0)
+            '    params.Add("caisse", Form1.caisseId)
+            '    c.InsertRecord(Form1.TB_Details, params)
+
+            'End Using
             Form1.RPl.DeleteItems()
+            If Form1.RPl.isSell Then AppendData(id, "Supression ", "-", i.Name)
         End If
 
     End Sub
@@ -3781,7 +3953,6 @@ Public Class SubClass
         End If
 
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
-         
             Dim params As New Dictionary(Of String, Object)
 
             params.Add("total", 0)
@@ -3789,7 +3960,7 @@ Public Class SubClass
             params.Add("admin", True)
             params.Add("payed", True)
             params.Add("tva", 0)
-            params.Add("bl", "sup par " & Form1.adminName & " le: " & Now.ToString("ddMMyy HH:mm"))
+            params.Add("bl", "sup par " & Form1.adminName & " le: " & Now.ToString("ddMMyy HH:mm") & "-T" & Form1.RPl.Total_TTC & "-A" & Form1.RPl.Avance)
             params.Add("date", "2010-01-01 01:01:00")
             Dim where As New Dictionary(Of String, Object)
             If b Then
@@ -3806,10 +3977,10 @@ Public Class SubClass
           
             c.DeleteRecords(Form1.TB_Details, where)
 
-            If b = False Then
-                where.Clear()
-                where.Add("bonid", id)
-            End If
+            'If b = False Then
+            '    where.Clear()
+            '    where.Add("bonid", id)
+            'End If
 
             c.DeleteRecords(Form1.TB_Payement, where)
 
@@ -3913,6 +4084,27 @@ Public Class SubClass
     End Sub
 
     Public Sub UpdateItemDepot(ByVal i As Items)
+
+        If Form1.cbCafeMode.Checked Then
+            Try
+                saveChanges()
+            Catch ex As Exception
+            End Try
+
+            Dim epb As New SplitDetailsBon
+            epb.ShowDialog()
+
+            Dim bt As New Button
+
+            bt.Tag = Form1.RPl.ClId & "|" & Form1.RPl.FctId
+            TableSelected(bt, Nothing)
+
+            Exit Sub
+        End If
+
+
+
+
         Dim clc As New ChoseDepot
         Dim isS As Boolean = Form1.RPl.isSell
 
@@ -3921,7 +4113,7 @@ Public Class SubClass
             Dim dpt As Integer = CInt(clc.DataGridView1.SelectedRows(0).Cells(0).Value)
             If clc.Button1.Tag = 2 Then dpt = 0
 
-            If Form1.RPl.FctId > 0 Then
+            If Form1.RPl.FctId < 0 Then
                 Form1.RPl.ChangedItemsDepot(i.id, dpt)
                 Exit Sub
             End If
@@ -3931,7 +4123,7 @@ Public Class SubClass
                 Dim params As New Dictionary(Of String, Object)
                 Dim where As New Dictionary(Of String, Object)
 
-              
+
 
                 If isS = True Then
                     where.Add("id", CInt(i.id))
@@ -4022,7 +4214,6 @@ Public Class SubClass
         End If
 
     End Sub
-
     Public Sub AboutFactures(ByVal C As Boolean)
         Try
             Dim isSell As Boolean = CBool(Form1.btSwitch2.Tag)
@@ -4061,7 +4252,7 @@ Public Class SubClass
             End If
 
             Dim PRFT As Double = getProfit()
-            table.Rows.Add(0, -111, 1, "Profit", "U", PRFT, PRFT, 0, 100, -110, 0, 0)
+            If Form1.adminRole >= 100 Then table.Rows.Add(0, -111, 1, "Profit", "U", PRFT, PRFT, 0, 100, -110, 0, 0)
             table.Rows.Add(0, -112, 1, "Rest", "U", tva, tva, 0, 100, -110, 0, 0)
             table.Rows.Add(0, -113, 1, NM & "  FACTURES", "U", price, price, 0, 0, -110, 0, 0)
 
@@ -4226,24 +4417,50 @@ Public Class SubClass
     Public Function getStock(ByVal arid As Integer, ByVal dpid As Integer, ByVal qte As Double) As Double
         Dim result As Double = 0
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-            Dim params As New Dictionary(Of String, Object)
-            params.Add("arid", arid)
-            params.Add("dpid", dpid)
-            Dim localStock As Double
-            Try
-                localStock = c.SelectByScalar("Detailstock", "qte", params)
-            Catch ex As Exception
-                localStock = 0
-            End Try
+            If Form1.isBaseOnNormalStockMethode = False Then
+                Dim where As New Dictionary(Of String, Object)
+                where.Clear()
+                where.Add("arid", arid)
+                where.Add("depot", dpid)
 
-            If Form1.RPl.EditMode = False Then
-                result = localStock + qte
-                If Form1.RPl.isSell Then result = localStock - qte
+                Dim qteOUT = c.SelectByScalar("detailsfacture", "SUM(qte)", where)
+                Dim qteIN = c.SelectByScalar("detailsbon", "SUM(qte)", where)
+
+                If IsDBNull(qteIN) Then qteIN = 0
+                If IsDBNull(qteOUT) Then qteOUT = 0
+
+                qteIN -= qteOUT
+
+                If Form1.RPl.EditMode = False Then
+                    result = qteIN + qte
+                    If Form1.RPl.isSell Then result = qteIN - qte
+                Else
+                    result = qteIN
+                End If 
             Else
-                result = localStock
-            End If
 
+                Dim params As New Dictionary(Of String, Object)
+                params.Add("arid", arid)
+                params.Add("dpid", dpid)
+                Dim localStock As Double
+                Try
+                    localStock = c.SelectByScalar("Detailstock", "qte", params)
+                Catch ex As Exception
+                    localStock = 0
+                End Try
+
+                If Form1.RPl.EditMode = False Then
+                    result = localStock + qte
+                    If Form1.RPl.isSell Then result = localStock - qte
+                Else
+                    result = localStock
+                End If
+            End If
+              
         End Using
+
+
+
         Return result
     End Function
     Public Sub AutoCompleteArticles(ByRef txt As TextBox)
@@ -4357,7 +4574,7 @@ Public Class SubClass
                     End Try
 
                     lst.Add(dt.Rows(i).Item("name").ToString & "|" & dt.Rows(i).Item(0).ToString)
-                    lst.Add(dt.Rows(i).Item("codebar").ToString & "|" & dt.Rows(i).Item(0).ToString)
+                    lst.Add(dt.Rows(i).Item("codebar").ToString & "|" & dt.Rows(i).Item(0).ToString & "|" & dt.Rows(i).Item("name").ToString)
                 Next
             End If
         End Using
@@ -4526,6 +4743,7 @@ Public Class SubClass
         '    Dim tp As String = chs.tp
         'End If
     End Sub
+    
     Public Sub updateClient_PromoStyle(ByVal fid As Integer, ByVal isS As Boolean, ByVal cid As Integer,
                                        ByVal clientname As String, ByVal adresse As String, ByVal tp As String, ByVal EdtMode As Boolean)
         If cid <> 0 And isS = True And tp <> 0 Then
@@ -4889,11 +5107,11 @@ Public Class SubClass
             Dim str As String = Form1.btDbDv.Tag
             Dim conString As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & str & ";Persist Security Info=False;"
 
-            Using c As DataAccess = New DataAccess(conString, True)
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True) '  Using c As DataAccess = New DataAccess(conString, True)
                 For i As Integer = 0 To dt.Rows.Count - 1
                     Dim params As New Dictionary(Of String, Object)
                     params.Add("fctid", fctid)
-                    params.Add("date", Now.Date)
+                    params.Add("date", Now)
                     params.Add("Designation", dt.Rows(i).Item("name"))
                     params.Add("Price", dt.Rows(i).Item("price"))
                     params.Add("Qte", dt.Rows(i).Item("qte"))
@@ -4916,7 +5134,7 @@ Public Class SubClass
             Using c As DataAccess = New DataAccess(conString, True)
                 Dim params As New Dictionary(Of String, Object)
                 params.Add("fctid", fctid)
-                params.Add("date", Now.Date)
+                params.Add("date", Now)
                 params.Add("Designation", desg)
                 params.Add("Price", price)
                 params.Add("Qte", qte)

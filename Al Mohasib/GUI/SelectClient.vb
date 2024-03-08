@@ -66,7 +66,29 @@
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
 
         If isUpdatingMode Then Exit Sub
-       
+
+        Dim __is As Boolean = True
+
+        If Form1.cbBadgeClt.Checked Then
+            __is = False
+            Try
+                Dim sc As New UserParmissionCheck
+                sc.bName.Text = "List Clients/Fournisseur"
+                sc.lbNum.Text = "Modification bon"
+                If sc.ShowDialog = DialogResult.OK Then
+                    __is = True
+                End If
+            Catch ex As Exception
+                __is = False
+            End Try
+        End If
+
+        If __is = False Then Exit Sub
+
+
+
+
+
         Dim chs As New ChoseClient
         chs.isSell = Form1.RPl.isSell
 

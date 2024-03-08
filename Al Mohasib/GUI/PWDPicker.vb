@@ -14,6 +14,7 @@ Public Class PWDPicker
         End Try
     End Sub
 
+    Public isFillScreen As Boolean = True
 
     Private Sub PWDPicker_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'ALMohassinDBDataSet.admin' table. You can move, or remove it, as needed.
@@ -33,28 +34,32 @@ Public Class PWDPicker
         Catch ex As Exception
         End Try
 
-        Call CenterToScreen()
-        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
-        Me.WindowState = FormWindowState.Maximized
 
-        Panel6.Location = New Point((Me.Width - Panel6.Width) \ 2, (Me.Height - Panel6.Height) \ 2)
+        If isFillScreen Then
+            Call CenterToScreen()
+            Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+            Me.WindowState = FormWindowState.Maximized
+
+            Panel6.Location = New Point((Me.Width - Panel6.Width) \ 2, (Me.Height - Panel6.Height) \ 2)
+        End If
+
 
         If selectedOne <> "" Then
             For i As Integer = 0 To DGV1.Rows.Count - 1
-                If DGV1.Rows(i).Cells(1).Value = selectedOne Then
+                If DGV1.Rows(i).Cells(2).Value = selectedOne Then
                     DGV1.Rows(i).Selected = True
                     Exit For
                 End If
             Next
         End If
 
-        Try
-            If isPortOn = False Then
-                isPortOn = OpenPort()
-            End If
+        'Try
+        '    If isPortOn = False Then
+        '        isPortOn = OpenPort()
+        '    End If
 
-        Catch ex As Exception
-        End Try
+        'Catch ex As Exception
+        'End Try
 
     End Sub
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -114,15 +119,22 @@ Public Class PWDPicker
         End If
     End Sub
     Private Sub Panel7_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel7.MouseClick
-        Try
-            If isPortOn Then
-                isPortOn = ClosePort()
-            End If
-        Catch ex As Exception
-        End Try
+      
 
+        If isFillScreen Then
+            Try
+                If isPortOn Then
+                    isPortOn = ClosePort()
+                End If
+            Catch ex As Exception
+            End Try
 
-        End
+            End
+        Else
+
+            Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        End If
+
     End Sub
     Private Sub Label4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label4.Click
         Dim a = 300
@@ -265,4 +277,5 @@ Public Class PWDPicker
         Catch ex As Exception
         End Try
     End Sub
+ 
 End Class

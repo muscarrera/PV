@@ -51,6 +51,8 @@
             If Form1.cbImgPrice.Checked Then
                 lbP.Text = CDbl(value.Item("sprice")).ToString(Form1.frmDbl)
                 lbP.Visible = True
+                lbP.Font = New Font(Form1.txtPrFont.Text, CInt(Form1.txtPrSize.Text), FontStyle.Bold)
+                lbP.BackColor = Form1.btClrBg.BackColor
             End If
 
             'Try
@@ -121,7 +123,7 @@
     End Sub
 
     Private Sub PL_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PL.MouseEnter, lb.MouseEnter
-        lbBP.Visible = True
+        If Form1.cbShowBp.Checked = False Then lbBP.Visible = True
 
         If Form1.cbArtcleStockDetails.Checked = False Then Exit Sub
         If CInt(_data("cid")) < 0 Then Exit Sub
@@ -213,7 +215,9 @@
     End Sub
  
     Private Sub PvArticle_MouseEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.MouseEnter
-        If Form1.admin = False And Form1.cbShowBp.Checked Then Exit Sub
+        If Form1.admin = False Or Form1.cbShowBp.Checked Then Exit Sub
+
+
 
         lbBP.Text = CDbl(DataSource.Item("bprice")).ToString(Form1.frmDbl)
         lbBP.Visible = True

@@ -658,6 +658,8 @@
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         If DGVP.SelectedRows.Count = 0 Then Exit Sub
         If DGVP.SelectedRows(0).Cells(5).Value.ToString.Contains("@") Then Exit Sub
+        If Form1.adminRole < 100 Then Exit Sub
+
 
         txtmontant.text = DGVP.SelectedRows(0).Cells(2).Value.ToString
         txtmontant.Tag = DGVP.SelectedRows(0).Cells(2).Value.ToString

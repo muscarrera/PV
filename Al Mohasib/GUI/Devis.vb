@@ -18,8 +18,8 @@ Public Class Devis
                 btswitsh.BackColor = Color.Thistle
                 plrightA.BackColor = Color.Thistle
                 btswitsh.Tag = 0
-                tableName = "Bon"
-                tName = "DetailsBon"
+                tableName = "BonCommande"
+                tName = "DetailsBc"
 
                 plright.Controls.Clear()
                 RPl.ClearItems()
@@ -28,8 +28,8 @@ Public Class Devis
                 btswitsh.BackColor = Color.Teal
                 plrightA.BackColor = Color.Teal
                 btswitsh.Tag = 1
-                tableName = "Facture"
-                tName = "DetailsFacture"
+                tableName = "devis"
+                tName = "DetailsDevis"
 
                 plright.Controls.Clear()
                 RPl.ClearItems()
@@ -47,7 +47,7 @@ Public Class Devis
 
         Dim str As String = Form1.btDbDv.Tag
         'str = str.Replace(".mdb", "_Dv_Cm.mdb")
-        conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & str & ";Persist Security Info=False;"
+        'conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & str & ";Persist Security Info=False;"
 
         RPl.hasManyRemise = Form1.CbArticleRemise.Checked
 
@@ -87,12 +87,11 @@ Public Class Devis
             chs.isSell = True
             chs.editMode = False
 
-            Dim tableName As String = "Facture"
+
             Dim p As Panel = plright
 
             If btswitsh.Tag = 0 Then
-                chs.isSell = False
-                tableName = "Bon"
+                chs.isSell = False 
             End If
 
             If chs.ShowDialog = Windows.Forms.DialogResult.OK Then
@@ -102,18 +101,17 @@ Public Class Devis
                 Dim tp As String = chs.tp
                 Dim num As String = chs.num
                 Dim fid As Integer = 0
-                Dim dte As Date = Now.Date
-
+             
                 If chs.isEditing = True Then
                     fid = chs.id
                 Else
-                    Using c As DataAccess2 = New DataAccess2(conString)
+                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                         Dim params As New Dictionary(Of String, Object)
                         params.Add("clid", cid)
                         params.Add("name", clientname)
                         params.Add("total", 0)
                         params.Add("avance", 0)
-                        params.Add("date", Format(dte, "dd-MM-yyyy"))
+                        params.Add("date", Now)
                         params.Add("admin", False)
                         params.Add("writer", CStr(Form1.adminName))
                         params.Add("tp", 1)
@@ -171,10 +169,8 @@ Public Class Devis
         Dim bt As Button = sender
         Dim pl As Panel = plright
         Dim rnd As New Random
-        Dim tableName As String = "Facture"
         Dim fld As String = "fctid"
         If btswitsh.Tag = 0 Then
-            tableName = "Bon"
             fld = "bonid"
         End If
 
@@ -191,7 +187,7 @@ Public Class Devis
 
                 'GET AVANCE OF THIS FACTURE
                 'fill the recept items
-                Using c As DataAccess2 = New DataAccess2(conString)
+                Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                     Dim params As New Dictionary(Of String, Object)
                     params.Add(fld, CInt(bt.Tag))
                     Dim dt = c.SelectDataTable(tableName, {"*"}, params)
@@ -211,15 +207,12 @@ Public Class Devis
                         End Try
                     End If
                 End Using
-
-                tableName = "DetailsFacture"
-                If btswitsh.Tag = 0 Then tableName = "DetailsBon"
-
-                'fill the recept items
-                Using c As DataAccess2 = New DataAccess2(conString)
+                 
+                'fill the recept items  
+                Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                     Dim params As New Dictionary(Of String, Object)
                     params.Add("fctid", CInt(bt.Tag))
-                    Dim dt = c.SelectDataTable(tableName, {"*"}, params)
+                    Dim dt = c.SelectDataTable(tName, {"*"}, params)
 
                     If dt.Rows.Count > 0 Then
                         RPl.AddItems(dt, CBool(btswitsh.Tag))
@@ -374,14 +367,16 @@ Public Class Devis
         Dim bt2 As Button = sender
         FlowLayoutPanel1.Controls.Clear()
         Try
-            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
-
+             Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                 Dim params As New Dictionary(Of String, Object)
                 Dim artdt As DataTable
 
                 '''''''''''''''''''
                 params.Add("cid = ", bt2.Tag)
                 artdt = a.SelectDataTableSymbols("article", {"*"}, params)
+                FlowLayoutPanel1.Tag = bt2.Tag
+
+
                 If artdt.Rows.Count = 0 Then
                     Dim lb As New Label
 
@@ -389,36 +384,10 @@ Public Class Devis
                     lb.Text = "لا يوجد اي سجل"
                     FlowLayoutPanel1.Controls.Add(lb)
                 Else
-
-                    For i As Integer = 0 To artdt.Rows.Count - 1
-                        Dim bt As New Button
-                        bt.Visible = True
-                        bt.FlatStyle = FlatStyle.Flat
-                        bt.BackColor = Color.LightSeaGreen
-                        bt.Text = artdt.Rows(i).Item("name").ToString
-                        bt.Name = "art" & i
-                        bt.Tag = artdt.Rows(i)
-                        bt.TextAlign = ContentAlignment.BottomCenter
-                        Try
-                            If artdt.Rows(i).Item("img").ToString = "No Image" Or artdt.Rows(i).Item("img").ToString = "" Then
-
-                            Else
-                                bt.BackgroundImage = Image.FromFile(artdt.Rows(i).Item("img").ToString)
-
-                            End If
-                            bt.BackgroundImageLayout = ImageLayout.Stretch
-                            bt.ImageAlign = ContentAlignment.BottomCenter
-                        Catch ex As Exception
-
-                        End Try
-                        bt.Width = Form1.txtlongerbt.Text
-                        bt.Height = Form1.txtlargebt.Text
-                        FlowLayoutPanel1.Controls.Add(bt)
-                        AddHandler bt.Click, AddressOf art_click
-                    Next
-
+                    Dim myLast = Form1.indexLastArticle
+                    'Fill Articles
+                    FillDataSource_Articles(artdt, 0, artdt.Rows.Count - 1, myLast)
                 End If
-
             End Using
             txtSearch.Text = ""
             txtSearch.Focus()
@@ -426,6 +395,210 @@ Public Class Devis
             MsgBox(ex.Message)
         End Try
     End Sub
+    Private Sub FillDataSource_Articles(ByVal artdt As DataTable, ByVal iStart As Integer, ByVal iEnd As Integer, ByVal myLast As Integer)
+        Dim fn As Font = New Font(Form1.txtfname.Text, CInt(Form1.txtfntsize.Text), FontStyle.Bold)
+        
+        For i As Integer = iStart To iEnd
+            If i = artdt.Rows.Count Then
+                Form1.indexStartArticle = i '- Form1.indexLastArticle
+                Exit For
+            End If
+
+            If Form1.cbUseStar.Checked Then
+                If Form1.adminName.Contains("*") Then
+                    If StrValue(artdt, "codebar", i).Contains("*") = False Then
+                        myLast += 1
+                        Continue For
+                    End If
+                Else
+                    If StrValue(artdt, "codebar", i).Contains("*") Then
+                        myLast += 1
+                        Continue For
+                    End If
+                End If
+            End If
+
+
+            If Form1.isWorkingWithCatSelect Then
+                If Form1.ls_CatSelect.Contains(artdt.Rows(i).Item("cid")) = False Then
+                    Continue For
+                End If
+            End If
+
+
+            Form1.FocusedControle = Nothing
+            ''''''''''''''''''''''''''''''''''''
+            If Form1.cbPvArticle.Checked Then
+                Dim pv As New PvArticle
+                pv.DataSource = artdt.Rows(i)
+
+                pv.Width = Form1.txtlongerbt.Text
+                pv.Height = Form1.txtlargebt.Text
+                pv.fnt = fn
+                FlowLayoutPanel1.Controls.Add(pv)
+                AddHandler pv.Choosed, AddressOf art_click
+                 
+            Else
+
+
+                Dim bt As New Button
+                bt.BackgroundImageLayout = ImageLayout.Stretch
+                bt.Visible = True
+                bt.FlatStyle = FlatStyle.Flat
+                bt.BackColor = Color.LightSeaGreen
+                bt.Text = artdt.Rows(i).Item("name").ToString
+                bt.Name = "art" & i
+                bt.Tag = artdt.Rows(i)
+                bt.TextAlign = ContentAlignment.BottomCenter
+                Try
+                    If Form1.cbJnImgDb.Checked Then
+                        Try
+                            Dim arrImage() As Byte
+                            arrImage = artdt.Rows(i).Item("img")
+                            Dim mstream As New System.IO.MemoryStream(arrImage)
+
+                            bt.BackgroundImage = Image.FromStream(mstream)
+                            bt.BackgroundImageLayout = ImageLayout.Stretch
+                        Catch ex As Exception
+                            bt.BackgroundImage = My.Resources.AddFile_22
+                        End Try
+                    Else
+                        If artdt.Rows(i).Item("img").ToString = "No Image" Or artdt.Rows(i).Item("img").ToString = "" Then
+
+                        Else
+                            Dim str As String = Form1.BtImgPah.Tag & "\art" & artdt.Rows(i).Item("img").ToString
+                            If Form1.cbImgPrice.Checked Then
+                                str = Form1.BtImgPah.Tag & "\P-art" & artdt.Rows(i).Item("img").ToString
+                                'bt.Text= ""
+                                bt.TextAlign = ContentAlignment.BottomCenter
+                                bt.Font = New Font("Arial", 11, FontStyle.Bold)
+                                'Else
+                                '    bt.ForeColor = Color.Yellow
+                            End If
+
+                            bt.BackgroundImage = Image.FromFile(str)
+                        End If
+                        bt.BackgroundImageLayout = ImageLayout.Stretch
+                        bt.ImageAlign = ContentAlignment.BottomCenter
+                    End If
+
+                Catch ex As Exception
+                    bt.Text = artdt.Rows(i).Item("name").ToString
+                End Try
+
+                bt.Width = Form1.txtlongerbt.Text
+                bt.Height = Form1.txtlargebt.Text
+                FlowLayoutPanel1.Controls.Add(bt)
+                AddHandler bt.Click, AddressOf art_click
+                 
+                ''''''''''''''''''''''''''''''''''''''''''''''''''' list suivant
+            End If
+
+            If i = myLast Then
+                Dim pv As New PvCat
+                pv.DataSource = artdt
+                pv.CatName = (artdt.Rows.Count - i) & " Articles"
+
+                pv.isNext = True
+                pv.Width = Form1.txtlongerbt.Text
+                pv.Height = Form1.txtlargebt.Text
+                pv.fnt = fn
+                FlowLayoutPanel1.Controls.Add(pv)
+                AddHandler pv.Choosed, AddressOf ctg_NEXT
+
+                Form1.indexStartArticle = myLast
+                Exit For
+            End If
+        Next
+       
+    End Sub
+    Public Sub ctg_NEXT(ByVal sender As System.Object, ByVal e As EventArgs)
+        Try
+            Dim fn As Font = New Font(Form1.txtfname.Text, CInt(Form1.txtfntsize.Text), FontStyle.Bold)
+
+            Dim bt2 As Button = sender
+            FlowLayoutPanel1.Controls.Clear()
+            Dim artdt = bt2.Tag
+
+            '''''''''''''''''''''''''''''''''''' go back
+            If Form1.indexStartArticle > 0 Then
+                Dim pv As New PvCat
+                pv.DataSource = bt2.Tag
+                pv.CatName = Form1.indexStartArticle & " Articles"
+                pv.isPrev = True
+
+                pv.Width = Form1.txtlongerbt.Text
+                pv.Height = Form1.txtlargebt.Text
+                pv.fnt = fn
+                FlowLayoutPanel1.Controls.Add(pv)
+                AddHandler pv.Choosed, AddressOf ctg_BACK
+            End If
+
+            ''''''''''''''''''''''''''''''''''''
+            Dim _END As Integer = Form1.indexStartArticle + Form1.indexLastArticle
+
+            'Fill Articles
+            FillDataSource_Articles(artdt, Form1.indexStartArticle, artdt.Rows.Count - 1, _END)
+
+            If Form1.chbcb.Checked Then
+                Form1.txtSearchCode.Text = ""
+                Form1.txtSearchCode.Focus()
+            Else
+                Form1.txtSearch.Text = ""
+                Form1.txtSearch.Focus()
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Public Sub ctg_BACK(ByVal sender As System.Object, ByVal e As EventArgs)
+        Try
+            Dim fn As Font = New Font(Form1.txtfname.Text, CInt(Form1.txtfntsize.Text), FontStyle.Bold)
+
+            Dim bt2 As Button = sender
+            FlowLayoutPanel1.Controls.Clear()
+            Dim artdt = bt2.Tag
+
+            Dim s As Integer = Form1.indexStartArticle
+            Dim l As Integer = Form1.indexLastArticle
+            '''''''''''''''''''''''''''''''''''' go back
+            If s > l Then
+                Dim pv As New PvCat
+                pv.DataSource = bt2.Tag
+                pv.CatName = Form1.indexStartArticle & " Articles"
+                pv.isPrev = True
+
+                pv.Width = Form1.txtlongerbt.Text
+                pv.Height = Form1.txtlargebt.Text
+                pv.fnt = fn
+                FlowLayoutPanel1.Controls.Add(pv)
+                AddHandler pv.Choosed, AddressOf ctg_BACK
+            End If
+
+            ''''''''''''''''''''''''''''''''''''
+            s -= l * 2
+            If s < 0 Then s = 0
+
+            Dim _END As Integer = s + l
+
+            'Fill Articles
+            FillDataSource_Articles(artdt, s, artdt.Rows.Count - 1, _END)
+
+            If Form1.chbcb.Checked Then
+                Form1.txtSearchCode.Text = ""
+                Form1.txtSearchCode.Focus()
+            Else
+                Form1.txtSearch.Text = ""
+                Form1.txtSearch.Focus()
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+
     Private Sub art_click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim bt As Button = sender
         Dim R As DataRow = bt.Tag
@@ -435,16 +608,13 @@ Public Class Devis
                 Exit Sub
             End If
         End If
-
-
-
+         
         Try
             'add new bon
             If RPl.FctId = 0 Then
                 Exit Sub
             End If
-
-
+             
             Dim catsMerg = Form1.txtMergeCat.Text.Split("-")
 
             If RPl.IsExiste(R("arid"), R("depot"), R("name")) = True And Form1.cbMergeArt.Checked = True And catsMerg.Contains(R("cid")) = False Then
@@ -491,10 +661,10 @@ Public Class Devis
                             Dim params As New Dictionary(Of String, Object)
                             Dim order As New Dictionary(Of String, String)
 
-                            order.Add("Facture.fctid", "DESC")
+                            order.Add(tableName & ".fctid", "DESC")
 
-                            Dim tb_A As String = "Facture"
-                            Dim tb_D_A As String = "DetailsFacture"
+                            Dim tb_A As String = tableName
+                            Dim tb_D_A As String = tName
 
                             params.Add(tb_A & ".clid  = ", Form1.RPl.ClId)
                             params.Add(tb_D_A & ".arid  = ", R("arid"))
@@ -519,9 +689,10 @@ Public Class Devis
                             Dim params As New Dictionary(Of String, Object)
                             Dim order As New Dictionary(Of String, String)
 
-                            order.Add("Facture.fctid", "DESC")
-                            Dim tb_A As String = "Facture"
-                            Dim tb_D_A As String = "DetailsFacture"
+                            order.Add(tableName & ".fctid", "DESC")
+                            Dim tb_A As String = tableName
+                            Dim tb_D_A As String = tName
+
 
                             params.Add(tb_A & ".clid  = ", Form1.RPl.ClId)
                             params.Add(tb_D_A & ".arid  = ", R("arid"))
@@ -562,7 +733,7 @@ Public Class Devis
     Public Sub saveChanges()
         If RPl.FctId = 0 Then Exit Sub
 
-        Using c As DataAccess2 = New DataAccess2(conString, True)
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
 
             Dim prId_str = "id"
             If RPl.isSell = False Then prId_str = "bid"
@@ -588,23 +759,20 @@ Public Class Devis
                 params.Add("code", data.Rows(i).Item("code"))
                 params.Add("cid", data.Rows(i).Item("cid"))
                 Dim prId As Integer = data.Rows(i).Item("id")
-
-                Dim tableName As String = "DetailsFacture"
-                If btswitsh.Tag = 0 Then tableName = "DetailsBon"
-
+                 
                 If prId > 0 Then
                     where.Clear()
                     where.Add(prId_str, prId)
-                    c.UpdateRecord(tableName, params, where)
+                    c.UpdateRecord(tName, params, where)
                 Else
-                    c.InsertRecord(tableName, params)
+                    c.InsertRecord(tName, params)
                 End If
             Next
         End Using
     End Sub
     Public Function saveChanges_fct() As Boolean
         If RPl.FctId = 0 Then Return False
-        Using c As DataAccess2 = New DataAccess2(conString, True)
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
 
             Dim prId_str = "id"
             If RPl.isSell = False Then prId_str = "bid"
@@ -614,9 +782,7 @@ Public Class Devis
 
             Dim data = RPl.DataSource
 
-
             For i As Integer = 0 To data.Rows.Count - 1
-
                 params.Clear()
                 params.Add("fctid", RPl.FctId)
                 params.Add("name", data.Rows(i).Item("name"))
@@ -633,15 +799,13 @@ Public Class Devis
                 Dim prId As Integer = data.Rows(i).Item("id")
 
 
-                Dim tableName As String = "DetailsFacture"
-                If btswitsh.Tag = 0 Then tableName = "DetailsBon"
-
+                 
                 If prId > 0 Then
                     where.Clear()
                     where.Add(prId_str, prId)
-                    c.UpdateRecord(tableName, params, where)
+                    c.UpdateRecord(tName, params, where)
                 Else
-                    Dim pid = c.InsertRecord(tableName, params, True)
+                    Dim pid = c.InsertRecord(tName, params, True)
 
                     Dim a As Items
                     For Each a In Form1.RPl.Pl.Controls()
@@ -673,10 +837,8 @@ Public Class Devis
                 Dim qte As Double = CDbl(clc.CPanel1.Value)
 
                 If i.id > 0 Then
-                    Using c As DataAccess2 = New DataAccess2(conString, True)
-                        Dim tableName As String = "DetailsFacture"
-                        If btswitsh.Tag = 0 Then tableName = "DetailsBon"
-
+                    Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+                       
                         Dim params As New Dictionary(Of String, Object)
 
                         params.Add(Field, qte)
@@ -687,7 +849,7 @@ Public Class Devis
                             where.Add("bid", CInt(i.id))
                         End If
 
-                        c.UpdateRecord(tableName, params, where)
+                        c.UpdateRecord(tName, params, where)
                     End Using
                 End If
 
@@ -700,45 +862,37 @@ Public Class Devis
     Public Sub DeleteItem(ByRef i As Al_Mohasib.Items, ByVal id As System.Int32)
 
         Dim FC = "id"
-        Dim tableName As String = "DetailsFacture"
+
         Dim isS As Boolean = CBool(RPl.isSell)
 
         If isS = False Then
-            tableName = "DetailsBon"
+
             FC = "bid"
         End If
 
         If i.id > 0 Then
-            Using c As DataAccess2 = New DataAccess2(conString, True)
+            Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                 Dim where As New Dictionary(Of String, Object)
                 where.Add(FC, i.id)
 
-                If c.DeleteRecords(tableName, where) Then
+                If c.DeleteRecords(tName, where) Then
                     RPl.DeleteItems()
                 End If
 
             End Using
         Else
-
             RPl.DeleteItems()
-
         End If
-
-
-
-
     End Sub
     Public Sub SaveFacture(ByVal id As Integer, ByVal total As Double, ByVal avance As Double,
                            ByVal tva As Double, ByVal table As DataTable, ByVal Remise As String, ByVal BL As String)
 
         If saveChanges_fct() = False Then Exit Sub
 
-        Using c As DataAccess2 = New DataAccess2(conString, True)
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             Dim isPayed As Boolean = False
             If avance >= total Then isPayed = True
-
-            Dim tableName = "Facture"
-            If ISSELL = 0 Then tableName = "Bon"
+             
             Dim dte As Date = Now.Date
             Dim params As New Dictionary(Of String, Object)
 
@@ -775,13 +929,9 @@ Public Class Devis
         p.Controls.Clear()
         RPl.ClearItems()
         RPl.isUniqTva = Form1.CBTVA.Checked
+ 
 
-        Dim tableName As String = "Facture"
-        If a = 0 Then
-            tableName = "Bon"
-        End If
-
-        Using c As DataAccess2 = New DataAccess2(conString)
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
             Dim params As New Dictionary(Of String, Object)
             params.Add("admin", False)
             dt = c.SelectDataTable(tableName, {"*"}, params)
@@ -844,59 +994,114 @@ Public Class Devis
 
             Dim ctgdt = a.SelectDataTableSymbols("Category", {"*"})
             FlowLayoutPanel1.Controls.Clear()
-            For i As Integer = 0 To ctgdt.Rows.Count - 1
-                Dim bt As New Button
+            Dim fn As Font = New Font(Form1.txtfname.Text, CInt(Form1.txtfntsize.Text), FontStyle.Bold)
+              
+            If Form1.cbPvCats.Checked Then
+                ''''''''''''''''''''''''''''''''''''
+                Dim pvs(ctgdt.Rows.Count - 1) As PvCat
+                For i As Integer = 0 To ctgdt.Rows.Count - 1
 
-                bt.BackColor = Color.LightGoldenrodYellow
-                bt.Text = ctgdt.Rows(i).Item("name").ToString
-                bt.Name = "ctg" & i
-                bt.Tag = ctgdt.Rows(i).Item("cid")
-
-                bt.TextAlign = ContentAlignment.BottomCenter
-                Try
-                    If ctgdt.Rows(i).Item("img").ToString = "No Image" Or ctgdt.Rows(i).Item("img").ToString = "" Then
-                        bt.BackColor = Color.Moccasin
-                    Else
-                        bt.BackgroundImage = Image.FromFile(ctgdt.Rows(i).Item("img").ToString)
+                    If Form1.isWorkingWithCatSelect Then
+                        If Form1.ls_CatSelect.Contains(ctgdt.Rows(i).Item(0)) = False Then
+                            Continue For
+                        End If
                     End If
-                    bt.BackgroundImageLayout = ImageLayout.Stretch
-                Catch ex As Exception
-                End Try
-                bt.Width = 125
-                bt.Height = 90
 
-                AddHandler bt.Click, AddressOf ctg_click
-                FlowLayoutPanel1.Controls.Add(bt)
-            Next
 
-            '''''''' add temperory mixete element
 
-        End Using
-        Dim btMlg As New Button
+                    Dim pv As New PvCat
+                    pv.CID = ctgdt.Rows(i).Item(0)
+                    pv.CatName = ctgdt.Rows(i).Item("name")
+                    pv.img = StrValue(ctgdt, "img", i)
 
-        btMlg.BackColor = Color.LightGoldenrodYellow
-        btMlg.Text = "Melange"
-        btMlg.Name = "ctg0"
-        btMlg.Tag = 0
+                    pv.Width = Form1.txtlongerbt.Text
+                    pv.Height = Form1.txtlargebt.Text
+                    pv.fnt = fn
+                    'FlowLayoutPanel1owLayoutPanel1.Controls.Add(pv)
+                    AddHandler pv.Choosed, AddressOf ctg_click
+                    pvs(i) = pv
 
-        btMlg.TextAlign = ContentAlignment.BottomCenter
-        btMlg.BackColor = Color.Moccasin
-        btMlg.Width = 125
-        btMlg.Height = 90
 
-        AddHandler btMlg.Click, AddressOf ctg_click
-        FlowLayoutPanel1.Controls.Add(btMlg)
+                Next
+                FlowLayoutPanel1.Controls.AddRange(pvs)
 
+                Dim pva As New PvCat
+                pva.CID = -0
+                pva.CatName = "Melange"
+                pva.Width = Form1.txtlongerbt.Text
+                pva.Height = Form1.txtlargebt.Text
+                pva.fnt = fn
+                'FlowLayoutPanel1owLayoutPanel1.Controls.Add(pv)
+                AddHandler pva.Choosed, AddressOf ctg_click
+                FlowLayoutPanel1.Controls.Add(pva)
+            Else
+                ''''''''''''''''''''''''''''''''''''''''''''''''''' list suivant
+                Dim pvs(ctgdt.Rows.Count - 1) As Button
+                For i As Integer = 0 To ctgdt.Rows.Count - 1
+                    If Form1.isWorkingWithCatSelect Then
+                        If Form1.ls_CatSelect.Contains(ctgdt.Rows(i).Item(0)) = False Then
+                            Continue For
+                        End If
+                    End If
+
+                    Dim bt As New Button
+
+                    bt.BackColor = Color.LightGoldenrodYellow
+                    bt.Text = ctgdt.Rows(i).Item("name").ToString
+                    bt.Name = "ctg" & i
+                    bt.Tag = ctgdt.Rows(i).Item("cid")
+
+                    bt.TextAlign = ContentAlignment.BottomCenter
+                    Try
+                        If ctgdt.Rows(i).Item("img").ToString = "No Image" Or ctgdt.Rows(i).Item("img").ToString = "" Then
+                            bt.BackColor = Color.Moccasin
+                        Else
+                            Dim str As String = Form1.BtImgPah.Tag & "\cat" & ctgdt.Rows(i).Item("img").ToString
+                            If Form1.cbImgPrice.Checked Then
+                                str = Form1.BtImgPah.Tag & "\P-cat" & ctgdt.Rows(i).Item("img").ToString
+                                bt.Text = ""
+                            End If
+
+                            bt.BackgroundImage = Image.FromFile(str)
+                        End If
+                        bt.BackgroundImageLayout = ImageLayout.Stretch
+                    Catch ex As Exception
+                        bt.Text = ctgdt.Rows(i).Item("name").ToString
+                    End Try
+                    'bt.Width = 125
+                    'bt.Height = 90
+                    bt.Width = Form1.txtlongerbt.Text
+                    bt.Height = Form1.txtlargebt.Text
+
+                    AddHandler bt.Click, AddressOf ctg_click
+
+                    ' FlowLayoutPanel1owLayoutPanel1.Controls.Add(bt)
+                    pvs(i) = bt
+
+                Next
+                FlowLayoutPanel1.Controls.AddRange(pvs)
+
+                'Dim btc As New Button
+                'btc.BackColor = Color.LightGoldenrodYellow
+                'btc.Text = "Melange"
+                'btc.Name = "ctgMongrpcADMLG"
+                'btc.Tag = -0
+                'btc.Width = Form1.txtlongerbt.Text
+                'btc.Height = Form1.txtlargebt.Text
+                'AddHandler btc.Click, AddressOf ctg_click
+                'FlowLayoutPanel1.Controls.Add(btc)
+            End If
+             
+
+        End Using 
         txtSearch.Text = ""
         txtSearch.Focus()
         RPl.CP.Value = 0
     End Sub
     Public Sub DeleteFacture(ByVal id As Integer, ByVal b As Boolean)
         Dim AAA As Boolean = False
-        Using c As DataAccess2 = New DataAccess2(conString, True)
-            Dim tableName = "Facture"
-            If b = False Then tableName = "Bon"
-
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
+             
             Dim where As New Dictionary(Of String, Object)
             If b Then
                 where.Add("fctid", id)
@@ -908,11 +1113,8 @@ Public Class Devis
 
             where.Clear()
             where.Add("fctid", id)
-
-            tableName = "DetailsFacture"
-            If b = False Then tableName = "DetailsBon"
-
-            c.DeleteRecords(tableName, where)
+             
+            c.DeleteRecords(tName, where)
             where.Clear()
             AAA = True
         End Using
@@ -1113,6 +1315,8 @@ Public Class Devis
         '    If tp = "" Then tp = "1"
         '    If CheckForUnpaidFacture(cid, tp) = False Then Exit Sub
         'End If
+        Dim tb As String = "Facture"
+        If ISSELL = False Then tb = "Bon"
 
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
 
@@ -1133,7 +1337,7 @@ Public Class Devis
             params.Add("remise", 0)
             params.Add("beInFacture", 0)
 
-            fid = c.InsertRecord(tableName, params, True)
+            fid = c.InsertRecord(tb, params, True)
 
             If fid > 0 Then
                 Dim rnd As New Random
@@ -1161,7 +1365,10 @@ Public Class Devis
 
                 params.Clear()
 
-                'Details
+                tb = "DetailsDevis"
+                If ISSELL = False Then tb = "DetailsBc"
+              
+                'Detailsee
                 For i As Integer = 0 To table.Rows.Count - 1
 
                     params.Add("fctid", fid)
@@ -1186,10 +1393,10 @@ Public Class Devis
 
     Public Sub AppendData(ByVal fctid As String, ByVal desg As String, ByVal qte As String, ByVal price As String)
 
-        Using c As DataAccess2 = New DataAccess2(conString, True)
+        Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
             Dim params As New Dictionary(Of String, Object)
             params.Add("fctid", fctid)
-            params.Add("date", Now.Date)
+            params.Add("date", Now)
             params.Add("Designation", desg)
             params.Add("Price", price)
             params.Add("Qte", qte)

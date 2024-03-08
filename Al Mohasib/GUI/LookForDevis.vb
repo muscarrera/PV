@@ -10,19 +10,19 @@
         End Using
 
         Dim str As String = Form1.btDbDv.Tag
-        conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & str & ";Persist Security Info=False;"
+        '//  conString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & str & ";Persist Security Info=False;"
 
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Dim dt1 As Date = Date.Parse(dte2.Text).AddDays(1)
         Dim dt2 As Date = Date.Parse(dte1.Text).AddDays(-1)
-        Dim tName As String = "Facture"
-        If isSell = False Then tName = "Bon"
+        Dim tName As String = "Devis"
+        If isSell = False Then tName = "BonCommande"
         Dim params As New Dictionary(Of String, Object)
 
         Try
-            Using a As DataAccess2 = New DataAccess2(conString)
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
                 If txt.text <> "" Then
                     If IsNumeric(txt.text) Then
 
@@ -37,16 +37,16 @@
 
 
                         params.Add("clid = ", clid)
-                        params.Add("[date] < ", dt1)
-                        params.Add("[date] > ", dt2)
+                        params.Add("date < ", dt1)
+                        params.Add("date > ", dt2)
 
                         dt = a.SelectDataTableSymbols(tName, {"*"}, params)
 
                     End If
                 Else
 
-                    params.Add("[date] < ", dt1)
-                    params.Add("[date] > ", dt2)
+                    params.Add("date < ", dt1)
+                    params.Add("date > ", dt2)
 
                     dt = a.SelectDataTableSymbols(tName, {"*"}, params)
 

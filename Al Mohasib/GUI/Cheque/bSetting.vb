@@ -37,4 +37,20 @@
 
         End If
     End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label1.Click, Button1.Click
+        Dim cltdlg As New Client
+        cltdlg.btcon.Tag = "0"
+        If cltdlg.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+        End If
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label2.Click, Button2.Click
+        Dim cmpdlg As New company
+        cmpdlg.btcon.Tag = "0"
+        If cmpdlg.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+        End If
+    End Sub
 End Class

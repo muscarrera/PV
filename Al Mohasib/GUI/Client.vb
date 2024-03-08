@@ -1,6 +1,16 @@
 ﻿Imports System.IO
 
 Public Class Client
+    Private Function IsPhoneNumberValid(ByVal phoneNumber As String) As Boolean
+        ' Define a regular expression pattern for a basic phone number format
+        Dim pattern As String = "^\d{10}$" ' Assumes a 10-digit phone number format
+
+        ' Create a regular expression object
+        Dim regex As New System.Text.RegularExpressions.Regex(pattern)
+
+        ' Check if the input string matches the pattern
+        Return regex.IsMatch(phoneNumber)
+    End Function
 
     Private Sub Client_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
          Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
@@ -95,11 +105,11 @@ Public Class Client
         If DataGridView1.SelectedRows.Count = 0 Then Exit Sub
 
         Dim id As Integer = DataGridView1.SelectedRows(0).Cells(0).Value
-        If hasMoreFacture(id) = False Then
-            MsgBox("vous ne disposez pas des autorisations nécessaires pour supprimer ce client")
-            Exit Sub
-        End If
 
+        'If hasMoreFacture(id) = False Then
+        '    MsgBox("vous ne disposez pas des autorisations nécessaires pour supprimer ce client")
+        '    Exit Sub
+        'End If
 
         If MsgBox("عند قيامكم على الضغط على 'موافق' سيتم حذف الزبون  المؤشر عليها من القائمة .. إضغط  'لا'  لالغاء الحذف ", MsgBoxStyle.YesNo Or MessageBoxIcon.Exclamation, "حذف الزبون") = MsgBoxResult.No Then
             Exit Sub
@@ -108,8 +118,12 @@ Public Class Client
             'MsgBox("عذرا لا يمكن اتمام طلبكم.. هذا الزبون ما زال يتوفر على دين. المرجوا قضاء دينه اولا", MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, "ERROR")
             'Exit Sub
         End If
+
+
         Try
+
             Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+
                 Dim params As New Dictionary(Of String, Object)
                 '''''''''''''''''''
                 params.Add("Clid", id)
@@ -118,6 +132,7 @@ Public Class Client
                 End If
 
             End Using
+
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -166,6 +181,16 @@ Public Class Client
         If txtVille.text = "" Then txtVille.text = "-"
 
         Dim adresse As String = txtad.text & "*" & txtVille.text & "*" & txtIce.text
+
+
+
+        Dim isValidPhoneNumber As Boolean = IsPhoneNumberValid(txttel.text)
+
+        If isValidPhoneNumber = False Then
+            MessageBox.Show("Numero de tel. est incorrect.")
+            txttel.TXT.Focus()
+            Exit Sub
+        End If
 
 
         Using c As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString, True)
