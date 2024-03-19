@@ -856,11 +856,11 @@ Partial Class Form1
         Me.GB1.Controls.Add(Me.Panel34)
         Me.GB1.Controls.Add(Me.Panel31)
         Me.GB1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB1.Location = New System.Drawing.Point(811, 4)
+        Me.GB1.Location = New System.Drawing.Point(972, 4)
         Me.GB1.Margin = New System.Windows.Forms.Padding(4)
         Me.GB1.Name = "GB1"
         Me.GB1.Padding = New System.Windows.Forms.Padding(4)
-        Me.GB1.Size = New System.Drawing.Size(339, 730)
+        Me.GB1.Size = New System.Drawing.Size(178, 730)
         Me.GB1.TabIndex = 5
         Me.GB1.TabStop = False
         '
@@ -885,7 +885,7 @@ Partial Class Form1
         Me.Panel34.Location = New System.Drawing.Point(31, 19)
         Me.Panel34.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel34.Name = "Panel34"
-        Me.Panel34.Size = New System.Drawing.Size(304, 707)
+        Me.Panel34.Size = New System.Drawing.Size(143, 707)
         Me.Panel34.TabIndex = 5
         '
         'Button46
@@ -1439,11 +1439,11 @@ Partial Class Form1
         Me.GB4.Controls.Add(Me.txtNbrArt)
         Me.GB4.Controls.Add(Me.txtlargebt)
         Me.GB4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB4.Location = New System.Drawing.Point(-258, 4)
+        Me.GB4.Location = New System.Drawing.Point(671, 4)
         Me.GB4.Margin = New System.Windows.Forms.Padding(4)
         Me.GB4.Name = "GB4"
         Me.GB4.Padding = New System.Windows.Forms.Padding(4)
-        Me.GB4.Size = New System.Drawing.Size(442, 730)
+        Me.GB4.Size = New System.Drawing.Size(114, 730)
         Me.GB4.TabIndex = 0
         Me.GB4.TabStop = False
         '
@@ -4783,7 +4783,7 @@ Partial Class Form1
         Me.GB8.Controls.Add(Me.Panel5)
         Me.GB8.Controls.Add(Me.Button87)
         Me.GB8.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB8.Location = New System.Drawing.Point(-864, 4)
+        Me.GB8.Location = New System.Drawing.Point(-333, 4)
         Me.GB8.Margin = New System.Windows.Forms.Padding(4)
         Me.GB8.Name = "GB8"
         Me.GB8.Padding = New System.Windows.Forms.Padding(4)
@@ -4937,7 +4937,7 @@ Partial Class Form1
         Me.GB7.Controls.Add(Me.cbPvArticle)
         Me.GB7.Controls.Add(Me.Button56)
         Me.GB7.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB7.Location = New System.Drawing.Point(-821, 4)
+        Me.GB7.Location = New System.Drawing.Point(-290, 4)
         Me.GB7.Margin = New System.Windows.Forms.Padding(4)
         Me.GB7.Name = "GB7"
         Me.GB7.Padding = New System.Windows.Forms.Padding(4)
@@ -5399,7 +5399,7 @@ Partial Class Form1
         Me.GB6.Controls.Add(Me.Label61)
         Me.GB6.Controls.Add(Me.Label63)
         Me.GB6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB6.Location = New System.Drawing.Point(-347, 4)
+        Me.GB6.Location = New System.Drawing.Point(184, 4)
         Me.GB6.Margin = New System.Windows.Forms.Padding(4)
         Me.GB6.Name = "GB6"
         Me.GB6.Padding = New System.Windows.Forms.Padding(4)
@@ -5911,11 +5911,11 @@ Partial Class Form1
         Me.GB5.Controls.Add(Me.cbProfit)
         Me.GB5.Controls.Add(Me.cbUnite)
         Me.GB5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB5.Location = New System.Drawing.Point(-305, 4)
+        Me.GB5.Location = New System.Drawing.Point(226, 4)
         Me.GB5.Margin = New System.Windows.Forms.Padding(4)
         Me.GB5.Name = "GB5"
         Me.GB5.Padding = New System.Windows.Forms.Padding(4)
-        Me.GB5.Size = New System.Drawing.Size(47, 730)
+        Me.GB5.Size = New System.Drawing.Size(445, 730)
         Me.GB5.TabIndex = 8
         Me.GB5.TabStop = False
         '
@@ -6068,11 +6068,11 @@ Partial Class Form1
         Me.GB3.Controls.Add(Me.Label49)
         Me.GB3.Controls.Add(Me.Label54)
         Me.GB3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB3.Location = New System.Drawing.Point(184, 4)
+        Me.GB3.Location = New System.Drawing.Point(785, 4)
         Me.GB3.Margin = New System.Windows.Forms.Padding(4)
         Me.GB3.Name = "GB3"
         Me.GB3.Padding = New System.Windows.Forms.Padding(4)
-        Me.GB3.Size = New System.Drawing.Size(376, 730)
+        Me.GB3.Size = New System.Drawing.Size(125, 730)
         Me.GB3.TabIndex = 7
         Me.GB3.TabStop = False
         '
@@ -6322,11 +6322,11 @@ Partial Class Form1
         Me.GB2.Controls.Add(Me.Button5)
         Me.GB2.Controls.Add(Me.Button6)
         Me.GB2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.GB2.Location = New System.Drawing.Point(560, 4)
+        Me.GB2.Location = New System.Drawing.Point(910, 4)
         Me.GB2.Margin = New System.Windows.Forms.Padding(4)
         Me.GB2.Name = "GB2"
         Me.GB2.Padding = New System.Windows.Forms.Padding(4)
-        Me.GB2.Size = New System.Drawing.Size(251, 730)
+        Me.GB2.Size = New System.Drawing.Size(62, 730)
         Me.GB2.TabIndex = 7
         Me.GB2.TabStop = False
         '

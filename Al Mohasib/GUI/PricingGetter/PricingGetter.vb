@@ -21,8 +21,7 @@ Public Class PricingGetter
             lbtrial.Text = value
             value += 1
             My.Computer.Registry.SetValue("HKEY_LOCAL_MACHINE\SOFTWARE\AlMohassib", "Pricing_Trial_Use", value)
-        Else
-
+        Else 
             Dim m = InputBox("Code =  " & value)
             If Not IsNumeric(m) Then
                 End
