@@ -55,6 +55,7 @@ Public Class Form1
     Public _isRongtaBalance As Boolean = True
     Public _isNotSauvegarde As Boolean = False
     Public isBaseOnNormalStockMethode As Boolean = True
+    Public __CheckMySituation As Boolean = False 
 
     Public Property Operation As String
         Get
@@ -253,6 +254,8 @@ Public Class Form1
         'SetTheTrueMacAdrssDb()
         'If isTheTrueMacAdrss(True) = 0 Then End
 
+        TestApiRequest()
+
         HandleRegistryinfo()
 
         isBaseOnRIYAL = cbRYL.Checked
@@ -296,7 +299,14 @@ Public Class Form1
         'End If
         'End If
 
-        '
+        ' 
+
+        'SaveDataLocaly()
+        Try
+            If Not bgSVGD.IsBusy Then bgSVGD.RunWorkerAsync()
+        Catch ex As Exception
+
+        End Try
 
 
 
@@ -339,10 +349,7 @@ Public Class Form1
         End If
 
         '' '' '' '' '' banque test
-
-
-
-
+         
         Me.Text = "Al Mohassib  --- (" & adminName & ")  ---  D.E: " & Now
         Try
             If _isHome = False Then TabControl1.Controls.Remove(TabPageAcu)
@@ -1827,7 +1834,7 @@ Public Class Form1
         getRegistryinfo(cbCafeCommande, "cbCafeCommande", False)
         getRegistryinfo(cbPatis, "cbPatis", False)
         getRegistryinfo(isBaseOnNormalStockMethode, "isBaseOnNormalStockMethode", False)
-
+        getRegistryinfo(__CheckMySituation, "chmysi_api", False)
  
         getRegistryinfo(txtItmFG, "txtItmFG", "Arial")
         getRegistryinfo(txtItmFP, "txtItmFP", "Arial")
@@ -2975,8 +2982,8 @@ Public Class Form1
         If g.TabProp.Type.ToUpper.StartsWith("TAB") Then
             Dim ps As New PaperSize(g.P_name, g.W_Page, g.h_Page)
             ps.PaperName = g.p_Kind
-            PrintDocDepot.DefaultPageSettings.PaperSize = ps
-            PrintDocDepot.DefaultPageSettings.Landscape = g.is_Landscape
+            PrintDocKitchen.DefaultPageSettings.PaperSize = ps
+            PrintDocKitchen.DefaultPageSettings.Landscape = g.is_Landscape
         End If
 
         __i_kvp = 0
@@ -2994,10 +3001,28 @@ Public Class Form1
                     __lst = GetListDepots()
                 End If
 
+                PrintDocKitchen.PrinterSettings.PrinterName = txtprt2.Text
 
+                If __lst.Count Then
 
-                PrintDocDepot.PrinterSettings.PrinterName = txtprt2.Text
-                If __lst.Count Then PrintDocDepot.Print()
+                    For Each n In __lst
+                        _printedDepotID = n
+
+                        Try '''''''''''''''''''''''''''''''''''''''''''''
+                            Dim result = From myRow As DataRow In dt_Depot.Rows
+                                          Where myRow("dpid") = _printedDepotID Select myRow("name")
+
+                            _printedDepotName = result.FirstOrDefault
+                            PrintDocKitchen.PrinterSettings.PrinterName = _printedDepotName
+
+                        Catch ex As Exception
+                        End Try
+                         
+
+                        PrintDocKitchen.Print()
+                    Next 
+                End If
+
 
 
                 A.saveChanges()
@@ -3762,10 +3787,7 @@ Public Class Form1
         If (MessageBox.Show("Close?", "", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.No) Then
             e.Cancel = True
         End If
-
-
-        SaveDataLocaly()
-
+         
 
     End Sub
     Private Sub Button12_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btSvPath.Click
@@ -4752,6 +4774,7 @@ Public Class Form1
             If __i_kvp = __lst.Count - 1 Then Exit Sub
             __i_kvp += 1
             e.HasMorePages = True
+ 
             Return
 
         End If
@@ -5135,8 +5158,19 @@ Public Class Form1
     End Sub
 
     Private Sub Button31_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button31.Click
-        SaveDataLocaly()
-        End
+        'SaveDataLocaly()
+        Try
+            Using a As SubClass = New SubClass
+                If RPl.EditMode = False Then a.saveChanges()
+            End Using
+        Catch ex As Exception
+        End Try
+
+
+        If (MessageBox.Show("Close?", "", MessageBoxButtons.YesNo) = Windows.Forms.DialogResult.Yes) Then
+            End
+        End If
+         
     End Sub
 
     Private Sub Button32_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button32.Click
@@ -9427,5 +9461,141 @@ Public Class Form1
 
     Private Sub Button47_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button47.Click
 
+    End Sub
+     
+    Private Sub PrintDocKitchen_PrintPage(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintPageEventArgs) Handles PrintDocKitchen.PrintPage
+        Dim dte As String = Format(Date.Now, "dd-MM-yyyy [hh:mm]")
+        If RPl.EditMode = True Then dte = DGVARFA.SelectedRows(0).Cells(6).Value
+
+        Dim data As New DataTable
+        ' Create four typed columns in the DataTable.
+        data.Columns.Add("id", GetType(String))
+        data.Columns.Add("date", GetType(String))
+        data.Columns.Add("cid", GetType(String))
+        data.Columns.Add("name", GetType(String))
+        data.Columns.Add("total_ht", GetType(String))
+        data.Columns.Add("total_tva", GetType(String))
+        data.Columns.Add("total_ttc", GetType(String))
+        data.Columns.Add("total_remise", GetType(String))
+        data.Columns.Add("total_avance", GetType(String))
+        data.Columns.Add("total_droitTimbre", GetType(String))
+        data.Columns.Add("MPayement", GetType(String))
+        data.Columns.Add("Editeur", GetType(String))
+        data.Columns.Add("vidal", GetType(String))
+        data.Columns.Add("livreur", GetType(String))
+        data.Columns.Add("poid", GetType(String))
+
+
+        'Try
+        '    ' For Each kvp As KeyValuePair(Of Integer, String) In lst
+        '    _printedDepotID = __lst(__i_kvp)
+        'Catch ex As Exception
+        '    Exit Sub
+
+        'End Try
+
+
+        Dim dt As DataTable = RPl.DataSource
+
+        Try '''''''''''''''''''''''''''''''''''''''''''''
+            dt_filtreDataSource.Rows.Clear()
+
+            Dim result = From myRow As DataRow In dt.Rows
+                          Where myRow("depot") = _printedDepotID And myRow("qte") > 0 Select myRow
+            If result.Count Then dt_filtreDataSource = result.CopyToDataTable
+        Catch ex As Exception
+        End Try
+
+        Try
+            Dim poid As Double = 0
+            Try
+                Dim pid As Integer = dt_filtreDataSource.Rows(0).Item("depot")
+                If pid > 0 Then
+                    Dim a As Items
+
+                    For Each a In RPl.Pl.Controls
+                        If a.Depot = pid Then poid += a.Poid * a.Qte
+                    Next
+                End If
+
+            Catch ex As Exception
+            End Try
+
+            Try '''''''''''''''''''''''''''''''''''''''''''''
+                Dim result = From myRow As DataRow In dt_Depot.Rows
+                              Where myRow("dpid") = _printedDepotID Select myRow("name")
+
+                _printedDepotName = result.FirstOrDefault
+                
+            Catch ex As Exception
+            End Try
+            
+
+            data.Rows.Add(RPl.FctId, dte, RPl.ClId, RPl.ClientName,
+                          String.Format("{0:0.00}", RPl.Total_Ht), String.Format("{0:0.00}", RPl.Tva),
+                          String.Format("{0:0.00}", RPl.Total_TTC), String.Format("{0:0.00}", RPl.Remise),
+                          String.Format("{0:0.00}", RPl.Avance), String.Format("{0:0.00}", 0),
+                          "Cache", adminName, dt_filtreDataSource.Rows.Count, RPl.bl, poid)
+
+
+            Using g As gDrawClass = New gDrawClass(MP_Localname)
+                g.rtl = cbRTL.Checked
+
+                g.DrawBl(e, data, dt_filtreDataSource, Nothing, Facture_Title, False, M, params_tva)
+            End Using
+
+        Catch ex As Exception
+            params_tva.Clear()
+        End Try
+
+
+    End Sub
+
+    Private Sub bgSVGD_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bgSVGD.DoWork
+        If _isNotSauvegarde Then Exit Sub
+
+        Try
+            Dim strpath As String = btSvPath.Tag & "\LocalData\" & Date.Now.Year.ToString
+            If Not Directory.Exists(strpath) Then
+                Directory.CreateDirectory(strpath)
+            End If
+            strpath &= "\" & Date.Now.Month.ToString
+            If Not Directory.Exists(strpath) Then
+                Directory.CreateDirectory(strpath)
+            End If
+
+
+
+            Dim bk As New BackUpClass
+            bk.dte = Now
+
+            Using a As DataAccess = New DataAccess(My.Settings.ALMohassinDBConnectionString)
+
+                bk.dt_article = a.SelectDataTable("article", {"*"})
+                bk.dt_Client = a.SelectDataTable("Client", {"*"})
+                bk.dt_Client_Payement = a.SelectDataTable("payment", {"*"})
+
+                bk.dt_Fournisseur = a.SelectDataTable("company", {"*"})
+                bk.dt_Company_Payement = a.SelectDataTable("companypayment", {"*"})
+                bk.dt_Category = a.SelectDataTable("Category", {"*"})
+                bk.dt_Sell_Facture = a.SelectDataTable("Facture", {"*"})
+                bk.dt_Details_Sell_Facture = a.SelectDataTable("detailsfacture", {"*"})
+                bk.dt_Bon_Achat = a.SelectDataTable("Bon", {"*"})
+                bk.dt_Details_Bon_Achat = a.SelectDataTable("detailsbon", {"*"})
+                bk.dt_Depot = a.SelectDataTable("Depot", {"*"})
+                bk.dt_Details_Stock = a.SelectDataTable("detailsstock", {"*"})
+                bk.dt_admin = a.SelectDataTable("admin", {"*"})
+
+                bk.dt_facture_liste = a.SelectDataTable("facture_liste", {"*"})
+                bk.dt_machine = a.SelectDataTable("machine", {"*"})
+                bk.dt_Charge = a.SelectDataTable("charge", {"*"})
+
+
+            End Using
+
+            WriteToXmlFile(Of BackUpClass)(strpath & "\" & Date.Now.Day.ToString & ".xml", bk)
+
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

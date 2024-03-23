@@ -331,7 +331,6 @@ Module AdminModule
         Catch ex As Exception
             Return True
         End Try
-
     End Function
 
     '2ChequeFortheId && isMasterOrSlayve

@@ -188,8 +188,8 @@ Public Class Client
 
         If isValidPhoneNumber = False Then
             MessageBox.Show("Numero de tel. est incorrect.")
-            txttel.TXT.Focus()
-            Exit Sub
+            'txttel.TXT.Focus()
+            'Exit Sub
         End If
 
 

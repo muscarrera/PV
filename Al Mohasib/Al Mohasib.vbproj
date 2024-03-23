@@ -92,6 +92,7 @@
       <DependentUpon>ALMohassinDBDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Class\AdminModule.vb" />
+    <Compile Include="Class\ApiModule.vb" />
     <Compile Include="Class\AutoModule.vb" />
     <Compile Include="Class\BackUpModule.vb" />
     <Compile Include="Class\BackUpRestaure.vb" />

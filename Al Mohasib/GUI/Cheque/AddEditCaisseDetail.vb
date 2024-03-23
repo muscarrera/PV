@@ -164,6 +164,7 @@ Public Class AddEditCaisseDetail
         End Using
     End Sub
     Private Sub AddEditCaisseDetail_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
         If Form1.adminRole = 100 Then
             lbValeur.Visible = True
             Panel18.Visible = True

@@ -3187,6 +3187,14 @@ Public Class SubClass
                 If (i Mod 2) = 0 Then cr = Color.LightGray
 
                 Try
+                    If Not IsNumeric(dt.Rows(i).Item("CIN")) Then
+                        dt.Rows(i).Item("CIN") = 0
+                    End If
+                Catch ex As Exception
+                    dt.Rows(i).Item("CIN") = 0
+                End Try 
+
+                Try
                     bt.Tag = dt.Rows(i).Item(0) & "|" & dt.Rows(i).Item("CIN")
                     bt.Text = dt.Rows(i).Item("name")
                 Catch ex As Exception
@@ -3195,11 +3203,13 @@ Public Class SubClass
 
                 bt.FlatStyle = FlatStyle.Flat
                 bt.ForeColor = Color.Black
+
                 If dt.Rows(i).Item("CIN") <> 0 Then
                     cr = Color.FromArgb(255, rnd.Next(255), rnd.Next(255), rnd.Next(255)) 'Color.DarkSlateGray
                     bt.Image = Form1.Button70.Image
                     bt.ImageAlign = ContentAlignment.BottomCenter
-                End If
+                End If 
+
                 bt.BackColor = cr
 
                 bt.Name = "bt" & CStr(rnd.Next)
